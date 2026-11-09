@@ -90,8 +90,9 @@ layout({
   <span class="eyebrow">Zelf repareren en onderhouden</span>
   <h1>Wat betekent die foutcode?</h1>
   <p class="lead">Foutcodes, storingen en onderhoud per merk en model, in gewoon Nederlands. Met wat je zelf kunt doen en wanneer je beter een specialist belt.</p>
-  <div class="search"><input id="q" type="search" placeholder="Bijv. E24, Linea Mini of Shimano W013" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
+  <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E24 of Intergas 4" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
+  <div class="picker" id="picker"><span class="eyebrow">Of kies stap voor stap</span><div class="picker-row"><label for="pm">Merk<select id="pm"><option value="">Kies je merk</option></select></label><label for="pa">Apparaat<select id="pa" disabled><option value="">Kies eerst een merk</option></select></label></div><div class="results" id="pres" aria-live="polite"></div></div>
   <p class="muted">${stats.codes} foutcodes · ${stats.faults} storingen · ${stats.models} merken en modellen</p>
 </section>
 <section class="stack">
@@ -301,7 +302,7 @@ layout({ file: "404.html", title: "Pagina niet gevonden | Repareerwijzer", desc:
 // ───────── Zoekindex, sitemap, robots, favicon, assets
 const index = [
   ...MODELS.map(m => ({ t: fullName(m), s: catOf(m.cat).name, u: `${m.id}.html`, k: `${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).name}` })),
-  ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), k: `${f.code} ${f.t} ${m.brand} ${catOf(m.cat).one}` })),
+  ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${f.code} ${f.t} ${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).one} ${catOf(m.cat).name}` })),
   ...MODELS.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ t: f.t, s: fullName(m), u: `${m.id}.html#${slug(f.t)}`, k: `${f.t} ${m.brand} ${m.name}` }))),
   ...CATS.map(c => ({ t: c.name, s: "Categorie", u: `${c.id}.html`, k: c.name })),
   ...brandNames.map(b => ({ t: `${b} storingen en foutcodes`, s: "Merk", u: brandUrl(b), k: `${b} merk storing foutcode` }))

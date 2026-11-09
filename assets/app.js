@@ -11,17 +11,20 @@
   var q = document.getElementById("q"), res = document.getElementById("res");
   if (q && res) {
     var run = function () {
-      var v = norm(q.value);
-      if (!v) { res.innerHTML = ""; return; }
+      var tokens = q.value.split(/[\s,]+/).map(norm).filter(Boolean);
+      if (!tokens.length) { res.innerHTML = ""; return; }
       var data = window.SEARCH || [], hits = [];
       for (var i = 0; i < data.length; i++) {
-        var d = data[i], score = 0;
+        var d = data[i], hay = " " + String(d.k).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ") + " ", score = 0, ok = true;
         var parts = d.c ? d.c.split("/").map(norm) : [];
-        if (parts.indexOf(v) > -1) score = 4;
-        else if (parts.some(function (p) { return p.indexOf(v) === 0; })) score = 3;
-        else if (d.c && norm(d.c).indexOf(v) > -1) score = 2;
-        else if (norm(d.k).indexOf(v) > -1) score = 1;
-        if (score) hits.push([score, d]);
+        for (var j = 0; j < tokens.length; j++) {
+          var v = tokens[j];
+          if (parts.indexOf(v) > -1) score += 4;
+          else if (parts.some(function (p) { return p.indexOf(v) === 0; })) score += 3;
+          else if (hay.indexOf(v) > -1) score += 1;
+          else { ok = false; break; }
+        }
+        if (ok && score) hits.push([score, d]);
       }
       hits.sort(function (a, b) { return b[0] - a[0]; });
       res.innerHTML = hits.length ? hits.slice(0, 15).map(function (h) {
@@ -30,6 +33,35 @@
       }).join("") : '<p class="muted" style="padding:10px 2px">Niets gevonden voor "' + esc(q.value) + '". Probeer alleen het merk of de code.</p>';
     };
     q.addEventListener("input", run);
+  }
+
+  // Keuzehulp: merk → apparaat → foutcodes
+  var pm = document.getElementById("pm"), pa = document.getElementById("pa"), pres = document.getElementById("pres");
+  if (pm && pa && pres) {
+    var codes = (window.SEARCH || []).filter(function (d) { return d.c && d.b; });
+    var brands = {};
+    codes.forEach(function (d) { d.b.forEach(function (b) { brands[b] = true; }); });
+    Object.keys(brands).sort(function (a, b) { return a.localeCompare(b, "nl"); }).forEach(function (b) {
+      var o = document.createElement("option"); o.value = b; o.textContent = b; pm.appendChild(o);
+    });
+    var show = function () {
+      var b = pm.value, a = pa.value;
+      if (!b) { pres.innerHTML = ""; return; }
+      var list = codes.filter(function (d) { return d.b.indexOf(b) > -1 && (!a || d.a === a); });
+      pres.innerHTML = list.map(function (d) {
+        return '<a href="' + d.u + '"><span><span class="code">' + esc(d.c) + "</span> " + esc(d.t) + "</span><span>" + esc(d.a) + "</span></a>";
+      }).join("") || '<p class="muted" style="padding:10px 2px">Geen foutcodes gevonden.</p>';
+    };
+    pm.addEventListener("change", function () {
+      var types = {};
+      codes.forEach(function (d) { if (d.b.indexOf(pm.value) > -1) types[d.a] = true; });
+      var keys = Object.keys(types).sort();
+      pa.innerHTML = '<option value="">' + (pm.value ? (keys.length > 1 ? "Alle apparaten" : keys[0] || "") : "Kies eerst een merk") + "</option>" +
+        (keys.length > 1 ? keys.map(function (k) { return '<option value="' + esc(k) + '">' + esc(k.charAt(0).toUpperCase() + k.slice(1)) + "</option>"; }).join("") : "");
+      pa.disabled = !pm.value || keys.length < 2;
+      show();
+    });
+    pa.addEventListener("change", show);
   }
 
   // Onderhoudsteller
