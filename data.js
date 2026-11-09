@@ -1149,4 +1149,44 @@ MODELS.push(
   src: ["strijk"] }
 );
 
+Object.assign(SRC, {
+  taStof: ["Test-Aankoop Repairguide – stofzuiger werkt niet", "https://www.test-aankoop.be/repairguide/stofzuigers/stofzuiger-werkt-niet"],
+  taBrood: ["Test-Aankoop Repairguide – problemen broodrooster", "https://www.test-aankoop.be/repairguide/broodroosters/veelvoorkomende-problemen-broodrooster"],
+  dysonBlock: ["Dyson – blokkadelampje V10", "https://support.dyson.co.nz/support/dyson-v10-vacuum/dyson-v10-absolute-plus-226420-01/troubleshooting/pick-up-issue/the-blockage-light-on-the-handle-lights-up"],
+  dysonAccu: ["Home Vacuum Zone – Dyson houdt lading niet vast", "https://homevacuumzone.com/why-is-my-dyson-not-holding-its-charge/"]
+});
+
+const dyson = MODELS.find(m => m.id === "dyson-v-serie");
+dyson.name = "V6, V7, V8, V10, V11, V12, V15";
+dyson.faults.push(
+  N("Blokkadelampje op de handgreep brandt", 1, "De stofzuiger ziet een verstopping.", ["Haal alle hulpstukken eraf.", "Zet de schakelaar op max en houd de trekker 10 seconden ingedrukt.", "Blijft het lampje branden, neem contact op met Dyson."]),
+  N("Accu loopt snel leeg", 1, "Verstopping, oude accu of vuile contacten.", ["Een verstopte stofzuiger trekt de accu sneller leeg: leeg de bak, was het filter en laat het 24 uur drogen.", "Maak de laadcontacten schoon met een droge doek.", "Accu's ouder dan ongeveer 3 jaar zijn vaak aan vervanging toe. Onder 2 jaar valt de accu onder de garantie van Dyson."]),
+  N("Accu knippert rood", 2, "Accufout of te warm.", ["Haal de lader eruit en laat minstens 30 minuten afkoelen.", "Blijft hij rood knipperen, dan moet de accu waarschijnlijk vervangen worden."])
+);
+dyson.src.push("dysonBlock", "dysonAccu");
+
+MODELS.push(
+{ id: "stofzuiger-werkt-niet", brand: "Alle merken", name: "Stofzuiger werkt niet", cat: "stofzuigers", years: "Alle bouwjaren", unit: null, also: "Sledestofzuigers, steelstofzuigers en robots",
+  intro: "Zeven oorzaken als je stofzuiger het helemaal niet meer doet. Is hij jonger dan twee jaar, dan valt hij mogelijk onder de wettelijke garantie.", weak: [], parts: [],
+  tasks: [],
+  faults: [
+    N("Stofzuiger gaat niet aan", 1, "Stekker, stopcontact of accu.", ["Stekker eruit, 30 seconden wachten en terug.", "Test het stopcontact met een ander apparaat.", "Laad de accu helemaal op."]),
+    N("Hij draait, maar zuigt nauwelijks", 1, "Zak, bak of filters vol of verkeerd geplaatst, of de schuif op de buis staat open.", ["Controleer of zak of bak en filters goed zitten.", "Sluit de luchtschuif op de buis helemaal."]),
+    N("Snoer beschadigd", 2, "Kapot snoer, soms met brandplekken.", ["Vervang de hele snoerhaspel. Daarvoor moet de stofzuiger open; volg de instructies voor jouw model of ga naar een Repair Café."]),
+    N("Aan/uit-knop werkt niet", 2, "Slecht contact of kapotte schakelaar.", ["Haal de stofzuiger uit elkaar en kijk of de schakelaar te vervangen is. Maak eerst foto's van hoe alles vastzit."]),
+    N("Snoerloze stofzuiger: accu doet het niet", 1, "Versleten of defecte accu.", ["Laad volledig op.", "Probeer een vervangende accu. Werkt die, dan lag het aan de oude.", "Een specialist kan soms nieuwe cellen in de oude accu plaatsen."]),
+    N("Robotstofzuiger laadt niet op", 1, "Laadstation defect.", ["Controleer of het station in een werkend stopcontact zit.", "Laad je met een andere accu ook niet op, vervang dan het station."]),
+    N("Motor of elektronica kapot", 3, "Motor- of elektronicafout.", ["Laat het testen door een reparateur; de motor hoeft vaak niet vervangen te worden."])],
+  src: ["taStof"] },
+
+{ id: "broodrooster", brand: "Alle merken", name: "Broodrooster werkt niet", cat: "kleine-apparaten", years: "Alle bouwjaren", unit: null, also: "Philips, Tefal, Bourgini, Smeg, Inventum",
+  intro: "Een broodrooster heeft weinig onderdelen. Vaak zijn het kruimels, soms het verwarmingselement of de elektromagneet die de hendel omlaag houdt.", weak: ["Kruimels tussen de elektromagneet en het metalen plaatje."], parts: [],
+  tasks: [{ m: 1, t: "Kruimellade legen en rooster ondersteboven uitschudden", v: 1 }],
+  faults: [
+    N("Hendel blijft niet omlaag", 1, "Kruimels bij de elektromagneet.", ["Leeg de kruimellade en schud de rooster ondersteboven uit, dan testen.", "Helpt dat niet: stekker eruit, open maken tot bij de elektromagneet en het kruimellaagje wegborstelen."]),
+    N("Hendel blijft omlaag maar wordt niet warm", 3, "Verwarmingselement doorgebrand.", ["Houd je hand boven de rooster terwijl je de hendel omlaag houdt: geen warmte wijst op het element.", "Een element met gloeidraad is soms te repareren, een glazen buis niet. Laat het doen door een reparateur of Repair Café."]),
+    N("Warm, maar de hendel springt meteen terug", 2, "Elektromagneet defect.", ["Stekker eruit en meet de spoel met een multimeter op ohm: een paar honderd ohm is goed.", "Geeft de meter OL, dan is de spoel kapot; vervangen is dan meestal handiger dan repareren."])],
+  src: ["taBrood"] }
+);
+
 module.exports = { CATS, MODELS, SRC };
