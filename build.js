@@ -90,8 +90,9 @@ layout({
   <span class="eyebrow">Zelf repareren en onderhouden</span>
   <h1>Wat betekent die foutcode?</h1>
   <p class="lead">Foutcodes, storingen en onderhoud per merk en model, in gewoon Nederlands. Met wat je zelf kunt doen en wanneer je beter een specialist belt.</p>
-  <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E24 of Intergas 4" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
+  <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
+  <div class="searchtip"><p><strong>Zo vind je direct de oplossing:</strong> typ het merk, het typenummer en de foutcode, bijvoorbeeld <span class="mono">Bosch WAT28400 E18</span>, en druk op Enter. Alleen merk en code werkt ook, zoals <span class="mono">Samsung 4C</span>. Een klacht kan ook: <span class="mono">vaatwasser stinkt</span>.</p><p class="muted">Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</p></div>
   <div class="picker" id="picker"><span class="eyebrow">Of kies stap voor stap</span><div class="picker-row"><label for="pm">Merk<select id="pm"><option value="">Kies je merk</option></select></label><label for="pa">Apparaat<select id="pa" disabled><option value="">Kies eerst een merk</option></select></label></div><div class="results" id="pres" aria-live="polite"></div></div>
   <p class="muted">${stats.codes} foutcodes · ${stats.faults} storingen · ${stats.models} merken en modellen</p>
 </section>
@@ -247,7 +248,7 @@ layout({
   crumbs: [{ name: "Foutcodes", file: "foutcodes.html" }],
   body: `
 <section class="stack"><span class="eyebrow">Overzicht</span><h1>Alle foutcodes</h1><p class="lead">Zoek je code op in de tabel, of gebruik het zoekveld. Elke code heeft een eigen pagina met oplossing.</p>
-<div class="search"><input id="q" type="search" placeholder="Typ een foutcode" aria-label="Zoek een foutcode" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div></section>
+<div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek een foutcode" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div><div class="searchtip"><p><strong>Zo vind je direct de oplossing:</strong> typ het merk, het typenummer en de foutcode, bijvoorbeeld <span class="mono">Bosch WAT28400 E18</span>, en druk op Enter. Alleen merk en code werkt ook, zoals <span class="mono">Samsung 4C</span>. Een klacht kan ook: <span class="mono">vaatwasser stinkt</span>.</p><p class="muted">Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</p></div></section>
 ${[...MODELS].sort((a, b) => (CATS.findIndex(c => c.id === a.cat) - CATS.findIndex(c => c.id === b.cat)) || a.brand.localeCompare(b.brand)).filter(m => m.faults.some(f => f.code)).map(m => `<section class="stack"><h2>${esc(deviceName(m))}</h2><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Zelf doen?</th></tr></thead><tbody>${m.faults.filter(f => f.code).map(f => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${pill(f.d)}</td></tr>`).join("")}</tbody></table></div></section>`).join("")}`
 });
 
