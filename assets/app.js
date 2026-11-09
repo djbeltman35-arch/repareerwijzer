@@ -10,29 +10,59 @@
   // Zoeken
   var q = document.getElementById("q"), res = document.getElementById("res");
   if (q && res) {
-    var run = function () {
-      var tokens = q.value.split(/[\s,]+/).map(norm).filter(Boolean);
-      if (!tokens.length) { res.innerHTML = ""; return; }
+    // Typenummer → apparaat, op basis van het begin van het typenummer per merk
+    var TYPE = {
+      bosch: [["wa", "wasmachine"], ["wt", "droger"], ["wq", "droger"], ["sm", "vaatwasser"], ["sb", "vaatwasser"], ["sp", "vaatwasser"], ["sr", "vaatwasser"], ["hb", "oven"], ["hr", "oven"], ["pi", "kookplaat"], ["pu", "kookplaat"], ["pv", "kookplaat"], ["px", "kookplaat"]],
+      siemens: [["wm", "wasmachine"], ["wu", "wasmachine"], ["wg", "wasmachine"], ["wn", "wasmachine"], ["wt", "droger"], ["wq", "droger"], ["sn", "vaatwasser"], ["sr", "vaatwasser"], ["sx", "vaatwasser"], ["hb", "oven"], ["hm", "oven"], ["ex", "kookplaat"], ["eh", "kookplaat"], ["eu", "kookplaat"]],
+      samsung: [["ww", "wasmachine"], ["wf", "wasmachine"], ["wd", "wasmachine"], ["dv", "droger"], ["dw", "vaatwasser"], ["nv", "oven"], ["nq", "oven"], ["ms", "oven"], ["mg", "oven"], ["mc", "oven"], ["rb", "koelkast"], ["rs", "koelkast"], ["rf", "koelkast"], ["rr", "koelkast"], ["rz", "koelkast"]],
+      miele: [["g", "vaatwasser"], ["t", "droger"], ["w", "wasmachine"], ["h", "oven"]],
+      aeg: [["l", "wasmachine"], ["t", "droger"], ["f", "vaatwasser"], ["b", "oven"]]
+    };
+    var words = function (s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").split(/[^a-z0-9]+/).filter(Boolean); };
+    var search = function (text) {
+      var tokens = words(text);
+      if (!tokens.length) return [];
+      var brandTok = tokens.filter(function (t) { return TYPE[t]; });
+      var device = null;
+      tokens.forEach(function (t) {
+        if (!/[a-z]/.test(t) || !/[0-9]/.test(t) || t.length < 4) return;
+        brandTok.forEach(function (b) { TYPE[b].forEach(function (p) { if (!device && t.indexOf(p[0]) === 0) device = p[1]; }); });
+      });
       var data = window.SEARCH || [], hits = [];
       for (var i = 0; i < data.length; i++) {
-        var d = data[i], hay = " " + String(d.k).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ") + " ", score = 0, ok = true;
+        var d = data[i], hay = " " + words(d.k).join(" ") + " ", score = 0, matched = 0, codeHit = false;
         var parts = d.c ? d.c.split("/").map(norm) : [];
         for (var j = 0; j < tokens.length; j++) {
           var v = tokens[j];
-          if (parts.indexOf(v) > -1) score += 4;
-          else if (parts.some(function (p) { return p.indexOf(v) === 0; })) score += 3;
-          else if (hay.indexOf(v) > -1) score += 1;
-          else { ok = false; break; }
+          if (parts.indexOf(v) > -1) { score += 10; matched++; codeHit = true; }
+          else if (/[0-9]/.test(v) && parts.some(function (p) { return p.indexOf(v) === 0; })) { score += 5; matched++; codeHit = true; }
+          else if (hay.indexOf(" " + v + " ") > -1) { score += 3; matched++; }
+          else if (v.length > 2 && hay.indexOf(v) > -1) { score += 1; matched++; }
         }
-        if (ok && score) hits.push([score, d]);
+        if (device && d.a === device) score += 4;
+        if (device && d.a && d.a !== device) score -= 4;
+        var looksLikeCode = tokens.some(function (t) { return /[0-9]/.test(t) && t.length <= 5; });
+        if (looksLikeCode && d.c && !codeHit) continue;
+        if (matched && score > 0) hits.push([score, d]);
       }
-      hits.sort(function (a, b) { return b[0] - a[0]; });
-      res.innerHTML = hits.length ? hits.slice(0, 15).map(function (h) {
+      return hits.sort(function (a, b) { return b[0] - a[0]; });
+    };
+    var run = function () {
+      var hits = search(q.value);
+      if (!q.value.trim()) { res.innerHTML = ""; return; }
+      res.innerHTML = hits.length ? hits.slice(0, 15).map(function (h, i) {
         var d = h[1];
-        return '<a href="' + d.u + '"><span>' + (d.c ? '<span class="code">' + esc(d.c) + "</span> " : "") + esc(d.t) + "</span><span>" + esc(d.s) + "</span></a>";
-      }).join("") : '<p class="muted" style="padding:10px 2px">Niets gevonden voor "' + esc(q.value) + '". Probeer alleen het merk of de code.</p>';
+        return '<a href="' + d.u + '"' + (i === 0 ? ' class="best"' : "") + '><span>' + (d.c ? '<span class="code">' + esc(d.c) + "</span> " : "") + esc(d.t) + "</span><span>" + esc(d.s) + "</span></a>";
+      }).join("") : '<p class="muted" style="padding:10px 2px">Niets gevonden voor "' + esc(q.value) + '". Probeer alleen het merk en de code, bijvoorbeeld "Bosch E24".</p>';
     };
     q.addEventListener("input", run);
+    q.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+      var hits = search(q.value);
+      if (hits.length) { e.preventDefault(); location.href = hits[0][1].u; }
+    });
+    if (q.form) q.form.addEventListener("submit", function (e) { e.preventDefault(); });
+    try { var pq = new URLSearchParams(location.search).get("q"); if (pq) { q.value = pq; run(); } } catch (e) {}
   }
 
   // Keuzehulp: merk → apparaat → foutcodes

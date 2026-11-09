@@ -112,3 +112,4 @@ footer .wrap{padding-block:20px;display:flex;flex-direction:column;gap:8px}
 .picker label{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:15px;flex:1 1 180px;min-width:0}
 .picker select{font:inherit;padding:10px 12px;border:1px solid var(--muted);border-radius:4px;background:var(--bg);color:var(--ink)}
 .picker select:disabled{opacity:.6}
+.results a.best{background:var(--surface);border-left:4px solid var(--accent);padding-left:8px}
