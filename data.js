@@ -836,4 +836,91 @@ MODELS.push(
   src: ["yamaha"] }
 );
 
+Object.assign(SRC, {
+  samsungVaat: ["Coolblue – foutcodes Samsung vaatwasser", "https://www.coolblue.nl/advies/hoe-los-je-de-foutcodes-van-een-samsung-vaatwasser-op.html"],
+  bekoVaat: ["Coolblue – foutcodes Beko vaatwasser", "https://www.coolblue.nl/advies/hoe-los-je-de-foutcodes-van-een-beko-vaatwasser-op.html"],
+  inventumVaat: ["Coolblue – foutcodes Inventum vaatwasser", "https://www.coolblue.nl/advies/hoe-los-je-de-foutcodes-van-een-inventum-vaatwasser-op.html"],
+  wisbergVaat: ["Coolblue – foutcodes Wisberg vaatwasser", "https://www.coolblue.nl/advies/hoe-los-je-foutcodes-van-een-wisberg-vaatwasser-op.html"],
+  wisbergDroog: ["Coolblue – storingen Wisberg droger", "https://www.coolblue.nl/advies/hoe-los-je-een-wisberg-droger-storing-op.html"],
+  bekoDroog: ["Coolblue – storingen Beko drogers", "https://www.coolblue.nl/advies/de-meest-voorkomende-storingen-van-beko-drogers.html"],
+  candy: ["Coolblue – storingen Candy was-droogcombinaties", "https://www.coolblue.nl/advies/de-meest-voorkomende-storingen-van-candy-was-droogcombinaties.html"],
+  irobot: ["Coolblue – foutcodes iRobot robotstofzuiger", "https://www.coolblue.nl/advies/hoe-los-je-foutcodes-van-jouw-irobot-robotstofzuiger-op.html"]
+});
+
+MODELS.push(
+{ id: "samsung-vaatwasser", brand: "Samsung", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren met display", unit: null,
+  intro: "Samsung-vaatwassers tonen codes van twee tekens. 4C is de code die het vaakst voorkomt.", weak: [], parts: [], tasks: DISH_TASKS,
+  faults: [
+    F("4C", "Probleem met de watertoevoer", 1, "Kraan, slang of filter.", ["Draai de kraan helemaal open.", "Haal knikken en verstoppingen uit de toevoerslang en maak het filter schoon.", "Test de druk: 10 liter in een minuut. Lukt dat niet, schakel een loodgieter in."]),
+    F("HC", "Controle van de verwarmingstemperatuur", 1, "Geen echte storing.", ["Draai een leeg programma met vaatwasmiddel."]),
+    F("bc2", "Storing in het bedieningspaneel", 1, "Toets klemt.", ["Houd een toets 30 seconden ingedrukt en maak het bedieningspaneel schoon."]),
+    F("LC / AC / tC / PC / EC", "Mogelijk een kapot onderdeel", 3, "Onderdeel defect.", ["Niet zelf repareren.", "Kraan dicht, stekker eruit en contact opnemen met Samsung."])],
+  src: ["samsungVaat"] },
+
+{ id: "beko-vaatwasser", brand: "Beko", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren met display", unit: null,
+  intro: "Beko-vaatwassers tonen E-codes. E01 en E02 los je zelf op; bij de rest is een onderdeel waarschijnlijk kapot.", weak: [], parts: [], tasks: DISH_TASKS,
+  faults: [
+    F("E01", "Water wordt niet weggepompt", 1, "Slang, filter of afvoer.", ["Haal knikken uit de toevoer- en afvoerslang.", "Spoel het filter schoon onder de kraan.", "Maak een verstopte afvoer vrij."]),
+    F("E02", "Geen of te weinig water", 1, "Kraan of druk.", ["Draai de kraan helemaal open en test de druk: 10 liter in een minuut.", "Controleer de slangen op knikken en maak het filter schoon."]),
+    F("E03 / E04 / E05 / E06 / E07 / E08", "Mogelijk een kapot onderdeel", 3, "Onderdeel defect.", ["Niet zelf repareren.", "Zet de vaatwasser uit en neem contact op met de verkoper of Beko."])],
+  src: ["bekoVaat"] },
+
+{ id: "inventum-vaatwasser", brand: "Inventum", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren met display", unit: null,
+  intro: "Inventum-vaatwassers tonen F-codes. F2 en F5 los je zelf op.", weak: [], parts: [], tasks: DISH_TASKS,
+  faults: [
+    F("F2", "Water wordt niet afgevoerd", 1, "Verstopte slang of filters.", ["Controleer afvoerslang en filters op verstoppingen en maak ze schoon.", "Blijft de code, reset het programma volgens de handleiding."]),
+    F("F5", "Te weinig water", 1, "Kraan, druk of filter.", ["Draai de kraan helemaal open en test de druk: 10 liter in een minuut.", "Maak het filter van de toevoerslang schoon en haal knikken eruit."]),
+    F("F1 / F3 / F6 / F7 / F8 / FE", "Mogelijk een kapot onderdeel", 3, "Onderdeel defect.", ["Niet zelf repareren.", "Kraan dicht, stekker eruit en contact opnemen met Inventum."])],
+  src: ["inventumVaat"] },
+
+{ id: "wisberg-vaatwasser", brand: "Wisberg", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren", unit: null,
+  intro: "Het Coolblue-huismerk. Een schoon filter onderin voorkomt de meeste storingen.", weak: [], parts: [], tasks: DISH_TASKS,
+  faults: [
+    F("E1", "Te weinig water", 1, "Kraan, slangen of Aquastop.", ["Controleer of de kraan open staat.", "Kijk of toevoer- en afvoerslang niet geknikt of verstopt zijn.", "Reset de Aquastop als die er is."]),
+    F("E3", "Verwarmt te lang", 2, "Vuil filter of temperatuursensor.", ["Is het water koud of lauw, maak dan het filter schoon.", "Is het water heet, dan is de sensor mogelijk defect: uit, 5 minuten wachten, opnieuw starten.", "Komt de code terug, bel een monteur."]),
+    F("E4", "Lek in de kuip", 2, "Lekkage of sensor.", ["De afvoerpomp gaat vanzelf draaien. Staat er nog water, controleer de afvoer op verstoppingen.", "Geen water te zien? Uit, 5 minuten wachten en opnieuw starten. Komt de code terug, bel een monteur."]),
+    F("E6 / E7", "Fout in de temperatuursensor", 2, "Sensor.", ["Zet uit en laat de binnenkant volledig afkoelen.", "Komt de code terug, bel een monteur."])],
+  src: ["wisbergVaat"] },
+
+{ id: "wisberg-droger", brand: "Wisberg", name: "Droger (alle modellen)", cat: "drogers", years: "Alle bouwjaren", unit: null,
+  intro: "Wisberg-drogers tonen E-codes. Afvoer en vochtsensor los je zelf op.", weak: [], parts: [], tasks: DRYER_TASKS,
+  faults: [
+    F("E20", "Probleem met de waterafvoer", 1, "Reservoir of slang.", ["Leeg het condensreservoir en plaats het terug.", "De afvoerslang mag maximaal 10 cm in de afvoer steken; haal knikken en lussen eruit."]),
+    F("E32", "Vochtsensor", 1, "Vuile sensor.", ["Maak de vochtsensor boven de deuropening schoon met een doekje.", "Stekker 30 seconden eruit en opnieuw starten."]),
+    F("E33", "Temperatuursensor", 3, "Sensor.", tech),
+    F("E50", "Stroomtoevoer", 2, "Geen geaard stopcontact of defect.", ["Gebruik een geaard stopcontact.", "Is dat in orde, bel dan een monteur."]),
+    F("E64 / E82", "Printplaat", 3, "Elektronica.", tech)],
+  src: ["wisbergDroog"] },
+
+{ id: "beko-droger", brand: "Beko", name: "Droger (alle modellen)", cat: "drogers", years: "Alle bouwjaren", unit: null,
+  intro: "Beko-drogers geven weinig codes. De meeste klachten los je op met schone filters en condensor.", weak: ["De vochtsensor raakt vervuild, waardoor de droger te kort of te lang draait."], parts: [], tasks: DRYER_TASKS,
+  faults: [
+    N("Drogen duurt te lang", 1, "Vuile filters, condensor of vochtsensor.", ["Maak de pluizenfilters schoon.", "Maak de voorkant van de condensor en de vochtsensor schoon.", "Haal weg wat de ventilatieroosters blokkeert."]),
+    N("Kleding komt vochtig uit de droger", 1, "Verkeerd programma, vol filter of te vol.", ["Kies het juiste programma.", "Maak de filters schoon en haal wat was eruit.", "Centrifugeer de was hoger in de wasmachine."]),
+    N("Programma start niet", 1, "Stekker, deur of kinderslot.", ["Controleer de stekker en sluit de deur helemaal.", "Zet het kinderslot uit."]),
+    N("Programma stopt zonder reden", 1, "Deur open of reservoir vol.", ["Sluit de deur, leeg het reservoir en druk opnieuw op start."])],
+  src: ["bekoDroog"] },
+
+{ id: "candy-wasmachine", brand: "Candy", name: "Wasmachine en was-droogcombinatie", cat: "wasmachines", years: "Alle bouwjaren", unit: null, also: "Ook Hoover (zelfde groep)",
+  intro: "Candy en Hoover horen bij dezelfde groep en gebruiken dezelfde codes. Het afvoerfilter zit rechtsonder.", weak: [], parts: [], tasks: FILTER_TASK,
+  faults: [
+    F("E2", "Geen watertoevoer", 1, "Kraan, slang of filter.", ["Draai de kraan helemaal open en controleer de slang op knikken.", "Kraan dicht, slang los en het filtertje aan het eind schoonborstelen.", "Maak ook het afvoerfilter rechtsonder schoon."]),
+    F("E3", "Water wordt niet afgevoerd", 1, "Verstopt filter of slang.", ["Open het klepje rechtsonder en zet een bak eronder.", "Draai het filter open, haal voorwerpen eruit en spoel het af.", "Controleer de afvoerslang op knikken en verstoppingen."]),
+    F("E4", "Te veel schuim", 1, "Te veel wasmiddel.", ["Stop het programma en haal de was eruit.", "Draai een spoelprogramma met lege trommel.", "Gebruik voortaan minder wasmiddel."]),
+    F("E7", "Probleem met de deur", 1, "Kleding tussen de deur of te vol.", ["Haal kleding uit de deuropening en sluit de deur tot hij klikt.", "Lukt het niet: stekker 3 minuten eruit, deur openen en opnieuw proberen."])],
+  src: ["candy"] },
+
+{ id: "irobot-roomba", brand: "iRobot", name: "Roomba (alle modellen)", cat: "stofzuigers", years: "Alle bouwjaren", unit: null, also: "Roomba i-, j- en s-serie, Combo",
+  intro: "iRobot geeft een foutnummer, gesproken of in de app. Een reset doe je door CLEAN 20 seconden ingedrukt te houden.", weak: ["Vuile valsensoren laten de robot vastlopen op randen."], parts: [["Filter", "Niet met water reinigen"]],
+  tasks: [{ m: 0.5, t: "Filter uitkloppen en stofbak legen" }, { m: 6, t: "Filter vervangen", v: 1 }],
+  faults: [
+    F("6", "Robot zit vast op een rand of drempel", 1, "Rand, drempel of te donker.", ["Zet de robot op een andere plek en druk op CLEAN.", "Maak de sensoren schoon met een droge microvezeldoek.", "Loopt hij vaak vast, maak dan een no-go-zone in de app."]),
+    F("8", "Motor loopt zwaar of filter verstopt", 1, "Vuil filter.", ["Haal opvangbak en filter eruit.", "Tik het filter leeg, spoel de bak met water en laat alles drogen. Het filter niet nat maken."]),
+    F("9", "Bumper zit vast", 1, "Bumper klemt.", ["Tik zacht tegen de bumper en druk op CLEAN.", "Blijft de fout, dan zit de bumper mogelijk los: klantenservice."]),
+    F("26", "Zuigkracht te laag", 1, "Vuil filter of schoonmaakkop.", ["Reinig of vervang het filter.", "Houd CLEAN ongeveer 20 seconden ingedrukt om te resetten.", "Blijft de fout, vervang dan de schoonmaakkop."]),
+    F("36", "Stofbak lijkt vol na legen", 1, "Vuile sensoren.", ["Spoel de bak af en laat drogen.", "Veeg de sensoren droog schoon.", "Reset met CLEAN 20 seconden ingedrukt."]),
+    F("68", "Geen beeld van de camera", 2, "Camera.", ["Zet de robot in het laadstation, houd CLEAN 20 seconden ingedrukt en start opnieuw.", "Werkt het niet, neem contact op met de klantenservice."])],
+  src: ["irobot"] }
+);
+
 module.exports = { CATS, MODELS, SRC };
