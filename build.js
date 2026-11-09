@@ -104,6 +104,10 @@ layout({
   <p><a href="foutcodes.html">Alle ${stats.codes} foutcodes bekijken</a></p>
 </section>
 <section class="stack">
+  <h2>Veelvoorkomende problemen</h2>
+  <div class="results">${MODELS.filter(m => m.brand === "Alle merken").map(m => `<a href="${m.id}.html"><span>${esc(m.name)}</span><span>${esc(catOf(m.cat).name)}</span></a>`).join("")}</div>
+</section>
+<section class="stack">
   <h2>Populaire merken</h2>
   <div class="row">${["Bosch", "Samsung", "Miele", "AEG", "LG", "Siemens", "Philips", "Dyson", "Remeha", "Intergas", "Whirlpool", "Beko"].map(b => `<a href="merk-${slug(b)}.html">${b}</a>`).join("")}<a href="merken.html">Alle merken</a></div>
 </section>
