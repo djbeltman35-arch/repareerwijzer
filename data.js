@@ -1350,4 +1350,45 @@ G("droger-stinkt-of-maakt-lawaai", "Droger stinkt of maakt lawaai", "drogers", "
   ["cbDroogStank", "cbDroogLawaai"])
 );
 
+CATS.splice(CATS.findIndex(c => c.id === "warmtepompen") + 1, 0, { id: "airco", name: "Airco's", one: "airco", intro: "Split-airco's: filters schoonmaken, storingen en wat je zelf mag doen." });
+
+Object.assign(SRC, {
+  daikinAirco: ["Daikin – bedieningshandleiding FTXM/CTXM", "https://www.daikin.eu/content/dam/document-library/operation-manuals/ac/split/FTXM-N,CTXM-N_3PNL485919-8S_Operation%20manual_Dutch.pdf"],
+  vertuoFaq: ["Nespresso – Vertuo Next knippert oranje of rood", "https://www.contact.nespresso.com/faq/au/en/detail/8884"],
+  vertuoKalk: ["Coolblue – Nespresso Vertuo Next ontkalken", "https://www.coolblue.nl/advies/hoe-ontkalk-je-jouw-nespresso-vertuo-next.html"],
+  compacto: ["Inventum – gebruikershandleiding Compacto", "https://downloads.inventum.com/wp-content/uploads/2025/11/210466-09008-Gebruikershandleiding-Compacto_v1.1.pdf"]
+});
+
+MODELS.push(
+{ id: "daikin-split-airco", brand: "Daikin", name: "Split-airco (FTXM, CTXM)", cat: "airco", years: "Alle bouwjaren", unit: null, also: "Perfera, Emura, Comfora",
+  intro: "Het belangrijkste onderhoud doe je zelf: de luchtfilters elke twee weken schoonmaken. Een foutcode geef je door aan de installateur.", weak: ["Vuile filters: minder koeling en meer stroomverbruik."], parts: [["Titaniumapatietfilter", "Om de 3 jaar vervangen (KAF970A46)"]],
+  tasks: [{ m: 0.5, t: "Luchtfilters schoonmaken" }, { m: 6, t: "Titaniumapatietfilter schoonmaken" }, { m: 36, t: "Titaniumapatietfilter vervangen" }],
+  faults: [
+    N("Luchtfilters schoonmaken", 1, "Elke twee weken nodig.", ["Zet de airco uit en schakel de stroom uit.", "Druk het lipje in het midden van elk filter in, trek het omlaag en haal het eruit.", "Spoel af of stofzuig. Week 10–15 minuten in lauw water, eventueel met een mild middel.", "Laat drogen in de schaduw en plaats terug."]),
+    N("Bedieningslampje knippert met een foutcode", 2, "De unit meldt een storing.", ["Noteer de code en het unitnummer op de afstandsbediening.", "Geef de code door aan je installateur."]),
+    N("Water lekt uit de binnenunit", 2, "Lekkage.", ["Stop de airco en neem contact op met je installateur."]),
+    N("Brandlucht of zekering slaat steeds af", 3, "Elektrische storing.", ["Stop direct, schakel de stroom uit en neem contact op met je dealer."])],
+  src: ["daikinAirco"] },
+
+{ id: "nespresso-vertuo-next", brand: "Nespresso", name: "Vertuo Next", cat: "koffiemachines", years: "2020–heden", unit: null, also: "Krups en Magimix-uitvoeringen",
+  intro: "Een knipperend oranje of rood lampje heeft meestal een eenvoudige oorzaak. Drie keer oranje en één keer wit betekent ontkalken.", weak: ["De koffieknop blijft knipperen als de hendel niet helemaal dicht is."], parts: [["Ontkalker", "Nespresso-ontkalker of universele ontkalker"]],
+  tasks: [{ m: 3, t: "Ontkalken", s: "Of zodra de knop 3 keer oranje en 1 keer wit knippert." }],
+  faults: [
+    N("Knop knippert oranje of rood", 1, "Hendel open, tank leeg, oude cup of geblokkeerde zetkop.", ["Duw de hendel helemaal naar links tot hij klikt.", "Vul het waterreservoir.", "Haal de gebruikte cup eruit.", "Open de kop en draai het bovenste ronde deel voorzichtig heen en weer."]),
+    N("Cup wordt niet herkend", 1, "Resten op de cupherkenning.", ["Voer de reinigingsprocedure twee keer uit."]),
+    N("Elektronische fout", 1, "Storing.", ["Stekker eruit, 10 seconden wachten en terugsteken.", "Blijft het probleem, doe een fabrieksreset."]),
+    N("Ontkalken (3 keer oranje, 1 keer wit)", 1, "Kalk; duurt ongeveer 20 minuten.", ["Haal de laatste cup eruit, leeg de lekbak en vul de tank met 0,5 liter water plus ontkalker.", "Duw de kop omlaag zonder te vergrendelen en houd de knop 7 seconden in. Hendel dicht en open, opnieuw 7 seconden.", "Zet een bak van minstens 1 liter eronder, sluit de hendel en druk op de knop.", "Spoel de tank, vul met schoon water en spoel na. Houd de knop 7 seconden in om de ontkalkstand te verlaten."])],
+  src: ["vertuoFaq", "vertuoKalk"] },
+
+{ id: "inventum-compacto", brand: "Inventum", name: "Compacto ventilatiewarmtepomp", cat: "warmtepompen", years: "2023–heden", unit: null,
+  intro: "Een warmtepomp die warmte haalt uit de ventilatielucht. Elke 90 dagen vraagt hij om het filter schoon te maken.", weak: ["Een vergeten filter vermindert het rendement."], parts: [["Filter", "Jaarlijks vervangen; bij nieuwbouw na 6 maanden"]],
+  tasks: [{ m: 3, t: "Filter controleren en schoonmaken" }, { m: 12, t: "Filter vervangen" }],
+  faults: [
+    N("Melding Filter vervangen / schoonmaken", 1, "Elke 90 dagen.", ["Zet de hoofdschakelaar uit.", "Schuif het frontpaneel omhoog en trek het naar je toe; draai de bouten van de filterkap los.", "Klop of borstel het filter schoon, zonder water.", "Plaats het terug met de pijl naar beneden en zet de unit aan.", "Reset: tik op het filtericoon, dan het vinkje en bevestig met Ja."]),
+    N("Belletje rechtsboven (algemeen alarm)", 1, "Algemene storing.", ["Tik op het belletje en het vinkje om te resetten.", "Komt het terug, bel de installateur."]),
+    N("Alarm oververhitting elektrische verwarmer", 3, "Elektrisch element defect; legionellabescherming werkt niet.", ["Neem direct contact op met je installateur."]),
+    N("Koelt of verwarmt niet genoeg", 1, "Instellingen.", ["Kijk bij Prestatie informatie of de compressor draait.", "Controleer thermostaat, vakantieprogramma, koelstand en stooklijn."])],
+  src: ["compacto"] }
+);
+
 module.exports = { CATS, MODELS, SRC };
