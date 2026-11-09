@@ -529,7 +529,7 @@ MODELS.push(
     F("E3 / E8 / F40 / F52 / F54 / F56", "Waarschijnlijk een kapot onderdeel", 3, "Onderdeel defect.", ["Niet zelf repareren.", "Kraan dicht, stekker eruit en contact opnemen met Etna."])],
   src: ["etnaVaat"] },
 
-{ id: "atag-vaatwasser", brand: "Atag", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren met display", unit: null,
+{ id: "atag-vaatwasser", brand: "ATAG", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren met display", unit: null,
   intro: "Atag en Etna komen uit dezelfde groep en gebruiken vergelijkbare F-codes.", weak: [], parts: [], tasks: DISH_TASKS,
   faults: [
     F("F10", "Afvoerpomp geblokkeerd", 2, "Iets blokkeert het pompwieltje.", ["Stekker eruit, beide filters eruit en zo nodig water wegscheppen.", "Haal het gekleurde dopje rechts in de afvoer eruit en draai het pompwieltje erachter rond.", "Hoor je daarna een zoemend geluid, draai dan de kraan dicht, stekker eruit en neem contact op met Atag."]),
