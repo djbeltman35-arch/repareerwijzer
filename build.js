@@ -108,7 +108,7 @@ layout({
 </section>
 <section class="stack">
   <h2>Veelvoorkomende problemen</h2>
-  <div class="results">${MODELS.filter(m => m.brand === "Alle merken").map(m => `<a href="${m.id}.html"><span>${esc(m.name)}</span><span>${esc(catOf(m.cat).name)}</span></a>`).join("")}</div>
+  <div class="probs">${CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}</ul></div>` : ""; }).join("")}</div>
 </section>
 <section class="stack">
   <h2>Populaire merken</h2>
