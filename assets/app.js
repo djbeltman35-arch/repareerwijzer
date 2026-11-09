@@ -20,7 +20,7 @@
     };
     var words = function (s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").split(/[^a-z0-9]+/).filter(Boolean); };
     var search = function (text) {
-      var tokens = words(text);
+      var tokens = words(String(text).replace(/\b([a-z]{1,2})[.\-](?=\d)/gi, "$1").replace(/(\d)\.(?=\d)/g, "$1").replace(/([a-z0-9])-(?=\d)/gi, "$1").replace(/\b([a-z])-([a-z]\d)/gi, "$1$2"));
       if (!tokens.length) return [];
       var brandTok = tokens.filter(function (t) { return TYPE[t]; });
       var device = null;
@@ -29,9 +29,14 @@
         brandTok.forEach(function (b) { TYPE[b].forEach(function (p) { if (!device && t.indexOf(p[0]) === 0) device = p[1]; }); });
       });
       var data = window.SEARCH || [], hits = [];
+      if (!window.__DEV) { window.__DEV = {}; data.forEach(function (d) { if (d.a) { var w = words(d.a); if (w.length === 1 && w[0] !== "apparaat") window.__DEV[w[0]] = true; } }); }
+      var devTok = null; tokens.forEach(function (t) { if (!devTok && window.__DEV[t]) devTok = t; });
+      var pairs = []; for (var k = 0; k + 1 < tokens.length; k++) pairs.push(tokens[k] + tokens[k + 1]);
       for (var i = 0; i < data.length; i++) {
         var d = data[i], hay = " " + words(d.k).join(" ") + " ", score = 0, matched = 0, codeHit = false;
+        if (devTok && d.a && words(d.a).indexOf(devTok) < 0) continue;
         var parts = d.c ? d.c.split("/").map(norm) : [];
+        for (var q2 = 0; q2 < pairs.length; q2++) if (parts.indexOf(pairs[q2]) > -1) { score += 12; matched++; codeHit = true; }
         for (var j = 0; j < tokens.length; j++) {
           var v = tokens[j];
           if (parts.indexOf(v) > -1) { score += 10; matched++; codeHit = true; }
@@ -39,6 +44,7 @@
           else if (hay.indexOf(" " + v + " ") > -1) { score += 3; matched++; }
           else if (v.length > 2 && hay.indexOf(v) > -1) { score += 1; matched++; }
         }
+        if (d.b) { var bw = words(d.b.join(" ")); for (var z = 0; z < tokens.length; z++) if (bw.indexOf(tokens[z]) > -1) { score += 4; break; } }
         if (device && d.a === device) score += 4;
         if (device && d.a && d.a !== device) score -= 4;
         var looksLikeCode = tokens.some(function (t) { return /[0-9]/.test(t) && t.length <= 5; });

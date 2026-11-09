@@ -64,6 +64,7 @@ ${body}
   <nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav>
   <span>Repareerwijzer · Gemaakt door Erik · repareerwijzer@outlook.com</span>
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
+  <span>Algemene informatie, gebruik op eigen risico. Repareerwijzer is niet aansprakelijk voor schade of letsel. <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
 <script src="search.js" defer></script>
 <script src="app.js" defer></script>
@@ -102,7 +103,7 @@ layout({
 </section>
 <section class="stack">
   <h2>Veelgezochte foutcodes</h2>
-  <div class="results">${["intergas-hre", "vaillant-ecotec", "bosch-siemens-vaatwasser", "samsung-wasmachine", "lg-wasmachine", "aeg-wasmachine", "bosch-ebike", "shimano-steps", "miele-vaatwasser", "bosch-siemens-wasmachine"].map(id => { const m = MODELS.find(x => x.id === id); const f = m.faults.find(x => x.code); return `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(codeShort(f))}</span> ${esc(f.t)}</span><span>${esc(deviceName(m))}</span></a>`; }).join("")}</div>
+  <div class="results">${["intergas-hre", "vaillant-ecotec", "bosch-siemens-vaatwasser", "samsung-wasmachine", "lg-wasmachine", "aeg-wasmachine", "bosch-ebike", "shimano-steps", "miele-vaatwasser", "bosch-siemens-wasmachine", "remeha-calenta", "alfen-eve"].map(id => { const m = MODELS.find(x => x.id === id); const f = m.faults.find(x => x.code); return `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(codeShort(f))}</span> ${esc(f.t)}</span><span>${esc(deviceName(m))}</span></a>`; }).join("")}</div>
   <p><a href="foutcodes.html">Alle ${stats.codes} foutcodes bekijken</a></p>
 </section>
 <section class="stack">
@@ -200,7 +201,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 </article>
 <section class="stack">
   <h2>Lukt het niet?</h2>
-  <p>Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.</p>
+  <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Komt de code na deze stappen terug, bel dan je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
 </section>
 ${others.length ? `<section class="stack"><h2>Andere foutcodes van ${esc(dev)}</h2><div class="results">${others.map(x => `<a href="${codeUrl(m, x)}"><span><span class="code">${esc(x.code)}</span> ${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div></section>` : ""}
 <section class="stack"><p class="row"><a href="${m.id}.html">Alles over ${esc(fullName(m))}: onderhoud en storingen</a>${brandLinks(m) ? " · " + brandLinks(m) : ""}</p><h2>Bron</h2>${srcList(m)}</section>`
@@ -253,7 +254,7 @@ ${[...MODELS].sort((a, b) => (CATS.findIndex(c => c.id === a.cat) - CATS.findInd
 });
 
 // ───────── Repareren of vervangen
-const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], "cv-ketels": [15, 2000], "kleine-apparaten": [6, 100], ventilatie: [15, 1500], warmtepompen: [15, 8000], airco: [12, 1500], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800] };
+const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], "cv-ketels": [15, 2000], "kleine-apparaten": [6, 100], ventilatie: [15, 1500], warmtepompen: [15, 8000], airco: [12, 1500], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800], laadpalen: [10, 1200] };
 layout({
   file: "repareren-of-vervangen.html",
   title: "Repareren of vervangen? Rekenhulp | Repareerwijzer",
@@ -295,6 +296,30 @@ layout({
 <section class="stack"><h2>Al geldend in Nederland</h2><p>In Nederland geldt geen vaste garantietermijn: een product moet zo lang meegaan als je redelijkerwijs mag verwachten. Meld een gebrek eerst bij de winkel, niet bij de fabrikant.</p>
 <p class="muted">Dit is algemene informatie, geen juridisch advies. Kijk voor je eigen situatie bij ConsuWijzer of het Juridisch Loket.</p>
 <div class="row"><a href="https://www.consuwijzer.nl" target="_blank" rel="noopener">ConsuWijzer</a><a href="https://repair.eu" target="_blank" rel="noopener">Right to Repair Europe</a><a href="https://eur-lex.europa.eu/eli/dir/2024/1799/oj" target="_blank" rel="noopener">Richtlijn 2024/1799</a></div></section>`
+});
+
+// ───────── Disclaimer
+layout({
+  file: "disclaimer.html",
+  title: "Disclaimer | Repareerwijzer",
+  desc: "Repareerwijzer geeft algemene informatie. Je repareert altijd op eigen risico.",
+  crumbs: [{ name: "Disclaimer", file: "disclaimer.html" }],
+  body: `
+<section class="stack"><span class="eyebrow">Voorwaarden</span><h1>Disclaimer</h1><p class="lead">Alles op Repareerwijzer is algemene informatie. Je gebruikt het op eigen risico.</p></section>
+<section class="stack"><h2>Eigen risico</h2>
+<p>De uitleg bij foutcodes, storingen en onderhoud is met zorg samengesteld uit openbare bronnen, zoals handleidingen en supportpagina's van fabrikanten. Toch kan informatie onvolledig, verouderd of voor jouw model niet van toepassing zijn. Codes kunnen per bouwjaar, typenummer en softwareversie verschillen.</p>
+<p>Je voert een controle, reiniging of reparatie altijd zelf en op eigen risico uit. Repareerwijzer en de maker zijn, voor zover de wet dat toestaat, niet aansprakelijk voor schade aan apparaten, woning of personen, voor letsel, voor verlies van garantie of voor andere gevolgen van het gebruik van deze site.</p></section>
+<section class="stack"><h2>Veiligheid</h2>
+<ul class="weak">
+<li>Haal altijd de stekker uit het stopcontact of zet de groep uit voordat je iets openschroeft, en draai de waterkraan dicht.</li>
+<li>Werk niet zelf aan gasleidingen, gasbranders of de binnenkant van een cv-ketel. Ruik je gas? Bel 0800-9009.</li>
+<li>Open nooit zelf een accu van een e-bike, stofzuiger of ander apparaat.</li>
+<li>Werk aan de elektrische aansluiting, krachtstroom of een koelcircuit hoort bij een erkend installateur.</li>
+<li>Twijfel je? Volg de handleiding van de fabrikant of schakel een monteur in.</li>
+</ul></section>
+<section class="stack"><h2>Garantie</h2><p>Zelf repareren of openen kan de garantie van de fabrikant of verkoper laten vervallen. Valt je apparaat nog onder garantie, neem dan eerst contact op met de verkoper of fabrikant.</p></section>
+<section class="stack"><h2>Merken en links</h2><p>Repareerwijzer is onafhankelijk en niet verbonden aan de genoemde merken of fabrikanten. Merknamen zijn eigendom van hun eigenaren en worden alleen gebruikt om apparaten aan te duiden. Voor de inhoud van externe websites waarnaar we linken zijn we niet verantwoordelijk.</p></section>
+<section class="stack"><h2>Fout gezien?</h2><p>Klopt er iets niet? Mail naar repareerwijzer@outlook.com, dan passen we het aan.</p></section>`
 });
 
 // ───────── 404
