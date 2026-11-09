@@ -1391,4 +1391,62 @@ MODELS.push(
   src: ["compacto"] }
 );
 
+Object.assign(SRC, {
+  elxKoel: ["Electrolux – support koel-vriescombinaties", "https://support.electrolux.nl/support-articles/koelen/koel-vriescombinaties?locale=nl-NL"],
+  mieleKook: ["Coolblue – foutcodes Miele inductiekookplaten", "https://coolblue.nl/en/advice/errors-miele-induction-cooktops.html"],
+  aegMagn: ["Coolblue – foutcodes AEG magnetron", "https://www.coolblue.nl/advies/hoe-los-je-de-foutcodes-bij-een-aeg-magnetron-op.html"],
+  smeg: ["Coolblue – knipperende cijfers SMEG-fornuis", "https://www.coolblue.nl/en/advice/how-do-you-fix-the-flashing-numbers-of-your-smeg-stove.html"],
+  boschVriezer: ["Keukenloods – Bosch vriezer piept", "https://www.keukenloods.nl/advies/vriezers/mijn-bosch-vriezer-piept-wat-nu/"]
+});
+
+const serviceElx = ["Neem contact op met de service van Electrolux en maak een afspraak voor een monteur."];
+MODELS.push(
+{ id: "electrolux-aeg-koelkast", brand: "Electrolux / AEG / Zanussi", name: "Koel-vriescombinatie", cat: "koelkasten", years: "Alle bouwjaren met display", unit: null,
+  intro: "Electrolux, AEG en Zanussi gebruiken dezelfde codes op koelkasten. E09 en E10 los je meestal zelf op; F-codes wijzen vaak op een kapotte sensor.", weak: [], parts: [],
+  tasks: [{ m: 6, t: "Temperatuur controleren met een thermometer in een glas water", v: 1, s: "Normaal is +4 tot +5 °C in het koelgedeelte." }],
+  faults: [
+    F("E09", "Vriesgedeelte niet koud genoeg", 1, "Meestal na een lange stroomstoring.", ["Zet de vriezer kouder of zet Super Freeze aan; de code verdwijnt als de temperatuur goed is.", "Houd de deuren dicht.", "Gebruik ontdooid eten snel en doe er pas nieuw eten in als de code weg is."]),
+    F("E10", "Koelgedeelte niet koud genoeg", 1, "Stroomstoring of warm eten in de koelkast.", ["Zet de koelkast kouder of zet Super Cool aan.", "Houd de deuren dicht.", "Zet niets voor de luchtopeningen of tegen de temperatuursensor."]),
+    F("F6 / F7", "Temperatuurfout", 1, "Tijdelijk te warm.", ["Houd de deur dicht en controleer of hij goed sluit.", "Meet de temperatuur met een thermometer in een glas water: +4 tot +5 °C is goed.", "Ontstond het door een tijdelijke stijging, dan verdwijnt de code binnen een paar uur.", "Blijft de code, bel de service."]),
+    F("F1 / F2", "Storing in de thermostaat", 3, "Thermostaat.", serviceElx),
+    F("F3 / F4 / F5", "Storing in een temperatuursensor", 3, "Sensor.", serviceElx),
+    F("F8", "Probleem met het ontdooisysteem", 3, "Ontdooisysteem.", serviceElx),
+    N("Knipperende 0 of vierkantje op het display", 3, "Temperatuursensor defect.", serviceElx),
+    N("Streepjes (—) op het display", 1, "Temperatuur onder 0 °C.", ["Controleer de temperatuur met een thermometer in een glas water.", "Zet de temperatuur hoger. Blijft het, bel de service."])],
+  src: ["elxKoel"] },
+
+{ id: "bosch-vriezer-piept", brand: "Bosch", name: "Vriezer of koelkast piept", cat: "koelkasten", years: "Alle bouwjaren", unit: null, also: "Ook Siemens",
+  intro: "Een piepende vriezer geeft meestal een deur-, temperatuur- of stroomalarm aan.", weak: [], parts: [], tasks: [],
+  faults: [
+    N("Vriezer piept", 1, "Deur open, te warm na het inladen, stroomstoring of ijsvorming.", ["Controleer of de deur helemaal sluit en niets in de weg zit.", "Laad snel in en houd de deur kort open.", "Na een stroomstoring: wacht tot de temperatuur weer goed is.", "Haal overtollig ijs weg en maak de deurrubbers schoon.", "Blijft hij piepen of staat er een foutcode op het display, laat een monteur kijken."])],
+  src: ["boschVriezer"] },
+
+{ id: "miele-kookplaat", brand: "Miele", name: "Inductiekookplaat", cat: "kookplaten", years: "Alle bouwjaren", unit: null,
+  intro: "Miele-kookplaten tonen FE- of Err-codes. Oververhitting en een geblokkeerde ventilator los je zelf op.", weak: ["Spullen in een la onder de kookplaat die de ventilator blokkeren."], parts: [], tasks: [],
+  faults: [
+    F("FE37 / FE44", "Oververhittingsbeveiliging", 1, "Oververhit.", ["Laat een paar minuten afkoelen.", "Komt het terug: stekker 30 minuten eruit en weer aanzetten."]),
+    F("FE47 / FE48", "Ventilator geblokkeerd", 1, "Iets blokkeert de ventilator.", ["Haal weg wat de ventilator aan de onderkant blokkeert, ook in een la eronder.", "Controleer of de kookplaat goed is ingebouwd."]),
+    F("FE91 / FE92 / FE93 / FE94", "Spanningsprobleem", 3, "Verkeerde aansluiting.", ["Laat de aansluiting controleren door een erkende installateur."]),
+    F("F", "Toetsen geblokkeerd", 1, "Vuil of een voorwerp op de toetsen.", ["Haal voorwerpen weg en maak aangekoekt vuil van de toetsen."]),
+    F("LC / LOC", "Kinderslot aan", 1, "Geen storing.", ["Zet het kinderslot uit volgens de handleiding."]),
+    F("dE", "Demonstratiestand", 1, "Geen storing.", ["Zet de demonstratiestand uit volgens de handleiding."])],
+  src: ["mieleKook"] },
+
+{ id: "aeg-magnetron", brand: "AEG", name: "Magnetron en combi-oven", cat: "ovens", years: "Alle bouwjaren met display", unit: null,
+  intro: "AEG-magnetrons tonen codes als F104 en ECON. Veel meldingen zijn geen echte storing.", weak: [], parts: [], tasks: [],
+  faults: [
+    F("F104 / ERRM / ERRC", "Probleem met de temperatuursensor", 1, "Vaak een te koude keuken.", ["Zorg dat het minstens 16 °C is in de keuken.", "Laat de magnetron eerst afkoelen als hij net aan stond."]),
+    F("F215", "Probleem met de bedieningselektronica", 1, "Storing.", ["Zet uit en wacht een paar minuten.", "Werkt de bediening nog niet, haal de stekker eruit of zet de groep uit."]),
+    F("E15", "Te heet voor de gekozen functie", 1, "Oververhit.", ["Zet de deur open om af te koelen en zet hem daarna weer aan."]),
+    F("ECON", "Eco- of standbystand", 1, "Geen storing.", ["Stekker kort eruit; stel binnen 3 minuten de klok in."]),
+    F("--C", "Deur niet goed dicht", 2, "Deur of deurhaken.", ["Controleer de deur. Zijn de deurhaken kapot, laat ze vervangen."]),
+    F("PLAT OFF", "Draaiplateau staat uit", 1, "Geen storing.", ["Druk tijdens een programma op de twee buitenste knoppen om het plateau weer aan te zetten."])],
+  src: ["aegMagn"] },
+
+{ id: "smeg-fornuis", brand: "SMEG", name: "Fornuis en oven", cat: "ovens", years: "Alle bouwjaren", unit: null,
+  intro: "Knipperende cijfers op een SMEG-fornuis betekenen dat de klok niet is ingesteld. Zonder ingestelde klok werkt de oven niet.", weak: [], parts: [], tasks: [],
+  faults: [N("Cijfers knipperen en de oven werkt niet", 1, "Klok niet ingesteld, vaak na een stroomstoring of bij een nieuw fornuis.", ["Houd de klokknop ongeveer 2 seconden ingedrukt tot de punt tussen uren en minuten knippert.", "Stel de tijd in met plus en min.", "Laat los en wacht 7 seconden; als de punt stopt met knipperen is de tijd opgeslagen."])],
+  src: ["smeg"] }
+);
+
 module.exports = { CATS, MODELS, SRC };
