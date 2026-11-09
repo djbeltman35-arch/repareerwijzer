@@ -310,6 +310,7 @@ fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(in
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, "favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>`);
+if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSync(path.join(__dirname, "static"))) fs.copyFileSync(path.join(__dirname, "static", f), path.join(OUT, f));
 for (const f of ["style.css", "app.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
 
 console.log(`${pages.length} pagina's gebouwd (${allCodes.length} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);
