@@ -1263,4 +1263,91 @@ MODELS.push(
   src: ["daikin"] }
 );
 
+Object.assign(SRC, {
+  cbAfvoer: ["Coolblue – afvoer wasmachine verstopt", "https://www.coolblue.nl/advies/afvoer-wasmachine-verstopt.html"],
+  cbStankWas: ["Coolblue – stank verwijderen uit wasmachine", "https://www.coolblue.nl/advies/stank-verwijderen-wasmachine.html"],
+  cbLekWas: ["Coolblue – waarom lekt mijn wasmachine", "https://www.coolblue.nl/advies/hoe-weet-ik-waarom-mijn-wasmachine-lekt.html"],
+  cbHerrie: ["Coolblue – wasmachine maakt herrie", "https://www.coolblue.nl/advies/wasmachine-maakt-herrie.html"],
+  idWas: ["ID.nl – meest voorkomende wasmachinestoringen", "https://id.nl/huis-en-entertainment/huishouden/wassen-en-drogen/de-meest-voorkomende-wasmachinestoringen-en-oplossingen"],
+  cbVaatSchoon: ["Coolblue – vaatwasser maakt niet goed schoon", "https://www.coolblue.nl/advies/hoe-verzorg-ik-mijn-vaatwasser.html"],
+  cbVaatStank: ["Coolblue – stinkende vaatwasser", "https://www.coolblue.nl/advies/tips-voor-stinkende-vaatwassers.html"],
+  cbVaatDroog: ["Coolblue – vaatwasser droogt niet goed", "https://www.coolblue.nl/advies/vaatwasser-droogt-niet-goed.html"],
+  cbWaterstop: ["Coolblue – waterstop van vaatwasser resetten", "https://www.coolblue.nl/advies/hoe-reset-je-de-waterstop-van-een-vaatwasser.html"],
+  cbVaatWater: ["Coolblue – vaatwasser krijgt geen water", "https://www.coolblue.nl/advies/waarom-krijgt-je-vaatwasser-geen-water.html"],
+  cbVaatLek: ["Coolblue – lekkage vaatwasser", "https://www.coolblue.nl/advies/hoe-los-je-lekkage-bij-je-vaatwasser-op.html"],
+  cbVaatWerkt: ["Coolblue – vaatwasser werkt niet", "https://www.coolblue.nl/advies/de-vaatwasser-werkt-of-reageert-niet.html"],
+  cbVaatKalk: ["Coolblue – vaatwasser ontkalken", "https://www.coolblue.nl/advies/tips-ontkalken-vaatwasser.html"],
+  cbDroogt: ["Coolblue – droger droogt niet goed", "https://www.coolblue.nl/advies/wasdroger-droogt-niet-goed.html"],
+  cbDroogStank: ["Coolblue – stank in wasdroger", "https://www.coolblue.nl/advies/hoe-los-je-de-stank-in-je-wasdroger-op.html"],
+  cbDroogLawaai: ["Coolblue – lawaai van wasdroger", "https://www.coolblue.nl/advies/hoe-los-je-het-lawaai-van-een-wasdroger-op.html"]
+});
+
+const AM = "Alle merken";
+const G = (id, name, cat, intro, faults, src, extra = {}) => ({ id, brand: AM, name, cat, years: "Alle bouwjaren", unit: null, intro, weak: [], parts: [], tasks: [], faults, src, ...extra });
+
+MODELS.push(
+G("wasmachine-pompt-niet-af", "Wasmachine pompt niet af", "wasmachines", "Blijft er water in de trommel staan? Vaak zit de verstopping niet in de machine maar in de sifon of afvoer. Zo spoor je hem op, van makkelijk naar lastig.", [
+  N("Water blijft in de trommel staan", 1, "Verstopt pompfilter, sifon of afvoer, of een geknikte slang.", ["Zet een bak voor de machine, open het klepje onderaan en draai het pompfilter los. Haal knoopjes en munten eruit en spoel het filter af.", "Controleer de afvoerslang op knikken.", "Maak de sifon (zwanenhals) schoon: emmer eronder, losdraaien en uitspoelen.", "Giet langzaam een emmer kokend water met een pak soda door een trechter in de afvoer, wacht 10 minuten en spoel na.", "Helpt dat niet: gebruik een trekveer of ontstopper, of bel een loodgieter (vraag vooraf de prijs)."])],
+  ["cbAfvoer", "idWas"], { also: "Bosch, Siemens, Samsung, LG, AEG, Miele, Whirlpool, Beko", tasks: [{ m: 2, t: "Pompfilter schoonmaken", v: 1 }] }),
+
+G("wasmachine-stinkt", "Wasmachine stinkt", "wasmachines", "Een stinkende wasmachine komt door zeepresten, huidschilfers en vuil in het rubber, filter en zeepbakje. Bacteriën gaan pas dood boven 60 °C.", [
+  N("Wasmachine of was ruikt muf", 1, "Vuil in trommel, rubber, filter en zeepbakje.", ["Draai met lege trommel een programma op 90 of 95 °C, met een kopje azijn in het zeepbakje.", "Maak het deurrubber schoon met heet water en afwasmiddel; gebruik een oude tandenborstel voor hardnekkig vuil.", "Spoel het pompfilter schoon.", "Haal het zeepbakje eruit en spoel het onder warm water.", "Laat na het wassen de deur open zodat de trommel droogt."]),
+  N("Nieuwe wasmachine ruikt naar plastic", 1, "Plastic onderdelen warmen op.", ["Draai een paar wasbeurten; de geur verdwijnt vanzelf."])],
+  ["cbStankWas"], { tasks: [{ m: 1, t: "Kookwas op 90 °C met lege trommel" }, { m: 1, t: "Deurrubber, filter en zeepbakje schoonmaken" }] }),
+
+G("wasmachine-lekt", "Wasmachine lekt", "wasmachines", "Waar het water vandaan komt, vertelt wat de oorzaak is. Zo vind je het lek.", [
+  N("Lek bij de slangen", 1, "Losse of beschadigde slang.", ["Controleer of beide slangen aan beide kanten vastzitten.", "Vervang een beschadigde slang direct."]),
+  N("Lek bij de afvoerpijp", 1, "Slang te diep in de afvoer of verstopte afvoer.", ["De afvoerslang mag maximaal 15 cm in de afvoer steken; een beugel houdt hem op zijn plek.", "Maak de sifon schoon en spoel de afvoer door met kokend water en soda."]),
+  N("Water aan de voorkant", 1, "Wasgoed tussen deur en trommel, of een gescheurde manchet.", ["Stekker eruit en kraan dicht, de machine met een handdoek eronder 40 seconden achterover kantelen en het wasgoed weghalen.", "Is het rubber rond de trommel gescheurd, laat het dan vervangen."]),
+  N("Water onder de machine", 2, "Pompfilter niet dicht of lek binnenin.", ["Controleer of het pompfilter rechtsonder goed dicht zit.", "Lekt het binnenin: kraan dicht, stekker eruit en een monteur bellen."]),
+  N("Zeepbakje loopt over", 1, "Opgehoopt wasmiddel.", ["Haal het zeepbakje eruit en schrob het schoon onder de kraan."])],
+  ["cbLekWas"]),
+
+G("wasmachine-maakt-herrie", "Wasmachine maakt herrie of loopt", "wasmachines", "Schudden, piepen of bonken: aan het geluid hoor je wat er mis is.", [
+  N("Wasmachine wiebelt of loopt", 1, "Niet waterpas.", ["Zet de machine waterpas met een waterpas en draai de pootjes bij.", "Zet de borgmoeren vast met een steeksleutel; controleer ze af en toe."]),
+  N("Trilt bij centrifugeren", 1, "Ongelijk verdeelde of te volle trommel.", ["Haal wat was eruit, verdeel de rest en start opnieuw.", "Probeer een ander centrifugetoerental."]),
+  N("Piept of jankt bij centrifugeren", 3, "Versleten lagers.", ["Draai de lege trommel met de hand. Loopt hij stroef of hobbelig, dan zijn de lagers versleten. Laat ze vervangen."]),
+  N("Bonkt bij centrifugeren", 2, "Transportbouten nog aanwezig of versleten schokdempers.", ["Controleer of de transportbouten achterop zijn verwijderd.", "Laat versleten schokdempers of veren vervangen."]),
+  N("Tikt onderin", 1, "Voorwerp in het pompfilter.", ["Maak het pompfilter schoon; knoopjes, speldjes of ritsen zijn vaak de oorzaak."]),
+  N("Klapt in de waterleiding", 2, "Lucht in de leiding (waterslag).", ["Draai de hoofdkraan dicht en de kraan van de machine dicht en weer open.", "Laat zo nodig een waterslagdemper plaatsen."])],
+  ["cbHerrie"]),
+
+G("vaatwasser-wordt-niet-schoon", "Vaatwasser maakt niet goed schoon", "vaatwassers", "Zes oorzaken als de vaat vuil uit de vaatwasser komt, van inruimen tot onderhoud.", [
+  N("Vaat komt vuil uit de machine", 1, "Inruimen, sproeiarmen, zout of onderhoud.", ["Zet pannen onderin en kopjes boven, schuin zodat water erbij kan, en niet te vol.", "Prik verstopte gaatjes in de sproeiarmen open met een tandenstoker en spoel ze af.", "Vul zout en glansspoelmiddel apart bij; tabletten zijn niet genoeg.", "Maak de filters schoon, veeg het deurrubber af en ontkalk regelmatig.", "Kies bij erg vuile vaat een intensief programma en draai af en toe een heet programma."])],
+  ["cbVaatSchoon"], { also: "Bosch, Siemens, Miele, AEG, Samsung, Beko", tasks: DISH_TASKS }),
+
+G("vaatwasser-stinkt", "Vaatwasser stinkt", "vaatwassers", "Een stinkende vaatwasser komt door etensresten in filter, sproeiarmen, deurrubber en leidingen.", [
+  N("Vaatwasser ruikt vies", 1, "Etensresten, vuil rubber of kalk.", ["Schraap borden af voor je ze inruimt.", "Spoel filter en sproeiarmen af onder de kraan.", "Veeg de deurrubbers af met een vochtige doek.", "Ontkalk zo nodig en draai een vaatwasserreiniger.", "Een geurverfrisser maskeert alleen; gebruik die pas als laatste stap."])],
+  ["cbVaatStank"]),
+
+G("vaatwasser-droogt-niet", "Vaatwasser droogt niet goed", "vaatwassers", "Natte vaat na afloop? Vijf oorzaken en oplossingen.", [
+  N("Vaat is nat na het programma", 1, "Te weinig glansspoelmiddel, deur dicht, inruimen of programma.", ["Vul glansspoelmiddel zelf bij en zet de dosering laag.", "Zet de deur ongeveer 15 minuten na afloop open, alleen als je werkblad vochtbestendig is.", "Ruim niet te vol in en zet vaat schuin zodat water eraf loopt.", "Kies een programma met droogfase; snel- en spoelprogramma's drogen vaak niet.", "Maak sproeiarmen en filter schoon."])],
+  ["cbVaatDroog"]),
+
+G("vaatwasser-geen-water", "Vaatwasser krijgt geen water of lekt", "vaatwassers", "Geen water of juist water op de vloer? Meestal ligt het aan de kraan, slang of waterstop.", [
+  N("Vaatwasser krijgt geen water", 1, "Kraan dicht, slang geknikt of waterstop geactiveerd.", ["Draai de kraan open; werkt hij niet, vervang de kraan.", "Volg de slang en haal knikken eruit.", "Controleer en reset de waterstop."]),
+  N("Waterstop resetten", 1, "De waterstop heeft een lek of kortsluiting gezien.", ["Kraan dicht, emmer eronder en stekker eruit.", "Schroef de slang helemaal los van de kraan.", "Losse waterstop: druk het gekleurde (meestal rode) pinnetje in. In de slang: dop eraf met een tang, schoonmaken en dop terug.", "Slang terug, kraan langzaam open en op lekken controleren."]),
+  N("Vaatwasser lekt", 1, "Versleten sifon of kraan, knik, verstopte afvoer of gedeelde afvoer.", ["Lekt het bij sifon of kraan: vervang het onderdeel.", "Haal knikken uit de toevoerslang en maak een verstopte afvoerslang vrij.", "Zet de plastic bocht weer op de slang.", "Delen wasmachine en vaatwasser één afvoer, plaats dan een Y-stuk."])],
+  ["cbVaatWater", "cbWaterstop", "cbVaatLek"]),
+
+G("vaatwasser-werkt-niet", "Vaatwasser werkt niet of ontkalken", "vaatwassers", "Doet de vaatwasser niets? Vier controles. Plus: zo ontkalk je hem, ongeveer twee keer per jaar.", [
+  N("Vaatwasser start niet of reageert niet", 1, "Stroom, blokkade, deur of filter.", ["Controleer stekker, kabel en meterkast.", "Reset de vaatwasser volgens de handleiding.", "Brandt het lampje maar start er niets: sluit de deur goed.", "Maak het filter onderin schoon."]),
+  N("Vaatwasser ontkalken", 1, "Kalkaanslag; doe dit ongeveer twee keer per jaar.", ["Maak de machine en het filter leeg.", "Start een programma van minstens 65 °C zonder vaatwasmiddel.", "Zet na 30 minuten de deur een klein stukje open om te pauzeren.", "Strooi ontkalker over de bodem volgens de verpakking, sluit de deur en laat het programma afmaken.", "Gebruik geen azijn; dat beschadigt de vaatwasser."])],
+  ["cbVaatWerkt", "cbVaatKalk"], { tasks: [{ m: 6, t: "Vaatwasser ontkalken" }] }),
+
+G("droger-droogt-niet", "Droger droogt niet goed", "drogers", "Natte was uit de droger? Acht oorzaken, van een vol filter tot een vuile vochtsensor.", [
+  N("Was blijft vochtig", 1, "Te vol, vol filter, vuile condensor of vochtsensor, te weinig centrifugeren of verkeerd programma.", ["Blijf onder de maximale belading en droog katoen en synthetisch apart.", "Leeg het pluizenfilter na elke droogbeurt.", "Maak de condensor schoon: condensdroger afspoelen, warmtepompdroger stofzuigen met een borstel.", "Maak de vochtsensor (metalen strip bij de deuropening) elke maand schoon met een vochtige doek.", "Centrifugeer de was op 1400 of 1600 toeren.", "Kies voor handdoeken extra droog of kastdroog extra.", "Controleer een afvoerslang op knikken en verstoppingen."])],
+  ["cbDroogt"], { also: "Bosch, Siemens, Miele, AEG, Samsung, Whirlpool, Beko", tasks: [{ m: 1, t: "Vochtsensor schoonmaken" }, ...DRYER_TASKS] }),
+
+G("droger-stinkt-of-maakt-lawaai", "Droger stinkt of maakt lawaai", "drogers", "Brandlucht, muffe geur, klappen of piepen: wat normaal is en wat je moet oplossen.", [
+  N("Brandlucht", 2, "Verstopt pluizenfilter; ook een veiligheidsrisico.", ["Leeg het pluizenfilter na elke droogbeurt en zuig de filteropening maandelijks uit."]),
+  N("Muffe geur", 1, "Vuile condensor.", ["Condensdroger: condensor elke 2 à 3 maanden uitnemen en afspoelen.", "Warmtepompdroger: voorkant van de condensor stofzuigen met een borstel."]),
+  N("Klap bij de eerste keer starten", 1, "Transportslot wordt losgemaakt.", ["Dat is normaal."]),
+  N("Zoemen", 1, "Compressor of ventilatoren.", ["Dat is normaal."]),
+  N("Metalen geklingel", 1, "Munt, speld of knoop in de trommel.", ["Kijk met een spiegeltje langs de rand van de trommel en haal het voorwerp weg."]),
+  N("Piepen of schuren", 1, "Vol filter of vuile condensor.", ["Maak het pluizenfilter en de condensor schoon."]),
+  N("Trillen", 1, "Losse stapelset.", ["Zet de banden van de stapelset vast, of plaats een stapelset."])],
+  ["cbDroogStank", "cbDroogLawaai"])
+);
+
 module.exports = { CATS, MODELS, SRC };
