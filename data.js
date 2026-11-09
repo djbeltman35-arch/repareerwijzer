@@ -1039,4 +1039,114 @@ MODELS.push(
   src: ["boschKook"] }
 );
 
+CATS.push({ id: "kleine-apparaten", name: "Kleine apparaten", one: "apparaat", intro: "Strijkijzers, stoomgeneratoren en ander klein huishoudelijk apparaat: onderhoud en storingen." });
+
+Object.assign(SRC, {
+  nefit: ["Nefit – gebruikersinstructie TrendLine II", "https://portal.insmart.nl/downloads/nefit_trendline_ii_Gebruikersinstructie%2BTrendLine%2BII%2BHR-ketels.pdf"],
+  atag: ["ATAG – gebruikershandleiding i Zone-serie", "https://atag.compano.com/Data/Environments/000001/Attachment/Bijlage/ATAG%20Belgie/Gebruikershandleiding/8H518100%20GEB%20HANDLEIDING%20i%20Zone-SERIE%20CBR3.0%20NL%20A5%20V1022.pdf"],
+  sagePro: ["Sage – handleiding Barista Pro", "https://assets.sageappliances.com/BES878/SES878_EU_UG8_F22_FA_Online.pdf"],
+  lgVaat: ["House Digest – foutcodes LG vaatwasser", "https://housedigest.com/1773527/ae-error-code-lg-dishwasher"],
+  steel: ["Coolblue – betere zuigkracht steelstofzuiger", "https://www.coolblue.nl/advies/tips-voor-een-betere-zuigkracht-steelstofzuiger.html"],
+  slede: ["Coolblue – betere zuigkracht sledestofzuiger", "https://www.coolblue.nl/advies/4-tips-voor-een-betere-zuigkracht-van-jouw-sledestofzuiger.html"],
+  zak: ["Coolblue – onderhoud stofzuiger met zak", "https://www.coolblue.nl/advies/hulp-bij-het-onderhouden-van-een-stofzuiger-met-zak.html"],
+  zonderzak: ["Coolblue – onderhoud stofzuiger zonder zak", "https://www.coolblue.nl/advies/hulp-bij-het-onderhouden-van-een-stofzuiger-zonder-zak.html"],
+  kobold1: ["Vorwerk – Kobold VK7 codes 10, 11, 14, 63", "https://support-switzerland.vorwerk.com/hc/en-us/articles/26910728279068-Fixing-Kobold-VK7-Error-Codes-Code-10-11-14-63"],
+  kobold2: ["Vorwerk – Kobold VK7 met SP7 codes 30–36", "https://support-switzerland.vorwerk.com/hc/en-us/articles/26910794826780-VK7-with-SP7-Vacuum-Mop-Troubleshooting-Code-30-36"],
+  strijk: ["Coolblue – strijkijzer of stoomgenerator ontkalken", "https://www.coolblue.nl/advies/strijkijzer-stoomgenerator-ontkalken.html"]
+});
+
+MODELS.push(
+{ id: "nefit-trendline", brand: "Nefit", name: "TrendLine II", cat: "cv-ketels", years: "Alle bouwjaren", unit: null,
+  intro: "Nefit TrendLine II toont codes van een cijfer, een letter en drie cijfers, zoals 6A227. De waterdruk hoort tussen 1 en 2 bar te liggen.", weak: ["Te weinig radiatoren open, waardoor de ketel zijn warmte niet kwijt kan."], parts: [],
+  tasks: [{ m: 1, t: "Waterdruk controleren", v: 1, s: "Tussen 1,0 en 2,0 bar; bijvullen tot 2,0 bar." }, { w: "Als H03 of H13 verschijnt", t: "Onderhoudsbeurt inplannen bij de installateur" }],
+  faults: [
+    F("H07", "Waterdruk te laag", 1, "Te weinig water in de installatie.", ["Sluit de vulslang aan, vul de slang met water en open de vulkraan en de vul- en aftapkraan tot 2,0 bar.", "Sluit de kranen, ontlucht de bovenste radiatoren en haal de slang weg."]),
+    F("2E207", "Waterdruk te laag", 1, "Te weinig water in de installatie.", ["Vul bij tot 2,0 bar en ontlucht de radiatoren."]),
+    F("6A227", "Brander ontsteekt niet", 2, "Gaskraan dicht of ontsteking.", ["Controleer of de gaskraan open staat.", "Reset: houd de resetknop ingedrukt tot Reset verschijnt.", "Komt de code terug, bel de installateur met het keteltype erbij."]),
+    F("0A202 / 0Y204", "Ketel kan zijn warmte niet kwijt", 1, "Te weinig radiatoren open.", ["Zet meer radiatoren open."]),
+    F("0Y276 / 0Y285", "Te hoge temperatuur gemeten", 2, "Sensoren.", ["Reset de ketel.", "Komt de code terug, bel de installateur."]),
+    F("2F260 / 2F345", "Afwijkende temperatuur gemeten", 2, "Sensoren.", ["Reset de ketel.", "Komt de code terug, bel de installateur."]),
+    F("H03 / H13", "Onderhoud nodig", 1, "Branderuren of onderhoudsperiode verstreken.", ["Plan een onderhoudsbeurt bij de installateur."])],
+  src: ["nefit"] },
+
+{ id: "atag-i-zone", brand: "ATAG", name: "i Zone-serie", cat: "cv-ketels", years: "Alle bouwjaren", unit: null, also: "i-serie",
+  intro: "ATAG i Zone-ketels tonen codes van drie tekens. De normale waterdruk ligt tussen 1,5 en 1,7 bar.", weak: [], parts: [],
+  tasks: [{ m: 1, t: "Waterdruk controleren", v: 1, s: "Normaal 1,5 tot 1,7 bar bij een koud systeem." }],
+  faults: [
+    F("108", "Waterdruk onder 0,7 bar", 1, "Te weinig water.", ["Vul de installatie bij tot 1,5–1,7 bar.", "Boven 1,3 bar start automatisch een ontluchtingsprogramma van ongeveer 7 minuten."]),
+    F("1P4", "Waterdruk tussen 0,7 en 1,0 bar", 1, "Te weinig water.", ["Vul bij tot 1,5–1,7 bar."]),
+    F("101", "Oververhitting", 2, "Te hoge temperatuur.", ["Druk op Reset.", "Komt de code terug, bel de installateur."]),
+    F("102", "Fout in de druksensor", 2, "Sensor.", ["Druk op Reset; blijft de code, bel de installateur."]),
+    F("104", "Te weinig doorstroming", 2, "Doorstroming.", ["Druk op Reset; blijft de code, bel de installateur."]),
+    F("501", "Geen vlam gedetecteerd", 2, "Gastoevoer of ontsteking.", ["Controleer of de gaskraan open staat en druk op Reset.", "Blijft de code, bel de installateur."]),
+    F("612", "Ventilator start niet", 2, "Ventilator.", ["Druk op Reset; blijft de code, bel de installateur."]),
+    F("109 / 110 / 112 / 114 / 142 / 201 / 203 / 303 / 304", "Storing in sensor, pomp of printplaat", 3, "Onderdeel of te vaak gereset.", installer)],
+  src: ["atag"] },
+
+{ id: "sage-barista-pro", brand: "Sage", name: "Barista Pro (SES878)", cat: "koffiemachines", years: "2019–heden", unit: null,
+  intro: "Espressomachine met ingebouwde molen en een display dat vertelt wanneer reinigen of ontkalken nodig is.", weak: ["Olie van de bonen op de maalschijven."],
+  parts: [["Pistonhouder", "54 mm"], ["Waterfilter", "Elke 3 maanden vervangen, eerst 5 minuten weken"]],
+  tasks: [{ w: "Als FLUSH op het display staat", t: "Reinigingscyclus met tablet" }, { w: "Als DESCALE op het display staat", t: "Ontkalken (eerst het waterfilter eruit)" }, { m: 3, t: "Waterfilter vervangen" }, { m: 1, t: "Maalschijven en uitloop schoonborstelen", v: 1 }],
+  faults: [
+    N("ERROR op het display", 3, "Interne storing.", ["Neem contact op met de klantenservice van Sage."]),
+    N("Machine stopt ineens", 1, "Thermische beveiliging.", ["Uitzetten, stekker eruit en 30–60 minuten laten afkoelen."]),
+    N("FILL TANK of hard geluid zonder water", 1, "Reservoir leeg of niet goed geplaatst.", ["Vul het reservoir en duw het helemaal naar beneden."]),
+    N("Shot loopt te snel of te traag", 1, "Maalgraad of dosis.", ["De eerste druppels horen na 8–12 seconden te komen.", "Te snel: fijner malen. Te traag: grover malen.", "Dosis 16–19 gram voor 2 kopjes; aandrukken met 10–15 kg."])],
+  src: ["sagePro"] },
+
+{ id: "lg-vaatwasser", brand: "LG", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren met display", unit: null,
+  intro: "LG-vaatwassers gebruiken dezelfde soort codes als LG-wasmachines: IE voor toevoer en OE voor afvoer.", weak: [], parts: [], tasks: DISH_TASKS,
+  faults: [
+    F("IE", "Probleem met de watertoevoer", 1, "Kraan, slang of inlaatventiel.", ["Controleer of de watertoevoer open staat.", "Haal knikken uit de slang."]),
+    F("OE", "Probleem met de afvoer", 1, "Vuil filter of verstopte slang.", ["Maak het filter onderin schoon.", "Controleer de afvoerslang op verstoppingen."]),
+    F("HE", "Probleem met de verwarming", 2, "Verwarmingselement.", ["Zet de vaatwasser en de groep minstens 10 seconden uit en weer aan.", "Blijft de code, bel een monteur."]),
+    F("AE / E1", "Lekkage gedetecteerd", 2, "Lek in rubber, slang of pomp.", ["Zoek het lek: deurrubber, sproeiarmen, slangen en afvoerpomp.", "Vind je het niet, bel een monteur."]),
+    F("LE", "Storing in de motor", 3, "Motor of printplaat.", ["Reset de vaatwasser. Blijft de code, bel een monteur."])],
+  src: ["lgVaat"] },
+
+{ id: "steelstofzuiger", brand: "Alle merken", name: "Steelstofzuiger zuigt slecht", cat: "stofzuigers", years: "Alle bouwjaren", unit: null, also: "Dyson, Philips, Bosch, Samsung, Miele, Shark, Rowenta, Xiaomi",
+  intro: "Vijf oorzaken waardoor een snoerloze steelstofzuiger minder goed zuigt, voor alle merken.", weak: ["Haar rond de draaiende borstel."], parts: [["Filter", "Eén keer per jaar vervangen"]],
+  tasks: [{ m: 1, t: "Stofbak schoonmaken en goed laten drogen", v: 1 }, { m: 1, t: "Filter schoonmaken volgens de handleiding", v: 1 }, { m: 12, t: "Filter vervangen" }],
+  faults: [
+    N("Zuigt slecht: stofbak vol", 1, "Volle of vuile stofbak.", ["Leeg de bak op tijd en maak hem af en toe schoon met water of wat zeep.", "Laat hem helemaal drogen."]),
+    N("Zuigt slecht: filter verstopt", 1, "Stof in het filter.", ["Maak het filter schoon volgens de handleiding.", "Vervang het één keer per jaar."]),
+    N("Borstel draait slecht", 1, "Haar rond de borstel.", ["Haal de borstel eruit en knip het haar voorzichtig los."]),
+    N("Zuigt slecht: buis verstopt", 1, "Speelgoed of elastiekjes in de buis.", ["Controleer de buis op voorwerpen en opgehoopt stof."]),
+    N("Zuigt minder als de accu bijna leeg is", 1, "Lage accu.", ["Laad de accu helemaal op voor een grote schoonmaakbeurt."])],
+  src: ["steel"] },
+
+{ id: "sledestofzuiger", brand: "Alle merken", name: "Sledestofzuiger met of zonder zak", cat: "stofzuigers", years: "Alle bouwjaren", unit: null, also: "Miele, Philips, Bosch, Nilfisk, Samsung, AEG",
+  intro: "Onderhoudsschema en vier oorzaken van slechte zuigkracht. Een luidere stofzuiger wijst vaak op een oud motorfilter.", weak: ["Muffe lucht uit de stofzuiger: het uitblaasfilter is op."], parts: [["Stofzak", "Bij normaal gebruik ongeveer elke 3 maanden"]],
+  tasks: [{ m: 3, t: "Stofzak vervangen", s: "Bij ongeveer twee keer per week stofzuigen; eerder met huisdieren." }, { m: 3, t: "Uitblaasfilter schoonmaken", s: "Zonder zak: elke 2 maanden, vervangen ongeveer elke 6 maanden." }, { m: 1, t: "Filter in de stofbak schoonmaken (zakloos)" }, { m: 12, t: "Motorfilter schoonmaken" }],
+  faults: [
+    N("Zuigt slecht: zak of bak vol", 1, "Te weinig luchtstroom.", ["Leeg een zakloze bak na elk gebruik.", "Vervang een stofzak ongeveer elke 3 maanden."]),
+    N("Zuigt slecht: filters vuil", 1, "Stof in de filters.", ["Klop het filter uit en zuig of borstel het schoon.", "Minstens elke 6 maanden, vaker bij veel gebruik."]),
+    N("Zuigt slecht: zuigmond vol haar", 1, "Haar en stof in de zuigmond.", ["Haal haar en vuil uit de zuigmond.", "Snij haar rond een turboborstel voorzichtig los."]),
+    N("Zuigt slecht: slang of buis verstopt", 1, "Voorwerp in de buis.", ["Haal de buis los en duw de verstopping eruit met een lang, dun voorwerp."]),
+    N("Stofzuiger ruikt muf of maakt meer lawaai", 1, "Uitblaasfilter of motorfilter op.", ["Muf: vervang het uitblaasfilter.", "Luider: vervang het motorfilter."])],
+  src: ["slede", "zak", "zonderzak"] },
+
+{ id: "vorwerk-kobold-vk7", brand: "Vorwerk", name: "Kobold VK7 en SP7", cat: "stofzuigers", years: "2021–heden", unit: null,
+  intro: "De Kobold VK7 toont een codenummer. Veel storingen los je op met een fabrieksreset: accu eruit, aan-knop 10 seconden indrukken, accu terug.", weak: ["Vocht in de SP7-dweilmodule."], parts: [["Filter en filterzak", "Alleen originele Vorwerk-onderdelen"]],
+  tasks: [{ w: "Na elk dweilen", t: "Schoonwatertank van de SP7 legen" }],
+  faults: [
+    F("10", "Communicatiefout", 1, "Storing.", ["Haal de accu één minuut eruit en plaats hem terug."]),
+    F("11", "Oververhit", 1, "Te warm.", ["Zet uit en laat 60 minuten afkoelen op een koele plek, uit de zon."]),
+    F("14", "Probleem met de motor", 1, "Vol filter of filterzak.", ["Controleer filter en filterzak.", "Doe een fabrieksreset. Komt de code terug, vervang filter en filterzak."]),
+    F("63", "Opzetstuk niet herkend", 1, "Vuile contacten.", ["Maak de contacten van het opzetstuk schoon en reset het apparaat."]),
+    F("30", "Fout in de pomp (SP7)", 1, "Storing.", ["Koppel de zuigmond los en weer vast."]),
+    F("32", "Blokkade bij de trilplaat (SP7)", 1, "Voorwerp.", ["Controleer de trilplaat en haal voorwerpen weg."]),
+    F("35", "Vocht gedetecteerd (SP7)", 1, "Vocht in de dweilmodule.", ["Leeg de watertank, leg het apparaat op zijn kant en laat de klep minstens 24 uur open op kamertemperatuur.", "Geen föhn gebruiken."]),
+    F("36", "Fout in de sensor (SP7)", 1, "Vocht.", ["Laat drogen zoals bij code 35 en plaats daarna de accu opnieuw."])],
+  src: ["kobold1", "kobold2"] },
+
+{ id: "strijkijzer-stoomgenerator", brand: "Alle merken", name: "Strijkijzer en stoomgenerator", cat: "kleine-apparaten", years: "Alle bouwjaren", unit: null, also: "Philips, Tefal, Rowenta, Braun",
+  intro: "Kalk is de grootste vijand van een strijkijzer: het verstopt de gaatjes in de zool en geeft bruine vlekken op je kleding.", weak: ["Water laten staan in het reservoir na het strijken."], parts: [["Anti-kalkcassette", "Ongeveer elke 3 maanden vervangen"]],
+  tasks: [{ m: 3, t: "Anti-kalkcassette vervangen of kalkopvang uitspoelen" }, { m: 1, t: "Ontkalken bij hard water of vaker dan 3 keer per week strijken" }, { w: "Na elke strijkbeurt", t: "Reservoir leeg laten lopen" }],
+  faults: [
+    N("Bruine vlekken op de kleding", 1, "Kalk in de zool.", ["Reservoir vullen met water en een scheutje schoonmaakazijn.", "Op de hoogste stand minstens 4 minuten laten opwarmen en een paar keer op de stoomknop drukken.", "Uitzetten en 30 minuten laten staan.", "Zool en reservoir afnemen, naspoelen en leegstomen op een oude theedoek."]),
+    N("Weinig stoom", 1, "Kalkaanslag.", ["Start het ontkalkprogramma volgens de handleiding, of ontkalk met de hand zoals hierboven.", "Gebruik voortaan ontkalkt water, bijvoorbeeld uit een filterkan."])],
+  src: ["strijk"] }
+);
+
 module.exports = { CATS, MODELS, SRC };
