@@ -680,4 +680,160 @@ MODELS.push(
   src: ["worx"] }
 );
 
+CATS.splice(4, 0,
+  { id: "koelkasten", name: "Koelkasten", one: "koelkast", intro: "Koelt niet, knipperend lampje of ijs in de vriezer: wat je zelf controleert en wanneer je een monteur belt." },
+  { id: "ovens", name: "Ovens en magnetrons", one: "oven", intro: "Foutcodes van ovens, combi-ovens en magnetrons per merk, met wat je zelf kunt doen." },
+  { id: "kookplaten", name: "Kookplaten", one: "kookplaat", intro: "Inductie- en elektrische kookplaten: de meldingen op het display uitgelegd." }
+);
+
+Object.assign(SRC, {
+  koelkast: ["Coolblue – koelkast koelt niet goed", "https://www.coolblue.nl/advies/tips-wanneer-je-koelkast-niet-goed-koelt.html"],
+  liebherr: ["Liebherr – veelgestelde vragen koelapparaten", "https://www.liebherr.com/nl-nl/koelkasten-vriezers/veelgestelde-vragen-3093561"],
+  aegOven: ["Coolblue – foutcodes AEG ovens", "https://www.coolblue.nl/advies/hoe-los-je-de-foutcodes-en-storingen-op-aeg-ovens.html"],
+  samsungOven: ["Coolblue – foutcodes Samsung ovens", "https://www.coolblue.nl/advies/hoe-los-je-foutcodes-van-samsung-ovens-op.html"],
+  mieleOven: ["Coolblue – foutcodes Miele oven", "https://www.coolblue.nl/advies/hoe-los-je-de-foutcodes-bij-een-miele-oven-op.html"],
+  bshOven: ["Coolblue – foutcodes Siemens en Bosch ovens", "https://www.coolblue.nl/advies/hoe-los-je-foutcodes-van-siemens-en-bosch-ovens-op.html"],
+  zanussiOven: ["Coolblue – Zanussi oven storing F908", "https://www.coolblue.nl/advies/hoe-los-je-de-zanussi-oven-storing-f908-op.html"],
+  panaMagn: ["Coolblue – foutcodes Panasonic magnetrons", "https://www.coolblue.nl/advies/hoe-los-je-foutcodes-van-panasonic-magnetrons-op.html"],
+  samsungMagn: ["Coolblue – foutcodes Samsung magnetron", "https://www.coolblue.nl/advies/hoe-los-je-de-foutcodes-bij-een-samsung-magnetron-op.html"],
+  bshMagn: ["Coolblue – foutcodes Bosch of Siemens magnetron", "https://www.coolblue.nl/advies/hoe-los-je-foutcodes-bij-een-bosch-of-siemens-magnetron-op.html"],
+  aegKook: ["Coolblue – storingen AEG en Zanussi kookplaten", "https://www.coolblue.be/nl/advies/zanussi-aeg-inductiekookplaat-storing.html"],
+  hoover: ["Coolblue – storingen Hoover wasmachines", "https://www.coolblue.nl/advies/meest-voorkomende-storingen-van-hoover-wasmachines.html"],
+  yamaha: ["Upway – foutcodes Yamaha e-bike-motoren", "https://en.upway.be/blogs/news/codes-derreur-des-moteurs-yamaha"]
+});
+
+const OVEN_TASKS = [{ w: "Na gebruik met spatten", t: "Binnenkant afnemen als de oven is afgekoeld" }];
+MODELS.push(
+{ id: "koelkast-alle-merken", brand: "Alle merken", name: "Koelkast koelt niet goed", cat: "koelkasten", years: "Alle bouwjaren", unit: null, also: "Samsung, LG, Bosch, Siemens, Liebherr, Beko, Inventum",
+  intro: "Zes oorzaken die je zelf kunt controleren voordat je een monteur belt. De beste temperatuur in de koelkast is 4 °C.", weak: ["Te weinig ruimte rond de koelkast.", "Versleten deurrubbers."], parts: [["Koelkastthermometer", "Voor modellen zonder digitale temperatuur"]],
+  tasks: [{ m: 6, t: "Vriezer ontdooien (Low Frost)", s: "Ongeveer 2 keer per jaar; zonder anti-frost ongeveer 6 keer per jaar." }, { m: 6, t: "Condensor stofvrij maken", v: 1, s: "Alleen als die open ligt; eerst de stekker eruit." }, { m: 12, t: "Deurrubbers controleren met een zaklamp", v: 1 }],
+  faults: [
+    N("Koelkast koelt niet goed", 1, "Te weinig luchtcirculatie, verkeerde stand of vuile condensor.", ["Laat aan de zijkanten en achterkant minstens 5 cm ruimte.", "Zet de temperatuur op 4 °C; meet het met een koelkastthermometer als er geen display is.", "Zet eten niet tegen de ventilatieopening en laat restjes eerst afkoelen.", "Maak een open condensor schoon met een zachte borstel, met de stekker eruit."]),
+    N("Veel ijs in de vriezer", 1, "IJslaag maakt koelen lastiger en kost stroom.", ["Ontdooi de vriezer: Low Frost ongeveer 2 keer per jaar, zonder anti-frost ongeveer 6 keer per jaar."]),
+    N("Deur sluit niet goed af", 1, "Versleten deurrubber.", ["Leg een brandende zaklamp in de koelkast, gericht op de deur, en sluit de deur.", "Zie je licht door het rubber? Vervang dan het rubber."])],
+  src: ["koelkast"] },
+
+{ id: "liebherr-koelkast", brand: "Liebherr", name: "Koelkast en vriezer", cat: "koelkasten", years: "Alle bouwjaren", unit: null, also: "BioFresh-modellen",
+  intro: "Liebherr-apparaten met een toerengeregelde compressor hebben achterop een knipperlampje dat aangeeft of alles goed werkt.", weak: [], parts: [],
+  tasks: [{ m: 6, t: "Deurrubbers reinigen met water en wat afwasmiddel", v: 1 }],
+  faults: [
+    N("Lampje achterop knippert", 1, "Elke 15 seconden is normaal. Een ander ritme betekent een noodstand of defect.", ["Knippert het in een ander ritme, neem dan contact op met de Liebherr-klantenservice."]),
+    N("Temperatuur te hoog of te laag", 1, "Instelling, deur, ventilatie of omgeving.", ["Controleer de ingestelde temperatuur en of de deur goed sluit.", "Zorg dat ventilatieopeningen vrij zijn en de koelkast niet naast een warmtebron staat.", "Open de deur minder vaak en minder lang.", "Te koud? Kijk of SuperCool of SuperFrost per ongeluk aan staat.", "Onder +10 °C omgevingstemperatuur werkt het apparaat niet goed."]),
+    N("Waterdruppels op de achterwand", 1, "Normaal tijdens het ontdooien.", ["Zorg dat de afvoeropening in de achterwand vrij is."]),
+    N("Binnenverlichting werkt niet", 1, "Deur niet dicht, magneet weg of lamp kapot.", ["Sluit de deur goed; het licht gaat na 15 minuten uit als de deur open blijft.", "Vervang een kapotte lamp volgens de handleiding (niet bij LED)."])],
+  src: ["liebherr"] },
+
+{ id: "aeg-oven", brand: "AEG", name: "Oven (alle modellen)", cat: "ovens", years: "Alle bouwjaren met display", unit: null, also: "SteamBake, SteamCrisp, CombiAir",
+  intro: "AEG-ovens tonen codes als F908 en F111. Veel meldingen verdwijnen na een korte stroomonderbreking.", weak: [], parts: [["Ovenlamp", "Via de AEG-webshop"], ["Braadthermometer", "Via de AEG-webshop"]], tasks: OVEN_TASKS,
+  faults: [
+    F("E0020 / E20", "Ovenlamp kapot", 1, "Lamp doorgebrand.", ["Controleer of de lamp echt niet brandt.", "Vervang de lamp zelf of laat het een monteur doen."]),
+    F("F11 / F111 / F129", "Braadthermometer niet aangesloten of defect", 1, "Thermometer.", ["Sluit de thermometer opnieuw aan.", "Blijft de code, dan is de thermometer waarschijnlijk kapot."]),
+    F("F908", "Interne fout", 1, "Storing.", ["Haal de stekker ongeveer 5 minuten uit het stopcontact.", "Kun je niet bij het stopcontact, zet dan de groep in de meterkast 5 minuten uit."]),
+    F("P004 / C9A4 / C9A2", "Oven start opnieuw na een stroomonderbreking", 1, "Geen storing.", ["Niets doen; de code verdwijnt vanzelf."]),
+    F("SAFE", "Kinderslot staat aan", 1, "Geen storing.", ["Zet de functieknop uit en druk tegelijk op de klok- en graden-knop. Werkt dat niet, kijk in de handleiding."])],
+  src: ["aegOven"] },
+
+{ id: "samsung-oven", brand: "Samsung", name: "Oven (alle modellen)", cat: "ovens", years: "Alle bouwjaren met display", unit: null, also: "Dual Cook",
+  intro: "Samsung-ovens tonen C-codes. Bij oververhitting of vuile toetsen los je het meestal zelf op.", weak: [], parts: [], tasks: OVEN_TASKS,
+  faults: [
+    F("C-20", "Temperatuursensor kortgesloten of kapot", 2, "Sensor.", ["Stekker eruit, een paar minuten wachten en weer aansluiten.", "Komt de code terug, dan is een nieuwe sensor nodig."]),
+    F("C-21", "Oven te heet", 1, "Oververhitting.", ["Stekker eruit en laten afkoelen.", "Na een paar uur weer aanzetten."]),
+    F("C-F0", "Geen communicatie tussen de printplaten", 3, "Elektronica.", ["Neem contact op met de leverancier."]),
+    F("C-F2 / C-d0", "Aanraaktoetsen defect", 1, "Vuil tussen de toetsen of defect display.", ["Stekker eruit en kijk of er vuil tussen de toetsen zit.", "Maak de toetsen voorzichtig schoon met een doek en wat water en droog ze.", "Komt de melding terug, dan is het display mogelijk kapot."])],
+  src: ["samsungOven"] },
+
+{ id: "miele-oven", brand: "Miele", name: "Oven (alle modellen)", cat: "ovens", years: "Alle bouwjaren met display", unit: null, also: "Pyrolyse-ovens",
+  intro: "Miele-ovens geven F-codes. Een deel gaat over de pyrolyse-reiniging.", weak: [], parts: [["Braadthermometer", "Los te bestellen"]], tasks: OVEN_TASKS,
+  faults: [
+    F("F23", "Pyrolyse-temperatuur niet gehaald", 1, "Veel ingebrande resten.", ["Haal grote etensresten weg en start de pyrolyse opnieuw."]),
+    F("F32 / F33", "Probleem met de deur tijdens pyrolyse", 1, "Iets zit tussen de deur.", ["Zet de oven uit en kijk of er niets tussen de deur zit."]),
+    F("F44", "Technische storing", 1, "Storing.", ["Zet de oven 30 seconden spanningsloos (stekker of groep) en weer aan."]),
+    F("F54", "Braadthermometer kapot", 1, "Thermometer.", ["Haal de thermometer voorzichtig eruit; de melding verdwijnt.", "Bestel een nieuwe thermometer."]),
+    F("F55", "Uitgeschakeld na zeer lang gebruik", 1, "Veiligheidsuitschakeling.", ["Zet de oven uit en aan en start het programma opnieuw."]),
+    F("F60", "Storing in de ventilatie", 2, "Ventilator geblokkeerd of defect.", ["Zet de oven uit en kijk of de ventilator niet geblokkeerd is.", "Draait hij niet tijdens het opwarmen, bel dan een monteur."])],
+  src: ["mieleOven"] },
+
+{ id: "bosch-siemens-oven", brand: "Bosch / Siemens", name: "Oven (alle modellen)", cat: "ovens", years: "Alle bouwjaren met display", unit: null, also: "Ook stoomovens",
+  intro: "Bosch en Siemens gebruiken dezelfde ovencodes. Let op het verschil tussen een echte storing en het kinderslot of de demonstratiestand.", weak: ["Demonstratiestand: knoppen werken, maar de oven wordt niet warm."], parts: [], tasks: OVEN_TASKS,
+  faults: [
+    F("000", "Oven is nog te heet", 1, "Geen storing.", ["Wacht tot de oven helemaal is afgekoeld."]),
+    F("E0532 / E05-32 / E011", "Toets te lang ingedrukt of klemt", 1, "Toets.", ["Druk de toetsen één voor één in."]),
+    F("E5116", "Lucht in het systeem", 1, "Vaak bij eerste gebruik van een stoomoven.", ["Laat de stoom- of regenereerstand 5 minuten draaien en herhaal zo nodig.", "Controleer stoomonderdelen op lekken.", "Stel de waterhardheid goed in en ontkalk."]),
+    F("E6200", "Probleem met de ventilator", 2, "Ventilator geblokkeerd of los.", ["Haal weg wat de ventilator blokkeert.", "Controleer of de ventilator vast zit en niet scheef staat."]),
+    F("E0511 / E8401", "Fout in de temperatuursensor", 2, "Sensor.", ["Zet de oven ongeveer 20 minuten uit.", "Komt de code terug, dan moet de printplaat vervangen worden."]),
+    F("E115", "Binnentemperatuur te hoog", 1, "Oververhitting.", ["Zet de oven minstens 30 minuten uit; de deur blijft dan meestal op slot."])],
+  src: ["bshOven"] },
+
+{ id: "zanussi-oven", brand: "Zanussi", name: "Oven (alle modellen)", cat: "ovens", years: "Alle bouwjaren met display", unit: null,
+  intro: "De bekendste Zanussi-ovencode is F908. Die los je meestal zelf op met een reset.", weak: [], parts: [], tasks: OVEN_TASKS,
+  faults: [F("F908", "Storing in de zekeringen van de oven", 1, "Interne storing.", ["Haal de stekker uit het stopcontact.", "Wacht ongeveer een minuut en steek hem terug.", "Blijft de code, neem dan contact op met de verkoper."])],
+  src: ["zanussiOven"] },
+
+{ id: "panasonic-magnetron", brand: "Panasonic", name: "Magnetron en combi-oven", cat: "ovens", years: "Alle bouwjaren met display", unit: null,
+  intro: "Panasonic-combimagnetrons met stoom tonen U- en H-codes.", weak: [], parts: [], tasks: [],
+  faults: [
+    F("U12", "Lekbak zit niet goed", 1, "Lekbak verschoven.", ["Schuif de lekbak terug onder de deur, tegen de voorste voetjes, en start opnieuw."]),
+    F("U14", "Waterreservoir leeg", 1, "Geen water.", ["Vul het reservoir, plaats het terug en druk op start."]),
+    F("H97 / H98", "Storing in het magnetronsysteem", 3, "De magnetron werkt niet meer.", ["Neem contact op met de verkoper."])],
+  src: ["panaMagn"] },
+
+{ id: "samsung-magnetron", brand: "Samsung", name: "Magnetron (alle modellen)", cat: "ovens", years: "Alle bouwjaren met display", unit: null,
+  intro: "Samsung-magnetrons geven korte codes. De meeste los je op door de magnetron te laten afkoelen of opnieuw te starten.", weak: [], parts: [], tasks: [],
+  faults: [
+    F("SE", "Startknop half ingedrukt", 1, "Knop.", ["Druk de knop opnieuw in tot hij goed zit."]),
+    F("C-F2 / CdO", "Communicatiefout", 1, "Storing.", ["Druk op Stop, haal de stekker eruit, laat afkoelen en start opnieuw."]),
+    F("E24 / C21", "Binnentemperatuur te hoog", 1, "Oververhitting.", ["Stekker eruit, helemaal laten afkoelen en weer aanzetten."]),
+    F("C-10 / C-20 / C-F0 / C-F1", "Probleem met de temperatuursensor", 1, "Sensor.", ["Stekker eruit, op Stop drukken en opnieuw starten.", "Komt de code terug, zet hem dan langer dan 30 seconden uit en stel hem opnieuw in."])],
+  src: ["samsungMagn"] },
+
+{ id: "bosch-siemens-magnetron", brand: "Bosch / Siemens", name: "Magnetron (alle modellen)", cat: "ovens", years: "Alle bouwjaren met display", unit: null,
+  intro: "Bosch- en Siemens-magnetrons tonen E-codes.", weak: [], parts: [], tasks: [],
+  faults: [
+    F("E2", "Automatische veiligheidsuitschakeling", 1, "Geen storing.", ["Draai aan de knop of druk op een toets; de code verdwijnt."]),
+    F("E11", "Vocht in het bedieningspaneel", 1, "Vocht.", ["Droog de buitenkant met een doek. Zit er vocht in, laat het dan eerst drogen."]),
+    F("E3", "Fout in het deuropeningssysteem", 2, "Deur.", ["Zet uit, wacht 10 seconden en zet aan.", "Komt de code terug, neem contact op met de verkoper."]),
+    F("E17", "Snel voorverwarmen mislukt", 2, "Interne storing.", ["Zet uit, laat volledig afkoelen, stekker eruit en opnieuw starten.", "Komt de code terug, neem contact op met de verkoper."])],
+  src: ["bshMagn"] },
+
+{ id: "aeg-zanussi-kookplaat", brand: "AEG / Zanussi", name: "Inductie- en elektrische kookplaat", cat: "kookplaten", years: "Alle bouwjaren", unit: null, also: "Ook Electrolux",
+  intro: "AEG, Zanussi en Electrolux gebruiken dezelfde meldingen op het display.", weak: ["Een la of kastje onder de kookplaat dat de ventilator blokkeert."], parts: [], tasks: [],
+  faults: [
+    F("E3 / E8", "Spanning te laag of te hoog", 3, "Meestal een verkeerde aansluiting.", ["Laat de elektrische aansluiting controleren door een erkend installateur."]),
+    F("E4", "Oververhittingsbeveiliging", 1, "Meestal een drooggekookte pan.", ["Zet de kookzone uit, laat een paar minuten afkoelen en zet weer aan."]),
+    F("E7", "Probleem met de ventilator", 1, "Ventilator geblokkeerd of te weinig ventilatie.", ["Controleer of niets in een la of kastje onder de kookplaat de ventilator blokkeert.", "Controleer of de kookplaat goed is ingebouwd."]),
+    F("F", "Probleem met de pan", 1, "Pan niet geschikt, te klein of niet in het midden.", ["Zet de pan midden op de zone en gebruik een pan die geschikt is voor inductie.", "Op een flexibele zone met ProCook: maar één pan per zone."]),
+    F("L", "Toetsenblokkering of kinderslot aan", 1, "Geen storing.", ["Zet het kinderslot uit volgens de handleiding."])],
+  src: ["aegKook"] },
+
+{ id: "hoover-wasmachine", brand: "Hoover", name: "Wasmachine (alle modellen)", cat: "wasmachines", years: "Alle bouwjaren", unit: null, also: "Ook Candy",
+  intro: "Hoover toont E-codes of laat een lampje knipperen: het aantal knipperingen is het codenummer.", weak: [], parts: [], tasks: FILTER_TASK,
+  faults: [
+    F("E2", "Geen watertoevoer (2 keer knipperen)", 1, "Kraan, slang of filter.", ["Draai de kraan helemaal open en controleer de slang op knikken.", "De afvoer mag maximaal 85 cm boven de vloer zitten.", "Maak het filter onderaan schoon."]),
+    F("E3", "Geen afvoer (3 keer knipperen)", 1, "Verstopt filter of slang.", ["Maak het filter onderaan schoon en haal knoopjes of speldjes eruit.", "Controleer de afvoerslang op knikken en verstoppingen."]),
+    F("E4", "Te veel schuim (4 keer knipperen)", 1, "Te veel wasmiddel.", ["Leeg de trommel en draai het reinigingsprogramma.", "Gebruik minder wasmiddel en wasverzachter."]),
+    F("E7", "Probleem met de deur (7 keer knipperen)", 1, "Was tussen de deur of te vol.", ["Haal wasgoed weg en sluit de deur tot hij klikt.", "Zit hij op slot: stekker 2 minuten eruit, dan openen en opnieuw starten."])],
+  src: ["hoover"] },
+
+{ id: "yamaha-ebike", brand: "Yamaha", name: "PW-serie e-bike-motor", cat: "e-bikes", years: "Alle bouwjaren", unit: "km", also: "Giant, Haibike, Batavus, Sparta",
+  intro: "Yamaha-motoren zitten onder andere in Giant- en Haibike-fietsen. Bij codes 61, 62 en 67 kun je beter niet verder fietsen.", weak: ["Vuil op magneet en snelheidssensor."], parts: [],
+  tasks: [{ n: 300, t: "Ketting reinigen en smeren", v: 1 }, { n: 1000, t: "Magneet en snelheidssensor schoonmaken", v: 1 }],
+  faults: [
+    F("1 / E01", "Snelheidssensor", 1, "Vuil of verkeerde afstand.", ["Maak magneet en sensor schoon.", "Controleer de uitlijning en de afstand (ongeveer 5–17 mm) en de kabel."]),
+    F("2 / E02", "Koppelsensor", 1, "Opgestart met voet op het pedaal.", ["Zet de fiets uit en aan zonder de pedalen aan te raken.", "Blijft de code, ga naar de dealer."]),
+    F("3 / E03", "Trapsensor", 2, "Vuil of kabel.", ["Maak de omgeving van de trapas schoon en controleer de kabels.", "Blijft de code, ga naar de dealer."]),
+    F("4 / E04", "Accu leeg of slecht contact", 1, "Contact.", ["Laad de accu volledig op.", "Neem de accu uit, maak de contacten schoon en plaats hem stevig terug."]),
+    F("5 / E05", "Temperatuur", 1, "Te warm of te koud.", ["Laat de fiets afkoelen of opwarmen.", "Gebruik lichtere versnellingen bij klimmen."]),
+    F("8 / E08", "Storing in het display", 1, "Kabel.", ["Controleer de kabel van het display."]),
+    F("9 / E09", "Verkeerde spanning", 1, "Lader of bedrading.", ["Controleer lader en bedrading en start opnieuw."]),
+    F("12", "Communicatie met display onderbroken", 1, "Stekkers.", ["Controleer de stekkers; vervang zo nodig kabel of display."]),
+    F("31", "Koppelsensor geeft geen signaal", 3, "Sensor.", ["Start opnieuw; blijft de code, dan moet de dealer hem vervangen."]),
+    F("61", "Storing in de controller", 3, "Ernstige storing.", ["Fiets niet verder met deze code.", "Start opnieuw; blijft de code, ga naar de dealer."]),
+    F("62", "Overstroom in de motor", 3, "Ernstige storing.", ["Fiets niet verder; ga naar de dealer."]),
+    F("64 / 65", "Temperatuursensor of printplaat", 1, "Temperatuur.", ["Laat de fiets op omgevingstemperatuur komen en start opnieuw."]),
+    F("67", "Losse bedrading in de motor", 3, "Ernstige storing.", ["Fiets niet verder; ga naar de dealer."]),
+    F("71", "Communicatie met de accu verloren", 1, "Contact.", ["Maak de contacten schoon, zet de accu stevig vast zonder speling en start opnieuw."]),
+    F("73", "Accuspanning te hoog", 3, "Controller of accu.", ["Laat de dealer controller of accu vervangen."])],
+  src: ["yamaha"] }
+);
+
 module.exports = { CATS, MODELS, SRC };

@@ -208,7 +208,7 @@ ${[...MODELS].sort((a, b) => (CATS.findIndex(c => c.id === a.cat) - CATS.findInd
 });
 
 // ───────── Repareren of vervangen
-const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800] };
+const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800] };
 layout({
   file: "repareren-of-vervangen.html",
   title: "Repareren of vervangen? Rekenhulp | Repareerwijzer",
