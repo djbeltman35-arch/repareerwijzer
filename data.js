@@ -923,4 +923,120 @@ MODELS.push(
   src: ["irobot"] }
 );
 
+CATS.splice(4, 0, { id: "cv-ketels", name: "Cv-ketels", one: "cv-ketel", intro: "Storingscodes van cv-ketels per merk. Wat je zelf mag doen (bijvullen, één keer resetten) en wanneer de installateur moet komen." });
+
+Object.assign(SRC, {
+  remeha: ["Remeha – installatie- en servicehandleiding Calenta", "https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Installatie-en-servicehandleiding-Calenta-25L-NL-119288-260110.pdf"],
+  intergas: ["Intergas – installatievoorschrift HR eco", "https://www.intergas-verwarming.nl/app/uploads/2018/01/88399809-Installatievoorschrift-HReco.pdf"],
+  vaillantF22: ["Vaillant – foutcode F22", "https://www.vaillant.com/en/advice/help-center/f22-fault-code/"],
+  vaillantF28: ["Vaillant – foutcode F28", "https://www.vaillant.co.uk/advice/understanding-heating-technology/boilers/understanding-an-f28-fault-code-on-a-vaillant-boiler/"],
+  selectraCv: ["Selectra – cv-ketel storing", "https://selectra.nl/energie/verwarming/cv-ketel-storing"],
+  roborock: ["Roborock – foutmeldingen", "https://us.roborock.com/pages/errores-espanol-latinoamerica"],
+  philipsVol: ["Coolblue – geen koffie uit Philips volautomaat", "https://www.coolblue.nl/advies/wat-doe-je-als-er-geen-koffie-in-je-kopje-komt-bij-een-philips-volautomaat.html"],
+  boschKook: ["Bosch – foutcodes inductiekookplaat", "https://www.bosch-home.com/us/owner-support/cooktops/error-codes/induction"]
+});
+
+const CV_TASKS = [{ m: 1, t: "Waterdruk controleren", v: 1, s: "Koud systeem: meestal 1 tot 2 bar; kijk in je handleiding." }, { m: 12, t: "Onderhoudsbeurt door een erkend installateur" }];
+const installer = ["Niet zelf aan de ketel sleutelen.", "Bel je installateur. Huur je? Meld het bij je verhuurder."];
+
+MODELS.push(
+{ id: "cv-ketel-waterdruk", brand: "Alle merken", name: "Cv-ketel: druk te laag en resetten", cat: "cv-ketels", years: "Alle bouwjaren", unit: null, also: "Remeha, Intergas, Nefit, Vaillant, ATAG, Itho Daalderop",
+  intro: "Bijvullen en één keer resetten mag je zelf doen. Al het andere werk aan een gasketel hoort bij een erkend installateur.", weak: ["Druk die steeds weer zakt zonder zichtbaar lek: vaak het expansievat of overstortventiel."], parts: [["Vulslang", "Om bij te vullen vanaf de kraan"]],
+  tasks: CV_TASKS,
+  faults: [
+    N("Waterdruk te laag", 1, "Te weinig water in de installatie.", ["Vul bij tot de druk uit je handleiding; bij een koud systeem meestal tussen 1 en 2 bar.", "Remeha Calenta: onder 0,8 bar verschijnt een waarschuwing. Intergas: onder 0,5 bar knippert de druk.", "Zakt de druk steeds terug zonder zichtbaar lek, laat dan een installateur kijken."]),
+    N("Ketel in storing: mag ik resetten?", 1, "Een reset heft de blokkering op, maar lost de oorzaak niet op.", ["Reset hooguit één keer voor dezelfde storing.", "Komt dezelfde code binnen een dag terug, stop dan met resetten.", "Noteer de code en wat de ketel deed, en bel de installateur."]),
+    N("Gaslucht", 3, "Mogelijk gaslek.", ["Open ramen en deuren.", "Draai de hoofdgaskraan dicht.", "Gebruik geen schakelaars of open vuur.", "Bel 0800-9009."])],
+  src: ["selectraCv", "remeha", "intergas"] },
+
+{ id: "remeha-calenta", brand: "Remeha", name: "Calenta", cat: "cv-ketels", years: "Alle bouwjaren", unit: null,
+  intro: "Remeha Calenta toont storingscodes met een E en tijdelijke blokkeringen. Bij een blokkering start de ketel vaak vanzelf weer.", weak: ["Te weinig waterdruk: onder 0,8 bar komt er een waarschuwing.", "Lucht in de installatie of een vervuilde wisselaar."], parts: [],
+  tasks: CV_TASKS,
+  faults: [
+    F("E04 / E05", "Temperatuur warmtewisselaar te laag of te hoog", 2, "Sensor, slechte verbinding of geen doorstroming.", ["Controleer de waterdruk en vul zo nodig bij.", "Reset één keer. Komt de code terug, bel de installateur."]),
+    F("E08 / E09", "Retourtemperatuur te laag of te hoog", 2, "Sensor of geen doorstroming.", ["Controleer de waterdruk.", "Komt de code terug, bel de installateur."]),
+    F("E10 / E11", "Te groot verschil tussen aanvoer en retour", 2, "Lucht, geen doorstroming, vuile wisselaar of pomp.", ["Controleer de waterdruk en ontlucht de radiatoren.", "Komt de code terug, bel de installateur."]),
+    F("E12", "Temperatuur boven veilige grens", 3, "Geen doorstroming of vervuiling.", installer),
+    F("E14", "Vijf keer mislukt starten van de brander", 2, "Geen vonk of vlam, of gastoevoer.", ["Controleer of de gaskraan open staat.", "Reset één keer. Komt de code terug, bel de installateur."]),
+    F("E16", "Valse vlam gemeten", 3, "Ontsteking of gasblok.", installer),
+    F("E34", "Storing in de ventilator", 3, "Ventilator of trek.", installer),
+    F("E36", "Vlam vijf keer verloren", 2, "Gastoevoer, verstopte luchttoevoer of afvoer.", ["Controleer of de gaskraan open staat en of luchttoevoer en rookgasafvoer buiten vrij zijn.", "Komt de code terug, bel de installateur."]),
+    F("E00 / E01 / E02 / E03 / E06 / E07 / E17 / E35 / E37 / E38", "Storing in sensor, printplaat of verbinding", 3, "Elektronica of sensor.", installer)],
+  src: ["remeha"] },
+
+{ id: "intergas-hre", brand: "Intergas", name: "HRE en HR eco", cat: "cv-ketels", years: "Alle bouwjaren", unit: null, also: "Kombi Kompakt HRE",
+  intro: "Intergas toont een cijfer als storingscode. Code 4 (geen vlam) komt het vaakst voor.", weak: ["Verstopte condensafvoer.", "Lucht in de installatie."], parts: [],
+  tasks: CV_TASKS,
+  faults: [
+    F("1", "Temperatuur te hoog", 2, "Lucht in het systeem of pomp draait niet.", ["Ontlucht de radiatoren en controleer de waterdruk.", "Komt de code terug, bel de installateur."]),
+    F("2", "Sensoren S1 en S2 verwisseld", 3, "Bekabeling of sensor.", installer),
+    F("4", "Geen vlamsignaal", 2, "Gaskraan dicht, te lage gasdruk, verstopte condensafvoer of ontsteking.", ["Controleer of de gaskraan open staat.", "Kijk of de condensafvoer niet verstopt of bevroren is.", "Reset één keer. Komt de code terug, bel de installateur."]),
+    F("5", "Slecht vlamsignaal", 2, "Verstopte condensafvoer, gasdruk of luchttoevoer.", ["Controleer de condensafvoer.", "Komt de code terug, bel de installateur."]),
+    F("6", "Fout in de vlamdetectie", 3, "Ontsteking.", installer),
+    F("8", "Toerental ventilator onjuist", 3, "Ventilator of bedrading.", installer),
+    F("10 / 11 / 12 / 13 / 14", "Fout in sensor S1", 2, "Lucht in het systeem of sensor.", ["Ontlucht de ketel en de radiatoren.", "Komt de code terug, bel de installateur."]),
+    F("20 / 21 / 22 / 23 / 24", "Fout in sensor S2", 3, "Bekabeling of sensor.", installer),
+    F("27", "Kortsluiting buitenvoeler", 3, "Buitenvoeler of bedrading.", installer),
+    F("29 / 30", "Fout in de vlamdetectie", 3, "Terugslagklep of ontsteking.", installer)],
+  src: ["intergas"] },
+
+{ id: "vaillant-ecotec", brand: "Vaillant", name: "ecoTEC", cat: "cv-ketels", years: "Alle bouwjaren", unit: null,
+  intro: "Vaillant gebruikt F-codes. Bij vorst is een bevroren condensafvoer een veelvoorkomende oorzaak van F28 en F29.", weak: ["Bevroren condensafvoer buiten bij vorst."], parts: [],
+  tasks: CV_TASKS,
+  faults: [
+    F("F22", "Geen of te weinig water, druk te laag", 2, "Te weinig water, of een defecte druksensor, pomp of expansievat.", ["Vul bij volgens je handleiding als de druk te laag is.", "Vaillant raadt aan de oorzaak niet zelf te repareren: bel de installateur als de code terugkomt."]),
+    F("F28", "Geen vlam bij ontsteken", 2, "Bevroren condensafvoer, gastoevoer of ontsteking.", ["Controleer of de gas aan staat en andere gasapparaten werken.", "Bij vorst: giet warm (geen kokend) water over de bevroren condensafvoer buiten.", "Reset de ketel volgens de handleiding.", "Komt de code terug, bel de installateur."]),
+    F("F29", "Vlam gaat uit", 2, "Vaak een bevroren condensafvoer bij vorst.", ["Ontdooi de condensafvoer met warm water en isoleer de leiding daarna.", "Komt de code terug, bel de installateur."])],
+  src: ["vaillantF22", "vaillantF28"] },
+
+{ id: "roborock", brand: "Roborock", name: "Robotstofzuiger (alle modellen)", cat: "stofzuigers", years: "Alle bouwjaren", unit: null, also: "S-, Q- en Saros-serie",
+  intro: "Roborock geeft een foutnummer in de app of via een gesproken melding. Veel fouten los je op door borstels of sensoren schoon te maken.", weak: ["Haar rond de hoofd- en zijborstel."], parts: [],
+  tasks: [{ m: 0.5, t: "Hoofdborstel en zijborstel vrijmaken van haar" }, { m: 1, t: "Sensoren en laadcontacten schoonvegen", v: 1 }],
+  faults: [
+    F("1", "Laserkoepel geblokkeerd", 1, "Iets blokkeert de lidar.", ["Haal weg wat de laserkoepel blokkeert en probeer opnieuw."]),
+    F("2", "Bumper zit vast", 1, "Bumper klemt.", ["Maak de bumper schoon en tik hem zacht los."]),
+    F("3", "Wielen hangen in de lucht", 1, "Robot opgetild of op een rand.", ["Zet de robot op een andere plek en start opnieuw."]),
+    F("4", "Fout in de valsensor", 1, "Vuile valsensoren of een afgrond.", ["Maak de valsensoren schoon, zet de robot weg van de rand en start opnieuw."]),
+    F("5", "Hoofdborstel vastgelopen", 1, "Haar of draad.", ["Maak de hoofdborstel en de lagers schoon."]),
+    F("6", "Zijborstel vastgelopen", 1, "Haar of draad.", ["Haal de zijborstel eraf en maak hem schoon."]),
+    F("7", "Wielen zitten vast", 1, "Vuil of obstakel.", ["Zet de robot op een andere plek en start opnieuw."]),
+    F("8", "Robot zit vast", 1, "Obstakels.", ["Haal obstakels rond de robot weg."]),
+    F("9", "Stofbak ontbreekt", 1, "Bak of filter niet geplaatst.", ["Plaats de stofbak met filter."]),
+    F("12", "Accu bijna leeg", 1, "Lege accu.", ["Laad de robot op en probeer opnieuw."]),
+    F("13", "Laadfout", 1, "Vuile laadcontacten.", ["Maak de laadcontacten schoon en probeer opnieuw."]),
+    F("15", "Muursensor vuil", 1, "Vuile sensor.", ["Maak de muursensor schoon."]),
+    F("16", "Robot staat scheef", 1, "Geen vlakke vloer.", ["Zet de robot op een vlakke vloer en start opnieuw."]),
+    F("17", "Fout in de zijborstel", 1, "Storing.", ["Reset de robot."]),
+    F("18", "Fout in de ventilator", 1, "Storing.", ["Reset de robot."]),
+    F("21", "Bovenbumper ingedrukt", 1, "Robot zit onder meubel.", ["Zet de robot op een andere plek en probeer opnieuw."]),
+    F("22", "Fout in de dockherkenning", 1, "Vuile sensor.", ["Maak de sensor schoon en probeer opnieuw."]),
+    F("23", "Terugkeer naar dock mislukt", 1, "Vuil indicatielampje van het dock.", ["Maak het indicatielampje van het dock schoon en probeer opnieuw."]),
+    F("27", "VibraRise-dweilsysteem zit vast", 1, "Obstakel.", ["Controleer het dweilsysteem op blokkades."]),
+    F("28", "Robot staat op tapijt", 1, "Tapijt.", ["Zet de robot op een harde vloer en probeer opnieuw."])],
+  src: ["roborock"] },
+
+{ id: "philips-volautomaat", brand: "Philips", name: "Volautomaat 2200, 3200, 4300 en 5400", cat: "koffiemachines", years: "2019–heden", unit: null, also: "LatteGo- en stoompijpmodellen",
+  intro: "Zeven oorzaken als er weinig of geen koffie uit je Philips-volautomaat komt. De zetgroep wekelijks afspoelen voorkomt de meeste problemen.", weak: ["Een ontbrekende of beschadigde O-ring in de zetgroep."], parts: [["Waterfilter", "AquaClean"], ["Reparatieset O-ring", "Gratis aan te vragen bij Philips Customer Care"]],
+  tasks: [{ m: 0.25, t: "Zetgroep uitnemen en afspoelen" }, { w: "Als het ontkalklampje brandt", t: "Ontkalken" }, { w: "Als het display erom vraagt", t: "AquaClean-filter vervangen" }],
+  faults: [
+    N("Weinig of geen koffie: uitloop verstopt", 1, "Koffieresten in de twee gaatjes van de uitloop.", ["Prik de gaatjes voorzichtig open met een naald of satéprikker."]),
+    N("Weinig of geen koffie: lucht in het filter", 1, "Lucht in het waterfilter.", ["Dompel het filter 10 seconden onder in een kom water en knijp zacht om de luchtbellen eruit te krijgen."]),
+    N("Weinig of geen koffie: lucht in de leidingen", 1, "Lucht in de leidingen.", ["Tap een paar kopjes heet water."]),
+    N("Machine gooit gemalen koffie weg", 1, "Te veel voorgemalen koffie.", ["Doe de gemalen koffie er pas in als de machine klaar is, en gebruik één afgestreken schepje."]),
+    N("Koffie loopt slecht door de zetgroep", 2, "Vuile zetgroep of beschadigde O-ring.", ["Spoel de zetgroep wekelijks af onder de kraan.", "Is de O-ring beschadigd: vraag een gratis reparatieset aan bij Philips of laat hem repareren."])],
+  src: ["philipsVol"] },
+
+{ id: "bosch-siemens-kookplaat", brand: "Bosch / Siemens", name: "Inductiekookplaat", cat: "kookplaten", years: "Alle bouwjaren", unit: null, also: "Ook Neff (zelfde fabriek)",
+  intro: "Bosch-inductiekookplaten tonen F- en E-codes. Houd de toets van de kookzone ingedrukt om de volledige code te zien.", weak: ["Hete pannen naast het bedieningspaneel."], parts: [],
+  tasks: [],
+  faults: [
+    F("F1 / F6", "Kookzone oververhit en uitgeschakeld", 1, "Oververhitting.", ["Laat de zone afkoelen en zet hem weer aan."]),
+    F("F2 / F4", "Elektronica oververhit", 1, "Oververhitting.", ["Laat afkoelen, raak een toets aan en ga verder als de melding weg is."]),
+    F("F5", "Hete pan te dicht bij het bedieningspaneel", 1, "Warmte bij de elektronica.", ["Haal de pan weg, wacht een paar seconden en ga verder."]),
+    F("F8", "Automatische tijdslimiet bereikt", 1, "Zone stond lang aan zonder bediening.", ["Raak een toets aan en stel de zone opnieuw in."]),
+    F("U2 / U3", "Kookelement oververhit", 1, "Oververhitting.", ["Laat de elektronica afkoelen en zet de kookplaat weer aan."]),
+    F("dE", "Demonstratiestand staat aan", 1, "Zones worden niet warm.", ["Zet de groep in de meterkast 30 seconden uit.", "Raak binnen 3 minuten een toets aan."])],
+  src: ["boschKook"] }
+);
+
 module.exports = { CATS, MODELS, SRC };

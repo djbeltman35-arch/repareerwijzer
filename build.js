@@ -99,7 +99,7 @@ layout({
 </section>
 <section class="stack">
   <h2>Veelgezochte foutcodes</h2>
-  <div class="results">${["bosch-siemens-vaatwasser", "samsung-wasmachine", "lg-wasmachine", "aeg-wasmachine", "bosch-ebike", "shimano-steps", "miele-vaatwasser", "bosch-siemens-wasmachine"].map(id => { const m = MODELS.find(x => x.id === id); const f = m.faults.find(x => x.code); return `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(codeShort(f))}</span> ${esc(f.t)}</span><span>${esc(deviceName(m))}</span></a>`; }).join("")}</div>
+  <div class="results">${["intergas-hre", "vaillant-ecotec", "bosch-siemens-vaatwasser", "samsung-wasmachine", "lg-wasmachine", "aeg-wasmachine", "bosch-ebike", "shimano-steps", "miele-vaatwasser", "bosch-siemens-wasmachine"].map(id => { const m = MODELS.find(x => x.id === id); const f = m.faults.find(x => x.code); return `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(codeShort(f))}</span> ${esc(f.t)}</span><span>${esc(deviceName(m))}</span></a>`; }).join("")}</div>
   <p><a href="foutcodes.html">Alle ${stats.codes} foutcodes bekijken</a></p>
 </section>
 <section class="stack">
@@ -145,7 +145,7 @@ for (const m of MODELS) {
 </section>
 ${codes.length ? `<section class="stack"><h2>Foutcodes</h2><div class="results">${codes.map(f => `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(f.code)}</span> ${esc(f.t)}</span><span>${D[f.d][0]}</span></a>`).join("")}</div></section>` : ""}
 ${plain.length ? `<section class="stack"><h2>${codes.length ? "Andere storingen" : "Storingen"}</h2>
-${m.cat === "e-bikes" ? warnEbike() : ""}
+${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 ${plain.map(f => `<article class="fault" id="${slug(f.t)}"><div class="fault-head"><h3>${esc(f.t)}</h3></div><div class="row">${pill(f.d)}</div><p><strong>Oorzaak:</strong> ${esc(f.cause)}</p><ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol></article>`).join("")}</section>` : ""}
 <section class="stack">
   <h2>Onderhoudsteller</h2>
@@ -160,6 +160,7 @@ ${m.parts.length ? `<section class="stack"><h2>Onderdelen en middelen</h2><div c
   });
 }
 
+function warnGas() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Zelf mag je bijvullen en één keer resetten. Al het andere werk aan een gasketel laat je over aan een erkend installateur. Ruik je gas? Ramen open, gaskraan dicht en bel 0800-9009.</p></div>`; }
 function warnEbike() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Open nooit zelf een e-bike-accu. Bij een beschadigde, warme of opgezwollen accu: niet laden en naar een specialist.</p></div>`; }
 
 // ───────── Foutcodepagina's
@@ -178,7 +179,7 @@ for (const { m, f } of allCodes) {
   <h1><span class="code big">${esc(f.code)}</span> ${esc(f.t)}</h1>
   <div class="row">${pill(f.d)}</div>
 </section>
-${m.cat === "e-bikes" ? warnEbike() : ""}
+${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 <article class="fault">
   <p><strong>Wat betekent het?</strong> ${esc(f.t)}.</p>
   <p><strong>Oorzaak:</strong> ${esc(f.cause)}</p>
@@ -207,7 +208,7 @@ ${[...MODELS].sort((a, b) => (CATS.findIndex(c => c.id === a.cat) - CATS.findInd
 });
 
 // ───────── Repareren of vervangen
-const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800] };
+const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], "cv-ketels": [15, 2000], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800] };
 layout({
   file: "repareren-of-vervangen.html",
   title: "Repareren of vervangen? Rekenhulp | Repareerwijzer",
