@@ -36,7 +36,6 @@ function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="claude:viewport-fit-sides" content="cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
@@ -76,7 +75,7 @@ ${scripts}
 
 const pill = d => `<span class="pill ${D[d][1]}">${D[d][0]}</span>`;
 const srcList = m => m.src.length ? `<ul class="sources">${m.src.map(k => `<li><a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a></li>`).join("")}</ul>` : `<p class="muted">Gebaseerd op kennis uit de gebruikersgemeenschap. Controleer met de handleiding van je eigen exemplaar.</p>`;
-const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length} onderhoudstaken · ${m.faults.length} storingen${codes ? ` (${codes} foutcodes)` : ""}${m.also ? ` · ook: ${esc(m.also)}` : ""}</span></a>`; };
+const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length} onderhoudstaken · ${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${codes} foutcodes)` : ""}${m.also ? ` · ook: ${esc(m.also)}` : ""}</span></a>`; };
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
@@ -96,7 +95,7 @@ layout({
 </section>
 <section class="stack">
   <h2>Kies je apparaat</h2>
-  <div class="grid">${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id); return `<a class="tile" href="${c.id}.html"><b>${c.name}</b><small>${ms.length} ${ms.length === 1 ? "model" : "modellen"} · ${ms.reduce((n, m) => n + m.faults.length, 0)} storingen</small></a>`; }).join("")}</div>
+  <div class="grid">${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id); return `<a class="tile" href="${c.id}.html"><b>${c.name}</b><small>${ms.length} ${ms.length === 1 ? "model" : "modellen"} · ${(n => n + (n === 1 ? " storing" : " storingen"))(ms.reduce((n, m) => n + m.faults.length, 0))}</small></a>`; }).join("")}</div>
 </section>
 <section class="stack">
   <h2>Veelgezochte foutcodes</h2>
