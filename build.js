@@ -133,7 +133,7 @@ for (const m of MODELS) {
   layout({
     file: `${m.id}.html`,
     title: `${fullName(m)}: storingen, foutcodes en onderhoud | Repareerwijzer`,
-    desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${codes.length} foutcodes uitgelegd` : `${m.faults.length} storingen uitgelegd`}, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}.`,
+    desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${codes.length} foutcodes uitgelegd` : `${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"} uitgelegd`}, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}.`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }],
     extraHead: `<script id="tasks-data" type="application/json">${tasksJson}</script>`,
     body: `
