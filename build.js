@@ -61,7 +61,7 @@ ${body}
 </main>
 <footer><div class="wrap">
   <nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav>
-  <span>Repareerwijzer · Gemaakt door Erik · erik@beltman.email</span>
+  <span>Repareerwijzer · Gemaakt door Erik · repareerwijzer@outlook.com</span>
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
 </div></footer>
 <script src="search.js" defer></script>
