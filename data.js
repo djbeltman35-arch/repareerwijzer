@@ -1189,4 +1189,78 @@ MODELS.push(
   src: ["taBrood"] }
 );
 
+CATS.splice(5, 0,
+  { id: "ventilatie", name: "Ventilatie en WTW", one: "ventilatiesysteem", intro: "Mechanische ventilatie en warmteterugwinning: filters, storingscodes en wat je zelf onderhoudt." },
+  { id: "warmtepompen", name: "Warmtepompen", one: "warmtepomp", intro: "Onderhoud en storingen van (hybride) warmtepompen: wat je zelf controleert en wanneer de installateur moet komen." }
+);
+
+Object.assign(SRC, {
+  itho: ["Itho Daalderop – handleiding CVE ECO RFT", "https://www.lueftungsfabrik.de/media/ventilatieshop/downloads/pdf/handleiding-cve-eco-rft-nl.pdf"],
+  brinkHR: ["Brink – storingen Renovent HR", "https://www.brinkclimatesystems.nl/documenten/7-storing-611175.pdf"],
+  brinkExc: ["Brink – informatie over uw Renovent Excellent", "https://www.brinkclimatesystems.nl/documenten/informatie-over-uw-renovent-excellent-614027.pdf"],
+  brinkExcOnd: ["Brink – onderhoud Renovent Excellent 300/400", "https://www.brinkclimatesystems.nl/documenten/9-onderhoud-612010.pdf"],
+  brinkFlair: ["Brink – displayweergave Flair 300", "https://www.brinkclimatesystems.nl/documenten/6-display-weergave-616226.pdf"],
+  daikin: ["Daikin – bedieningshandleiding Altherma", "https://www.daikin.nl/content/dam/document-library/operation-manuals/heat/air-to-water-heat-pump-low-temperature/ehfz-d3v/EHFZ-D3V_Operation%20manual_4PNL596819-1B_Dutch.pdf"],
+  mieleHandl: ["Miele – gebruiksaanwijzing wasmachine (TwinDos)", "https://media.miele.com/downloads/90/8f/00_C7F12828F9521FE199C6AE6B8FC7908F.pdf"],
+  intergasKK: ["Intergas – installatievoorschrift Kombi Kompakt HRE", "https://www.intergas-verwarming.nl/app/uploads/2018/01/88557809-Installatievoorschrift-Kombi-Kompakt-HRE.pdf"]
+});
+
+const mw = MODELS.find(m => m.id === "miele-wasmachine");
+mw.faults.push(
+  F("F10", "Watertoevoer: waterdruk te laag", 1, "De waterdruk is lager dan 1 bar.", ["Controleer de waterdruk aan de kraan.", "Kan de druk niet hoger, zet dan de functie Lage waterdruk aan bij Instellingen > Functies."]),
+  F("F210", "Circulatie: afvoerpompen vervuild", 1, "Vuile afvoerpompen en spuitmond in het deurrubber.", ["Maak de afvoerpompen en de spuitmond in het deurrubber schoon.", "Start het programma opnieuw. Komt de melding terug, bel Miele."]),
+  F("F585", "Spuitmond en afvoerfilter vervuild", 1, "Vuile spuitmond in het deurrubber en afvoerfilter.", ["Maak de spuitmond en het afvoerfilter schoon.", "Start het programma opnieuw. Helpt het niet, bel Miele."]),
+  N("Machine reinigen?", 1, "Lang geen programma boven 60 °C gedraaid.", ["Draai het programma Machine reinigen met machinereiniger of waspoeder."]),
+  N("Dosering controleren", 1, "Te veel schuim.", ["Controleer de hoeveelheid wasmiddel en verlaag de basisdosering in stappen van 10%."]),
+  N("TwinDos reinigen of gebruiken", 1, "TwinDos lang niet gebruikt.", ["Gebruik TwinDos bij een van de volgende wasbeurten, of start direct de TwinDos-reiniging."])
+);
+mw.src.push("mieleHandl");
+
+const ig = MODELS.find(m => m.id === "intergas-hre");
+ig.faults.push(
+  N("Druk knippert op het display", 1, "CV-druk lager dan 0,5 bar.", ["Vul de installatie bij tot 1–2 bar (koud systeem). Maximaal 3 bar."]),
+  N("Display toont 80 en 1", 3, "De cv-pomp draait niet.", installer)
+);
+ig.also = "Kombi Kompakt HRE, HR eco";
+ig.src.push("intergasKK");
+
+MODELS.push(
+{ id: "itho-cve", brand: "Itho Daalderop", name: "CVE mechanische ventilatie", cat: "ventilatie", years: "Alle bouwjaren", unit: null, also: "CVE ECO RFT, CVE-S",
+  intro: "De mechanische ventilatiebox die in veel Nederlandse woningen zit. Zelf maak je de ventielen schoon en vervang je de batterij van de afstandsbediening.", weak: ["Vuile ventielen en roosters in keuken en badkamer."], parts: [["Batterij afstandsbediening", "CR2032 3V, gaat ongeveer 7 jaar mee"]],
+  tasks: [{ m: 2.5, t: "Ventielen en roosters controleren en schoonmaken", s: "Elke 2 à 3 maanden. Terugplaatsen in hetzelfde kanaal, niet verdraaien." }, { m: 48, t: "Kanalen laten controleren" }, { m: 54, t: "Waaier laten reinigen door installateur", s: "Na ongeveer 4 à 5 jaar." }],
+  faults: [
+    N("Ventilator draait niet", 1, "Geen stroom of vervuilde waaier.", ["Controleer of de stekker in het stopcontact zit en er spanning is.", "Is de waaier vuil, laat die dan reinigen door een installateur."]),
+    N("Reageert niet op de afstandsbediening", 1, "Lege batterij of te ver weg.", ["Vervang de batterij (CR2032). Opnieuw aanmelden is niet nodig.", "Ga dichter bij de unit staan of meld de bediening opnieuw aan."]),
+    N("Stand verandert vanzelf", 1, "Timer afgelopen of bediening van de buren aangemeld.", ["Na de timer gaat de unit terug naar de vorige stand.", "Reageert hij op de bediening van de buren, reset dan volgens de handleiding."])],
+  src: ["itho"] },
+
+{ id: "brink-renovent-hr", brand: "Brink", name: "Renovent HR WTW", cat: "ventilatie", years: "Alle bouwjaren", unit: null, also: "Renovent HR Medium en Large",
+  intro: "Warmteterugwinunit met een display dat F-codes toont. FIL is geen storing maar een filtermelding.", weak: ["Vuile filters veroorzaken onbalans (F8)."], parts: [["Filters", "Originele Brink-filters"]],
+  tasks: [{ w: "Als FIL op het display staat", t: "Filters schoonmaken", s: "Daarna F en − samen 3 seconden indrukken om te resetten." }, { m: 6, t: "Filters vervangen", v: 1 }],
+  faults: [
+    F("FIL", "Filters schoonmaken of vervangen", 1, "Geen storing.", ["Maak de filters schoon.", "Houd F en − samen 3 seconden ingedrukt om de melding te resetten."]),
+    F("F8", "Onbalans tussen toevoer en afvoer", 1, "Vaak vuile filters.", ["Maak de filters schoon en druk op OK.", "Blijft de code, bel de installateur."]),
+    F("F1 / F2", "Toevoerventilator gestopt of geen verbinding", 3, "Ventilator.", ["Bel de installateur."]),
+    F("F4 / F5", "Afvoerventilator gestopt of geen verbinding", 3, "Ventilator.", ["Bel de installateur."]),
+    F("F9 / F10", "Temperatuursensor defect", 2, "Sensor; de unit draait door, maar zonder bypass.", ["Bel de installateur."])],
+  src: ["brinkHR"] },
+
+{ id: "brink-renovent-excellent", brand: "Brink", name: "Renovent Excellent en Flair", cat: "ventilatie", years: "Alle bouwjaren", unit: null, also: "Renovent Excellent 180/300/400/450, Flair 300",
+  intro: "Op het display verschijnt FILTER als de filters schoon moeten. Vervang ze minstens twee keer per jaar.", weak: ["Een droge sifon geeft rioollucht, vooral in de zomer.", "Veel bouwstof in de eerste weken in een nieuwbouwwoning."], parts: [["Filters", "Originele Brink-filters, minstens 2 keer per jaar"]],
+  tasks: [{ w: "Als FILTER op het display staat", t: "Filters schoonmaken" }, { m: 6, t: "Filters vervangen" }, { m: 3, t: "Sifon met water vullen", v: 1, s: "Vooral in de zomer, tegen rioollucht." }, { m: 36, t: "Warmtewisselaar en ventilatoren laten reinigen door installateur" }],
+  faults: [
+    N("FILTER op het display", 1, "Filters moeten schoon of vervangen.", ["Houd − 5 seconden ingedrukt om de filterklep te openen.", "Haal de filters eruit, maak ze schoon en plaats ze in dezelfde richting terug.", "Sluit de klep en zet de unit aan door − 5 seconden in te drukken.", "Druk kort op o om de filterteller te resetten."]),
+    N("Rioollucht in huis", 1, "Droge sifon.", ["Vul de sifon van de condensafvoer met water."]),
+    N("Storingssymbool op het display", 2, "Storing in de unit.", ["Zoek de melding op in de Brink Service App.", "Lukt het niet, bel de installateur."])],
+  src: ["brinkExc", "brinkExcOnd", "brinkFlair"] },
+
+{ id: "daikin-altherma", brand: "Daikin", name: "Altherma warmtepomp", cat: "warmtepompen", years: "Alle bouwjaren", unit: null, also: "Ook hybride Altherma",
+  intro: "Bij een storing verschijnt een melding op het startscherm; met de infoknop lees je de beschrijving. De waterdruk hoort boven 1 bar te liggen.", weak: [], parts: [],
+  tasks: [{ m: 1, t: "Waterdruk controleren (boven 1 bar)" }, { m: 12, t: "Jaarlijks onderhoud door de installateur" }],
+  faults: [
+    N("Storingsmelding op het startscherm", 2, "Storing in de warmtepomp.", ["Druk op de infoknop voor de beschrijving.", "Bij een warmtepompstoring kun je kiezen of de reserveverwarming het overneemt. Dat kost veel meer stroom.", "Neem contact op met je installateur."]),
+    N("Koudemiddellek", 3, "Lek in het koelcircuit.", ["Zet verbrandingstoestellen uit, ventileer de ruimte en gebruik de warmtepomp niet.", "Bel je installateur."])],
+  src: ["daikin"] }
+);
+
 module.exports = { CATS, MODELS, SRC };
