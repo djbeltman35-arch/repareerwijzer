@@ -18,6 +18,7 @@ const pages = [];
 const codeUrl = (m, f) => `foutcode-${m.id}-${slug(f.code.split("/")[0])}.html`;
 const codeShort = f => f.code.split("/")[0].trim();
 const fullName = m => m.brand === "Alle merken" ? m.name : `${m.brand} ${m.name}`;
+function brandLinks(m) { return m.brand.split("/").map(b => b.trim()).filter(b => b !== "Alle merken" && b !== "E61-groep").map(b => `<a href="merk-${slug(b)}.html">Alle ${esc(b)}-storingen</a>`).join(" · "); }
 const deviceName = m => { const c = catOf(m.cat); return m.name.includes("(alle modellen)") ? `${m.brand} ${c.one}` : fullName(m); };
 
 function intervalLabel(t, m) {
@@ -53,7 +54,7 @@ ${bc}${extraHead}
 <body>
 <header class="top"><div class="wrap">
   <a class="logo" href="index.html" aria-label="Repareerwijzer, naar home"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>Repareerwijzer</a>
-  <nav aria-label="Hoofdmenu"><a href="foutcodes.html">Foutcodes</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
+  <nav aria-label="Hoofdmenu"><a href="foutcodes.html">Foutcodes</a><a href="merken.html">Merken</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
 </div></header>
 <main class="wrap">
 ${crumbHtml}
@@ -103,6 +104,10 @@ layout({
   <p><a href="foutcodes.html">Alle ${stats.codes} foutcodes bekijken</a></p>
 </section>
 <section class="stack">
+  <h2>Populaire merken</h2>
+  <div class="row">${["Bosch", "Samsung", "Miele", "AEG", "LG", "Siemens", "Philips", "Dyson", "Remeha", "Intergas", "Whirlpool", "Beko"].map(b => `<a href="merk-${slug(b)}.html">${b}</a>`).join("")}<a href="merken.html">Alle merken</a></div>
+</section>
+<section class="stack">
   <h2>Onderhoud bijhouden</h2>
   <p>Bij elk model staat een onderhoudsteller. Vul je kilometers of printuren in, of tik op Gedaan na een klus, en je ziet wat er nu aan de beurt is. Alles blijft op je eigen telefoon of computer.</p>
   <div class="models">${["la-marzocco-linea-mini", "bosch-ebike", "prusa-mk4", "husqvarna-automower"].map(id => modelCard(MODELS.find(m => m.id === id))).join("")}</div>
@@ -141,6 +146,7 @@ for (const m of MODELS) {
   <span class="eyebrow">${esc(m.brand)} · ${esc(c.name)}</span>
   <h1>${esc(fullName(m))}</h1>
   <p class="lead">${esc(m.intro)}</p>
+  ${brandLinks(m) ? `<p class="row">${brandLinks(m)}</p>` : ""}
   <dl class="facts"><div><dt>Bouwjaren</dt><dd>${esc(m.years)}</dd></div><div><dt>Onderhoud</dt><dd>${m.tasks.length} taken</dd></div><div><dt>Storingen</dt><dd>${m.faults.length} beschreven</dd></div>${m.also ? `<div class="wide"><dt>Geldt ook voor</dt><dd>${esc(m.also)}</dd></div>` : ""}</dl>
 </section>
 ${codes.length ? `<section class="stack"><h2>Foutcodes</h2><div class="results">${codes.map(f => `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(f.code)}</span> ${esc(f.t)}</span><span>${D[f.d][0]}</span></a>`).join("")}</div></section>` : ""}
@@ -191,9 +197,42 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <p>Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.</p>
 </section>
 ${others.length ? `<section class="stack"><h2>Andere foutcodes van ${esc(dev)}</h2><div class="results">${others.map(x => `<a href="${codeUrl(m, x)}"><span><span class="code">${esc(x.code)}</span> ${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div></section>` : ""}
-<section class="stack"><p><a href="${m.id}.html">Alles over ${esc(fullName(m))}: onderhoud en storingen</a></p><h2>Bron</h2>${srcList(m)}</section>`
+<section class="stack"><p class="row"><a href="${m.id}.html">Alles over ${esc(fullName(m))}: onderhoud en storingen</a>${brandLinks(m) ? " · " + brandLinks(m) : ""}</p><h2>Bron</h2>${srcList(m)}</section>`
   });
 }
+
+
+// ───────── Merkpagina's
+const SKIP = new Set(["Alle merken", "E61-groep"]);
+const brandsOf = m => m.brand.split("/").map(b => b.trim()).filter(b => !SKIP.has(b));
+const BRANDS = {};
+for (const m of MODELS) for (const b of brandsOf(m)) (BRANDS[b] = BRANDS[b] || []).push(m);
+const brandUrl = b => `merk-${slug(b)}.html`;
+const brandNames = Object.keys(BRANDS).sort((a, b) => a.localeCompare(b, "nl"));
+for (const b of brandNames) {
+  const ms = BRANDS[b].sort((x, y) => CATS.findIndex(c => c.id === x.cat) - CATS.findIndex(c => c.id === y.cat));
+  const codes = ms.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
+  const cats = [...new Set(ms.map(m => catOf(m.cat).one))];
+  layout({
+    file: brandUrl(b),
+    title: `${b} storingen en foutcodes: ${cats.slice(0, 3).join(", ")} | Repareerwijzer`,
+    desc: `Alle ${b}-storingen op een rij: ${codes.length ? codes.length + " foutcodes" : ms.reduce((n, m) => n + m.faults.length, 0) + " storingen"} voor ${cats.join(", ")}. Met oplossing en onderhoudsschema.`,
+    crumbs: [{ name: "Merken", file: "merken.html" }, { name: b, file: brandUrl(b) }],
+    body: `
+<section class="stack"><span class="eyebrow">Merk</span><h1>${esc(b)} storingen en foutcodes</h1><p class="lead">Alle apparaten van ${esc(b)} op Repareerwijzer: ${cats.join(", ")}. Kies je apparaat of zoek direct je foutcode.</p></section>
+<section class="stack"><h2>Apparaten</h2><div class="models">${ms.map(modelCard).join("")}</div></section>
+${codes.length ? `<section class="stack"><h2>Alle ${esc(b)}-foutcodes</h2><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Apparaat</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(catOf(m.cat).one)}</td></tr>`).join("")}</tbody></table></div></section>` : ""}`
+  });
+}
+layout({
+  file: "merken.html",
+  title: `Alle merken: storingen en foutcodes van ${brandNames.length} merken | Repareerwijzer`,
+  desc: `Storingen, foutcodes en onderhoud van ${brandNames.length} merken, van AEG en Bosch tot Samsung, Miele, Dyson en Remeha.`,
+  crumbs: [{ name: "Merken", file: "merken.html" }],
+  body: `
+<section class="stack"><span class="eyebrow">Overzicht</span><h1>Alle merken</h1><p class="lead">Kies het merk van je apparaat.</p></section>
+<div class="grid">${brandNames.map(b => `<a class="tile" href="${brandUrl(b)}"><b>${esc(b)}</b><small>${BRANDS[b].length} ${BRANDS[b].length === 1 ? "apparaat" : "apparaten"} · ${BRANDS[b].reduce((n, m) => n + m.faults.length, 0)} storingen</small></a>`).join("")}</div>`
+});
 
 // ───────── Overzicht alle foutcodes
 layout({
@@ -260,7 +299,8 @@ const index = [
   ...MODELS.map(m => ({ t: fullName(m), s: catOf(m.cat).name, u: `${m.id}.html`, k: `${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).name}` })),
   ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), k: `${f.code} ${f.t} ${m.brand} ${catOf(m.cat).one}` })),
   ...MODELS.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ t: f.t, s: fullName(m), u: `${m.id}.html#${slug(f.t)}`, k: `${f.t} ${m.brand} ${m.name}` }))),
-  ...CATS.map(c => ({ t: c.name, s: "Categorie", u: `${c.id}.html`, k: c.name }))
+  ...CATS.map(c => ({ t: c.name, s: "Categorie", u: `${c.id}.html`, k: c.name })),
+  ...brandNames.map(b => ({ t: `${b} storingen en foutcodes`, s: "Merk", u: brandUrl(b), k: `${b} merk storing foutcode` }))
 ];
 fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(index)};`);
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc></url>`).join("\n")}\n</urlset>\n`);
