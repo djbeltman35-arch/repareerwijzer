@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { CATS, MODELS, SRC } = require("./data.js");
 
-const SITE = (process.env.SITE_URL || "https://repareerwijzer.netlify.app").replace(/\/$/, "");
+const SITE = (process.env.SITE_URL || "https://repareerwijzer-site.netlify.app").replace(/\/$/, "");
 const OUT = path.join(__dirname, "dist");
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
