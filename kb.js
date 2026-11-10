@@ -943,6 +943,154 @@ const A = [
   ],
   src: [["ID.nl – Wanneer moet je de cv-ketel vervangen?", "https://id.nl/energie-en-klimaat/klimaat-en-luchtkwaliteit/klimaatbeheersing/wanneer-moet-je-de-cv-ketel-vervangen"]],
   rel: [["kennisbank-cv-ketel-onderhoud.html", "Hoe vaak moet een cv-ketel onderhouden worden?"], ["kennisbank-warmtepomp-zuinig-instellen.html", "Warmtepomp zuinig instellen"], ["cv-ketels.html", "Alle cv-ketels en foutcodes"]]
+},
+{
+  id: "motor-oververhit-wat-doen",
+  cat: "auto",
+  q: "Mijn automotor wordt te heet: wat moet ik doen?",
+  title: "Motor oververhit: direct stoppen, niet de dop openen en zo vind je de oorzaak",
+  desc: "Loopt de temperatuurmeter van je auto in het rood? Rijd niet door en open de dop niet bij een hete motor. Zo beperk je de schade en vind je de oorzaak (ANWB).",
+  lead: "Wordt je motor te heet, rijd dan niet door: dat kan grote schade aan de motor veroorzaken. Open nooit de dop van een hete radiateur of expansietank.",
+  safety: "Draai nooit de dop van een hete radiateur of expansietank open: gloeiend hete koelvloeistof kan er met hoge druk uitspuiten.",
+  secs: [
+    ["Wat je direct doet", "<ol><li>Zet de kachel op warm, de airco uit, de ventilator hoog en doe eventueel een raam open. Zo voer je extra warmte af.</li><li>Helpt dat niet: stop op een veilige plek en zet de motor uit.</li><li>Laat de motor minstens een kwartier afkoelen met de motorkap open voordat je iets controleert. Laat het bij voorkeur door de Wegenwacht doen, want het risico op brandwonden is groot.</li><li>Controleer daarna pas het koelvloeistofpeil. Draai de dop in stappen los en houd een doek over je hand.</li></ol>"],
+    ["Oorzaak 1: lekkage of een defect koelsysteem", "<p>Koelvloeistof voert de warmte af. Bij een lek verlies je koelvloeistof en koelt de motor minder. Is het peil te laag, vul dan koelvloeistof bij. In noodgevallen kan leidingwater, maar dat bevriest sneller. Laat het koelsysteem daarna nakijken en de vloeistof verversen.</p>"],
+    ["Oorzaak 2: zware belasting", "<p>Bergop rijden, te snel opschakelen of lang met cruise control rijden kan de motor te warm maken. Schakel terug naar een lagere versnelling; een hoger toerental is dan niet erg zolang de temperatuur minder snel stijgt. Bergaf helpt een lage versnelling, zodat de motor meeremt.</p>"],
+    ["Oorzaak 3: koelventilator werkt niet", "<p>Laat de warme motor stilstaand draaien. Werkt de koelventilator, dan hoor je hem na ongeveer tien minuten aanslaan. Hoor je niets, dan is hij waarschijnlijk kapot.</p>"],
+    ["En daarna?", "<p>Laat het koelsysteem zo snel mogelijk door een garage controleren en vullen met koelvloeistof met antivries. Bekende oorzaken per automodel vind je bij <a href=\"auto.html\">auto-storingen</a>, bijvoorbeeld een thermostaat die niet meer opent.</p>"]
+  ],
+  faq: [
+    ["Mag ik doorrijden als mijn motor te heet wordt?", "Nee. Doorrijden kan grote schade aan de motor veroorzaken. Stop op een veilige plek."],
+    ["Mag ik de dop van het expansievat openen als de motor heet is?", "Nee. Hete koelvloeistof kan er met hoge druk uitspuiten. Laat de motor minstens een kwartier afkoelen en draai de dop in stappen los met een doek over je hand."],
+    ["Mag ik water bijvullen in plaats van koelvloeistof?", "In noodgevallen kan leidingwater, maar dat heeft een hoger vriespunt. Laat daarna de koelvloeistof verversen."]
+  ],
+  src: [["ANWB – Oververhitte motor", "https://www.anwb.nl/auto/onderhoud-en-reparatie/autopech/oververhitte-motor"]],
+  rel: [["storing-auto-waarschuwingslampjes-rood-koelvloeistoflampje.html", "Rood koelvloeistoflampje"], ["auto-waarschuwingslampjes.html", "Alle waarschuwingslampjes in de auto"], ["auto.html", "Auto-storingen per merk en model"]]
+},
+{
+  id: "autopech-voorkomen",
+  cat: "auto",
+  q: "Wat zijn de meest voorkomende oorzaken van autopech en hoe voorkom je ze?",
+  title: "Autopech voorkomen: accu, lampen, banden, verkeerd tanken en waarschuwingslampjes",
+  desc: "De meest voorkomende autopech volgens een ANWB-expert: lege accu, kapotte lampen, lekke banden, verkeerd tanken en waarschuwingslampjes. Met tips om het te voorkomen.",
+  lead: "De Wegenwacht helpt elke dag gemiddeld zo'n 3500 mensen met autopech. Een lege of kapotte accu is een van de meest voorkomende oorzaken.",
+  secs: [
+    ["Lege of kapotte accu", "<p>Een accu gaat ongeveer vier jaar mee en kan plotseling uitvallen, bijvoorbeeld bij vorst.</p><ul><li>Start een auto die weinig wordt gebruikt om de paar dagen even.</li><li>Maak niet alleen korte ritjes: dan laadt de accu te weinig op. Rijd af en toe een langere afstand.</li><li>Tijdens een lange vakantie loopt de accu sneller leeg; na drie weken kan hij al te leeg zijn om te starten.</li></ul><p>Meer weten? Lees <a href=\"auto-12v-accu.html\">12V-accu leeg</a>.</p>"],
+    ["Kapotte lampen", "<ul><li>Controleer je lampen voor elke rit.</li><li>Een standaard lampenset past niet altijd, bijvoorbeeld halogeenlampen in een auto met ledverlichting. Vraag bij een garage, onderdelenwinkel of dealer op kenteken welke lampen je nodig hebt.</li></ul>"],
+    ["Lekke of leeggelopen band", "<ul><li>Zet de auto eerst op een veilige plek.</li><li>Verwissel de band alleen zelf als je weet hoe het moet, en draai de wielmoeren goed vast. Fouten kunnen grote problemen geven.</li></ul>"],
+    ["Verkeerde brandstof getankt", "<ul><li>Kijk binnenin het tankklepje welke brandstof nodig is, vooral in een huur- of leenauto.</li><li>Verkeerd getankt? Start de motor niet en bel direct de pechhulp: de tank kan worden leeggezogen.</li></ul>"],
+    ["Negen tips van de ANWB", "<ol><li>Rijd minstens één keer per week 10 tot 20 km, zodat accu, motor en banden in conditie blijven.</li><li>Controleer de bandenspanning; ventieldopjes helpen tegen lekken.</li><li>Laat de koppeling niet slippen.</li><li>Houd het onderhoudsschema aan.</li><li>Controleer olie, ruitensproeiervloeistof, koelvloeistof en remvloeistof.</li><li>Let op de waarschuwingslampjes: oranje = garage bellen, rood = direct veilig stoppen.</li><li>Tank de juiste brandstof.</li><li>Houd minstens een kwart tank over: bezinksel kan anders het filter verstoppen.</li><li>Let op ongewone geluiden.</li></ol>"],
+    ["Pech in het buitenland: de top 5", "<p>Volgens de ANWB zijn dit de meest voorkomende pechgevallen in het buitenland:</p><ol><li>Controlelampjes (11%)</li><li>Stotteren of vermogensverlies (11%), vaak door lange ritten, hitte of bergen: pas je snelheid aan en laat het controleren.</li><li>Auto start niet (10%), vaak na stilstand, zoals een lege accu op de camping.</li><li>Lekke band zonder reserveband (7%)</li><li>Lekke band met reserveband (6%)</li></ol>"],
+    ["Waarschuwingslampjes en vreemde geluiden", "<ul><li><b>Rood lampje</b>: stop zo snel mogelijk op een veilige plek en zet de motor af. Zoek de betekenis op in het instructieboekje.</li><li><b>Oranje lampje</b>: laat de auto zo snel mogelijk nakijken; direct stoppen is meestal niet nodig.</li><li>Moet je vaak koelvloeistof bijvullen, of hoor of voel je iets afwijkends? Ga snel naar de garage, want schade wordt anders duurder.</li></ul><p>Zie ook <a href=\"auto-waarschuwingslampjes.html\">alle waarschuwingslampjes</a>.</p>"]
+  ],
+  faq: [
+    ["Wat is de meest voorkomende oorzaak van autopech?", "Een lege of kapotte accu is een van de meest voorkomende oorzaken, naast kapotte lampen, lekke banden en verkeerd tanken."],
+    ["Hoe lang gaat een auto-accu mee?", "Ongeveer vier jaar. Hij kan plotseling uitvallen, bijvoorbeeld bij vorst."],
+    ["Wat moet ik doen als ik verkeerde brandstof heb getankt?", "Start de motor niet en bel direct de pechhulp. De tank kan dan worden leeggezogen."]
+  ],
+  src: [["Kassa (BNNVARA) – Meest voorkomende gevallen van autopech, met ANWB-expert", "https://www.bnnvara.nl/kassa/artikelen/dit-zijn-de-meest-voorkomende-gevallen-van-autopech-en-zo-voorkom-je-ze"], ["ANWB – Top 5 autopech in het buitenland", "https://www.anwb.nl/wegenwacht/informatie/top-5-autopech-buitenland"], ["ANWB – Tips om autopech te voorkomen", "https://www.anwb.nl/wegenwacht/informatie/tips/tips-om-autopech-te-voorkomen"]],
+  rel: [["kennisbank-motor-oververhit-wat-doen.html", "Motor oververhit: wat doen?"], ["auto-start-niet.html", "Auto start niet"], ["auto.html", "Auto-storingen per merk en model"]]
+},
+{
+  id: "bandenspanning-controleren",
+  cat: "auto",
+  q: "Hoe vaak moet ik de bandenspanning van mijn auto controleren?",
+  title: "Bandenspanning controleren: elke maand, met koude banden en de juiste waarde",
+  desc: "Controleer je bandenspanning elke maand en voor een lange rit, met koude banden. Waar je de juiste spanning vindt en wat het bandenspanningslampje betekent (ANWB).",
+  lead: "Controleer de bandenspanning elke maand en altijd voor een lange rit, het liefst met koude banden. Het bandenspanningslampje vervangt die controle niet.",
+  secs: [
+    ["Hoe en wanneer", "<ul><li>Elke maand en voor een lange rit.</li><li>Met koude banden: op een dag dat je nog niet hebt gereden, of na hooguit 5 km.</li><li>Vergeet het reservewiel niet; een thuiskomer heeft een veel hogere spanning.</li><li>Een eigen bandenspanningsmeter is nauwkeuriger dan de meter bij het tankstation, die vaak te hoog aangeeft.</li></ul>"],
+    ["Waar vind je de juiste spanning?", "<p>In het instructieboekje, op een sticker in de portierstijl, achter het tankklepje of op de bandenpomp. Met volle bepakking schrijft de fabrikant soms een hogere spanning voor.</p>"],
+    ["Waarom het belangrijk is", "<ul><li>Te lage spanning: slechter sturen, scheef remmen, langere remweg en meer kans op een klapband.</li><li>De band slijt sneller en ongelijk.</li><li>Meer brandstofverbruik, tot ongeveer 100 euro per jaar.</li></ul><p>Moet je meer dan 1 bar bijvullen, dan is de band of het ventiel waarschijnlijk lek: laat hem repareren.</p>"],
+    ["Bandenspanningslampje (TPMS)", "<p>Auto's van na 2014 hebben een bandenspanningscontrole. Het lampje gaat branden als een band meer dan 20% onder de voorgeschreven spanning zit. Het blijft een hulpmiddel: controleer ook zelf elke maand. Meer over dit lampje: <a href=\"storing-auto-waarschuwingslampjes-bandenspanningslampje.html\">bandenspanningslampje</a>.</p>"]
+  ],
+  faq: [
+    ["Hoe vaak moet ik mijn bandenspanning controleren?", "Elke maand en altijd voor een lange rit."],
+    ["Moet ik de bandenspanning meten met koude of warme banden?", "Met koude banden: voordat je hebt gereden, of na hooguit 5 km."],
+    ["Wanneer gaat het bandenspanningslampje branden?", "Als een of meer banden meer dan 20% onder de voorgeschreven spanning zitten."]
+  ],
+  src: [["ANWB – Bandenspanning controleren", "https://www.anwb.nl/auto/banden/bandenspanning-controleren"]],
+  rel: [["kennisbank-autopech-voorkomen.html", "Autopech voorkomen"], ["auto-waarschuwingslampjes.html", "Alle waarschuwingslampjes in de auto"], ["auto.html", "Auto-storingen per merk en model"]]
+},
+{
+  id: "auto-winterklaar-maken",
+  cat: "auto",
+  q: "Hoe maak ik mijn auto winterklaar en voorkom ik winterpech?",
+  title: "Auto winterklaar maken: accu, ruitensproeier, sloten, handrem en banden",
+  desc: "Voorkom winterpech: laat de accu testen, gebruik blauwe antivries-ruitensproeiervloeistof, laat de handrem bij vorst los en smeer deurrubbers in. Checklist van de ANWB.",
+  lead: "Kou maakt de accu sneller leeg en laat sloten, rubbers en ruitensproeiers bevriezen. Met deze checklist van de ANWB voorkom je de meeste winterpech.",
+  secs: [
+    ["Checklist", "<ol><li><b>Accu</b>: laat de conditie controleren en maak niet alleen korte ritjes, anders laadt de dynamo de accu te weinig bij.</li><li><b>Ruitensproeiervloeistof</b>: gebruik de blauwe antivriesvariant; de roze of gele zomervloeistof bevriest.</li><li><b>Handrem</b>: niet gebruiken bij vorst, want hij kan vastvriezen. Zet de auto in P of in de eerste versnelling. Een elektronische handrem mag wel.</li><li><b>Deurrubbers</b>: schoonmaken en insmeren met een rubberstick of talkpoeder.</li><li><b>Sloten</b>: behandelen met een vochtafdrijvend middel, ook de slotvanger. Vriest het slot toch dicht, gebruik dan slotontdooier.</li><li><b>Motorolie</b>: controleer of de voorgeschreven olie erin zit; dat kan bepalen of de motor bij vrieskou start.</li><li><b>Ruitenwissers</b>: zet ze uit bij het parkeren, anders kunnen bevroren bladen of de wissermotor beschadigen.</li><li><b>Banden</b>: winterbanden blijven soepeler en geven meer grip. Plan het wisselen op tijd.</li></ol>"],
+    ["Ruiten ontdooien", "<p>Gebruik een plastic ijskrabber of ruitontdooier. Gebruik geen warm water (de ruit kan barsten) en geen kranten (die vriezen vast). Een beschermdeken op de voorruit scheelt krabben.</p>"],
+    ["Neem mee in de winter", "<p>IJskrabber, ruitontdooier, slotontdooier, een deken, warme kleding en eventueel een wegrijhulp. Bij pech werkt zonder motor ook de verwarming niet.</p>"],
+    ["Geen dikke jas onder de gordel", "<p>Een dikke winterjas kan de werking van de gordel bij een ongeluk verminderen. Doe de jas uit of leg hem over de gordel; dat geldt ook voor passagiers en kinderen.</p>"]
+  ],
+  faq: [
+    ["Mag ik de handrem gebruiken als het vriest?", "Liever niet: hij kan vastvriezen. Zet de auto in P of in de eerste versnelling. Een elektronische handrem mag je wel gebruiken."],
+    ["Welke ruitensproeiervloeistof gebruik ik in de winter?", "De blauwe antivriesvariant. De roze of gele zomervloeistof bevriest."],
+    ["Mag ik warm water over een bevroren ruit gieten?", "Nee, de ruit kan barsten. Gebruik een plastic ijskrabber of ruitontdooier."]
+  ],
+  src: [["ANWB – Je auto winterklaar maken", "https://www.anwb.nl/auto/onderhoud-en-reparatie/winter/winterklaar-maken"], ["ANWB – Winterproblemen met de auto", "https://www.anwb.nl/auto/onderhoud-en-reparatie/pech-voorkomen/winterproblemen"]],
+  rel: [["auto-12v-accu.html", "12V-accu leeg"], ["kennisbank-autopech-voorkomen.html", "Autopech voorkomen"], ["kennisbank-bandenspanning-controleren.html", "Bandenspanning controleren"]]
+},
+{
+  id: "beslagen-ramen-auto",
+  cat: "auto",
+  q: "Hoe krijg ik beslagen autoruiten snel vrij en hoe voorkom ik het?",
+  title: "Beslagen ramen in de auto: airco op recirculatie en zo voorkom je condens",
+  desc: "Beslagen autoruiten? Zet de airco even op recirculatie, maak de ruiten binnen schoon en houd natte spullen buiten de auto. Oorzaken en tips van de ANWB.",
+  lead: "Zet de airco aan op recirculatie: dan zijn de ruiten binnen enkele momenten vrij. Schakel daarna terug naar gewone ontwaseming.",
+  secs: [
+    ["Snel ontwasemen", "<ul><li>Airco aan op recirculatie, daarna terug naar gewone ontwaseming. Heeft je auto een automatische ontwasemstand, gebruik die dan.</li><li>Geen airco: kachel op de hoogste stand en de blazers op de voorruit.</li><li>Maak de binnenkant van de ruiten schoon met een doek of zeem.</li></ul>"],
+    ["Waar komt het vocht vandaan?", "<ul><li>Koud en nat weer.</li><li>Natte kleding, schoenen en haren.</li><li>Bladeren bij de ventilatieroosters die de luchttoevoer belemmeren.</li><li>Een lekkende kachelradiateur.</li><li>Vuile ruiten houden meer vocht vast.</li></ul>"],
+    ["Voorkomen", "<ul><li>Houd de ruiten binnen schoon.</li><li>Laat natte spullen zoveel mogelijk buiten de auto.</li><li>Haal bladeren weg bij de luchtinlaat onder de motorkap.</li><li>Een herbruikbare auto-ontvochtiger kan vocht opnemen.</li><li>Blijven de ruiten steeds beslaan, laat dan de kachelradiateur op lekkage controleren.</li></ul>"]
+  ],
+  faq: [
+    ["Hoe krijg ik beslagen ruiten het snelst vrij?", "Zet de airco aan op recirculatie; daarna terug naar gewone ontwaseming."],
+    ["Waarom beslaan mijn autoruiten steeds?", "Door vocht in de auto (natte kleding, schoenen), bladeren bij de luchtinlaat, vuile ruiten of een lekkende kachelradiateur."]
+  ],
+  src: [["ANWB – Beslagen ramen in de auto", "https://www.anwb.nl/auto/onderhoud-en-reparatie/ruiten-en-ruitenwissers/beslagen-ramen-auto"]],
+  rel: [["kennisbank-auto-winterklaar-maken.html", "Auto winterklaar maken"], ["kennisbank-autopech-voorkomen.html", "Autopech voorkomen"], ["auto.html", "Auto-storingen per merk en model"]]
+},
+{
+  id: "elektrische-auto-winter",
+  cat: "laadpalen",
+  q: "Hoeveel actieradius verliest een elektrische auto in de winter en wat kan ik doen?",
+  title: "Elektrische auto in de winter: tot 30% minder bereik, voorverwarmen aan de lader",
+  desc: "Bij vorst kan een elektrische auto tot 30% actieradius verliezen. Verwarm voor aan de laadpaal, gebruik stoelverwarming en voorkom een vastgevroren laadkabel (ANWB).",
+  lead: "Een accu werkt het best rond 21 °C. Bij vrieskou kan de actieradius tot wel 30 procent afnemen, afhankelijk van merk en model.",
+  secs: [
+    ["Bereik sparen", "<ul><li><b>Voorverwarmen aan de lader</b>: stel via de app of een vertrektijd in dat de auto opwarmt terwijl hij nog aan de laadpaal hangt. De energie komt dan niet uit de accu en de ruiten zijn ontdooid.</li><li><b>Stoel- en stuurverwarming</b>: zuiniger dan het hele interieur verwarmen.</li></ul>"],
+    ["Vergeet de 12V-accu niet", "<p>Ook een elektrische auto heeft een kleine 12V-accu, en die is gevoelig voor kou. Is hij zwak, dan start de auto niet. Laat hem voor de winter controleren.</p>"],
+    ["Laadkabel of laadklep vastgevroren", "<ul><li>Droog kabel en laadaansluiting goed af en hang de kabel met een lus naar beneden, zodat water niet naar de stekker loopt.</li><li>Vastgevroren? Ontdooi voorzichtig met een föhn op lage stand of een warme kruik. Trek of duw niet met kracht.</li><li>Veel auto's hebben een mechanische noodontgrendeling voor kabel of klep; kijk in de handleiding.</li></ul><p>Zie ook <a href=\"laadkabel-zit-vast.html\">laadkabel zit vast</a>.</p>"]
+  ],
+  faq: [
+    ["Hoeveel bereik verliest een elektrische auto in de winter?", "Bij vrieskou tot wel 30 procent, afhankelijk van merk en model."],
+    ["Hoe spaar ik bereik in de winter?", "Verwarm de auto voor terwijl hij nog aan de laadpaal hangt en gebruik stoel- en stuurverwarming in plaats van het hele interieur te verwarmen."],
+    ["Wat doe ik als de laadkabel is vastgevroren?", "Ontdooi voorzichtig met een föhn op lage stand of een warme kruik en trek niet met kracht. Kijk in de handleiding naar de noodontgrendeling."]
+  ],
+  src: [["ANWB – Elektrische auto in de winter", "https://www.anwb.nl/auto/elektrisch-rijden/techniek-en-onderhoud/elektrische-auto-winter"]],
+  rel: [["kennisbank-elektrische-auto-laadt-niet.html", "Elektrische auto laadt niet"], ["kennisbank-auto-winterklaar-maken.html", "Auto winterklaar maken"], ["laadpalen.html", "Alle laadpalen en foutcodes"]]
+},
+{
+  id: "autoruit-ontdooien",
+  cat: "auto",
+  q: "Hoe ontdooi ik mijn autoruit snel zonder schade?",
+  title: "Autoruit ontdooien: ruitontdooier, schuin krabben en nooit warm water",
+  desc: "Bevroren autoruit? Gebruik ruitontdooier of krab schuin, zet de blazers op de voorruit en start pas als alles ijsvrij is. Geen warm water en geen kijkgaatje (ANWB).",
+  lead: "Spuit ruitontdooier op de ruiten of krab schuin met een ijskrabber. Gooi nooit warm water over de ruit: die kan barsten.",
+  secs: [
+    ["Zo gaat het snel", "<ol><li>Spuit ruiten en verlichting in met ruitontdooier en laat het even inwerken.</li><li>Geen ontdooier? Krab met een ijskrabber schuin tegen de ruit. Krab de achterruit niet terwijl de achterruitverwarming aan staat.</li><li>Kijk of de ruitenwissers vastzitten en maak ze voorzichtig los.</li><li>Zet na het instappen de blazers op de voorruit, de verwarming op heet en even de recirculatie aan; daarna recirculatie weer uit.</li><li>Rijd pas weg als alle ruiten en spiegels ijsvrij zijn. Stationair laten draaien warmt de motor nauwelijks op.</li></ol>"],
+    ["Niet doen", "<ul><li><b>Geen warm water</b>: door het temperatuurverschil kan de ruit barsten, zeker als er al een sterretje in zit.</li><li><b>Geen kijkgaatje</b>: rijden met maar een stukje vrije ruit kan een boete opleveren.</li></ul>"],
+    ["Voorkomen", "<ul><li>Leg 's avonds een anti-ijsdeken op de voorruit.</li><li>Houd de ruiten schoon; vuil laat vocht sneller bevriezen.</li><li>Zet de ruitenwissers uit voordat je parkeert, zodat ze niet vastvriezen.</li><li>Tegen bevroren sloten helpt slotontdooier; tegen vastvriezende portieren talkpoeder of een rubberstick op de rubbers.</li></ul>"]
+  ],
+  faq: [
+    ["Mag ik warm water op een bevroren autoruit gieten?", "Nee. Door het temperatuurverschil kan de ruit barsten."],
+    ["Mag ik met een kijkgaatje wegrijden?", "Nee, dat is gevaarlijk en kan een boete opleveren. Maak alle ruiten en spiegels ijsvrij."],
+    ["Hoe voorkom ik een bevroren voorruit?", "Leg 's avonds een anti-ijsdeken op de voorruit en houd de ruiten schoon."]
+  ],
+  src: [["ANWB – Snel je autoruit ontdooien: 6 tips", "https://www.anwb.nl/auto/onderhoud-en-reparatie/ruiten-en-ruitenwissers/autoruit-ontdooien"], ["ANWB – Koud? Zo rijd je 's ochtends snel weg", "https://www.anwb.nl/wegenwacht/informatie/zo-rijd-je-snel-weg"]],
+  rel: [["kennisbank-auto-winterklaar-maken.html", "Auto winterklaar maken"], ["kennisbank-beslagen-ramen-auto.html", "Beslagen ramen in de auto"], ["auto.html", "Auto-storingen per merk en model"]]
 }
 ];
 module.exports = { KB: A };
