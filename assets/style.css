@@ -276,3 +276,6 @@ header.top{position:relative;z-index:58}
 .hero-title h1{margin:0}
 .warn-ico{flex:0 0 auto;width:clamp(56px,14vw,96px);height:auto;filter:drop-shadow(0 6px 10px rgba(214,40,40,.35))}
 .hero-title h1{width:fit-content;max-width:min(100%,12ch)}
+.warn-ico{width:clamp(76px,22vw,150px);filter:drop-shadow(0 3px 3px rgba(0,0,0,.22)) drop-shadow(0 16px 14px rgba(0,0,0,.28));animation:warnfloat 4s ease-in-out infinite}
+@keyframes warnfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion:reduce){.warn-ico{animation:none}}

@@ -112,7 +112,7 @@ layout({
   body: `
 <section class="stack hero">
   <span class="eyebrow">Foutcodes en storingen zelf oplossen</span>
-  <div class="hero-title"><h1>Wat betekent die foutcode?</h1><svg class="warn-ico" viewBox="0 0 64 58" aria-hidden="true"><path d="M28.5 4.2a4 4 0 0 1 7 0l26.9 46.6a4 4 0 0 1-3.5 6H5.1a4 4 0 0 1-3.5-6z" fill="#d62828"/><path d="M32 12.5 55.6 52H8.4z" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round" opacity=".35"/><rect x="29" y="20" width="6" height="19" rx="3" fill="#fff"/><circle cx="32" cy="46" r="3.6" fill="#fff"/></svg></div>
+  <div class="hero-title"><h1>Wat betekent die foutcode?</h1><svg class="warn-ico" viewBox="0 0 64 58" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ef3b3b"/><stop offset="1" stop-color="#c41e1e"/></linearGradient></defs><path d="M28.5 4.2a4 4 0 0 1 7 0l26.9 46.6a4 4 0 0 1-3.5 6H5.1a4 4 0 0 1-3.5-6z" fill="url(#wg)" stroke="#a51717" stroke-width="1.2" stroke-linejoin="round"/><rect x="28.8" y="19" width="6.4" height="20" rx="3.2" fill="#fff"/><circle cx="32" cy="46.2" r="3.8" fill="#fff"/></svg></div>
   <p class="lead">Foutcodes, storingen en onderhoud per merk en model, in gewoon Nederlands. Met wat je zelf kunt doen en wanneer je beter een specialist belt.</p>
   <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
