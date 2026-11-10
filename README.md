@@ -1,4 +1,4 @@
-# Repareerwijzer
+# Foutcodezoeker
 
 Statische site met foutcodes, storingen en onderhoud per merk en model.
 

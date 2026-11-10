@@ -1,4 +1,4 @@
-/* Repareerwijzer — werkplaatshandboek: smalle leeskolom, codes als zwarte labels, signaalgeel alleen voor waarschuwing en actie */
+/* Foutcodezoeker — werkplaatshandboek: smalle leeskolom, codes als zwarte labels, signaalgeel alleen voor waarschuwing en actie */
 :root{
   --bg:#f3f5f6; --surface:#ffffff; --ink:#1c2328; --muted:#5b6770; --line:#d5dbdf;
   --accent:#f2b705; --accent-ink:#1c2328; --steel:#2f5d75; --ok:#2e7d4f; --warn:#b4540a; --bad:#b3261e;
@@ -118,3 +118,8 @@ footer .wrap{padding-block:20px;display:flex;flex-direction:column;gap:8px}
 .probs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px 24px}
 .probs h3{font-size:18px;text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
 .probs ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px;font-size:15px;line-height:1.35}
+
+.cost .hit td{font-weight:600;background:rgba(242,183,5,.18)}.cost-hit{padding:.6rem .8rem;border-left:4px solid #f2b705;background:rgba(242,183,5,.12);border-radius:4px}.nowrap{white-space:nowrap}
+.verdict{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:8px;border-left:6px solid}.verdict strong{font-size:18px}.v1{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}.v2{border-color:#e0a000;background:color-mix(in srgb,#e0a000 14%,transparent)}.v3{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
+.block-link{margin-top:12px;padding:10px 12px;border:1px dashed var(--steel);border-radius:6px}
+.fault h4{margin:14px 0 4px;font-size:16px}.fault h4+p,.fault h4+ol{margin-top:0}.fault .verdict{margin:8px 0 4px}

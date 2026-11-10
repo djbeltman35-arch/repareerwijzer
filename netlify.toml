@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  SITE_URL = "https://repareerwijzer-site.netlify.app"
+  SITE_URL = "https://foutcodezoeker.nl"
 
 [[headers]]
   for = "/*"
