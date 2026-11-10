@@ -31,7 +31,7 @@
       var data = window.SEARCH || [], hits = [];
       if (!window.__DEV) { window.__DEV = {}; data.forEach(function (d) { if (d.a) { var w = words(d.a); if (w.length === 1 && w[0] !== "apparaat") window.__DEV[w[0]] = true; } }); }
       var devTok = null; tokens.forEach(function (t) { if (!devTok && window.__DEV[t]) devTok = t; });
-      var pairs = []; for (var k = 0; k + 1 < tokens.length; k++) pairs.push(tokens[k] + tokens[k + 1]);
+      var pairs = []; for (var k = 0; k + 1 < tokens.length; k++) { pairs.push(tokens[k] + tokens[k + 1]); if (k + 2 < tokens.length) pairs.push(tokens[k] + tokens[k + 1] + tokens[k + 2]); }
       for (var i = 0; i < data.length; i++) {
         var d = data[i], hay = " " + words(d.k).join(" ") + " ", score = 0, matched = 0, codeHit = false;
         if (devTok && d.a && words(d.a).indexOf(devTok) < 0) continue;
@@ -153,10 +153,10 @@
         '<div class="meter" role="img" aria-label="Reparatiekosten als deel van de restwaarde: ' + pct + '%"><i style="width:' + pct + "%;background:var(" + col + ')"></i></div>' +
         (ok ? "<p>Doe je het zelf, dan betaal je vaak alleen het onderdeel.</p>" : close ? "<p>Vraag een tweede offerte of probeer een Repair Café voordat je beslist.</p>" : "<p>Kijk eerst of de storing een eenvoudige oorzaak heeft, zoals een vol filter.</p>");
     };
-    $("cat").addEventListener("change", function () { var l = LIFE[$("cat").value]; $("life").value = l[0]; $("nieuw").value = l[1]; run2(); });
+    $("cat").addEventListener("change", function () { var l = LIFE[$("cat").value] || [8, 500]; $("life").value = l[0]; $("nieuw").value = l[1]; run2(); });
     ["age", "life", "nieuw", "rep"].forEach(function (i) { $(i).addEventListener("input", run2); });
     calc.addEventListener("submit", function (e) { e.preventDefault(); });
-    var l0 = LIFE[$("cat").value]; $("life").value = l0[0]; $("nieuw").value = l0[1];
+    var l0 = LIFE[$("cat").value] || [8, 500]; $("life").value = l0[0]; $("nieuw").value = l0[1];
     run2();
   }
 })();

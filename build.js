@@ -144,7 +144,7 @@ for (const m of MODELS) {
   const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
   layout({
     file: `${m.id}.html`,
-    title: `${fullName(m)}: storingen, foutcodes en onderhoud | Repareerwijzer`,
+    title: m.brand === "Alle merken" ? `${m.name}: oorzaken en oplossingen | Repareerwijzer` : `${fullName(m)}: storingen, foutcodes en onderhoud | Repareerwijzer`,
     desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${codes.length} foutcodes uitgelegd` : `${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"} uitgelegd`}, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}.`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }],
     extraHead: `<script id="tasks-data" type="application/json">${tasksJson}</script>`,
@@ -254,7 +254,7 @@ ${[...MODELS].sort((a, b) => (CATS.findIndex(c => c.id === a.cat) - CATS.findInd
 });
 
 // ───────── Repareren of vervangen
-const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], "cv-ketels": [15, 2000], "kleine-apparaten": [6, 100], ventilatie: [15, 1500], warmtepompen: [15, 8000], airco: [12, 1500], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800], laadpalen: [10, 1200] };
+const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], "cv-ketels": [15, 2000], "kleine-apparaten": [6, 100], ventilatie: [15, 1500], warmtepompen: [15, 8000], airco: [12, 1500], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800], laadpalen: [10, 1200], printers: [5, 200], laptops: [5, 900], smartphones: [4, 600], televisies: [8, 700], internet: [5, 150], spelcomputers: [7, 500] };
 layout({
   file: "repareren-of-vervangen.html",
   title: "Repareren of vervangen? Rekenhulp | Repareerwijzer",
@@ -326,10 +326,12 @@ layout({
 layout({ file: "404.html", title: "Pagina niet gevonden | Repareerwijzer", desc: "Deze pagina bestaat niet.", body: `<section class="stack"><h1>Pagina niet gevonden</h1><p class="lead">Zoek je een foutcode? Typ hem hieronder.</p><div class="search"><input id="q" type="search" placeholder="Bijv. E24" aria-label="Zoek" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div><p><a href="index.html">Naar de homepage</a></p></section>` });
 
 // ───────── Zoekindex, sitemap, robots, favicon, assets
+// Bereiken als "2002-4301 t/m 2002-4500" uitschrijven, zodat elke losse code vindbaar is
+const rangeCodes = code => { const r = /^(\d{4})-(\d{4}) (?:t\/m|tot) \1-(\d{4})$/.exec(code); if (!r) return ""; const out = []; for (let i = +r[2]; i <= +r[3] && out.length < 400; i++) out.push(`${r[1]}${String(i).padStart(4, "0")}`); return out.join(" "); };
 const index = [
-  ...MODELS.map(m => ({ t: fullName(m), s: catOf(m.cat).name, u: `${m.id}.html`, k: `${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).name}` })),
-  ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${f.code} ${f.t} ${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).one} ${catOf(m.cat).name}` })),
-  ...MODELS.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ t: f.t, s: fullName(m), u: `${m.id}.html#${slug(f.t)}`, k: `${f.t} ${m.brand} ${m.name}` }))),
+  ...MODELS.map(m => ({ t: fullName(m), s: catOf(m.cat).name, u: `${m.id}.html`, b: brandsOf(m), a: catOf(m.cat).one, k: `${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).name}` })),
+  ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${f.code} ${rangeCodes(f.code)} ${f.t} ${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).one} ${catOf(m.cat).name}` })),
+  ...MODELS.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ t: f.t, s: fullName(m), u: `${m.id}.html#${slug(f.t)}`, b: brandsOf(m), a: catOf(m.cat).one, k: `${f.t} ${m.brand} ${m.name}` }))),
   ...CATS.map(c => ({ t: c.name, s: "Categorie", u: `${c.id}.html`, k: c.name })),
   ...brandNames.map(b => ({ t: `${b} storingen en foutcodes`, s: "Merk", u: brandUrl(b), k: `${b} merk storing foutcode` }))
 ];
