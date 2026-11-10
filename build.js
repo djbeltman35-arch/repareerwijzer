@@ -40,6 +40,7 @@ function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+${file === "index.html" ? '<meta name="e0d5a73bd035a1c" content="277030417ea9ada19f69ae08c41fb74b" />' : ""}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
@@ -50,14 +51,14 @@ function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts 
 <meta name="theme-color" content="#1c2328">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800&family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="style.css">
 ${bc}${extraHead}
 </head>
 <body>
 <header class="top"><div class="wrap">
   <a class="logo" href="index.html" aria-label="Foutcodezoeker, naar home"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>Foutcodezoeker</a>
-  <nav aria-label="Hoofdmenu"><a href="foutcodes.html">Foutcodes</a><a href="merken.html">Merken</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
+  <nav aria-label="Hoofdmenu"><a href="foutcodes.html">Foutcodes</a><a href="knipperende-lampjes.html">Lampjes</a><a href="merken.html">Merken</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
 </div></header>
 <main class="wrap">
 ${crumbHtml}
@@ -97,8 +98,14 @@ layout({
   <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
   <div class="searchtip"><p><strong>Zo vind je direct de oplossing:</strong> typ het merk, het typenummer en de foutcode, bijvoorbeeld <span class="mono">Bosch WAT28400 E18</span>, en druk op Enter. Alleen merk en code werkt ook, zoals <span class="mono">Samsung 4C</span>. Een klacht kan ook: <span class="mono">vaatwasser stinkt</span>.</p><p class="muted">Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</p></div>
+  <div class="firstaid"><h2>🚑 Eerste hulp bij storingen</h2><ol>
+    <li><strong>Veiligheid eerst.</strong> Lekt er water? Draai de kraan dicht en haal de stekker eruit. Ruik je gas? Gaskraan dicht, ramen open, geen vuur of schakelaars en bel 0800-9009.</li>
+    <li><strong>Noteer de code en het typenummer.</strong> Schrijf de code precies over (let op punten en streepjes). Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</li>
+    <li><strong>Probeer een eenvoudige herstart.</strong> Zet het apparaat uit en haal de stekker er een paar minuten uit. Bij een cv-ketel of warmtepomp: gebruik de resetknop en reset hooguit één keer.</li>
+    <li><strong>Zoek de code hierboven op.</strong> Elke pagina vertelt in gewone taal wat er aan de hand is, wat je zelf kunt doen en wanneer je een specialist belt.</li>
+  </ol><p class="muted"><a href="eerste-hulp-bij-storingen.html">Meer over eerste hulp bij storingen</a> · <a href="knipperende-lampjes.html">Geen code maar een knipperend lampje?</a></p></div>
   <div class="picker" id="picker"><span class="eyebrow">Of kies stap voor stap</span><div class="picker-row"><label for="pm">Merk<select id="pm"><option value="">Kies je merk</option></select></label><label for="pa">Apparaat<select id="pa" disabled><option value="">Kies eerst een merk</option></select></label></div><div class="results" id="pres" aria-live="polite"></div></div>
-  <p class="muted">${stats.codes} foutcodes · ${stats.faults} storingen · ${stats.models} merken en modellen</p>
+  <p class="muted herostats"><b>${stats.codes}</b> foutcodes <b>${stats.faults}</b> storingen <b>${stats.models}</b> apparaten <b>€0</b> gratis, zonder account</p>
 </section>
 <section class="stack">
   <h2>Kies je apparaat</h2>
@@ -238,7 +245,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 </article>
 ${costBlock(m, f)}
 <section class="stack">
-  <h2>Lukt het niet?</h2>
+  <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Komt de code na deze stappen terug, bel dan je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
 </section>
 ${others.length ? `<section class="stack"><h2>Andere foutcodes van ${esc(dev)}</h2><div class="results">${others.map(x => `<a href="${codeUrl(m, x)}"><span><span class="code">${esc(x.code)}</span> ${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div></section>` : ""}
@@ -272,7 +279,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 </article>
 ${costBlock(m, f)}
 <section class="stack">
-  <h2>Lukt het niet?</h2>
+  <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Bel je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Laat het apparaat nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
 </section>
 ${others.length ? `<section class="stack"><h2>Andere storingen: ${esc(fullName(m))}</h2><div class="results">${others.map(x => `<a href="${textUrl(m, x)}"><span>${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div></section>` : ""}
@@ -349,11 +356,26 @@ layout({
 // ───────── Recht op reparatie
 layout({
   file: "recht-op-reparatie.html",
-  title: "Recht op reparatie in Nederland: wat geldt er nu? | Foutcodezoeker",
+  title: "Recht op reparatie: waarom zelf repareren loont, en wat de wet regelt | Foutcodezoeker",
   desc: "De Europese reparatierichtlijn moest op 31 juli 2026 in de wet staan. Nederland is nog niet klaar. Wat betekent dat voor jou?",
   crumbs: [{ name: "Recht op reparatie", file: "recht-op-reparatie.html" }],
   body: `
 <section class="stack"><span class="eyebrow">Right to Repair</span><h1>Je recht op reparatie</h1><p class="lead">Sinds 31 juli 2026 moeten alle EU-landen de Europese reparatierichtlijn (EU) 2024/1799 in hun eigen wet hebben opgenomen. Nederland is daar nog niet klaar mee.</p></section>
+<section class="stack"><h2>Waarom repareren zo belangrijk is</h2>
+<div class="facts-grid">
+<div class="fact"><b>62 miljoen ton</b><span>elektronisch afval wereldwijd in 2022. Slechts 22% werd officieel gerecycled, en voor ongeveer 62 miljard dollar aan grondstoffen zoals goud, koper en zilver ging verloren.</span></div>
+<div class="fact"><b>25 kilo</b><span>elektronisch afval per Nederlander per jaar, samen ongeveer 450 miljoen kilo.</span></div>
+<div class="fact"><b>72%</b><span>van de reparaties in Repair Cafés slaagt. In 2024 waren er wereldwijd naar schatting ruim een miljoen reparatiepogingen, goed voor zo'n 744.000 kilo minder afval.</span></div>
+<div class="fact"><b>3.446</b><span>Repair Cafés in meer dan 50 landen (eind 2024), waar vrijwilligers gratis helpen repareren.</span></div>
+</div>
+<p>Elk apparaat dat langer meegaat, hoeft niet opnieuw gemaakt, vervoerd en verpakt te worden. Dat scheelt grondstoffen, energie en CO₂. En het scheelt geld: een nieuwe pomp of deurrubber kost vaak een fractie van een nieuw apparaat. Op elke storingspagina van Foutcodezoeker zie je wat je zelf kunt doen en wat een reparatie gemiddeld kost. Twijfel je? Gebruik de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.</p>
+<p class="muted">Bronnen: Global E-waste Monitor 2024 (VN), via <a href="https://fortune.com/2024/04/08/world-generated-62-million-tonnes-electronic-waste-year-un-agencies-warn-tech-environment/" target="_blank" rel="noopener">Fortune</a>; <a href="https://www.rijksoverheid.nl/actueel/nieuws/2025/03/20/nationaal-reparateursregister-officieel-van-start" target="_blank" rel="noopener">Rijksoverheid</a>; <a href="https://www.repaircafe.org/wp-content/uploads/2025/05/RC_jaarverslag_2024_web.pdf" target="_blank" rel="noopener">Repair Café jaarverslag 2024</a> (schattingen).</p></section>
+<section class="stack"><h2>Zelf repareren of laten repareren</h2><div class="tbl"><table><tbody>
+<tr><td class="strong">Zelf doen</td><td>Zoek je code op en volg het stappenplan. Bij 🟢 kun je het veilig zelf proberen.</td></tr>
+<tr><td class="strong">Gratis hulp</td><td>Ga met je apparaat naar een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt.</td></tr>
+<tr><td class="strong">Vakman</td><td>Zoek een erkende reparateur in het <a href="https://www.rijksoverheid.nl/actueel/nieuws/2025/03/20/nationaal-reparateursregister-officieel-van-start" target="_blank" rel="noopener">Nationaal Reparateursregister</a>: sinds maart 2025 het register van erkende reparatiebedrijven voor onder meer wasmachines, koelkasten, schermen en vaatwassers.</td></tr>
+<tr><td class="strong">Garantie</td><td>Jonger dan twee jaar of korter dan je redelijkerwijs mag verwachten? Meld het eerst bij de winkel.</td></tr>
+</tbody></table></div></section>
 <section class="stack"><h2>Stand van zaken</h2>
 <div class="status"><div><span>Duitsland, Italië</span><span class="pill d1">Omgezet</span></div><div><span>Nederland, Frankrijk, Spanje, Polen, Portugal</span><span class="pill d3">Nog niet volledig</span></div></div>
 <p>Op 25 september 2026 stuurde de Europese Commissie aan 18 landen, waaronder Nederland, een formele ingebrekestelling omdat de omzetting niet compleet was. Situatie op 22 oktober 2026.</p></section>
@@ -369,6 +391,40 @@ layout({
 <p class="muted">Dit is algemene informatie, geen juridisch advies. Kijk voor je eigen situatie bij ConsuWijzer of het Juridisch Loket.</p>
 <div class="row"><a href="https://www.consuwijzer.nl" target="_blank" rel="noopener">ConsuWijzer</a><a href="https://repair.eu" target="_blank" rel="noopener">Right to Repair Europe</a><a href="https://eur-lex.europa.eu/eli/dir/2024/1799/oj" target="_blank" rel="noopener">Richtlijn 2024/1799</a></div></section>`
 });
+
+// ───────── Eerste hulp
+layout({
+  file: "eerste-hulp-bij-storingen.html",
+  title: "Eerste hulp bij storingen: wat doe je als eerste? | Foutcodezoeker",
+  desc: "Storing, lekkage of geen warm water? Zo pak je het rustig en veilig aan in vier stappen, voor elk apparaat.",
+  crumbs: [{ name: "Eerste hulp bij storingen", file: "eerste-hulp-bij-storingen.html" }],
+  body: `
+<section class="stack"><span class="eyebrow">Rustig aan</span><h1>Eerste hulp bij storingen</h1><p class="lead">Een lekkende vaatwasser of een koude douche geeft stress. Met deze vier stappen weet je binnen een paar minuten waar je staat.</p></section>
+<div class="verdict v3"><strong>🔴 Direct gevaar?</strong><span>Ruik je gas: gaskraan dicht, ramen open, geen vuur, geen schakelaars of stekkers, ga naar buiten en bel 0800-9009. Rook, brand of vonken: haal de stroom eraf als dat veilig kan en bel 112.</span></div>
+<article class="fault"><h2>1. Veiligheid eerst</h2><ol><li>Lekt er water? Draai de kraan dicht en haal de stekker uit het stopcontact. Raak geen natte stekkers of stopcontacten aan; zet dan eerst de groep in de meterkast uit.</li><li>Ruik je iets branderigs of wordt het apparaat heet? Stekker eruit en niet meer gebruiken.</li><li>Bij een e-bike-, step- of scooteraccu die heet wordt, rookt of opzwelt: niet meer laden, buiten neerleggen als dat veilig kan.</li></ol>
+<h2>2. Noteer de code en het typenummer</h2><ol><li>Schrijf de foutcode precies over, inclusief punten, streepjes en letters (bijvoorbeeld A.02.33 of E 112 H).</li><li>Geen code maar een knipperend lampje? Tel hoe vaak het knippert en welke kleur het heeft. Kijk op de pagina <a href="knipperende-lampjes.html">knipperende lampjes</a>.</li><li>Zoek het typeplaatje: meestal in de deuropening, aan de zijkant van de deur, achter het klepje onderaan of op de achterkant. Maak er een foto van.</li></ol>
+<h2>3. Probeer een eenvoudige herstart</h2><ol><li>Zet het apparaat uit en haal de stekker er een paar minuten uit. Veel tijdelijke storingen zijn daarna weg.</li><li>Cv-ketel, warmtepomp of gashaard: gebruik de resetknop volgens de handleiding en reset hooguit één keer. Komt de storing terug, dan is resetten niet de oplossing.</li><li>Laadpaal, omvormer of thuisbatterij: volg het stappenplan van je apparaat, bijvoorbeeld <a href="omvormer-resetten.html">omvormer resetten</a> of <a href="laadpaal-resetten.html">laadpaal herstarten</a>.</li></ol>
+<h2>4. Zoek je code op</h2><p>Typ merk, typenummer en code in de zoekbalk, bijvoorbeeld <span class="mono">Bosch wasmachine E18</span>. Elke pagina vertelt wat de code betekent, wat je zelf kunt doen en wanneer je een specialist belt.</p>
+<div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek een foutcode" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div></article>
+<section class="stack"><h2>Nog onder garantie?</h2><p>Is je apparaat jonger dan twee jaar, of mag je redelijkerwijs verwachten dat het nog werkt? Meld het dan eerst bij de winkel waar je het kocht, voordat je zelf iets openmaakt. Lees meer bij <a href="recht-op-reparatie.html">recht op reparatie</a>.</p></section>`
+});
+
+// ───────── Knipperende lampjes
+{
+  const re = /lampje|knipper|led\b|leds\b|symbool|icoon|display (toont|blijft)|piept|piepjes/i;
+  const items = MODELS.flatMap(m => m.faults.filter(f => re.test(f.t) || (f.code && re.test(f.code))).map(f => ({ m, f })));
+  const byCat = CATS.map(c => ({ c, list: items.filter(x => x.m.cat === c.id) })).filter(x => x.list.length);
+  layout({
+    file: "knipperende-lampjes.html",
+    title: `Knipperend lampje of piepje? ${items.length} betekenissen per apparaat | Foutcodezoeker`,
+    desc: "Geen foutcode maar een knipperend lampje, een symbool of een piepje? Zoek hier per apparaat wat het betekent en wat je zelf kunt doen.",
+    crumbs: [{ name: "Knipperende lampjes", file: "knipperende-lampjes.html" }],
+    body: `
+<section class="stack"><span class="eyebrow">Lampjes, symbolen en piepjes</span><h1>Knipperend lampje of piepje?</h1><p class="lead">Veel apparaten tonen geen code, maar een knipperend lampje, een symbool of een reeks piepjes. Tel hoe vaak het knippert en kijk welke kleur het heeft. Zoek daarna hieronder je apparaat, of typ bijvoorbeeld <span class="mono">Sonos lampje oranje</span> in de zoekbalk.</p>
+<div class="search"><input id="q" type="search" placeholder="Bijv. Otolift piept of Truma lampje" aria-label="Zoek een lampje of storing" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div></section>
+${byCat.map(({ c, list }) => `<section class="stack"><h2>${esc(c.name)}</h2><div class="results">${list.map(({ m, f }) => `<a href="${f.code ? codeUrl(m, f) : textUrl(m, f)}"><span>${f.code ? `<span class="code">${esc(f.code)}</span> ` : ""}${esc(f.t)}</span><span>${esc(fullName(m))} · ${D[f.d][0]}</span></a>`).join("")}</div></section>`).join("")}`
+  });
+}
 
 // ───────── Disclaimer
 layout({

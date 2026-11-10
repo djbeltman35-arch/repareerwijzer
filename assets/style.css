@@ -123,3 +123,55 @@ footer .wrap{padding-block:20px;display:flex;flex-direction:column;gap:8px}
 .verdict{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:8px;border-left:6px solid}.verdict strong{font-size:18px}.v1{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}.v2{border-color:#e0a000;background:color-mix(in srgb,#e0a000 14%,transparent)}.v3{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
 .block-link{margin-top:12px;padding:10px 12px;border:1px dashed var(--steel);border-radius:6px}
 .fault h4{margin:14px 0 4px;font-size:16px}.fault h4+p,.fault h4+ol{margin-top:0}.fault .verdict{margin:8px 0 4px}
+.firstaid{border:2px solid var(--accent);border-radius:10px;padding:14px 16px;margin:16px 0}.firstaid h2{margin:0 0 8px}.firstaid ol{padding-left:20px;margin:0}.firstaid li{margin:6px 0}
+.facts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.fact{border:1px solid var(--line,#ccc);border-radius:10px;padding:12px}.fact b{display:block;font-size:26px;color:var(--steel)}.fact span{font-size:15px}
+/* ── ATLAS-laag (stijl van EuroRoadRules): asfalt, borden-blauw, signaalgeel, Overpass-koppen ── */
+:root{--bg:#f2f3ef;--surface:#ffffff;--ink:#15191e;--muted:#59626c;--line:#dcdfdf;--steel:#0f4aa8;--blue:#0f4aa8;--road:#1a1f25;--accent:#f6b800;--shadow:0 1px 0 rgba(0,0,0,.04),0 8px 24px -12px rgba(20,30,40,.25);--display:"Overpass","Barlow Condensed",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1114;--surface:#171b20;--ink:#eaedf0;--muted:#a1a9b2;--line:#2a3037;--steel:#8db4f5;--blue:#2a66c9;--road:#0b0e11;--shadow:0 8px 24px -12px rgba(0,0,0,.6)}}
+:root[data-theme="dark"]{--bg:#0e1114;--surface:#171b20;--ink:#eaedf0;--muted:#a1a9b2;--line:#2a3037;--steel:#8db4f5;--blue:#2a66c9;--road:#0b0e11;--shadow:0 8px 24px -12px rgba(0,0,0,.6)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;text-transform:none;letter-spacing:-.015em}
+h1{font-size:clamp(32px,6vw,50px);line-height:1.02}
+h2{font-size:clamp(23px,3.2vw,32px);line-height:1.08}
+header.top{background:var(--road);color:#fff;border-bottom:4px solid var(--accent)}
+.logo{color:#fff;font-family:var(--display);font-weight:800;text-transform:none;letter-spacing:-.01em;font-size:26px}
+header nav a{color:#e7eaed;opacity:1;font-weight:700;font-size:14px}
+header nav a:hover{color:var(--accent);text-decoration:none}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;width:max-content;max-width:100%;background:var(--blue);color:#fff;font-weight:700;letter-spacing:.06em;font-size:11.5px;padding:5px 10px;text-transform:uppercase}
+.eyebrow::after{content:"";border-left:6px solid currentColor;border-top:4px solid transparent;border-bottom:4px solid transparent}
+.hero{background:var(--road);color:#fff;box-shadow:0 0 0 100vmax var(--road);clip-path:inset(0 -100vmax);margin-top:-24px;padding-block:34px 30px;position:relative}
+.hero::after{content:"";position:absolute;left:-100vmax;right:-100vmax;bottom:0;height:10px;background:repeating-linear-gradient(-45deg,var(--accent) 0 14px,#15191e 14px 28px)}
+.hero h1{color:#fff;font-size:clamp(38px,8vw,64px);line-height:.98;max-width:14ch}
+.hero .lead{color:#e6e9ec}
+.hero>.muted{color:#c3c9ce}
+.hero .search input{border:0;box-shadow:0 20px 50px -20px rgba(0,0,0,.7);font-size:19px;padding:16px 18px}
+.hero .results{background:var(--surface);padding:0 12px}
+.hero .results a{color:var(--ink)}
+.searchtip{background:rgba(255,255,255,.07);border:0;border-left:4px solid var(--accent);color:#e6e9ec}
+.searchtip .muted{color:#c3c9ce}.searchtip .mono{background:rgba(255,255,255,.14);color:#fff}
+.firstaid{background:var(--surface);color:var(--ink);border:0;border-top:6px solid var(--accent);box-shadow:var(--shadow);border-radius:0}
+.firstaid a{color:var(--steel)}
+.picker{background:var(--blue);color:#fff;outline:2px solid #fff;outline-offset:-10px;padding:22px;border:0;border-radius:0}
+.picker .eyebrow{background:transparent;padding:0;color:#fff}.picker .eyebrow::after{display:none}
+.picker label{color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+.picker select{border-radius:0;border:0}
+.picker .results{background:var(--surface)}.picker .results a{color:var(--ink)}
+.fault,.tile,.model,.counter,.fact,.verdict,.search input,.code,.cost-hit{border-radius:0}
+.fault,.tile,.model,.counter,.fact{background:var(--surface);box-shadow:var(--shadow);border-color:transparent}
+.fault{border-left:4px solid var(--blue)}
+.fault:target{border-left-color:var(--accent)}
+.tile:hover,.model:hover{border-color:var(--ink);box-shadow:0 12px 30px -14px rgba(20,30,40,.45)}
+.tile b,.model b{font-family:var(--display);font-weight:800}
+.fact b{font-family:var(--display);color:var(--blue)}
+.code{background:var(--road);color:#fff}
+.verdict{box-shadow:var(--shadow)}
+.block-link{border:0;border-left:4px solid var(--accent);background:var(--bg)}
+footer{background:var(--road);color:#c3c9ce;border-top:4px solid var(--accent)}
+footer a{color:#fff}
+table th{text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+@media (max-width:640px){header nav{flex-wrap:nowrap;overflow-x:auto;gap:16px;width:100%;scrollbar-width:none;padding-bottom:2px}header nav::-webkit-scrollbar{display:none}header nav a{white-space:nowrap}}
+html,body{overflow-x:clip}
+.herostats{font-size:16px;border-top:1px solid rgba(255,255,255,.22);padding-top:12px}.herostats b{color:var(--accent);font-family:var(--display);font-size:26px;font-weight:800;margin-left:10px}.herostats b:first-child{margin-left:0}
+header.top{border-bottom:0;box-shadow:inset 0 -6px 0 0 transparent}header.top::after{content:"";display:block;height:6px;background:repeating-linear-gradient(-45deg,var(--accent) 0 10px,#15191e 10px 20px)}
+footer{border-top:0}footer::before{content:"";display:block;height:6px;background:repeating-linear-gradient(-45deg,var(--accent) 0 10px,#15191e 10px 20px)}
+:root{--road:#22282e}.hero{background:linear-gradient(135deg,#2a3138 0%,#1b2025 60%,#15191e 100%);box-shadow:0 0 0 100vmax #1b2025}
+.hero{background:#1f252b;box-shadow:0 0 0 100vmax #1f252b}
