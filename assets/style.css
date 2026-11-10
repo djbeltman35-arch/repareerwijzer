@@ -282,3 +282,4 @@ header.top{position:relative;z-index:58}
 .warn-ico{animation:warnblink 1.6s ease-in-out infinite}
 @keyframes warnblink{0%,45%,100%{opacity:1}60%,85%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.warn-ico{animation:none}}
+.warn-ico{width:clamp(60px,17vw,112px)}
