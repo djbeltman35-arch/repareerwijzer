@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const { CATS, MODELS, SRC, COST } = require("./data.js");
+const { KB } = require("./kb.js");
 
 const SITE = (process.env.SITE_URL || "https://foutcodezoeker.nl").replace(/\/$/, "");
 const OUT = path.join(__dirname, "dist");
@@ -22,7 +23,7 @@ const textUrl = (m, f) => `storing-${m.id}-${slug(f.t)}.html`;
 const codeShort = f => f.code.split("/")[0].trim();
 const fullName = m => m.brand === "Alle merken" ? m.name : `${m.brand} ${m.name}`;
 function brandLinks(m) { return m.brand.split("/").map(b => b.trim()).filter(b => b !== "Alle merken" && b !== "E61-groep").map(b => `<a href="merk-${slug(b)}.html">Alle ${esc(b)}-storingen</a>`).join(" · "); }
-const deviceName = m => { const c = catOf(m.cat); return m.name.includes("(alle modellen)") ? `${m.brand} ${c.one}` : fullName(m); };
+const deviceName = m => { if (m.dev) return m.brand === "Alle merken" ? m.dev : `${m.brand} ${m.dev}`; const c = catOf(m.cat); return m.name.includes("(alle modellen)") ? `${m.brand} ${c.one}` : fullName(m); };
 
 function intervalLabel(t, m) {
   if (t.n) return `Elke ${t.n} ${UNIT[m.unit]}`;
@@ -31,9 +32,14 @@ function intervalLabel(t, m) {
   return L[t.m] || (t.m > 12 ? `Elke ${t.m / 12} jaar` : `Elke ${t.m} maanden`);
 }
 
+const fold = (title, inner, open = false, n = 0) => `<section class="stack"><details class="fold"${open ? " open" : ""}><summary><h2>${title}</h2>${n ? `<span class="cnt">${n}</span>` : ""}</summary><div class="fold-body">${inner}</div></details></section>`;
+const faqLd = qs => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }).replace(/</g, "\\u003c")}</script>`;
+const clip = (t, n = 158) => { t = String(t).replace(/\s+/g, " ").trim(); if (t.length <= n) return t; const c = t.slice(0, n); return c.slice(0, c.lastIndexOf(" ")).replace(/[,;:–-]+$/, "") + "…"; };
 function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts = "" }) {
   const url = file === "index.html" ? `${SITE}/` : `${SITE}/${file.replace(/\.html$/, "")}`;
   const bc = crumbs.length ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ name: "Home", file: "index.html" }, ...crumbs].map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.file === "index.html" ? `${SITE}/` : `${SITE}/${c.file.replace(/\.html$/, "")}` })) })}</script>` : "";
+  const backTo = crumbs.length > 1 ? crumbs[crumbs.length - 2].file : "index.html";
+  const pageNav = file === "index.html" ? "" : `<div class="pagenav"><a class="back" href="${backTo}" data-back>← Terug</a><a class="home" href="index.html">⌂ Home</a></div>`;
   const crumbHtml = crumbs.length ? `<nav class="crumbs" aria-label="Kruimelpad"><a href="index.html">Home</a>${crumbs.map((c, i) => i === crumbs.length - 1 ? ` / <span>${esc(c.name)}</span>` : ` / <a href="${c.file}">${esc(c.name)}</a>`).join("")}</nav>` : "";
   const html = `<!doctype html>
 <html lang="nl">
@@ -42,36 +48,48 @@ function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ${file === "index.html" ? '<meta name="e0d5a73bd035a1c" content="277030417ea9ada19f69ae08c41fb74b" />' : ""}
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(desc)}">
+<meta name="description" content="${esc(clip(desc))}">
 <link rel="canonical" href="${url}">
 <meta property="og:title" content="${esc(title)}">
-<meta property="og:description" content="${esc(desc)}">
+<meta property="og:description" content="${esc(clip(desc, 200))}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="${url}">
-<meta name="theme-color" content="#1c2328">
+<meta property="og:site_name" content="Foutcodezoeker">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:image" content="${SITE}/icon-512.png">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f252b">
+<meta name="apple-mobile-web-app-title" content="Foutcodezoeker">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800&family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <link rel="stylesheet" href="style.css">
 ${bc}${extraHead}
 </head>
 <body>
 <header class="top"><div class="wrap">
   <a class="logo" href="index.html" aria-label="Foutcodezoeker, naar home"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>Foutcodezoeker</a>
-  <nav aria-label="Hoofdmenu"><a href="foutcodes.html">Foutcodes</a><a href="knipperende-lampjes.html">Lampjes</a><a href="merken.html">Merken</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
+  <details class="menu"><summary aria-label="Menu openen"><span class="burger" aria-hidden="true"></span>Menu</summary><div class="menu-panel">
+    <nav aria-label="Hoofdmenu"><a href="index.html">⌂ Home</a><a href="foutcodes.html">Foutcodes</a><a href="knipperende-lampjes.html">Lampjes</a><a href="merken.html">Merken</a><a href="eerste-hulp-bij-storingen.html">Eerste hulp</a><a href="kennisbank.html">Kennisbank</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
+    <p class="menu-h">Categorieën</p><nav class="menu-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav>
+  </div></details>
 </div></header>
 <main class="wrap">
+${pageNav}
 ${crumbHtml}
 ${body}
 </main>
 <footer><div class="wrap">
-  <nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav>
+  <details class="foot-fold"><summary>Alle categorieën (${CATS.length})</summary><nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav></details>
   <span>Foutcodezoeker · Gemaakt door Erik · info@foutcodezoeker.nl</span>
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
   <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
-<script src="search.js" defer></script>
-<script src="app.js" defer></script>
+${/id="(q|pm)"/.test(body) ? '<script src="search.js" defer></script>\n' : ""}<script src="app.js" defer></script>
 ${scripts}
 </body>
 </html>`;
@@ -89,6 +107,7 @@ const stats = { models: MODELS.length, codes: allCodes.length, faults: MODELS.re
 layout({
   file: "index.html",
   title: "Foutcodezoeker – foutcodes en storingen zelf oplossen, per merk en model",
+  extraHead: `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE}/#website`, url: `${SITE}/`, name: "Foutcodezoeker", inLanguage: "nl-NL", potentialAction: { "@type": "SearchAction", target: `${SITE}/?q={search_term_string}`, "query-input": "required name=search_term_string" } }, { "@type": "Organization", "@id": `${SITE}/#org`, name: "Foutcodezoeker", url: `${SITE}/`, logo: `${SITE}/icon-512.png`, email: "info@foutcodezoeker.nl" }] })}</script>`,
   desc: `Foutcodes en onderhoud per merk en model: koffiemachines, wasmachines, vaatwassers, e-bikes, 3D-printers en meer. ${stats.codes} foutcodes uitgelegd in gewoon Nederlands.`,
   body: `
 <section class="stack hero">
@@ -104,6 +123,7 @@ layout({
     <li><strong>Probeer een eenvoudige herstart.</strong> Zet het apparaat uit en haal de stekker er een paar minuten uit. Bij een cv-ketel of warmtepomp: gebruik de resetknop en reset hooguit één keer.</li>
     <li><strong>Zoek de code hierboven op.</strong> Elke pagina vertelt in gewone taal wat er aan de hand is, wat je zelf kunt doen en wanneer je een specialist belt.</li>
   </ol><p class="muted"><a href="eerste-hulp-bij-storingen.html">Meer over eerste hulp bij storingen</a> · <a href="knipperende-lampjes.html">Geen code maar een knipperend lampje?</a></p></div>
+  <div class="installapp" id="installapp" hidden><strong>📱 Foutcodezoeker als app</strong><span id="installtxt">Zet Foutcodezoeker op je beginscherm: altijd binnen handbereik, ook in de schuur of kelder.</span><button type="button" id="installbtn" hidden>Installeer de app</button></div>
   <div class="picker" id="picker"><span class="eyebrow">Of kies stap voor stap</span><div class="picker-row"><label for="pm">Merk<select id="pm"><option value="">Kies je merk</option></select></label><label for="pa">Apparaat<select id="pa" disabled><option value="">Kies eerst een merk</option></select></label></div><div class="results" id="pres" aria-live="polite"></div></div>
   <p class="muted herostats"><b>${stats.codes}</b> foutcodes <b>${stats.faults}</b> storingen <b>${stats.models}</b> apparaten <b>€0</b> gratis, zonder account</p>
 </section>
@@ -119,6 +139,11 @@ layout({
 <section class="stack">
   <h2>Veelvoorkomende problemen</h2>
   <div class="probs">${CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}</ul></div>` : ""; }).join("")}</div>
+</section>
+<section class="stack">
+  <h2>Kennisbank</h2>
+  <ul class="kb-list">${KB.slice(0, 6).map(a => `<li><a href="kennisbank-${a.id}.html">${esc(a.q)}</a></li>`).join("")}</ul>
+  <p><a href="kennisbank.html">Alle artikelen in de kennisbank →</a></p>
 </section>
 <section class="stack">
   <h2>Populaire merken</h2>
@@ -142,8 +167,9 @@ for (const c of CATS) {
     crumbs: [{ name: c.name, file: `${c.id}.html` }],
     body: `
 <section class="stack"><span class="eyebrow">Categorie</span><h1>${c.name}</h1><p class="lead">${esc(c.intro)}</p></section>
+${KB.some(a => a.cat === c.id) ? `<section class="stack"><h2>Uitleg in de kennisbank</h2><ul class="kb-list">${KB.filter(a => a.cat === c.id).map(a => `<li><a href="kennisbank-${a.id}.html">${esc(a.q)}</a></li>`).join("")}</ul></section>` : ""}
 <section class="stack"><h2>Merken en modellen</h2><div class="models">${ms.map(modelCard).join("")}</div></section>
-${codes.length ? `<section class="stack"><h2>Alle foutcodes</h2><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Merk</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(m.brand)}</td></tr>`).join("")}</tbody></table></div></section>` : ""}`
+${codes.length ? fold("Alle foutcodes", `<div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Merk</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(m.brand)}</td></tr>`).join("")}</tbody></table></div>`, false, codes.length) : ""}`
   });
 }
 
@@ -198,20 +224,20 @@ for (const m of MODELS) {
   ${brandLinks(m) ? `<p class="row">${brandLinks(m)}</p>` : ""}
   <dl class="facts"><div><dt>Bouwjaren</dt><dd>${esc(m.years)}</dd></div><div><dt>Onderhoud</dt><dd>${m.tasks.length} taken</dd></div><div><dt>Storingen</dt><dd>${m.faults.length} beschreven</dd></div>${m.also ? `<div class="wide"><dt>Geldt ook voor</dt><dd>${esc(m.also)}</dd></div>` : ""}</dl>
 </section>
-${codes.length ? `<section class="stack"><h2>Foutcodes</h2><div class="results">${codes.map(f => `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(f.code)}</span> ${esc(f.t)}</span><span>${D[f.d][0]}</span></a>`).join("")}</div></section>` : ""}
+${codes.length ? fold("Foutcodes", `<div class="results">${codes.map(f => `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(f.code)}</span> ${esc(f.t)}</span><span>${D[f.d][0]}</span></a>`).join("")}</div>`, true, codes.length) : ""}
 ${plain.length ? `<section class="stack"><h2>${codes.length ? "Andere storingen" : "Storingen"}</h2>
 ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 ${plain.map(f => { const h = costHit(m, f); return `<article class="fault" id="${slug(f.t)}"><div class="fault-head"><h3><a href="${textUrl(m, f)}">${esc(f.t)}</a></h3></div><div class="verdict v${f.d}"><strong>${D[f.d][0]}</strong><span>${VERDICT[f.d]}</span></div><h4>❓ Wat is er aan de hand?</h4><p>${esc(f.cause)}</p><h4>💡 Wat kun je nu zelf doen?</h4><ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>${h ? `<p class="cost-hit">💰 <strong>Lukt het niet?</strong> Mogelijk onderdeel: ${esc(h[0].toLowerCase())}, gemiddeld <strong>${esc(h[1])}</strong>.</p>` : ""}${blockLink(m, f)}</article>`; }).join("")}</section>` : ""}
 ${COST[m.cat] ? modelCost(m) : ""}
-<section class="stack">
-  <h2>Onderhoudsteller</h2>
+<section class="stack"><details class="fold"><summary><h2>Onderhoudsteller</h2>${m.tasks.length ? `<span class="cnt">${m.tasks.length}</span>` : ""}</summary><div class="fold-body">
   <div class="counter" id="counter">
     ${m.unit ? `<div class="counter-top"><label for="cnt">Huidige stand (${UNIT[m.unit]})<input id="cnt" type="number" min="0" inputmode="numeric"></label><p class="muted">Vul je stand in en tik op Gedaan na elke klus. Alles blijft op dit apparaat.</p></div>` : `<p class="muted">Tik op Gedaan na een klus; de datum blijft bewaard op dit apparaat.</p>`}
     <div class="tasks" id="tasks">${m.tasks.map(t => `<div class="task"><span class="dot" aria-hidden="true"></span><div class="what"><b>${esc(t.t)}</b><small>${esc(intervalLabel(t, m))}${t.s ? " · " + esc(t.s) : ""}${t.v ? " · vuistregel" : ""}</small></div></div>`).join("")}</div>
   </div>
-</section>
-${m.weak.length ? `<section class="stack"><h2>Bekende zwakke plekken</h2><ul class="weak">${m.weak.map(w => `<li>${esc(w)}</li>`).join("")}</ul></section>` : ""}
-${m.parts.length ? `<section class="stack"><h2>Onderdelen en middelen</h2><div class="tbl"><table><thead><tr><th>Onderdeel</th><th>Specificatie</th></tr></thead><tbody>${m.parts.map(p => `<tr><td class="strong">${esc(p[0])}</td><td>${esc(p[1])}</td></tr>`).join("")}</tbody></table></div></section>` : ""}
+</div></details></section>
+${m.weak.length ? fold("Bekende zwakke plekken", `<ul class="weak">${m.weak.map(w => `<li>${esc(w)}</li>`).join("")}</ul>`, false, m.weak.length) : ""}
+${m.parts.length ? fold("Onderdelen en middelen", `<div class="tbl"><table><thead><tr><th>Onderdeel</th><th>Specificatie</th></tr></thead><tbody>${m.parts.map(p => `<tr><td class="strong">${esc(p[0])}</td><td>${esc(p[1])}</td></tr>`).join("")}</tbody></table></div>`, false, m.parts.length) : ""}
+${KB.some(a => a.cat === m.cat) ? fold("Uitleg in de kennisbank", `<ul class="kb-list">${KB.filter(a => a.cat === m.cat).map(a => `<li><a href="kennisbank-${a.id}.html">${esc(a.q)}</a></li>`).join("")}</ul>`, false, KB.filter(a => a.cat === m.cat).length) : ""}
 <section class="stack"><h2>Bronnen</h2>${srcList(m)}<p class="muted">Taken met "vuistregel" zijn richtlijnen, geen fabrieksvoorschrift.</p></section>`
   });
 }
@@ -228,6 +254,7 @@ for (const { m, f } of allCodes) {
     file: codeUrl(m, f),
     title: (() => { const br = m.brand.split("/").map(x => x.trim()); const d = br.length > 1 ? dev.replace(m.brand, br[0]) : dev; return `${d} foutcode ${codeShort(f)} – ${lc1(f.t, m)}: oorzaak + oplossing${br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""}`; })(),
     desc: `Foutcode ${f.code} op je ${dev}: ${f.t.toLowerCase()}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
+    extraHead: faqLd([[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${f.code}?`, f.steps.join(" ")], [`Moet er een monteur komen bij foutcode ${f.code}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: `Foutcode ${codeShort(f)}`, file: codeUrl(m, f) }],
     body: `
 <section class="stack">
@@ -248,7 +275,7 @@ ${costBlock(m, f)}
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Komt de code na deze stappen terug, bel dan je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
 </section>
-${others.length ? `<section class="stack"><h2>Andere foutcodes van ${esc(dev)}</h2><div class="results">${others.map(x => `<a href="${codeUrl(m, x)}"><span><span class="code">${esc(x.code)}</span> ${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div></section>` : ""}
+${others.length ? fold(`Andere foutcodes van ${esc(dev)}`, `<div class="results">${others.map(x => `<a href="${codeUrl(m, x)}"><span><span class="code">${esc(x.code)}</span> ${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div>`, false, others.length) : ""}
 <section class="stack"><p class="row"><a href="${m.id}.html">Alles over ${esc(fullName(m))}: onderhoud en storingen</a>${brandLinks(m) ? " · " + brandLinks(m) : ""}</p><h2>Bron</h2>${srcList(m)}</section>`
   });
 }
@@ -262,6 +289,7 @@ for (const m of MODELS) for (const f of m.faults.filter(x => !x.code)) {
     file: textUrl(m, f),
     title: am ? `${f.t}${f.t.toLowerCase().includes(c.one.toLowerCase()) ? "" : ` (${c.one})`}: oorzaak + oplossing, alle merken` : `${dev}: ${lc1(f.t, m)} (oorzaak + oplossing)`,
     desc: `${am ? "" : dev + ": "}${lc1(f.t, m)}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
+    extraHead: faqLd([[`${f.t}${am ? "" : ` (${dev})`}: wat is er aan de hand?`, f.cause], [`${f.t}: wat kun je zelf doen?`, f.steps.join(" ")], [`Moet er een monteur komen?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: f.t, file: textUrl(m, f) }],
     body: `
 <section class="stack">
@@ -282,7 +310,7 @@ ${costBlock(m, f)}
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Bel je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Laat het apparaat nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
 </section>
-${others.length ? `<section class="stack"><h2>Andere storingen: ${esc(fullName(m))}</h2><div class="results">${others.map(x => `<a href="${textUrl(m, x)}"><span>${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div></section>` : ""}
+${others.length ? fold(`Andere storingen: ${esc(fullName(m))}`, `<div class="results">${others.map(x => `<a href="${textUrl(m, x)}"><span>${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div>`, false, others.length) : ""}
 <section class="stack"><p class="row"><a href="${m.id}.html">Alles over ${esc(fullName(m))}</a>${brandLinks(m) ? " · " + brandLinks(m) : ""}</p><h2>Bron</h2>${srcList(m)}</section>`
   });
 }
@@ -306,8 +334,8 @@ for (const b of brandNames) {
     body: `
 <section class="stack"><span class="eyebrow">Merk</span><h1>${esc(b)} storingen en foutcodes</h1><p class="lead">Alle apparaten van ${esc(b)} op Foutcodezoeker: ${cats.join(", ")}. Kies je apparaat of zoek direct je foutcode.</p></section>
 <section class="stack"><h2>Apparaten</h2><div class="models">${ms.map(modelCard).join("")}</div></section>
-${codes.length ? `<section class="stack"><h2>Alle ${esc(b)}-foutcodes</h2><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Apparaat</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(catOf(m.cat).one)}</td></tr>`).join("")}</tbody></table></div></section>` : ""}
-${(() => { const tx = ms.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ m, f }))); return tx.length ? `<section class="stack"><h2>${esc(b)}-storingen zonder foutcode</h2><div class="results">${tx.map(({ m, f }) => `<a href="${textUrl(m, f)}"><span>${esc(f.t)}</span><span>${esc(catOf(m.cat).one)} · ${D[f.d][0]}</span></a>`).join("")}</div></section>` : ""; })()}`
+${codes.length ? fold(`Alle ${esc(b)}-foutcodes`, `<div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Apparaat</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(catOf(m.cat).one)}</td></tr>`).join("")}</tbody></table></div>`, false, codes.length) : ""}
+${(() => { const tx = ms.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ m, f }))); return tx.length ? fold(`${esc(b)}-storingen zonder foutcode`, `<div class="results">${tx.map(({ m, f }) => `<a href="${textUrl(m, f)}"><span>${esc(f.t)}</span><span>${esc(catOf(m.cat).one)} · ${D[f.d][0]}</span></a>`).join("")}</div>`, false, tx.length) : ""; })()}`
   });
 }
 layout({
@@ -329,7 +357,8 @@ layout({
   body: `
 <section class="stack"><span class="eyebrow">Overzicht</span><h1>Alle foutcodes</h1><p class="lead">Zoek je code op in de tabel, of gebruik het zoekveld. Elke code heeft een eigen pagina met oplossing.</p>
 <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek een foutcode" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div><div class="searchtip"><p><strong>Zo vind je direct de oplossing:</strong> typ het merk, het typenummer en de foutcode, bijvoorbeeld <span class="mono">Bosch WAT28400 E18</span>, en druk op Enter. Alleen merk en code werkt ook, zoals <span class="mono">Samsung 4C</span>. Een klacht kan ook: <span class="mono">vaatwasser stinkt</span>.</p><p class="muted">Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</p></div></section>
-${[...MODELS].sort((a, b) => (CATS.findIndex(c => c.id === a.cat) - CATS.findIndex(c => c.id === b.cat)) || a.brand.localeCompare(b.brand)).filter(m => m.faults.some(f => f.code)).map(m => `<section class="stack"><h2>${esc(deviceName(m))}</h2><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Zelf doen?</th></tr></thead><tbody>${m.faults.filter(f => f.code).map(f => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${pill(f.d)}</td></tr>`).join("")}</tbody></table></div></section>`).join("")}`
+<p class="muted">Of klap hieronder een categorie open.</p>
+${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id && m.faults.some(f => f.code)).sort((a, b) => a.brand.localeCompare(b.brand)); if (!ms.length) return ""; const n = ms.reduce((k, m) => k + m.faults.filter(f => f.code).length, 0); return fold(esc(c.name), ms.map(m => `<h3>${esc(deviceName(m))}</h3><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Zelf doen?</th></tr></thead><tbody>${m.faults.filter(f => f.code).map(f => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${pill(f.d)}</td></tr>`).join("")}</tbody></table></div>`).join(""), false, n); }).join("")}`
 });
 
 // ───────── Repareren of vervangen
@@ -343,7 +372,7 @@ layout({
   body: `
 <section class="stack"><span class="eyebrow">Rekenhulp</span><h1>Repareren of vervangen?</h1><p class="lead">Vergelijk de reparatiekosten met de waarde die je apparaat nog heeft. De standaardwaarden zijn vuistregels; vul je eigen bedragen in.</p></section>
 <form class="form" id="calc" novalidate>
-  <label for="cat">Soort apparaat<select id="cat">${CATS.map(c => `<option value="${c.id}">${c.name}</option>`).join("")}</select></label>
+  <label for="cat">Soort apparaat<select id="cat">${CATS.filter(c => LIFE[c.id]).map(c => `<option value="${c.id}">${c.name}</option>`).join("")}</select></label>
   <label for="age">Leeftijd (jaar)<input id="age" type="number" min="0" max="60" value="5" inputmode="numeric"></label>
   <label for="life">Verwachte levensduur (jaar)<input id="life" type="number" min="1" max="60" value="8" inputmode="numeric"></label>
   <label for="nieuw">Prijs nieuw vergelijkbaar (€)<input id="nieuw" type="number" min="0" value="500" inputmode="numeric"></label>
@@ -422,7 +451,7 @@ layout({
     body: `
 <section class="stack"><span class="eyebrow">Lampjes, symbolen en piepjes</span><h1>Knipperend lampje of piepje?</h1><p class="lead">Veel apparaten tonen geen code, maar een knipperend lampje, een symbool of een reeks piepjes. Tel hoe vaak het knippert en kijk welke kleur het heeft. Zoek daarna hieronder je apparaat, of typ bijvoorbeeld <span class="mono">Sonos lampje oranje</span> in de zoekbalk.</p>
 <div class="search"><input id="q" type="search" placeholder="Bijv. Otolift piept of Truma lampje" aria-label="Zoek een lampje of storing" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div></section>
-${byCat.map(({ c, list }) => `<section class="stack"><h2>${esc(c.name)}</h2><div class="results">${list.map(({ m, f }) => `<a href="${f.code ? codeUrl(m, f) : textUrl(m, f)}"><span>${f.code ? `<span class="code">${esc(f.code)}</span> ` : ""}${esc(f.t)}</span><span>${esc(fullName(m))} · ${D[f.d][0]}</span></a>`).join("")}</div></section>`).join("")}`
+${byCat.map(({ c, list }) => fold(esc(c.name), `<div class="results">${list.map(({ m, f }) => `<a href="${f.code ? codeUrl(m, f) : textUrl(m, f)}"><span>${f.code ? `<span class="code">${esc(f.code)}</span> ` : ""}${esc(f.t)}</span><span>${esc(fullName(m))} · ${D[f.d][0]}</span></a>`).join("")}</div>`, false, list.length)).join("")}`
   });
 }
 
@@ -453,6 +482,35 @@ layout({
 // ───────── 404
 layout({ file: "404.html", title: "Pagina niet gevonden | Foutcodezoeker", desc: "Deze pagina bestaat niet.", body: `<section class="stack"><h1>Pagina niet gevonden</h1><p class="lead">Zoek je een foutcode? Typ hem hieronder.</p><div class="search"><input id="q" type="search" placeholder="Bijv. E24" aria-label="Zoek" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div><p><a href="index.html">Naar de homepage</a></p></section>` });
 
+// ───────── Kennisbank
+const kbCat = a => a.cat ? CATS.find(c => c.id === a.cat) : null;
+for (const a of KB) {
+  const file = `kennisbank-${a.id}.html`, url = `${SITE}/kennisbank-${a.id}`;
+  const art = `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.desc, inLanguage: "nl-NL", mainEntityOfPage: url, author: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, publisher: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, citation: a.src.map(([n, u]) => ({ "@type": "CreativeWork", name: n, url: u })) }).replace(/</g, "\\u003c")}</script>`;
+  const c = kbCat(a);
+  layout({
+    file, title: `${a.title} | Foutcodezoeker`, desc: a.desc,
+    crumbs: [{ name: "Kennisbank", file: "kennisbank.html" }, { name: a.q, file }],
+    extraHead: art + faqLd(a.faq),
+    body: `
+<section class="stack"><span class="eyebrow">Kennisbank${c ? " · " + esc(c.name) : ""}</span><h1>${esc(a.q)}</h1><p class="lead">${esc(a.lead)}</p></section>
+${a.safety ? `<div class="verdict v3"><strong>🔴 Direct gevaar?</strong><span>${esc(a.safety)}</span></div>` : ""}
+<article class="fault kb">${a.secs.map(([h, html]) => `<h2>${esc(h)}</h2>${html}`).join("\n")}</article>
+<section class="stack"><h2>Veelgestelde vragen</h2>${a.faq.map(([q, an]) => `<h3>${esc(q)}</h3><p>${esc(an)}</p>`).join("")}</section>
+<section class="stack"><h2>Lees ook</h2><ul class="kb-list">${a.rel.map(([u, t]) => `<li><a href="${u}">${esc(t)}</a></li>`).join("")}</ul></section>
+<section class="stack"><h2>Bron</h2><ul class="sources">${a.src.map(([n, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(n)}</a></li>`).join("")}</ul></section>`
+  });
+}
+layout({
+  file: "kennisbank.html",
+  title: `Kennisbank: uitleg over storingen, onderhoud en veiligheid | Foutcodezoeker`,
+  desc: `${KB.length} heldere uitlegartikelen met bronnen: cv-ketel druk, gaslucht, stroomstoring, rookmelders, koolmonoxide, omvormer, garantie en onderhoud van je apparaten.`,
+  crumbs: [{ name: "Kennisbank", file: "kennisbank.html" }],
+  body: `
+<section class="stack"><span class="eyebrow">Uitleg</span><h1>Kennisbank</h1><p class="lead">Antwoord op veelgestelde vragen over storingen, onderhoud en veiligheid in huis. Elk artikel noemt zijn bronnen.</p></section>
+${[...CATS.filter(c => KB.some(a => a.cat === c.id)), { id: null, name: "Algemeen" }].map(c => { const list = KB.filter(a => a.cat === c.id); return list.length ? `<section class="stack"><h2>${esc(c.name)}</h2><ul class="kb-cards">${list.map(a => `<li><a href="kennisbank-${a.id}.html"><strong>${esc(a.q)}</strong><span>${esc(a.desc)}</span></a></li>`).join("")}</ul></section>` : ""; }).join("\n")}`
+});
+
 // ───────── Zoekindex, sitemap, robots, favicon, assets
 // Bereiken als "2002-4301 t/m 2002-4500" uitschrijven, zodat elke losse code vindbaar is
 const rangeCodes = code => { const r = /^(\d{4})-(\d{4}) (?:t\/m|tot) \1-(\d{4})$/.exec(code); if (!r) return ""; const out = []; for (let i = +r[2]; i <= +r[3] && out.length < 1000; i++) out.push(`${r[1]}${String(i).padStart(4, "0")}`); return out.join(" "); };
@@ -461,11 +519,34 @@ const index = [
   ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${f.code} ${rangeCodes(f.code)} ${f.t} ${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).one} ${catOf(m.cat).name}` })),
   ...MODELS.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ t: f.t, s: fullName(m), u: textUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${f.t} ${m.brand} ${m.name}` }))),
   ...CATS.map(c => ({ t: c.name, s: "Categorie", u: `${c.id}.html`, k: c.name })),
+  ...KB.map(a => ({ t: a.q, s: "Kennisbank", u: `kennisbank-${a.id}.html`, k: `${a.q} ${a.title} ${a.desc} kennisbank uitleg` })),
   ...brandNames.map(b => ({ t: `${b} storingen en foutcodes`, s: "Merk", u: brandUrl(b), k: `${b} merk storing foutcode` }))
 ];
 fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(index)};`);
-fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc></url>`).join("\n")}\n</urlset>\n`);
+fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+fs.writeFileSync(path.join(OUT, "llms.txt"), `# Foutcodezoeker
+
+> Foutcodezoeker (${SITE}) legt foutcodes, knipperende lampjes en storingen van apparaten uit in gewoon Nederlands, per merk en model. Elke pagina geeft de betekenis, wat je zelf kunt doen, wanneer je een specialist belt en (waar bekend) wat een reparatie gemiddeld kost. Alle informatie komt uit een genoemde bron, zoals de handleiding of supportpagina van de fabrikant; de bron staat onderaan elke pagina.
+
+Taal: Nederlands. Contact: info@foutcodezoeker.nl. Gemaakt door Erik.
+
+## Overzichten
+- [Alle foutcodes](${SITE}/foutcodes): alle codes per categorie
+- [Knipperende lampjes en piepjes](${SITE}/knipperende-lampjes)
+- [Eerste hulp bij storingen](${SITE}/eerste-hulp-bij-storingen)
+- [Kennisbank](${SITE}/kennisbank): uitlegartikelen met bronnen
+${KB.map(a => `  - [${a.q}](${SITE}/kennisbank-${a.id})`).join("\n")}
+- [Alle merken](${SITE}/merken)
+- [Repareren of vervangen?](${SITE}/repareren-of-vervangen)
+- [Recht op reparatie](${SITE}/recht-op-reparatie)
+
+## Categorieën
+${CATS.map(c => `- [${c.name}](${SITE}/${c.id}): ${c.intro}`).join("\n")}
+
+## Opbouw van een foutcodepagina
+Elke foutcode heeft een eigen pagina (${SITE}/foutcode-<model>-<code>) met: een inschatting (zelf op te lossen / voorzichtig zelf proberen / bel een monteur), wat er aan de hand is, stappen om het zelf op te lossen, wanneer je een specialist belt en de bron.
+`);
 fs.writeFileSync(path.join(OUT, "favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>`);
 if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSync(path.join(__dirname, "static"))) fs.copyFileSync(path.join(__dirname, "static", f), path.join(OUT, f));
 for (const f of ["style.css", "app.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));

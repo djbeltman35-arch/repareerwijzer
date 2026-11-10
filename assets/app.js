@@ -9,7 +9,7 @@
 
   // Zoeken
   var q = document.getElementById("q"), res = document.getElementById("res");
-  if (q && res) {
+  {
     // Typenummer → apparaat, op basis van het begin van het typenummer per merk
     var TYPE = {
       bosch: [["wa", "wasmachine"], ["wt", "droger"], ["wq", "droger"], ["sm", "vaatwasser"], ["sb", "vaatwasser"], ["sp", "vaatwasser"], ["sr", "vaatwasser"], ["hb", "oven"], ["hr", "oven"], ["pi", "kookplaat"], ["pu", "kookplaat"], ["pv", "kookplaat"], ["px", "kookplaat"]],
@@ -53,6 +53,9 @@
       }
       return hits.sort(function (a, b) { return b[0] - a[0]; });
     };
+    window.fczSearch = search;
+  }
+  if (q && res) {
     var run = function () {
       var hits = search(q.value);
       if (!q.value.trim()) { res.innerHTML = ""; return; }
@@ -159,4 +162,116 @@
     var l0 = LIFE[$("cat").value] || [8, 500]; $("life").value = l0[0]; $("nieuw").value = l0[1];
     run2();
   }
+})();
+
+(function () {
+  if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js").catch(function () {}); });
+  var box = document.getElementById("installapp"); if (!box) return;
+  var btn = document.getElementById("installbtn"), txt = document.getElementById("installtxt"), ev = null;
+  var standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+  if (standalone) return;
+  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); ev = e; box.hidden = false; btn.hidden = false; });
+  btn && btn.addEventListener("click", function () { if (!ev) return; ev.prompt(); ev.userChoice.finally(function () { box.hidden = true; ev = null; }); });
+  if (/iphone|ipad|ipod/i.test(navigator.userAgent)) { box.hidden = false; txt.textContent = "Zet Foutcodezoeker op je beginscherm: tik in Safari op de deelknop en kies Zet op beginscherm."; }
+})();
+/* Terug-knop: ga terug in de geschiedenis als je van deze site komt, anders naar de bovenliggende pagina */
+(function () {
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-back]");
+    if (!a) return;
+    var ref = document.referrer;
+    try { if (ref && new URL(ref).host === location.host && history.length > 1) { e.preventDefault(); history.back(); } } catch (x) {}
+  });
+  /* Menu sluiten bij klik erbuiten of Escape */
+  var menu = document.querySelector("details.menu");
+  if (menu) {
+    document.addEventListener("click", function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") menu.open = false; });
+  }
+  /* Open een uitklapblok als de link ernaartoe verwijst */
+  if (location.hash) { var t = document.querySelector(location.hash.replace(/[^#\w-]/g, "")); var d = t && t.closest && t.closest("details"); if (d) d.open = true; }
+})();
+/* Zoekassistent (chat): zoekt in Foutcodezoeker en toont het antwoord van de best passende pagina. Geen AI, niets wordt verstuurd. */
+(function () {
+  "use strict";
+  var el = function (tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  var loading = null;
+  var ensureIndex = function () {
+    if (window.SEARCH) return Promise.resolve();
+    if (!loading) loading = new Promise(function (ok, fail) { var s = document.createElement("script"); s.src = "search.js"; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+    return loading;
+  };
+  var fab = el("button", "chat-fab"); fab.type = "button"; fab.setAttribute("aria-haspopup", "dialog"); fab.setAttribute("aria-expanded", "false");
+  fab.appendChild(el("span", "chat-fab-ico", "💬")); fab.appendChild(el("span", "chat-fab-txt", "Stel je vraag"));
+  var panel = null, log, input;
+  var add = function (who, node) { var b = el("div", "chat-msg " + who); if (typeof node === "string") b.textContent = node; else b.appendChild(node); log.appendChild(b); log.scrollTop = log.scrollHeight; return b; };
+  var link = function (href, text) { var a = el("a", null, text); a.href = href; return a; };
+  var SAFE = /(gaslucht|ruik.*gas|gas.*ruik|gaslek|koolmonoxide|\bco[- ]?(alarm|melder)\b|brand\b|rookontwikkeling)/i;
+  var answer = function (q) {
+    var wait = add("bot", "Even zoeken…");
+    ensureIndex().then(function () {
+      var STOP = /\b(mijn|m'n|ik|heb|hebben|een|de|het|die|dat|wat|is|er|aan|de|hand|geeft|geef|staat|toont|zie|melding|foutmelding|foutcode|code|fout|storing|probleem|met|op|van|bij|in|en|hoe|los|lossen|oplossen|doe|moet|kan|ik|wil|help|hulp|graag|gaat|niet|meer|nou|nu|weer|steeds|elke|keer|waarom|doet)\b/gi;
+      var qq = q.replace(STOP, " ").trim() || q;
+      var hits = (window.fczSearch ? window.fczSearch(qq) : []).slice(0, 6).map(function (h) { return h[1]; });
+      if (SAFE.test(q)) {
+        var w = el("div", "chat-warn"); w.textContent = "Ruik je gas? Gaskraan dicht, ramen open, geen schakelaars of vuur en bel 0800-9009. Bij brand of een koolmonoxide-alarm: direct naar buiten en bel 112.";
+        log.insertBefore(el("div", "chat-msg bot").appendChild(w).parentNode, wait);
+      }
+      if (!hits.length) {
+        wait.textContent = "";
+        wait.appendChild(el("p", null, "Daar vond ik niets over. Probeer het merk, het soort apparaat en de foutcode of het lampje, bijvoorbeeld “Bosch wasmachine E18” of “Truma lampje knippert”."));
+        var p = el("p"); p.appendChild(document.createTextNode("Of bekijk ")); p.appendChild(link("eerste-hulp-bij-storingen.html", "eerste hulp bij storingen")); p.appendChild(document.createTextNode(".")); wait.appendChild(p);
+        return;
+      }
+      var top = hits[0], rest = hits.slice(1, 4);
+      var others = function (box) {
+        if (!rest.length) return;
+        box.appendChild(el("p", "chat-sub", "Bedoel je misschien:"));
+        var ul = el("ul", "chat-list"); rest.forEach(function (d) { var li = el("li"); li.appendChild(link(d.u, (d.c ? d.c + " – " : "") + d.t)); li.appendChild(el("small", null, " · " + d.s)); ul.appendChild(li); }); box.appendChild(ul);
+      };
+      if (SAFE.test(q) || !/^(foutcode|storing|kennisbank)-/.test(top.u)) {
+        wait.textContent = "";
+        wait.appendChild(el("p", null, "Dit vond ik op Foutcodezoeker:"));
+        var ul = el("ul", "chat-list"); hits.slice(0, 5).forEach(function (d) { var li = el("li"); li.appendChild(link(d.u, (d.c ? d.c + " – " : "") + d.t)); li.appendChild(el("small", null, " · " + d.s)); ul.appendChild(li); }); wait.appendChild(ul);
+        return;
+      }
+      fetch(top.u, { credentials: "same-origin" }).then(function (r) { return r.text(); }).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        var art = doc.querySelector("article.fault"), v = doc.querySelector(".verdict strong");
+        var kb = /^kennisbank-/.test(top.u), cause = kb ? doc.querySelector(".lead") : art && art.querySelector("p"), steps = art && !kb ? Array.prototype.slice.call(art.querySelectorAll("ol li"), 0, 5) : [];
+        var src = doc.querySelector("ul.sources a");
+        wait.textContent = "";
+        wait.appendChild(el("p", "chat-title", (top.c ? top.c + " – " : "") + top.t + " (" + top.s + ")"));
+        if (v) wait.appendChild(el("p", "chat-verdict", v.textContent));
+        if (cause) wait.appendChild(el("p", null, cause.textContent));
+        if (steps.length) { wait.appendChild(el("p", "chat-sub", "Wat kun je zelf doen?")); var ol = el("ol"); steps.forEach(function (s) { ol.appendChild(el("li", null, s.textContent)); }); wait.appendChild(ol); }
+        var more = el("p"); more.appendChild(link(top.u, "Lees de hele uitleg →")); wait.appendChild(more);
+        if (src) wait.appendChild(el("p", "chat-src", "Bron: " + src.textContent));
+        others(wait);
+      }).catch(function () { wait.textContent = ""; var p = el("p"); p.appendChild(document.createTextNode("Ik vond: ")); p.appendChild(link(top.u, top.t)); wait.appendChild(p); others(wait); });
+    }).catch(function () { wait.textContent = "Het zoeken lukt nu niet. Controleer je internetverbinding en probeer het opnieuw."; });
+  };
+  var build = function () {
+    panel = el("div", "chat-panel"); panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Zoekassistent");
+    var head = el("div", "chat-head"); head.appendChild(el("strong", null, "Zoekassistent"));
+    var x = el("button", "chat-x", "×"); x.type = "button"; x.setAttribute("aria-label", "Sluiten"); x.addEventListener("click", function () { toggle(false); }); head.appendChild(x);
+    log = el("div", "chat-log"); log.setAttribute("aria-live", "polite");
+    var form = el("form", "chat-form"); input = el("input"); input.type = "text"; input.placeholder = "Bijv. Bosch wasmachine E18"; input.setAttribute("aria-label", "Je vraag"); input.autocomplete = "off";
+    var send = el("button", null, "Vraag"); send.type = "submit"; form.appendChild(input); form.appendChild(send);
+    form.addEventListener("submit", function (e) { e.preventDefault(); var v = input.value.trim(); if (!v) return; add("me", v); input.value = ""; answer(v); });
+    panel.appendChild(head); panel.appendChild(log); panel.appendChild(form);
+    panel.appendChild(el("p", "chat-note", "Ik zoek alleen in de gebronde pagina's van Foutcodezoeker. Niets wordt opgeslagen of verstuurd."));
+    document.body.appendChild(panel);
+    add("bot", "Hoi! Wat is er aan de hand? Typ het merk, het apparaat en de foutcode of wat je ziet, bijvoorbeeld “Bosch wasmachine E18” of “rookmelder piept elke minuut”.");
+    ensureIndex().catch(function () {});
+  };
+  var toggle = function (open) {
+    if (open && !panel) build();
+    if (!panel) return;
+    panel.classList.toggle("open", open); fab.setAttribute("aria-expanded", String(open)); fab.classList.toggle("hide", open);
+    if (open) setTimeout(function () { input.focus(); }, 50); else fab.focus();
+  };
+  fab.addEventListener("click", function () { toggle(true); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && panel && panel.classList.contains("open")) toggle(false); });
+  document.body.appendChild(fab);
 })();
