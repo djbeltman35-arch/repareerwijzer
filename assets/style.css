@@ -279,3 +279,6 @@ header.top{position:relative;z-index:58}
 .warn-ico{width:clamp(76px,22vw,150px);filter:drop-shadow(0 3px 3px rgba(0,0,0,.22)) drop-shadow(0 16px 14px rgba(0,0,0,.28));animation:warnfloat 4s ease-in-out infinite}
 @keyframes warnfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @media (prefers-reduced-motion:reduce){.warn-ico{animation:none}}
+.warn-ico{animation:warnblink 1.6s ease-in-out infinite}
+@keyframes warnblink{0%,45%,100%{opacity:1}60%,85%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.warn-ico{animation:none}}
