@@ -78,8 +78,8 @@ ${bc}${extraHead}
     <p class="menu-h">Categorieën</p><nav class="menu-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav>
   </div></details>
 </div></header>
+${pageNav ? `<div class="pagenav-bar"><div class="wrap">${pageNav}</div></div>` : ""}
 <main class="wrap">
-${pageNav}
 ${crumbHtml}
 ${body}
 </main>

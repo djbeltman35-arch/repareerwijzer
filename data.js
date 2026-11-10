@@ -5913,4 +5913,50 @@ SRC.nin2002_4000 = ["Nintendo – Error Codes 2002-4000 to 2002-4263 (Engels)", 
   sw.src.push("nin2002_4000");
   sw.faults.push(F("2002-4000 tot 2002-4263", "Fout tijdens gebruik (software of microSD)", 2, "Een fout tijdens het gebruik van de Switch. Nintendo noemt geen precieze oorzaak per code; vaak heeft het te maken met de software of de microSD-kaart.", ["Werk de console bij naar de nieuwste systeemversie.", "Controleer de laatst gebruikte software op beschadigde gegevens.", "Gebruik je een microSD-kaart? Zet eerst je screenshots op een computer en formatteer dan de kaart. Helpt het niet, probeer een andere kaart.", "Nog steeds? Zet de console uit, haal de microSD-kaart eruit en gebruik de Switch zo. Gebeurde het in een game: verwijder die en download hem opnieuw naar het systeemgeheugen.", "Blijft de fout? Dan moet de console gerepareerd worden."]));
 }
+SRC.hMegane2 = ["HELLA Tech World – Renault Megane 2: defective pressure sensor (Engels)", "https://www.hella.com/techworld/us/bi/renault-megane-2-defective-pressure-sensor/"];
+SRC.hMegane4 = ["HELLA Tech World – Renault Megane IV: vibrations and noises (Engels)", "https://www.hella.com/techworld/us/bi/renault-megane-iv-vibration-noise-while-car-is-being-driven/"];
+MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: bekende storingen", dev: "Megane", cat: "auto",
+  years: "Megane 2 (2005-2009, 1.6i K4M 762), Megane IV automaat (DW5)", unit: null,
+  also: "Renault Megane slechte acceleratie, Megane hapert koud, Megane IV trillingen, rammelen vooras, Kadjar, Espace V, Talisman automaat",
+  intro: "Twee bekende storingen bij de Renault Megane, beschreven door HELLA voor garages. Laat de reparatie doen door een garage en noem deze oorzaak, dan weten ze waar ze moeten zoeken.",
+  weak: [], parts: [], tasks: [], src: ["hMegane2", "hMegane4"],
+  faults: [
+    N("Megane 2: motor hapert of trekt slecht op, vooral koud", 3, "Bij de Megane 2 (2005-2009, 1.6i 83 kW, motorcode K4M 762) delen de druksensor van de airco en de sensor van het gaspedaal hun voedingsspanning. Bij kortsluiting in de airco-druksensor raakt de voeding van de gaspedaalsensor verstoord.", ["Laat een garage de voedingsspanning van beide sensoren controleren.", "Pas daarna wordt zo nodig de airco-druksensor getest of vervangen."]),
+    N("Megane IV automaat: trillingen en rammelen bij de vooras", 3, "Te weinig olie in de automatische versnellingsbak (code DW5). Dit geldt ook voor de Espace V, Kadjar, Megane IV Grandtour en Talisman met deze automaat.", ["Laat een garage de olie van de automaat bijvullen en de bak spoelen.", "De software van de versnellingsbak wordt daarna bijgewerkt en er volgt een proefrit."])
+  ] });
+(() => {
+  const H = (k, t, u) => { SRC[k] = ["HELLA Tech World – " + t + " (Engels)", u]; return k; };
+  const G = "Laat een garage de foutcode uitlezen en het probleem verhelpen; noem deze oorzaak, dan weten ze waar ze moeten zoeken.";
+  const M = (id, brand, name, dev, years, also, intro, src, faults) => MODELS.push({ id, brand, name, dev, cat: "auto", years, unit: null, also, intro, weak: [], parts: [], tasks: [], src, faults });
+  M("toyota-aygo-storingen", "Toyota", "Aygo: bekende storingen", "Aygo", "Aygo 2005-2012 (1.0i 1KR-FE)", "Toyota Aygo motorlampje, Aygo hapert, Aygo start slecht, Aygo airbaglampje, P0300, P0420, B1000",
+    "Bekende storingen bij de Toyota Aygo van de eerste generatie, beschreven door HELLA voor garages.",
+    [H("hAygoMis", "Toyota Aygo misfire, engine starts poorly", "https://www.hella.com/techworld/uk/bi/toyota-aygo-misfire-engine-starts-poorly/"), H("hAygoAirbag", "Toyota Aygo airbag control lamp lights up", "https://www.hella.com/techworld/uk/bi/toyota-aygo-airbag-control-lamp-lights-up/")],
+    [F("P0300 / P0301 / P0302 / P0303 / P0420", "Motorlampje, overslaan en slecht starten", 3, "Bij de Aygo 1.0i (2005-2012) zorgen olie-koolaanslag op de bougies vaak voor overslaan (P0300-P0303) of een katalysatormelding (P0420).", [G, "De garage controleert eerst katalysator en lambdasonde, daarna de compressie bij het vervangen van de bougies.", "Laat ook controleren of de juiste motorolie wordt gebruikt."]),
+     F("B1000", "Airbaglampje blijft branden", 3, "Bij de Aygo (2005-2010) staan er crashgegevens in de airbagregeleenheid die niet te wissen zijn, of de regeleenheid heeft een storing.", [G, "Voordat de regeleenheid (midden in de console, voor de pook) wordt vervangen, moeten stekker, bedrading en zekering van het airbagcircuit worden gecontroleerd."])]);
+  M("skoda-octavia-storingen", "Skoda", "Octavia 2.0 TDI: start niet", "Octavia", "Octavia 2.0 TDI (motorcode BMN) vanaf april 2006", "Skoda Octavia start niet, P1517, P2146, injector kortsluiting",
+    "Bekende storing bij de Skoda Octavia 2.0 TDI (BMN), vaak bij meer dan 100.000 km.",
+    [H("hOctavia", "Skoda Octavia vehicle not starting up", "https://www.hella.com/techworld/uk/bi/skoda-octavia-vehicle-not-starting-up/")],
+    [F("P1517 / P2146", "Auto start niet (injector)", 3, "Waarschijnlijk kortsluiting in een injector. Vaak bij meer dan 100.000 km.", [G, "De defecte injector wordt vervangen en de kabelboom gecontroleerd. Injectoren met hetzelfde codenummer kunnen hierna ook uitvallen."])]);
+  M("vw-polo-seat-ibiza-tdi-storingen", "Volkswagen / Seat", "Polo 6R/6C en Ibiza 6J 1.6 TDI: motorlampje", "Polo en Ibiza", "VW Polo 6R/6C en Seat Ibiza 6J met 1.6 TDI, vanaf 2009; Polo V (2011)", "VW Polo motorlampje, Seat Ibiza motorlampje, EGR-koeler, Polo kachel wordt niet warm",
+    "Bekende storingen bij de VW Polo en Seat Ibiza, beschreven door HELLA voor garages.",
+    [H("hPolo6R", "VW Polo 6R/6C engine warning light comes on", "https://www.hella.com/techworld/us/bi/vw-polo-6r-6c-engine-warning-light-comes-on/"), H("hIbiza6J", "Seat Ibiza 6J engine warning light comes on", "https://www.hella.com/techworld/za/bi/seat-ibiza-6j-engine-warning-light-comes-on/"), H("hPoloHeat", "VW Polo V reduced heater power", "https://www.hella.com/techworld/us/bi/vw-polo-v-reduced-heater-power/")],
+    [N("Motorlampje brandt (EGR-storing, 1.6 TDI)", 3, "Wijst het foutgeheugen op de uitlaatgasrecirculatie (EGR), dan kan de EGR-koeler defect zijn: koolaanslag, een kapotte vacuümcel, een stellmotor die niet goed werkt, of een lek.", [G, "De garage controleert of de stelmotor en de vacuümcel soepel bewegen."]),
+     N("Polo V: kachel wordt niet goed warm", 2, "Een verkeerde verhouding water en antivries in de koelvloeistof.", ["Laat de koelvloeistof controleren: die moet beschermen tot -25 à -30 °C.", "Klopt het niet, dan wordt de koelvloeistof (bij koude motor) afgetapt, opnieuw in de juiste verhouding gevuld en ontlucht."])]);
+  M("kia-ceed-airbaglampje", "Kia", "Cee'd: airbaglampje brandt", "Cee'd", "Cee'd hatchback", "Kia Ceed airbaglampje, B1353, B2500",
+    "Bekende storing bij de Kia Cee'd, beschreven door HELLA voor garages.",
+    [H("hCeed", "Kia Cee'd airbag malfunction indicator light is lit", "https://www.hella.com/techworld/us/bi/kia-cee-d-airbag-malfunction-indicator-light-is-lit/")],
+    [F("B1353 / B2500", "Airbaglampje brandt", 3, "Een slechte stekkerverbinding: de stekker van de kabelboom zit niet helemaal vast op de airbagregeleenheid (onder de middenarmsteun).", [G, "De garage controleert de stekker en vervangt hem zo nodig. Werk nooit zelf aan het airbagsysteem."])]);
+  M("volvo-v70-storingen", "Volvo", "V70 2.0 diesel: vermogensverlies en fluiten", "V70", "V70 (BW) 2007-2015, 2.0 diesel", "Volvo V70 motorlampje, vermogensverlies, fluitend geluid, intercoolerslang",
+    "Bekende storing bij de Volvo V70 diesel, beschreven door HELLA voor garages.",
+    [H("hV70", "Volvo V70 engine warning light illuminates", "https://www.hella.com/techworld/us/bi/volvo-v70-engine-warning-light-illuminates/")],
+    [N("Minder vermogen, fluiten bij optrekken en motorlampje", 3, "Een losse of niet goed vastgezette slang aan de intercooler (uitlaatzijde).", ["Laat een garage de slang demonteren, het contactvlak schoonmaken, een butylrubberstrip aanbrengen en de slang met een nieuwe klem vastzetten."])]);
+  M("bmw-3-serie-kentekenverlichting", "BMW", "3-serie E90, E91, E93: kentekenverlichting werkt niet", "3-serie", "E90, E91, E93", "BMW kentekenverlichting werkt niet, FRM, voetruimtemodule",
+    "Bekende storing bij de BMW 3-serie, beschreven door HELLA voor garages.",
+    [H("hE90", "BMW 3 series E90, E91, E93 license plate light failure", "https://www.hella.com/techworld/us/bi/bmw-3-series-e90-e91-e93-license-plate-light-failure/")],
+    [N("Kentekenverlichting werkt niet", 2, "Door een elektrisch defect schakelt de voetruimtemodule (FRM), die de buitenverlichting bewaakt, de stroom naar de kentekenverlichting uit.", ["Laat een garage het foutgeheugen uitlezen en het elektrische defect verhelpen.", "Daarna moet de FRM volgens de fabrieksinstructies worden gereset."])]);
+  M("vw-sharan-esp-lampje", "Volkswagen", "Sharan: ESP-lampje brandt", "Sharan", "Sharan met ESP, tot modeljaar 2008", "VW Sharan ESP-lampje, G200, dwarsversnellingssensor",
+    "Bekende storing bij de VW Sharan, beschreven door HELLA voor garages.",
+    [H("hSharan", "VW Sharan ESP lamp lights up", "https://www.hella.com/techworld/us/bi/vw-sharan-esp-lamp-lights-up/")],
+    [N("ESP-lampje brandt af en toe of continu", 3, "Waarschijnlijk een defecte dwarsversnellingssensor (G200) onder de bestuurdersstoel.", [G, "Na vervanging moet de sensor met een diagnoseapparaat worden gekalibreerd, anders gaat de foutmelding niet weg."])]);
+})();
 module.exports = { CATS, MODELS, SRC, COST };

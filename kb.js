@@ -904,6 +904,45 @@ const A = [
   ],
   src: [["Gemeente Den Haag – Afval scheiden: elektrische apparaten", "https://www.denhaag.nl/nl/afval/afval-scheiden-en-hergebruik/afval-scheiden-elektrische-apparaten/"]],
   rel: [["repareren-of-vervangen.html", "Repareren of vervangen?"], ["recht-op-reparatie.html", "Recht op reparatie"]]
+},
+{
+  id: "vaatwasser-stinkt",
+  cat: "vaatwassers",
+  q: "Waarom stinkt mijn vaatwasser?",
+  title: "Vaatwasser stinkt: oorzaken en zo krijg je hem weer fris",
+  desc: "Een stinkende vaatwasser komt meestal door etensresten en vet in het filter, de deurrubbers of de sproeiarmen, of door de afvoer. Zo los je het in zeven stappen op.",
+  lead: "Een vieze lucht uit de vaatwasser komt meestal door etensresten en vet in het filter, de deurrubbers of de sproeiarmen. Ook staand vocht of de afvoer kan de oorzaak zijn.",
+  secs: [
+    ["Oorzaken", `<ul><li>Etensresten, die ook voor een verstopping kunnen zorgen.</li><li>Vocht dat blijft staan als de machine een tijd niet is gebruikt.</li><li>Vet en vuil in de filters, deurranden en rubbers. Daar kan schimmel in groeien, die stinkt en de rubber kan aantasten.</li><li>Verstopte gaatjes in de sproeiarmen.</li><li>Een verstopte afvoerslang, of een aansluiting zonder zwanenhals, waardoor rioollucht omhoog komt.</li></ul>`],
+    ["Zo los je het op", `<ol><li>Heeft de machine stilgestaan? Laat de deur een tijdje open.</li><li>Haal de filters eruit, spoel ze onder de kraan en schrob vet weg met een borstel en wat afwasmiddel. Schep vuil water uit de filterbak en kijk of de pomp vrij is.</li><li>Neem de deurrubbers en de randen af met een doek en laat ze drogen.</li><li>Haal de sproeiarmen eruit, spoel ze af en prik verstopte gaatjes open met een cocktailprikker.</li><li>Controleer de afvoerslang op verstopping en kijk of er een zwanenhals is.</li><li>Draai het zelfreinigingsprogramma, of een leeg intensief programma met een vaatwasmachinereiniger.</li><li>Schraap voortaan etensresten van de borden. Afspoelen is niet nodig.</li></ol><p>Geurverdrijvers maskeren de lucht alleen, ze lossen de oorzaak niet op.</p>`]
+  ],
+  faq: [
+    ["Waarom ruikt mijn vaatwasser naar riool?", "Mogelijk door een verstopte afvoerslang, of omdat de aansluiting geen zwanenhals heeft, waardoor rioollucht omhoog komt."],
+    ["Hoe krijg je een stinkende vaatwasser weer fris?", "Maak de filters, deurrubbers en sproeiarmen schoon, controleer de afvoer en draai een leeg intensief programma met een vaatwasmachinereiniger."],
+    ["Helpt een geurverdrijver in de vaatwasser?", "Nee, die maskeert de lucht alleen. Je moet de oorzaak, zoals vet in het filter, wegnemen."]
+  ],
+  src: [["ID.nl – Mijn vaatwasser stinkt", "https://id.nl/huis-en-entertainment/koken-en-tafelen/keukenapparatuur/mijn-vaatwasser-stinkt"]],
+  rel: [["kennisbank-vaatwasser-onderhoud.html", "Vaatwasser onderhouden"], ["kennisbank-vaatwasser-pompt-niet-af.html", "Vaatwasser pompt niet af"], ["vaatwassers.html", "Alle vaatwassers en foutcodes"]]
+},
+{
+  id: "cv-ketel-levensduur-vervangen",
+  cat: "cv-ketels",
+  q: "Hoe lang gaat een cv-ketel mee, en wanneer vervang je hem?",
+  title: "Levensduur cv-ketel: 12 tot 20 jaar, en deze signalen wijzen op vervanging",
+  desc: "Een cv-ketel gaat gemiddeld 12 tot 20 jaar mee. Deze signalen wijzen erop dat hij aan vervanging toe is, en deze reparaties zijn juist geen reden om te vervangen.",
+  lead: "Een premium cv-ketel gaat gemiddeld 15 tot 20 jaar mee, een budgetmodel ongeveer 12 tot 15 jaar.",
+  secs: [
+    ["Signalen dat vervangen in zicht komt", `<ul><li><b>Leeftijd</b>: na ongeveer 15 jaar neemt de kans op storingen en een lager rendement elk jaar toe.</li><li><b>Lager rendement</b>: het rendement kan dalen van 90 à 95% naar 70% of minder. De ketel werkt dan nog, maar je energierekening stijgt.</li><li><b>Steeds kleine storingen</b>: lauw kraanwater, radiatoren die nauwelijks warm worden of een lekkende ketel.</li><li><b>Vaak uitval</b>: verwarming of warm water valt uit en resetten helpt maar even.</li><li><b>Vreemde geluiden</b>: meestal lucht, maar brommen of zoemen kan wijzen op een versleten pakking of trafo. Laat een vakman kijken.</li></ul>`],
+    ["Geen reden om te vervangen", `<p>Een kapot expansievat (gaat meestal zo'n 7 jaar mee) of een kapotte circulatiepomp (meestal 15 tot 20 jaar) is vaak goedkoop te repareren. Twijfel je? Gebruik de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.</p>`],
+    ["Wat zijn de alternatieven?", `<p>Bij een hybride warmtepomp doet de warmtepomp het grootste deel van de verwarming en springt de cv-ketel bij als het heel koud is. Is je huis goed geïsoleerd, dan kan ook een volledig elektrische warmtepomp. Kijk ook of je gemeente plannen of steun heeft voor aardgasvrije wijken.</p>`]
+  ],
+  faq: [
+    ["Hoe lang gaat een cv-ketel mee?", "Een premium ketel gemiddeld 15 tot 20 jaar, een budgetmodel ongeveer 12 tot 15 jaar."],
+    ["Wanneer moet je je cv-ketel vervangen?", "Als hij ouder is dan ongeveer 15 jaar en steeds vaker storingen geeft, uitvalt of minder rendement haalt."],
+    ["Moet de ketel vervangen worden als het expansievat kapot is?", "Nee, een kapot expansievat of een kapotte circulatiepomp is vaak goedkoop te repareren."]
+  ],
+  src: [["ID.nl – Wanneer moet je de cv-ketel vervangen?", "https://id.nl/energie-en-klimaat/klimaat-en-luchtkwaliteit/klimaatbeheersing/wanneer-moet-je-de-cv-ketel-vervangen"]],
+  rel: [["kennisbank-cv-ketel-onderhoud.html", "Hoe vaak moet een cv-ketel onderhouden worden?"], ["kennisbank-warmtepomp-zuinig-instellen.html", "Warmtepomp zuinig instellen"], ["cv-ketels.html", "Alle cv-ketels en foutcodes"]]
 }
 ];
 module.exports = { KB: A };

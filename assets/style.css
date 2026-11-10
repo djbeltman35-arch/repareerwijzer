@@ -259,3 +259,16 @@ body{padding-bottom:72px}
 .kb-cards a:hover{border-color:var(--accent,#f2b705)}
 .kb-cards span{color:#5f6b76;font-size:14px}
 .fault.kb ul{padding-left:20px}.fault.kb li{margin:4px 0}
+/* Terug en Home blijven altijd in beeld */
+.pagenav-bar{position:sticky;top:0;z-index:55;background:var(--bg);box-shadow:0 6px 8px -8px rgba(0,0,0,.35)}
+.pagenav-bar .pagenav{margin:0;padding-block:8px}
+@media print{.pagenav-bar{position:static;box-shadow:none}}
+header.top{position:relative;z-index:58}
+.eyebrow{background:var(--accent,#f2b705);color:var(--accent-ink,#1c2328)}.picker .eyebrow{background:transparent}
+.fault{border-left-color:var(--accent)}.block-link{border-color:var(--accent)}.fact b,.herostats b{color:var(--ink)}
+/* Duidelijkere schaduwen en een sierlijkere navigatiebalk */
+:root{--shadow:0 2px 4px rgba(20,30,40,.08),0 14px 30px -12px rgba(20,30,40,.38)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--shadow:0 2px 4px rgba(0,0,0,.4),0 14px 30px -12px rgba(0,0,0,.75)}}
+:root[data-theme="dark"]{--shadow:0 2px 4px rgba(0,0,0,.4),0 14px 30px -12px rgba(0,0,0,.75)}
+.pagenav-bar{background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);border-bottom:1px solid var(--line);box-shadow:0 8px 14px -12px rgba(20,30,40,.45)}
+.pagenav-bar .pagenav a{box-shadow:0 1px 2px rgba(20,30,40,.12)}
