@@ -401,6 +401,11 @@ function SEASONS_() { return [
 ]; }
 function seasonBlock() { const mo = new Date().getMonth() + 1; return SEASONS_().map(([id, months, title, links]) => `<section class="stack season" data-months="${months.join(",")}"${months.includes(mo) ? "" : " hidden"}><h2>${title}</h2><div class="chips">${links.map(([u, t]) => `<a href="${u}.html">${esc(t)}</a>`).join("")}</div></section>`).join(""); }
 
+// Echte stemmen uit GoatCounter (feedback.json, gemaakt door fetch-feedback.js); pas tonen vanaf 10 stemmen
+const FEEDBACK = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, "feedback.json"), "utf8")); } catch (e) { return {}; } })();
+function feedbackStat(file) { const e = FEEDBACK[file.replace(/\.html$/, "")]; if (!e) return ""; const tot = e.ja + e.nee; if (tot < 10) return "";
+  const pct = Math.round(100 * e.ja / tot), st = Object.entries(e.stap || {}).sort((a, b) => b[1] - a[1]), stTot = st.reduce((a, [, n]) => a + n, 0);
+  return `<p class="fbstat">👍 ${pct}% van de ${tot} bezoekers die stemden, zegt dat deze uitleg hielp.${stTot >= 5 ? ` Meest gekozen oplossing: stap ${st[0][0]} (${Math.round(100 * st[0][1] / stTot)}%).` : ""}</p>`; }
 function helpedBox(n = 0) { return `<div class="helped" role="group" aria-label="Feedback"><span>Heeft dit geholpen?</span><button type="button" data-v="ja">👍 Ja</button><button type="button" data-v="nee">👎 Nee</button>${n > 1 ? `<span class="helped-step" hidden>Met welke stap? ${Array.from({ length: Math.min(n, 6) }, (_, i) => `<button type="button" data-s="${i + 1}">${i + 1}</button>`).join(" ")}</span>` : ""}<span class="helped-thx" hidden>Bedankt voor je reactie!</span></div>`; }
 function printCard(m) {
   const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
@@ -472,7 +477,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
   ${kbForCode(f)}
-  ${helpedBox(f.steps.length)}
+  ${feedbackStat(codeUrl(m, f))}${helpedBox(f.steps.length)}
   <p class="meldlink muted"><small>Klopt er iets niet of mis je een code? <a href="foutcode-melden.html" data-meld>Meld het</a>.</small></p>
 </article>
 ${adBlock(m)}
