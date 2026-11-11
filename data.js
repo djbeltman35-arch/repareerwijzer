@@ -34,6 +34,7 @@ const SRC = {
   upwayStromer: ["Upway – Stromer foutcodes uitgelegd (Engels)", "https://en.upway.be/blogs/news/codes-d-erreur-stromer"],
   miScooterCodes: ["Xiaomi – foutcodes Electric Scooter 6 Pro (Engels)", "https://www.mi.com/global/support/article/KA-696936/"],
   intergasHreIv: ["Intergas – installatievoorschrift Kombi Kompakt HRE, §8.2 storingscodes", "https://www.intergas-verwarming.nl/app/uploads/2018/01/88557809-Installatievoorschrift-Kombi-Kompakt-HRE.pdf"],
+  cbLgDroog: ["Coolblue – storingen LG droogkast", "https://www.coolblue.be/nl/advies/hoe-verhelp-je-een-lg-droogkast-storing.html"],
   mieleDroog: ["Coolblue – storingen Miele droger", "https://www.coolblue.nl/advies/hoe-verhelp-je-een-miele-wasdroger-storing.html"],
   boschDroog: ["Coolblue – storingen Bosch droger", "https://www.coolblue.be/nl/advies/hoe-verhelp-je-zelf-een-bosch-droogkast-storing.html"],
   delonghi: ["Coolblue – foutmeldingen De'Longhi Dinamica en Magnifica", "https://www.coolblue.be/nl/advies/hoe-los-je-foutmeldingen-bij-de-delonghi-dinamica-en-magnifica-op.html"],
@@ -2664,8 +2665,14 @@ MODELS.push({ id: "lg-droger", brand: "LG", name: "Droger (warmtepomp en condens
     F("HS", "Vochtsensor", 1, "De vochtsensor werkt niet goed; de droger draait dan lang door.", ["Maak de sensorstrips onder het pluizenfilter schoon met een vochtige doek en laat ze drogen."]),
     F("PF", "Stroomstoring tijdens het programma", 1, "Vaak na een stroomuitval.", RS),
     F("tE1 / tE3 / tE4", "Temperatuursensor", 2, "Probleem met de temperatuursensor (thermistor).", RS),
-    F("CL", "Kinderslot aan (geen storing)", 1, "Het bedieningspaneel is vergrendeld.", ["Houd de knop Child Lock 3 seconden ingedrukt."])],
-  src: ["lgDroogUS"] }); }
+    F("CL", "Kinderslot aan (geen storing)", 1, "Het bedieningspaneel is vergrendeld.", ["Houd de knop Child Lock 3 seconden ingedrukt."]),
+    F("dE4", "Deurschakelaar wordt niet herkend", 2, "De detectie van de deurschakelaar werkt niet.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem terug.", "Blijft de code, haal de stekker 30 minuten eruit en start opnieuw; helpt dat niet, neem contact op met LG-service."]),
+    F("tE2", "Storing temperatuursensor", 2, "Een temperatuursensor werkt niet.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem terug.", "Blijft de code, haal de stekker 30 minuten eruit en start opnieuw; helpt dat niet, neem contact op met LG-service."]),
+    F("F1", "Temperatuur in de trommel te hoog", 1, "De luchtstroom is beperkt, meestal door een vol pluizenfilter of een vuile condensor.", ["Haal het pluizenfilter eruit, verwijder het grove stof en spoel het af.", "Condensdroger: haal de condensor eruit en spoel hem af.", "Warmtepompdroger: zuig de vaste condensor schoon met een ronde borstel."]),
+    F("LE1", "Motor is gestopt", 1, "Mogelijk zit er te veel wasgoed in de trommel.", ["Haal wat wasgoed uit de trommel.", "Haal de stekker 30 seconden uit het stopcontact en steek hem terug.", "Blijft de code, haal de stekker 30 minuten eruit en start opnieuw; helpt dat niet, neem contact op met LG-service."]),
+    F("LE2 / AE", "Compressor werkt niet", 2, "De compressor van de warmtepomp draait niet.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem terug.", "Blijft de code, haal de stekker 30 minuten eruit en start opnieuw; helpt dat niet, neem contact op met LG-service."]),
+    F("OE", "Storing afvoerpomp of ruimte te koud", 1, "De afvoerpomp heeft een storing, of de ruimte waar de droger staat is te koud.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem terug.", "Zet de droger in een ruimte die niet kouder wordt dan 5 °C.", "Blijft de code, haal de stekker 30 minuten eruit en start opnieuw; helpt dat niet, neem contact op met LG-service."])],
+  src: ["lgDroogUS", "cbLgDroog"] }); }
 Object.assign(SRC,{ ecodanGA: ["Alklima – Ecodan handleiding eindgebruiker (pdf)", "https://alklima.nl/service-en-support/downloads/bedieningshandleiding/ecodan-handleiding-eindgebruiker.pdf"], ecodanP1: ["Alklima kennisbank – P1-storing Ecodan", "https://kennisbank.alklima.nl/hc/nl/articles/37602867442321-P1-storing"] });
 MODELS.push({ id: "mitsubishi-ecodan", brand: "Mitsubishi Electric", name: "Ecodan warmtepomp", cat: "warmtepompen", years: "Alle bouwjaren", unit: null, also: "Hydrobox en cilinderunit",
   intro: "De Ecodan toont storingscodes op het display van de hydrobox of cilinderunit. Bij een draadloze thermostaat verschijnt een waarschuwingsdriehoek. De waterdruk hoort tussen 1,5 en 2 bar te liggen.", weak: ["Te lage waterdruk.", "Lege batterijen van de draadloze thermostaat."], parts: [],
