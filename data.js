@@ -10846,4 +10846,24 @@ Object.assign(SRC,{ pcJump: ["Portacon – handleiding BYOU JUMP garagedeuropene
       N("Accessoires (codeklavier) hebben geen stroom", 1, "De energiebesparende stand (ESA) schakelt de accessoires na ongeveer 10 seconden stilstand uit.", ["Laat de installateur ESA op OFF zetten als accessoires altijd stroom moeten hebben."]),
       N("Sluit niet vanzelf", 1, "Automatisch sluiten (TCA) staat uit.", ["Laat de installateur TCA aanzetten in het logicamenu."])], src: ["pcJ4esa", "pcJm"] });
 }
+
+Object.assign(SRC,{ pcBull: ["Portacon – handleiding Benincà BULL 10M / 15M / 20M schuifpoortopener (pdf)", "https://portacon.nl/files/index/download/id/1446716154"],
+  pcBen24: ["Portacon – handleiding Benincà BEN24 draaipoortopener (pdf)", "https://portacon.nl/files/index/download/id/1424782906"] });
+{ const PC = "Lukt het niet? Neem contact op met je installateur of met Portacon.";
+  MODELS.push(
+  { id: "beninca-bull", brand: "Benincà", name: "BULL 10M / 15M / 20M schuifpoortopener", dev: "schuifpoort", cat: "garagedeuren", years: "BULL 10M, 15M en 20M met besturing MATRIX / CP.BULL", unit: null, also: "Portacon, schuifpoort, hekopener, ERR1, ERR2, ERR3, ERR4",
+    intro: "De Benincà BULL is een schuifpoortopener met een besturing die foutcodes op een display toont. Werk niet zelf aan de 230 V-besturing.", weak: [], parts: [["Smeermiddel", "Agip GR MU EP/2"]], tasks: [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 12, t: "Onderhoudsbeurt door een vakman", v: 1 }],
+    faults: [
+      F("ERR1", "Fout op fotocel PHOT O", 2, "De fotocel die bij het openen bewaakt, geeft een fout.", ["Kijk of er niets tussen de fotocellen staat en maak de lensjes schoon.", "Controleer of de fotocellen recht tegenover elkaar staan.", PC]),
+      F("ERR2", "Fout op fotocel PHOT C", 2, "De fotocel die bij het sluiten bewaakt, geeft een fout.", ["Kijk of er niets tussen de fotocellen staat en maak de lensjes schoon.", "Controleer of de fotocellen recht tegenover elkaar staan.", PC]),
+      F("ERR3", "Encoderfout", 3, "De encoder, die de positie van de poort meet, geeft een fout. Volgens de handleiding hoort hierbij een controle van zekering F3.", ["Laat je installateur de encoder en zekering F3 controleren."]),
+      F("ERR4", "TRIAC-fout", 3, "Een fout in de elektronica van de besturing.", ["Niet zelf repareren: neem contact op met je installateur."])], src: ["pcBull"] },
+  { id: "beninca-ben24", brand: "Benincà", name: "BEN24 draaipoortopener", dev: "draaipoort", cat: "garagedeuren", years: "BEN24 met besturing CP.BN (en accukaart BN.CB)", unit: null, also: "Portacon, draaipoort, knikarm, hekopener, ERR, THRM",
+    intro: "De Benincà BEN24 is een draaipoortopener met knikarm. De besturing toont meldingen op een display en de optionele accukaart heeft een groen en rood lampje.", weak: [], parts: [], tasks: [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 6, t: "Fotocellen en andere beveiligingen controleren", v: 1 }],
+    faults: [
+      F("ERR", "Inleren (autoset) mislukt", 2, "Tijdens het inleren werd een ingang actief (fotocel, stop, voetgangersopening of startknop), of een afstandsbediening kon niet worden opgeslagen.", ["Zorg dat niemand de poort bedient en dat er niets tussen de fotocellen staat.", "Laat het inleren opnieuw doen.", PC]),
+      F("THRM", "Thermische beveiliging aangesproken", 1, "De motor is te warm geworden, meestal na veel bewegingen achter elkaar.", ["Laat de motor afkoelen en probeer het later opnieuw.", "Gebeurt het vaak? " + PC]),
+      N("Rood lampje op de accukaart brandt", 1, "De stroom is uitgevallen en de poort werkt op de accu's.", ["Controleer of er stroom is en of de groep niet is uitgeschakeld."]),
+      N("Beide lampjes op de accukaart zijn uit", 2, "Er is geen netstroom en de accu's zijn leeg.", ["Herstel de stroom; de accu's laden daarna weer op (groen lampje).", "Ontgrendel de poort als je er nu doorheen moet."])], src: ["pcBen24"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
