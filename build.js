@@ -407,12 +407,13 @@ for (const m of MODELS) for (const f of m.faults.filter(x => !x.code)) {
     file: textUrl(m, f),
     title: am ? `${f.t}${f.t.toLowerCase().includes(c.one.toLowerCase()) ? "" : ` (${c.one})`}: oorzaak + oplossing, alle merken` : `${dev}: ${lc1(f.t, m)} (oorzaak + oplossing)`,
     desc: `${am ? "" : dev + ": "}${lc1(f.t, m)}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
-    extraHead: faqLd([[`${f.t}${am ? "" : ` (${dev})`}: wat is er aan de hand?`, f.cause], [`${f.t}: wat kun je zelf doen?`, f.steps.join(" ")], [`Moet er een monteur komen?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]),
+    extraHead: faqLd([[`${f.t}${am ? "" : ` (${dev})`}: wat is er aan de hand?`, f.cause], [`${f.t}: wat kun je zelf doen?`, f.steps.join(" ")], [`Moet er een monteur komen?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]) + howtoLd(f.t, f.steps),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: f.t, file: textUrl(m, f) }],
     body: `
 <section class="stack">
   <span class="eyebrow">${esc(am ? c.name : dev)} · storing</span>
   <h1>${esc(f.t)}</h1>
+  <p class="answer"><b>Kort antwoord:</b> ${esc(f.cause)} ${f.d === 1 ? "Dit los je meestal zelf op." : f.d === 2 ? "Je kunt het voorzichtig zelf proberen." : "Laat dit oplossen door een monteur of installateur."} Eerste stap: ${esc(lc1(f.steps[0], m).replace(/\.$/, ""))}.</p>
 </section>
 <div class="verdict v${f.d}"><strong>${D[f.d][0]}</strong><span>${VERDICT[f.d]}</span></div>
 ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
