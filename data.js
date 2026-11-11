@@ -9247,4 +9247,23 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("P0128", "Motor wordt niet warm genoeg (thermostaat)", 1, "De motor haalt zijn bedrijfstemperatuur niet, bijna altijd door een thermostaat die blijft openstaan. Gevolg: slechte verwarming en een hoger verbruik.", ["Laat de thermostaat vervangen."])
   ]});
 })();
+(() => {
+  SRC.steWpm = ["Stiebel Eltron – WPM meldingenlijst V2.6 (pdf)", "https://www.stiebel-eltron.nl/content/dam/ste/nl/services/Downloads/Meldingenlijst_storingscodes/STIEBEL%20ELTRON%20WPM%20Meldcodelijst.pdf"];
+  const INST = "Laat dit nakijken door je installateur.";
+  MODELS.push({ id: "stiebel-eltron-wpm", brand: "Stiebel Eltron", name: "warmtepomp met WPM-regelaar", dev: "warmtepomp (WPM)", cat: "warmtepompen", years: "Warmtepompen met WPM, WPM CN of WPM International", unit: null, also: "Stiebel Eltron WPL, WPF, WWK, LWZ, warmtepomp storing, meldcode, WPM reset", intro: "De WPM-regelaar van Stiebel Eltron toont een meldcode van vijf cijfers. Hieronder staan de codes die je als bewoner het vaakst tegenkomt. De volledige lijst telt honderden codes; de meeste zijn alleen voor de installateur. Codes die met 5 beginnen betekenen dat dezelfde storing vaak voorkwam en de warmtepomp vergrendeld is: dan is een WPM-reset nodig na het oplossen van de oorzaak.", weak: [], parts: [], tasks: [{ m: 1, t: "Waterdruk van de installatie controleren", v: 1 }], src: ["steWpm"], faults: [
+    F("40481 / 30480", "Systeemdruk te laag", 1, "Drukverlies na het ontluchten, een defect of verkeerd ingesteld expansievat, of een lek.", ["Controleer de waterdruk en vul de installatie bij volgens de handleiding.", "Zakt de druk steeds weer, laat de installateur zoeken naar een lek of het expansievat controleren."]),
+    F("40482", "Systeemdruk te hoog", 2, "Het expansievat is defect of verkeerd gedimensioneerd.", [INST]),
+    F("10034", "Te weinig doorstroming (debietbewaking)", 2, "Het verschil tussen aanvoer en retour wijst op te weinig waterstroom.", ["Controleer of radiator- en vloerverwarmingskranen open staan.", INST]),
+    F("10004", "Hogedrukbeveiliging geschakeld", 2, "Te weinig doorstroming aan de verwarmingskant, of de kamertemperatuur of stooklijn staat te hoog.", ["Controleer of de kranen van radiatoren en vloerverwarming open staan.", "Verlaag eventueel de gewenste kamertemperatuur.", INST]),
+    F("10015", "Vorstbewaking tijdens ontdooien", 2, "Waterdebiet en watertemperatuur zijn te laag tijdens het ontdooien.", ["Controleer of de verwarmingskranen open staan.", INST]),
+    F("30172", "Vlotterschakelaar actief", 1, "De condensaatpomp of de condensafvoer werkt niet goed.", ["Controleer of de condensafvoer vrij is.", INST]),
+    F("30479", "Te weinig doorstroming voor de bijverwarming", 2, "De pomp is defect of het verwarmingscircuit staat niet ver genoeg open.", ["Zet de verwarmingskranen open.", INST]),
+    F("30483", "Bijverwarming zonder voeding", 2, "De veiligheidsthermostaat heeft ingegrepen of de zekering van de bijverwarming is gesprongen.", ["Controleer in de meterkast of de groep van de warmtepomp of bijverwarming is uitgeschakeld.", INST]),
+    F("10503 / 30503", "Gaswaarschuwing veiligheidsmodule", 3, "Mogelijk zit er koudemiddel in het verwarmingscircuit.", ["Ontlucht de radiatoren niet zelf.", "Neem direct contact op met je installateur."]),
+    F("20244 / 20245 / 20246", "Software-update mislukt", 1, "Korte stroomonderbreking of de microSD-kaart is tijdens de update verwijderd.", ["Laat de stroom aan staan en voer de update opnieuw uit.", INST]),
+    F("30111 / 30112 / 30113 / 30114", "Versieconflict in de software", 2, "De softwareversies van bedieningspaneel en regelaar passen niet bij elkaar.", ["Laat een software-update uitvoeren door je installateur."]),
+    F("30117", "Communicatie onderbroken", 2, "De verbinding tussen regelaar en warmtepomp is weg.", ["Controleer of de warmtepomp stroom heeft.", INST]),
+    F("50002 / 50004 / 50034", "Vergrendeling na herhaalde storing", 2, "Dezelfde storing kwam meerdere keren voor; de warmtepomp is vergrendeld.", ["Zoek de bijbehorende oorspronkelijke code (zonder de 5 vooraan) op en los die oorzaak op.", "Voer daarna een WPM-reset uit, of laat de installateur dat doen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
