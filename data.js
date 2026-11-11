@@ -11791,4 +11791,30 @@ Object.assign(SRC,{ mieleNlKoel: ["Miele – eerste hulp bij storingen koelen en
       N("Temperatuuralarm terwijl de deur dicht is", 2, "Bij een hoge buitentemperatuur en een automatische ontdooicyclus kan de alarmgrens worden overschreden.", ["Zet de temperatuur tijdelijk op de laagste waarde en neem contact op met Miele Service."])
     ]});
 }
+Object.assign(SRC,{ mieleNlWD: ["Miele – eerste hulp bij storingen was-droogcombinaties", "https://www.miele.nl/support/customer-assistance/was_droogcombinaties-841/alle"] });
+(m => { const SVC = "Dit kun je niet zelf verhelpen: maak een reparatie-afspraak bij Miele Service.", RE = "Blijft de storing? Neem contact op met Miele Service.";
+  const TOE = ["Draai de kraan open en start het programma opnieuw.", "Maak de zeef in de toevoerslang schoon: kraan dicht, slang losschroeven, rubbertje eruit en zeefje schoonmaken.", RE];
+  const AF = ["Het eind van de afvoerslang mag niet hoger dan 1 meter liggen.", "Haal knikken en lussen uit de slang en let later op het knikpunt; vervang de slang als hij beschadigd is.", "Maak het afvoerfilter schoon (pas op voor heet sop).", RE];
+  m.faults.push(
+    F("F10", "Watertoevoer geblokkeerd", 1, "De kraan is dicht of de zeef in de watertoevoer is vuil.", TOE),
+    F("F11", "Water wordt niet goed afgevoerd", 1, "De afvoerslang ligt te hoog of is geknikt, of het afvoerfilter is verstopt.", AF),
+    F("F16", "Te veel schuim", 1, "Te veel wasmiddel of washulpmiddel (zoals vlekverwijderaar), of een verkeerd programma.", ["Doseer minder wasmiddel en hulpmiddelen, afgestemd op waterhardheid en vervuiling.", "Kies een programma dat bij het wasgoed past."]),
+    F("F20", "Thermostop: ingestelde temperatuur niet op tijd bereikt", 1, "De machine pauzeert de resttijd tot de temperatuur bereikt is; daarna loopt het programma door.", ["Wacht; het programma gaat vanzelf verder.", RE]),
+    F("F37", "Was-droogcombinatie niet goed opgesteld", 1, "De machine staat niet waterpas of de afvoerslang hangt hoger dan 1 meter.", ["Zet de machine waterpas.", "Controleer de hoogte van de afvoerslang (maximaal 1 meter).", RE]),
+    F("F55", "Was na 180 minuten drogen nog niet droog", 1, "De was is te nat, de trommel te vol, of de kraan is dicht: voor het drogen is koelwater nodig.", ["Centrifugeer de was beter.", "Doe minder was in de trommel.", "Laat de kraan ook tijdens het drogen open.", RE]),
+    F("F56", "Laatste centrifuge onder 400 toeren door schuim", 1, "Te veel wasmiddel zorgde voor schuim.", ["Volg het doseeradvies van de wasmiddelfabrikant.", RE]),
+    F("F62", "Programmaknop tussen twee standen", 1, "De programmaknop staat tussen twee standen in.", ["Draai de knop precies op een programma.", RE]),
+    F("F138", "Water in de lekbak (Waterproof)", 2, "Door een lek is water in de bodem van de machine geregistreerd.", ["Haal de stekker eruit en draai de kraan dicht.", "Open de deur met de noodontgrendeling; pas op voor heet sop.", SVC]),
+    F("F210", "PowerWash-storing: filter en inspuiter controleren", 1, "De inspuiter boven in de deurrubber of het afvoerfilter is verstopt.", ["Haal pluis voorzichtig met je vingers uit de inspuiter boven in de deurrubber.", "Maak het afvoerfilter schoon; pas op voor heet water.", RE]),
+    F("F220", "Lekkage gemeld", 2, "De machine meldt een lek. Soms verschijnt de code zonder dat er echt een lek is.", ["Haal de stroom eraf en kijk of er water uit de machine is gelopen.", "Geen water: sluit de machine weer aan en start een programma. Werkt hij normaal, dan was het een vals alarm.", "Wel water of komt F220 terug: " + SVC]),
+    F("F398", "Omgevingstemperatuur te laag", 1, "De machine staat in een ruimte die kouder is dan 7 °C.", ["Zet de machine in een warmere ruimte.", "Haal de stroom minstens 2 minuten eraf en zet hem daarna weer aan."]),
+    F("F19", "Flowmeter werkt slecht", 3, "De flowmeter meet de watertoevoer niet goed.", [SVC]),
+    F("F29", "Storing in de stoomopwekker", 3, "De stoomopwekker werkt niet goed.", [SVC]),
+    F("F50 / F53 / F104", "Storing in de trommelaandrijving", 3, "De aandrijving van de trommel werkt niet goed.", [SVC]),
+    F("F63", "Storing in de waterwisselaar", 3, "De waterwisselaar werkt niet goed.", [SVC]),
+    F("F93", "Storing in de restvochtmeting", 3, "De elektronica die het restvocht meet, werkt niet goed.", [SVC]),
+    F("F103", "Storing in de Mbus-module", 3, "De Mbus-module werkt niet goed.", [SVC]),
+    N("Controlelampje Overbelading knippert", 1, "De trommel is te vol om goed te drogen; kwetsbaar textiel kan kreuken.", ["Houd je aan de maximale belading voor drogen (zie de gebruiksaanwijzing).", "Droog vochtige stukken na met een tijdprogramma."]),
+    N("Storingen door pluizen (lange programmaduur, thermostaat slaat af)", 1, "Bij het drogen blijven pluizen in de trommel en kuip achter.", ["Draai regelmatig het programma Pluizen uitspoelen (niet gebruiken om textiel te spoelen)."]));
+  m.src.push("mieleNlWD"); })(MODELS.find(m => m.id === "miele-was-droogcombinatie"));
 module.exports = { CATS, MODELS, SRC, COST };
