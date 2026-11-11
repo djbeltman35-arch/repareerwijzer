@@ -49,6 +49,7 @@ function intervalLabel(t, m) {
 }
 
 const fold = (title, inner, open = false, n = 0) => `<section class="stack"><details class="fold"${open ? " open" : ""}><summary><h2>${title}</h2>${n ? `<span class="cnt">${n}</span>` : ""}</summary><div class="fold-body">${inner}</div></details></section>`;
+const howtoLd = (name, steps) => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "HowTo", name, step: steps.map((t, i) => ({ "@type": "HowToStep", position: i + 1, text: t })) }).replace(/</g, "\\u003c")}</script>`;
 const faqLd = qs => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }).replace(/</g, "\\u003c")}</script>`;
 const clip = (t, n = 158) => { t = String(t).replace(/\s+/g, " ").trim(); if (t.length <= n) return t; const c = t.slice(0, n); return c.slice(0, c.lastIndexOf(" ")).replace(/[,;:–-]+$/, "") + "…"; };
 function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts = "" }) {
@@ -104,7 +105,7 @@ ${body}
   <details class="foot-fold"><summary>Alle categorieën (${CATS.length})</summary><nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav></details>
   <span>Foutcodezoeker · Gemaakt door Erik · info@foutcodezoeker.nl</span>
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
-  <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="disclaimer.html">Disclaimer</a></span>
+  <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="over-foutcodezoeker.html">Over Foutcodezoeker</a> · <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
 ${/id="(q|pm)"/.test(body) ? '<script src="search.js" defer></script>\n' : ""}<script src="app.js" defer></script>
 ${scripts}
@@ -356,12 +357,13 @@ for (const { m, f } of allCodes) {
     file: codeUrl(m, f),
     title: (() => { const br = m.brand.split("/").map(x => x.trim()); const d = br.length > 1 ? dev.replace(m.brand, br[0]) : dev; return `${d} foutcode ${codeShort(f)} – ${lc1(f.t, m)}: oorzaak + oplossing${br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""}`; })(),
     desc: `Foutcode ${f.code} op je ${dev}: ${f.t.toLowerCase()}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
-    extraHead: faqLd([[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${f.code}?`, f.steps.join(" ")], [`Moet er een monteur komen bij foutcode ${f.code}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]),
+    extraHead: faqLd([[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${f.code}?`, f.steps.join(" ")], [`Moet er een monteur komen bij foutcode ${f.code}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: `Foutcode ${codeShort(f)}`, file: codeUrl(m, f) }],
     body: `
 <section class="stack">
   <span class="eyebrow">${esc(dev)} · foutcode</span>
   <h1><span class="code big">${esc(f.code)}</span> ${esc(f.t)}</h1>
+  <p class="answer"><b>Kort antwoord:</b> foutcode ${esc(codeShort(f))} op een ${esc(m.brand === "Alle merken" ? dev.toLowerCase() : dev)} betekent: ${esc(lc1(f.t, m))}.${f.cause && f.cause !== f.t + "." ? " " + esc(f.cause) : ""} ${f.d === 1 ? "Dit los je meestal zelf op." : f.d === 2 ? "Je kunt het voorzichtig zelf proberen." : "Laat dit oplossen door een monteur of installateur."} Eerste stap: ${esc(lc1(f.steps[0], m).replace(/\.$/, ""))}.</p>
 </section>
 <div class="verdict v${f.d}"><strong>${D[f.d][0]}</strong><span>${VERDICT[f.d]}</span></div>
 ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
@@ -500,6 +502,30 @@ layout({
 <section class="stack"><h2>Veelgestelde vragen</h2>${RV_FAQ.map(([q, a]) => `<details class="fold"><summary><h3>${esc(q)}</h3></summary><div class="fold-body"><p>${esc(a)}</p></div></details>`).join("")}</section>`
 });
 
+
+// ───────── Over Foutcodezoeker (betrouwbaarheid en werkwijze)
+{ const srcCount = Object.keys(SRC).length;
+layout({
+  file: "over-foutcodezoeker.html",
+  title: "Over Foutcodezoeker: waar komt de informatie vandaan? | Foutcodezoeker",
+  desc: `Foutcodezoeker legt ${allCodes.length} foutcodes uit in gewoon Nederlands. Elke pagina noemt zijn bron: handleidingen en supportpagina's van fabrikanten en vakwinkels.`,
+  crumbs: [{ name: "Over Foutcodezoeker", file: "over-foutcodezoeker.html" }],
+  extraHead: `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Foutcodezoeker", url: `${SITE}/`, email: "info@foutcodezoeker.nl", founder: { "@type": "Person", name: "Erik" } })}</script>`,
+  body: `
+<section class="stack"><span class="eyebrow">Over ons</span><h1>Over Foutcodezoeker</h1>
+<p class="lead">Foutcodezoeker legt foutcodes en storingen uit in gewoon Nederlands, zodat je zelf kunt beoordelen of je een storing zelf oplost of een monteur nodig hebt. Gratis en zonder account.</p></section>
+<section class="stack"><h2>Waar komt de informatie vandaan?</h2>
+<p>Elke uitleg is gebaseerd op een bron die onderaan de pagina staat. Dat zijn vooral:</p>
+<ul><li>gebruiks-, installatie- en servicehandleidingen van fabrikanten;</li><li>supportpagina's van fabrikanten, zoals foutcodelijsten en self-service-artikelen;</li><li>uitleg van Nederlandse vakwinkels en reparateurs.</li></ul>
+<p>In totaal verwijst de site naar ${srcCount} bronnen. Staat er bij een code alleen een Engelstalige of oudere bron, dan zeggen we dat erbij. De stappen zijn herschreven in begrijpelijke taal; de betekenis van de code blijft die van de bron.</p></section>
+<section class="stack"><h2>Hoe lees je een pagina?</h2>
+<ul><li><b>🟢 Zelf op te lossen:</b> veilige stappen die iedereen kan doen, zoals een filter schoonmaken.</li><li><b>🟡 Voorzichtig zelf proberen:</b> stroom eraf en kraan dicht, en stop als je twijfelt.</li><li><b>🔴 Bel een monteur:</b> werk aan gas, koudemiddel, hoogspanning of elektronica laat je over aan een vakman.</li></ul></section>
+<section class="stack"><h2>Wie maakt Foutcodezoeker?</h2>
+<p>Foutcodezoeker is gemaakt door Erik, die ervan overtuigd is dat veel storingen met een beetje uitleg zelf op te lossen zijn. Dat scheelt geld en voorkomt dat goede apparaten bij het afval belanden. Zie ook <a href="recht-op-reparatie.html">je recht op reparatie</a>.</p>
+<p>Klopt er iets niet, of mis je een code? Mail naar <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a>. We passen het zo snel mogelijk aan.</p></section>
+<section class="stack"><h2>Onafhankelijk en eerlijk over advertenties</h2>
+<p>Foutcodezoeker is niet verbonden aan een fabrikant. Op sommige pagina's staan links naar winkels; die zijn altijd gemarkeerd als <b>Advertentie</b>. Koop je via zo'n link, dan krijgt Foutcodezoeker een kleine vergoeding. Dat heeft geen invloed op de uitleg en jij betaalt niets extra.</p></section>`
+}); }
 // ───────── Recht op reparatie
 layout({
   file: "recht-op-reparatie.html",

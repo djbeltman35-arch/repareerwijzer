@@ -343,3 +343,5 @@ header.top{position:relative;z-index:58}
 .rvcta small{display:block;color:var(--muted);font-size:14px}
 .rvcta .rvbtn{grid-column:2;justify-self:start;background:var(--steel);color:#fff;font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px;margin-top:4px}
 .rvcta:hover{border-color:var(--accent)}
+
+.answer{background:var(--surface);border-left:6px solid var(--accent);border-radius:4px;padding:12px 14px;margin:8px 0 0;font-size:16px}
