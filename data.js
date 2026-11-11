@@ -11599,4 +11599,36 @@ Object.assign(SRC,{ boschNlWas: ["Bosch – foutcodes en storingen oplossen wasm
     F("E26 / F26", "Storing in de druksensor", 3, "De druksensor die het waterniveau meet, werkt niet goed.", [SVC]),
     F("E28 / F28", "Doorstroomsensor defect", 3, "De sensor die meet hoeveel water er binnenkomt, is defect.", [SVC]));
   m.src.push("boschNlWas"); })(MODELS.find(m => m.id === "bosch-siemens-wasmachine"));
+Object.assign(SRC,{ mieleNlWas: ["Miele – eerste hulp bij storingen wasmachines", "https://www.miele.nl/support/customer-assistance/wasmachines-840/alle"] });
+(m => { const SVC = "Dit kun je niet zelf verhelpen: maak een reparatie-afspraak bij Miele Service.", RE = "Blijft de storing? Neem contact op met Miele Service.";
+  m.faults.push(
+    F("F1", "Kortsluiting in de temperatuurvoeler (water)", 3, "Kortsluiting in het circuit van de temperatuurvoeler voor verwarming en water.", [SVC]),
+    F("F2", "Storing in de temperatuurvoeler (water)", 3, "Storing in het circuit van de temperatuurvoeler voor verwarming en water.", [SVC]),
+    F("F3", "Kortsluiting in de temperatuurvoeler (verwarmingsregister)", 3, "Kortsluiting in het circuit van de temperatuurvoeler van het verwarmingsregister.", [SVC]),
+    F("F4", "Storing in de temperatuurvoeler (verwarmingsregister)", 3, "Storing in de temperatuurvoeler van het verwarmingsregister.", [SVC]),
+    F("F39", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+    F("F44", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+    F("F45", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+    F("F47", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+    F("F49", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+    F("F130", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+    F("F51", "Storing in de druksensor", 3, "De druksensor werkt niet goed.", [SVC]),
+    F("F64", "Storing in de magneetveldsensor", 3, "De magneetveldsensor werkt niet goed.", [SVC]),
+    F("F65", "Storing in de trommelverlichting", 3, "De verlichting in de trommel werkt niet goed.", [SVC]),
+    F("F81 / F83 / F105 / F106", "Storing in de stoomopwekker", 3, "De stoomopwekker werkt niet goed.", [SVC]),
+    F("F103", "Storing in de Mbus-module", 3, "De Mbus-module (communicatie) werkt niet goed.", [SVC]),
+    F("F104", "Storing in de trommelaandrijving", 3, "De aandrijving van de trommel werkt niet goed.", [SVC]),
+    F("F131", "Storing in de externe doseereenheid", 3, "De elektronica van de externe doseereenheid geeft een fout.", [SVC]),
+    F("F139", "Water in de externe doseereenheid", 3, "Er staat water in de behuizing van de externe doseereenheid.", [SVC]),
+    F("F140", "Waterstand externe doseereenheid te hoog", 3, "Het water in het toevoerreservoir van de externe doseereenheid staat te hoog.", [SVC]),
+    F("F199", "Verbinding met de XCI-box verbroken", 3, "De verbinding tussen wasmachine en XCI-box is gestoord.", [SVC]),
+    F("F242", "Communicatiefout touchscreen", 3, "Het touchscreen en de elektronica communiceren niet goed.", [SVC]),
+    F("F37", "Wasmachine staat niet waterpas of afvoer te hoog", 1, "De machine staat niet waterpas, of de afvoerslang hangt te hoog (maximaal 1 meter).", ["Zet de wasmachine waterpas (zie de gebruiksaanwijzing).", "Controleer hoe de afvoerslang hangt: niet hoger dan 1 meter.", RE]),
+    F("F41", "Storing in de elektronica (resetten)", 2, "De elektronica geeft een fout.", ["Zet de wasmachine uit en na ongeveer 10 seconden weer aan.", RE]),
+    F("F56", "Laatste centrifuge onder 400 toeren door schuim", 1, "Er was te veel schuim door te veel wasmiddel, waardoor de machine niet goed kon centrifugeren.", ["Volg het doseeradvies op de verpakking, afgestemd op waterhardheid en hoe vuil de was is.", RE]),
+    F("F62", "Programmaknop tussen twee standen", 1, "De programmakeuzeknop staat tussen twee standen in.", ["Draai de knop precies op een programma.", RE]),
+    F("F92", "Kiemvorming door steeds op lage temperatuur wassen", 1, "Als je steeds op lage temperaturen wast, kunnen zich kiemen vormen in de machine.", ["Draai voor de volgende was het programma Machine reinigen, of Katoen op de hoogste temperatuur.", RE]),
+    F("F252", "Deurcontacten vuil", 1, "De deurcontacten bij het scharnier zijn vuil.", ["Maak de deurcontacten bij het deurscharnier schoon.", RE]),
+    F("F373", "Lek bij het afvoerfilter", 1, "Er is een lek ontdekt bij het afvoerfilter, dat niet goed is vastgedraaid.", ["Draai de afvoerfilters stevig vast.", RE]));
+  m.src.push("mieleNlWas"); })(MODELS.find(m => m.id === "miele-wasmachine"));
 module.exports = { CATS, MODELS, SRC, COST };
