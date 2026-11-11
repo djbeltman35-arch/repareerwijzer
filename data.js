@@ -10932,7 +10932,7 @@ Object.assign(SRC,{ cameZlx24: ["CAME – installatiehandleiding besturing ZLX24
 
 Object.assign(SRC,{ faacE124: ["FAAC – handleiding besturing E124 (732557 rev. B, Engels, pdf)", "https://ismartgate.com/manuals/FAAC_E124_manual.pdf"] });
 { const INST = "Bel je installateur.";
-  MODELS.push({ id: "faac-e124", brand: "FAAC", name: "E124 besturing poortopener", dev: "poort", cat: "garagedeuren", years: "Besturing E124 (24V, onder meer bij FAAC 391, 415, S418 en 740)", unit: null, also: "FAAC draaipoort, schuifpoort, hekopener, foutcode 01, 02, 03, 15, 20, 40, lampje DL20",
+  MODELS.push({ id: "faac-e124", brand: "FAAC", name: "E124 besturing poortopener", dev: "poort", cat: "garagedeuren", years: "Besturing E124 (24V)", unit: null, also: "FAAC draaipoort, schuifpoort, hekopener, foutcode 01, 02, 03, 15, 20, 40, lampje DL20",
     intro: "Brandt lampje DL20 op de FAAC E124 continu, dan is er een fout en werkt de poort niet. Knippert DL20, dan is er een alarm maar werkt de poort nog. Druk tegelijk op + en − om het nummer op het display te zien.", weak: [], parts: [], tasks: [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 6, t: "Fotocellen controleren", v: 1 }, { m: 12, t: "Onderhoudsbeurt door een vakman", v: 1 }],
     faults: [
       F("01", "Printplaat defect", 3, "De besturing meldt een fout in de printplaat (DL20 brandt continu).", [INST]),
