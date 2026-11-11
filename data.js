@@ -12003,4 +12003,47 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("Lampjes gaan aan zodra de stekker erin gaat", 1, "Geen storing; dit is normaal.", ["Je hoeft geen monteur te bellen."])
     ]});
 }
+{ const SVC = "Komt de code terug? Boek een servicebezoek bij Indesit.";
+  const R2 = ["Haal de stroom 2 minuten van de oven (groep uit of stekker eruit) en zet hem weer aan.", SVC];
+  MODELS.push({ id: "indesit-oven", brand: "Indesit", name: "Oven (alle modellen)", cat: "ovens", years: "Indesit-inbouwovens, ook stoom- en pyrolyse-ovens", unit: null, also: "Indesit oven F07, Indesit oven F03, Indesit oven STOP, Indesit oven HYD",
+    intro: "Indesit-ovens tonen F-codes (F01 tot F68) of FxEy-codes zoals F1E1. De meeste verhelp je door de oven 2 minuten stroomloos te maken. Meldingen als STOP, IN en HYD zijn geen storing.",
+    weak: [], parts: [], tasks: [],
+    src: ["indesitNlFaq"], faults: [
+      F("F07", "Spanningspiek of -dip in het stroomnet", 1, "De oven beschermt zijn elektronica bij een te hoge of te lage netspanning.", ["Haal de stroom een paar minuten van de oven en zet hem weer aan.", "Laat bij herhaling de elektrische installatie in huis controleren."]),
+      F("F03", "Te hoge temperatuur", 1, "De oven meet een te hoge temperatuur.", ["Haal de stroom 10 minuten van de oven en sluit weer aan.", SVC]),
+      F("F04", "Stroomprobleem", 1, "Controleer eerst of er stroom in huis is.", ["Kijk of het licht in huis werkt.", ...R2]),
+      F("F12", "Stroomprobleem", 1, "Controleer eerst of er stroom in huis is.", ["Kijk of het licht in huis werkt.", ...R2]),
+      F("F13", "Installatieprobleem", 2, "Vaak bij een oven die in de laatste 30 dagen is geplaatst of verplaatst: mogelijk verkeerd aangesloten (valt niet onder de garantie).", ["Neem contact op met de installateur."]),
+      F("F26", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F01 / F02 / F05 / F06", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F08 / F09 / F10 / F11", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F14 / F15 / F16 / F17 / F18 / F19", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F20 / F21 / F23 / F24 / F25", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F27 / F29 / F56 / F67 / F68", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F01E3 / F2E1 / F3E0", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F4E1 / F4E4 / F5E0", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F6E0 / F6E1 / F6E4 / F6E6", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F1E1 / F1E4 / F1EA / F2E4 / F5E6", "Storing na spanningsuitval", 1, "Vaak na een stroomonderbreking.", R2),
+      F("FEE0 / FEE1 / FEE2 / FEE3 / FEE4 / FEE5 / FEE6", "Storing na spanningsuitval", 1, "Vaak na een stroomonderbreking.", R2),
+      F("F5E1", "Storing", 3, "Indesit geeft hiervoor geen oplossing die je zelf kunt doen.", ["Neem contact op met de Indesit-consumentenservice."]),
+      F("F0E8", "Tijdelijke storing", 1, "Kan een tijdelijke situatie zijn.", ["Haal de stroom meer dan 10 seconden eraf en sluit weer aan.", SVC]),
+      F("F3E3", "Kerntemperatuurvoeler niet goed aangesloten", 1, "De vleesthermometer (voedingssonde) zit niet goed in de aansluiting.", ["Controleer de aansluiting van de voeler.", "Blijft het? Neem contact op met een monteur."]),
+      F("F8E8", "Stoomfunctie start niet", 1, "Probleem met het stoomsysteem, vaak door kalk of verkeerd water.", ["Vul het laatje met schoon kraanwater (geen gedestilleerd water).", "Voer de reinigings-/ontkalkingsfunctie uit en herhaal die daarna met ontkalkingsmiddel.", "Wacht een paar minuten en probeer de stoomfunctie opnieuw.", SVC]),
+      F("FbE1", "Oven te heet (pizzaprogramma)", 1, "Geen defect: na een pizzaprogramma is de oven te heet en schakelt hij uit om af te koelen.", ["Laat de oven afkoelen; de melding verdwijnt vanzelf."]),
+      F("F125 / F400", "Temperatuur in Fahrenheit", 1, "Geen foutcode: het display toont de temperatuur in °F.", ["Zet de eenheid op °C volgens de gebruiksaanwijzing."]),
+      F("STOP", "Na een stroomstoring", 1, "Na een stroomonderbreking toont het display STOP, ook als de oven uit stond.", ["Druk 3 keer op de middelste knop om de oven opnieuw in te stellen."]),
+      F("IN", "Gerecht in de oven plaatsen", 1, "Geen storing: bij automatische programma's betekent IN dat je het gerecht in de oven moet zetten.", ["Zet het gerecht in de oven."]),
+      F("HYD", "Diamond Clean-reiniging", 1, "Geen storing: afhankelijk van het bouwjaar toont het display HYD of DC bij het programma Diamond Clean.", ["Het reinigingsprogramma werkt gewoon."]),
+      F("O--n / On", "Display vergrendeld (standby)", 1, "Na een tijd zonder gebruik vergrendelt het display.", ["Houd de knop << 5 seconden ingedrukt om te ontgrendelen; op dezelfde manier vergrendel je weer."]),
+      N("Melding 'Water vullen' (stoomoven) blijft staan", 1, "De sensor ziet het water niet, vaak door gedestilleerd of gezuiverd water.", ["Gebruik gewoon kraanwater (geleidbaarheid minstens 9,38 µS/cm).", "Laat het reservoir een paar keer leeglopen via de afvoerprocedure en vul het opnieuw met kraanwater.", "Leeglopen kan pas 4 uur na inschakelen of na het laatste gebruik."]),
+      N("Ontkalken start niet (stoomoven)", 1, "De oven moet eerst minstens 4 uur in standby staan zonder dat er een programma is gebruikt.", ["Start het ontkalken bijvoorbeeld 's ochtends vroeg.", "Volg de stappen op het display; het duurt ongeveer 3 uur. Ontkalken is nodig na ongeveer 25 stoombeurten."]),
+      N("Zandloper en 'neem contact op met het servicecentrum' na een stroomstoring", 1, "Normaal na een stroomuitval; de melding verdwijnt na ongeveer 30 seconden. Of de oven werkt zijn software bij via internet.", ["Wacht 30 seconden; bij een software-update tot ongeveer een uur.", "Blijft de melding staan? Neem contact op met een monteur."]),
+      N("Melding 'stroomuitval': datum en tijd instellen", 1, "Geen storing: er was een (korte) stroomonderbreking.", ["Sla het scherm over of stel datum en tijd opnieuw in. Met wifi gebeurt dat automatisch."]),
+      N("DEMO-stand: oven verwarmt niet", 1, "De demostand staat aan.", ["Haal de stroom 2 minuten eraf.", "Open de ovendeur en zet de stroom weer aan.", "Houd de terug-toets 5 seconden ingedrukt."]),
+      N("Display leeg of ECO", 1, "Geen storing: de oven staat in de energiebesparende standby.", ["Raak een toets aan of zie de gebruiksaanwijzing."]),
+      N("Streepjes in plaats van de kooktijd", 1, "Geen storing: bij Sixth Sense-programma's bepaalt de oven zelf wanneer het gerecht klaar is en toont hij de tijd pas aan het eind.", ["Open de deur niet; anders stopt het automatische programma."]),
+      N("Touchscreen reageert niet", 1, "Het scherm is vergrendeld.", ["Houd de knop << 5 seconden ingedrukt."]),
+      N("Geen piep aan het einde van de kooktijd", 1, "Niet alle ovens hebben een eindsignaal.", ["Kijk in de gebruiksaanwijzing van jouw model."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
