@@ -9323,4 +9323,13 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
   F("490", "Interne fout boordcomputer", 3, "De boordcomputer heeft een interne storing.", ["Laat de boordcomputer controleren door een Bosch-dealer."]),
   F("531 / 593", "Configuratiefout", 2, "De configuratie van het systeem klopt niet.", ["Herstart het systeem.", "Blijft de code, neem contact op met je Bosch-dealer."])
 ); })(MODELS.find(m => m.id === "bosch-ebike"));
+(() => { SRC.dsMieleWas = ["De Schouw Witgoed – Miele wasmachine storingen en foutcodes", "https://www.deschouwwitgoed.nl/wasmachine/miele-wasmachine-storingen-en-foutcodes"];
+const RS = "Reset: zet de machine uit, haal de stekker 30 seconden uit het stopcontact en start opnieuw.";
+(m => { m.faults.push(
+  F("F11", "Water wordt niet afgevoerd", 1, "Probleem met de waterafvoer, meestal een vol pompfilter of een geknikte afvoerslang.", ["Maak het pompfilter linksonder schoon; leg een handdoek en bakje klaar.", "Controleer of de afvoerslang niet geknikt of verstopt is.", RS]),
+  F("F34", "Deur vergrendelt niet", 1, "De deur sluit niet goed.", ["Controleer of de deur goed dichtgaat en er geen wasgoed tussen zit.", RS]),
+  F("F50", "Motorstoring", 3, "Storing in de motor.", ["Schakel een monteur in."]),
+  F("F55", "Programmatijd overschreden", 1, "Het programma duurde te lang.", [RS]),
+  F("F138", "Lekkage gedetecteerd (Waterproof)", 2, "Het lekbeveiligingssysteem heeft water op de bodemplaat gemeten.", ["Draai de kraan dicht en zet de machine uit.", "Neem contact op met de Miele-servicedienst."])
+); m.src.push("dsMieleWas"); })(MODELS.find(m => m.id === "miele-wasmachine")); })();
 module.exports = { CATS, MODELS, SRC, COST };
