@@ -274,4 +274,15 @@
   fab.addEventListener("click", function () { toggle(true); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && panel && panel.classList.contains("open")) toggle(false); });
   document.body.appendChild(fab);
+
+  // Home: snelzoek-chips en "alle apparaten"
+  (function () {
+    var qi = document.getElementById("q");
+    document.querySelectorAll(".chips a[data-q]").forEach(function (a) {
+      a.addEventListener("click", function (e) { if (!qi) return; e.preventDefault(); qi.value = a.getAttribute("data-q"); qi.dispatchEvent(new Event("input")); qi.focus(); });
+    });
+    var sb = document.getElementById("showcats"), g = document.querySelector(".cat-grid");
+    if (sb && g) sb.addEventListener("click", function () { var o = g.classList.toggle("open"); sb.textContent = o ? "Minder tonen" : sb.getAttribute("data-t"); });
+    if (sb) sb.setAttribute("data-t", sb.textContent);
+  })();
 })();

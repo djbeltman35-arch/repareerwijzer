@@ -103,6 +103,7 @@ const modelCard = m => { const codes = m.faults.filter(f => f.code).length; retu
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
+const CAT_ICON = { koffiemachines: "☕", wasmachines: "🧺", vaatwassers: "🍽️", drogers: "🌀", "cv-ketels": "🔥", ventilatie: "💨", warmtepompen: "♨️", airco: "❄️", koelkasten: "🧊", ovens: "🍕", kookplaten: "🍳", stofzuigers: "🧹", "e-bikes": "🚲", "3d-printers": "🖨️", tuin: "🌱", audio: "🔊", "kleine-apparaten": "🔌", laadpalen: "⚡", printers: "🖨️", laptops: "💻", smartphones: "📱", televisies: "📺", internet: "📶", spelcomputers: "🎮", zonnepanelen: "☀️", "camper-caravan": "🚐", spa: "🛁", garagedeuren: "🚪", auto: "🚗", trapliften: "♿", scooters: "🛴", kachels: "🪵", waterontharders: "💧", boten: "⛵", meterkast: "🔋", vrachtwagens: "🚚", gereedschap: "🛠️", "slim-huis": "🏠", rookmelders: "🚨" };
 const stats = { models: MODELS.length, codes: allCodes.length, faults: MODELS.reduce((n, m) => n + m.faults.length, 0) };
 layout({
   file: "index.html",
@@ -110,26 +111,52 @@ layout({
   extraHead: `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE}/#website`, url: `${SITE}/`, name: "Foutcodezoeker", inLanguage: "nl-NL", potentialAction: { "@type": "SearchAction", target: `${SITE}/?q={search_term_string}`, "query-input": "required name=search_term_string" } }, { "@type": "Organization", "@id": `${SITE}/#org`, name: "Foutcodezoeker", url: `${SITE}/`, logo: `${SITE}/icon-512.png`, email: "info@foutcodezoeker.nl" }] })}</script>`,
   desc: `Foutcodes en onderhoud per merk en model: koffiemachines, wasmachines, vaatwassers, e-bikes, 3D-printers en meer. ${stats.codes} foutcodes uitgelegd in gewoon Nederlands.`,
   body: `
-<section class="stack hero">
-  <span class="eyebrow">Foutcodes en storingen zelf oplossen</span>
-  <div class="hero-title"><h1>Wat betekent die foutcode?</h1><svg class="warn-ico" viewBox="0 0 64 58" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ef3b3b"/><stop offset="1" stop-color="#c41e1e"/></linearGradient></defs><path d="M28.5 4.2a4 4 0 0 1 7 0l26.9 46.6a4 4 0 0 1-3.5 6H5.1a4 4 0 0 1-3.5-6z" fill="url(#wg)" stroke="#a51717" stroke-width="1.2" stroke-linejoin="round"/><rect x="28.8" y="19" width="6.4" height="20" rx="3.2" fill="#fff"/><circle cx="32" cy="46.2" r="3.8" fill="#fff"/></svg></div>
-  <p class="lead">Foutcodes, storingen en onderhoud per merk en model, in gewoon Nederlands. Met wat je zelf kunt doen en wanneer je beter een specialist belt.</p>
-  <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
+<section class="stack hero hero2">
+  <span class="eyebrow">Gratis · zonder account</span>
+  <div class="hero-grid">
+    <h1>Wat betekent die foutcode?</h1>
+    <svg class="hero-art" viewBox="0 0 240 220" role="img" aria-label="Wasmachine met foutcode E18 op het display en een vergrootglas">
+      <rect x="34" y="14" width="150" height="190" rx="14" fill="#fff" stroke="#15191e" stroke-width="4"/>
+      <rect x="34" y="14" width="150" height="44" rx="14" fill="#e9ecef" stroke="#15191e" stroke-width="4"/>
+      <rect x="48" y="26" width="62" height="22" rx="4" fill="#15191e"/>
+      <text x="79" y="43" text-anchor="middle" font-family="JetBrains Mono,monospace" font-weight="700" font-size="17" fill="#ff4d4d" class="blink">E18</text>
+      <circle cx="132" cy="37" r="7" fill="#f6b800" stroke="#15191e" stroke-width="3"/>
+      <circle cx="158" cy="37" r="7" fill="#fff" stroke="#15191e" stroke-width="3"/>
+      <circle cx="109" cy="128" r="50" fill="#dfe7ee" stroke="#15191e" stroke-width="4"/>
+      <circle cx="109" cy="128" r="36" fill="#9cc3e6" stroke="#15191e" stroke-width="3"/>
+      <path d="M78 136c10-8 20 8 31 0s21-8 31 0v12a36 36 0 0 1-62 0z" fill="#5b9bd5"/>
+      <circle cx="176" cy="150" r="34" fill="#f6b800" fill-opacity=".25" stroke="#15191e" stroke-width="7"/>
+      <path d="M200 175l26 26" stroke="#15191e" stroke-width="12" stroke-linecap="round"/>
+      <path d="M163 150l9 9 17-19" fill="none" stroke="#15191e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <p class="lead">Typ merk en code. Je ziet meteen wat er mis is en wat je zelf kunt doen.</p>
+  <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
-  <div class="searchtip"><p><strong>Zo vind je direct de oplossing:</strong> typ het merk, het typenummer en de foutcode, bijvoorbeeld <span class="mono">Bosch WAT28400 E18</span>, en druk op Enter. Alleen merk en code werkt ook, zoals <span class="mono">Samsung 4C</span>. Een klacht kan ook: <span class="mono">vaatwasser stinkt</span>.</p><p class="muted">Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</p></div>
-  <div class="firstaid"><h2>🚑 Eerste hulp bij storingen</h2><ol>
-    <li><strong>Veiligheid eerst.</strong> Lekt er water? Draai de kraan dicht en haal de stekker eruit. Ruik je gas? Gaskraan dicht, ramen open, geen vuur of schakelaars en bel 0800-9009.</li>
-    <li><strong>Noteer de code en het typenummer.</strong> Schrijf de code precies over (let op punten en streepjes). Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</li>
-    <li><strong>Probeer een eenvoudige herstart.</strong> Zet het apparaat uit en haal de stekker er een paar minuten uit. Bij een cv-ketel of warmtepomp: gebruik de resetknop en reset hooguit één keer.</li>
-    <li><strong>Zoek de code hierboven op.</strong> Elke pagina vertelt in gewone taal wat er aan de hand is, wat je zelf kunt doen en wanneer je een specialist belt.</li>
-  </ol><p class="muted"><a href="eerste-hulp-bij-storingen.html">Meer over eerste hulp bij storingen</a> · <a href="knipperende-lampjes.html">Geen code maar een knipperend lampje?</a></p></div>
+  <div class="chips"><span>Probeer:</span>${[["Bosch E18","Bosch E18"],["Samsung 4C","Samsung 4C"],["Intergas storing","Intergas"],["Vaatwasser stinkt","vaatwasser stinkt"]].map(([l, q]) => `<a href="?q=${encodeURIComponent(q)}" data-q="${esc(q)}">${l}</a>`).join("")}</div>
   <div class="installapp" id="installapp" hidden><strong>📱 Foutcodezoeker als app</strong><span id="installtxt">Zet Foutcodezoeker op je beginscherm: altijd binnen handbereik, ook in de schuur of kelder.</span><button type="button" id="installbtn" hidden>Installeer de app</button></div>
-  <div class="picker" id="picker"><span class="eyebrow">Of kies stap voor stap</span><div class="picker-row"><label for="pm">Merk<select id="pm"><option value="">Kies je merk</option></select></label><label for="pa">Apparaat<select id="pa" disabled><option value="">Kies eerst een merk</option></select></label></div><div class="results" id="pres" aria-live="polite"></div></div>
-  <p class="muted herostats"><b>${stats.codes}</b> foutcodes <b>${stats.faults}</b> storingen <b>${stats.models}</b> apparaten <b>€0</b> gratis, zonder account</p>
+  <p class="herostats"><span><b>${stats.codes}</b> foutcodes</span><span><b>${stats.models}</b> apparaten</span></p>
 </section>
 <section class="stack">
   <h2>Kies je apparaat</h2>
-  <div class="grid">${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id); return `<a class="tile" href="${c.id}.html"><b>${c.name}</b><small>${ms.length} ${ms.length === 1 ? "model" : "modellen"} · ${(n => n + (n === 1 ? " storing" : " storingen"))(ms.reduce((n, m) => n + m.faults.length, 0))}</small></a>`; }).join("")}</div>
+  <div class="cat-grid">${(TOPC => TOPC.map(id => CATS.find(c => c.id === id)).concat(CATS.filter(c => !TOPC.includes(c.id))))(["wasmachines", "vaatwassers", "cv-ketels", "koffiemachines", "drogers", "koelkasten", "warmtepompen", "ovens", "stofzuigers", "e-bikes", "auto", "airco"]).map((c, i) => `<a class="cat${i >= 12 ? " more" : ""}" href="${c.id}.html"><span class="cat-ico" aria-hidden="true">${CAT_ICON[c.id] || "🔧"}</span><b>${c.name.split(":")[0]}</b></a>`).join("")}</div>
+  <button type="button" class="showall" id="showcats">Alle ${CATS.length} soorten apparaten tonen</button>
+</section>
+<section class="stack">
+  <details class="pickfold aidfold"><summary><span aria-hidden="true">🚑</span> Eerste hulp bij storingen</summary>
+  <div class="steps4">
+    <div><span aria-hidden="true">🛑</span><b>Veilig</b><small>Water: kraan dicht, stekker eruit. Gas: kraan dicht, ramen open, bel 0800-9009.</small></div>
+    <div><span aria-hidden="true">📝</span><b>Noteer</b><small>De code en het typenummer van het typeplaatje.</small></div>
+    <div><span aria-hidden="true">🔌</span><b>Herstart</b><small>Stekker een paar minuten eruit. Cv-ketel: hooguit één reset.</small></div>
+    <div><span aria-hidden="true">🔎</span><b>Zoek op</b><small>Typ de code bovenaan deze pagina.</small></div>
+  </div>
+  <p class="muted"><a href="eerste-hulp-bij-storingen.html">Meer over eerste hulp</a> · <a href="knipperende-lampjes.html">Geen code maar een knipperend lampje?</a></p>
+  </details>
+</section>
+<section class="stack">
+  <details class="pickfold"><summary><span aria-hidden="true">🧭</span> Kies merk en apparaat</summary>
+  <div class="picker" id="picker"><div class="picker-row"><label for="pm">Merk<select id="pm"><option value="">Kies je merk</option></select></label><label for="pa">Apparaat<select id="pa" disabled><option value="">Kies eerst een merk</option></select></label></div><div class="results" id="pres" aria-live="polite"></div></div>
+  </details>
 </section>
 <section class="stack">
   <h2>Veelgezochte foutcodes</h2>
