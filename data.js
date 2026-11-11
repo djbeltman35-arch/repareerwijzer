@@ -11500,4 +11500,57 @@ Object.assign(SRC,{ zanNlMagn: ["Zanussi Support – foutmeldingen combi-magnetr
     ]});
   (m => { m.faults.push(F("E18", "18 knippert, geen invoer mogelijk: verkeerde aansluiting of zekering", 2, "Bij een nieuwe kookplaat is hij vaak verkeerd aangesloten; anders kan de zekering in de meterkast zijn aangesproken.", ["Nieuwe kookplaat? Laat de aansluiting controleren door een elektricien.", "Controleer de groep in de meterkast.", RE])); m.src.push("zanNlKook"); })(MODELS.find(m => m.id === "aeg-zanussi-kookplaat"));
 }
+Object.assign(SRC,{ aegNlRobot: ["AEG Support – foutmeldingen robotstofzuiger (RX9)", "https://support.aeg.nl/support-articles/stofzuigers/robotstofzuigers"], aegNlAirco: ["AEG Support – foutmeldingen mobiele airconditioner", "https://support.aeg.nl/support-articles/luchtbehandeling/airconditioners"], aegNlWijn: ["AEG Support – foutmeldingen wijnkoeler", "https://support.aeg.nl/support-articles/koelen/koelkasten"] });
+{ const SVC = "Maak een afspraak met de AEG-servicedienst; dit lost een monteur op.", RE = "Lost dit het niet op? Neem contact op met de AEG-servicedienst.";
+  MODELS.push({ id: "aeg-robotstofzuiger", brand: "AEG", name: "Robotstofzuiger RX9", dev: "robotstofzuiger", cat: "stofzuigers", years: "AEG RX9 (en Electrolux PURE i9)", unit: null, also: "AEG RX9 foutcode, AEG robotstofzuiger E10, E14, E16, E21",
+    intro: "De AEG RX9-robotstofzuiger toont bij een storing een E-code. De meeste los je zelf op door vuil weg te halen of de accu's goed te plaatsen.",
+    weak: ["Haar en vuil rond de borstelrol en de zijborstel zijn de meest voorkomende oorzaak van storingen."], parts: [],
+    tasks: [{ m: 0.25, t: "Stofcassette legen en filter uitkloppen" }, { m: 1, t: "Borstelrol, zijborstel en wielen vrijmaken van haar en vuil" }, { m: 1, t: "Camera (3D-visiesysteem) schoonvegen" }],
+    src: ["aegNlRobot"], faults: [
+      F("E10", "Bumper aan de voorkant zit vast", 1, "De bumper kan niet vrij bewegen.", ["Haal vuil weg rond de bumper en controleer of hij vrij in- en uitveert.", RE]),
+      F("E11", "Rechterwiel zit vast", 1, "Vuil blokkeert het rechterwiel.", ["Haal haar en vuil rond het rechterwiel weg.", RE]),
+      F("E12", "Linkerwiel zit vast", 1, "Vuil blokkeert het linkerwiel.", ["Haal haar en vuil rond het linkerwiel weg.", RE]),
+      F("E13", "Borstelrol zit vast", 1, "Haar of vuil blokkeert de borstelrol.", ["Haal de borstelrol eruit en verwijder haar en vuil.", RE]),
+      F("E14", "Zijborstel zit vast", 1, "Vuil blokkeert de zijborstel.", ["Haal vuil rond de zijborstel weg.", RE]),
+      F("E16", "Camera geblokkeerd of stoffig", 1, "Het 3D-visiesysteem is vuil of iets blokkeert het zicht.", ["Veeg het 3D-visiesysteem schoon en zorg dat niets het zicht blokkeert.", RE]),
+      F("E17", "Ondergrond te glad", 1, "De robot staat op een te glad oppervlak.", ["Zet de robot en het laadstation op een andere plek en start opnieuw.", RE]),
+      F("E20", "Verkeerd laadstation", 1, "Er wordt een laadstation gebruikt dat niet bij de robot hoort.", ["Gebruik alleen het originele laadstation.", RE]),
+      F("E21", "Storing in de accu's", 1, "Er is iets mis met de accu's.", ["Verwissel de twee accu's van plek.", "Blijft de code (of komt een andere E2x-code), dan zijn de accu's waarschijnlijk aan vervanging toe.", RE]),
+      F("E22", "Robot te warm", 1, "De temperatuur van de robot is te hoog.", ["Haal de robot 6 uur van het laadstation om af te koelen.", RE]),
+      F("E23", "Accu's niet goed aangesloten", 1, "De accu's zitten niet goed.", ["Schroef het accuklepje onderaan los (kruiskop PH2) en sluit de accu's opnieuw aan.", RE]),
+      F("E30", "Software werkt niet goed", 1, "De software van de robot geeft een fout.", ["Werk de software bij via de AEG-app.", RE]),
+      F("E31", "Software-update mislukt", 1, "De laatste update is niet goed geïnstalleerd.", ["Voer de software-update opnieuw uit.", RE]),
+      F("E40", "Technische storing", 3, "AEG geeft geen oplossing die je zelf kunt doen.", ["Neem contact op met de AEG-servicedienst."]),
+      F("E42", "Systeemfout", 1, "Er is een systeemfout opgetreden.", ["Start de robot opnieuw.", RE])
+    ]});
+  MODELS.push({ id: "aeg-mobiele-airco", brand: "AEG", name: "Mobiele airconditioner", dev: "mobiele airco", cat: "airco", years: "Mobiele AEG-airco's met display", unit: null, also: "AEG airco foutcode, AEG airco P1, AEG airco H1",
+    intro: "Mobiele AEG-airconditioners tonen een code op het display. P1 (reservoir vol) en H1 (ontdooien) los je zelf op; sensor- en motorcodes zijn werk voor de service.",
+    weak: [], parts: [], tasks: [{ m: 0.5, t: "Luchtfilter schoonmaken", v: 1 }], src: ["aegNlAirco"], faults: [
+      F("P1", "Waterreservoir vol", 1, "Het opvangreservoir aan de onderkant zit vol.", ["Leeg het reservoir aan de onderkant zoals de gebruiksaanwijzing beschrijft.", RE]),
+      F("H1 / N1", "Ontdooicyclus (zonnetje knippert)", 1, "Geen storing: de airco ontdooit zijn buitencomponenten. Een cyclus duurt 4 tot 8 minuten, vaker naarmate het buiten kouder is. Tijdens het ontdooien verwarmt hij niet.", ["Wacht tot de cyclus klaar is."]),
+      F("E1", "Sensorprobleem", 3, "Een sensor geeft een fout.", [SVC]),
+      F("E2", "Sensorprobleem", 3, "Een sensor geeft een fout.", [SVC]),
+      F("E3", "Sensorprobleem", 3, "Een sensor geeft een fout.", [SVC]),
+      F("E4", "Communicatiefout bedieningspaneel", 3, "Het bedieningspaneel communiceert niet goed.", [SVC]),
+      F("E5", "Sensor van het koelsysteem", 3, "De sensor van het koelsysteem geeft een fout.", [SVC]),
+      F("E7", "Probleem met de motor", 3, "Een motor werkt niet goed.", [SVC]),
+      F("A5", "Luchttemperatuursensor", 3, "De sensor die de luchttemperatuur meet, geeft een fout.", [SVC]),
+      F("L3", "Ventilatormotor", 3, "De ventilatormotor werkt niet goed.", [SVC]),
+      N("Airco koelt onvoldoende", 1, "De ruimte is te groot voor het koelvermogen, de airco staat niet in de koelstand, ramen of deuren staan open, of het verschil met de buitentemperatuur is te groot.", ["Controleer of het koelvermogen past bij de ruimte.", "Zet de airco in de koelstand (niet ventileren).", "Sluit ramen en deuren.", "Stel een temperatuur in die niet te ver van de buitentemperatuur ligt."])
+    ]});
+  MODELS.push({ id: "aeg-wijnkoeler", brand: "AEG", name: "Wijnkoeler", dev: "wijnkoeler", cat: "koelkasten", years: "AEG-wijnkoelers met display", unit: null, also: "AEG wijnkoeler foutcode, wijnkoeler bL, wijnkoeler dE, wijnkoeler HI",
+    intro: "AEG-wijnkoelers tonen een korte code op het display. bL en dE zijn instellingen die je zelf uitzet; de andere codes wijzen meestal op een sensor.",
+    weak: [], parts: [], tasks: [], src: ["aegNlWijn"], faults: [
+      F("bL", "Toetsvergrendeling staat aan", 1, "De toetsen zijn vergrendeld.", ["Druk 3 seconden tegelijk op de verlichtingstoets en de +-toets."]),
+      F("dE", "Demostand staat aan", 1, "De wijnkoeler staat in de demonstratiestand.", ["Druk 3 seconden tegelijk op + en −."]),
+      F("E3", "Deur te lang open of sensor", 1, "De deur staat langer dan 30 minuten open, of een sensor geeft een fout.", ["Sluit de deur.", RE]),
+      F("HI", "Temperatuur te hoog", 2, "Het is te warm in de wijnkoeler.", ["Controleer of de deur goed dicht is.", RE]),
+      F("LO", "Temperatuur te laag", 2, "Het is te koud in de wijnkoeler.", [RE]),
+      F("EH", "Te warm, mogelijk defecte sensor", 3, "De wijnkoeler meet een te hoge temperatuur, mogelijk door een defecte sensor.", [SVC]),
+      F("EL", "Te koud, mogelijk defecte sensor", 3, "De wijnkoeler meet een te lage temperatuur, mogelijk door een defecte sensor.", [SVC]),
+      F("E1", "Sensorprobleem", 3, "Een sensor geeft een fout.", [SVC]),
+      F("E2", "Sensorprobleem", 3, "Een sensor geeft een fout.", [SVC]),
+      F("E4", "Sensorprobleem", 3, "Een sensor geeft een fout.", [SVC])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
