@@ -9344,4 +9344,15 @@ const MON = "Blijft de code, schakel een monteur in.";
   F("E13", "Machine verliest water", 2, "De machine lekt water.", ["Controleer slangen, aansluitingen, het pompfilter en het deurrubber.", MON]),
   F("EB1 / EB2 / EB3 / EBE / EBF", "Afwijkende netspanning of netfrequentie", 1, "De stroomvoorziening klopt niet.", ["Controleer het stopcontact en gebruik geen verlengsnoer.", RS, MON])
 ); m.src.push("dsAegWas"); })(MODELS.find(m => m.id === "aeg-wasmachine")); })();
+(m => { m.faults.push(  F("301", "Overstroom (AC)", 1, "Te hoge wisselstroom in de omvormer; korte onderbreking.", ["Dit herstelt zich vanzelf; je hoeft niets te doen.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("302", "Overstroom (DC)", 1, "Te hoge gelijkstroom in de omvormer; korte onderbreking.", ["Dit herstelt zich vanzelf; je hoeft niets te doen.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("303", "Vermogensmodule te warm", 1, "De vermogensmodule wordt te heet.", ["Maak ventilatieopeningen en koelribben stofvrij en zorg voor vrije luchtstroom.", "Dit herstelt zich vanzelf; je hoeft niets te doen.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("304", "Binnentemperatuur te hoog", 1, "Het is te warm in de omvormer.", ["Zorg voor goede ventilatie rond de omvormer.", "Dit herstelt zich vanzelf; je hoeft niets te doen.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("306", "LOW PV OUTPUT", 1, "De spanning is te laag om stroom te leveren. Meestal normaal bij weinig zon, vroeg in de ochtend of laat in de middag.", ["Bij weinig zon is dit geen storing.", "Verschijnt de code bij volle zon, schakel dan je installateur in."]),
+  F("307", "LOW PV VOLTAGE", 1, "De gelijkspanning van de panelen is te laag om stroom te leveren. Meestal normaal bij weinig zon.", ["Bij weinig zon is dit geen storing.", "Verschijnt de code bij volle zon, schakel dan je installateur in."]),
+  F("308", "Overspanning tussenkring", 1, "De interne spanning is te hoog; korte onderbreking.", ["Dit herstelt zich vanzelf; je hoeft niets te doen.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("309 / 313", "DC-ingangsspanning te hoog", 2, "De spanning van de panelen op MPPT1 of MPPT2 is te hoog.", ["Dit herstelt zich vanzelf; je hoeft niets te doen.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("401", "Geen communicatie met de vermogensmodule", 3, "De verbinding met de vermogensmodule is verbroken.", ["Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("406 / 407", "Temperatuursensor defect", 3, "Een temperatuursensor in de omvormer werkt niet goed.", ["De omvormer probeert het zelf opnieuw.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
+  F("408", "Gelijkstroom in het net gedetecteerd", 3, "De omvormer meet gelijkstroom op het net.", ["Blijft de code steeds zichtbaar, schakel dan je installateur in."])); })(MODELS.find(m => m.id === "fronius-primo-symo"));
 module.exports = { CATS, MODELS, SRC, COST };
