@@ -12199,4 +12199,44 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("Lampje zichtbaar tussen deur en bedieningspaneel", 1, "Geen storing: het lampje op het paneel schijnt door de opening.", ["Je hoeft niets te doen."])
     ]});
 }
+{ const SVC = "Komt de code terug? Boek een servicebezoek bij Indesit.";
+  const DRAIN = ["Haal de stekker eruit, laat het water weglopen en maak het pompfilter schoon.", "Controleer of de afvoerslang niet geknikt is en op de goede hoogte hangt, en of de afvoer in de muur niet verstopt is.", "Sluit weer aan. Na een herstart duurt het ongeveer 15 minuten voordat het programma verdergaat (de drukschakelaar reset).", SVC];
+  const NOWATER = ["Controleer of er water in huis is en of de kraan open staat.", "Haal knikken uit de toevoerslang.", "Haal de slang van de machine en maak het filtertje in de inlaat schoon; kijk of er water uit de slang komt.", SVC];
+  const R10 = ["Haal de stekker eruit, wacht 10 seconden en sluit weer aan.", SVC];
+  const R5 = ["Zet de machine uit en haal de stekker 5 minuten eruit.", "Sluit weer aan en zet hem aan.", SVC];
+  MODELS.push({ id: "indesit-was-droogcombinatie", brand: "Indesit", name: "Was-droogcombinatie", cat: "wasmachines", years: "Indesit-was-droogcombinaties", unit: null, also: "Indesit wasdroger F05, Indesit was-droogcombinatie H2O, Indesit wasdroogcombinatie ERR E43",
+    intro: "Indesit-was-droogcombinaties tonen F-codes zoals F05 (afvoer) en F06 (deur), en nieuwere codes zoals Eb01 en ERR-E43. Veel los je zelf op met het pompfilter, de slangen of een reset.",
+    weak: [], parts: [], tasks: [{ m: 1, t: "Pompfilter schoonmaken" }, { w: "Bij melding C01", t: "Trommelreiniging draaien" }],
+    src: ["indesitNlFaq"], faults: [
+      F("F05", "Water wordt niet afgevoerd (deurslot- en pomplampje branden)", 1, "De machine staat stil met water erin.", DRAIN),
+      F("F06", "Deur blijft op slot aan het eind van het programma", 1, "Het deurslot ontgrendelt niet.", ["Zet de machine uit, haal de stekker eruit en wacht 3 à 5 minuten.", "Open de deur terwijl de stekker er nog uit is.", "Steek de stekker terug; de machine gaat verder of F06 verdwijnt."]),
+      F("H2O", "Er komt geen of te weinig water binnen", 1, "De toevoerslang is geknikt of het filtertje in de inlaat is verstopt.", NOWATER),
+      F("F01", "Geen water (kraanlampje) of storing", 1, "Vaak dicht kraan, lage waterdruk of verkeerde installatie. Zonder kraanlampje: tijdelijke storing.", ["Controleer kraan, waterdruk en het filtertje in de inlaat.", "Of: haal de stekker 10 seconden eruit en probeer opnieuw.", SVC]),
+      F("FH", "Watertoevoer of lekkage", 2, "Er is mogelijk een lek bij de toevoerslang.", ["Kijk of er water op de vloer ligt en controleer de toevoerslang; vervang hem zo nodig."]),
+      F("F02", "Trommel draait niet (te zwaar of vast)", 1, "De was is te zwaar of zit klem tegen de deurrubber.", ["Haal wat was eruit en kijk of niets klemt.", "Druk op START; reset daarna met AAN/UIT tot rES verschijnt."]),
+      F("F18 / FoD", "Te veel schuim of iets in het pompfilter", 1, "Kleine voorwerpen in het pompfilter of te veel wasmiddel.", ["Controleer het pompfilter en haal voorwerpen eruit.", "Druk een paar seconden op AAN/UIT en haal de stroom 2 minuten eraf."]),
+      F("F45", "Te veel schuim", 1, "Te veel of verkeerd wasmiddel (bijvoorbeeld afwasmiddel).", ["Wacht tot het schuim vanzelf zakt, reset en spoel een paar keer.", "Gebruik het juiste wasmiddel en niet te veel."]),
+      F("F46", "Was niet goed verdeeld", 1, "De lading is niet goed verdeeld of bestaat uit veel zeer absorberende stukken.", ["Verdeel grote en kleine stukken in de trommel en blijf onder het maximumgewicht."]),
+      F("F29 / FdL", "Deur niet goed gesloten", 1, "De deur is niet helemaal dicht.", ["Druk de deur met meer kracht dicht bij de greep.", "Reset: houd AAN/UIT 3 seconden ingedrukt."]),
+      F("F12", "Geen communicatie tussen display en besturing", 1, "Ook als LED 3 en 4 branden en andere lampjes knipperen.", ["Haal de stekker 3 minuten eruit en steek hem er weer in."]),
+      F("F13 / F20", "Tijdelijke storing", 1, "Kan een tijdelijke situatie zijn.", ["Houd AAN/UIT 3 seconden ingedrukt.", "Haal de stekker 2 minuten eruit en sluit weer aan.", SVC]),
+      F("F03 / F04 / F09 / F10", "Storing", 1, "Indesit adviseert eerst een reset.", R10),
+      F("F14 / F17", "Storing", 1, "Indesit adviseert eerst een reset.", R10),
+      F("F07 / F08 / F11", "Storing", 1, "Indesit adviseert eerst een reset.", R5),
+      F("F15 / F16 / F19", "Storing", 1, "Indesit adviseert eerst een reset.", R5),
+      F("F1E1", "Storing na een stroomprobleem", 1, "Vaak na een stroomonderbreking.", ["Haal de stroom 2 minuten eraf en zet hem weer aan.", SVC]),
+      F("ERR-E43", "Droogprogramma stopt: thermostaat in het droogkanaal", 1, "Bij de nieuwste modellen: wasgoed blokkeert de luchtuitlaat in de deurrubber, waardoor de thermostaat afslaat.", ["Wacht 15 à 20 minuten tot de thermostaat zich heeft gereset.", "Gebeurt het binnen korte tijd 3 à 4 keer? Laat een monteur komen."]),
+      F("Eb01 / Eb03 / Eb09 / Eb80 / Eb90", "Storing door de stroomvoorziening", 1, "Er kan een storing in het stroomnet zijn geweest.", ["Haal de stroom minstens 30 seconden eraf en zet hem weer aan.", "Blijft de code staan? Dan is een monteur nodig."]),
+      F("EH0 / EH2 / E0", "Storing door de stroomvoorziening", 1, "Er kan een storing in het stroomnet zijn geweest.", ["Haal de stroom minstens 30 seconden eraf en zet hem weer aan.", "Blijft de code staan? Dan is een monteur nodig."]),
+      F("C01", "Trommel reinigen", 1, "Geen storing: herinnering na ongeveer 110 wasbeurten.", ["Draai het reinigingsprogramma; daarna verdwijnt de melding."]),
+      F("C02", "Filters en lade reinigen", 1, "Geen storing: herinnering na ongeveer 90 wasbeurten om het inlaatfilter, pompfilter, deurrubber en wasmiddellade schoon te maken.", ["Maak alles schoon.", "Reset: houd Temperatuur en Centrifuge (of Temperatuur en Einde vertraging) 5 seconden samen ingedrukt."]),
+      F("0:05", "Tumble Fresh staat aan", 1, "Geen storing: bij Omnia-modellen betekent 00:05 dat Tumble Fresh actief is.", ["Zet Tumble Fresh uit als je dat niet wilt."]),
+      N("WPRO in het display", 1, "Herinnering na 50 wasbeurten om de machine te ontkalken.", ["Draai een reinigingsprogramma met ontkalker."]),
+      N("Centrifugesnelheid 0 knippert, was is nat", 1, "Door onbalans is er niet gecentrifugeerd, om de machine te beschermen.", ["Verdeel de was en meng grote en kleine stukken; blijf onder het maximumgewicht."]),
+      N("Wasmiddellade-alarm: lade open of sluit niet", 1, "De magnetische sensor van de automatische dosering is vuil.", ["Haal de lade eruit, maak hem ook aan de buitenkant schoon en duw hem helemaal terug."]),
+      N("Deurslotlampje knippert voor de start", 1, "Geen storing: de machine controleert de deurvergrendeling.", ["Wacht even; het programma start vanzelf."]),
+      N("Lampjes van de programmafase knipperen", 1, "Geen storing: de uitgestelde start staat aan (3, 6, 9 of 12 uur).", ["Zet de uitgestelde start uit als je direct wilt beginnen."]),
+      N("DEMO of dON: droogt niet", 1, "De demostand staat aan.", ["Zet de machine uit en weer aan met AAN/UIT.", "Druk tegelijk op AAN/UIT en START/PAUZE tot dOFF verschijnt."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
