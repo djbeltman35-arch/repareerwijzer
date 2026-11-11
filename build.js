@@ -147,7 +147,7 @@ layout({
 <section class="stack hero hero2">
   <span class="eyebrow">Gratis · zonder account</span>
   <div class="hero-grid">
-    <h1>Foutcode opzoeken? Vind direct de betekenis en oplossing</h1>
+    <h1>Foutcode opzoeken? <span class="h1-sub">Vind direct de betekenis en oplossing</span></h1>
     <svg class="hero-art" viewBox="0 0 240 220" role="img" aria-label="Wasmachine met foutcode E18 op het display en een vergrootglas">
       <rect x="34" y="14" width="150" height="190" rx="14" fill="#fff" stroke="#15191e" stroke-width="4"/>
       <rect x="34" y="14" width="150" height="44" rx="14" fill="#e9ecef" stroke="#15191e" stroke-width="4"/>
