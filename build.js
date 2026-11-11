@@ -122,6 +122,8 @@ ${scripts}
   // Zichtbare en machineleesbare datum van de laatste inhoudelijke wijziging (helpt Google en AI-zoekmachines)
   { const d = modOf[file][1], [y, mo, da] = d.split("-").map(Number), M = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
     html = html.replace("<!--UPD-->", file === "index.html" || file === "404.html" ? "" : `<p class="upd muted"><small>Laatst bijgewerkt: <time datetime="${d}">${da} ${M[mo - 1]} ${y}</time></small></p>`).replace(/"__DMOD__"/g, JSON.stringify(d)); }
+  // Interne links direct naar de canonieke URL zonder .html (geen dubbele URL's voor Google)
+  html = html.replace(/href="(?!https?:|\/\/|mailto:|#|\/)([a-z0-9][a-z0-9-]*)\.html(#[^"]*)?"/g, (x, p, h) => `href="/${p === "index" ? "" : p}${h || ""}"`);
   fs.writeFileSync(path.join(OUT, file), html);
   pages.push(file);
 }
@@ -745,7 +747,7 @@ const index = [
   ...KB.map(a => ({ t: a.q, s: "Kennisbank", u: `kennisbank-${a.id}.html`, k: `${a.q} ${a.title} ${a.desc} kennisbank uitleg` })),
   ...brandNames.map(b => ({ t: `${b} storingen en foutcodes`, s: "Merk", u: brandUrl(b), k: `${b} merk storing foutcode` }))
 ];
-fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(index)};`);
+fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(index.map(e => e.u ? { ...e, u: "/" + e.u.replace(/\.html(?=#|$)/, "").replace(/^index$/, "") } : e))};`);
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
