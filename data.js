@@ -9102,4 +9102,24 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("F43", "Beveiliging warmtewisselaar", 2, "Geen watercirculatie of lucht in de installatie.", ["Controleer de waterdruk en ontlucht de radiatoren.", "Blijft de storing, laat de circulatiepomp controleren."])
   ]});
 })();
+(() => {
+  SRC.wghHisense = ["Whitegoods Help – Hisense wasmachine foutcodes (Engels)", "https://www.whitegoodshelp.co.uk/hisense-washing-machine-error-codes/"];
+  const RS = "Wis de code door Start/Pauze 3 seconden ingedrukt te houden, of haal de stekker 60 seconden uit het stopcontact.";
+  const MON = "Komt de code terug, dan is de storing echt: bel een monteur.";
+  const FIL = "Maak het pompfilter rechtsonder achter het klepje schoon. Leg handdoeken en een bakje klaar, er komt water uit.";
+  const INL = ["Draai de kraan helemaal open.", "Haal knikken uit de toevoerslang.", "Maak het zeefje in de slangaansluiting schoon."];
+  MODELS.push({ id: "hisense-wasmachine", brand: "Hisense", name: "Wasmachine (alle modellen)", cat: "wasmachines", years: "Alle bouwjaren met display", unit: null, also: "Hisense WFQA, WFGE, WF3S, WF5S, Hisense wasmachine storing, Hisense F03, Hisense E2", intro: "Oudere Hisense-wasmachines tonen E-codes, nieuwere F-codes. De betekenis lijkt op elkaar, maar kan per model iets verschillen: kijk bij twijfel in je handleiding. Een code wissen lost de oorzaak niet op.", weak: ["Een vol pompfilter is veruit de meest voorkomende oorzaak van afvoerstoringen."], parts: [], tasks: [{ m: 2, t: "Pompfilter schoonmaken", v: 1 }], src: ["wghHisense"], faults: [
+    F("E1 / F01", "Te weinig water binnen (vullen duurt te lang)", 1, "Kraan dicht, geknikte slang, verstopt inlaatzeefje, lage waterdruk of een bevroren slang.", [...INL, RS]),
+    F("E2 / E3 / F03", "Water wordt niet afgevoerd", 1, "Meestal een vol pompfilter; ook een geknikte afvoerslang of een te hoge standpijp.", [FIL, "Controleer de afvoerslang op knikken en verstoppingen.", RS, MON]),
+    F("E4 / F08 / F09", "Deurslot werkt niet", 1, "De deur is niet goed dicht, er zit wasgoed tussen het rubber, of het deurslot is defect.", ["Open de deur en sluit hem stevig.", "Haal wasgoed uit de rubberen manchet.", MON]),
+    F("E5", "Verwarming of temperatuursensor (soms: afvoer)", 2, "Op modellen met verwarming: sensor, element of kalk. Op andere modellen een afvoerprobleem zoals bij E2.", ["Maak eerst het pompfilter schoon voor het geval het om de afvoer gaat.", "Draai bij hard water een ontkalkingsprogramma.", MON]),
+    F("F04", "Water wordt niet warm", 2, "Defect verwarmingselement, defecte temperatuursensor, bedrading of veel kalk.", ["Draai een ontkalkingsprogramma.", MON]),
+    F("F05", "Storing temperatuursensor (NTC)", 2, "Sensor defect, losse of geroeste connector of kalk op de sensor.", ["Ontkalk de machine eerst.", MON]),
+    F("E6 / F06", "Motorstoring", 3, "Fout in de motor, de snelheidssensor, de motorsturing of de bedrading.", ["Haal de stekker 60 seconden eruit en start opnieuw.", "Draai de trommel met de stekker eruit met de hand: loopt hij zwaar, dan zit er iets klem.", MON]),
+    F("E7", "Storing drukschakelaar of waterniveausensor", 2, "Defecte drukschakelaar, verstopt drukslangetje of te veel schuim.", ["Draai een heet programma zonder was om resten en schuim weg te spoelen.", RS, MON]),
+    F("E8", "Interne communicatiefout", 3, "De modules in de machine communiceren niet goed.", ["Haal de stekker 60 seconden eruit en start opnieuw.", MON]),
+    F("E9 / F02", "Te veel water in de trommel (overloop)", 2, "Inlaatklep blijft open, drukschakelaar defect of te veel schuim.", ["Kijk door het deurglas of er veel schuim is.", "Draai een spoel- en centrifugeerprogramma zonder was.", "Gebruik minder wasmiddel.", "Loopt de trommel echt te vol, draai de kraan dicht en bel een monteur."]),
+    F("F15", "Fout in de droogfunctie (was-droogcombinatie)", 2, "Luchtuitlaat of droogfilter verstopt, of de droogventilator of verwarming is defect.", ["Controleer of de ventilatieopeningen vrij zijn en maak het droogfilter schoon.", MON])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
