@@ -88,9 +88,8 @@ ${file === "index.html" ? '<meta name="e0d5a73bd035a1c" content="277030417ea9ada
 <meta name="theme-color" content="#1f252b">
 <meta name="apple-mobile-web-app-title" content="Foutcodezoeker">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="preload" href="/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/overpass-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css?v=${VER}">
 ${bc}${extraHead}
 <script data-goatcounter="https://foutcode.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
