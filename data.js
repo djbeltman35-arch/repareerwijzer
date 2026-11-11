@@ -11873,4 +11873,32 @@ Object.assign(SRC,{ whirlpoolNlFaq: ["Whirlpool Nederland – veelgestelde vrage
       N("STOP in het display of 00:00 knippert", 1, "Geen storing: de klok moet opnieuw worden ingesteld, na een stroomstoring of bij het eerste gebruik.", ["Stel de klok in volgens de gebruiksaanwijzing van je oven.", "Lukt het niet, schakel dan de Whirlpool-consumentendienst in."])
     ]});
 }
+Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossingen wasmachine (foutcodes)", "https://www.indesit.nl/service/veelgestelde-vragen"] });
+{ const RST = "Reset: draai de programmaknop naar 0 (uit) en start opnieuw. Vaak is het een tijdelijke storing.", SVC = "Komt de code terug? Neem contact op met de Indesit-consumentenservice.", BL = " (bovenlader)";
+  const DRAIN = ["Haal de stekker eruit.", "Haal knikken uit de afvoerslang en controleer of hij niet bevroren of verstopt is.", "Laat het water afkoelen en maak dan het pompfilter schoon (zie de handleiding). Restwater kan via het noodaftapslangetje achter de plint.", "Start daarna het programma Pompen, of houd Reset minstens 3 seconden ingedrukt, en start opnieuw."];
+  (m => { m.faults.push(
+    F("F03", "Water wordt niet afgepompt, filtersymbool knippert" + BL, 1, "Het afvalwater wordt niet weggepompt, waardoor de machine midden in het programma stopt.", [...DRAIN, SVC]),
+    F("F24", "Water wordt niet afgevoerd" + BL, 1, "Het water wordt niet afgevoerd en de machine stopt.", [...DRAIN.slice(0,3), "Zet daarna de programmaknop op 0 om te resetten.", SVC]),
+    F("F18 / Fod", "Te veel schuim" + BL, 1, "Te veel schuim heeft het wasprogramma onderbroken, meestal door te veel wasmiddel.", ["Start het programma Spoelen en centrifugeren.", "Was daarna opnieuw met minder wasmiddel.", "Blijft het: stekker eruit, kraan dicht en een monteur laten komen."]),
+    F("F31 / bdd", "Trommeldeksel niet goed gesloten (alle lampjes aan)" + BL, 1, "De kleppen van de trommel zijn niet goed dicht.", ["Houd Reset minstens 3 seconden ingedrukt tot het lampje 'deur open' brandt.", "Sluit de trommelkleppen goed en start het programma opnieuw.", SVC]),
+    F("F10", "Trommel draait niet" + BL, 1, "De trommel is geblokkeerd, soms door wasgoed, of de machine is te vol.", ["Controleer of de trommel vrij kan draaien en haal klemmend wasgoed weg.", "Doe niet meer was in de machine dan de handleiding aangeeft.", SVC]),
+    F("F21", "Fout bij het afpompen" + BL, 1, "De machine geeft een afvoerfout.", ["Kies een programma en houd de X-toets (Annuleren/Afvoeren) ingedrukt: er start een kort afpompprogramma van 2 à 3 minuten.", "Geen X-toets? Zet de programmaknop een paar seconden op 0.", SVC]),
+    F("F04", "Storing" + BL, 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F07 / F09 / F19 / F20", "Storing" + BL, 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F12 / F23", "Storing" + BL, 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F13", "Storing" + BL, 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F14", "Storing" + BL, 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F22", "Storing" + BL, 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F26", "Storing", 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F27", "Storing" + BL, 2, "Indesit noemt dit vaak een tijdelijke situatie.", [RST, SVC]),
+    F("F15", "Storing" + BL, 3, "Indesit geeft hiervoor geen oplossing die je zelf kunt doen.", ["Neem contact op met de Indesit-consumentenservice."]),
+    F("F60 / F63", "Storing" + BL, 3, "Indesit geeft hiervoor geen oplossing die je zelf kunt doen.", ["Neem contact op met de Indesit-consumentenservice."]),
+    F("FH", "Er komt geen water binnen", 1, "Er loopt geen water via de toevoerslang in de machine: de kraan is dicht, de slang is geknikt, de waterdruk zakte even weg of het filtertje in de slang is vuil.", ["Controleer of er water in huis is en of de kraan helemaal open staat.", "Haal knikken uit de toevoerslang.", "Haal de slang van de machine, maak het inlaatfiltertje schoon en kijk of er water uit de slang komt.", SVC]),
+    F("F1E1", "Storing na een probleem met de stroom", 1, "Vaak na een stroomonderbreking.", ["Schakel de stroom 2 minuten uit (stekker eruit of groep uit) en zet hem weer aan.", SVC]),
+    N("Service-lampje (moersleutel) brandt, machine zonder display", 1, "Zonder display kun je de exacte code niet zien.", ["Reset de machine en open en sluit daarna de deur.", "Gebruik niet te veel wasmiddel: te veel schuim geeft ook deze melding.", SVC]),
+    N("Pictogram 'unbalanced load' (onbalans)", 1, "De lading is niet goed verdeeld, bestaat uit een paar grote stukken of is te zwaar.", ["Open de deur en verdeel de was opnieuw; meng grote en kleine stukken.", "Haal was eruit als je boven het maximumgewicht zit.", "Reset en start het programma opnieuw."]),
+    N("START/PAUZE knippert en het programma stopt" + BL, 1, "Je hebt het programma veranderd tijdens het wassen.", ["Kies het gewenste programma en druk op START/Pauze."]),
+    N("D ON / demostand op het display", 1, "De machine staat in de demostand en wast niet.", ["Groot display (zo lang als het knoppenpaneel): houd de eerste knop links en de laatste knop rechts minstens 3 seconden vast tot D OFF verschijnt.", "Klein display (modellen van voor 2012): houd de eerste en derde knop van links minstens 3 seconden vast tot D ON verdwijnt."])
+  ); m.src.push("indesitNlFaq"); })(MODELS.find(m => m.id === "indesit-wasmachine"));
+}
 module.exports = { CATS, MODELS, SRC, COST };
