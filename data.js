@@ -10929,4 +10929,26 @@ Object.assign(SRC,{ cameZlx24: ["CAME – installatiehandleiding besturing ZLX24
       F("E24", "Fout BUS-beveiliging", 2, "Communicatiefout of storing van een beveiliging die via de BUS is aangesloten (bijvoorbeeld een fotocel).", ["Controleer de fotocellen op schade en vuil.", INST]),
       F("E25", "Adresfout BUS-apparaten", 3, "De adressen van de BUS-apparaten zijn niet goed ingesteld.", [INST])], src: ["cameZlx24"] });
 }
+
+Object.assign(SRC,{ faacE124: ["FAAC – handleiding besturing E124 (732557 rev. B, Engels, pdf)", "https://ismartgate.com/manuals/FAAC_E124_manual.pdf"] });
+{ const INST = "Bel je installateur.";
+  MODELS.push({ id: "faac-e124", brand: "FAAC", name: "E124 besturing poortopener", dev: "poort", cat: "garagedeuren", years: "Besturing E124 (24V, onder meer bij FAAC 391, 415, S418 en 740)", unit: null, also: "FAAC draaipoort, schuifpoort, hekopener, foutcode 01, 02, 03, 15, 20, 40, lampje DL20",
+    intro: "Brandt lampje DL20 op de FAAC E124 continu, dan is er een fout en werkt de poort niet. Knippert DL20, dan is er een alarm maar werkt de poort nog. Druk tegelijk op + en − om het nummer op het display te zien.", weak: [], parts: [], tasks: [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 6, t: "Fotocellen controleren", v: 1 }, { m: 12, t: "Onderhoudsbeurt door een vakman", v: 1 }],
+    faults: [
+      F("01", "Printplaat defect", 3, "De besturing meldt een fout in de printplaat (DL20 brandt continu).", [INST]),
+      F("02", "Thermische beveiliging actief", 1, "De motor of besturing is te warm geworden.", ["Wacht tot de beveiliging vanzelf reset.", "Gebeurt het vaak? " + INST]),
+      F("03 / 04", "Storing motor 1 of motor 2", 3, "Code 03 is motor 1, code 04 is motor 2.", [INST]),
+      F("08", "Fout BUS-2EASY-apparaat", 2, "Een fotocel of ander accessoire op de BUS-2EASY-lijn geeft een fout.", ["Laat de installateur de accessoires opnieuw laten inlezen.", "Komt het terug? Dan hebben twee accessoires waarschijnlijk hetzelfde adres. " + INST]),
+      F("10 / 11", "Fout eindschakelaar motor 1 of motor 2", 3, "De eindschakelaar van motor 1 (10) of motor 2 (11) geeft een fout.", [INST]),
+      F("15", "Looptijd verstreken (time-out)", 2, "De poort was niet binnen de ingestelde werktijd open of dicht.", ["Kijk of de poort ergens zwaar loopt of blokkeert.", "De werktijd moet langer zijn dan een volledige beweging; laat die instellen door je installateur."]),
+      F("17 / 18", "Encoder motor 1 of motor 2 defect", 3, "De encoder van motor 1 (17) of motor 2 (18) werkt niet.", [INST]),
+      F("19", "Geheugenfout", 3, "De gegevens in het geheugen kloppen niet.", [INST]),
+      F("20 / 21", "Obstakel bij motor 1 of motor 2", 1, "Alarm: motor 1 (20) of motor 2 (21) heeft een obstakel gedetecteerd. De poort werkt nog.", ["Haal het obstakel weg en kijk of de vleugel of poort soepel loopt.", "Blijft het? " + INST]),
+      F("22 / 23", "Motorstroom begrensd", 2, "Alarm: de stroom naar motor 1 (22) of motor 2 (23) wordt begrensd, vaak doordat de poort zwaar loopt.", ["Kijk of de poort ergens klemt of zwaar loopt.", INST]),
+      F("24 / 25", "Kortsluiting op lamp- of slotuitgang", 2, "Alarm: de uitgang voor het knipperlicht (24) of het elektrische slot (25) heeft kortsluiting.", [INST]),
+      F("30", "Geheugen afstandsbedieningen vol", 1, "Er passen geen XF-afstandsbedieningen meer bij.", ["Laat de installateur de codes wissen en opnieuw aanleren (dit wist alle afstandsbedieningen)."]),
+      F("40", "Onderhoud nodig", 1, "Geen storing: het ingestelde aantal bewegingen is bereikt.", ["Plan een onderhoudsbeurt. De installateur zet daarna de teller terug."]),
+      F("45", "Werkt op de accu", 1, "Geen storing: de netstroom is weg en de poort werkt op de accu.", ["Controleer of de stroom er is en of de groep niet is uitgeschakeld."]),
+      F("35 / 50", "Timer of HOLD CLOSE actief", 1, "Geen storing: de timerfunctie (35) of HOLD CLOSE (50) is ingeschakeld.", ["Geen actie nodig; laat de instelling zo nodig wijzigen door je installateur."])], src: ["faacE124"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
