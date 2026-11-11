@@ -697,6 +697,7 @@ Taal: Nederlands. Contact: info@foutcodezoeker.nl. Gemaakt door Erik.
 ${KB.map(a => `  - [${a.q}](${SITE}/kennisbank-${a.id})`).join("\n")}
 - [Alle merken](${SITE}/merken)
 - [Repareren of vervangen?](${SITE}/repareren-of-vervangen)
+- [Over Foutcodezoeker](${SITE}/over-foutcodezoeker): waar de informatie vandaan komt en hoe de pagina's werken
 - [Recht op reparatie](${SITE}/recht-op-reparatie)
 
 ## Categorieën
