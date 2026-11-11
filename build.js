@@ -275,6 +275,7 @@ ${KB.some(a => a.cat === m.cat) ? fold("Uitleg in de kennisbank", `<ul class="kb
 // ───────── Advertentie (affiliate) bij laad-gerelateerde pagina's
 function isEvCharge(m) { return m.cat === "laadpalen" || (m.cat === "auto" && /laad|laden/.test(m.id)); }
 function AFF(si, li) { return `https://lt45.net/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=`; }
+function TI(si, li, shop) { return `https://partners.tradeinn.com/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=&amp;dl=${shop}%2Fnl`; }
 function ADS() { return {
   laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
   acculader: [AFF(12933, 1570313), "🔋 Acculader of starthulp", "Accu leeg of zwak? Bekijk acculaders en jumpstarters bij Acculaders.nl."],
@@ -282,6 +283,10 @@ function ADS() { return {
   ebike: [AFF(12168, 1536530), "🚲 E-bike-onderdelen en accessoires", "Display, accu-lader of banden nodig? Bekijk het aanbod bij Fietsparadijs."],
   fietstas: [AFF(12934, 1570314), "🎒 Fietstassen", "Nieuwe tas voor je (e-)bike? Bekijk fietstassen bij Fietstas.com."],
   gereedschap: [AFF(13231, 1580636), "🔧 Gereedschap en accu's", "Nieuw gereedschap of een vervangende accu? Bekijk het aanbod bij Gereedschapspecialist."],
+  bikeinn: [TI(20603, 1873781, "bikeinn"), "🔧 Fietsonderdelen en gereedschap", "Banden, remblokken, kettingen en fietsgereedschap bij BikeInn."],
+  bricoinn: [TI(20604, 1873782, "bricoinn"), "🧰 Klusgereedschap en onderdelen", "Gereedschap en klusspullen bij BricoInn."],
+  motardinn: [TI(20600, 1873778, "motardinn"), "🛵 Onderdelen voor scooter en motor", "Accu's, banden en onderdelen bij MotardInn."],
+  techinn: [TI(20616, 1874238, "techinn"), "🔌 Elektronica en accessoires", "Opladers, kabels en elektronica bij TechInn."],
   refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie bij Remarkt."]
 }; }
 function adsFor(m) {
@@ -289,9 +294,11 @@ function adsFor(m) {
   switch (m.cat) {
     case "auto": return ["acculader", "autoverkopen"];
     case "camper-caravan": case "boten": return ["acculader"];
-    case "e-bikes": return ["ebike", "fietstas"];
-    case "gereedschap": case "tuin": return ["gereedschap"];
-    case "laptops": case "smartphones": case "spelcomputers": return ["refurbished"];
+    case "e-bikes": return ["ebike", "bikeinn"];
+    case "gereedschap": case "tuin": return ["gereedschap", "bricoinn"];
+    case "scooters": return ["motardinn"];
+    case "televisies": case "audio": case "printers": return ["techinn"];
+    case "laptops": case "smartphones": case "spelcomputers": return ["refurbished", "techinn"];
     default: return [];
   }
 }
