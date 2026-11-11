@@ -276,13 +276,54 @@ ${KB.some(a => a.cat === m.cat) ? fold("Uitleg in de kennisbank", `<ul class="kb
 
 // ───────── Advertentie (affiliate) bij laad-gerelateerde pagina's
 function isEvCharge(m) { return m.cat === "laadpalen" || (m.cat === "auto" && /laad|laden/.test(m.id)); }
-function adHtml(href, title, sub) { return `<aside class="ad"><span class="ad-label">Advertentie</span><a href="${href}" rel="sponsored noopener" target="_blank">${title}</a><small>${sub}</small></aside>`; }
-function adBlock(m) {
-  if (isEvCharge(m)) return adHtml("https://lt45.net/c/?si=12933&amp;li=1570912&amp;wi=446984&amp;ws=", "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner.");
-  if (m.cat === "auto") return adHtml("https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=", "🚗 Auto verkopen?", "Is repareren de moeite niet meer waard? Vraag een bod aan bij onze partner.");
-  if (m.cat === "camper-caravan") return adHtml("https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=&amp;dl=camper-verkopen%2F", "🚐 Camper verkopen?", "Vraag een bod aan bij onze partner.");
-  return "";
+function AFF(si, li) { return `https://lt45.net/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=`; }
+function TI(si, li, shop) { return `https://partners.tradeinn.com/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=&amp;dl=${shop}%2Fnl`; }
+function BOL(q, name) { return `https://partner.bol.com/click/click?p=1&amp;t=url&amp;s=1558346&amp;url=${encodeURIComponent("https://www.bol.com/nl/nl/s/?searchtext=" + q.replace(/ /g, "+"))}&amp;f=TXL&amp;name=${encodeURIComponent(name)}&amp;subid=`; }
+function BOLCAT_() { return {
+  koffiemachines: ["ontkalker koffiemachine", "🧴 Ontkalker voor je koffiemachine", "Ontkalkers en reinigingstabletten bij bol."],
+  wasmachines: ["wasmachine reiniger", "🧺 Wasmachinereiniger", "Reinigers tegen vuil, kalk en geurtjes bij bol."],
+  vaatwassers: ["vaatwasser reiniger", "🍽️ Vaatwasserreiniger en -zout", "Reinigers, zout en glansspoelmiddel bij bol."],
+  drogers: ["pluizenfilter droger", "🌀 Filters voor je droger", "Pluizen- en sokkelfilters bij bol."],
+  stofzuigers: ["stofzuiger filter", "🧹 Filters en borstels voor je stofzuiger", "Vervangende filters, borstels en zakken bij bol."],
+  ovens: ["ovenreiniger", "🔥 Ovenreiniger", "Reinigers voor oven en bakplaten bij bol."],
+  kookplaten: ["kookplaatreiniger", "🍳 Kookplaatreiniger en schraper", "Reinigers voor inductie- en keramische kookplaten bij bol."],
+  rookmelders: ["rookmelder 10 jaar batterij", "🔔 Nieuwe rookmelder", "Rookmelders met 10-jaarsbatterij bij bol."],
+  "cv-ketels": ["radiator ontluchtingssleutel", "🔧 Ontluchtingssleutel en vulslang", "Alles om je cv bij te vullen en te ontluchten bij bol."],
+  airco: ["airco reiniger", "❄️ Aircoreiniger", "Reinigingssprays voor binnenunits bij bol."],
+  printers: ["printer inkt cartridge", "🖨️ Inkt en toner", "Cartridges en toners bij bol."],
+  laptops: ["laptop oplader", "🔌 Laptopoplader", "Universele en merkladers bij bol."],
+  smartphones: ["telefoon oplader usb-c", "🔌 Oplader en kabel voor je telefoon", "Snelladers en kabels bij bol."],
+  "3d-printers": ["pla filament", "🧵 Filament voor je 3D-printer", "PLA, PETG en meer bij bol."]
+}; }
+function ADS() { return {
+  laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
+  acculader: [AFF(12933, 1570313), "🔋 Acculader of starthulp", "Accu leeg of zwak? Bekijk acculaders en jumpstarters bij Acculaders.nl."],
+  autoverkopen: [AFF(10614, 1468698), "🚗 Reparatie te duur? Verkoop je auto", "Vraag gratis een bod aan bij AutoVendi, ook voor auto's met schade of motorproblemen."],
+  ebike: [AFF(12168, 1536530), "🚲 E-bike-onderdelen en accessoires", "Display, accu-lader of banden nodig? Bekijk het aanbod bij Fietsparadijs."],
+  fietstas: [AFF(12934, 1570314), "🎒 Fietstassen", "Nieuwe tas voor je (e-)bike? Bekijk fietstassen bij Fietstas.com."],
+  gereedschap: [AFF(13231, 1580636), "🔧 Gereedschap en accu's", "Nieuw gereedschap of een vervangende accu? Bekijk het aanbod bij Gereedschapspecialist."],
+  bikeinn: [TI(20603, 1873781, "bikeinn"), "🔧 Fietsonderdelen en gereedschap", "Banden, remblokken, kettingen en fietsgereedschap bij BikeInn."],
+  bricoinn: [TI(20604, 1873782, "bricoinn"), "🧰 Klusgereedschap en onderdelen", "Gereedschap en klusspullen bij BricoInn."],
+  motardinn: [TI(20600, 1873778, "motardinn"), "🛵 Onderdelen voor scooter en motor", "Accu's, banden en onderdelen bij MotardInn."],
+  techinn: [TI(20616, 1874238, "techinn"), "🔌 Elektronica en accessoires", "Opladers, kabels en elektronica bij TechInn."],
+  camperverkopen: ["https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=&amp;dl=camper-verkopen%2F", "🚐 Camper verkopen?", "Vraag een bod aan bij onze partner."],
+  refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie bij Remarkt."]
+}; }
+function adsFor(m) {
+  if (isEvCharge(m)) return ["laadkabel"];
+  switch (m.cat) {
+    case "auto": return ["acculader", "autoverkopen"];
+    case "camper-caravan": return ["acculader", "camperverkopen"];
+    case "boten": return ["acculader"];
+    case "e-bikes": return ["ebike", "bikeinn"];
+    case "gereedschap": case "tuin": return ["gereedschap", "bricoinn"];
+    case "scooters": return ["motardinn"];
+    case "televisies": case "audio": case "printers": return ["techinn"];
+    case "laptops": case "smartphones": case "spelcomputers": return ["refurbished", "techinn"];
+    default: return [];
+  }
 }
+function adBlock(m) { const list = adsFor(m).map(k => ADS()[k]); const b = BOLCAT_()[m.cat]; if (b) list.push([BOL(b[0], m.cat), b[1], b[2]]); return list.map(([u, t, d]) => { return `<aside class="ad"><span class="ad-label">Advertentie</span><a href="${u}" rel="sponsored noopener" target="_blank">${t}</a><small>${d}</small></aside>`; }).join(""); }
 
 function helpedBox() { return `<div class="helped" role="group" aria-label="Feedback"><span>Heeft dit geholpen?</span><button type="button" data-v="ja">👍 Ja</button><button type="button" data-v="nee">👎 Nee</button><span class="helped-thx" hidden>Bedankt voor je reactie!</span></div>`; }
 function printCard(m) {
