@@ -333,7 +333,21 @@ function BOLCAT_() { return {
   televisies: ["hdmi kabel", "📺 HDMI-kabels", "Kabel kapot of te kort? HDMI-kabels bij bol."],
   waterontharders: ["regeneratiezout waterontharder", "🧂 Regeneratiezout", "Zouttabletten voor je waterontharder bij bol."],
   kachels: ["kachelruit reiniger", "🔥 Kachelruitreiniger", "Roet en aanslag van het kachelglas verwijderen; reinigers bij bol."],
-  "kleine-apparaten": ["ontkalker", "🧴 Ontkalker", "Ontkalkers voor waterkokers en kokendwaterkranen bij bol."]
+  "kleine-apparaten": ["ontkalker", "🧴 Ontkalker", "Ontkalkers voor waterkokers en kokendwaterkranen bij bol."],
+  warmtepompen: ["slimme thermostaat", "🌡️ Slimme thermostaat", "Thermostaten die je warmtepomp zuiniger laten draaien, bij bol."],
+  "e-bikes": ["e-bike oplader", "🔋 Oplader en onderhoud voor je e-bike", "Laders, kettingolie en banden bij bol."],
+  audio: ["speakerkabel", "🔊 Kabels en adapters voor je speakers", "Speakerkabels, adapters en houders bij bol."],
+  laadpalen: ["laadkabel type 2", "🔌 Laadkabel type 2", "Laadkabels voor je elektrische auto bij bol."],
+  internet: ["wifi mesh systeem", "📶 Wifi-versterker of mesh-systeem", "Overal in huis goede wifi; mesh-systemen en versterkers bij bol."],
+  spelcomputers: ["controller oplaadstation", "🎮 Controllers en opladers", "Extra controllers en laadstations bij bol."],
+  zonnepanelen: ["zonnepanelen reiniger", "☀️ Reiniger voor zonnepanelen", "Borstels en reinigers voor je panelen bij bol."],
+  "camper-caravan": ["camper accessoires", "🚐 Camper- en caravanspullen", "Waterpas, kabels, slangen en meer bij bol."],
+  trapliften: ["scootmobiel accu", "🔋 Accu voor je scootmobiel", "Vervangende accu's en laders bij bol."],
+  scooters: ["binnenband elektrische step", "🛴 Banden en onderdelen voor je step", "Binnenbanden, remmen en laders bij bol."],
+  meterkast: ["zaklamp oplaadbaar", "🔦 Zaklamp voor stroomstoringen", "Oplaadbare zaklampen en noodverlichting bij bol."],
+  gereedschap: ["hogedrukreiniger slang", "🔧 Slangen en onderdelen", "Slangen, sproeiers en koppelingen bij bol."],
+  "slim-huis": ["deurbel gong", "🔔 Gong en accessoires voor je deurbel", "Gongs, accu's en houders bij bol."],
+  boten: ["buitenboordmotor olie", "⚓ Onderhoud voor je buitenboordmotor", "Olie, bougies en impellers bij bol."]
 }; }
 function ADS() { return {
   laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
@@ -705,6 +719,7 @@ for (const a of KB) {
 ${a.safety ? `<div class="verdict v3"><strong>🔴 Direct gevaar?</strong><span>${esc(a.safety)}</span></div>` : ""}
 <article class="fault kb">${a.secs.map(([h, html]) => `<h2>${esc(h)}</h2>${html}`).join("\n")}</article>
 <section class="stack"><h2>Veelgestelde vragen</h2>${a.faq.map(([q, an]) => `<h3>${esc(q)}</h3><p>${esc(an)}</p>`).join("")}</section>
+${c ? adBlock({ id: a.id, cat: c.id }) : ""}
 <section class="stack"><h2>Lees ook</h2><ul class="kb-list">${a.rel.map(([u, t]) => `<li><a href="${u}">${esc(t)}</a></li>`).join("")}</ul></section>
 <section class="stack"><h2>Bron</h2><ul class="sources">${a.src.map(([n, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(n)}</a></li>`).join("")}</ul></section>`
   });
