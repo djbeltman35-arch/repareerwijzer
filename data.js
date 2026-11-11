@@ -11747,4 +11747,27 @@ Object.assign(SRC,{ mieleNlOven: ["Miele – eerste hulp bij storingen ovens", "
       F("F267", "Storing in de temperatuurbegrenzer", 3, "De temperatuurbegrenzer werkt niet goed.", [SVC])
     ]});
 }
+Object.assign(SRC,{ mieleNlKoffie: ["Miele – eerste hulp bij storingen koffiemachines", "https://www.miele.nl/support/customer-assistance/koffie-835/alle"] });
+{ const SVC = "Dit kun je niet zelf verhelpen: maak een reparatie-afspraak bij Miele Service.", RE = "Blijft de storing? Neem contact op met Miele Service.";
+  const WATER = ["Haal het waterreservoir eruit, vul het voor driekwart met vers water en plaats het 10 tot 20 keer achter elkaar terug en weer uit.", "Machines vanaf serienummer 152922013: maak het zeefje op de watertoevoerklep schoon (in de uitsparing voor het reservoir).", RE];
+  MODELS.push({ id: "miele-koffiemachine", brand: "Miele", name: "Koffiemachine (alle volautomaten)", dev: "koffiemachine", cat: "koffiemachines", years: "CM-serie (vrijstaand) en CVA-serie (inbouw)", unit: null, also: "Miele koffiemachine F10, F17, F73, F82, Miele CM5 CM6 CM7 storing",
+    intro: "Miele-volautomaten (vrijstaand CM en inbouw CVA) tonen F-codes. Veel codes gaan over water, de zetgroep (filtersysteem) of kalk, en los je zelf op. Voor enkele modellen hebben we ook een eigen pagina.",
+    weak: ["Een vuil of vet filtersysteem (zetgroep) geeft codes als F73 en F82: maak het wekelijks met de hand schoon."], parts: [],
+    tasks: [{ m: 0.25, t: "Filtersysteem (zetgroep) met de hand schoonmaken", v: 0 }, { m: 0.25, t: "Kopjessensor of koffie-uitloop schoonmaken" }, { w: "Bij de melding", t: "Ontkalken" }],
+    src: ["mieleNlKoffie"], faults: [
+      F("F10", "Er komt geen water", 1, "De machine krijgt geen water binnen.", WATER),
+      F("F17", "Te weinig water", 1, "Vrijstaand: te weinig water vanuit het reservoir. Inbouw met vaste aansluiting: de hoekkraan is dicht, de toevoerslang geknikt of de vlotter in het reservoir zit vast.", ["Vrijstaand: " + WATER[0], "Inbouw: draai de wateraansluiting (hoekkraan) open, haal knikken uit de slang en controleer of de vlotter vrij beweegt.", RE]),
+      F("F1 / F2 / F3 / F4 / F80 / F81 / F83", "Thermisch probleem: te warm of te koud", 1, "De machine is oververhit, of de ruimte was lange tijd kouder dan 10 °C.", ["Oververhit: zet de machine uit met de aan/uit-schakelaar en laat hem een uur afkoelen.", "Te koud: zorg dat de ruimte langere tijd warmer is dan 15 °C.", RE]),
+      F("F82", "Filtersysteem niet goed genoeg gereinigd", 1, "Naast de automatische reiniging moet het filtersysteem (zetgroep) ook met de hand schoon. Sommige machines geven F82 ook als thermische storing.", ["Haal het filtersysteem eruit en maak het wekelijks met de hand schoon, en ook het gedeelte eronder.", "Gebruik zo nodig een reinigingstablet om het te ontvetten.", RE]),
+      F("F28", "Te veel koffiepoeder: reinig het filtersysteem handmatig", 1, "Er zit te veel gemalen koffie in het filtersysteem om aan te drukken; de koffie gaat naar het afvalbakje.", ["Zet de machine uit, haal het filtersysteem eruit en maak het schoon.", RE]),
+      F("F73", "Filtersysteem komt niet in de beginstand", 1, "Het filtersysteem (zetgroep) kan niet terug naar zijn uitgangspositie of is vuil, waardoor de koffie niet kan worden aangedrukt.", ["Bevestig met OK.", "Zet de machine uit, haal de stekker eruit en steek hem er weer in.", "Haal het filtersysteem eruit (als dat lukt) en spoel het zonder schoonmaakmiddel af onder de kraan.", RE]),
+      F("F74", "Fout bij het verstellen van het ventiel", 1, "Het ventiel is mogelijk verkalkt.", ["Zet de machine uit en na korte tijd weer aan.", "Ontkalk de machine via Menu, Onderhoud, Ontkalken starten; laat het programma helemaal uitlopen.", RE]),
+      F("F75 / F76", "Koffiecapsule klem (CVA met capsules)", 1, "Een capsule zit vast of is niet goed op het capsuleplaatje gedrukt.", ["Bevestig met OK.", "Open de deur, leeg het afvalbakje en zet het terug.", "Haal de voorraadslede eruit en zet hem terug; sluit de deur.", RE]),
+      F("F77 / F226 / F352", "Initialisatiefout ventiel", 1, "Het ventiel start niet goed op.", ["Haal de stroom van de machine (stekker eruit) en sluit hem weer aan.", RE]),
+      F("F233", "Kopjessensor vuil of koffie-uitloop verkeerd geplaatst", 1, "Inbouw: de kopjessensor onder de uitloop is vuil. Vrijstaand: de koffie-uitloop zit niet goed of is verkeerd in elkaar gezet.", ["Inbouw: druk de twee haakjes naar elkaar, haal de sensor eruit en maak hem schoon (vaatwasser of warm sop). Doe dit minstens wekelijks.", "Vrijstaand: haal de uitloop uit elkaar, maak de delen schoon en zet ze in de goede volgorde terug."]),
+      F("F307", "Melkventiel vastgeplakt", 1, "Opgedroogde melk houdt het melkventiel vast.", ["Open de deur, haal het linker bonenreservoir en het reinigingsreservoir eruit.", "Haal de afdekking van de uitloop en van het melkventiel eraf en maak het ventiel met de hand schoon (zie de gebruiksaanwijzing)."]),
+      F("F0", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+      N("'Spoelen' in het display na een nieuw ontkalkingspatroon", 1, "Geen storing: het nieuwe ontkalkingspatroon wordt met water gevuld. Na ongeveer 10 minuten is het klaar.", ["Wacht tot de machine zichzelf uitschakelt; zet hem niet geforceerd uit."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
