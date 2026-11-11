@@ -12167,4 +12167,36 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
     N("Kookplaat met afzuiging: filteralarm of '!'", 1, "Geen storing: het vet- of koolstoffilter moet worden schoongemaakt of vervangen.", ["Maak het vetfilter schoon of vervang de koolstoffilters.", "Reset het alarm volgens de handleiding."])
   ); })(MODELS.find(m => m.id === "indesit-kookplaat"));
 }
+{ const SVC = "Komt de code terug? Boek een servicebezoek bij Indesit.";
+  const R2 = ["Haal de stroom 2 minuten van het apparaat (stekker eruit of groep uit) en zet het weer aan.", SVC];
+  MODELS.push({ id: "indesit-combimagnetron", brand: "Indesit", name: "(Combi)magnetron", dev: "magnetron", cat: "ovens", years: "Indesit-magnetrons en combimagnetrons (inbouw)", unit: null, also: "Indesit combimagnetron ERR1, Indesit magnetron F6E4, Indesit magnetron FCE1, Indesit magnetron COOL ON",
+    intro: "Indesit-(combi)magnetrons tonen ERR-codes, F-codes en FxEy-codes. Bijna alle codes los je eerst op door het apparaat 2 minuten stroomloos te maken. FCE-codes gaan over de wifi-verbinding.",
+    weak: [], parts: [], tasks: [],
+    src: ["indesitNlFaq"], faults: [
+      F("ERR1 / ERR2 / ERR3 / ERR4 / ERR5 / ERR6", "Storing, vaak na een stroomprobleem", 1, "Indesit adviseert eerst een reset.", R2),
+      F("ERR7 / ERR8 / ERR9 / ERR13 / ERRA", "Storing, vaak na een stroomprobleem", 1, "Indesit adviseert eerst een reset.", R2),
+      F("ERRB / ERRD / ERRE / ERRF / ERRJ", "Storing, vaak na een stroomprobleem", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F1 / F2 / F3 / F7 / F8 / F9 / F13", "Storing, vaak na een stroomprobleem", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F1E1 / F1E2 / F1E4 / F2E1 / F2E2 / F2E5", "Storing, vaak na een stroomprobleem", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F4E0 / F4E1 / F4E4 / F4E8 / F4E9", "Storing, vaak na een stroomprobleem", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F5E0 / F5E1 / F6E0 / F6E1 / F6E6 / F6E7 / F6E8 / F8E5", "Storing, vaak na een stroomprobleem", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F1EA / F2E4 / F5E6", "Storing na spanningsuitval", 1, "Vaak na een stroomonderbreking.", R2),
+      F("FEE0 / FEE1 / FEE2 / FEE3 / FEE4 / FEE5 / FEE6", "Storing na spanningsuitval", 1, "Vaak na een stroomonderbreking.", R2),
+      F("F1E3", "Storing na een stroomprobleem", 1, "Vaak na een stroomonderbreking.", ["Heeft het apparaat een draaiknop? Zet die op 0; de code verdwijnt.", "Anders: haal de stroom 2 minuten eraf.", SVC]),
+      F("F6E4", "START ingedrukt voordat de deur dicht was", 1, "Geen defect: bij een 6th Sense-programma geeft F6E4 een waarschuwing als je op START drukt met de deur open.", ["Sluit eerst de deur en druk dan op START."]),
+      F("F0E8", "Tijdelijke storing", 1, "Kan een tijdelijke situatie zijn.", ["Haal de stroom meer dan 10 seconden eraf en sluit weer aan.", SVC]),
+      F("F8E8", "Stoomfunctie start niet", 1, "Probleem met het stoomsysteem, vaak door kalk of verkeerd water.", ["Vul het laatje met schoon kraanwater (geen gedestilleerd water).", "Voer de reinigings-/ontkalkingsfunctie uit en herhaal die met ontkalkingsmiddel.", "Wacht een paar minuten en probeer de stoomfunctie opnieuw.", SVC]),
+      F("FCE1 / FCE2 / FCE3 / FCE7", "Wifi-verbinding mislukt", 1, "FCE1: geen wifi. FCE2: geen verbinding met de router. FCE3: geen internet. FCE7: geen verbinding met de cloud.", ["Probeer opnieuw te verbinden en volg elke stap in de app nauwkeurig.", "Controleer of je router en internet werken."]),
+      F("COOL ON", "Afkoelen na gebruik", 1, "Geen storing: na lang of heet gebruik koelt het apparaat af en gaat daarna vanzelf uit.", ["Wacht tot het afkoelen klaar is; je kunt het veilig onderbreken door de deur te openen."]),
+      F("DOOR", "Deur openen en sluiten (pyrolyse)", 1, "Geen storing: voor de pyrolysereiniging moet je eerst de deur openen en sluiten.", ["Open en sluit de deur en druk dan op Start."]),
+      F("O--n / On", "Display vergrendeld (standby)", 1, "Na een tijd zonder gebruik vergrendelt het display.", ["Houd de knop << 5 seconden ingedrukt."]),
+      N("DEMO: apparaat start niet", 1, "De demostand staat aan.", ["Haal de stekker eruit en sluit weer aan.", "Zet binnen 1 minuut de programmaknop op 0 en open de deur.", "Houd met de deur open de TERUG-toets 5 seconden ingedrukt tot DEMO OFF verschijnt."]),
+      N("Aan, maar warmt niet op", 1, "De deur is niet goed gesloten.", ["Sluit de deur goed en kijk of de deurrubber goed zit en schoon is."]),
+      N("START-knop werkt niet na een update", 1, "Na een online software-update via wifi.", ["Haal de stroom meer dan 10 seconden eraf en sluit weer aan."]),
+      N("Zandloper op het display", 1, "De software wordt via internet bijgewerkt, of er was net een stroomstoring.", ["Wacht: na een stroomstoring 30 seconden, bij een update tot ongeveer een uur.", "Blijft 'neem contact op met het servicecentrum' staan? Neem contact op met een monteur."]),
+      N("Melding 'stroomuitval': datum en tijd instellen", 1, "Geen storing: er was een (korte) stroomonderbreking.", ["Sla het scherm over of stel datum en tijd opnieuw in. Met wifi gebeurt dat automatisch."]),
+      N("Geen piepjes meer", 1, "De pieptoon staat uit in de instellingen.", ["Zet de pieptoon aan via de instellingen."]),
+      N("Lampje zichtbaar tussen deur en bedieningspaneel", 1, "Geen storing: het lampje op het paneel schijnt door de opening.", ["Je hoeft niets te doen."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
