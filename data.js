@@ -11901,4 +11901,65 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
     N("D ON / demostand op het display", 1, "De machine staat in de demostand en wast niet.", ["Groot display (zo lang als het knoppenpaneel): houd de eerste knop links en de laatste knop rechts minstens 3 seconden vast tot D OFF verschijnt.", "Klein display (modellen van voor 2012): houd de eerste en derde knop van links minstens 3 seconden vast tot D ON verdwijnt."])
   ); m.src.push("indesitNlFaq"); })(MODELS.find(m => m.id === "indesit-wasmachine"));
 }
+{ const SVC = "Komt de code terug? Neem contact op met de Indesit-consumentenservice.", ONLY = "Indesit geeft hiervoor geen oplossing die je zelf kunt doen: neem contact op met de Indesit-consumentenservice.";
+  const XR = ["Reset: houd de X-toets 3 seconden ingedrukt.", "Open en sluit de deur en kies een programma zonder voorwas.", SVC];
+  const PWR = ["Haal de stroom er 2 minuten af (stekker eruit of groep uit) en zet hem weer aan.", "Gebruik geen verlengsnoer of meervoudige stekker; sluit de vaatwasser direct aan op het stopcontact.", SVC];
+  const OLD = ["Houd de AAN/UIT-toets 10 seconden ingedrukt.", "Haal daarna de stekker een paar seconden eruit (of zet de groep even uit) en sluit weer aan.", SVC];
+  const OWI = ["Haal de stroom eraf en haal het filter eruit. Kijk naar de sensor erachter: witte vlekken zijn kalk.", "Vul de opening met warm water en drie eetlepels azijn en wacht 30 minuten.", "Verwijder de kalk met een zacht borsteltje of doekje; niet schrapen.", "Plaats het filter terug, houd de X-toets 3 seconden ingedrukt en sluit de deur.", "Draai daarna een heet programma met ontkalker/ontvetter; doe dat minstens elke drie maanden."];
+  const NOWATER = ["Controleer of er water in huis is en of de kraan helemaal open staat.", "Haal knikken uit de toevoerslang.", "Draai de toevoerslang los en maak het filtertje in de slang of inlaatklep schoon; kijk of er water uit de kraan komt.", "Reset: houd de X-toets 3 seconden ingedrukt en sluit de deur; de machine pompt een minuut af.", SVC];
+  const DRAIN = ["Haal de stekker eruit.", "Maak de filters schoon en kijk of er etensresten onder het filter zitten.", "Haal knikken uit de afvoerslang. Koppel hem los van de sifon en kijk in een emmer of het water wegloopt.", "Nieuwe installatie: haal het dopje uit de sifonaansluiting.", "Stekker terug en start een kort programma.", SVC];
+  MODELS.push({ id: "indesit-vaatwasser", brand: "Indesit", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Indesit-vaatwassers met display of lampjes", unit: null, also: "Indesit afwasautomaat F6E1, Indesit vaatwasser F05, Indesit vaatwasser H, Indesit vaatwasser dES",
+    intro: "Indesit-vaatwassers tonen codes als F05 of AL03 (oudere modellen), FxEy zoals F6E1 (nieuwere modellen) of E01 tot E24 (nieuwste). Veel codes los je op met een reset met de X-toets, het schoonmaken van de filters of ontkalken.",
+    weak: ["Kalk op de OWI-sensor achter het filter geeft codes als F3E3 en F6E1. Ontkalk minstens elke drie maanden.", "Een afvoerslang die te laag hangt geeft een heveleffect (F15, F8E3)."], parts: [],
+    tasks: [{ m: 0.25, t: "Filters uitspoelen", v: 1 }, { m: 3, t: "Ontkalken met een heet programma en ontkalker" }, { w: "Als het lampje brandt", t: "Zout en glansspoelmiddel bijvullen" }],
+    src: ["indesitNlFaq"], faults: [
+      F("F03 / A03 / AL03", "Water wordt niet afgepompt", 1, "De afvoer is verstopt of de sifon is bij een nieuwe machine nog afgesloten.", DRAIN),
+      F("F02", "Afpompen lukt niet: etensresten onder het filter (LED 2 aan)", 1, "Bij het schoonmaken kunnen etensresten onder het filter terechtkomen die de afvoer blokkeren.", ["Haal het filter eruit en verwijder de etensresten eronder.", "Zet het filter terug en reset de machine.", SVC]),
+      F("F05", "Afvoerprobleem of te veel schuim (LED 1 en 3 aan)", 1, "Vaak vuile filters, te veel middel of een afvoerslang op de verkeerde hoogte.", ["Maak de filters regelmatig schoon.", "Nieuwe installatie: de afvoerslang moet tussen 40 en 100 cm boven de bodem van de machine zitten, en het dopje in de sifon moet eruit.", "Gebruik niet te veel vaatwasmiddel of glansspoelmiddel.", SVC]),
+      F("F06", "Er komt geen water binnen", 1, "De kraan is dicht, de slang is geknikt of het filtertje in de slang is vuil.", NOWATER),
+      F("F11", "Watertoevoer (LED 1, 2 en 4 aan)", 1, "Meestal een probleem met de watertoevoer, vooral bij een nieuwe installatie.", NOWATER),
+      F("F04 / F07 / F08 / F09 / F10 / F12 / F13", "Storing na een stroomonderbreking (combinaties van lampjes)", 1, "Indesit adviseert eerst een reset, vooral na een stroomstoring.", OLD),
+      F("AL10", "Geen warmte, slecht wasresultaat", 2, "De vaatwasser warmt het water niet op.", ["Reset de machine.", "Komt de storing terug? Maak een serviceafspraak."]),
+      F("H", "Geen of te weinig water", 1, "Een tijdelijke daling van de waterdruk of de kraan is dicht.", NOWATER),
+      F("F3E2 / F3E3 / F3E4", "Kalk op de OWI-sensor (wast niet goed)", 1, "De sensor achter het filter is verkalkt.", OWI),
+      F("F6E1 / F6EC / F8E1 / H2O", "Kalk op de OWI-sensor", 1, "De sensor achter het filter is verkalkt.", OWI),
+      F("F6E3", "Te veel schuim", 1, "Te veel of het verkeerde glansspoelmiddel of vaatwasmiddel.", ["Wacht tot het schuim minder wordt en reset (X-toets 3 seconden).", "Draai twee tot drie keer een heet programma zonder middel.", "Zet het glansmiddel lager (ring met een muntje op 1) en gebruik minder vaatwasmiddel.", "Maak de filters en sproeiarmen schoon."]),
+      F("F7E3", "Glansspoelmiddel gemorst", 1, "Gemorst glansspoelmiddel geeft schuim in de kuip.", ["Controleer of het deksel van het glansmiddelbakje goed dicht zit.", "Veeg gemorst middel weg met een doek.", "Doseer niet meer dan aanbevolen."]),
+      F("F8E3", "Te veel schuim of verkeerde installatie", 1, "Te veel schuim, of de afvoerslang staat niet op de goede hoogte, waardoor er een heveleffect ontstaat. Ook kan er lucht binnenkomen door een scheur in de toevoer.", ["Controleer de minimale en maximale hoogte van de afvoerslang volgens de installatiehandleiding.", "Controleer de toevoer op scheuren.", "Gebruik minder middel.", SVC]),
+      F("F15", "Heveleffect: afvoerslang te laag", 1, "Bij een nieuwe installatie stopt het programma te vroeg en knipperen lampjes: de afvoerslang hangt te laag.", ["Leg de afvoerslang volgens de installatiehandleiding op de juiste hoogte."]),
+      F("F5E1 / F5E2", "Probleem met de deur of de scharnieren", 1, "Het deurmechanisme of de scharnieren zitten vast.", ["Controleer of de scharnieren niet geblokkeerd zijn.", "Open en sluit de deur met iets meer kracht en start opnieuw.", SVC]),
+      F("F1E1 / F1E2", "Storing na een probleem met de stroom", 1, "Vaak na een stroomonderbreking.", PWR),
+      F("F2E1", "Storing", 1, "Indesit adviseert eerst een reset.", PWR),
+      F("F3E1", "Storing door de netspanning", 1, "Er kan een storing in de netspanning zijn.", PWR),
+      F("F8E2", "Storing door de netspanning", 1, "Er kan een storing in de netspanning zijn.", PWR),
+      F("F8E4 / F8E5 / F8E6", "Storing", 1, "Indesit adviseert eerst een reset.", PWR),
+      F("F4E1 / F4E2 / F4E3", "Storing", 1, "Indesit adviseert eerst een reset.", XR),
+      F("F6E2 / F6E4 / F6E5 / F6E7 / F6E8", "Storing", 1, "Indesit adviseert eerst een reset.", XR),
+      F("F7E1 / F7E2", "Storing", 1, "Indesit adviseert eerst een reset.", XR),
+      F("F9E1 / F9E2 / F9E3", "Storing", 1, "Indesit adviseert eerst een reset.", XR),
+      F("FAE1 / FAE2 / FAE3 / FAE4 / FAE5", "Storing", 1, "Indesit adviseert eerst een reset.", XR),
+      F("dES", "Ontkalken nodig (ontkalkingspictogram knippert)", 1, "Er zit kalk in de machine. Doe je niets, dan start de machine na een aantal programma's alleen nog het Self Clean-programma.", ["Controleer of de waterhardheid goed is ingesteld en of er zout in het reservoir zit.", "Ontkalk met een ontkalkingsmiddel en het programma Self Clean. Daarna verdwijnt dES.", "Bij veel kalk kan het nodig zijn twee keer te ontkalken."]),
+      F("E01", "Afvoeralarm of Aquastop", 2, "Het water loopt niet weg (verstopte filters, geknikte slang, verstopte sifon), of de lekbeveiliging heeft water gemeten.", ["Haal de stekker eruit, maak de filters schoon en haal zichtbaar vuil uit de opvangbak.", "Maak de afvoerslang recht en de sifonaansluiting vrij.", "Stekker terug, 5 minuten wachten en een kort programma starten.", "Komt E01 of Aquastop terug? Stop met gebruiken en maak een serviceafspraak."]),
+      F("E02", "Programma gepauzeerd", 1, "De START/PAUZE-knop is (per ongeluk) ingedrukt.", ["Druk nogmaals op START/PAUZE om verder te gaan."]),
+      F("E03", "Te weinig water of waterdruk", 1, "De kraan is niet helemaal open, de slang is geknikt of de waterdruk is te laag.", ["Draai de kraan helemaal open en haal knikken uit de toevoerslang.", "Controleer of de waterdruk voldoende is (zie de handleiding)."]),
+      F("E14", "Inlaatfilter verstopt", 1, "Het gaasfiltertje in de inlaatklep is verstopt.", ["Schroef de toevoerslang los van de machine.", "Maak het kleine ronde gaasfilter in de inlaatklep schoon; zit het vast, gebruik dan een tang."]),
+      F("E16", "Water loopt niet weg", 1, "De afvoerslang of sifon is waarschijnlijk verstopt.", DRAIN),
+      F("E06 / E07 / E08 / E09 / E10 / E11 / E12 / E13", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+      F("E15 / E17 / E20 / E23 / E24 / B02", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+      F("002", "Machine pompt af na lang indrukken van START", 1, "Houd je START/PAUZE lang ingedrukt, dan start een afpompfase en stopt de machine.", ["Druk kort (ongeveer een seconde) op START/PAUZE om een normaal programma te starten."]),
+      F("0:01", "Machine pompt een minuut af na een reset", 1, "Geen storing: na een reset (X-toets langer dan 3 seconden) pompt de vaatwasser ongeveer een minuut af.", ["Wacht tot het afpompen klaar is."]),
+      N("Waterkraan-pictogram en piepen", 1, "Geen storing: de waterdruk is laag, waardoor het vullen langer duurt.", ["Draai de kraan helemaal open en haal knikken uit de slang.", "De waterdruk moet tussen 0,5 en 10 bar zijn."]),
+      N("CANCEL/OFF knippert 8 keer", 1, "Probleem met de watertoevoer.", NOWATER),
+      N("CANCEL/OFF knippert 6 keer", 1, "Kalk op de OWI-sensor.", OWI),
+      N("Lampjes knipperen en de machine neemt geen water", 1, "De watertoevoer werkt niet.", NOWATER),
+      N("Pompt niet af en een alarm knippert", 1, "Er blijft water in de kuip staan.", ["Maak de filters schoon.", "Gebruik minder vaatwasmiddel."]),
+      N("Zoutlampje brandt altijd", 1, "De waterhardheid staat waarschijnlijk (per ongeluk) op zeer hard, waardoor de machine veel zout gebruikt.", ["Zoek de waterhardheid van je leidingwater op en stel die in volgens het boekje."]),
+      N("Glansmiddellampje brandt altijd", 1, "Kleurloos glansspoelmiddel wordt door de sensor niet gezien.", ["Gebruik een gekleurd glansspoelmiddel."]),
+      N("Glansmiddellampje gaat steeds aan en uit", 1, "Het reservoir is niet helemaal gevuld of de deur was open bij het vullen.", ["Zet de vaatwasser uit en aan en open de deur helemaal.", "Vul het glansmiddelbakje langzaam helemaal vol en sluit de deur (klik).", "Wacht 2 minuten; het lampje gaat uit als de machine aan staat en de deur dicht is."]),
+      N("Vaatwasser gaat niet uit aan het einde van het programma", 1, "Geen storing: de machine gaat pas uit als je de deur opent, of na ongeveer 10 minuten.", ["Open de deur aan het einde van het programma."]),
+      N("Meerdere piepjes en de machine start niet verder", 1, "De deur is tijdens het programma geopend.", ["Inbouw: druk op START en sluit de deur binnen 4 seconden.", "Vrijstaand: sluit de deur; bij sommige modellen moet je nog eens op START drukken."]),
+      N("Geen piep aan het einde, wel een lichtje op de vloer", 1, "Geen storing: dit model geeft een lichtje op de vloer (Light on the floor) in plaats van een piep.", ["Zie je ook geen licht? Misschien staat het uit of wordt het verborgen door het meubel."]),
+      N("Tekens of wisselende tijd op het display", 1, "Geen storing: het Sixth Sense-systeem rekent de wastijd opnieuw uit.", ["Laat het programma gewoon doorlopen."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
