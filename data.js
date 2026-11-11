@@ -11462,4 +11462,13 @@ Object.assign(SRC,{ zanNlOven: ["Zanussi Support – foutmeldingen oven en stoom
     F("E2020", "Elektronisch probleem", 3, "De elektronica van de oven geeft een fout.", [SVC]),
     F("Reservoir vullen", "Melding 'reservoir vullen' terwijl het reservoir vol is", 1, "De stoomoven ziet het reservoir als leeg, bijvoorbeeld omdat de lade niet goed is gesloten.", ["Controleer of de lade gevuld is en open en sluit hem opnieuw.", SVC]));
   m.src.push("zanNlOven"); })(MODELS.find(m => m.id === "zanussi-oven"));
+Object.assign(SRC,{ boschNlDroog: ["Bosch – foutcodes en storingen oplossen wasdrogers", "https://www.bosch-home.nl/service/ondersteuning/drogers/foutcodes"] });
+(m => { const SVC = "Maak een afspraak met de Bosch-servicedienst; dit lost een monteur op.";
+  m.faults.push(
+    F("CArE / CrE", "Tijd voor apparaatverzorging", 1, "Geen storing: de droger vraagt om een eenvoudige onderhoudsbeurt.", ["Voer de apparaatverzorging uit zoals de gebruiksaanwijzing beschrijft (filters en warmtewisselaar schoonmaken)."]),
+    F("E:20-A0 / E:20-A1 / E:20-22", "Pluizenfilter verstopt", 1, "Het pluizenfilter zit dicht door pluis of door een moeilijk zichtbaar laagje wasverzachter.", ["Maak het pluizenfilter na elke droogbeurt schoon; spoel het af als er een laagje op zit.", "Controleer het filter op schade voordat je het terugplaatst en vervang het als het kapot is."]),
+    F("E:30-40", "Condensafvoerslang verstopt of geknikt", 1, "Het condenswater kan niet weg.", ["Controleer of de afvoerslang zonder knikken ligt.", "Maak de slangklem op de sifon los, haal de slang voorzichtig los en maak slang en sifonaansluiting schoon.", "Helpt het niet? Maak een afspraak met de Bosch-servicedienst."]),
+    F("E:04 / E:91-00", "Was te nat of trommel te vol", 1, "Het wasgoed is nog te nat, of er zit te veel was in de trommel.", ["Doe minder was in de trommel.", "Centrifugeer de was eerst op een hoger toerental voordat je gaat drogen."]),
+    F("E28", "Storing in de elektronica", 3, "De elektronica van de droger geeft een fout.", [SVC]));
+  m.src.push("boschNlDroog"); })(MODELS.find(m => m.id === "bosch-droger"));
 module.exports = { CATS, MODELS, SRC, COST };
