@@ -414,7 +414,8 @@ function warnEbike() { return `<div class="safety"><svg width="22" height="22" v
 const KBLINK = {
   "wasmachine-geen-water": ["wasmachines", /toevoer|geen water|te weinig water|inlaat|waterkraan/i],
   "vaatwasser-pompt-niet-af": ["vaatwassers", /afvoer|pompt niet|wegpomp|afpomp/i],
-  "wasmachine-centrifugeert-niet": ["wasmachines", /onbalans|centrifug|afvoer|pompt|wegpomp/i],
+  "wasmachine-pompt-niet-af": ["wasmachines", /afvoer|pompt|wegpomp|afpomp/i],
+  "wasmachine-centrifugeert-niet": ["wasmachines", /onbalans|centrifug/i],
   "wasmachine-lekt": ["wasmachines", /lek|aquastop|overloop/i],
   "wasmachine-trommel-draait-niet": ["wasmachines", /motor|aandrijf|tacho/i],
   "wasmachine-start-programma-niet": ["wasmachines", /deur|kinderslot|vergrendel/i],

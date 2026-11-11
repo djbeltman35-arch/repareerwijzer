@@ -1379,6 +1379,26 @@ const A = [
   ],
   src: [["Beko – Wat moet ik doen als mijn oven niet warm wordt?", "https://www.beko.com/nl-nl/ondersteuning/oven--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-oven-niet-warm-wordt"], ["Beko – De oven produceert rook als deze in werking is", "https://www.beko.com/nl-nl/ondersteuning/oven--problemen-oplossen--artikel/de-oven-produceert-rook-als-deze-in-werking-is"]],
   rel: [["kennisbank-oven-schoonmaken-pyrolyse.html", "Oven schoonmaken en pyrolyse"], ["ovens.html", "Alle ovens en foutcodes"]]
+},
+{
+  id: "wasmachine-pompt-niet-af",
+  cat: "wasmachines",
+  q: "Wat doe je als je wasmachine niet afpompt?",
+  title: "Wasmachine pompt niet af: water blijft in de trommel staan",
+  desc: "Blijft er water in je wasmachine staan? Pompfilter schoonmaken, afvoerslang controleren en terugstromen voorkomen (hoogte 40 tot 100 cm). Stappenplan volgens Beko.",
+  lead: "Blijft er water in de trommel staan, of toont je wasmachine een afvoercode? Meestal zit het pompfilter vol. Dat los je zelf op.",
+  secs: [
+    ["1. Pompfilter schoonmaken", "<p>Volgens Beko is een verstopt pompfilter de meest waarschijnlijke oorzaak. Het filter zit rechtsonder aan de voorkant.</p><ol><li>Haal de stekker eruit en leg handdoeken of een laag bakje klaar: er komt veel water uit.</li><li>Open het klepje. Zit er een noodslangetje, trek het naar buiten, haal het dopje eraf en laat het water weglopen. Zonder slangetje draai je het filter langzaam linksom los.</li><li>Haal pluis, haar, munten en knopen uit het filter en spoel het af onder de kraan.</li><li>Veeg de filteropening schoon, draai het filter rechtsom stevig vast en zet het klepje terug.</li></ol><p>Beko adviseert dit filter elke drie maanden schoon te maken.</p>"],
+    ["2. Afvoerslang", "<p>De slang mag niet geknikt of verstopt zijn. Leg hem recht en haal een eventuele verstopping weg.</p>"],
+    ["3. Water dat terugloopt", "<p>Pompt de machine wel, maar loopt het water terug de trommel in, controleer dan hoe de afvoer is aangesloten:</p><ul><li>De slang zit achter op de machine met de klem vast, hoger dan de aansluiting.</li><li>De afvoer zit tussen 40 en 100 cm boven de vloer.</li><li>De slang steekt ongeveer 15 cm in de afvoer, niet dieper; kort hem anders in.</li></ul>"],
+    ["Helpt niets?", "<p>Dan is de pomp mogelijk defect. Neem contact op met een erkend servicebedrijf. Staat er een code op het display, zoek die dan op: bij de meeste merken hoort een afvoercode bij dit probleem.</p>"]
+  ],
+  faq: [
+    ["Waarom blijft er water in mijn wasmachine staan?", "Meestal door een verstopt pompfilter. Ook een geknikte afvoerslang of een verkeerd aangesloten afvoer kan de oorzaak zijn."],
+    ["Hoe hoog moet de afvoer van een wasmachine zitten?", "Volgens Beko tussen 40 en 100 cm boven de vloer, met de slang ongeveer 15 cm in de afvoer."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn wasmachine het water niet wegpompt?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-het-water-niet-wegpompt"]],
+  rel: [["kennisbank-wasmachine-centrifugeert-niet.html", "Wasmachine centrifugeert niet"], ["kennisbank-wasmachine-onderhoud.html", "Wasmachine onderhouden"], ["wasmachines.html", "Alle wasmachines en foutcodes"]]
 }
 ];
 module.exports = { KB: A };
