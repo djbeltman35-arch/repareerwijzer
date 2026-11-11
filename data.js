@@ -11322,4 +11322,10 @@ Object.assign(SRC,{ aegOvenSup: ["AEG Support – foutmeldingen oven (F136, F137
   F("F602 / F603", "Geen wifi-signaal", 1, "De oven vindt geen wifi-netwerk. Koken werkt gewoon door.", ["Zet de oven uit en weer aan.", "Blijft de code? Mogelijk is de wifi-module uitgeschakeld als veiligheidsmaatregel. " + SVC]),
   F("E2020", "Elektronisch probleem", 3, "De oven meldt een fout in de elektronica.", [SVC]));
   m.src.push("aegOvenSup"); })(MODELS.find(m => m.id === "aeg-oven"));
+
+Object.assign(SRC,{ aegVaatI24: ["AEG Support – vaatwasser foutmelding i24", "https://support.aeg.nl/support-articles/article/vaatwasser-geeft-foutmelding-i24-weerop-het-display-wordt-niet-afgepompt"], aegVaatI60: ["AEG Support – vaatwasser foutmelding i60", "https://support.aeg.nl/support-articles/article/vaatwasser-geeft-foutmelding-i60-weer-op-het-display"] });
+(m => { m.faults.push(
+  F("i24", "Afvoerpomp geblokkeerd", 1, "Er zit iets in de afvoerpomp, waardoor het water niet wordt weggepompt.", ["Zet de vaatwasser uit en haal de stekker eruit.", "Haal de filters eruit en neem het water op met een spons.", "Wip het plastic dekseltje van de afvoerpomp schuin los en haal glas, plastic, botjes of tandenstokers weg.", "Zet het dekseltje stevig terug, plaats de filters en sluit de vaatwasser weer aan.", "Komt de code terug? Neem contact op met AEG-service."]),
+  F("i60", "Probleem met de verwarming", 2, "Het water wordt niet goed verwarmd.", ["Controleer of het toevoerwater niet warmer is dan 60 °C (bijvoorbeeld bij aansluiting op warm water).", "Zet de vaatwasser uit en weer aan.", "Blijft de code? Plan een afspraak met de AEG-servicedienst."]));
+  m.src.push("aegVaatI24", "aegVaatI60"); })(MODELS.find(m => m.id === "aeg-vaatwasser"));
 module.exports = { CATS, MODELS, SRC, COST };
