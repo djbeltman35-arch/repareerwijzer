@@ -11962,4 +11962,45 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("Tekens of wisselende tijd op het display", 1, "Geen storing: het Sixth Sense-systeem rekent de wastijd opnieuw uit.", ["Laat het programma gewoon doorlopen."])
     ]});
 }
+{ const SVC = "Blijft het probleem? Boek een servicebezoek bij Indesit.";
+  const R30 = ["Houd AAN/UIT 3 seconden ingedrukt.", "Haal de stekker eruit en wacht ongeveer 30 minuten.", "Stekker terug en start een droogprogramma.", SVC];
+  const PWR = ["Haal de stekker 2 à 3 minuten eruit om de droger te resetten.", "Gebruik geen verlengsnoer of meervoudige stekker; sluit de droger direct aan op het stopcontact.", SVC];
+  MODELS.push({ id: "indesit-droger", brand: "Indesit", name: "Droger (alle modellen)", cat: "drogers", years: "Indesit-condens- en warmtepompdrogers", unit: null, also: "Indesit wasdroger F02, Indesit droger H2O, Indesit droger F06, Indesit droger CL",
+    intro: "Indesit-drogers tonen F-codes (F01 tot F99) of op nieuwere modellen FxEy-codes zoals F1E2. Veel meldingen gaan over het waterreservoir of de filters. De meeste codes los je eerst op met een reset.",
+    weak: ["Vuile filters en een vuile condensor geven slechte droogresultaten en codes als F03."], parts: [],
+    tasks: [{ m: 0.25, t: "Pluizenfilter in de deur schoonmaken (na elke droogbeurt)", v: 1 }, { m: 1, t: "Condensor en tweede filter schoonmaken" }, { w: "Na elke droogbeurt", t: "Waterreservoir legen" }],
+    src: ["indesitNlFaq"], faults: [
+      F("H2O", "Waterreservoir vol", 1, "Het reservoir is niet geleegd na de vorige droogbeurt.", ["Leeg het waterreservoir en plaats het terug.", "Druk op Start; na een paar seconden verdwijnt H2O en gaat het lampje 'water verwijderen' uit."]),
+      F("F02", "Storing in het geheugen van de elektronica", 1, "Vaak door een onregelmatigheid in de stroomvoorziening. Een reset verhelpt het meestal.", ["Houd AAN/UIT 5 seconden ingedrukt.", "Of (draaiknopmodellen, binnen 10 seconden): draai de programmaknop rechtsom naar positie 6, druk 3 keer op START, draai terug naar de eerste positie en druk weer 3 keer op START.", "Zie de gebruiksaanwijzing voor de reset van jouw bedieningspaneel.", SVC]),
+      F("F03", "Filter verstopt", 1, "De filters zitten vol pluis.", ["Haal het filter eruit en maak het grondig schoon.", "Zet de droger ongeveer 5 minuten uit en start opnieuw een geschikt programma."]),
+      F("F06", "Temperatuurprobleem", 1, "De droger is te warm, of de ruimte is kouder dan 5 °C of warmer dan 35 °C.", ["Zet de droger uit en haal de stekker eruit.", "Open de deur en haal de was eruit om de trommel te laten afkoelen.", "Zorg dat de ruimte tussen 5 en 35 °C is en wacht ongeveer een uur.", "Stekker terug, was erin en opnieuw starten.", SVC]),
+      F("F10", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", ["Zet de droger uit en haal de stekker eruit.", "Wacht ongeveer 30 minuten, sluit weer aan en start een droogprogramma.", SVC]),
+      F("F12", "Geen communicatie tussen display en besturing", 1, "Ook als LED 3 en 4 branden en andere lampjes knipperen.", ["Haal de stekker 3 minuten eruit en steek hem er weer in."]),
+      F("F20", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", ["Houd AAN/UIT minstens 3 seconden ingedrukt.", "Haal de stekker 3 minuten eruit en sluit weer aan.", SVC]),
+      F("F01 / F04 / F05", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", R30),
+      F("F07 / F08 / F09", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", R30),
+      F("F11 / F13 / F14 / F15", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", R30),
+      F("F16 / F17 / F18 / F19", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", R30),
+      F("F21 / F22 / F23 / F24", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", R30),
+      F("F33 / F70 / F73 / F98 / F99", "Tijdelijke storing", 1, "Indesit adviseert eerst te resetten.", R30),
+      F("F1E2", "Storing door een stroomstoot", 1, "De netspanning was buiten 190–264 V.", ["Haal de stekker 3 minuten eruit om te resetten.", "Gebeurt het vaak? Meld het aan je netbeheerder of energieleverancier."]),
+      F("F1E3", "Storing", 1, "Indesit adviseert eerst te resetten.", ["Zet de droger uit en haal de stekker 5 minuten eruit.", "Sluit weer aan en zet hem aan.", SVC]),
+      F("F1E1 / F3E1 / F3E3 / F3E4", "Storing door de netspanning", 1, "Er kan een storing in de netspanning zijn.", PWR),
+      F("F4E2 / F4E7 / F5E1", "Storing door de netspanning", 1, "Er kan een storing in de netspanning zijn.", PWR),
+      F("F6E1 / F6E2 / F6E3 / F6E4", "Storing door de netspanning", 1, "Er kan een storing in de netspanning zijn.", PWR),
+      F("F8E2 / F9E2", "Storing door de netspanning", 1, "Er kan een storing in de netspanning zijn.", PWR),
+      F("F7E3", "Storing door de netspanning (warmtepomp)", 1, "Er kan een storing in de netspanning zijn.", ["Haal de stekker 30 minuten eruit zodat de compressor tot rust komt.", "Sluit de droger direct aan op het stopcontact, zonder verlengsnoer.", SVC]),
+      F("CL", "Kinderbeveiliging staat aan", 1, "Geen storing: de bediening is vergrendeld, waardoor het programma niet start of verandert.", ["Houd de knop met het slotje 5 seconden ingedrukt tot CL3, CL2, CL1 aftelt en het slotlampje uitgaat."]),
+      N("Lampje 'water verwijderen' blijft aan", 1, "Onderbreek het programma niet: de droger maakt zichzelf aan het eind schoon.", ["Laat het programma helemaal aflopen en leeg dan het reservoir."]),
+      N("Start/Pauze en opties knipperen, fles-icoon brandt", 1, "Het waterreservoir moet geleegd worden.", ["Leeg het waterreservoir en plaats het goed terug."]),
+      N("Lampje 'condensor reinigen' of 'filter reinigen' brandt", 1, "Geen storing: het is een herinnering, ook als de condensor schoon is. Het lampje gaat bij de volgende start vanzelf uit.", ["Maak het deurfilter na elke droogbeurt schoon en de condensor als de droger erom vraagt."]),
+      N("Melding 'filter reinigen' gaat niet meer uit (na 5 droogbeurten)", 1, "De melding verdwijnt alleen als je de condensor schoonmaakt in de juiste volgorde.", ["Zet de droger aan met AAN/UIT.", "Zie je de melding, zet hem dan uit met AAN/UIT (stekker erin laten).", "Maak de condensor schoon.", "Zet de droger aan en start een droogprogramma."]),
+      N("Service-lampje brandt", 1, "Kan een tijdelijke storing zijn.", ["Haal de stekker 3 minuten eruit.", SVC]),
+      N("Onderste lampje knippert (IRON + 30')", 1, "Kan komen door een stroomstoot (netspanning buiten 190–264 V).", ["Haal de stekker 3 minuten eruit om te resetten.", "Gebeurt het vaak? Meld het aan je energieleverancier."]),
+      N("Droger blijft piepen en een icoon knippert", 1, "Vaak staat de deur niet helemaal dicht.", ["Haal de stekker eruit en sluit weer aan.", "Zorg dat de deur volledig dicht is tijdens het drogen.", SVC]),
+      N("DEMO of dON op het display, droger droogt niet", 1, "De demostand staat aan.", ["Zet de droger uit en weer aan met AAN/UIT.", "Druk tegelijk op AAN/UIT en START/PAUZE tot dOFF verschijnt of DEMO verdwijnt."]),
+      N("Zonlampje (beschermen) brandt terwijl drogen op UIT staat", 1, "Geen storing: bij de programma's Donker en Ultradelicaat brandt het zonlampje, ook als drogen op UIT staat. De droger droogt dan niet.", ["Kies een ander programma of zet de droogoptie aan."]),
+      N("Lampjes gaan aan zodra de stekker erin gaat", 1, "Geen storing; dit is normaal.", ["Je hoeft geen monteur te bellen."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
