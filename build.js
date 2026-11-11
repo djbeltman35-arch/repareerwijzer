@@ -191,7 +191,7 @@ layout({
 </section>
 <section class="stack">
   <h2>Veelvoorkomende problemen</h2>
-  <div class="probs">${CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}</ul></div>` : ""; }).join("")}</div>
+  <div class="probs">${CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.slice(0, 4).map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}${ms.length > 4 ? `<li><a href="${c.id}.html"><b>Nog ${ms.length - 4} problemen bekijken →</b></a></li>` : ""}</ul></div>` : ""; }).join("")}</div>
 </section>
 <section class="stack">
   <h2>Kennisbank</h2>
