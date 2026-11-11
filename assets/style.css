@@ -320,3 +320,19 @@ header.top{position:relative;z-index:58}
 .ad-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.65}
 .ad a{font-weight:700;font-size:17px}
 .ad small{opacity:.75}
+
+/* Advertenties: opvallend maar duidelijk gelabeld */
+.adbox{background:var(--surface);border:2px solid var(--accent);border-radius:10px;padding:14px 16px 12px;margin:18px 0;box-shadow:0 2px 0 var(--accent)}
+.adbox-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.adbox-head h2{margin:0;font-size:19px}
+.adbox .ad-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:1px 6px;white-space:nowrap}
+.adgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.adcard{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:4px 12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.adcard:hover{border-color:var(--accent);transform:translateY(-1px)}
+.adic{grid-row:1/3;font-size:30px;line-height:1}
+.adtx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.adtx b{font-size:16px;line-height:1.3}
+.adtx small{color:var(--muted);font-size:14px;line-height:1.4}
+.adbtn{grid-column:2;justify-self:start;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px;margin-top:4px}
+.adcard:hover .adbtn{filter:brightness(1.05)}
+.adnote{margin:10px 0 0;font-size:12px;color:var(--muted)}

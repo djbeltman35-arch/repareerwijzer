@@ -310,7 +310,7 @@ function BOLCAT_() { return {
   "3d-printers": ["pla filament", "🧵 Filament voor je 3D-printer", "PLA, PETG en meer bij bol."],
   ventilatie: ["wtw filter", "💨 WTW-filters", "Vervangende filters voor je WTW-unit bij bol."],
   koelkasten: ["koelkastthermometer", "🌡️ Koelkastthermometer", "Controleer of je koelkast koud genoeg is; thermometers bij bol."],
-  auto: ["obd2 uitleesapparaat", "🚗 OBD2-uitleesapparaat", "Lees zelf de foutcode van je auto uit; uitleesapparaten bij bol."],
+  auto: ["obd2 uitleesapparaat", "🔧 OBD2-uitleesapparaat", "Lees zelf de foutcode van je auto uit; uitleesapparaten bij bol."],
   tuin: ["robotmaaier mesjes", "🌱 Mesjes voor je robotmaaier", "Vervangende mesjes en onderdelen bij bol."],
   spa: ["spa filter", "🛁 Filters voor je spa of zwembad", "Vervangende filters bij bol."],
   garagedeuren: ["afstandsbediening garagedeur", "🔑 Afstandsbediening garagedeur", "Losse en universele handzenders bij bol."],
@@ -342,7 +342,7 @@ function adsFor(m) {
     default: return [];
   }
 }
-function adBlock(m) { const list = adsFor(m).map(k => ADS()[k]); const b = BOLCAT_()[m.cat]; if (b) list.push([BOL(b[0], m.cat), b[1], b[2]]); return list.map(([u, t, d]) => { return `<aside class="ad"><span class="ad-label">Advertentie</span><a href="${u}" rel="sponsored noopener" target="_blank">${t}</a><small>${d}</small></aside>`; }).join(""); }
+function adBlock(m) { const list = adsFor(m).map(k => ADS()[k]); const b = BOLCAT_()[m.cat]; if (b) list.push([BOL(b[0], m.cat), b[1], b[2]]); if (!list.length) return ""; return `<aside class="adbox" aria-label="Advertenties"><div class="adbox-head"><h2>🛒 Handig bij deze storing</h2><span class="ad-label">Advertentie</span></div><div class="adgrid">${list.map(([u, t, d]) => { const ic = (t.match(/^\S+/) || [""])[0]; const tt = t.replace(/^\S+\s/, ""); return `<a class="adcard" href="${u}" rel="sponsored noopener" target="_blank"><span class="adic" aria-hidden="true">${ic}</span><span class="adtx"><b>${tt}</b><small>${d}</small></span><span class="adbtn">Bekijk →</span></a>`; }).join("")}</div><p class="adnote">Koop je via deze links, dan krijgt Foutcodezoeker een kleine vergoeding. Jij betaalt niets extra.</p></aside>`; }
 function warnGas() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Zelf mag je bijvullen en één keer resetten. Al het andere werk aan een gasketel laat je over aan een erkend installateur. Ruik je gas? Ramen open, gaskraan dicht en bel 0800-9009.</p></div>`; }
 function warnEbike() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Open nooit zelf een e-bike-accu. Bij een beschadigde, warme of opgezwollen accu: niet laden en naar een specialist.</p></div>`; }
 
@@ -371,8 +371,8 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
 </article>
-${costBlock(m, f)}
 ${adBlock(m)}
+${costBlock(m, f)}
 <section class="stack">
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Komt de code na deze stappen terug, bel dan je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
@@ -407,8 +407,8 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
 </article>
-${costBlock(m, f)}
 ${adBlock(m)}
+${costBlock(m, f)}
 <section class="stack">
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Bel je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Laat het apparaat nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
