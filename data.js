@@ -12127,4 +12127,44 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("Inductieplaat staat aan maar wordt niet warm", 1, "Vaak te weinig ventilatieruimte of een defecte ventilator.", ["Controleer de minimale inbouwafstanden.", "Haal de stroom 3 minuten eraf en zet hem weer aan: de ventilator moet kort draaien. Zo niet, dan is hij waarschijnlijk defect.", SVC])
     ]});
 }
+{ const SVC = "Komt de code terug? Boek een servicebezoek bij Indesit.", ONLY = "Indesit geeft hiervoor geen oplossing die je zelf kunt doen: neem contact op met de Indesit-consumentenservice.";
+  const R10 = ["Zet de groep uit (of haal de stekker eruit), wacht 10 seconden en zet hem weer aan.", SVC];
+  const R30 = ["Haal de stroom minstens 30 seconden eraf (stekker of hoofdschakelaar) en zet hem weer aan.", "Blijft de code staan? Dan is een monteur nodig."];
+  const R10b = ["Haal de stroom meer dan 10 seconden eraf en sluit weer aan.", SVC];
+  const ONOFF = ["Druk twee keer op AAN/UIT en zet daarna de groep een paar seconden uit.", SVC];
+  (m => { m.faults.push(
+    F("F1", "Pan niet geschikt voor de Flexi-zone", 1, "De bodem van de pan is niet helemaal magnetisch of niet vlak, waardoor de Flexi-zone hem niet goed herkent.", ["Gebruik een pan met een volledig magnetische, vlakke bodem.", "Gebruik op de Flexi-zone een grotere pan (bodem ongeveer 260 mm in plaats van 200 mm)."]),
+    F("F2 / E21", "Lege pan: zone gaat niet aan", 1, "Geen defect: de kookplaat herkent een lege pan niet.", ["Doe eerst eten of water in de pan."]),
+    F("F3 / E50", "Maximale kooktijd bereikt", 1, "Geen defect: de zone is automatisch uitgegaan na de maximale kooktijd.", ["Zet de kookplaat uit en weer aan, of haal de stroom even eraf."]),
+    F("F4", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("F6", "Oververhitting", 1, "Normaal na langdurig gebruik van meerdere zones tegelijk.", ["Laat de kookplaat afkoelen."]),
+    F("F F F", "Voorwerp op het bedieningspaneel", 1, "Er staat een pan of iets anders op het aanraakpaneel.", ["Haal het voorwerp weg."]),
+    F("EEEE", "Voorwerp op of vuil aanraakpaneel", 1, "Er ligt iets op het aanraakpaneel of het is vuil.", ["Haal het voorwerp weg of maak het paneel schoon."]),
+    F("E47 / E27", "Zone aangezet zonder pan", 1, "De zone is ingeschakeld voordat er een pan op stond.", ["Zet eerst de pan met eten of water op de zone en schakel daarna in."]),
+    F("A0", "Aanraaksensoren niet goed gekalibreerd", 1, "Bij het eerste aansluiten kalibreert de kookplaat het aanraakpaneel op het licht in de keuken. Bij fel licht (halogeenspots) gaat dat mis; A of F met een cijfer geeft de sensor aan.", ["Zet fel licht boven de kookplaat uit.", "Haal de stroom eraf en sluit weer aan om opnieuw te kalibreren."]),
+    F("B6", "Inductieplaat te lang gebruikt", 1, "Kan optreden onder bepaalde omstandigheden, bijvoorbeeld bij langer gebruik dan de handleiding aangeeft.", ["Zet de kookplaat uit en na 30 seconden weer aan.", "Houd je aan de gebruiksduur uit de handleiding."]),
+    F("D2", "Toetsen vergrendeld om schoon te maken", 1, "Geen storing: de bediening is tijdelijk vergrendeld zodat de kookplaat niet per ongeluk aangaat tijdens het schoonmaken.", ["Wacht ongeveer 20 seconden, of houd de ontgrendeltoets 2 à 3 seconden ingedrukt tot je een piep hoort."]),
+    F("E6", "Storing", 1, "Indesit adviseert eerst een reset.", R10),
+    F("EI", "Storing", 1, "Indesit adviseert eerst een reset.", R30),
+    F("EC / BE / BH", "Storing", 1, "Indesit adviseert eerst een reset.", R30),
+    F("F0E4 / F0E8 / F6E1 / F6E2", "Tijdelijke storing", 1, "Kan een tijdelijke situatie zijn.", R10b),
+    F("F7E5 / F7E6 / FCE1 / FCE3", "Tijdelijke storing", 1, "Kan een tijdelijke situatie zijn.", R10b),
+    F("F0E6 / F1E1 / F2E1 / FCE2", "Storing na een stroomprobleem", 1, "Vaak na een stroomstoring.", ONOFF),
+    F("F5 / EH / EP", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("E1 / E2 / E3 / E4 / E5 / E7 / E8", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("E10 / E11 / E16 / E17 / E18 / E19 / E20", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("E22 / E23 / E25 / E26 / E31 / E32 / E33", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("E34 / E35 / E36 / E37 / E38 / E39 / E40", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("E41 / E46 / E48 / E49 / E51 / E52 / E53", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("E54 / E55 / E56 / E57 / E58 / E59 / E60 / E61 / E62", "Tijdelijk stroomprobleem", 1, "Kan komen door de stroomvoorziening.", R10),
+    F("E9 / E24 / E42 / E45 / E63", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+    F("ER21 / ER22 / ER25 / ER36 / ER40 / FF FF", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+    F("A1 / A2 / A3 / A4 / A5 / A6 / A7 / A8 / A9", "Storing", 3, "Storing in het apparaat. (A0 en kalibratie: zie A0.)", [ONLY]),
+    F("B1 / B2 / B7 / B8", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+    F("C1 / C2 / C3 / C4 / C5 / C7", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+    F("D1 / D9 / T1 / T8", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+    N("Kookzone knippert twee keer en piept", 1, "De begrenzing van het maximale vermogen staat aan en is bereikt; je kunt dan geen extra zone bijzetten.", ["Zet een zone lager of uit, of pas de vermogensbegrenzing aan (zie de handleiding).", "Laat geen pannen of metalen voorwerpen op de uitgeschakelde kookplaat staan."]),
+    N("Kookplaat met afzuiging: filteralarm of '!'", 1, "Geen storing: het vet- of koolstoffilter moet worden schoongemaakt of vervangen.", ["Maak het vetfilter schoon of vervang de koolstoffilters.", "Reset het alarm volgens de handleiding."])
+  ); })(MODELS.find(m => m.id === "indesit-kookplaat"));
+}
 module.exports = { CATS, MODELS, SRC, COST };
