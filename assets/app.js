@@ -430,3 +430,18 @@
     });
   })();
 })();
+
+// Seizoensblok: toon het seizoen van vandaag (de HTML bevat alle seizoenen)
+(function () {
+  var mo = new Date().getMonth() + 1;
+  Array.prototype.forEach.call(document.querySelectorAll(".season[data-months]"), function (el) {
+    el.hidden = el.getAttribute("data-months").split(",").indexOf(String(mo)) < 0;
+  });
+})();
+// Meldformulier: geef de pagina mee waar iemand vandaan kwam
+(function () {
+  Array.prototype.forEach.call(document.querySelectorAll("a[data-meld]"), function (a) { a.href = a.getAttribute("href") + "?p=" + encodeURIComponent(location.pathname); });
+  var f = document.getElementById("meld-pagina"); if (!f) return;
+  var m = /[?&]p=([^&]+)/.exec(location.search); if (m) { try { f.value = decodeURIComponent(m[1]).slice(0, 200); } catch (e) {} }
+})();
+

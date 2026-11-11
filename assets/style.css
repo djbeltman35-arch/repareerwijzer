@@ -391,3 +391,9 @@ footer .wrap{padding-bottom:88px}
 .helped-step button{min-width:44px}
 .kblink{margin-top:14px}
 .faq h3{font-size:1rem;margin:14px 0 4px}
+.meldform{display:grid;gap:14px;max-width:560px}
+.meldform label{display:grid;gap:6px;font-weight:600}
+.meldform input,.meldform select,.meldform textarea{font:inherit;padding:10px 12px;border:1px solid var(--line,#ccc);border-radius:6px;background:var(--paper,#fff);color:inherit;width:100%;box-sizing:border-box}
+.meldform small{font-weight:400;opacity:.8}
+.meldform button{justify-self:start}
+.meldlink{margin-top:8px}

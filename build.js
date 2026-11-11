@@ -170,6 +170,7 @@ layout({
   <div class="installapp" id="installapp" hidden><strong>📱 Foutcodezoeker als app</strong><span id="installtxt">Zet Foutcodezoeker op je beginscherm: altijd binnen handbereik, ook in de schuur of kelder.</span><button type="button" id="installbtn" hidden>Installeer de app</button></div>
   <p class="herostats"><span><b>${stats.codes}</b> foutcodes</span><span><b>${stats.models}</b> apparaten</span></p>
 </section>
+${seasonBlock()}
 <section class="stack">
   <h2>Kies je apparaat</h2>
   <div class="cat-grid">${(TOPC => TOPC.map(id => CATS.find(c => c.id === id)).concat(CATS.filter(c => !TOPC.includes(c.id))))(["wasmachines", "vaatwassers", "cv-ketels", "koffiemachines", "drogers", "koelkasten", "warmtepompen", "ovens", "stofzuigers", "e-bikes", "auto", "airco"]).map((c, i) => `<a class="cat${i >= 12 ? " more" : ""}" href="${c.id}.html"><span class="cat-ico" aria-hidden="true">${CAT_ICON[c.id] || "🔧"}</span><b>${c.name.split(":")[0]}</b></a>`).join("")}</div>
@@ -390,6 +391,15 @@ function adsFor(m) {
 }
 function adBlock(m) { const list = adsFor(m).map(k => ADS()[k]); const b = BOLCAT_()[m.cat]; if (b) list.push([BOL(b[0], m.cat), b[1], b[2]]); if (!list.length) return ""; return `<aside class="adbox" aria-label="Advertenties"><div class="adbox-head"><h2>🛒 Handig bij deze storing</h2><span class="ad-label">Advertentie</span></div><div class="adgrid">${list.map(([u, t, d]) => { const ic = (t.match(/^\S+/) || [""])[0]; const tt = t.replace(/^\S+\s/, ""); return `<a class="adcard" href="${u}" rel="sponsored noopener" target="_blank"><span class="adic" aria-hidden="true">${ic}</span><span class="adtx"><b>${tt}</b><small>${d}</small></span><span class="adbtn">Bekijk →</span></a>`; }).join("")}</div><p class="adnote">Koop je via deze links, dan krijgt Foutcodezoeker een kleine vergoeding. Jij betaalt niets extra.</p></aside>`; }
 
+// Seizoensblok: actuele onderwerpen per seizoen. Alle seizoenen staan in de HTML; app.js toont het huidige seizoen.
+function SEASONS_() { return [
+  ["winter", [11, 12, 1, 2], "❄️ Nu actueel: winter", [["kennisbank-cv-ketel-druk-zakt", "Druk cv-ketel zakt"], ["kennisbank-radiatoren-ontluchten", "Radiatoren ontluchten"], ["kennisbank-cv-ketel-maakt-geluid", "Cv-ketel maakt geluid"], ["kennisbank-bevroren-waterleiding", "Bevroren waterleiding"], ["kennisbank-auto-winterklaar-maken", "Auto winterklaar maken"], ["kennisbank-autoruit-ontdooien", "Autoruit ontdooien"], ["kennisbank-ebike-accu-winter", "E-bike-accu in de winter"], ["kennisbank-elektrische-auto-winter", "Elektrische auto in de winter"]]],
+  ["lente", [3, 4, 5], "🌱 Nu actueel: lente", [["robotmaaier-problemen", "Robotmaaier problemen"], ["kennisbank-zonnepanelen-schoonmaken", "Zonnepanelen schoonmaken"], ["kennisbank-airco-onderhoud", "Airco onderhouden"], ["kennisbank-ventilatie-filters-onderhoud", "Ventilatiefilters vervangen"], ["accu-grasmaaier-stopt", "Accugrasmaaier stopt"]]],
+  ["zomer", [6, 7, 8], "☀️ Nu actueel: zomer", [["kennisbank-mobiele-airco-goed-gebruiken", "Mobiele airco goed gebruiken"], ["kennisbank-airco-onderhoud", "Airco onderhouden"], ["kennisbank-koelkast-vriezer-temperatuur", "Juiste temperatuur koelkast"], ["kennisbank-koelkast-blijft-draaien", "Koelkast blijft draaien"], ["kennisbank-zonnepanelen-schoonmaken", "Zonnepanelen schoonmaken"]]],
+  ["herfst", [9, 10], "🍂 Nu actueel: herfst", [["kennisbank-cv-ketel-onderhoud", "Cv-ketel onderhoud"], ["kennisbank-radiatoren-ontluchten", "Radiatoren ontluchten"], ["kennisbank-cv-ketel-druk-zakt", "Druk cv-ketel zakt"], ["kennisbank-rookmelder-testen-vervangen", "Rookmelder testen"], ["kennisbank-ventilatie-filters-onderhoud", "Ventilatiefilters vervangen"], ["kennisbank-auto-winterklaar-maken", "Auto winterklaar maken"]]]
+]; }
+function seasonBlock() { const mo = new Date().getMonth() + 1; return SEASONS_().map(([id, months, title, links]) => `<section class="stack season" data-months="${months.join(",")}"${months.includes(mo) ? "" : " hidden"}><h2>${title}</h2><div class="chips">${links.map(([u, t]) => `<a href="${u}.html">${esc(t)}</a>`).join("")}</div></section>`).join(""); }
+
 function helpedBox(n = 0) { return `<div class="helped" role="group" aria-label="Feedback"><span>Heeft dit geholpen?</span><button type="button" data-v="ja">👍 Ja</button><button type="button" data-v="nee">👎 Nee</button>${n > 1 ? `<span class="helped-step" hidden>Met welke stap? ${Array.from({ length: Math.min(n, 6) }, (_, i) => `<button type="button" data-s="${i + 1}">${i + 1}</button>`).join(" ")}</span>` : ""}<span class="helped-thx" hidden>Bedankt voor je reactie!</span></div>`; }
 function printCard(m) {
   const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
@@ -459,6 +469,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   ${blockLink(m, f)}
   ${kbForCode(f)}
   ${helpedBox(f.steps.length)}
+  <p class="meldlink muted"><small>Klopt er iets niet of mis je een code? <a href="foutcode-melden.html" data-meld>Meld het</a>.</small></p>
 </article>
 ${adBlock(m)}
 ${costBlock(m, f)}
@@ -739,7 +750,40 @@ layout({
 </ul></section>
 <section class="stack"><h2>Garantie</h2><p>Zelf repareren of openen kan de garantie van de fabrikant of verkoper laten vervallen. Valt je apparaat nog onder garantie, neem dan eerst contact op met de verkoper of fabrikant.</p></section>
 <section class="stack"><h2>Merken en links</h2><p>Foutcodezoeker is onafhankelijk en niet verbonden aan de genoemde merken of fabrikanten. Merknamen zijn eigendom van hun eigenaren en worden alleen gebruikt om apparaten aan te duiden. Voor de inhoud van externe websites waarnaar we linken zijn we niet verantwoordelijk.</p></section>
-<section class="stack"><h2>Fout gezien?</h2><p>Klopt er iets niet? Mail naar info@foutcodezoeker.nl, dan passen we het aan.</p></section>`
+<section class="stack"><h2>Fout gezien?</h2><p>Klopt er iets niet? <a href="foutcode-melden.html">Meld het via het formulier</a> of mail naar info@foutcodezoeker.nl, dan passen we het aan.</p></section>`
+});
+
+// ───────── Meldformulier (Netlify Forms): ontbrekende code of fout melden
+layout({
+  file: "foutcode-melden.html",
+  title: "Foutcode ontbreekt of fout gezien? Meld het | Foutcodezoeker",
+  desc: "Mis je een foutcode, of klopt er iets niet op Foutcodezoeker? Meld het hier. We zoeken de officiële bron op en passen de site aan.",
+  crumbs: [{ name: "Foutcode melden", file: "foutcode-melden.html" }],
+  body: `
+<section class="stack"><span class="eyebrow">Meedenken</span><h1>Foutcode ontbreekt of fout gezien?</h1>
+<p class="lead">Laat het weten. We zoeken de officiële bron erbij, zoals de handleiding of de supportpagina van de fabrikant, en zetten de code of de verbetering op de site.</p></section>
+<section class="stack">
+<form class="meldform" name="melding" method="POST" action="/bedankt" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="melding">
+  <p hidden><label>Niet invullen: <input name="bot-field"></label></p>
+  <input type="hidden" name="pagina" id="meld-pagina" value="">
+  <label>Wat wil je melden?<select name="soort" required><option value="Code ontbreekt">Een foutcode ontbreekt</option><option value="Fout op de pagina">Er klopt iets niet op een pagina</option><option value="Anders">Iets anders</option></select></label>
+  <label>Merk en apparaat<input name="apparaat" maxlength="120" placeholder="Bijvoorbeeld: Bosch vaatwasser SMS4HVI33E"></label>
+  <label>Foutcode of melding<input name="code" maxlength="40" placeholder="Bijvoorbeeld: E24"></label>
+  <label>Wat zag je, of wat klopt er niet?<textarea name="bericht" rows="5" maxlength="2000" required></textarea></label>
+  <label>Je e-mailadres (niet verplicht)<input type="email" name="email" maxlength="120" autocomplete="email"><small>Alleen als je een reactie wilt. We gebruiken het nergens anders voor.</small></label>
+  <button type="submit" class="btn-report">Versturen</button>
+</form>
+<p class="muted">Liever mailen? Stuur een bericht naar <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a>.</p>
+</section>`
+});
+layout({
+  file: "bedankt.html",
+  title: "Bedankt voor je melding | Foutcodezoeker",
+  desc: "Je melding is ontvangen.",
+  crumbs: [{ name: "Bedankt", file: "bedankt.html" }],
+  extraHead: '<meta name="robots" content="noindex">',
+  body: `<section class="stack"><h1>Bedankt voor je melding</h1><p class="lead">We hebben je melding ontvangen en zoeken de officiële bron erbij. Heb je je e-mailadres ingevuld, dan hoor je van ons zodra de pagina is aangepast.</p><p><a href="index.html">← Terug naar de homepage</a></p></section>`
 });
 
 // ───────── 404
@@ -792,7 +836,7 @@ fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(in
 { const have = new Set(pages.map(p => p.replace(/\.html$/, ""))), bad = new Set();
   for (const p of pages) for (const [, h] of fs.readFileSync(path.join(OUT, p), "utf8").matchAll(/href="\/([a-z0-9-]*)(?:#[^"]*)?"/g)) if (h && !have.has(h) && !fs.existsSync(path.join(OUT, h))) bad.add(`${h} (op ${p})`);
   if (bad.size) { console.error("Build gestopt, kapotte interne links:\n- " + [...bad].slice(0, 30).join("\n- ")); process.exit(1); } }
-fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html" && p !== "bedankt.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, "llms.txt"), `# Foutcodezoeker
