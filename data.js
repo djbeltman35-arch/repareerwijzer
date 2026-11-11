@@ -9152,4 +9152,18 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("E00", "Fout in het bedieningspaneel", 3, "De elektronica van het bedieningspaneel werkt mogelijk niet goed.", [R5, MON])
   ]});
 })();
+(() => {
+  SRC.zanUkVaat = ["Zanussi Support – vaatwasser toont een foutcode (Engels)", "https://support.zanussi.co.uk/support-articles/article/zanussi-dishwasher-displays-an-error-code-how-to-fix-it"];
+  const OFF = "Zet de vaatwasser uit en weer aan en start een nieuw programma.";
+  const MON = "Komt dezelfde code terug, of lekt, vult, verwarmt of pompt de vaatwasser niet goed: laat een monteur komen.";
+  MODELS.push({ id: "zanussi-vaatwasser", brand: "Zanussi", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren", unit: null, also: "Zanussi vaatwasser i20, Zanussi vaatwasser piept 2 keer, Zanussi i10, Zanussi i30, Zanussi vaatwasser pompt niet af", intro: "Zanussi-vaatwassers tonen een i-code op het display. Modellen zonder display piepen: het aantal piepjes hoort bij dezelfde storing. Schrijf de code op voordat je begint. Zanussi hoort bij Electrolux; veel codes komen overeen met die van AEG-vaatwassers.", weak: ["Een verstopt filter onderin is de meest voorkomende oorzaak van afvoerstoringen."], parts: [], tasks: [{ m: 1, t: "Filter onderin schoonmaken", v: 1 }], src: ["zanUkVaat"], faults: [
+    F("i10 / i11 / AL5 / C1", "Probleem met de watertoevoer (1 piep)", 1, "De vaatwasser krijgt te weinig water binnen, bijvoorbeeld door een dichte kraan, een geknikte slang of lage waterdruk.", ["Controleer of de kraan helemaal open staat.", "Kijk of de toevoerslang niet geknikt of verstopt is.", OFF, MON]),
+    F("i20 / C2 / F2 / AL6", "Probleem met de afvoer (2 piepjes)", 1, "Het water wordt niet weggepompt, meestal door een verstopt filter of een geknikte afvoerslang.", ["Haal het filter onderin eruit en maak het schoon.", "Controleer de afvoerslang op knikken en verstoppingen, ook bij de sifon onder het aanrecht.", OFF, MON]),
+    F("i30", "Lekkage gedetecteerd (3 piepjes)", 2, "De lekbeveiliging heeft water in de bodem gemeten.", ["Zet de vaatwasser uit, haal de stekker eruit en draai de kraan dicht.", MON]),
+    F("i40 / i43 / i44", "Probleem met de waterniveaumeting (4 piepjes)", 2, "De vaatwasser kan het waterniveau niet goed meten.", [OFF, MON]),
+    F("i50", "Storing in de wasmotor", 3, "De pomp die het water rondspuit werkt niet goed.", [OFF, MON]),
+    F("i60 / i61 / i69 / i6C", "Probleem met de verwarming", 2, "Het water wordt niet goed verwarmd.", [OFF, MON]),
+    F("iF0 / iFo / iF1", "Probleem met het waterniveau", 2, "Er staat te veel of te weinig water in de vaatwasser.", ["Maak het filter onderin schoon.", OFF, MON])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
