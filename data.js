@@ -3204,7 +3204,7 @@ G("laptop-toetsenbord-werkt-niet", "Laptoptoetsenbord werkt niet goed", "laptops
   N("Toetsenbord vervangen", 2, "Het hele toetsenbord is kapot.", ["Koop een toetsenbord dat precies past: type, taal-indeling, grootte en plaats van spatiebalk, Enter en pijltjes.", "Bij eenvoudige modellen: laptop uit, batterij los, klemmetjes openduwen met dun gereedschap en wisselen.", "Bij complexe modellen: laat het doen door een officiële reparateur of computerwinkel."])],
   ["taLapToets"], { also: LT }));
 Object.assign(SRC,{ taMacBat: ["Test Aankoop Repairguide – batterij te snel leeg (macOS)", "https://www.test-aankoop.be/repairguide/laptops/batterij-te-snel-leeg"], taMacTraag: ["Test Aankoop Repairguide – laptop te traag (macOS)", "https://www.test-aankoop.be/repairguide/laptops/laptop-te-traag"], taMacBoot: ["Test Aankoop Repairguide – probleem bij het opstarten (macOS)", "https://www.test-aankoop.be/repairguide/laptops/probleem-bij-opstarten"], taLapKabel: ["Test Aankoop Repairguide – kabel van de lader kapot", "https://www.test-aankoop.be/repairguide/laptops/kabel-lader-kapot"], taMacWifi: ["Test Aankoop Repairguide – geen wifiverbinding (macOS)", "https://www.test-aankoop.be/repairguide/laptops/geen-wifi"] });
-const addF = (id, src, ...fs) => (m => { m.faults = [...m.faults, ...fs]; m.src = [...m.src, src]; })(MODELS.find(x => x.id === id));
+const addF = (id, src, ...fs) => (m => { m.faults = [...m.faults, ...fs]; if (!m.src.includes(src)) m.src = [...m.src, src]; })(MODELS.find(x => x.id === id));
 addF("laptop-batterij-snel-leeg", "taMacBat", N("MacBook: batterij snel leeg", 1, "Fel scherm, veel tabbladen met video, videoreclame of een verouderde batterij.", ["Zet de helderheid lager en sluit tabbladen die je niet gebruikt.", "Gebruik een advertentieblokker of een browser met ingebouwde blokker.", "Batterij versleten? Bij sommige modellen (zoals de MacBook Air 2020) is vervangen lastig: zoek een handleiding voor jouw model of laat een reparateur het doen."]));
 addF("laptop-geen-wifi", "taMacWifi", N("MacBook: geen wifi", 1, "Wifi staat uit of de Mac staat in vliegtuigstand.", ["Klik rechtsboven op het wifi-icoon en zet wifi aan.", "Houd Option ingedrukt, klik op het wifi-icoon en kies Open Wifiprobleemoplossing (Draadloze diagnose).", "Hebben andere apparaten ook geen internet? Zet de router 30 seconden uit en wacht daarna 20 minuten."]));
 addF("laptop-traag", "taMacTraag", N("MacBook: traag", 1, "Stof in de koeling, oude koelpasta, weinig schijfruimte of (bij oude modellen) een trage harde schijf.", ["Bij modellen met ventilator: maak de koeling stofvrij en vervang eventueel de koelpasta; bekijk eerst een video voor jouw model.", "Maak schijfruimte vrij. Let bij opruimprogramma's op meegeleverde extra software en vink die af.", "Oude MacBook met harde schijf? Vervang die door een SATA-SSD en installeer macOS opnieuw via de herstelmodus (Command + R).", "Let op: MacBooks vanaf 2016 hebben een vastgesoldeerde SSD en werkgeheugen, en Apple Silicon-modellen zoals de MacBook Air hebben geen ventilator. Daar valt weinig te upgraden."]));
@@ -3598,7 +3598,7 @@ addF("samsung-koelkast", "samKoelFilter", N("Filter Reset-lampje zonder waterfil
 addF("samsung-vaatwasser", "samVaatDroog", N("Vaat wordt niet droog", 1, "Geen of te weinig glansspoelmiddel, te vol ingeladen, automatische deuropening uit, of eerst het bovenrek geleegd.", ["Vul het glansspoelmiddelreservoir met vloeibaar glansspoelmiddel; niet te vol en geen vaatwasmiddel erin.", "Probeer minder vaatwasmiddel en meer glansspoelmiddel.", "Zet de automatische deuropening aan als je model die heeft.", "Laad de vaat zonder overlap en houd sproeiarmen en zeepbakje vrij.", "Leeg eerst het onderrek en daarna het bovenrek."]));
 addF("samsung-was-droogcombinatie", "samWdVochtig", N("Was is nog vochtig na het drogen", 1, "Te korte droogtijd, te vol, gemengde stoffen, een zwak programma, geen koud water, een verkeerd aangesloten afvoerslang of lage waterdruk.", ["Kies een automatisch droogprogramma (aanbevolen onder 3 kg) of een langere droogtijd.", "Doe niet te veel in de trommel en sorteer op stofsoort.", "Controleer of de koudwaterkraan open staat: drogen heeft koud water nodig.", "De afvoerslang moet korter zijn dan 3 meter en mag niet in water hangen.", "Het wolprogramma droogt bewust niet helemaal."]));
 Object.assign(SRC,{ sonosLed: ["Sonos – statuslampjes van Sonos-producten", "https://support.sonos.com/nl-nl/article/sonos-led-lights"], sonosAmp: ["Sonos – Amp geeft geen geluid, knipperend oranje en wit lampje", "https://support.sonos.com/nl-nl/article/no-sound-from-amp-with-a-flashing-orange-and-white-light"] });
-MODELS.push({ id: "sonos-lampjes", brand: "Sonos", name: "speakers en statuslampjes", cat: "audio", years: "Alle bouwjaren", unit: null, also: "Era, One, Five, Beam, Arc, Sub, Move, Roam, Amp, Ace", intro: "Het statuslampje op een Sonos-speaker vertelt wat hij doet. Wit is normaal, groen is gedempt of klaar om te installeren, oranje betekent een probleem of te warm, rood knippert als installeren of updaten niet lukte.", weak: [], parts: [], tasks: [], src: ["sonosLed", "sonosAmp"], faults: [
+MODELS.push({ id: "sonos-lampjes", brand: "Sonos", name: "speakers: statuslampjes en update-foutcodes", cat: "audio", years: "Alle bouwjaren", unit: null, also: "Era, One, Five, Beam, Arc, Sub, Move, Roam, Amp, Ace", intro: "Het statuslampje op een Sonos-speaker vertelt wat hij doet. Wit is normaal, groen is gedempt of klaar om te installeren, oranje betekent een probleem of te warm, rood knippert als installeren of updaten niet lukte.", weak: [], parts: [], tasks: [], src: ["sonosLed", "sonosAmp"], faults: [
   N("Wit: brandt, knippert of uit", 1, "Brandt: aan en werkt. Knippert: start op of zoekt het netwerk. Uit: product staat uit, of het lampje is uitgeschakeld in de app.", ["Uit en geen geluid? Controleer stroomkabel en stopcontact; draagbare speaker: aan-knop of oplader.", "Staat het product niet in de app terwijl het lampje wit brandt? Volg de stappen voor ontbrekende producten in de Sonos-app."]),
   N("Groen brandt of knippert", 1, "Brandt: geluid is gedempt. Knippert: klaar om te installeren of teruggezet naar fabrieksinstellingen. Langzaam knipperen: surroundspeakers staan uit.", ["Gedempt? Zet het volume hoger in de app of op de speaker.", "Knippert: installeer het product via de Sonos-app.", "Surround uit? App: Instellingen > je systeem > Surroundaudio > Surrounds aanzetten."]),
   N("Oranje brandt", 1, "Installatie niet afgerond, of de speaker wordt te warm. Bij een Sub: wel toegevoegd, maar niet gekoppeld.", ["Start de speaker opnieuw.", "Te warm? Zet hem uit en laat hem afkoelen.", "Blijft het oranje? Neem contact op met Sonos Support."]),
@@ -8929,6 +8929,1381 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("6312", "Verkeerd aantal panelen ingesteld", 2, "Het ingestelde aantal panelen klopt niet.", ["Corrigeer het aantal panelen.", "Schakel de omvormer volledig uit (AC en DC) en start hem opnieuw."]),
     N("Ventilatorfout (6010–6013, 6017)", 2, "Een ventilator is defect, vuil of gestoord.", ["Controleer of reinig de ventilator."]),
     N("Netstoring (1046–1052)", 1, "Er is een storing in het openbare net.", ["Wacht tot het net weer binnen de normale grenzen is."])
+  ]});
+})();
+(() => {
+  SRC.dreameH12Pro = ["Dreame Support – H12 Pro Error Identification Guide (Engels)", "https://support.dreametech.com/hc/en-us/articles/16806031303567-H12-Pro-Error-Identification-Guide"];
+  SRC.dreameE1EE = ["Dreame Support – Display error codes E1, EE, EF on H12 Core/H12/H11 Max/H11 (Engels)", "https://support.dreametech.com/hc/en-us/articles/12957855335439-How-to-Resolve-Display-Error-Codes-E1-EE-EF-on-H12-Core-H12-H11-Max-H11"];
+  SRC.dreameH1H6 = ["Dreame Support – Display error codes H1, H2, H3, H6 on H12 Dual/M12/H12 Pro (Engels)", "https://support.dreametech.com/hc/en-us/articles/12957859468047-How-to-Resolve-Display-Error-Codes-H1-H2-H3-H6-on-H12-Dual-M12-H12-Pro"];
+  const sup = "Blijft de fout: neem contact op met de klantenservice van Dreame.";
+  MODELS.push({ id: "dreame-h12-h11", brand: "Dreame", name: "H12 / H11 natte stofzuiger: foutcodes E, F en H", dev: "H12 / H11 nat-droogstofzuiger", cat: "stofzuigers", years: "Dreame H11, H11 Max, H12, H12 Core, H12 Pro, H12 Dual, M12", unit: null, also: "Dreame H12 E1, Dreame EE EF foutcode, Dreame H12 Pro H1 H2 H3, Dreame F1 borstel, Dreame H7 oververhit, Dreame vuilwatertank fout", intro: "De nat-droogstofzuigers van Dreame (H11- en H12-serie, M12) tonen foutcodes op het display. E-codes gaan over motor of vuilwatertank, F-codes over borstel, pomp en water, H-codes over accu en laden. Bij veel codes is de eerste stap de stofzuiger van het station te halen en opnieuw op te starten.", weak: [], parts: [], tasks: [], src: ["dreameH12Pro", "dreameE1EE", "dreameH1H6"], faults: [
+    F("E1", "E1 / EE / EF (H12 Core, H12, H11 Max, H11)", 1, "Foutmelding die volgens Dreame meestal met basisstappen te verhelpen is.", ["Haal de stofzuiger van het station, zet hem uit, wacht 15 seconden en zet hem weer aan.", "Controleer het filter van de vuilwatertank; is het verstopt, maak het schoon, spoel het en laat het helemaal drogen.", sup]),
+    F("F1", "Kortsluiting borstelmotor (H12 Pro)", 3, "De borstelmotor of de hoofdprint moet mogelijk worden vervangen.", ["Laat de stofzuiger professioneel nakijken."]),
+    F("F2", "Probleem met pomp of hoofdprint (H12 Pro)", 3, "Fout in de pomp of de hoofdprint.", ["Stuur de stofzuiger in voor controle en diagnose."]),
+    F("F4", "Elektrolysewater werkt niet (H12 Pro)", 2, "Het elektrolytische water werkt niet.", ["Vervang de schoonwatertank door een nieuwe.", "Blijft de fout: breng de stofzuiger naar een reparateur."]),
+    F("H7", "Oververhittingsbeveiliging (H12 Pro)", 1, "De stofzuiger is te warm.", ["Laat de stofzuiger afkoelen.", "Werkt hij daarna nog niet: mogelijk moet het accupakket worden vervangen."]),
+    N("E2 t/m E7: hoofdmotor (H12 Pro)", 3, "Fout in de hoofdmotor; motor of accupakket moet mogelijk worden vervangen.", ["Neem contact op met een vakman."]),
+    N("H1, H2, H3, H6 (H12 Dual, M12, H12 Pro)", 2, "Fout in (een onderdeel van) het accupakket of het laden.", ["Til de stofzuiger van het station en zet hem uit.", "Zet hem terug op het station en kijk of de fout weg is.", "Blijft de fout: laat het accupakket testen via de klantenservice van Dreame."]),
+    N("H3, H4, H5: laadfout (H12 Pro)", 2, "Er is een fout bij het opladen.", ["Vervang de lader of het laadstation.", "Helpt dat niet: laat het accupakket nakijken door een vakman."]),
+    N("Melding schoonwatertank leeg", 1, "De schoonwatertank is leeg.", ["Vul de schoonwatertank met water."]),
+    N("Melding vuilwatertank", 1, "De vuilwatertank ontbreekt of is vol.", ["Plaats de tank als die ontbreekt, of leeg hem."]),
+    N("Borstelrol zit vast", 1, "Haren of vuil blokkeren de rol.", ["Maak de rol voorzichtig schoon met het meegeleverde borsteltje."]),
+    N("Dweilt minder goed: buis verstopt", 1, "Het filter of de buis is verstopt.", ["Controleer het filter en maak het schoon.", "Helpt dat niet: maak de buis en de vuilsensor schoon."])
+  ]});
+})();
+(() => {
+  SRC.tinecoS3Man = ["Tineco – FLOOR ONE S3 Instruction Manual EU (2023-11-24), Troubleshooting", "https://static-ussite.tineco.com/FLOOR%20ONE%20S3%20Instruction%20Manual%20EU%2020231124.pdf_3bd9b00c-b.pdf"];
+  SRC.tinecoS3Red = ["Tineco Support – FLOOR ONE S3: vloer is schoon maar het lampje blijft rood (Duits)", "https://de.tineco.com/support/troubleshooting/floor-one-s3/solution/628.html"];
+  MODELS.push({ id: "tineco-floor-one-s3", brand: "Tineco", name: "FLOOR ONE S3: lampjes, gesproken meldingen en storingen", dev: "FLOOR ONE S3 nat-droogstofzuiger", cat: "stofzuigers", years: "Tineco FLOOR ONE S3", unit: null, also: "Tineco S3 rood lampje, Tineco gaat niet aan, Tineco zuigt slecht, Tineco Please clean Dirty Water Tank, Tineco borstelrol lampje knippert", intro: "De Tineco FLOOR ONE S3 meldt problemen met lampjes en gesproken meldingen in plaats van foutcodes. Werkt niets, kijk dan op tineco.com voor verdere ondersteuning.", weak: [], parts: [], tasks: [], src: ["tinecoS3Man", "tinecoS3Red"], faults: [
+    N("Gaat niet aan", 1, "Tineco noemt geen oorzaak; de handleiding adviseert afkoelen.", ["Laat het afkoelen en start opnieuw."]),
+    N("Alle lampjes gaan uit tijdens gebruik", 1, "Tineco noemt geen oorzaak; de handleiding adviseert afkoelen.", ["Laat het afkoelen en start opnieuw."]),
+    N("Zuigt slecht", 1, "Het droge filter ontbreekt of is vuil.", ["Plaats het droge filter, of maak het schoon en laat het helemaal drogen."]),
+    N("Lampje borstelrol knippert", 1, "Gesproken melding 'Please clean the brush roller': de rol is verstopt of zit vol haar.", ["Verwijder de verstopping."]),
+    N("Lampje schoonwatertank knippert", 1, "De schoonwatertank is leeg.", ["Vul de schoonwatertank met water en reinigingsmiddel."]),
+    N("Lampje vuilwatertank knippert", 1, "Gesproken melding 'Please clean Dirty Water Tank': de vuilwatertank is vol.", ["Leeg het vuile water en plaats de tank terug."]),
+    N("Accu-lampje knippert", 1, "Gesproken melding 'Low battery, please charge'.", ["Laad het apparaat op, of start het opnieuw."]),
+    N("Zelfreinigingspictogram knippert", 1, "De zelfreinigingscyclus moet worden gestart.", ["Start de zelfreinigingscyclus."]),
+    N("Aan/uit-lampje knippert", 2, "Tineco noemt geen oorzaak.", ["Neem contact op met de klantenservice van Tineco."]),
+    N("Vuilsensor blijft rood terwijl de vloer schoon is", 1, "De sensor ziet nog vuil of resten, of staat te gevoelig voor de gekozen modus.", ["Kijk of er een foutmelding op het scherm staat.", "Verwijder vuil en haar bij de sensor; maak hem schoon met een vochtige doek of het reinigingsborsteltje.", "Gebruik het reinigingsmiddel van Tineco.", "Verlaag de gevoeligheid: houd met het apparaat rechtop de shift-knop lang ingedrukt om naar de modus reinigen-met-middel te gaan."])
+  ]});
+})();
+(() => {
+  SRC.boschShc = ["Bosch Smart Home – Hulp bij de Smart Home Controller (BE-NL)", "https://bosch-smarthome.com/be/nl/hulp-en-service/hulp/hulp-bij-het-product/hulp-bij-de-smart-home-controller"];
+  const cs = "Blijft het probleem: neem contact op met de klantenservice van Bosch Smart Home.";
+  MODELS.push({ id: "bosch-smart-home-controller", brand: "Bosch Smart Home", name: "Smart Home Controller: lampjes en offline", dev: "Smart Home Controller (I en II)", cat: "slim-huis", years: "Bosch Smart Home Controller I en II", unit: null, also: "Bosch Smart Home Controller rood knipperen, Bosch Smart Home offline, Bosch controller geen lampjes, Bosch Smart Home update blijft hangen", intro: "De Bosch Smart Home Controller heeft drie lampjes: voeding, netwerk (LAN) en cloud. Bij normaal gebruik branden voeding en netwerk continu wit; het cloud-lampje brandt wit als toegang op afstand aan staat. De lampjes dimmen tijdens gebruik en kunnen niet helemaal uit.", weak: [], parts: [], tasks: [], src: ["boschShc"], faults: [
+    N("Geen enkel lampje brandt", 2, "Probleem met de voeding, of de controller is defect.", ["Controleer de kabel en het stopcontact.", "Test met een ander apparaat of een ander stopcontact; denk aan recente gebeurtenissen zoals een stroomstoring.", "Blijft de controller dood: neem contact op met de klantenservice; mogelijk valt hij nog onder de garantie."]),
+    N("Knippert rood en offline na een update", 1, "De controller heeft na een update geen verbinding.", ["Maak de netwerkkabel los, wacht ongeveer 10 seconden en steek hem weer in; het netwerklampje hoort daarna continu wit te branden.", cs]),
+    N("Lampjes branden niet zoals beschreven", 1, "De controller of de verbinding hapert.", ["Maak de controller kort spanningsloos, en eventueel ook de router.", "Wacht even en maak de verbinding opnieuw."]),
+    N("Update blijft hangen", 1, "Een update kan tot 30 minuten duren; daarna horen alle lampjes continu wit te branden.", ["Wacht tot 30 minuten.", "Lukt het niet vanzelf: start de controller opnieuw door hem spanningsloos te maken."]),
+    N("Netwerklampje brandt niet (controller I)", 1, "De LAN-kabel zit niet goed.", ["Steek de LAN-kabel erin tot hij hoorbaar vastklikt."]),
+    N("Klantenservice vraagt om systeemprotocol", 1, "Voor diagnose wil de klantenservice het systeemprotocol ontvangen.", ["Houd de knop onderaan de controller 2 seconden ingedrukt.", "Het cloud-lampje knippert enkele seconden; het uploaden is klaar als het weer constant brandt of uitgaat."])
+  ]});
+})();
+(() => {
+  SRC.eufyHb3 = ["eufy Support – LED indicator light status on eufy S380 HomeBase (HomeBase 3) (Engels)", "https://support.nz.eufy.com/support/solutions/articles/154000241670-learn-about-the-led-indicator-light-status-on-eufy-s380-homebase-homebase-3-"];
+  SRC.eufyCamLed = ["eufy Support – LED indicator light status on eufyCam (Engels)", "https://support.nz.eufy.com/support/solutions/articles/154000241602-learn-about-the-led-indicator-light-status-on-eufycam"];
+  SRC.eufyAlarmLed = ["eufy Support – LED indicator light status on eufy Alarm System (Engels)", "https://support.nz.eufy.com/support/solutions/articles/154000241940-learn-about-the-led-indicator-light-status-on-eufy-alarm-system"];
+  const ns = "eufy noemt hier geen stappen; neem bij vragen contact op met eufy-support.";
+  MODELS.push({ id: "eufy-homebase-eufycam", brand: "eufy", name: "HomeBase en eufyCam: wat betekent het lampje?", dev: "HomeBase / eufyCam / alarmsysteem", cat: "slim-huis", years: "eufy HomeBase 3 (S380), HomeBase 2, HomeBase, eufyCam, Keypad, bewegings- en deur/raamsensor", unit: null, also: "eufy HomeBase rood lampje, HomeBase 3 knippert blauw, eufyCam knippert rood, eufy keypad lampje, eufy sensor rood", intro: "De HomeBase en camera's van eufy Security geven met een lampje aan wat ze doen. Rood continu op de HomeBase betekent bijna altijd: geen netwerkverbinding. eufy geeft per kleur vooral de betekenis, niet altijd een oplossing.", weak: [], parts: [], tasks: [], src: ["eufyHb3", "eufyCamLed", "eufyAlarmLed"], faults: [
+    N("HomeBase 3 (S380): rood continu", 2, "Niet verbonden met het netwerk.", [ns]),
+    N("HomeBase 3 (S380): knippert rood", 1, "Start op of probeert verbinding te maken met het netwerk.", ["Wacht tot het opstarten klaar is."]),
+    N("HomeBase 3 (S380): knippert blauw", 1, "Verbonden met het netwerk, maar nog niet ingesteld.", ["Rond de installatie af in de eufy-app."]),
+    N("HomeBase 3 (S380) of HomeBase 2: rood en blauw om en om", 1, "De firmware wordt bijgewerkt.", ["Wacht tot de update klaar is."]),
+    N("HomeBase 2: rood continu", 2, "Verbinding met het netwerk mislukt.", [ns]),
+    N("HomeBase (eufyCam-set): rood continu", 2, "Verbinding met het netwerk mislukt.", [ns]),
+    N("eufyCam: knippert rood", 1, "Er is een alarm afgegaan.", [ns]),
+    N("eufyCam: lampje uit", 1, "Installatie gelukt, netwerkverbinding mislukt, of volledig opgeladen; de gesproken melding vertelt welke van de drie.", ["Luister naar de gesproken melding van de camera."]),
+    N("eufyCam: wit en rood om en om", 1, "De firmware wordt bijgewerkt.", ["Wacht tot de update klaar is."]),
+    N("Keypad: X en √ knipperen 5 seconden wit", 1, "Er zijn apparaatfouten die eerst opgelost moeten worden voordat je een modus kunt instellen.", ["Los eerst de apparaatfouten op."]),
+    N("Keypad: lampje knippert 3 keer wit", 1, "Verkeerde toegangscode.", ["Voer de juiste code in."]),
+    N("Bewegingssensor: knippert rood", 1, "Beweging gedetecteerd terwijl de HomeBase niet verbonden is.", [ns]),
+    N("Deur/raamsensor: knippert één keer rood", 1, "Batterij bijna leeg, of geen verbinding met de HomeBase.", [ns])
+  ]});
+})();
+(() => {
+  SRC.blinkSmLed = ["Blink Support – Understanding the LEDs on your Sync Module (Engels)", "https://support.blinkforhome.com/en_GB/2258854"];
+  SRC.blinkSmOffline = ["Blink Support – Sync Module offline / kan niet verbinden (Engels)", "https://support.blinkforhome.com/514864"];
+  const off = ["Controleer of je wifi-wachtwoord sinds de installatie is veranderd; zo ja, werk het bij in de Blink-app.", "Herstart de router: stekker eruit, ongeveer 30 seconden wachten, stekker erin.", "Herstart de Sync Module: haal de stroom ongeveer 10 seconden weg. Blauw en groen continu betekent dat hij weer verbonden is.", "Voer het wifi-wachtwoord opnieuw in.", "Zet tijdelijk mesh-punten en versterkers uit, zodat alleen de hoofdrouter aan staat.", "Nog steeds offline: verwijder de Sync Module uit de Blink-app en voeg hem opnieuw toe."];
+  MODELS.push({ id: "blink-sync-module", brand: "Blink", name: "Sync Module: lampjes en offline", dev: "Sync Module (1, 2, Core, XR)", cat: "slim-huis", years: "Blink Sync Module 1e generatie, Sync Module 2, Sync Module Core en XR", unit: null, also: "Blink Sync Module rood lampje, Blink Sync Module offline, Blink camera offline, Sync Module 2 knippert groen, Blink geen lampjes", intro: "De Sync Module verbindt Blink-camera's met internet. Blauw en groen continu betekent dat alles werkt. Rood continu betekent dat hij geen verbinding met het netwerk krijgt, vaak door een verkeerd wifi-wachtwoord.", weak: [], parts: [], tasks: [], src: ["blinkSmLed", "blinkSmOffline"], faults: [
+    N("Rood continu", 2, "De Sync Module kan geen verbinding maken met het netwerk, of het wifi-wachtwoord klopt niet.", off),
+    N("Blauw continu, groen knippert", 1, "Offline; probeert opnieuw verbinding te maken met het vorige netwerk.", off),
+    N("Geen lampjes", 1, "Niet aangesloten op het stopcontact, of een probleem met de stroom.", ["Controleer de stroomaansluiting."]),
+    N("Blauw knippert, groen continu", 1, "Koppelmodus: klaar om in te stellen.", ["Volg de installatiehandleiding van je Sync Module in de Blink-app."]),
+    N("Blauw continu (alleen)", 1, "De Sync Module start op.", ["Wacht tot het opstarten klaar is."])
+  ]});
+})();
+(() => {
+  SRC.siemensEq700 = ["Siemens Huishoudapparaten – EQ.700: displaymeldingen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq-700/displaymeldingen"];
+  SRC.siemensEq900 = ["Siemens Huishoudapparaten – EQ.900: displaymeldingen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq-900/displaymeldingen"];
+  MODELS.push({ id: "siemens-eq-700-900", brand: "Siemens", name: "EQ.700 en EQ.900 volautomaat: displaymeldingen", dev: "EQ.700 / EQ.900 volautomaat", cat: "koffiemachines", years: "Siemens EQ.700 en EQ.900", unit: null, also: "Siemens EQ700 vul watertank terwijl vol, EQ900 plaats de zetgroep, EQ700 fout in watersysteem, EQ900 calc'nClean blijft staan, Siemens EQ zetgroep reinigen", intro: "Siemens geeft voor de EQ.700 en EQ.900 dezelfde lijst met displaymeldingen. Staat jouw melding er niet tussen, kijk dan in de gebruiksaanwijzing of neem contact op met Siemens Huishoudapparaten.", weak: [], parts: [], tasks: [], src: ["siemensEq700", "siemensEq900"], faults: [
+    N("Plaats de zetgroep", 1, "Het deksel van de zetgroep zit verkeerd.", ["Controleer of de zetgroep goed zit en vergrendeld is: zet de rode hendel omhoog en naar links.", "Plaats het deksel terug."]),
+    N("Vul watertank, terwijl de tank vol is", 1, "De tank zit niet goed, er zit koolzuur in het water, de vlotter zit vast, het waterfilter is niet goed doorgespoeld, zit vol lucht of is oud, of kalk blokkeert het systeem.", ["Plaats de watertank opnieuw en correct.", "Vul de tank met vers kraanwater (geen bruisend water).", "Zit de vlotter vast: verwijder de tank en reinig hem grondig.", "Dompel het waterfilter met de opening naar boven onder water tot er geen luchtbellen meer komen en plaats het terug; spoel een nieuw filter volgens de instructies.", "Is het filter oud: plaats een nieuw waterfilter.", "Bij kalkaanslag: reinig de tank grondig en start het ontkalkingsprogramma."]),
+    N("Zetgroep reinigen", 1, "De zetgroep is vuil of het mechanisme loopt stroef.", ["Reinig de zetgroep."]),
+    N("Over- of onderspanning", 2, "Probleem met de stroomvoorziening.", ["Gebruik het apparaat alleen op 220–240 V."]),
+    N("Fout in watersysteem. Start het apparaat opnieuw op", 1, "Het apparaat meldt een storing.", ["Trek de stekker uit het stopcontact, wacht 10 seconden en steek hem weer in."]),
+    N("Voer een calc'nClean-programma uit (blijft staan)", 1, "Het water bevat nog kalk, er is verkeerd of te weinig ontkalkingsmiddel gebruikt, of het serviceprogramma is niet helemaal doorlopen.", ["Plaats een nieuw waterfilter en stel de waterhardheid in.", "Gebruik alleen geschikte ontkalkingstabletten; nooit citroenzuur of azijn, want die beschadigen de pakkingen.", "Start het serviceprogramma 'Speciaal spoelen'."])
+  ]});
+})();
+(() => {
+  SRC.siemensEq6 = ["Siemens Huishoudapparaten – EQ6 plus: displaymeldingen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq6/displaymeldingen"];
+  MODELS.push({ id: "siemens-eq6-plus", brand: "Siemens", name: "EQ6 plus volautomaat: displaymeldingen", dev: "EQ6 plus volautomaat", cat: "koffiemachines", years: "Siemens EQ6 plus (EQ.6)", unit: null, also: "Siemens EQ6 zetgroep reinigen en terugplaatsen, EQ6 Storing bel de hotline, EQ6 lekschaal legen terwijl leeg, EQ6 bonenreservoir vullen terwijl vol, EQ6 water zonder koolzuur bijvullen", intro: "De Siemens EQ6 plus meldt storingen en onderhoud met tekst op het display. Bij 'Storing Bel de hotline a.u.b.' moet je contact opnemen met Siemens; de meeste andere meldingen los je zelf op.", weak: [], parts: [], tasks: [], src: ["siemensEq6"], faults: [
+    N("Ontkalkingsmelding, drankuitgifte geblokkeerd", 1, "Het water bevat te veel kalk.", ["Plaats een waterfilter en activeer het.", "Reinig de drankuitgifte en de inlaat van het melksysteem."]),
+    N("Zetgroep reinigen en terugplaatsen a.u.b.", 1, "De zetgroep is vuil, er zit te veel koffiemaling in, of het mechanisme loopt stroef.", ["Reinig de zetgroep.", "Gebruik maximaal twee afgestreken maatlepels gemalen koffie in de lade.", "Loopt het stroef: smeer de afdichtingen licht in met voedselveilig siliconenvet (Siemens-webshop)."]),
+    N("Machine opnieuw starten", 1, "Het apparaat is te warm, of de zetgroep is vuil.", ["Laat het apparaat afkoelen.", "Reinig de zetgroep."]),
+    N("Apparaat niet voldoende ontkalkt. Procedure herhalen", 1, "Verkeerd of te weinig ontkalkingsmiddel, of het apparaat was sterk verkalkt.", ["Voer het ontkalkingsprogramma opnieuw uit."]),
+    N("Apparaat laten afkoelen", 1, "Het apparaat is te heet.", ["Laat het apparaat afkoelen."]),
+    N("Storing Bel de hotline a.u.b.", 3, "Er is een fout in de machine.", ["Neem contact op met Siemens Huishoudapparaten."]),
+    N("Water zonder koolzuur bijvullen of filter vervangen", 1, "Reservoir verkeerd geplaatst, koolzuurhoudend water, vlotter zit vast, waterfilter niet goed gespoeld, lucht in het filter of filter oud.", ["Plaats het reservoir correct.", "Vul het met schoon leidingwater.", "Zit de vlotter vast: verwijder het reservoir en reinig het grondig.", "Spoel een nieuw filter volgens de instructies; zit er lucht in, dompel het onder tot er geen luchtbellen meer opstijgen.", "Is het filter oud: plaats een nieuw filter."]),
+    N("Lekschaal legen, terwijl die leeg is", 1, "Legen wordt niet herkend als het apparaat uit stond, of de lekschaal is vuil.", ["Zet het apparaat aan, haal de lekschaal eruit en plaats hem terug.", "Reinig de lekschaal grondig."]),
+    N("Bonenreservoir vullen a.u.b., terwijl het vol is", 1, "De bonen vallen niet in het maalwerk, bijvoorbeeld door te vette bonen.", ["Tik licht tegen het bonenreservoir.", "Gebruik eventueel een andere koffiesoort.", "Maak het reservoir leeg en veeg het schoon met een droge doek."])
+  ]});
+})();
+(() => {
+  SRC.siemensEq500D = ["Siemens Huishoudapparaten – EQ500: displaymeldingen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq500/displaymeldingen"];
+  SRC.siemensEq500S = ["Siemens Huishoudapparaten – Problemen met je EQ500 oplossen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq500/storingen"];
+  const rs = "Trek de stekker uit het stopcontact, wacht 5 seconden en steek hem weer in.";
+  MODELS.push({ id: "siemens-eq500", brand: "Siemens", name: "EQ500 volautomaat: displaymeldingen en storingen", dev: "EQ500 volautomaat", cat: "koffiemachines", years: "Siemens EQ500 (EQ.500)", unit: null, also: "Siemens EQ500 sluiten terwijl deur dicht, EQ500 lekschaal legen, EQ500 alleen water geen koffie, EQ500 geen melkschuim, EQ500 zetgroep kan niet uit, EQ500 demomodus", intro: "De Siemens EQ500 meldt de meeste problemen op het display. Siemens geeft daarnaast oplossingen voor storingen zonder melding, zoals alleen water in plaats van koffie of geen melkschuim.", weak: [], parts: [], tasks: [], src: ["siemensEq500D", "siemensEq500S"], faults: [
+    N("Sluiten, terwijl de deur dicht is", 1, "De deur is niet goed dicht, of het apparaat is te warm.", ["Duw de deur stevig dicht tot hij vastklikt.", "Laat het apparaat ongeveer een uur afkoelen."]),
+    N("Aub lekschaal legen en terugplaatsen, terwijl die leeg is", 1, "Het legen is niet geregistreerd omdat het apparaat uit stond, of de lekschaal is vuil.", ["Zet het apparaat aan, haal de lekschaal eruit en plaats hem terug.", "Maak de lekschaal grondig schoon."]),
+    N("Aub waterreservoir vullen, terwijl de tank vol is", 1, "Tank zit niet goed, koolzuurhoudend water, vlotter zit vast, waterfilter niet goed doorgespoeld, lucht in het filter, filter oud, of kalk verstopt het systeem.", ["Plaats de watertank correct.", "Vul de tank met vers kraanwater.", "Zit de vlotter vast: haal de tank eruit en reinig hem grondig.", "Spoel een nieuw filter door volgens de instructies; zit er lucht in, dompel het met de opening omhoog onder tot er geen luchtbellen meer komen.", "Is het filter oud: vervang het.", "Bij kalk: reinig de tank grondig en start het ontkalkingsprogramma."]),
+    N("Vul het bonenreservoir met koffiebonen, terwijl er bonen in zitten", 1, "De bonen zijn te olieachtig en vallen niet in het maalwerk.", ["Tik licht tegen de bonenhouder.", "Gebruik een andere koffiesoort of vermijd olieachtige bonen.", "Maak het lege reservoir schoon met een vochtige doek en droog na met keukenpapier; zorg dat er geen water bij de maalmotor komt."]),
+    N("Aub zetgroep reinigen, terugplaatsen en deuren sluiten", 1, "De zetgroep is vuil, loopt stroef of bevat te veel gemalen koffie.", ["Reinig de zetgroep.", "Loopt hij stroef: smeer de afdichtingen licht in met voedselveilig siliconenvet.", "Gebruik maximaal twee afgestreken maatlepels gemalen koffie."]),
+    N("Aub apparaat opnieuw starten", 1, "De zetgroep is sterk vervuild of kan niet worden verwijderd, of er is een storing.", ["Start het apparaat opnieuw op en reinig de zetgroep.", rs]),
+    N("calc'nClean verschijnt vaak", 1, "Het water is te kalkrijk, of er is verkeerd of te weinig ontkalkmiddel gebruikt.", ["Plaats een nieuw waterfilter en stel de waterhardheid juist in.", "Gebruik uitsluitend geschikte ontkalktabs."]),
+    N("Apparaat reageert niet meer", 1, "Storing in het apparaat.", [rs]),
+    N("Geeft alleen water, geen koffie", 1, "Bonenreservoir leeg of niet herkend, koffieschacht op de zetgroep geblokkeerd, of te vettige bonen.", ["Vul koffiebonen bij.", "Reinig de zetgroep.", "Tik licht tegen het bonenreservoir of gebruik een andere koffiesoort."]),
+    N("Geen of te weinig melk of melkschuim", 1, "Het melksysteem is vuil, verkeerd in elkaar gezet, kan geen lucht meezuigen, of het buisje zit niet in de melk.", ["Reinig het melksysteem in de vaatwasser.", "Monteer het correct: eerst het melksysteem in de uitloop, daarna het melkreservoir.", "Zorg voor ruimte voor lucht naast de aanzuigbuis.", "Vul melk bij en controleer of het buisje in de melk ligt."]),
+    N("Geen heet water", 1, "Het melksysteem is vervuild.", ["Reinig het melksysteem in de vaatwasser."]),
+    N("Geeft geen dranken", 1, "Er zit lucht in het waterfilter.", ["Dompel het filter met de opening naar boven onder water tot er geen luchtbellen meer opstijgen.", "Plaats het terug en druk het stevig en recht in de tankaansluiting."]),
+    N("Lekwater op de binnenbodem", 1, "De lekschaal is te vroeg verwijderd.", ["Haal de lekschaal pas enkele seconden na de laatste drank eruit."]),
+    N("Zetgroep kan niet worden verwijderd", 1, "De zetgroep staat niet in de uitneempositie, bijvoorbeeld door vorstbescherming.", ["Zet het apparaat weer aan."]),
+    N("Niet te bedienen, meldingen wisselen elkaar af", 1, "Het apparaat staat in de demomodus.", ["Houd de aan/uit-toets minstens 5 seconden ingedrukt."]),
+    N("Maalwerk start niet", 1, "Het apparaat is te heet.", ["Laat het 1 uur afkoelen."])
+  ]});
+})();
+(() => {
+  SRC.mieleCm7350 = ["Miele – Gebruiks- en montagehandleiding koffieautomaat CM 7350 (NL, M.-Nr. 11 058 540)", "https://media.miele.com/downloads/c5/f1/01_F6154D09FD0B1EEA9DA1396AB0CCC5F1.pdf"];
+  const back = "Blijft de melding terugkomen nadat je het probleem hebt verholpen: neem contact op met Miele.";
+  MODELS.push({ id: "miele-cm-7350", brand: "Miele", name: "CM 7350 koffieautomaat: F-codes en meldingen", dev: "CM 7350 koffieautomaat", cat: "koffiemachines", years: "Miele CM 7350", unit: null, also: "Miele koffiemachine F1, Miele F41, Miele F73 filtersysteem, Miele F233 kopjessensor, Miele CM7350 storing, Miele koffiemachine vul waterreservoir", intro: "De Miele CM 7350 toont bij een storing een symbool met een F-code op het display. Foutmeldingen bevestig je met OK. Komt de melding terug nadat je het probleem hebt verholpen, neem dan contact op met Miele.", weak: [], parts: [], tasks: [], src: ["mieleCm7350"], faults: [
+    F("F1", "Interne storing (F1, F2, F80, F82)", 2, "Interne storing. Dezelfde oplossing geldt voor F2, F80 en F82.", ["Schakel het apparaat uit en wacht ongeveer een uur voordat je het weer inschakelt.", back]),
+    F("F41", "Interne storing (F41, F42, F74, F77, F225, F226, F235, F236)", 2, "Interne storing. Dezelfde oplossing geldt voor F42, F74, F77, F225, F226, F235 en F236.", ["Schakel het apparaat uit en wacht ongeveer twee minuten voordat je het weer inschakelt.", back]),
+    F("F73", "Controleer het filtersysteem", 1, "Het filtersysteem kan de uitgangspositie niet innemen.", ["Schakel uit, verwijder het filtersysteem en reinig het.", "Zet het koffie-uitwerpmechanisme in de uitgangspositie en plaats het filtersysteem nog niet terug.", "Sluit de deur, schakel in en plaats het filtersysteem als daarom gevraagd wordt.", "Komt de melding terug: gebruik minder koffie en/of een fijnere maling."]),
+    F("F233", "Kopjessensor of afdekking niet goed geplaatst", 1, "De kopjessensor of de rvs-afdekking van de koffie-uitloop zit niet goed; de sensor is zijn referentiestand kwijt.", ["Bevestig met OK en schakel uit.", "Wacht ongeveer 2 minuten en schakel weer in.", "Plaats de kopjessensor opnieuw en zet de afdekking goed terug."]),
+    N("Display blijft donker bij inschakelen", 1, "De aan/uit-toets te kort aangeraakt, stekker los, of zekering doorgeslagen door een defect.", ["Houd de aan/uit-toets minimaal 3 seconden ingedrukt.", "Steek de stekker goed in het stopcontact.", "Zekering doorgeslagen: trek de stekker eruit en neem contact op met een elektricien of Miele."]),
+    N("Sensortoetsen reageren niet", 1, "Interne storing.", ["Haal de stekker uit het stopcontact of schakel de zekering uit, zodat de stroom even wordt onderbroken."]),
+    N("Vul het waterreservoir, terwijl het vol is", 1, "Het reservoir zit niet goed, of is bij het ontkalken niet tot de markering gevuld.", ["Haal het reservoir eruit en plaats het opnieuw; reinig zo nodig het plateau.", "Bij ontkalken: vul tot de markering en start het programma opnieuw."]),
+    N("Apparaat spoelt niet", 1, "Het apparaat is verkalkt.", ["Schakel uit en wacht ongeveer 1 uur.", "Schakel weer in en kies bij de melding Opwarmfase: Onderhoud > Apparaat ontkalken."]),
+    N("Plaats de opvangschaal en het afvalbakje, terwijl ze erin zitten", 1, "De opvangschaal zit niet goed en wordt niet herkend.", ["Leeg zo nodig opvangschaal en afvalbakje.", "Zet alles goed in elkaar en schuif de opvangschaal tot de aanslag."]),
+    N("Filtersysteem kan niet worden verwijderd", 1, "Het filtersysteem staat niet in de uitgangspositie, bijvoorbeeld omdat de deur open was tijdens malen of bereiden.", ["Draai de greep zo nodig terug, sluit de deur en schakel uit.", "Haal de stekker eruit of schakel de zekering uit; sluit na ongeveer 1 minuut weer aan en schakel in. Herhaal zo nodig."]),
+    N("Geen koffie of maar uit één tuitje", 1, "De koffie-uitloop is verstopt.", ["Spoel de koffieleidingen door.", "Helpt dat niet: demonteer de uitloop en reinig alle onderdelen zorgvuldig."]),
+    N("Geen melk of melkschuim", 1, "De melkleiding is verstopt.", ["Reinig de koffie-uitloop, vooral de cappuccinatore en de melkleiding, met de borstel."]),
+    N("Display aan maar warmt niet op en is niet uit te zetten", 1, "De demofunctie is actief.", ["Zet de demofunctie uit."]),
+    N("Schakelt niet in terwijl de timer aan staat", 1, "Vergrendeling aan, timer verkeerd ingesteld, of vakantiestand na 3 automatische inschakelingen zonder gebruik.", ["Zet de vergrendeling uit.", "Controleer de timerinstellingen.", "Schakel het apparaat in en bereid een drank."])
+  ]});
+})();
+(() => {
+  SRC.gardenaGwOffline = ["GARDENA Help – Gateway ist offline (Duits)", "https://help.gardena.com/hc/de/articles/7991779258012-Gateway-ist-offline"];
+  SRC.gardenaGwMan = ["GARDENA – Handleiding smart Gateway (NL)", "https://content.tdr.dss.husqvarnagroup.net/pub000105640/doc000263421"];
+  const reset = "Lukt het niet: zet de Gateway terug naar fabrieksinstellingen: sluit hem met een netwerkkabel aan op de router, houd de resetknop ingedrukt, sluit de adapter aan, laat los als het rechter Power-lampje geel brandt, en wacht tot beide lampjes continu groen branden (kan tot 15 minuten duren).";
+  MODELS.push({ id: "gardena-smart-gateway", brand: "GARDENA", name: "smart Gateway: lampjes en offline", dev: "smart Gateway", cat: "tuin", years: "GARDENA smart Gateway (smart system)", unit: null, also: "Gardena gateway offline, Gardena gateway rood lampje, Gardena smart system geen verbinding, Gardena gateway geel lampje, Sileno smart offline", intro: "De GARDENA smart Gateway verbindt robotmaaier, sproeiers en sensoren met de app. Het linker Internet-lampje en het rechter Power-lampje horen allebei continu groen te branden. Rood of geel betekent een verbindingsprobleem.", weak: [], parts: [], tasks: [], src: ["gardenaGwOffline", "gardenaGwMan"], faults: [
+    N("Internet-lampje knippert rood", 2, "Verbonden met de router, maar niet met de server: de Gateway bereikt de benodigde poorten niet.", ["Haal de Gateway even uit het stopcontact en sluit hem weer aan; controleer of de router online is.", "Controleer of uitgaande poorten open zijn op de router: 53 TCP/UDP, 67/68 UDP, 123 TCP/UDP, 80 TCP en 443 TCP.", "Verwijder tussenapparaten zoals repeaters of switches en sluit de Gateway direct op de hoofdrouter aan.", reset]),
+    N("Internet-lampje brandt rood", 2, "Geen verbinding.", ["Start de Gateway opnieuw en controleer of de router online is.", "Bij een kabelverbinding: controleer netwerkkabel en aansluitingen op router en Gateway.", reset]),
+    N("Internet-lampje brandt geel", 1, "Configuratiemodus: de Gateway is niet via kabel of wifi met de router verbonden. 1 à 2 minuten na het opstarten biedt hij 15 minuten een configuratienetwerk aan.", ["Is de 15 minuten voorbij: druk kort op de resetknop om het configuratienetwerk weer te activeren."]),
+    N("Power-lampje niet continu groen", 2, "Probleem met de stroomvoorziening of de Gateway.", ["Start de Gateway opnieuw en controleer de stroomvoorziening.", "Blijft het Power-lampje uit: zet de Gateway terug naar fabrieksinstellingen."]),
+    N("Power-lampje rood", 3, "Ernstige fout waarvoor een herstart nodig is.", ["Start de Gateway opnieuw.", "Neem bij aanhoudende storing contact op met de GARDENA-service."]),
+    N("Geen enkel lampje brandt", 2, "Probleem met de stroomaansluiting of de adapter, of de Gateway is defect.", ["Controleer de stroomaansluiting en de adapter.", "Werken die: stuur de Gateway ter controle op, met een kopie van de aankoopbon."]),
+    N("Alle drie de lampjes branden tegelijk", 2, "GARDENA noemt geen oorzaak.", ["Zet de Gateway terug naar fabrieksinstellingen."])
+  ]});
+})();
+(() => {
+  SRC.rainbirdRzxe = ["Rain Bird – ESP-RZXe User Manual (Engels), Troubleshooting", "https://www.rainbird.com/sites/default/files/media/documents/2018-09/esp-rzxe_user_manual_en.pdf"];
+  MODELS.push({ id: "rain-bird-esp-rzxe", brand: "Rain Bird", name: "ESP-RZXe beregeningscomputer: Err en sproeit niet", dev: "ESP-RZXe beregeningscomputer", cat: "tuin", years: "Rain Bird ESP-RZXe", unit: null, also: "Rain Bird Err, Rain Bird zone Err, Rain Bird sproeit niet, Rain Bird display leeg, Rain Bird regensensor, beregeningscomputer storing", intro: "De Rain Bird ESP-RZXe toont 'Err' met een zonenummer bij kortsluiting of overbelasting op de draad naar die zone. De computer slaat die zone dan over en probeert het bij de volgende geplande beurt opnieuw; lukt dat, dan verdwijnt de melding.", weak: [], parts: [], tasks: [], src: ["rainbirdRzxe"], faults: [
+    F("Err", "Kortsluiting of overbelasting op een zone", 2, "Kortsluiting of overbelasting op de uitgang van de getoonde zone. Die zone wordt overgeslagen.", ["De computer probeert de zone bij de volgende geplande beurt opnieuw; een geslaagde beregening wist de melding.", "Rain Bird geeft voor Err verder geen aparte stappen."]),
+    N("Programma's en handmatig sproeien starten niet", 1, "Geen water van de bron, losse of verkeerd aangesloten bedrading, beschadigde draden, de regensensor is actief, of de brug op SENS ontbreekt.", ["Controleer of de hoofdwaterleiding open is en werkt.", "Controleer of de bedrading van kleppen, hoofdklep of pomprelais goed vastzit.", "Laat de regensensor opdrogen, of koppel hem los en plaats een draadbrug over de SENS-klemmen.", "Ontbreekt de brug: plaats een korte draad (14–18 gauge) over de twee SENS-klemmen."]),
+    N("Display is leeg", 1, "Er komt geen stroom bij de computer.", ["Controleer of de netvoeding is aangesloten en werkt."]),
+    N("Display bevroren, programmeren lukt niet", 1, "Mogelijk heeft een spanningspiek de elektronica beïnvloed.", ["Haal de stekker 2 minuten uit het stopcontact en sluit hem weer aan; zonder blijvende schade werkt hij daarna weer normaal."])
+  ]});
+})();
+(() => {
+  SRC.xiaomiEbike = ["Xiaomi Nederland – FAQ: Ebike Error Code", "https://www.mi.com/nl/support/faq/details/KA-57817/"];
+  const s = ["Xiaomi geeft geen stappen om dit zelf op te lossen.", "Neem contact op met Xiaomi-support: service.nl@support.mi.com."];
+  const c = (code, t, d, cause) => F(code, t, d, cause, s);
+  MODELS.push({ id: "xiaomi-e-bike", brand: "Xiaomi", name: "Xiaomi e-bike: foutcodes 00001 t/m 16384", dev: "Xiaomi e-bike", cat: "e-bikes", years: "Xiaomi elektrische fiets", unit: null, also: "Xiaomi ebike foutcode 04096, Xiaomi e-bike 00128 remhendel, Xiaomi ebike 12288, Xiaomi fiets foutcode 16384, Xiaomi ebike te koud om te laden", intro: "De Xiaomi e-bike toont een foutcode van vijf cijfers. Staan er twee fouten tegelijk, dan telt de fiets de codes op: 12288 is 04096 + 08192, 20480 is 16384 + 04096 en 16896 is 16384 + 00512. Xiaomi noemt per code de mogelijke oorzaak, maar geen oplossing; daarvoor verwijst Xiaomi naar de klantenservice.", weak: [], parts: [], tasks: [], src: ["xiaomiEbike"], faults: [
+    c("00001", "Fout stroomgeleider", 2, "Mogelijke oorzaak: controller of motor."),
+    c("00002", "Stroom te hoog", 2, "Mogelijke oorzaak: controller of motor."),
+    c("00004", "Oververhitting", 2, "Mogelijke oorzaak: controller of motor."),
+    c("00008", "Fout hallsensor", 2, "Mogelijke oorzaak: controller of motor."),
+    c("00016", "Lage spanning", 2, "Mogelijke oorzaak: controller of motor."),
+    c("00032", "Rotor geblokkeerd", 2, "Mogelijke oorzaak: controller of motor."),
+    c("00064", "Sensorfout", 2, "Mogelijke oorzaak: controller of motor."),
+    c("00128", "Fout remhendel", 2, "Mogelijke oorzaak: de remhendel."),
+    c("00256", "Te warm tijdens laden", 1, "Mogelijke oorzaak: accu, lader of omgevingstemperatuur."),
+    c("00512", "Te koud om te laden", 1, "Mogelijke oorzaak: accu, lader of omgevingstemperatuur."),
+    c("01024", "Te warm tijdens ontladen", 1, "Mogelijke oorzaak: accu, lader of omgevingstemperatuur."),
+    c("02048", "Te koud om te ontladen", 1, "Mogelijke oorzaak: accu, lader of omgevingstemperatuur."),
+    c("04096", "Motorsturing meldt zich niet", 2, "Mogelijke oorzaak: de stuurkabel of een ongeldig serienummer (SN)."),
+    c("08192", "Motorsturing meldt zich niet (accu)", 2, "Mogelijke oorzaak: de accu."),
+    c("16384", "Fout in het display", 2, "Mogelijke oorzaak: de printplaat (controller)."),
+    c("12288", "Combinatie 04096 + 08192", 2, "Motorsturing meldt zich niet, plus een accuprobleem."),
+    c("20480", "Combinatie 16384 + 04096", 2, "Fout in het display, plus motorsturing meldt zich niet."),
+    c("16896", "Combinatie 16384 + 00512", 2, "Fout in het display, plus te koud om te laden.")
+  ]});
+})();
+(() => {
+  SRC.remehaEria = ["Remeha – Gebruikershandleiding Eria Tower (V8)", "https://documentation.remeha.nl/wp-content/uploads/sites/68/2026/04/Gebruikershandleiding-Eria-Tower-V8.pdf"];
+  SRC.remehaMercuria = ["Remeha – Gebruikershandleiding Mercuria (NL, V9)", "https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Gebruikershandleiding-Mercuria-NL-V9.pdf"];
+  const tech = "Neem contact op met de onderhoudstechnicus.";
+  const flow = ["Controleer of er een radiatorkraan open staat.", "Controleer of de filters niet verstopt zijn; is het circuit verstopt, reinig de filters en spoel de installatie.", "Controleer of afsluiters en thermostaatkranen open staan, de circulatiepomp draait en de bedrading in orde is.", tech];
+  const make = (outdoor) => [
+    F("H02.07", "Fout waterdruk", 1, "De waterdruk in de verwarmingsinstallatie is niet in orde.", ["Controleer de waterdruk van de verwarmingsinstallatie; vul bij tot 1,5–2 bar als die onder 1 bar is.", tech]),
+    F("H02.23", "Systeemdebietfout", 2, "Te weinig of geen doorstroming in de installatie.", flow),
+    F("E02.24", "Vergrendeling door te laag debiet", 2, "Het systeem is vergrendeld omdat de doorstroming te laag is of ontbreekt.", flow.slice(0, 3).concat(["Bevestig de foutmelding daarna handmatig op het bedieningspaneel.", tech])),
+    F("H06.01", "Storing buitenunit", 2, "De buitenunit heeft een storing.", outdoor),
+    F("H00.32", "Buitentemperatuursensor open, kortgesloten of ontbreekt", 2, "Ook H00.33 en H00.34. De sensor is los of meet buiten het bereik.", [tech]),
+    F("H00.16", "Sensor warmwatertank open of kortgesloten", 2, "Ook H00.17. De sensor is los of meet buiten het bereik.", [tech]),
+    F("H00.47", "Aanvoersensor warmtepomp open of kortgesloten", 2, "Ook H00.48; voor de retoursensor H00.51 en H00.52.", [tech]),
+    F("E00.00", "Aanvoersensor open of kortgesloten (vergrendeling)", 3, "Ook E00.01. De verwarming is uitgeschakeld tot de oorzaak is verholpen.", [tech]),
+    F("H02.09", "Gedeeltelijke of volledige blokkering", 2, "Een blokkeringsingang (BL) op de print staat open (ook H02.10).", [tech]),
+    F("E02.13", "Blokkeringsingang open", 2, "Blokkering vanuit de omgeving van het apparaat.", ["Verhelp de oorzaak en bevestig de foutmelding handmatig op het bedieningspaneel.", tech]),
+    F("A02.06", "Waarschuwing waterdruk", 1, "Tijdelijke waarschuwing; blijft die na meerdere automatische herstartpogingen, dan gaat het systeem in storing.", ["Controleer de waterdruk.", tech]),
+    F("A02.22", "Waarschuwing systeemdebiet", 1, "Tijdelijke waarschuwing voor te weinig doorstroming.", flow),
+    F("A02.55", "Ongeldig of ontbrekend serienummer", 2, "Het serienummer van het apparaat ontbreekt of is ongeldig.", [tech]),
+    N("Radiatoren blijven koud", 1, "Setpunt te laag, verwarming uit, kranen dicht, toestel uit of waterdruk onder 1 bar.", ["Verhoog het setpunt en zet de verwarming aan.", "Open de radiatorkranen.", "Controleer voeding en zekeringen.", "Vul de installatie bij tot 1,5–2 bar."]),
+    N("Geen warm water", 1, "Setpunt te laag, warmwatermodus uit, gereduceerde periode actief, douchekop verstopt, toestel uit of lage druk.", ["Verhoog het warmwatersetpunt en zet de warmwatermodus aan.", "Pas het tijdschema aan.", "Maak de douchekop schoon of vervang hem.", "Controleer voeding en waterdruk."]),
+    N("Tikkende geluiden in de leidingen", 1, "Leidingbeugels te vast, of lucht in het systeem.", ["Maak de beugels iets losser.", "Ontlucht de installatie."])
+  ];
+  const intro = n => `De ${n} van Remeha toont H-codes (tijdelijke storing, de warmtepomp probeert zelf te herstarten), E-codes (vergrendeling: verhelp de oorzaak en bevestig de melding handmatig) en A-codes (tijdelijke waarschuwing). Houd bij een melding de reset-toets 3 seconden ingedrukt om het bedieningspaneel te resetten. Start de warmtepomp niet vanzelf, bel dan de onderhoudstechnicus.`;
+  MODELS.push({ id: "remeha-eria-tower", brand: "Remeha", name: "Eria Tower warmtepomp: H-, E- en A-codes", dev: "Eria Tower warmtepomp", cat: "warmtepompen", years: "Remeha Eria Tower", unit: null, also: "Remeha Eria Tower H02.23, Eria Tower H06.01, Eria Tower E02.24, Remeha warmtepomp A02.06, Eria Tower storing", intro: intro("Eria Tower"), weak: [], parts: [], tasks: [], src: ["remehaEria"], faults: make(["Schakel buiten- en binnenunit uit.", "Wacht 3 minuten.", "Schakel eerst de binnenunit en daarna de buitenunit weer in.", tech]) });
+  MODELS.push({ id: "remeha-mercuria", brand: "Remeha", name: "Mercuria warmtepomp: H-, E- en A-codes", dev: "Mercuria warmtepomp", cat: "warmtepompen", years: "Remeha Mercuria", unit: null, also: "Remeha Mercuria H02.23, Mercuria H06.01, Mercuria E02.24, Mercuria A02.06, Mercuria storing", intro: intro("Mercuria"), weak: [], parts: [], tasks: [], src: ["remehaMercuria"], faults: make([tech]) });
+})();
+(() => {
+  SRC.boshuisIq = ["Boshuis – Handleiding waterontharder iQualQ Combi en Duo (v6)", "https://www.boshuis.nl/uploads/file/bh_wo_iq_hndl_v6.pdf"];
+  MODELS.push({ id: "boshuis-iqualq", brand: "Boshuis", name: "iQualQ Combi en Duo waterontharder: storingen", dev: "iQualQ Combi / Duo waterontharder", cat: "waterontharders", years: "Boshuis iQualQ Combi en iQualQ Duo", unit: null, also: "Boshuis iQualQ geen zacht water, iQualQ display reageert niet, Boshuis ontharder zout water, iQualQ blijft regenereren, Boshuis ontharder hoog zoutverbruik", intro: "De Boshuis iQualQ heeft geen foutcodes; het display toont alleen de regeneratiestappen. De handleiding geeft een storingstabel per symptoom. Sommige oplossingen (zuigerafdichtingen, motor of timer vervangen) zijn werk voor de installateur.", weak: [], parts: [], tasks: [], src: ["boshuisIq"], faults: [
+    N("Display reageert niet", 1, "Geen stroom, stroomonderbreking, losse of defecte connectoren, of een fout in de elektronica.", ["Controleer stekker en stopcontact of probeer een ander stopcontact; het stopcontact moet altijd spanning hebben (niet geschakeld).", "Herstel de stroomvoorziening (zekering, schakelaar, transformator).", "Sluit losse connectoren opnieuw aan of vervang de kabelboom.", "Reset zo mogelijk de printplaat."]),
+    N("Geen zacht water", 1, "Bypass niet in bedrijfsstand, geen zout, verstopt pekelfilter of injector, te weinig water in de pekelbak, meter geblokkeerd, verkeerde programmering of een interne lekkage.", ["Zet de bypass in de normale bedrijfsstand.", "Vul zout bij, zodat het zout boven het water uitkomt.", "Reinig of vervang pekelfilter en injector.", "Controleer het bijvullen en reinig de hele pekelleiding.", "Controleer de meter en de meterkabel.", "Controleer en corrigeer de programmering.", "Interne lekkage (stijgbuis of zuigerafdichtingen): laat de installateur dit nakijken."]),
+    N("Ontharder reageert niet", 1, "Stroomonderbreking, losse meterkabel, geblokkeerde meter, defecte motor of verkeerde programmering.", ["Herstel de stroomvoorziening.", "Controleer de aansluiting van de meterkabel aan klep en meter.", "Reinig of vervang de meter.", "Controleer en corrigeer de programmering.", "Is de motor defect: laat hem vervangen."]),
+    N("Hoog zoutverbruik", 1, "Verkeerde programmering van het zoutgebruik, of te veel water naar de pekelbak.", ["Controleer harsvolume, zoutdosering en de instelling.", "Controleer de instelling voor het bijvullen van de pekelbak."]),
+    N("Te veel water in de pekelbak", 2, "Verstopte verdeler, lekkende pekelklep, lekkage tussen besturing en harstank, of verkeerde programmering.", ["Reinig de verdeler.", "Controleer en corrigeer de programmering.", "Lekkende pekelklep of lek tussen besturing en harstank: laten repareren."]),
+    N("Water smaakt zout", 1, "Verstopt pekelfilter of injector, verstopte pekelklep, defecte timer, te lage ingangsdruk of verkeerde programmering.", ["Reinig of vervang pekelfilter en injector.", "Reinig de pekelklep en vervang de afdichting.", "Zorg voor een ingangsdruk van minimaal 1,4 bar.", "Controleer en corrigeer de programmering.", "Defecte timer: laten vervangen."]),
+    N("Zuigt geen pekel aan", 2, "Verstopte verdeler, injector of pekelfilter, te lage ingangsdruk, interne lekkage of verkeerde programmering.", ["Reinig of vervang het verstopte onderdeel.", "Zorg voor een ingangsdruk van minimaal 1,4 bar.", "Controleer en corrigeer de programmering."]),
+    N("Drukverlies", 2, "IJzerafzetting in leiding of ontharder, of een verstopping in de besturing.", ["Reinig de leiding.", "Laat klep en hars reinigen.", "Verstopping in de besturing: zuiger verwijderen en klep reinigen."]),
+    N("Hars in het kraanwater", 2, "In- en uitgang verwisseld, kapotte harsvangers, of lucht in de harstank.", ["Controleer en corrigeer de aansluitingen.", "Laat kapotte harsvangers vervangen.", "Controleer de luchtstop in de pekelbak."]),
+    N("Loopt constant naar de afvoer (blijft regenereren)", 2, "Vuil in de klep, interne lekkage, klep blijft in regeneratie hangen, of defecte motor.", ["Reinig de klep en controleer de regeneratiestappen.", "Interne lekkage of klep blijft hangen: laat zuigerafdichtingen (en zo nodig zuiger) vervangen.", "Defecte motor: laat motor en tandwielen nakijken."])
+  ]});
+})();
+(() => {
+  SRC.erieConnectFaq = ["Pentair – Erie Connect app FAQ (NL)", "https://pentair.eu/sites/default/files/2022-03/ErieConnectAPPFAQ_NL.pdf"];
+  const cfg = ["Zet de wifi op het toestel op OFF, wacht 20 seconden, zet hem op Configure en wacht opnieuw 20 seconden.", "Stel de wifi opnieuw in via de Erie Connect-app, met de telefoon dicht bij het toestel."];
+  MODELS.push({ id: "erie-connect-waterontharder", brand: "Erie (Pentair)", name: "Erie Connect waterontharder: wifi- en zoutmeldingen", dev: "Erie waterontharder met Erie Connect", cat: "waterontharders", years: "Erie (Pentair) waterontharders met Erie Connect-app", unit: null, also: "Erie ontharder Password error, Erie No internet, Erie Salt level low, Erie Check salt level, Erie Connect verbindt niet, Erie onderhoud vereist", intro: "Erie-waterontharders van Pentair met wifi tonen de wifistatus (Connected, No internet, Password error, Configure, Off) en meldingen voor zout en onderhoud. Voor de technische werking van de ontharder zelf verwijst Pentair naar je waterbehandelingsdealer.", weak: [], parts: [], tasks: [], src: ["erieConnectFaq"], faults: [
+    N("Salt level low / Check salt level", 1, "Het ingestelde aantal regeneraties is bereikt.", ["Vul zout bij.", "Bevestig met 'Salt added' en 'Yes' in de app of op het toestel; daarna verdwijnt de melding."]),
+    N("Onderhoud vereist", 1, "Na 24 maanden verschijnt deze melding; het is geen diagnose van een storing.", ["Plan zelf een onderhoudsbeurt bij je dealer."]),
+    N("Wifistatus: No internet", 1, "Verbonden met het netwerk, maar zonder internettoegang.", ["Controleer de internetverbinding van je router."]),
+    N("Wifistatus: Password error", 1, "Niet verbonden door een verkeerd wifiwachtwoord.", ["Pas het wachtwoord aan; vermijd speciale tekens zoals aanhalingstekens en '/' in netwerknaam en wachtwoord."]),
+    N("Wifistatus: Configure", 1, "Geen wifiverbinding; het toestel staat in directe wifimodus.", ["Stel de wifi in via de app."]),
+    N("Wifistatus: Off", 1, "Wifi staat uit.", ["Zet wifi op ON via het bedieningspaneel."]),
+    N("Toestel verschijnt niet of komt niet online", 1, "Waarschijnlijk is het wifiwachtwoord verkeerd ingevoerd.", ["Verwijder het toestel in de app en registreer het opnieuw met het juiste wachtwoord."]),
+    N("Unable to connect to ErieConfig Network", 1, "De directe verbinding met het toestel is verbroken.", cfg),
+    N("Mijn wifinetwerk staat niet in de lijst", 1, "De router zendt alleen 5 GHz uit (het toestel werkt alleen met 2,4 GHz), de netwerknaam is verborgen, of het signaal is te zwak.", ["Zorg dat de router ook 2,4 GHz uitzendt.", "Maak de netwerknaam (SSID) zichtbaar.", "Gebruik bij zwak signaal een repeater of extra toegangspunt."]),
+    N("Slechte prestaties of te veel zoutverbruik", 1, "De ingestelde waterhardheid is waarschijnlijk onjuist.", ["Test de hardheid van het inkomende water en pas de instelling aan."])
+  ]});
+})();
+(() => {
+  SRC.appleAdpCodes = ["Apple Support – Apple Diagnostics reference codes (102334, Engels)", "https://support.apple.com/en-eg/102334"];
+  const AP = "Neem contact op met Apple, een Apple Authorized Service Provider of een Apple Store.";
+  const rerun = (first) => [first, "Voer de test opnieuw uit.", "Komt de code terug: " + AP.charAt(0).toLowerCase() + AP.slice(1)];
+  const groups = [
+    [["ADP000"], "Geen problemen gevonden", 1, "Apple Diagnostics heeft geen problemen gevonden.", ["Niets doen."]],
+    [["ALS001"], "Mogelijk probleem met de omgevingslichtsensor", 3, null, [AP]],
+    [["BMT001","BMT003","BMT004","BMT005"], "Mogelijk probleem met de Touch ID-sensor", 3, null, [AP]],
+    [["CEH001","CEH002"], "Mogelijk probleem met de behuizingsgreep", 2, null, rerun("Controleer of de vergrendeling van de behuizing helemaal dicht zit.")],
+    [["CNT001","CNT002","CNT003","CNT004","CNT005","CNT006","CNT007"], "Mogelijk probleem met de ethernet-hardware", 3, null, [AP]],
+    [["CNW001","CNW003","CNW004","CNW005","CNW006","CNW009"], "Mogelijk probleem met de wifi-hardware", 3, null, [AP]],
+    [["CNW007","CNW008"], "Geen wifi-netwerken gevonden", 1, "Er zijn geen wifi-netwerken in de buurt, of er is een probleem met de wifi-hardware.", rerun("Zorg dat je binnen bereik van een wifi-netwerk bent.")],
+    [["DFR001"], "Mogelijk probleem met de Touch Bar", 3, null, [AP]],
+    [["IMU001"], "Mogelijk probleem met versnellingsmeter of gyroscoop", 3, null, [AP]],
+    [["LAS001","LAS002","LAS003","LAS004"], "Mogelijk probleem met de open/dicht-sensor", 3, null, [AP]],
+    [["NDC001","NDC003","NDC004","NDC005","NDC006"], "Mogelijk probleem met de camera", 3, null, [AP]],
+    [["NDD001"], "Mogelijk probleem met de USB-hardware", 2, null, rerun("Koppel alle externe apparaten los, behalve toetsenbord, muis en eventuele ethernetadapter.")],
+    [["NDK001","NDK003","NDK004"], "Mogelijk probleem met het toetsenbord", 3, null, [AP]],
+    [["NDL001","NDL002"], "Mogelijk probleem met de Bluetooth-hardware", 3, null, [AP]],
+    [["NDR001","NDR003","NDR004","NDR005","NDR006","NDR008"], "Mogelijk probleem met het trackpad", 3, null, [AP]],
+    [["NDR007"], "Extern invoerapparaat gedetecteerd", 1, "Er is een extern invoerapparaat aangesloten.", ["Koppel externe invoerapparaten los.", "Voer de test opnieuw uit."]],
+    [["NDT001","NDT002","NDT003","NDT004","NDT005","NDT006"], "Mogelijk probleem met de Thunderbolt-hardware", 2, null, rerun("Koppel externe Thunderbolt-apparaten los.")],
+    [["NNN001"], "Serienummer niet gevonden", 3, null, [AP]],
+    [["PFM001","PFM002","PFM003","PFM004","PFM005","PFM006","PFM007"], "Mogelijk probleem met de System Management Controller (SMC)", 3, null, [AP]],
+    [["PFR001"], "Mogelijk probleem met de firmware", 3, null, [AP]],
+    [["PPF001","PPF003","PPF004"], "Mogelijk probleem met de ventilator", 3, null, [AP]],
+    [["PPM001"], "Mogelijk probleem met een geheugenmodule", 3, null, [AP]],
+    [["PPM002","PPM003","PPM004","PPM005","PPM006","PPM007","PPM008","PPM009","PPM010","PPM011","PPM012","PPM013","PPM014","PPM015","PPM016"], "Mogelijk probleem met het ingebouwde geheugen", 3, null, [AP]],
+    [["PPN001","PPN002"], "Mogelijk probleem met het energiebeheer", 3, null, [AP]],
+    [["PPP001","PPP002","PPP003","PPP004","PPP005","PPP006","PPP007","PPP008"], "Mogelijk probleem met de lichtnetadapter", 2, null, ["Gebruik de juiste lichtnetadapter.", "Haal de adapter uit de computer en uit het stopcontact en sluit hem opnieuw aan.", "Voer de test opnieuw uit.", "Komt de code terug: " + AP.charAt(0).toLowerCase() + AP.slice(1)]],
+    [["PPP017"], "Beide poorten van de 35W Dual USB-C-adapter in gebruik", 1, "Beide poorten van de Apple 35W Dual USB-C Port Power Adapter worden gebruikt.", ["Gebruik tijdens de diagnose maar één laadpoort."]],
+    [["PPP018"], "Adapter ondersteunt geen snelladen", 1, "De aangesloten lichtnetadapter ondersteunt geen snelladen.", ["Zoek in het Apple-artikel over snelladen een geschikte adapter, kabel of display."]],
+    [["PPP020"], "Geen lichtnetadapter gedetecteerd", 1, null, ["Gebruik de juiste lichtnetadapter.", "Haal de adapter uit de computer en uit het stopcontact en sluit hem opnieuw aan.", "Voer de test opnieuw uit.", "Komt de code terug: " + AP.charAt(0).toLowerCase() + AP.slice(1)]],
+    [["PPR001"], "Mogelijk probleem met de processor", 3, null, [AP]],
+    [["PPT001"], "Batterij niet gedetecteerd", 3, null, [AP]],
+    [["PPT002","PPT003"], "Batterij moet binnenkort worden vervangen", 2, "De batterij werkt normaal, maar heeft minder capaciteit.", [AP]],
+    [["PPT004"], "Batterij heeft service nodig", 2, "De batterij heeft service nodig, ook al merk je daar misschien nog niets van.", ["Intel-Mac: bevestig dit door Apple Diagnostics via internet te starten (Option-D bij het opstarten).", "Komt de code terug, of heb je een Mac met Apple silicon: " + AP.charAt(0).toLowerCase() + AP.slice(1)]],
+    [["PPT005"], "Batterij niet goed geplaatst", 3, "De batterij is niet goed geïnstalleerd. Stop met het gebruik van de computer.", ["Stop met het gebruik van de computer.", AP]],
+    [["PPT006"], "Batterij heeft service nodig", 3, null, [AP]],
+    [["PPT007"], "Batterij moet worden vervangen", 2, "De batterij werkt normaal, maar heeft duidelijk minder capaciteit.", [AP]],
+    [["PPT021"], "Batterij te leeg voor de test", 1, "De batterij is te leeg om de test uit te voeren.", ["Laad de batterij op tot minstens 6%.", "Voer de test opnieuw uit.", "Komt de code terug: " + AP.charAt(0).toLowerCase() + AP.slice(1)]],
+    [["VDC001","VDC003","VDC004","VDC005","VDC006","VDC007"], "Mogelijk probleem met de SD-kaartlezer", 3, null, [AP]],
+    [["VDH001","VDH002","VDH003","VDH004"], "Mogelijk probleem met de opslag", 3, null, [AP]],
+    [["VDH005"], "macOS-herstel kan niet starten", 3, null, [AP]],
+    [["VFD001","VFD002","VFD003","VFD004","VFD005","VFD006","VFD007"], "Mogelijk probleem met het beeldscherm of de grafische processor", 3, null, [AP]],
+    [["VFD008","VFD009"], "Mogelijk probleem met de HDMI-controller", 3, null, [AP]],
+    [["VFD010"], "Mogelijk probleem met de Apple I/O-kaart", 2, "Mogelijk probleem met de Apple I/O-kaart. Heb je de kaart zelf verwijderd, dan is deze code te verwachten.", ["Is de kaart geïnstalleerd: plaats hem opnieuw en voer de test opnieuw uit.", "Blijft de code: " + AP.charAt(0).toLowerCase() + AP.slice(1)]],
+    [["VFD011"], "Mogelijk probleem met het antenneconnectorbord", 3, null, [AP]],
+    [["VFF001","VFF002","VFF003"], "Mogelijk probleem met de audiohardware", 3, null, [AP]]
+  ];
+  const faults = [];
+  for (const [codes, t, d, cause, steps] of groups) for (const c of codes) faults.push(F(c, t, d, (cause || t + ".") + (codes.length > 1 ? ` Apple geeft dezelfde uitleg voor ${codes.join(", ")}.` : ""), steps));
+  MODELS.push({ id: "apple-diagnostics-mac", brand: "Apple", name: "Apple Diagnostics: referentiecodes Mac", dev: "Mac (Apple Diagnostics)", cat: "laptops", years: "MacBook, iMac, Mac mini, Mac Pro, Mac Studio (Intel en Apple silicon)", unit: null, also: "Apple Diagnostics PPT004, ADP000, VFD006, PPM015, NDT001, CNW007, PPP001, Mac hardware test foutcode, MacBook batterij service code", intro: "Apple Diagnostics test de hardware van je Mac en toont een referentiecode. ADP000 betekent dat er niets is gevonden. Bij de meeste andere codes adviseert Apple contact op te nemen met Apple, een Apple Authorized Service Provider of een Apple Store; bij sommige codes kun je eerst zelf iets controleren en de test opnieuw uitvoeren.", weak: [], parts: [], tasks: [], src: ["appleAdpCodes"], faults });
+})();
+(() => {
+  SRC.odidoKlikKlaar = ["Odido Service – Klik&Klaar internet: lampjes 5G-modem", "https://www.odido.nl/service/producten/internet/oplossingen/klik-klaar-internet"];
+  SRC.odidoT75 = ["Odido Service – Zyxel T-75: lampjes", "https://www.odido.nl/service/producten/internet/oplossingen/zyxel-t75"];
+  SRC.odidoT50 = ["Odido Service – Zyxel T-50: lampjes", "https://www.odido.nl/service/producten/internet/oplossingen/zyxel-t50"];
+  const reset = "Reset het modem: houd de resetknop 10–15 seconden ingedrukt en wacht enkele minuten. Let op: het modem gaat terug naar fabrieksinstellingen; wifinaam en -wachtwoord staan op de sticker onder het modem.";
+  MODELS.push({ id: "odido-klik-klaar-5g-modem", brand: "Odido", name: "Klik&Klaar 5G-modem: lampjes", dev: "Klik&Klaar 5G-modem", cat: "internet", years: "Odido Klik&Klaar internet (5G-modem)", unit: null, also: "Odido 5G modem rood lampje, Klik en Klaar internet storing, Odido 5G signaal rood, Odido 5G modem simkaart niet gevonden, Klik&Klaar geen internet", intro: "Het 5G-modem van Odido Klik&Klaar heeft vier lampjes: Power, Internet, Signaal en Wifi. Is het signaal slecht (rood of groen), zet het modem dan bij voorkeur bij een raam of zoek de beste plek met de Klik&Klaar-app.", weak: [], parts: [], tasks: [], src: ["odidoKlikKlaar"], faults: [
+    N("Power-lampje rood", 2, "Er is iets misgegaan met het modem.", [reset, "Blijft het rood: bel Odido."]),
+    N("Power-lampje knippert groen", 1, "Het modem start op.", ["Wacht een paar minuten.", "Blijft het knipperen: bel Odido."]),
+    N("Power-lampje uit", 1, "Het modem staat uit of krijgt geen stroom.", ["Controleer de stroomkabel en het stopcontact.", "Druk op de aan/uit-knop aan de achterkant."]),
+    N("Internet-lampje rood", 2, "Geen verbinding met 5G.", [reset]),
+    N("Signaal-lampje rood", 1, "Slechte 5G-verbinding.", ["Zet het modem op een andere plek, bij voorkeur bij een raam, of gebruik de Klik&Klaar-app om de beste plek te vinden."]),
+    N("Signaal-lampje groen", 1, "Gemiddelde 5G-verbinding.", ["Zet het modem eventueel dichter bij een raam, of zoek de beste plek met de Klik&Klaar-app."]),
+    N("Signaal-lampje knippert blauw", 1, "Het modem vindt de simkaart niet.", ["Haal de simkaart eruit en plaats hem opnieuw."]),
+    N("Signaal-lampje knippert rood", 2, "Het modem kan geen verbinding maken met de 5G-mast.", ["Zet het modem op een andere plek of gebruik de Klik&Klaar-app."]),
+    N("Wifi-lampje uit", 1, "De wifi staat uit op het modem.", [reset])
+  ]});
+  MODELS.push({ id: "odido-zyxel-t50-t75", brand: "Odido", name: "Zyxel T-50 en T-75 modem: lampjes", dev: "Zyxel T-50 / T-75 modem", cat: "internet", years: "Odido Zyxel T-50 en T-75", unit: null, also: "Odido Zyxel T-75 lampjes, Zyxel T-50 WAN lampje uit, Odido modem internet lampje niet groen, Zyxel T-75 wifi lampje uit, Odido geen internet", intro: "Bij de Zyxel T-50 en T-75 van Odido horen Power (stroom), WAN en Internet continu groen te branden, en minstens één van de twee wifilampjes (2.4G of 5G) te branden of te knipperen. Branden de lampjes goed maar heb je nog geen internet, bel dan Odido.", weak: [], parts: [], tasks: [], src: ["odidoT75", "odidoT50"], faults: [
+    N("Power-lampje niet groen", 1, "Het modem krijgt geen stroom.", ["Controleer of de stekker goed in het stopcontact en het modem zit.", "Test het stopcontact met een ander apparaat."]),
+    N("WAN-lampje niet groen", 1, "Het modem is niet verbonden met de internetaansluiting.", ["Zorg dat de internetkabel in de blauwe WAN-poort zit, niet in een LAN- of DSL-poort.", "Controleer of de kabel goed vastklikt en niet los, geknakt of in de knoop zit."]),
+    N("Internet-lampje niet groen", 2, "Het modem heeft geen internetverbinding.", ["Controleer de kabels.", "Kijk bij een mogelijke landelijke storing in de Odido-community of in Mijn Odido.", "Wordt het niet groen: bel Odido."]),
+    N("Beide wifilampjes uit", 1, "De wifi staat uit.", ["T-75: druk op de kleine WLAN-knop met het wifi-icoontje aan de zijkant.", "T-50: druk op het kleine zwarte knopje 'wifi on/off' aan de achterkant."]),
+    N("Geen wifi, andere lampjes wel goed (T-75)", 1, "Vaak ligt het aan het wifinetwerk of de plek van het modem.", ["Zet het modem op een andere plek.", "Zet bandsteering uit of kies een ander kanaal in Mijn Odido."]),
+    N("Wifipunt WX5600: linklampje rood", 1, "Het wifipunt staat te ver van het modem of een ander wifipunt.", ["Verplaats het wifipunt dichterbij."]),
+    N("Wifipunt WX5600: geen linklampje", 1, "Het wifipunt heeft geen verbinding.", ["Verbind het wifipunt opnieuw."])
+  ]});
+})();
+(() => {
+  SRC.kpnBox14 = ["KPN Service – Box 14 handleiding en hulp bij problemen", "https://www.kpn.com/service/internet/box-14-handleiding-en-hulp-bij-problemen"];
+  SRC.kpnBox14Kb = ["KPN Community kennisbank – KPN Box 14: van specificaties tot instellingen", "https://community.kpn.com/kennisbank-modems-145/kpn-box-14-van-specificaties-tot-instellingen-600011"];
+  const fix = ["Haal de stekker uit de Box, wacht 10 seconden en steek hem er weer in.", "Helpt dat niet: probeer de Wifi Manager van KPN.", "Reset de Box 14: druk met een paperclip tot 30 seconden op de resetknop onderaan de achterkant (tot alle lampjes uitgaan) en laat los; opstarten kan tot 290 seconden duren. Je wifinaam en -wachtwoord blijven gelijk.", "Lukt het dan nog niet: neem contact op met KPN."];
+  MODELS.push({ id: "kpn-box-14", brand: "KPN", name: "Box 14: power- en wifilampje", dev: "Box 14 modem", cat: "internet", years: "KPN Box 14", unit: null, also: "KPN Box 14 power lampje oranje, Box 14 rood lampje, Box 14 paars lampje, KPN Box 14 resetten, Box 14 wifi lampje knippert rood", intro: "Het power-lampje van de KPN Box 14 hoort groen te branden. Oranje betekent dat een dienst (internet, tv of bellen) niet goed werkt, rood dat de Box niet goed werkt. KPN waarschuwt dat de lampjes soms iets anders kunnen doen dan in dit overzicht.", weak: [], parts: [], tasks: [], src: ["kpnBox14", "kpnBox14Kb"], faults: [
+    N("Power-lampje rood", 2, "De Box werkt niet goed of de zelftest is mislukt.", fix),
+    N("Power-lampje oranje", 2, "Een of meer diensten (internet, tv, bellen) werken niet goed; modem, telefoon of tv-ontvanger krijgt mogelijk geen IP-adres of internetverbinding.", fix),
+    N("Power-lampje paars", 1, "De Box staat op fabrieksinstellingen en is niet verbonden met een netwerk.", ["KPN noemt hier geen aparte stappen."]),
+    N("Power-lampje knippert rood", 1, "De Box synchroniseert en haalt een IP-adres op.", ["Wacht tot het klaar is."]),
+    N("Power-lampje blauw", 1, "De Box installeert een update.", ["Wacht tot de update klaar is."]),
+    N("Wifi-lampje uit", 1, "De wifi staat uit.", ["Druk maximaal 2 seconden op de wifiknop om de wifi aan te zetten."]),
+    N("Wifi-lampje knippert snel rood", 1, "De WPS-verbinding is mislukt; met pauzes betekent het dat meerdere apparaten tegelijk WPS gebruiken.", ["Gebruik WPS voor één apparaat tegelijk."]),
+    N("Wifi-lampje knippert snel blauw", 1, "Configuratiemodus, bijvoorbeeld bij het installeren van wifipunten of het wijzigen van wifi-instellingen.", ["Wacht tot het klaar is."])
+  ]});
+})();
+(() => {
+  SRC.vrtMaxCodes = ["VRT – Vragen over VRT MAX: wat betekent een bepaalde foutcode?", "https://www.vrt.be/nl/vragen/vrt-max/wat-betekent-een-bepaalde-foutcode"];
+  const drm = ["Controleer of je browser up-to-date is.", "Controleer in de hulppagina van je browser of DRM-inhoud is toegestaan.", "Wis je cookies en opgeslagen VRT MAX-gegevens via de technische hulppagina van VRT.", "Probeer het in een incognitovenster of een andere browser.", "Test de livestreams van MNM (zonder DRM) en VRT 1 (met DRM).", "Gebruik je een extern scherm: koppel het los en test opnieuw. Schermen die alleen via analoge DVI-I of VGA zijn aangesloten werken nooit; DVI-D, HDMI of DisplayPort wel."];
+  MODELS.push({ id: "vrt-max-foutcodes", brand: "VRT MAX", name: "VRT MAX: foutcodes 200 t/m 302", dev: "VRT MAX streaming", cat: "televisies", years: "VRT MAX (browser, app, casten)", unit: null, also: "VRT MAX foutcode 200, VRT MAX 302, VRT MAX 202, VRT MAX speelt niet af, VRT MAX DRM fout, VRT MAX casten werkt niet", intro: "VRT MAX toont een foutcode als een video niet wil afspelen. Helpen de tips niet, of staat jouw code er niet bij, neem dan contact op met de klantendienst van VRT.", weak: [], parts: [], tasks: [], src: ["vrtMaxCodes"], faults: [
+    F("200", "Algemene foutmelding", 1, "Algemene fout; de oorzaak kan verschillen.", ["Probeer het in een incognitovenster.", "Open VRT MAX in een andere browser (Chrome, Firefox, Safari of Edge).", "Controleer op een mobiel toestel of iOS of Android up-to-date is."]),
+    F("201", "Beveiligde inhoud (DRM) kan niet afspelen", 1, "Het programma gebruikt een extra beveiligingslaag (DRM) die je toestel niet kan afspelen.", drm),
+    F("202", "Probleem met je verbinding", 1, "Er is een probleem met je internetverbinding.", ["Controleer je verbinding of schakel over naar een ander netwerk."]),
+    F("203", "Probleem bij VRT", 1, "Het probleem ligt bij VRT; er wordt aan gewerkt.", ["Wacht tot het probleem is opgelost."]),
+    F("205", "Browser niet ondersteund", 1, "Je internetbrowser wordt niet ondersteund.", ["Probeer een andere browser."]),
+    F("220", "Probleem met je verbinding", 1, "Er is een probleem met je internetverbinding.", ["Controleer je verbinding of schakel over naar een ander netwerk."]),
+    F("230", "Probleem bij het casten", 1, "Er gaat iets mis bij het casten naar je tv.", ["Vernieuw de pagina."]),
+    F("302", "Beveiligde inhoud (DRM) kan niet afspelen", 1, "Het programma gebruikt een extra beveiligingslaag (DRM) die je toestel niet kan afspelen.", drm)
+  ]});
+})();
+(() => {
+  SRC.nfTvqPb101 = ["Netflix Helpcentrum – Netflix-fout tvq-pb-101 (0)", "https://help.netflix.com/nl/node/134191"];
+  SRC.nfTvq000 = ["Netflix Helpcentrum – Netflix-fout tvq-000", "https://help.netflix.com/nl/node/51968"];
+  SRC.nfF7111 = ["Netflix Helpcentrum – Netflix-fout F7111-1331", "https://help.netflix.com/nl/node/56435"];
+  const restart = ["Kies op het foutscherm 'Meer details' en dan 'Netflix opnieuw laden', en probeer het opnieuw.", "Herstart het apparaat: zet het uit en haal de stekker eruit, controleer dat het echt uit staat (niet in slaap- of standby), wacht 15 seconden, zet het weer aan en probeer Netflix opnieuw."];
+  addF("netflix-foutcodes", "nfTvqPb101", F("tvq-pb-101", "We ondervinden momenteel problemen bij het afspelen van deze titel", 1, "Er is een probleem met gegevens op je tv of streamingapparaat, waardoor Netflix niet kan afspelen.", restart));
+  addF("netflix-foutcodes", "nfTvq000", F("tvq-000", "Er is iets fout gegaan / Opnieuw proberen over X seconden", 1, "Je probeert te kijken op een tv of streamingapparaat met een Netflix Mobiel-abonnement, of een gegevensprobleem op het apparaat blokkeert het afspelen.", ["Heb je Netflix Mobiel: kijk op een mobiel apparaat, of kies een abonnement dat werkt op tv's en streamingapparaten."].concat(restart)));
+  addF("netflix-foutcodes", "nfF7111", F("F7111-1331", "Titel niet beschikbaar voor direct kijken (browser)", 1, "Op een Windows- of Mac-computer blokkeert een browserinstelling het afspelen, of je abonnement staat alleen kijken op telefoons en tablets toe.", ["Open je Netflix via een bladwijzer: typ www.netflix.com in de adresbalk; werkt dat, pas de bladwijzer aan.", "Firefox: menu rechtsboven > Add-ons en thema's > Extensies; zet elke ingeschakelde extensie uit, herstart Firefox en probeer opnieuw.", "Melding 'Je kunt je account helaas niet gebruiken op dit apparaat': kies een abonnement dat kijken in een webbrowser toestaat."]));
+})();
+(() => {
+  const K = (k, t, n) => { SRC[k] = ["Netflix Helpcentrum – Netflix-fout " + t, "https://help.netflix.com/nl/node/" + n]; return k; };
+  const signout = "Log uit bij Netflix: druk op Terug, kies Ondersteuning (of eerst je profielicoon linksboven) > Uitloggen > Ja, en log opnieuw in. Op een foutscherm: Meer info > Uitloggen of Resetten. Vind je die opties niet: druk op de afstandsbediening omhoog, omhoog, omlaag, omlaag, links, rechts, links, rechts, omhoog, omhoog, omhoog, omhoog en kies Uitloggen, Resetten of Deactiveren.";
+  const restart15 = "Herstart het apparaat: zet het helemaal uit (niet slaap- of standby), haal de stekker eruit, wacht 15 seconden, zet het weer aan en probeer Netflix opnieuw.";
+  const restart1m = "Herstart het apparaat: haal de stekker eruit, druk één keer op de aan/uit-knop en wacht 1 minuut (of laat de stekker 3 minuten eruit), sluit weer aan en open Netflix.";
+  const net = "Herstart je thuisnetwerk: zet het apparaat uit, haal modem en router 30 seconden van de stroom, sluit ze weer aan, wacht ongeveer een minuut en zet het apparaat weer aan.";
+  const cookies = "Ga op een telefoon, tablet of computer in hetzelfde netwerk naar netflix.com/clearcookies en log in. Zie je NSEZ-403, dan kan je account nu geen verbinding maken; probeer het later opnieuw.";
+  const isp = "Blijft het: neem contact op met je internetprovider en test je snelheid op fast.com.";
+  addF("netflix-foutcodes", K("nfUi8002", "ui-800-2", "22213"), F("ui-800-2", "Er is een fout opgetreden", 1, "Gegevens op het apparaat zorgen ervoor dat Netflix niet meer afspeelt; meestal lost een herstart het op.", [restart15, signout, "Helpt het niet: vraag de fabrikant om hulp bij een firmware-update of fabrieksreset (houd wifi- en Netflix-gegevens bij de hand). Samsung-tv of blu-rayspeler: vraag Samsung om de Smart Hub te resetten.", "Lukt het niet: gebruik een ander apparaat."]));
+  addF("netflix-foutcodes", K("nfNw47", "NW-4-7", "14560"), F("NW-4-7", "Kan geen verbinding maken met Netflix", 1, "Een gegevens- of netwerkprobleem blokkeert het afspelen, of het apparaat wordt niet meer ondersteund. Komt voor op tv's, streamingapparaten, PlayStation en Xbox.", ["Tv/streamer: kijk op het foutscherm bij Meer details > Apparaat naar de SDK- of platformversie; 4.1.5 of lager wordt niet meer ondersteund.", cookies, net, signout, "Zet de router dichter bij het apparaat, weg van andere draadloze apparaten.", "Console: zet IP-adres, DNS en MTU op Automatisch en gebruik geen proxy.", isp]));
+  addF("netflix-foutcodes", K("nfUi8004", "ui-800-4", "133028"), F("ui-800-4", "Gegevensprobleem op het apparaat", 1, "Gegevens op je apparaat zorgen ervoor dat Netflix niet afspeelt.", ["Kies op het foutscherm Meer details > Netflix opnieuw laden.", restart1m, signout, "Fire TV: verwijder en herinstalleer de Netflix-app. Roku: verwijder het Netflix-kanaal en voeg het opnieuw toe. Samsung-tv: reset de Smart Hub."]));
+  addF("netflix-foutcodes", K("nfTvqNw104", "tvq-nw-104 (500)", "104157"), F("tvq-nw-104", "Apparaat bereikt Netflix niet", 1, "Je apparaat kan de Netflix-dienst niet bereiken, meestal door een netwerkprobleem.", [signout, restart1m]));
+  addF("netflix-foutcodes", K("nfTvqSt120", "tvq-st-120", "51949"), F("tvq-st-120", "Geen verbinding / opnieuw proberen", 1, "Netflix kan geen verbinding maken met je apparaat; gegevens op het apparaat moeten worden vernieuwd.", ["PlayStation 4: kies Meer details > Netflix opnieuw laden; helpt dat niet, log uit of reset via het foutscherm.", "Smart-tv of blu-rayspeler: zet het apparaat uit, haal modem en router 30 seconden van de stroom, wacht tot de lampjes niet meer knipperen en zet het apparaat weer aan.", isp]));
+  addF("netflix-foutcodes", K("nfTvqNw100", "tvq-nw-100", "120820"), F("tvq-nw-100", "Er is een fout opgetreden. Opnieuw proberen over X seconden", 1, "Een gegevensprobleem op je tv of streamingapparaat stopt het afspelen.", [signout, restart15]));
+  addF("netflix-foutcodes", K("nfNw819", "NW-8-19", "132659"), F("NW-8-19", "Netwerkprobleem", 1, "Een netwerkprobleem voorkomt dat het apparaat verbinding maakt met Netflix.", [restart15, signout]));
+  addF("netflix-foutcodes", K("nfTvqSt128", "tvq-st-128", "67665"), F("tvq-st-128", "Er is een fout opgetreden (netwerk)", 1, "Je apparaat heeft een netwerkprobleem en kan Netflix niet bereiken.", [cookies, "Smart-tv: zet de tv uit, haal modem en router 30 seconden van de stroom, wacht tot de lampjes rustig zijn en open Netflix opnieuw.", "Roku: kies Meer details > Netflix opnieuw laden en haal de stekker 15 seconden uit het apparaat.", "Openbaar wifi (café, hotel, school) kan Netflix blokkeren; mobiele hotspots en satellietverbindingen kunnen te traag zijn.", isp]));
+})();
+(() => {
+  const K = (k, t, n) => { SRC[k] = ["Netflix Helpcentrum – Netflix-fout " + t, "https://help.netflix.com/nl/node/" + n]; return k; };
+  const signout = "Log uit bij Netflix: druk op Terug, kies Ondersteuning > Uitloggen > Ja, en log opnieuw in. Op een foutscherm: Meer info > Uitloggen of Resetten. Vind je die opties niet: druk op de afstandsbediening omhoog, omhoog, omlaag, omlaag, links, rechts, links, rechts, omhoog, omhoog, omhoog, omhoog en kies Uitloggen, Resetten of Deactiveren.";
+  const net = "Herstart je thuisnetwerk: zet het apparaat uit, haal modem en router 30 seconden van de stroom, sluit ze weer aan, wacht ongeveer een minuut en zet het apparaat weer aan.";
+  const pub = "Op openbaar wifi (café, hotel, school) kan streaming geblokkeerd zijn: probeer een ander netwerk. Mobiele hotspots, mobiele netwerken en satellietverbindingen kunnen te traag zijn.";
+  const reset = "Heb je modeminstellingen, een VPN of proxy, of eigen DNS-instellingen gewijzigd: zet ze terug naar standaard.";
+  const wifi = "Zet router en apparaat dichter bij elkaar, weg van andere draadloze apparaten, op een open plek zoals een bureau of plank.";
+  const isp = "Blijft het: neem contact op met je internetprovider en test je snelheid en Netflix-verbinding op fast.com.";
+  addF("netflix-foutcodes", K("nfTvqPm100", "tvq-pm-100", "63904"), F("tvq-pm-100", "Gegevensprobleem op het apparaat", 1, "Een probleem met gegevens op je apparaat voorkomt dat Netflix afspeelt.", ["Fire TV, blu-rayspeler, settopbox of Roku: zet het apparaat helemaal uit (niet standby), haal de stekker eruit, wacht 15 seconden en zet het weer aan.", "Smart-tv: haal de stekker eruit, druk één keer op de aan/uit-knop en wacht 1 minuut (of laat de stekker 3 minuten eruit), en zet de tv weer aan.", "Op een mobiel of satellietnetwerk: je verbinding ondersteunt mogelijk geen streaming; neem contact op met je provider."]));
+  addF("netflix-foutcodes", K("nfTvqSt131", "tvq-st-131", "62405"), F("tvq-st-131", "Kan geen verbinding maken met Netflix", 1, "Je apparaat bereikt Netflix niet, meestal door een netwerkprobleem.", [pub, net, wifi, reset, "Smart-tv: haal de stekker 3 minuten uit de tv voordat je het netwerk herstart.", isp]));
+  addF("netflix-foutcodes", K("nfNw24", "NW-2-4", "13197"), F("NW-2-4", "Er is een fout opgetreden (netwerk)", 1, "Het apparaat kan door een netwerkprobleem geen verbinding maken met Netflix. Komt voor op tv's, mediaspelers, settopboxen, Xbox en PlayStation.", [pub, "Probeer een andere app met internet; werkt die ook niet, dan is het apparaat offline.", net, reset, wifi, "PS4/PS5: stel bij Internetverbinding instellen IP-adres, DNS en MTU in op Automatisch, DHCP-host op Niet opgeven en proxy op Niet gebruiken.", isp]));
+  addF("netflix-foutcodes", K("nfTvqDetails100", "tvq-details-menu-100", "51963"), F("tvq-details-menu-100", "Titel kan nu niet worden geopend", 1, "Het apparaat kan door een netwerkprobleem geen verbinding maken met Netflix.", ["Herstart het apparaat: haal de stekker eruit, druk één keer op de aan/uit-knop en wacht ongeveer een minuut (of 3 minuten zonder stekker), en zet het weer aan.", net, signout, isp]));
+})();
+(() => {
+  const K = (k, t, n) => { SRC[k] = ["Netflix Helpcentrum – Netflix-fout " + t, "https://help.netflix.com/nl/node/" + n]; return k; };
+  const net = "Herstart je thuisnetwerk: haal modem en router 30 seconden van de stroom, sluit ze weer aan en wacht tot de lampjes stabiel zijn voordat je het apparaat weer aanzet.";
+  const pub = "Op openbaar wifi (café, hotel, school) kan streaming geblokkeerd zijn; mobiele hotspots, mobiele netwerken en satelliet kunnen te traag zijn.";
+  const reset = "Gebruik je een VPN, proxy, eigen DNS of aangepaste modeminstellingen: zet ze terug naar standaard.";
+  const wifi = "Zet router en apparaat dichter bij elkaar, weg van andere draadloze apparaten, op een open, verhoogde plek.";
+  const isp = "Blijft het: neem contact op met je internetprovider en test je snelheid op fast.com.";
+  addF("netflix-foutcodes", K("nfS7363", "S7363-1260-FFFFD1C1", "54156"), F("S7363-1260-FFFFD1C1", "Onverwachte fout op oudere Mac", 1, "Een technische beperking op sommige oudere Mac-computers.", ["Sluit via Geforceerd stoppen in het Apple-menu media-apps zoals YouTube, iTunes en QuickTime; stop Safari, open het opnieuw en probeer Netflix.", "Zet de Mac uit via het Apple-menu, wacht minstens 10 seconden en zet hem weer aan.", "Helpt het niet: gebruik een andere browser of een ander apparaat."]));
+  addF("netflix-foutcodes", K("nf10035", "10035", "67111"), F("10035", "Kan titel niet afspelen (Apple TV)", 1, "Het apparaat bereikt Netflix niet via het netwerk. Netflix geeft stappen voor Apple TV.", [pub, "Zet de Apple TV uit, haal modem en router 30 seconden van de stroom, wacht tot de lampjes niet meer knipperen en zet de Apple TV weer aan.", reset, wifi, isp]));
+  addF("netflix-foutcodes", K("nf10013", "10013", "59986"), F("10013", "Deze titel is niet beschikbaar in je huidige regio", 1, "Op iPhone of iPad maakt je apparaat of netwerk verbinding via een VPN of proxy, waardoor het lijkt alsof je ergens anders bent.", ["Zet een VPN uit, ook een VPN die in antivirussoftware zit.", "Open fast.com op een apparaat in hetzelfde netwerk, kies meer info en controleer het land bij 'Client'; klopt dat niet, dan is er waarschijnlijk een VPN of proxy actief.", "Reset de netwerkinstellingen van het apparaat, of zet modem/router terug naar fabrieksinstellingen.", "Blijft het: neem contact op met je internetprovider, met je locatie en het IP-adres van fast.com bij de hand."]));
+  addF("netflix-foutcodes", K("nf11800", "-11800", "64174"), F("-11800", "Kan titel niet afspelen (Apple TV, iPhone, iPad)", 1, "Opgeslagen gegevens op het apparaat moeten worden vernieuwd.", ["Apple TV: zet hem uit, haal de stekker eruit, wacht 15 seconden en zet hem weer aan.", "iPhone/iPad: houd de zijknop en een volumeknop ingedrukt, schuif naar uit, wacht 10 seconden en zet hem weer aan.", "Werk de Netflix-app bij in de App Store.", reset, isp]));
+  addF("netflix-foutcodes", K("nfAip701", "aip-701", "13815"), F("aip-701", "Problemen bij het afspelen van deze titel", 1, "Meestal een netwerkprobleem waardoor je apparaat Netflix niet bereikt. Komt voor op blu-rayspeler, PlayStation, Roku, decoder, smart-tv en Xbox One.", [pub, "Log uit bij Netflix en log opnieuw in (op een foutscherm: Meer informatie > Uitloggen of Resetten).", "Zet het apparaat volledig uit (niet standby) en laat het ongeveer 15 seconden uit.", net, reset, wifi, "PlayStation: zet IP-adres en DNS op Automatisch, proxy niet gebruiken, MTU Automatisch. Xbox One: DNS-instellingen op Automatisch.", isp]));
+  addF("netflix-foutcodes", K("nf139", "139", "40"), F("139", "Probleem bij het afspelen van dit item (NFErr_MC_AuthFailure / NoCDN)", 1, "Het apparaat kan door een netwerkprobleem niet met Netflix communiceren.", ["Apple TV: zet hem uit, haal de stekker eruit, wacht 15 seconden en zet hem weer aan.", "iPhone/iPad: test je verbinding op fast.com en herstart het toestel.", net, wifi, reset, isp]));
+})();
+(() => {
+  const K = (k, t, n) => { SRC[k] = ["Netflix Helpcentrum – Netflix-fout " + t, "https://help.netflix.com/nl/node/" + n]; return k; };
+  const signout = "Log uit bij Netflix: druk op Terug, kies Ondersteuning > Uitloggen > Ja, en log opnieuw in. Op een foutscherm: Meer info > Uitloggen of Resetten. Vind je die opties niet: druk omhoog, omhoog, omlaag, omlaag, links, rechts, links, rechts, omhoog, omhoog, omhoog, omhoog en kies Uitloggen, Resetten of Deactiveren.";
+  addF("netflix-foutcodes", K("nfM7111", "M7111-1331", "56434"), F("M7111-1331", "Titel niet beschikbaar voor direct kijken (computer)", 1, "Op een Windows- of Mac-computer blokkeert een browserinstelling het afspelen, of je abonnement staat alleen kijken op telefoon en tablet toe.", ["Typ www.netflix.com in de adresbalk in plaats van een bladwijzer te gebruiken en werk de bladwijzer bij.", "Chrome: ga naar chrome://extensions, zet de extensies uit en probeer Netflix opnieuw; zet ze daarna één voor één weer aan om de boosdoener te vinden.", "Melding 'Je kunt je account helaas niet gebruiken op dit apparaat': kies een abonnement dat kijken in een webbrowser toestaat."]));
+  addF("netflix-foutcodes", K("nfHtp500", "HTP-500", "100301"), F("HTP-500", "Problemen bij het openen van deze titels", 1, "Je apparaat kan meestal door een netwerkprobleem geen verbinding maken met Netflix.", ["Smart-tv: haal de stekker eruit, druk één keer op de aan/uit-knop en wacht 1 minuut (of 3 minuten zonder stekker), en zet de tv weer aan.", signout, "Blijft het: neem contact op met je internetprovider en test je snelheid op fast.com."]));
+  addF("netflix-foutcodes", K("nfNw6500", "NW-6-500", "111449"), F("NW-6-500", "Opgeslagen gegevens moeten worden vernieuwd", 1, "Opgeslagen gegevens op je blu-rayspeler of smart-tv moeten worden vernieuwd.", ["Kies op het foutscherm voor meer details en dan 'Netflix opnieuw laden'.", "Probeer Netflix opnieuw nadat de app opnieuw is geladen."]));
+})();
+(() => {
+  const B = "https://www.nintendo.com/nl-be/Support/Problemen-oplossen/";
+  const K = (k, code, path) => { SRC[k] = ["Nintendo Support – Foutcode " + code, (path.startsWith("http") ? "" : B) + path]; return k; };
+  const near = "Zet het systeem tijdelijk op 3 à 5 meter van de router (je kunt het uit de dock halen).";
+  const away = "Houd metalen objecten en elektronica (archiefkasten, luidsprekers, stekkerdozen, glas, draadloze telefoons) uit de buurt van systeem en router.";
+  const band = "Ondersteunt je router 2,4 GHz en 5 GHz: verbind het systeem met de band die je nu niet gebruikt.";
+  const dns = "Voer handmatig een alternatieve DNS in.";
+  const resetnet = "Reset je thuisnetwerk: start modem en router opnieuw op.";
+  const newconn = "Maak een nieuwe internetverbinding aan op het systeem.";
+  const restart = "Herstart het systeem: houd de POWER-knop 3 seconden ingedrukt en kies OPNIEUW OPSTARTEN / UITZETTEN > OPNIEUW OPSTARTEN.";
+  const router = "Blijft het: neem contact op met de routerfabrikant voor een firmware-update of een reset naar fabrieksinstellingen.";
+  const status = "Kijk op support.nintendo.com/networkstatus of er onderhoud of een storing is; zo ja, probeer het later opnieuw.";
+  const add = (k, code, path, t, d, cause, steps) => addF("nintendo-switch", K(k, code, path), F(code, t, d, cause, steps));
+  add("nsw26180521", "2618-0521", "Foutcode-2618-0521-2944591.html", "Online dienst niet te gebruiken", 1, "Mogelijk een probleem met je internetverbinding bij het gebruik van een online dienst op Switch of Switch 2.", [status, "Installeer de nieuwste systeemversie; ben je al up-to-date, herstart dan het systeem.", resetnet, away, dns, band, "Probeer het later opnieuw.", router]);
+  add("nsw26180501", "2618-0501", "Foutcode-2618-0501-2618-0502-1515601.html", "Verbinding verbroken vóór matchmaking", 1, "De verbinding met de dienst is verbroken voordat het matchmaken begon, door een wegvallende verbinding of een verlopen verbinding. Geldt ook voor 2618-0502.", [newconn, resetnet, near, away, band, dns, router]);
+  add("nsw26180502", "2618-0502", "Foutcode-2618-0501-2618-0502-1515601.html", "Verbinding verbroken vóór matchmaking", 1, "De verbinding met de dienst is verbroken voordat het matchmaken begon. Zelfde oplossing als 2618-0501.", [newconn, resetnet, near, away, band, dns, router]);
+  add("nsw26180006", "2618-0006", "Foutcode-2618-0006-1513797.html", "Verbinding verlopen (traag of zwak signaal)", 1, "De verbinding is verlopen door trage internet of een zwak draadloos signaal; bij online spelen, matchmaking of lokaal draadloos spelen.", [near, newconn, resetnet, away, band, dns, "Lokaal draadloos spelen: elke speler moet een eigen exemplaar van de game hebben; herstart alle systemen, zet ze 2 à 3 meter uit elkaar en gebruik tijdelijk geen bluetooth- of wifi-apparaten in de buurt.", router]);
+  add("nsw26180201", "2618-0201", "Foutcode-2618-0201-1513798.html", "Geen verbinding met online game (time-out)", 1, "Waarschijnlijk is je internetverbinding verlopen, door trage internet of een zwak draadloos signaal.", [resetnet, near, away, band, dns, router]);
+  add("nsw26180203", "2618-0203", "Foutcode-2618-0203-1514925.html", "Geen verbinding met onlinedienst (DNS)", 1, "Mogelijk door de DNS-instellingen, een verkeerd ingevoerde DNS of een probleem bij je provider of DNS-dienst.", [restart, "Staat DNS op handmatig terwijl je netwerk dat niet vereist: zet het op automatisch.", resetnet, dns, "Probeer het later opnieuw.", router]);
+  add("nsw21378028", "2137-8028", "Foutcode-2137-8028-2091134.html", "Verbinding weggevallen tijdens download", 1, "De verbinding is waarschijnlijk weggevallen tijdens een download, door onderhoud, trage internet, storing of een zwak signaal.", [status, resetnet, near, away, band, "Kabel: controleer of andere apparaten internet hebben; een dock zonder LAN-poort heeft een USB-LAN-adapter nodig.", router]);
+  add("nsw21546027", "2154-6027", "Foutcode-2154-6027-2869512.html", "Fout bij online functie", 1, "Verschijnt bij het gebruik van een online functie of dienst op Switch of Switch 2.", [status, restart, resetnet, dns, "Zet de router centraal en hoger, houd metaal en elektronica uit de buurt, gebruik een andere band en koppel bluetooth-audioapparaten los.", "Zorg voor de nieuwste systeemversie.", router]);
+  add("nsw21248028", "2124-8028", "Foutcode-2124-8028-1508941.html", "Fout bij inloggen op Nintendo-account", 1, "Fout bij het inloggen op je Nintendo-account (bijv. bij de eShop), waarschijnlijk door een zwak signaal of trage internet.", [near, resetnet, away, band, "Blijft het: wacht even en probeer het later opnieuw."]);
+  add("nsw2226", "2226-0001", "Foutcode-2226-0001-tot-2226-9999-2869516.html", "GameChat-fout (2226-0001 t/m 2226-9999)", 1, "Foutcodes 2226-0001 tot 2226-9999 horen bij GameChat op de Nintendo Switch 2.", ["Zorg voor de nieuwste systeemupdate en kijk op de netwerkstatuspagina of er onderhoud is.", "Draadloos: zet het systeem op 3 à 5 meter van de router, houd storende voorwerpen weg, herstart het systeem, reset je thuisnetwerk en maak een nieuwe verbinding.", "Kabel: controleer of de kabel aan beide kanten goed zit, probeer een andere kabel of een andere routerpoort.", router]);
+  add("nsw20110301", "2011-0301", "https://www.nintendo.com/nl-nl/Support/Nintendo-Switch-2/Problemen-oplossen/Foutcode-2011-0301-2967434.html", "Systeemfout", 2, "Nintendo legt de betekenis niet uit.", [restart + " Reageert het niet: houd POWER 12 seconden ingedrukt.", "Vergelijk de systeemversie op het foutscherm met de nieuwste versie; is die ouder, zet het systeem terug naar fabrieksinstellingen zonder opgeslagen gegevens te wissen.", "Komt de code terug: voer een systeemupdate uit in de herstelstand en probeer opnieuw.", "Blijft de code terugkomen: stuur het systeem op via de Nintendo Reparatiedienst."]);
+  add("nsw28115001", "2811-5001", "Foutcode-2811-5001-1508947.html", "Geen verbinding met online dienst (eShop)", 1, "Waarschijnlijk door de netwerkomgeving: DNS, draadloze storing, zwak signaal of een router die niet reageert.", [restart, newconn, dns, resetnet, near, away, band, "Vraag je provider of netwerkbeheerder ouderlijk toezicht op de router uit te zetten.", router]);
+  add("nsw23060501", "2306-0501", "Foutcode-2306-0501-2306-0502-1513795.html", "Kan niet meedoen aan online match", 1, "De verbinding met de dienst is verbroken voordat het matchmaken begon. Geldt ook voor 2306-0502.", [resetnet, near, away, band, dns, router]);
+  add("nsw23060502", "2306-0502", "Foutcode-2306-0501-2306-0502-1513795.html", "Kan niet meedoen aan online match", 1, "De verbinding met de dienst is verbroken voordat het matchmaken begon. Zelfde oplossing als 2306-0501.", [resetnet, near, away, band, dns, router]);
+  add("nsw28111224", "2811-1224", "Foutcode-2811-1224-1539369.html", "Verbinding met eShop weggevallen", 1, "Meestal door een trage downloadsnelheid of een zwak draadloos signaal.", ["Zet het systeem tijdelijk op 3 à 4 meter van de router.", restart, resetnet, "Test de internetverbinding; is de downloadsnelheid lager dan 1,5 Mbps, probeer die te verbeteren.", router]);
+  add("nsw23181401", "2318-1401", "Foutcode-2318-1401-2334428.html", "Onderbroken internetverbinding", 1, "Een onderbroken internetverbinding of een slechte draadloze omgeving.", ["Probeer het later nog een paar keer.", restart, newconn, resetnet, "Zet de Switch op 3 à 4 meter van de router.", away, band, dns]);
+  add("nsw21680002", "2168-0002", "Foutcode-2168-0002-1508944.html", "Software gesloten of gegevensoverdracht mislukt", 2, "Verschijnt als een game onverwacht sluit, tijdens het overzetten van gegevens van Switch naar Switch 2, of bij andere systeemfuncties.", ["Stop de gegevensoverdracht als dat kan, anders herstart het systeem.", "Rond de installatie van de Switch 2 af zonder overdracht; je kunt opgeslagen gegevens later handmatig overzetten. Wil je toch overzetten: laat albumgegevens weg.", restart + " Reageert het niet: houd POWER 12 seconden ingedrukt.", "Werk bij naar de nieuwste systeemversie.", "Blijft het: dien een reparatieverzoek in."]);
+  add("nsw21010001", "2101-0001", "Foutcode-2101-0001-1508951.html", "Systeemfout", 2, "Nintendo legt de betekenis niet uit.", [restart + " Reageert het niet: houd POWER 12 seconden ingedrukt.", "Werk de systeemsoftware bij; kom je niet voorbij het foutscherm, start dan in de herstelstand (volume + en − ingedrukt houden en POWER indrukken) en kies Systeem bijwerken.", "Verwijder de microSD-kaart.", "Blijft de fout: laat het systeem repareren."]);
+})();
+(() => {
+  const B = "https://www.nintendo.com/nl-be/Support/Problemen-oplossen/";
+  const K = (k, code, path) => { SRC[k] = ["Nintendo Support – Foutcode " + code, B + path]; return k; };
+  const near = "Zet het systeem tijdelijk op 3 à 4 meter van de router (je kunt het uit de dock halen).";
+  const away = "Houd metalen objecten en elektronica (kasten, luidsprekers, stekkerdozen, glas, draadloze telefoons) uit de buurt van systeem en router.";
+  const band = "Ondersteunt je router 2,4 GHz en 5 GHz: verbind met de band die je nu niet gebruikt.";
+  const dns = "Voer handmatig een alternatieve DNS in.";
+  const resetnet = "Reset je thuisnetwerk: start modem en router opnieuw op.";
+  const newconn = "Maak een nieuwe internetverbinding aan op het systeem.";
+  const restart = "Herstart het systeem: houd de POWER-knop 3 seconden ingedrukt en kies OPNIEUW OPSTARTEN / UITZETTEN > OPNIEUW OPSTARTEN.";
+  const router = "Blijft het: neem contact op met de routerfabrikant voor een firmware-update of een reset naar fabrieksinstellingen.";
+  const status = "Kijk op de Nintendo-pagina voor netwerkonderhoud of er onderhoud of een storing is; zo niet, probeer het later opnieuw.";
+  const update = "Installeer de nieuwste systeemversie.";
+  const other = "Probeer verbinding te maken via een ander netwerk of op een andere locatie.";
+  const wired = "Kabel: controleer of andere apparaten internet hebben; zo niet, neem contact op met je provider. Een dock zonder LAN-poort heeft een USB-LAN-adapter nodig.";
+  const add = (k, code, path, t, d, cause, steps) => addF("nintendo-switch", K(k, code, path), F(code, t, d, cause, steps));
+  add("nsw21378065", "2137-8065", "Foutcode-2137-8065-1551864.html", "Fout bij communicatie met de server (eShop/download)", 1, "Verschijnt bij het downloaden van een game of het openen van de eShop: 'Bij de communicatie met de server is een fout opgetreden.'", [status, update + " Ben je al up-to-date, herstart dan het systeem.", resetnet, dns, near, away, band, other, router]);
+  add("nsw21370240", "2137-0240", "Foutcode-2137-0240-1508952.html", "Verbinding verbroken tijdens download", 1, "Waarschijnlijk door trage internet, draadloze storing of een zwak routersignaal.", [near, resetnet, away, band, router, wired]);
+  add("nsw21378035", "2137-8035", "Foutcode-2137-8035-1508954.html", "Download niet voltooid", 1, "De verbinding is waarschijnlijk verbroken tijdens een download.", [newconn, dns, near, resetnet, away, band, wired, router]);
+  add("nsw21377404", "2137-7404", "Foutcode-2137-7404-1656635.html", "Verbinding weggevallen tijdens download", 1, "Waarschijnlijk door trage internet, draadloze storing of een zwak signaal.", [restart, dns, near, resetnet, away, band, wired, router]);
+  add("nsw28130000", "2813-0000", "Foutcode-2813-0000-1499830.html", "Fout in eShop of bij downloadcode", 1, "Kan optreden als de regio van het nieuwsoverzicht niet overeenkomt met het land van je Nintendo-account (bij eShop, downloadcode of familielidmaatschap).", ["Controleer het land van je account en herstart het systeem.", "Open de eShop opnieuw en zorg dat de regio van het nieuwsoverzicht overeenkomt met die van je account.", status, "Controleer een downloadcode op tekens die op elkaar lijken (0 en 8, 5 en 2), of verzilver hem in een browser via ec.nintendo.com/redeem.", "Familielidmaatschap met proefperiode: zet automatisch verlengen uit en probeer het na de proefperiode opnieuw.", "Werkt het niet: neem contact op met de klantenservice van Nintendo."]);
+  add("nsw21600202", "2160-0202", "Foutcode-2160-0202-1516270.html", "Geen verbinding met online dienst (time-out)", 1, "De verbinding is waarschijnlijk verlopen door trage internet, draadloze storing of een zwak signaal.", [near, resetnet, away, band, wired, router]);
+  add("nsw21540101", "2154-0101", "Foutcode-2154-0101-1490225.html", "Geen verbinding met online functie", 1, "Het systeem kan geen verbinding maken met een online functie of dienst.", [status, restart, resetnet, dns, near, away, band, other + " " + update, router]);
+  add("nsw21558006", "2155-8006", "Foutcode-2155-8006-1513793.html", "Nintendo-account kan niet worden gekoppeld", 1, "Probleem met de gebruikte DNS of een verlopen verbinding, bijvoorbeeld door trage internet of een zwak signaal.", ["Haal het systeem uit de dock en zet het op 3 à 5 meter van de router.", restart, dns, away, band, resetnet, wired, router]);
+  add("nsw21378007", "2137-8007", "Foutcode-2137-8007-1833574.html", "Probleem met de internetverbinding", 1, "Er is een probleem met de internetverbinding.", [near, status, update, restart, newconn, resetnet, dns, away, band, other, router]);
+  add("nsw21558028", "2155-8028", "Foutcode-2155-8028-1655600.html", "Fout bij koppelen of overzetten van account", 1, "Verschijnt bij het koppelen van een Nintendo-account of het overzetten van een gebruiker; mogelijk door trage internet of een zwak signaal.", [restart, dns, near, resetnet, away, band, wired, router]);
+  add("nsw21608028", "2160-8028", "Foutcode-2160-8028-1569268.html", "Verbindingstest mislukt", 1, "De Switch kon bij de verbindingstest geen verbinding maken met de diensten van Nintendo; mogelijk door DNS, trage internet of een zwak signaal.", [restart, resetnet, dns, near, away, band, router]);
+  add("nsw28130055", "2813-0055", "Foutcode-2813-0055-1441166.html", "Game nog niet te koop (downloadcode)", 1, "De game die je met de downloadcode probeert te verkrijgen is nog niet officieel te koop in de eShop.", ["Wacht op de release; kijk op het informatiescherm van de game in de eShop.", "Een downloadcode werkt alleen met een Nintendo-account uit dezelfde regio als waar de code is gekocht.", "Controleer het land van je account en probeer de code opnieuw.", "Blijft het, ook als de game te koop is: neem contact op met Nintendo."]);
+  add("nsw21608056", "2160-8056", "Foutcode-2160-8056-1492987.html", "De server reageert niet", 1, "Het systeem kan geen verbinding maken met internet of geen game downloaden uit de eShop: 'Er kan geen verbinding worden gemaakt. De server reageert niet.'", [status, near, update + " Ben je al up-to-date, herstart dan het systeem.", resetnet, dns, away, band, other, router]);
+  add("nsw21558007", "2155-8007", "Foutcode-2155-8007-1477307.html", "Fout bij online functie", 1, "Verschijnt bij het gebruik van een online functie; Nintendo geeft geen verdere uitleg.", ["Haal het systeem uit de dock en zet het op 3 à 5 meter van de router.", update, restart, newconn, resetnet, dns, other + " Lukt dat wel, dan ligt het waarschijnlijk aan je router.", router]);
+})();
+(() => {
+  const B = "https://www.nintendo.com/nl-be/Support/Problemen-oplossen/";
+  const K = (k, code, url) => { SRC[k] = ["Nintendo Support – Foutcode " + code, url.startsWith("http") ? url : B + url]; return k; };
+  const near = "Zet het systeem tijdelijk op 3 à 5 meter van de router (je kunt het uit de dock halen).";
+  const away = "Houd metalen objecten en elektronica (kasten, luidsprekers, stekkerdozen, glas, draadloze telefoons) uit de buurt van systeem en router.";
+  const band = "Ondersteunt je router 2,4 GHz en 5 GHz: verbind met de band die je nu niet gebruikt.";
+  const dns = "Voer handmatig een alternatieve DNS in.";
+  const dnsAuto = "Staat DNS op handmatig terwijl je netwerk dat niet vereist: zet het op automatisch.";
+  const resetnet = "Reset je thuisnetwerk: start modem en router opnieuw op.";
+  const newconn = "Maak een nieuwe internetverbinding aan op het systeem, met het juiste netwerk en een sterk signaal.";
+  const restart = "Herstart het systeem: houd de POWER-knop 3 seconden ingedrukt en kies OPNIEUW OPSTARTEN.";
+  const router = "Blijft het: neem contact op met de routerfabrikant voor een firmware-update of een reset naar fabrieksinstellingen.";
+  const cable = "Kabel: controleer of de ethernetkabel aan beide kanten goed vastzit, probeer een andere kabel en een andere LAN-poort op de router.";
+  const add = (k, code, url, t, d, cause, steps) => addF("nintendo-switch", K(k, code, url), F(code, t, d, cause, steps));
+  add("nsw21102979", "2110-2979", "Foutcode-2110-2979-1952116.html", "IP-adresconflict", 1, "Het systeem en een ander apparaat in je netwerk gebruiken hetzelfde IP-adres, meestal omdat je het systeem handmatig een IP-adres gaf dat al in gebruik is.", ["Wijzig het IP-adres in de internetinstellingen naar een ander geldig adres.", "Of zet de IP-instelling op automatisch (als je netwerk geen handmatig adres vereist).", router, "Lukt het nog niet: neem contact op met de klantenservice van Nintendo."]);
+  add("nsw21102004", "2110-2004", "Foutcode-2110-2004-1494769.html", "Verkeerd wifiwachtwoord", 1, "De router meldt een verkeerd wachtwoord; het systeem kan geen verbinding maken met het draadloze netwerk.", ["Controleer het wachtwoord in de internetinstellingen; let op hoofdletters en symbolen.", resetnet, near, away, newconn, "Is er een bluetooth-audioapparaat verbonden: gebruik zo mogelijk 5 GHz of een kabel, of verbreek de bluetoothverbinding.", "Blijft het: vraag je provider of netwerkbeheerder naar een MAC-filter of het beveiligingstype van de router.", router]);
+  add("nsw21102963", "2110-2963", "Foutcode-2110-2963-2168236.html", "Geen IP-adres ontvangen", 1, "Het systeem kreeg geen IP-adres, bijvoorbeeld omdat de DHCP-server van de router uit staat of de router niet goed reageert.", [newconn, resetnet, "Wijs het systeem handmatig een IP-adres toe.", near, away, router]);
+  add("nsw21101115", "2110-1115", "Foutcode-2110-1115-2322974.html", "Kan niet verbinden met (draadloos) netwerk", 1, "Het systeem kan geen verbinding maken met een draadloos of bekabeld netwerk.", [cable, near, away, restart, "Start je netwerkapparaten opnieuw en controleer of andere apparaten internet hebben.", newconn, router, "Lukt het nog niet: stuur het systeem op via de Nintendo Reparatiedienst."]);
+  add("nsw21103129", "2110-3129", "Foutcode-2110-3129-1684807.html", "Geen verbinding met netwerk (DNS)", 1, "Mogelijk door een verkeerd ingevoerde DNS of een probleem bij je provider of DNS-dienst.", [restart, dnsAuto, resetnet, dns, "Probeer het later opnieuw.", near, away, router]);
+  add("nsw21101100", "2110-1100", "https://www.nintendo.com/nl-nl/Support/Problemen-oplossen/Foutcode-2110-1100-1406410.html", "Er kan geen verbinding worden gemaakt met het internet", 1, "Het systeem vindt geen netwerk dat overeenkomt met de opgeslagen internetinstellingen.", ["Haal het systeem uit de dock en zet het op 3 à 5 meter van de router.", restart + " Reageert het niet: houd POWER 12 seconden ingedrukt.", "Zet de vliegtuigmodus uit (via het HOME-menu).", newconn, resetnet, away, "Probeer een andere locatie of een ander netwerk; lukt het nergens, dan moet het systeem mogelijk worden gerepareerd.", cable + " Gebruik je een USB-LAN-adapter: probeer een andere USB-poort op de dock.", router]);
+  add("nsw21104011", "2110-4011", "Foutcode-2110-4011-1499218.html", "Verbinding met router verloren", 1, "De Switch is de verbinding met de draadloze router kwijtgeraakt, bijvoorbeeld door afstand, een zwak signaal of een router die uit staat.", [restart, "Zet de Switch dichter bij de router, bij voorkeur binnen 3 à 4,5 meter.", resetnet, away, band, router]);
+  add("nsw21103150", "2110-3150", "Foutcode-2110-3150-2939196.html", "Geen internet via wifi (DNS)", 1, "Waarschijnlijk door een verkeerde DNS-instelling of een probleem bij je provider of DNS-dienst.", [restart, newconn, dnsAuto + " Gebruik je geen proxy: zet de proxy-instelling uit.", resetnet, dns, "Probeer het later opnieuw.", near, away, "Controleer of de router een beveiliging gebruikt die het systeem ondersteunt (Switch 2: WPA/WPA2/WPA3-Personal; Switch: WEP, WPA-PSK (AES) of WPA2-PSK (AES)) en de netwerknaam uitzendt.", router]);
+})();
+(() => {
+  SRC.mahleDiag = ["MAHLE Smart Bike Systems – Diagnostic codes (gebruikershandleiding, Engels)", "https://mahle-smartbike.com/user%20manuals/diagnostic-codes-4/"];
+  const D = "Blijft het: neem contact op met je dealer of een erkende MAHLE-distributeur.";
+  const R = ["Herstart het systeem (uit en weer aan).", D];
+  const cool = ["Laat de accu afkoelen en herstart het systeem.", "Komt het vaak voor: neem contact op met je dealer of distributeur."];
+  const L = [
+    ["1", "Ernstige firmwarefout motor", 2, ["Werk de software bij en zet het systeem uit en weer aan.", D]],
+    ["2", "CAN-communicatiefout motor", 2, R], ["3", "Motor kan echtheid onderdelen niet controleren", 2, R],
+    ["5", "Motor moet opnieuw worden gekalibreerd", 1, ["Kalibreer via de app of laat het de dealer doen."]],
+    ["6", "Fout gemeld door TCS", 2, R], ["7", "Snelheidssensor defect of onlogische waarden", 2, R],
+    ["8", "Maximale motorsnelheid overschreden", 1, ["Tijdens de gebeurtenis geen ondersteuning; die komt terug als de snelheid daalt.", "Komt het vaak voor bij normale snelheid: neem contact op met je dealer."]],
+    ["9", "Resolver van de motor defect", 3, ["Neem contact op met je dealer of distributeur."]],
+    ["10", "Motorspanning te hoog", 2, ["Koppel de lader los en laat de accu wat ontladen.", D]],
+    ["11", "Motorspanning te laag", 1, ["Laad de accu op.", D]],
+    ["14", "Spanning aandrijfunit te hoog", 2, ["Koppel de lader los en laat de accu wat ontladen.", D]],
+    ["17", "Fout in de elektrische machine", 2, R],
+    ["18", "Motor bewoog niet; ondersteuning op 0", 2, ["Controleer kettingblad, cranks en aandrijving op blokkades.", "Komt het vaak voor: neem contact op met je dealer."]],
+    ["19", "Functionele veiligheidsfout aandrijfunit", 2, R],
+    ["20", "Motortemperatuur te laag", 1, ["Zet de fiets op een warmere plek.", "Komt het vaak voor: neem contact op met je dealer."]],
+    ["21", "Motortemperatuur te hoog", 1, ["Laat de motor afkoelen en herstart als de temperatuur normaal is.", D]],
+    ["101", "Ernstige firmwarefout motor", 2, R], ["102", "CAN-communicatieprobleem motor", 2, R], ["103", "Motor kan echtheid niet controleren", 2, R],
+    ["105", "Head unit moet worden gekalibreerd (versnellingsmeter)", 1, ["Kalibreer opnieuw via de app en herstart."]],
+    ["106", "IMU-sensor defect", 2, ["Kalibreer opnieuw via de app en herstart.", D]],
+    ["107", "Knop van de head unit defect", 2, ["Laat de head unit nakijken door je dealer."]],
+    ["108", "Knop van de stuurbediening defect", 1, ["Gebruik alleen de knop op de head unit.", "Neem contact op met je dealer."]],
+    ["109", "Display of LEDs van de head unit defect", 2, ["Laat de head unit nakijken door je dealer."]],
+    ["110", "Omgevingslichtsensor defect", 1, ["Automatische helderheid werkt niet; neem contact op met je dealer."]],
+    ["117", "Firmware accubeheer niet compatibel", 2, R], ["118", "Firmware aandrijfunit niet compatibel", 2, R],
+    ["120", "Temperatuur head unit buiten bereik", 1, ["Zet de fiets op een koelere plek.", D]],
+    ["201", "Ernstige firmwarefout accubeheer", 2, R], ["202", "CAN-communicatieprobleem accubeheer", 2, R],
+    ["203", "Accubeheer kan echtheid niet controleren", 2, ["Controleer of alle onderdelen origineel MAHLE zijn.", D]],
+    ["206", "Stroomverbruik accessoires te hoog (nog veilig)", 1, ["Controleer de accessoires; houd het totale verbruik op maximaal 24 W (12 V, 2 A)."]],
+    ["207", "Stroomverbruik accessoires te hoog en begrensd", 2, ["Controleer de accessoires; houd het totale verbruik op maximaal 24 W (12 V, 2 A)."]],
+    ["210", "Accuspanning te hoog", 2, ["Laat de spanning vanzelf dalen en herstart.", D]],
+    ["211", "Accuspanning te laag", 1, ["Laad de accu 2 à 3 uur op.", D]],
+    ["212", "Accu aan het einde van zijn levensduur", 2, ["Laat de accu vervangen via je dealer."]],
+    ["213", "Meting laadtoestand/gezondheid mislukt", 2, R],
+    ["214", "Overstroom tijdens laden", 2, R], ["215", "Overstroom tijdens gebruik", 2, R],
+    ["216", "Accu bijna leeg", 1, ["Laad de accu binnenkort op; tot dan zijn de prestaties beperkt."]],
+    ["220", "Temperatuur accu-MOSFET buiten bereik", 1, cool], ["221", "Temperatuurfout accu (MCU/AFE)", 1, cool],
+    ["222", "Celtemperatuur te hoog tijdens laden", 1, cool], ["223", "Celtemperatuur te hoog tijdens rijden", 1, cool],
+    ["224", "Celtemperatuur te laag tijdens laden", 1, ["Warm de accu op voordat je laadt en herstart.", "Komt het vaak voor: controleer waar je de fiets bewaart."]],
+    ["225", "Celtemperatuur te laag tijdens rijden", 1, ["Warm de accu op en herstart.", "Komt het vaak voor: controleer opslag en gebruik."]],
+    ["226", "Zekering accu doorgebrand (226 t/m 229)", 3, ["Breng de fiets naar je dealer of distributeur."]],
+    ["230", "Veiligheidszekering accu doorgebrand of kabel doorgesneden", 3, ["Neem contact op met je dealer of distributeur."]],
+    ["231", "MOSFET-zekering doorgebrand", 3, ["Neem contact op met je dealer of distributeur."]],
+    ["401", "Ernstige firmwarefout lader", 3, ["Neem contact op met je dealer of distributeur."]],
+    ["402", "CAN-communicatieprobleem lader", 2, ["De accu laadt niet zolang dit actief is.", "Breng fiets en lader naar je dealer."]],
+    ["403", "Lader kan echtheid niet controleren", 2, ["De accu laadt niet zolang dit actief is.", "Breng fiets en lader naar je dealer."]],
+    ["406", "Stroomvraag te hoog, mogelijk kortsluiting", 3, ["De accu laadt niet zolang dit actief is.", "Breng fiets en lader naar je dealer."]],
+    ["410", "Spanning lader te hoog", 3, ["Neem contact op met je dealer of distributeur."]],
+    ["414", "Stroom lader te hoog", 3, ["Neem contact op met je dealer of distributeur."]],
+    ["418", "Polariteit lader omgedraaid (418/419)", 3, ["Neem contact op met je dealer of distributeur."]],
+    ["420", "Lader te warm", 1, ["Het laden stopt vanzelf; laat de lader afkoelen."]]
+  ];
+  MODELS.push({ id: "mahle-smartbike", brand: "MAHLE", name: "MAHLE Smart Bike Systems (ebikemotion): diagnosecodes", dev: "MAHLE e-bike systeem (X20, X30, X35, XS, M40)", cat: "e-bikes", years: "MAHLE Smart Bike Systems / ebikemotion", unit: null, also: "Mahle X35 foutcode, Mahle X20 error, ebikemotion foutcode, Mahle e-bike 211, Mahle 216 accu, Orbea Mahle foutcode, Ribble Mahle", intro: "Het e-bikesysteem van MAHLE Smart Bike Systems (ebikemotion) toont diagnosecodes. Codes 1–21 en 101–120 gaan over motor en head unit, 201–231 over de accu en 401–420 over de lader. MAHLE vermeldt niet per code voor welk systeem hij geldt; kijk bij twijfel in de handleiding van je fiets.", weak: [], parts: [], tasks: [], src: ["mahleDiag"], faults: L.map(([c, t, d, s]) => F(c, t, d, t + ".", s)) });
+})();
+(() => {
+  SRC.fazuaFaq = ["FAZUA – FAQ RIDE 60 (Rider Version, Engels)", "https://dealer.fazua.com/documents/1157/FAQ_RIDE_60_-_Rider_Version_-_final_EN.pdf"];
+  MODELS.push({ id: "fazua-ride-60", brand: "FAZUA", name: "Ride 60 e-bikemotor: statuslampje en storingen", dev: "Ride 60 e-bikesysteem", cat: "e-bikes", years: "FAZUA Ride 60 (LED HUB / CONTROL HUB)", unit: null, also: "Fazua Ride 60 rood knipperen, Fazua geel lampje soft fault, Fazua boost werkt niet, Fazua app verbindt niet, Fazua ondersteuning schokkerig, Fazua accu diep ontladen", intro: "De FAZUA Ride 60 heeft geen foutcodes op een display; het bovenste lampje op de LED HUB of CONTROL HUB geeft de status. Geel knipperen is een lichte storing (je kunt doorrijden), rood knipperen een ernstige storing (de fiets werkt niet).", weak: [], parts: [], tasks: [], src: ["fazuaFaq"], faults: [
+    N("Bovenste lampje knippert rood (Hard Fault)", 3, "Ernstige storing; de fiets kan niet worden gebruikt.", ["Breng de fiets naar je dealer of een FAZUA Certified Partner."]),
+    N("Bovenste lampje knippert geel (Soft Fault)", 2, "Tijdelijke of niet-kritieke storing, meestal met minder vermogen.", ["Je kunt doorrijden, maar laat de fiets binnenkort nakijken."]),
+    N("Ondersteuning schokkerig of onregelmatig", 1, "De koppelsensor is niet goed gekalibreerd.", ["Rijd ongeveer 30 minuten normaal, zodat het systeem zichzelf kalibreert.", "Blijft het: ga naar je dealer."]),
+    N("Boost werkt niet", 1, "Je rijdt sneller dan de wettelijke grens (25 km/u in Europa), of er is geen ondersteuningsniveau gekozen (witte lampjes).", ["Rijd langzamer dan 25 km/u en kies een ondersteuningsniveau."]),
+    N("Wandelhulp werkt niet", 1, "De ondersteuning moet uit staan (witte lampjes).", ["Zet de ondersteuning uit en houd de schakelaar 2 seconden naar rechts."]),
+    N("FAZUA App maakt geen verbinding", 1, "FAZUA noemt geen vaste oorzaak.", ["Controleer of de accu aan staat, de telefoon internet heeft en dicht bij de fiets is.", "Werk de app bij.", "Verwijder de fiets uit de bluetoothlijst van de telefoon, zet bluetooth uit en aan, sluit de app en koppel opnieuw.", "Probeer een andere telefoon. Let op: de Ride 60 werkt niet met de FAZUA Rider App."]),
+    N("Accu verloren capaciteit of gaat niet aan", 2, "Diep ontladen door lang bewaren zonder opladen; valt niet onder garantie.", ["Bewaar de accu bij 10–15 °C, laad hem vóór de winter tot minstens 60% en controleer hem elke 8 weken."]),
+    N("Minder bereik bij kou", 1, "Lage temperaturen verminderen capaciteit en vermogen van de accu.", ["Bewaar de accu op kamertemperatuur voordat je gaat rijden."]),
+    N("Vreemde geluiden", 1, "Losse pedalen, kettingblad of crank, of een versleten of vuile ketting, kettingblad of derailleur.", ["Controleer en draai pedalen, kettingblad en crank vast volgens de fietsfabrikant.", "Reinig of vervang versleten onderdelen.", "Blijft het: ga naar je dealer."]),
+    N("Snelheidsmagneet weg na wisselen remschijf", 1, "De magneet zit op de remschijf of de achteras.", ["Zet de magneet op de nieuwe schijf volgens de instructies van de fietsfabrikant."]),
+    N("Losse schroeven aan het systeem", 2, "De schroeven zijn af fabriek met schroefborgmiddel behandeld.", ["Draai ze niet zelf aan; neem contact op met je dealer of certified partner."])
+  ]});
+})();
+(() => {
+  SRC.mg4Manual = ["MG Motor – MG4 Owner's Handbook (Engels), hoofdstuk Charging", "https://media-hub-prod.mgmotor.me/manuals/MG_4_English.pdf"];
+  MODELS.push({ id: "mg4-laden", brand: "MG", name: "MG4 Electric: laadkabel zit vast en laadmeldingen", dev: "MG4 Electric laden", cat: "auto", years: "MG4 Electric", unit: null, also: "MG4 laadkabel zit vast, MG4 laadstekker ontgrendelen, MG4 noodontgrendeling laadkabel, MG4 laadfout lampje, MG4 accu bijna leeg", intro: "De laadpoort van de MG4 zit linksachter en vergrendelt de stekker zodra het laden begint; hij blijft vergrendeld tot het laden klaar is of wordt onderbroken. Trek niet aan de stekker terwijl de kabel vergrendeld is.", weak: [], parts: [], tasks: [], src: ["mg4Manual"], faults: [
+    N("Laadkabel zit vast (noodontgrendeling)", 1, "De elektronische vergrendeling van de laadpoort laat de stekker niet los.", ["Trek niet met kracht aan de stekker.", "Haal het afdekplaatje van de serviceopening aan de linkerkant van de bagageruimte weg.", "Trek aan de hendel van de ontgrendelkabel, houd spanning op de kabel en haal de stekker eruit."]),
+    N("Laadverbindingslampje geeft een fout aan", 2, "Het lampje voor de laadverbinding brandt ook als er een fout bij laden of ontladen is gevonden.", ["MG noemt voor deze melding geen aparte stappen.", "Algemene voorbereiding volgens MG: controleer of de letter-symbolen op laadklepje en kabel overeenkomen, verwijder water bij de laadpoort en zet de auto uit voordat je laadt (bij snelladen 10 seconden wachten na uitzetten)."]),
+    N("Waarschuwing: hoogvoltaccu bijna leeg", 1, "De hoogvoltaccu is bijna leeg.", ["Laad de auto zo snel mogelijk op."])
+  ]});
+})();
+(() => {
+  SRC.panaAcSelf = ["Panasonic – Air conditioner error codes: using the self-diagnosis function (Engels)", "https://www.panasonic.com/kh/hvac/learn-more/panasonic-air-conditioner-error-codes-using-the-self-diagnosis-function.html"];
+  const T = ["Laat inspectie en reparatie over aan een gekwalificeerde monteur.", "Geef de code door aan de monteur of de klantenservice van Panasonic."];
+  const L = [["H00","Geen storing in het geheugen",1],["H11","Communicatiefout binnen- en buitenunit",3],["H12","Capaciteit binnenunit past niet",3],["H14","Fout luchtinlaattemperatuursensor binnenunit",3],["H15","Fout temperatuursensor compressor",3],["H16","Fout stroomtransformator buitenunit",3],["H17","Fout zuigtemperatuursensor buitenunit",3],["H19","Ventilatormotor binnenunit geblokkeerd",3],["H21","Fout vlotterschakelaar binnenunit",3],["H23","Fout temperatuursensor 1 warmtewisselaar binnenunit",3],["H24","Fout temperatuursensor 2 warmtewisselaar binnenunit",3],["H25","Fout ionisator binnenunit",3],["H26","Fout min-ion",3],["H27","Fout buitenluchttemperatuursensor",3],["H28","Fout temperatuursensor 1 warmtewisselaar buitenunit",3],["H30","Fout temperatuursensor persleiding buitenunit",3],["H32","Fout temperatuursensor 2 warmtewisselaar buitenunit",3],["H33","Binnen- en buitenunit verkeerd aangesloten",3],["H34","Fout temperatuursensor koellichaam buitenunit",3],["H36","Fout temperatuursensor gasleiding buitenunit",3],["H37","Fout temperatuursensor vloeistofleiding buitenunit",3],["H38","Binnen- en buitenunit passen niet (merkcode)",3],["H39","Fout binnenunit in bedrijf of stand-by",3],["H41","Fout in bedrading of leidingaansluiting",3],["H50","Ventilatiemotor geblokkeerd",3],["H51","Ventilatiemotor geblokkeerd",3],["H52","Fout eindschakelaar links-rechts",3],["H58","Fout gassensor binnenunit",3],["H59","Fout eco-sensor",3],["H64","Fout hogedruksensor buitenunit",3],["H67","Fout nanoe",3],["H70","Fout lichtsensor",3],["H71","Fout koelventilator in de besturingsprint",3],["H79","Schrijffout wifi-module",3],["H85","Communicatiefout binnenunit en wifi-module",3],["H97","Ventilatormotor buitenunit geblokkeerd",3],["H98","Hogedrukbeveiliging binnenunit",3],["H99","Vorstbeveiliging binnenunit",3],["F11","Fout bij omschakelen vierwegklep",3],["F16","Beveiliging totale bedrijfsstroom",3],["F17","Bevriezing binnenunits in stand-by",3],["F18","Droogcircuit geblokkeerd",3],["F87","Oververhittingsbeveiliging regelkast",3],["F90","PFC-beveiliging of communicatiefout compressorprocessor",3],["F91","Fout in de koelcyclus",3],["F93","Abnormaal toerental compressor",3],["F94","Persdrukbeveiliging compressor",3],["F95","Hogedrukbeveiliging buitenunit (koelen)",3],["F96","Oververhitting vermogenstransistor",3],["F97","Oververhitting compressor",3],["F98","Beveiliging totale bedrijfsstroom",3],["F99","DC-piekdetectie buitenunit",3]];
+  MODELS.push({ id: "panasonic-airco", brand: "Panasonic", name: "Panasonic airco: foutcodes H en F (zelfdiagnose)", dev: "airco (split-unit)", cat: "airco", years: "Panasonic airconditioners met CHECK-knop op de afstandsbediening", unit: null, also: "Panasonic airco H11, Panasonic F99, Panasonic airco knippert, Panasonic airco foutcode uitlezen, Panasonic H19 ventilator, Panasonic airco H97", intro: "Panasonic-airco's slaan de laatste storing op. Lees de code zo uit: richt de afstandsbediening op de binnenunit, houd met een pen of naald de CHECK-knop ongeveer 5 seconden ingedrukt, en druk daarna herhaaldelijk op de pijl omhoog of omlaag van TIMER. Hoor je een piep, dan is de code op de afstandsbediening de opgeslagen storing. Inspectie en reparatie horen volgens Panasonic bij een gekwalificeerde monteur.", weak: [], parts: [], tasks: [], src: ["panaAcSelf"], faults: L.map(([c, t, d]) => F(c, t, d, c === "H00" ? "Er is geen storing opgeslagen." : t + ".", c === "H00" ? ["Niets doen."] : T)) });
+})();
+(() => {
+  SRC.honeywellT6 = ["Resideo / Honeywell Home – Handleiding T6 en T6R slimme thermostaat (NL)", "https://homecomfort-techlit.resideo.com/emeadocuments/pim%20-%20renamed/t6-t6r-sp-nl0h8603nl01.pdf"];
+  MODELS.push({ id: "honeywell-t6", brand: "Honeywell Home", name: "T6 / T6R slimme thermostaat: meldingen op het display", dev: "T6 / T6R thermostaat (Lyric)", cat: "cv-ketels", years: "Honeywell Home (Resideo) T6 en T6R, ook bekend als Lyric T6", unit: null, also: "Honeywell T6 geen communicatie met ketelmodule, T6R status led rood, Honeywell T6 wifi niet geconfigureerd, Lyric T6 ketel storingsmelding, T6 druk cv-ketel te laag", intro: "De Honeywell Home T6 en T6R tonen storingen als tekst op het display. Bij de draadloze T6R zit er een ketelmodule bij de cv-ketel; een rode status-LED op die module betekent dat de verbinding weg is.", weak: [], parts: [], tasks: [], src: ["honeywellT6"], faults: [
+    N("Status-LED ketelmodule rood", 1, "De ketelmodule ontvangt geen signaal (te ver weg of geblokkeerd), of de thermostaat heeft geen spanning.", ["Zet thermostaat en ketelmodule dichter bij elkaar of verplaats ze.", "Controleer het signaal naar de thermostaat."]),
+    N("Status-LED ketelmodule groen, maar ketel slaat niet aan", 2, "De bedrading naar de ketel is verkeerd aangesloten of defect.", ["Laat de bedrading van de ketelmodule controleren."]),
+    N("GEEN COMMUNICATIE MET KETELMODULE", 1, "De thermostaat ontvangt geen signaal van de ketelmodule (geblokkeerd, te ver weg, of geen spanning op de module).", ["Controleer of de ketelmodule spanning heeft en zet thermostaat en module dichter bij elkaar."]),
+    N("RF SIGNAAL KETELMODULE ZWAK", 1, "Het radiosignaal van de ketelmodule is zwak.", ["Zet de thermostaat of de ketelmodule dichter bij elkaar of verplaats ze."]),
+    N("GEEN KETELMODULE", 1, "De thermostaat is niet verbonden met de ketelmodule.", ["Verbind de ketelmodule opnieuw volgens de handleiding."]),
+    N("WIFI RADIO FOUT", 3, "De wifi-radio van de thermostaat is defect.", ["Vervang de thermostaat."]),
+    N("INTERNE GEHEUGEN FOUT", 3, "Het interne geheugen van de thermostaat is defect.", ["Vervang de thermostaat."]),
+    N("FOUTMELDING TEMPERATUURVOELER", 2, "Bij een bedrade T6: de externe voeler is niet verbonden of verkeerd aangesloten.", ["Controleer de externe voeler en de bedrading."]),
+    N("GEEN INTERNET", 1, "De thermostaat heeft geen internetverbinding.", ["Controleer de internetverbinding van je router."]),
+    N("GEEN WIFI SIGNAAL", 1, "De thermostaat heeft geen wifiverbinding.", ["Controleer je wifinetwerk of router."]),
+    N("WIFI NIET GECONFIGUREERD / REGISTREER ONLINE", 1, "De thermostaat is nog niet met wifi verbonden of nog niet geregistreerd.", ["Download de Honeywell Home-app, maak een account aan, verbind de thermostaat met wifi en registreer hem."]),
+    N("KETEL STORINGSMELDING xx", 2, "Je OpenTherm-ketel meldt foutcode xx.", ["Controleer de ketel: de code komt van je ketel, niet van de thermostaat."]),
+    N("DRUK CV-KETEL TE LAAG", 1, "De OpenTherm-ketel meldt een te lage waterdruk.", ["Vul de cv-installatie bij."])
+  ]});
+})();
+(() => {
+  SRC.giacominiHpb = ["Giacomini – Installatiehandleiding warmtepompboiler HPBSY / HPWSBE (R1.5, 2024)", "https://dam.giacomini.com/benelux.giacomini.com/nl/product_documentations/manuals/HPB.pdf"];
+  const T = "Installatie en reparatie alleen door een gekwalificeerde technicus.";
+  const ns = "Giacomini geeft hier geen specifieke oplossing.";
+  const L = [
+    ["Er01", "Probleem voeler watertemperatuur tank (S1)", 3, ["Laat controleren of de voeler aanwezig is en goed op de printplaat en klemmen is aangesloten.", T]],
+    ["Er02", "Probleem voeler inlaatlucht (S2)", 3, [ns, T]], ["Er03", "Probleem voeler verdamper (S3)", 3, [ns, T]], ["Er04", "Probleem voeler zonne-installatie (S4)", 3, [ns, T]],
+    ["Er11", "Kortsluiting voeler tank (S1)", 3, ["De voeler is beschadigd; laat de weerstand meten (ca. 10 kΩ bij 25 °C).", T]],
+    ["Er12", "Kortsluiting voeler inlaatlucht (S2)", 3, [ns, T]], ["Er13", "Kortsluiting voeler verdamper (S3)", 3, [ns, T]], ["Er14", "Kortsluiting voeler zonne-installatie (S4)", 3, [ns, T]],
+    ["Er20", "Watertemperatuur fout (TA)", 3, ["Te hoog: laat de printplaat controleren op beschadigde relais.", "Kortsluiting S1: laat de voeler meten (ca. 10 kΩ bij 25 °C) en de klemmenstrook controleren.", T]],
+    ["Er21", "Fout in ontdooicyclus (DF)", 3, ["Te veel ontdooicycli in korte tijd; mogelijke oorzaken: lage inlaatluchttemperatuur, tekort aan koelmiddel of een lek.", "Laat voeler en klemmen controleren.", T]],
+    ["Er22", "Alarm lage watertemperatuur (LT)", 2, ["De watertemperatuur in de tank is lager dan 0 °C.", T]],
+    ["Er23", "Lagedrukbeveiliging actief (LP)", 3, ["Mogelijke oorzaken: lage inlaatluchttemperatuur, tekort aan koelmiddel of lekkage.", "Laat de aansluiting van de lagedrukschakelaar op de printplaat controleren.", T]],
+    ["Er24", "Hogedrukbeveiliging actief (HP)", 3, ["Laat de aansluiting van de hogedrukschakelaar en een verstopt koelcircuit (expansieventiel of filter) controleren.", T]],
+    ["Er25", "Stromingsbeveiliging actief (FS)", 3, ["Laat controleren op watertekort of een verstopt watercircuit van de zonne-installatie.", T]],
+    ["LINK ERROR", "Communicatiefout display en printplaat", 2, ["Laat controleren of de kabel tussen display en printplaat heel is en goed vastzit.", T]],
+    ["Pcp", "Compressor werkt niet", 3, ["Laat controleren of de compressorzekering is doorgebrand en de aansluitklemmen goed zitten.", T]],
+    ["Phe", "Elektrisch element werkt niet", 3, ["Laat het verwarmingselement en de aansluitklemmen controleren.", T]]
+  ];
+  MODELS.push({ id: "giacomini-warmtepompboiler", brand: "Giacomini", name: "Warmtepompboiler HPBSY / HPWSBE: foutcodes", dev: "warmtepompboiler HPBSY020/027, HPWSBE020/027", cat: "warmtepompen", years: "Giacomini HPBSY020, HPBSY027, HPWSBE020-120, HPWSBE027-127", unit: null, also: "Giacomini warmtepompboiler Er01, Giacomini Er21 ontdooien, Giacomini Er24 hoge druk, Giacomini LINK ERROR, Giacomini boiler storing", intro: "De warmtepompboiler van Giacomini toont foutcodes Er01–Er25 en meldingen als LINK ERROR, Pcp en Phe. Volgens Giacomini mogen installatie en reparatie alleen door een gekwalificeerde technicus worden gedaan; geef de code aan je installateur door.", weak: [], parts: [], tasks: [], src: ["giacominiHpb"], faults: L.map(([c, t, d, s]) => F(c, t, d, t + ".", s)) });
+})();
+(() => {
+  SRC.vaillantVwzAi = ["Vaillant – Installatiehandleiding warmtepompregelingsmodule VWZ AI (NL), bijlage storingscodes", "https://www.vaillant.nl/api/download/product/nl/_vwz-ai_1485881.pdf"];
+  const T = "Dit is werk voor de installateur; geef de code aan hem door.";
+  const L = [
+    ["F.283", "Ontdooien mislukt", 2, ["Controleer de instelling van het bijverwarmingselement.", "Zorg dat alle verwarmingsgroepen open staan.", "Verwijder ijs van de buitenunit.", T]],
+    ["F.517", "Signaal temperatuursensor compressoruitgang ongeldig", 3, ["Laat stekker, kabelboom, sensor en printplaat controleren.", T]],
+    ["F.519", "Signaal retourtemperatuursensor cv ongeldig", 3, ["Laat stekker, kabelboom, sensor en printplaat controleren.", T]],
+    ["F.526", "Signaal temperatuursensor verdamperingang ongeldig", 3, ["De sensor is mogelijk los of kortgesloten; laat stekker, sensor en kabelboom controleren.", T]],
+    ["F.546", "Signaal hogedruksensor ongeldig", 3, ["Laat stekker, kabelboom en druksensor controleren.", T]],
+    ["F.582", "Aansluitfout elektronisch expansieventiel (EEV)", 3, ["Laat de stekkerverbindingen controleren en zo nodig de EEV-spoel vervangen.", T]],
+    ["F.585", "Signaal temperatuursensor condensoruitgang ongeldig", 3, ["Laat stekker, kabelboom, sensor en printplaat controleren.", T]],
+    ["F.734", "Condensatietemperatuur te laag", 3, ["Laat EEV, compressoringangssensor, koelmiddelvulling, hogedruksensor en druksensor van het cv-circuit controleren.", T]],
+    ["F.735", "Verdampingstemperatuur te hoog", 3, ["Laat systeemtemperaturen, overvulling met koelmiddel, de EEV, de verdampingssensor en de doorstroming of luchtstroom controleren.", T]]
+  ];
+  addF("vaillant-arotherm", "vaillantVwzAi", ...L.map(([c, t, d, s]) => F(c, t, d, t + ". Code uit de warmtepompregelingsmodule VWZ AI.", s)));
+})();
+(() => {
+  SRC.teslaAlertsY = ["Tesla – Model Y handleiding: Probleemoplossing bij waarschuwingen (NL)", "https://www.tesla.com/ownersmanual/modely/nl_nl/GUID-9A3F0F72-71F4-433D-B68B-0A472A9359DF.html"];
+  const SV = "Blijft de melding: plan service via de Tesla-app.";
+  const EL = "Laat een elektricien de installatie controleren.";
+  const brk = "Koppel los en sluit opnieuw aan; zet de groep (breaker) 10 seconden uit en weer aan.";
+  const iso = "Probeer niet op te laden. Ruik, hoor of zie je iets vreemds: stop en bel Tesla Roadside Assistance.";
+  const G = [
+    [["APP_w009"], "Automatische noodrem niet beschikbaar", 1, "Geldt alleen voor de huidige rit.", ["Meestal is geen actie nodig.", "Komt de melding steeds terug: plan service."]],
+    [["APP_w048"], "Assisted Driving-functies niet beschikbaar", 1, "Autosturen, cruise control, noodremmen en waarschuwingen kunnen uit staan.", ["Kijk of er nog andere waarschuwingen zijn.", "Meestal is het bij de volgende rit weer in orde.", SV]],
+    [["APP_w207"], "Automatisch sturen tijdelijk niet beschikbaar", 1, "Vaak door weer, licht, slechte belijning, het type weg of te hoge snelheid.", ["Rijd gewoon verder.", "Blijft het: controleer op schade, obstakels, een fietsendrager, stickers of een beschadigde bumper.", SV]],
+    [["APP_w218"], "Snelheidslimiet Automatisch sturen overschreden", 1, "Je reed boven de maximale snelheid voor Automatisch sturen.", ["Neem direct zelf de besturing over.", "Stop volledig, zet in P en daarna in D voor de volgende rit.", SV]],
+    [["APP_w222"], "Cruise control niet beschikbaar: beperkt zicht frontcamera", 1, "Vuil, weer, tegenlicht, condens of een eentonige omgeving.", ["Rijd verder.", "Maak de ruit bij de camera boven de voorruit schoon.", "Bij condens: verwarm het interieur met de airco en zet de voorruitverwarming aan.", SV]],
+    [["APP_w224"], "Cruise control niet beschikbaar: camera's kalibreren", 1, "De camera's zijn nog aan het kalibreren.", ["Rijd verder; kalibreren duurt meestal 32–40 km, sneller op rechte wegen met duidelijke belijning.", "Na 160 km nog niet klaar: plan service."]],
+    [["APP_w304"], "Camera geblokkeerd of verblind", 1, "Een of meer camera's zien niet goed, bijvoorbeeld door vuil of condens.", ["Rijd verder; vaak lost het vanzelf op.", "Maak de camera's schoon voor de volgende rit.", "Condens binnenin: verwarm het interieur, zet de voorruitverwarming aan en richt de roosters op de camera's in de portierstijlen.", SV]],
+    [["APP_w396"], "Zicht frontcamera beperkt", 1, "Een wazige laag op de voorruit bij de camera.", ["Controleer de voorruit op vuil, mist, ijs of wisserstrepen.", "Geen oorzaak te zien: plan service om de binnenkant van het cameradeel te laten reinigen."]],
+    [["BMS_a027"], "Vermogen beperkt, auto start mogelijk niet na deze rit", 3, "De isolatie van de hoogvoltaccu lag bij meerdere ritten onder de grens.", ["Plan direct service en rijd niet meer voordat de auto is nagekeken."]],
+    [["BMS_a035", "BMS_a151"], "Auto start mogelijk niet opnieuw, service vereist", 3, "De isolatie van de accu is verminderd tijdens rijden of laden; laden of rijden kan beperkt zijn.", [SV, "Bij BMS_a151: niet opladen. Ruik, hoor of zie je iets vreemds: stop en bel Tesla Roadside Assistance."]],
+    [["BMS_a059"], "Auto start mogelijk niet opnieuw, service vereist", 2, "De packspanning wijkt af van de celmetingen. Rijden kan nog.", [SV]],
+    [["BMS_a067"], "Accuprestaties beperkt, plan service", 2, "Minder bereik en langzamer laden.", ["Houd de accu op minimaal 30%.", "Plan service."]],
+    [["BMS_a068"], "Accu heeft service nodig", 2, "Lagere topsnelheid, tragere acceleratie en minder laadvermogen.", ["Plan service.", "Houd de accu op minimaal 30%."]],
+    [["BMS_a069"], "Accuniveau laag, laad nu op", 1, "De auto kan niet rijden zonder opladen.", ["Laad de auto op.", "Verschijnt de melding ook bij 5% of meer: plan service."]],
+    [["BMS_a074"], "Maximaal accuniveau afgenomen", 2, "Laden lukt alleen nog onder 50%.", ["Plan service."]],
+    [["BMS_a079"], "Opladen niet mogelijk, maximaal niveau bereikt", 2, "Laden is beperkt tot 50%.", ["Plan service."]],
+    [["BMS_a123"], "Kan niet opladen, service vereist", 3, "Isolatiefout gevonden terwijl de auto geparkeerd stond.", [iso, "Plan service."]],
+    [["CC_a001"], "Wall Connector: onvoldoende aarding", 3, "Er is geen aardaansluiting gedetecteerd.", [EL]],
+    [["CC_a002", "CC_a003", "CC_a005"], "Wall Connector: lekstroom / massaprobleem", 2, "Mogelijk een fout tussen fase/nul en aarde.", [brk, "Blijft het: neem contact op met een elektricien of Tesla."]],
+    [["CC_a004", "CC_a010", "CC_a014", "CC_a020", "CC_a025", "CC_a026", "CC_a027"], "Probleem met de Wall Connector", 2, "Mogelijk een schakelaar, zelftest, temperatuursensor of hardware van de Wall Connector.", ["Probeer opnieuw en zet de groep uit en weer aan.", "Blijft het: laat een elektricien kijken en plan daarna onderhoud."]],
+    [["CC_a006"], "Wall Connector: overstroom", 1, "De stroom is te hoog.", ["Verlaag de ingestelde laadstroom.", "Blijft het: plan onderhoud."]],
+    [["CC_a007", "CC_a008"], "Wall Connector: ingangsspanning te hoog of te laag", 2, "De netspanning naar de Wall Connector klopt niet.", ["Laat een elektricien de spanning op de groep meten."]],
+    [["CC_a009"], "Wall Connector: ingang verkeerd bedraad", 3, "Fase en nul zijn mogelijk verwisseld.", ["Laat een elektricien dit corrigeren."]],
+    [["CC_a011"], "Wall Connector te warm", 1, "De Wall Connector is te warm.", ["Zorg dat niets hem afdekt en er geen warmtebron in de buurt is.", "Blijft het bij minder dan 38 °C: plan onderhoud."]],
+    [["CC_a012"], "Wall Connector te warm: controleer stopcontact of bedrading", 3, "De bedrading in het gebouw wordt te warm.", ["Controleer of de stekker volledig in het stopcontact zit en niets blokkeert.", EL]],
+    [["CC_a013"], "Laadgreep te warm", 1, "De laadstekker is te warm.", ["Controleer of de stekker helemaal in de laadpoort zit en niet is afgedekt.", "Blijft het bij minder dan 38 °C: plan onderhoud."]],
+    [["CC_a015", "CC_a016", "CC_a017", "CC_a018", "CC_a019", "CC_a029"], "Wall Connector: communicatiefout met de auto", 1, "De Wall Connector communiceert niet goed met de auto.", ["Steek de laadstekker volledig in de laadpoort.", "Zet de groep uit en weer aan en test met andere laadapparatuur.", "Blijft het: plan onderhoud."]],
+    [["CC_a021", "CC_a022"], "Lastverdeling: geen of meer dan één primaire Wall Connector", 2, "Bij lastverdeling moet precies één Wall Connector primair zijn; de rest staat op positie F.", ["Laat een elektricien de instelling controleren."]],
+    [["CC_a023"], "Te veel gekoppelde Wall Connectors", 2, "Maximaal drie gekoppelde units per primaire unit.", ["Laat een elektricien een of meer units naar een andere groep verplaatsen."]],
+    [["CC_a024", "CC_a028"], "Stroominstelling of draaischakelaar fout", 2, "De stroom is verkeerd ingesteld; elke gekoppelde unit moet minstens 6 A krijgen.", ["Laat een elektricien de draaischakelaar instellen."]],
+    [["CC_a030"], "Wall Connectors niet compatibel", 2, "De gekoppelde units hebben een verschillende maximale stroom.", ["Gebruik units met hetzelfde onderdeelnummer en laat de typelabels controleren."]],
+    [["CC_a041", "CP_a101"], "Laadsnelheid verlaagd: wandaansluiting heet", 2, "Het stopcontact of de bedrading wordt warm.", [EL]],
+    [["CP_a102"], "Opladen niet mogelijk: wandaansluiting te heet", 3, "Het stopcontact of de bedrading is te heet.", [EL]],
+    [["CC_a043"], "Configuratie Wall Connector onvolledig", 2, "De Wall Connector is nog niet volledig ingesteld.", ["Stel de Wall Connector in volgens de installatiehandleiding.", "Blijft het: elektricien."]],
+    [["CC_a133"], "Laadgreep niet vergrendeld", 1, "Probleem met de verbinding met de auto.", ["Test met andere laadapparatuur of een Supercharger."]],
+    [["CP_a004", "CP_a010"], "Laadapparatuur niet herkend of communicatiefout", 1, "De auto herkent de laadapparatuur niet.", ["Test met andere apparatuur.", "Maak laadpoort en connector schoon en droog.", "Probeer een Supercharger of Destination Charging."]],
+    [["CP_a043"], "Storing klepsensor laadcontact", 1, "De sensor van de laadklep geeft een fout.", ["Sluit de klep en open hem weer."]],
+    [["CP_a046", "CP_a055"], "Geen communicatie met laadapparatuur", 1, "De auto communiceert niet met het laadstation.", ["Controleer de voeding van de laadapparatuur.", "Test met andere apparatuur.", "Neem contact op met de beheerder van het station of een elektricien."]],
+    [["CP_a051"], "Laadklep opent niet bij indrukken", 1, "De laadklep reageert niet op indrukken.", ["Open de klep via het touchscreen, de app, de knop op de laadstekker of de achterklepknop op de sleutel."]],
+    [["CP_a053"], "Laadstation levert geen stroom", 1, "Het station geeft geen stroom.", ["Test met een ander station of andere apparatuur.", "Controleer de statuslampjes van het station."]],
+    [["CP_a054"], "Vergrendeling laadcontact los", 1, "De stekker is niet volledig vergrendeld; AC-laden is beperkt tot 16 A en snelladen kan niet.", ["Steek de kabel volledig in en maak de laadpoort schoon.", "Controleer de handmatige ontgrendelkabel links in de achterbak."]],
+    [["CP_a056"], "Laden gestopt: kabel losgekoppeld", 1, "De kabel werd tijdens het laden losgehaald.", ["Stop eerst het laden voordat je de kabel verwijdert."]],
+    [["CP_a058"], "Kan niet AC-laden, systeem probeert opnieuw", 1, "De auto probeert het AC-laden opnieuw.", ["Wacht, of koppel de kabel los en weer aan om het sneller opnieuw te proberen."]],
+    [["CP_a066"], "Laadapparatuur niet gereed", 1, "Het station vertraagt het laden of vraagt om authenticatie.", ["Volg de instructies op het laadstation."]],
+    [["CP_a078", "CP_a079", "CP_a164"], "Vergrendeling laadpoort mogelijk bevroren", 1, "De vergrendeling van de laadpoort zit mogelijk vast door ijs.", ["Steek de kabel opnieuw in of gebruik de handmatige ontgrendeling.", "Gebruik 'Auto ontdooien' in de Tesla-app (ongeveer 30–45 minuten); de achterruitverwarming kan helpen.", "Komt CP_a164 steeds terug: plan service."]],
+    [["CP_a139", "CP_a141", "CP_a146"], "Laadapparatuur of laadstation meldt een fout", 1, "Het laadstation zelf geeft een fout.", ["Controleer de apparatuur en de handleiding ervan.", "Probeer een ander laadstation."]],
+    [["CP_a143"], "Laadadapter kan vlamboog veroorzaken", 3, "De adapter is onveilig.", ["Stop het laden volledig.", "Koppel de adapter los van laadpoort en stekker en gebruik andere laadapparatuur."]],
+    [["CP_a151"], "Fout laadcontact, onderhoud nodig", 2, "AC-laden kan beperkt zijn; Superchargen werkt nog.", ["Plan zo snel mogelijk service."]],
+    [["DI_a138"], "Frontmotor uitgeschakeld, rijden mogelijk", 2, "De voorste motor is uitgeschakeld; het vermogen kan beperkt zijn.", ["Vaak is het tijdelijk.", SV]]
+  ];
+  const faults = [];
+  for (const [codes, t, d, cause, steps] of G) for (const c of codes) faults.push(F(c, t, d, cause + (codes.length > 1 ? ` Tesla geeft dezelfde uitleg voor ${codes.join(", ")}.` : ""), steps));
+  MODELS.push({ id: "tesla-waarschuwingscodes", brand: "Tesla", name: "Tesla waarschuwingscodes (APP, BMS, CC, CP, DI)", dev: "Tesla Model Y (waarschuwingen)", cat: "auto", years: "Tesla Model Y (handleiding NL)", unit: null, also: "Tesla APP_w207, Tesla BMS_a069, Tesla CP_a058, Tesla CC_a015, Tesla CP_a079 bevroren laadpoort, Tesla waarschuwing betekenis, Tesla Wall Connector foutcode", intro: "Een Tesla toont waarschuwingen met een code, zoals APP_w207 of CP_a058. APP gaat over rijhulp, BMS over de hoogvoltaccu, CC over de Wall Connector, CP over de laadpoort en het laden, en DI over de aandrijving. Actieve meldingen vind je onder Bediening > Service > Meldingen.", weak: [], parts: [], tasks: [], src: ["teslaAlertsY"], faults });
+})();
+(() => {
+  const SV = "Blijft de melding of komt hij terug: plan service via de Tesla-app.";
+  const EL = "Laat de installatie controleren door een elektricien.";
+  const G = [
+    [["DI_a175"], "Cruise control niet beschikbaar", 1, "Cruise control is uitgeschakeld, bijvoorbeeld door een losse gordel, open klep of portier, snelheid onder 30 km/u of slecht zicht.", ["Rijd handmatig.", SV]],
+    [["DI_a184"], "Automatisch inparkeren geannuleerd", 1, "Het automatisch parkeren is gestopt.", ["Parkeer zelf, trap de rem in en zet in P."]],
+    [["DI_a185"], "Automatisch inparkeren afgebroken", 1, "Het parkeren is afgebroken en de parkeerrem staat aan.", ["Parkeer of rond de manoeuvre zelf af."]],
+    [["DI_a190"], "Ondiep profiel achterbanden", 1, "De achterbanden zijn meer versleten dan de voorbanden; het is geen lekke band.", ["Controleer de profieldiepte.", "Laat de banden wisselen als het verschil groter is dan 1,5 mm of je meer dan 10.000 km reed sinds de laatste keer."]],
+    [["DI_a245"], "Vehicle Hold niet beschikbaar", 1, "Vehicle Hold werkt tijdelijk niet.", ["Houd bij stilstand het rempedaal ingetrapt; je kunt doorrijden.", SV]],
+    [["DIF_a251", "DIR_a251"], "Transmissievloeistof controleren", 2, "De transmissievloeistof moet worden gecontroleerd; lang doorrijden kan de aandrijflijn beschadigen.", ["Plan service."]],
+    [["EPBL_a195", "EPBR_a195"], "Auto automatisch in P gezet", 1, "De auto schakelde naar P omdat de bestuurder uitstapte of niet aanwezig leek.", ["Draag je gordel en sluit het portier om in de rijstand te blijven."]],
+    [["ESP_a118"], "Hulp bij lage remprestaties", 2, "Compensatie voor remfading is actief.", ["Trap het rempedaal stevig in en pomp niet.", "Komt verminderd remvermogen terug: laat de remmen nakijken."]],
+    [["ICR_a137"], "Boordradar belemmerd", 1, "De interieurradar wordt geblokkeerd, bijvoorbeeld door voorwerpen aan het plafond of grote voorwerpen voorin.", ["Haal de voorwerpen weg.", SV]],
+    [["PCS_a016"], "Kan niet opladen, mogelijk slechte netkwaliteit", 1, "AC-laden is gestopt door een probleem met de voeding.", ["Probeer een ander stopcontact of laadpunt.", SV]],
+    [["PCS_a017"], "Opladen gestopt: stroom uitgevallen", 1, "De stroom viel uit tijdens het laden; meestal geen probleem met de auto.", ["Controleer de stroombron, de aardlekschakelaar en de lampjes van de laadapparatuur."]],
+    [["PCS_a019"], "AC-laden beperkt", 1, "De laadsnelheid is verlaagd door het net of de auto.", ["Koppel los en probeer opnieuw, of gebruik een ander laadpunt.", SV]],
+    [["PCS_a032"], "Slechte kwaliteit elektriciteitsnet", 1, "De lader ziet storingen op het net.", ["Probeer een ander stopcontact of andere apparatuur.", "Laad wanneer grote apparaten uit staan."]],
+    [["PCS_a052"], "Externe laadapparatuur levert geen stroom", 1, "De auto vraagt stroom, maar die komt niet.", ["Probeer andere laadapparatuur."]],
+    [["PCS_a053", "PCS_a054"], "Grote spanningsdaling tijdens laden", 2, "Door een sterke spanningsdaling is de laadsnelheid verlaagd (a053) of het laden gestopt (a054).", ["Gebruik geen verlengsnoeren.", "Controleer de adapter.", EL]],
+    [["PCS_a073"], "Fout externe laadapparatuur", 2, "Er staat spanning op de laadaansluiting terwijl er geen stroom gevraagd is.", ["Gebruik andere laadapparatuur."]],
+    [["PCS_a090"], "Laden trager: geen stroom op bepaalde fasen", 1, "Een of meer fasen ontbreken, bijvoorbeeld bij driefasig laden.", ["Probeer andere apparatuur of een ander laadpunt."]],
+    [["PM_a092", "PMF_a092", "PMR_a092"], "Probleem met de aandrijflijn", 3, "Vermogen, snelheid en acceleratie zijn beperkt; de auto kan tijdens de rit uitvallen.", ["Plan zo snel mogelijk service, ook als de melding verdwijnt."]],
+    [["UI_a004"], "Voorbak open", 2, "De voorbak werd tijdens het rijden als open gedetecteerd.", ["Rijd voorzichtig tot je veilig kunt stoppen en controleer de vergrendeling.", SV]],
+    [["UI_a006"], "Onderhoud is nodig", 2, "Tesla heeft op afstand een onderhoudswaarschuwing ingesteld.", ["Plan zo snel mogelijk onderhoud; alleen een monteur kan de melding wissen."]],
+    [["UI_a137"], "Actieve serviceverbinding", 1, "Een monteur is op afstand verbonden voor diagnose; de auto is niet defect.", ["Herstart zo nodig het touchscreen.", "Staat de melding na 24 uur nog: plan service."]],
+    [["UMC_a001", "UMC_a040"], "Mobile Connector: stopcontact niet goed geaard", 3, "Het stopcontact is niet goed geaard; laden zonder aarding kan een schok geven.", ["Gebruik een ander stopcontact en geen verlengkabel.", EL]],
+    [["UMC_a002"], "Mobile Connector: aardlek aangesproken", 2, "De aardlekbeveiliging in de connector is aangesproken.", ["Droog de laadpoort en de handgreep.", "Controleer de kabel.", "Probeer andere laadapparatuur."]],
+    [["UMC_a004", "UMC_a005"], "Mobile Connector: spanning te hoog of te laag", 2, "Het stopcontact levert te veel of te weinig spanning.", ["Probeer een ander stopcontact.", "Laat de bedrading controleren."]],
+    [["UMC_a007", "UMC_a016"], "Mobile Connector: regelkast te warm", 1, "De regelkast is oververhit; het laden stopt (a007) of gaat langzamer (a016).", ["Laat de connector afkoelen en dek hem niet af.", "Blijft het bij normale temperatuur (onder 38 °C): plan onderhoud."]],
+    [["UMC_a008", "UMC_a017"], "Mobile Connector: wandstekker te warm", 2, "Het stopcontact wordt te warm.", ["Steek de adapter goed in.", "Laat stopcontact en bedrading nakijken; vervang een versleten stopcontact."]],
+    [["UMC_a009", "UMC_a018"], "Mobile Connector: laadgreep te warm", 1, "De handgreep wordt te warm.", ["Controleer of de greep volledig in de laadpoort zit.", "Maak poort en greep schoon en droog.", SV]],
+    [["UMC_a010", "UMC_a019"], "Mobile Connector: aansluiting adapter heet", 1, "De verbinding tussen adapter en connector wordt te warm.", ["Steek de adapter volledig in, maak hem schoon en laat hem afkoelen."]],
+    [["UMC_a011", "UMC_a012"], "Mobile Connector: communicatiefout", 1, "Auto en connector communiceren niet goed.", ["Controleer de laadpoort op obstakels en sluit opnieuw aan.", "Test met andere laadapparatuur."]],
+    [["UMC_a013", "UMC_a014", "UMC_a015"], "Fout in wandstekkeradapter, laden op 8 A", 1, "De connector herkent de adapter of het stopcontact niet goed; laden is beperkt tot 8 A.", ["Maak de adapter los en steek hem weer vast.", "Probeer een andere adapter; blijft het, dan is connector of adapter defect."]],
+    [["VCFRONT_a173"], "Software elektrisch systeem niet compatibel", 3, "Hoogvoltonderdelen hebben verschillende softwareversies; rijden en hoogvoltladen zijn geblokkeerd.", ["Plan service; een software-update kan nodig zijn."]],
+    [["VCFRONT_a180", "VCFRONT_a192", "VCFRONT_a220"], "Elektrisch systeem kan niet alle functies ondersteunen", 2, "Het systeem kan niet genoeg spanning leveren of de 12V-accu is niet beschikbaar; de auto kan onverwacht uitvallen.", ["Gebruik minder niet-essentiële functies.", "Plan direct onderhoud."]],
+    [["VCFRONT_a182"], "12V-accu vervangen", 2, "De 12V-accu is verzwakt; software-updates worden pas na vervanging voltooid.", ["Laat de 12V-accu zo snel mogelijk vervangen."]],
+    [["VCFRONT_a191", "VCFRONT_a496"], "Auto wordt uitgeschakeld: verlaat veilig de weg", 3, "De auto kan het rijden niet meer ondersteunen en gaat uitschakelen.", ["Stop zo snel mogelijk veilig en bel Tesla-pechhulp.", "Gebruik zo nodig de handmatige portierontgrendeling."]],
+    [["VCFRONT_a216"], "Auto start mogelijk niet, service vereist", 3, "Door hoge stroomvraag tijdens rijden of snelladen start de auto mogelijk niet meer.", ["Plan zo snel mogelijk service."]],
+    [["VCFRONT_a396"], "Koelvloeistofpeil laag", 2, "Mogelijk een lek.", ["Kijk of er vloeistof of schade onder de auto is; bij duidelijk lek direct service, anders snel service.", "Gebruik alleen door Tesla goedgekeurde koelvloeistof."]],
+    [["VCFRONT_a402"], "Noodstroom elektrisch systeem niet beschikbaar", 2, "De 12V-noodstroombron werkt niet; meer stilstandverbruik en minder bereik.", ["Plan zo snel mogelijk onderhoud."]],
+    [["VCFRONT_a592", "VCFRONT_a593", "VCFRONT_a596", "VCFRONT_a597"], "Rijden niet mogelijk, service vereist", 3, "Door hoge stroomvraag kan de auto niet rijden of opnieuw starten.", ["Plan direct service.", "Gebruik zo nodig de handmatige portierontgrendeling."]],
+    [["VCSEC_a221"], "Bandenspanning lager dan aanbevolen", 1, "Minstens één band is 20% onder de aanbevolen koude spanning; geen lekke band.", ["Pomp de banden op tot de aanbevolen spanning.", "Komt het bij dezelfde band terug: laat hem op een lek controleren."]],
+    [["VCSEC_a228"], "Bandenspanning zeer laag", 3, "Een of meer banden zijn extreem laag of lek.", ["Stop zo snel mogelijk veilig en controleer de banden.", "Bel pechhulp of ga naar een bandenspecialist."]]
+  ];
+  const fs = [];
+  for (const [codes, t, d, cause, steps] of G) for (const c of codes) fs.push(F(c, t, d, cause + (codes.length > 1 ? ` Tesla geeft dezelfde uitleg voor ${codes.join(", ")}.` : ""), steps));
+  addF("tesla-waarschuwingscodes", "teslaAlertsY", ...fs);
+})();
+(() => {
+  SRC.kiaEvLcd = ["Kia – Handleiding elektrische auto (NL, 2025): meldingen op het LCD-display", "https://ownersmanual.kia.com/full_webhelp/SV1/2025/nl_NL/topics/t00070.html"];
+  const dealer = "Ga naar een Kia-dealer of servicepartner.";
+  MODELS.push({ id: "kia-ev-meldingen", brand: "Kia", name: "Kia elektrische auto: meldingen op het display", dev: "Kia EV (displaymeldingen)", cat: "auto", years: "Kia elektrische auto's (handleiding 2025, NL)", unit: null, also: "Kia EV Vermogen beperkt, Kia Controleer het elektrisch voertuigsysteem, Kia Laden onderbroken controleer de AC-lader, Kia Ontkoppel de stekker om te starten, Kia batterij oververhit", intro: "Een elektrische Kia toont meldingen in tekst op het instrumentenpaneel. Bij 'Controleer het elektrisch voertuigsysteem' en 'Breng het voertuig veilig tot stilstand en controleer de voeding' moet je stoppen en de auto laten wegslepen.", weak: [], parts: [], tasks: [], src: ["kiaEvLcd"], faults: [
+    N("Lage batterijspanning", 1, "De hoogvoltaccu is ongeveer 25% of minder (ongeveer 20% bij de extra grote accu).", ["Laad de accu direct op."]),
+    N("Direct laden. Vermogen beperkt", 1, "De accu is ongeveer 15% of minder (ongeveer 10% bij de extra grote accu); het vermogen wordt beperkt om energie te sparen.", ["Laad de accu direct op."]),
+    N("Controleer het elektrisch voertuigsysteem", 3, "Er is een fout in het elektrische besturingssysteem.", ["Rijd niet verder: stop op een veilige plek en laat de auto naar een Kia-dealer slepen."]),
+    N("Vermogen beperkt", 1, "Het vermogen is uit veiligheid beperkt, bijvoorbeeld door een lage accu, te warme of koude accu, hoge motortemperatuur of een open motorkap.", ["Accelereer niet hard.", "Laad op als de accu laag is."]),
+    N("Vermogen beperkt vanwege lage temperatuur EV-batterij. Laad batterij", 1, "Lage buitentemperatuur, vaak na lang buiten parkeren met een lege accu.", ["Laad de auto op voordat je rijdt.", "Blijft de melding als het warmer wordt: laat de auto nakijken."]),
+    N("Batterij is oververhit! Stop op een veilige manier", 3, "De hoogvoltaccu is te warm.", ["Zet de auto uit, stop en laat de accu afkoelen.", "Blijft de waarschuwing nadat de auto lang genoeg uit stond: stop met rijden en laat hem nakijken."]),
+    N("Breng het voertuig veilig tot stilstand en controleer de voeding", 3, "Er is een fout in het 12V-systeem.", ["Stop veilig en laat de auto naar een Kia-dealer slepen."]),
+    N("Ontkoppel de stekker om te starten", 1, "De auto werd gestart terwijl de laadkabel nog vastzat.", ["Haal de laadkabel eruit en start opnieuw."]),
+    N("Laadklep geopend", 1, "Er werd gereden met de laadklep open.", ["Sluit de laadklep."]),
+    N("Laden onderbroken. Controleer de AC-lader / DC-lader", 1, "Fout in de externe lader, de lader is gestopt, of de laadkabel is beschadigd.", ["Controleer lader en kabel.", "Gebeurt het ook met een werkende lader of de originele draagbare Kia-lader: laat de auto nakijken."]),
+    N("Laden onderbroken. Controleer de kabelverbinding", 1, "De stekker zit niet volledig vast, of de ontgrendelknop van de stekker is ingedrukt.", ["Haal de stekker eruit en steek hem opnieuw in.", "Controleer stekker en laadpoort op schade of vuil.", "Blijft het met een andere kabel of de originele Kia-lader: laat de auto nakijken."]),
+    N("Controleer de regeneratieve remmen", 2, "Het regeneratieve remsysteem werkt niet goed.", [dealer]),
+    N("Controleer Virtual Engine Sound-systeem", 2, "Fout in het geluidssysteem voor voetgangers (VESS).", [dealer]),
+    N("Koelvloeistof bijvullen", 2, "Het koelvloeistofpeil is laag; lang doorrijden kan ernstige elektrische problemen geven.", ["Stop met rijden en laat de auto nakijken door een Kia-dealer of servicepartner."])
+  ]});
+})();
+(() => {
+  SRC.mieleCm5 = ["Miele – Gebruiksaanwijzing koffiemachine CM 5300/5310/5315/5410/5510/5710 (NL/BE, M.-Nr. 12 920 220)", "https://media.miele.com/downloads/42/5a/01_C7F12828EE8C1FE0B4A4B66224E2425A.pdf"];
+  MODELS.push({ id: "miele-cm5", brand: "Miele", name: "CM5-koffiemachine (CM 5300–5710): F-codes en storingen", dev: "CM5 koffiemachine", cat: "koffiemachines", years: "Miele CM 5300, CM 5310, CM 5315, CM 5410, CM 5510, CM 5710", unit: null, also: "Miele CM5 F10, Miele CM5310 F73, Miele koffiemachine F41, Miele CM5 waterreservoir leeg terwijl vol, Miele CM5 geen melkschuim, Miele CM5 vul bonenreservoir", intro: "De Miele CM5-serie toont bij een storing een F-code. Bij interne storingen (F1, F2, F41 enz.) helpt meestal uitzetten en wachten. Doseer bij gemalen koffie nooit meer dan 12 g, anders verschijnt de melding 'te veel gemalen koffie'.", weak: [], parts: [], tasks: [], src: ["mieleCm5"], faults: [
+    F("F1", "Interne storing (F1, F2, F80, F82)", 2, "Interne storing; dezelfde oplossing geldt voor F2, F80 en F82.", ["Zet het apparaat uit met de aan/uit-toets en wacht ongeveer 1 uur voordat je het weer aanzet."]),
+    F("F41", "Interne storing (F41, F42, F74, F77, F235, F236)", 2, "Interne storing; dezelfde oplossing geldt voor F42, F74, F77, F235 en F236.", ["Zet het apparaat uit met de aan/uit-toets en wacht ongeveer 2 minuten voordat je het weer aanzet."]),
+    F("F10", "Geen of te weinig water aangezogen (F10, F17)", 1, "Er wordt geen of te weinig water aangezogen; geldt ook voor F17.", ["Haal het waterreservoir eruit, vul het met vers kraanwater en plaats het terug.", "Blijft de fout: haal de zeef van het waterreservoir eruit en maak hem schoon."]),
+    F("F73", "Filtersysteem kan uitgangspositie niet bereiken", 1, "Het filtersysteem komt niet in de uitgangspositie.", ["Zet uit, trek de stekker eruit en wacht twee minuten.", "Haal het filtersysteem eruit en spoel het onder stromend water.", "Zet het koffie-uitwerpmechanisme in de uitgangspositie, sluit de deur en zet het apparaat aan.", "Vraagt het display erom: plaats het filtersysteem terug en sluit de deur."]),
+    N("Te veel gemalen koffie", 1, "De koffietrechter is overdoseerd.", ["Zet uit, reinig het filtersysteem en de binnenkant.", "Doseer maximaal 12 g gemalen koffie."]),
+    N("Display blijft donker bij inschakelen", 1, "Aan/uit-toets te kort aangeraakt, stekker los, of zekering doorgeslagen.", ["Houd de toets minimaal 3 seconden ingedrukt en steek de stekker goed in.", "Zekering doorgeslagen: trek de stekker eruit en raadpleeg een elektricien of Miele."]),
+    N("Sensortoetsen reageren niet", 1, "Interne storing.", ["Onderbreek de stroom via de stekker of de zekering."]),
+    N("Melding waterreservoir leeg, terwijl het vol is", 1, "Vocht of kalk onder het reservoir, of het reservoir zit niet goed.", ["Droog en reinig de plek onder het reservoir en plaats het opnieuw.", "Bij ontkalken: vul tot de ontkalkingsmarkering."]),
+    N("Spoelt niet bij inschakelen, melding waterreservoir blijft", 1, "Het apparaat is verkalkt.", ["Zet uit, wacht ongeveer een uur, zet weer aan en ontkalk het apparaat."]),
+    N("Leeg de opvangschaal, terwijl die leeg is", 1, "Geen storing: de teller is niet gereset omdat je na het uitschakelen leegde.", ["Plaats opvangschaal en afvalbakje opnieuw goed terug."]),
+    N("Vul het bonenreservoir, terwijl het vol is", 1, "Geen storing: de sensor ziet te weinig koffiepoeder.", ["Bevestig met OK.", "Bij donkere, vette bonen: maak het reservoir vaker schoon of gebruik een andere soort."]),
+    N("Bereiding wordt steeds afgebroken", 1, "De sensor ziet te weinig koffiepoeder, bijvoorbeeld bij bepaalde bonen.", ["Bevestig met OK.", "Stel een grovere maling en/of een grotere koffiehoeveelheid in."]),
+    N("Geen melk of melkschuim", 1, "De melkleiding is verstopt.", ["Reinig de cappuccinatore en de aansluitstukken met de borstel."]),
+    N("Hete melk in plaats van schuim, of sputteren", 1, "Melk te warm, uitloop niet goed gemonteerd of verstopt, of stoomventiel verstopt.", ["Gebruik koude melk (onder 10 °C).", "Controleer en reinig de uitloop.", "Reinig het stoomventiel met de borstel."]),
+    N("Display aan, maar geen verwarming of dranken", 1, "De demofunctie voor winkels staat aan.", ["Zet de demofunctie uit."])
+  ]});
+})();
+(() => {
+  SRC.mieleCva7445 = ["Miele – Gebruiks- en montagehandleiding inbouwkoffiemachine CVA 7445 (NL, M.-Nr. 12 860 291)", "https://media.miele.com/downloads/fe/f6/01_6045BD182B051FE1A6E0AFE46C15FEF6.pdf"];
+  MODELS.push({ id: "miele-cva-7445", brand: "Miele", name: "CVA 7440 / 7445 inbouwkoffiemachine: F-codes en storingen", dev: "CVA 7440 / 7445 inbouwkoffiemachine", cat: "koffiemachines", years: "Miele CVA 7440 en CVA 7445", unit: null, also: "Miele CVA F1, Miele inbouwkoffiemachine F73, Miele F233 kopjessensor, Miele F307 melkventiel, Miele CVA display donker", intro: "De Miele CVA 7440 en 7445 inbouwkoffiemachines tonen storingen als F-code op het display. Bij interne storingen helpt uitzetten en wachten; voor de duur verschilt het per code.", weak: [], parts: [], tasks: [], src: ["mieleCva7445", "mieleCva7440"], faults: [
+    F("F1", "Interne storing (F1, F2, F80, F82)", 2, "Interne storing; dezelfde oplossing geldt voor F2, F80 en F82.", ["Zet het apparaat uit en wacht ongeveer 1 uur voordat je het weer aanzet."]),
+    F("F74", "Interne storing (F74, F77, F225, F226, F235)", 2, "Interne storing; dezelfde oplossing geldt voor F77, F225, F226 en F235.", ["Zet het apparaat uit en wacht ongeveer 2 minuten voordat je het weer aanzet."]),
+    F("F73", "Filtersysteem kan startpositie niet bereiken of is vuil", 1, "Het filtersysteem komt niet in de startpositie of is vuil.", ["Kijk of het filtersysteem eruit kan; spoel het onder stromend water, zet het in de juiste stand en plaats het terug.", "Kan het er niet uit: zet het apparaat uit en wacht ongeveer 2 minuten."]),
+    F("F233", "Kopjessensor niet goed geplaatst", 1, "De kopjessensor zit niet of niet goed op zijn plaats.", ["Bevestig de melding en plaats de sensor opnieuw."]),
+    F("F307", "Fout melkventiel", 1, "Er is een fout met het melkventiel.", ["Haal het melkventiel eruit en maak het schoon."]),
+    N("Onderhoud onderbroken: reservoir niet geplaatst", 1, "Het waterreservoir is niet goed gevuld of geplaatst.", ["Vul tot de juiste markering, druk het reservoir aan tot het klikt en start het programma opnieuw."]),
+    N("Melding watertoevoer", 1, "De vaste wateraansluiting werkt niet.", ["Controleer slang en kraan.", "Leeg het reservoir en plaats het terug."]),
+    N("Display blijft donker", 1, "De aan/uit-toets te kort ingedrukt, stekker los, of zekering doorgeslagen.", ["Houd de aan/uit-toets minimaal 3 seconden ingedrukt.", "Controleer of de stekker goed in het stopcontact zit.", "Zekering doorgeslagen: trek de stekker eruit en neem contact op met een elektricien of Miele."]),
+    N("Display reageert niet", 1, "Miele noemt geen oorzaak.", ["Houd de aan/uit-toets ingedrukt tot het display uitgaat en het apparaat opnieuw start."]),
+    N("Sensortoetsen reageren niet", 1, "Interne storing.", ["Onderbreek de stroom via de stekker of de zekering."]),
+    N("Verlichting blijft uit", 1, "De verlichting staat uit, of is defect.", ["Zet de verlichting aan in de instellingen.", "Blijft hij uit: neem contact op met Miele."]),
+    N("Ventilator blijft draaien", 1, "Normaal: de ventilator draait na tot het interieur is gelucht.", ["Niets doen."])
+  ]});
+})();
+(() => {
+  SRC.mieleCva7440 = ["Miele – Gebruiks- en montagehandleiding inbouwkoffiemachine CVA 7440 (NL, M.-Nr. 12 860 021)", "https://media.miele.com/downloads/03/16/01_70A8A51285B71FE1A6E0F32846B00316.pdf"];
+  SRC.mieleCm6 = ["Miele – Gebruiksaanwijzing koffiemachine CM 6360 / CM 6560 (NL/BE, M.-Nr. 12 922 481)", "https://media.miele.com/downloads/5e/f6/01_6045BD182B051FE1A6DFA22481F25EF6.pdf"];
+  const back = "Bevestig met OK. Komt de melding terug nadat je het probleem hebt verholpen: neem contact op met Miele.";
+  MODELS.push({ id: "miele-cm6", brand: "Miele", name: "CM 6360 / CM 6560 koffiemachine: F-codes en storingen", dev: "CM6 koffiemachine", cat: "koffiemachines", years: "Miele CM 6360 en CM 6560", unit: null, also: "Miele CM6360 F10, Miele CM6560 F73, Miele CM6 controleer het filtersysteem, Miele CM6 vul het waterreservoir, Miele koffiemachine F41", intro: "De Miele CM 6360 en CM 6560 tonen storingen met een F-code. Bevestig een melding met OK; ze kan na het oplossen nog een paar keer verschijnen.", weak: [], parts: [], tasks: [], src: ["mieleCm6"], faults: [
+    F("F1", "Interne storing (F1, F2, F80, F82)", 2, "Interne storing; dezelfde oplossing geldt voor F2, F80 en F82.", ["Zet het toestel uit en wacht ongeveer 1 uur voordat je het weer aanzet.", back]),
+    F("F41", "Interne storing (F41, F42, F74, F77, F235, F236)", 2, "Interne storing; dezelfde oplossing geldt voor F42, F74, F77, F235 en F236.", ["Zet het toestel uit en wacht ongeveer 2 minuten.", back]),
+    F("F10", "Geen of te weinig water aangezogen (F10, F17)", 1, "Er wordt geen of te weinig water aangezogen; geldt ook voor F17.", ["Vul het waterreservoir met schoon kraanwater.", "Reinig de zeef van het reservoir."]),
+    F("F73", "Controleer het filtersysteem", 1, "Het filtersysteem kan niet in de basispositie komen.", ["Zet uit en trek de stekker twee minuten uit het stopcontact.", "Reinig het filtersysteem onder stromend water en zet het uitwerpmechanisme in de basispositie.", "Zet het toestel aan en plaats het filtersysteem als het display erom vraagt."]),
+    N("Display blijft donker", 1, "Aan/uit-schakelaar te kort ingedrukt, stekker los, of zekering doorgeslagen.", ["Houd de aan/uit-schakelaar minimaal 3 seconden ingedrukt.", "Controleer de stekker.", "Zekering doorgeslagen: trek de stekker eruit en neem contact op met een elektricien of Miele."]),
+    N("Sensortoetsen reageren niet", 1, "Interne storing.", ["Onderbreek de stroom via de stekker of de zekering."]),
+    N("Vul het waterreservoir, terwijl het vol is", 1, "Het reservoir zit niet goed, of was bij het ontkalken niet tot de markering gevuld.", ["Plaats het reservoir opnieuw en reinig de zeef.", "Bij ontkalken: vul tot de markering en start het programma opnieuw."]),
+    N("Spoelt niet, mogelijk verkalkt", 1, "Het toestel is verkalkt.", ["Zet uit, wacht ongeveer een uur en zet weer aan.", "Kies bij de opwarmfase 'Toestel ontkalken' en ontkalk."]),
+    N("Maak de opvangschaal en het afvalbakje leeg, terwijl ze leeg zijn", 1, "Geen storing: de teller wordt niet gereset als je leegmaakt terwijl het toestel uit staat.", ["Miele noemt dit geen storing."])
+  ]});
+})();
+(() => {
+  SRC.scarletBoxFiber = ["Scarlet – Installatiegids Internet Box (glasvezel, NL)", "https://scarlet.be/manuals/uploads/pdf/PXM-13271-DUG-Scarlet_Internet-Box_NL-Fiber.pdf"];
+  const rs = ["Start de Internet Box opnieuw op."];
+  MODELS.push({ id: "scarlet-internet-box", brand: "Scarlet", name: "Internet Box (glasvezel): lampjes", dev: "Internet Box (glasvezel)", cat: "internet", years: "Scarlet Internet Box (Fiber)", unit: null, also: "Scarlet modem rood lampje, Scarlet Internet Box wifi rood, Scarlet telefonie lampje knippert, Scarlet geen internet, Scarlet box lampjes betekenis", intro: "De Scarlet Internet Box heeft lampjes voor internet, telefonie en wifi. Continu blauw betekent dat alles werkt; rood betekent een probleem en dan is de eerste stap de box opnieuw opstarten. Na het aanzetten kan de configuratie een paar minuten duren.", weak: [], parts: [], tasks: [], src: ["scarletBoxFiber"], faults: [
+    N("Internet-lampje rood", 2, "Er is een probleem met de internetverbinding.", rs),
+    N("Telefonie-lampje rood", 1, "De telefoniedienst werkt niet correct.", rs),
+    N("Telefonie-lampje knippert wit", 1, "De telefoniedienst is tijdelijk niet beschikbaar.", ["Wacht even."]),
+    N("Telefonie-lampje knippert turquoise", 1, "De hoorn ligt niet op de haak.", ["Leg de hoorn terug."]),
+    N("Wifi-lampje rood", 1, "De wifi werkt niet correct.", rs),
+    N("Wifi-lampje uit", 1, "De wifi staat uit.", ["Zet de wifi aan."]),
+    N("Wifi-lampje knippert wit", 1, "WPS-koppelen is mogelijk (maximaal 2 minuten).", ["Zet binnen die tijd WPS aan op het andere apparaat."])
+  ]});
+})();
+(() => {
+  SRC.ps4Port = ["Polestar – Polestar 4 handleiding (2026, NL): laadstatus bij de laadpoort", "https://www.polestar.com/nl/manual/polestar-4/2026/article/a3d4c324d33d417cc0a8cc37744d76ea-ec8b59f1d33539aec0a8cc374c819eab-059c61879f5b4d80c0a8b0c163d5e0f7/"];
+  SRC.ps4Display = ["Polestar – Polestar 4 handleiding (2026, NL): laadstatus op het bestuurdersdisplay", "https://www.polestar.com/nl/manual/polestar-4/2026/article/a3d4c324d33d417cc0a8cc37744d76ea-ec8b59f1d33539aec0a8cc374c819eab-f0a1926ca35316b9c0a8b04a6f1985b3/"];
+  MODELS.push({ id: "polestar-4-laden", brand: "Polestar", name: "Polestar 4: laadlampje en laadstatus", dev: "Polestar 4 laden", cat: "auto", years: "Polestar 4 (handleiding 2026)", unit: null, also: "Polestar 4 laadpoort rood, Polestar 4 laadt niet, Polestar 4 geel lampje laden, Polestar 4 laadfout, Polestar 4 blauw knipperen", intro: "Het lampje bij de laadpoort van de Polestar 4 en het bestuurdersdisplay laten de laadstatus zien. Rood betekent een laadfout; op het display staat dan meer informatie.", weak: [], parts: [], tasks: [], src: ["ps4Port", "ps4Display"], faults: [
+    N("Laadpoort rood / Fout (rood) op het display", 2, "Er is een storing in de laadaansluiting; de melding op het display hangt af van de storing.", ["Controleer of de kabel volledig in de auto zit en de stroombron werkt.", "Haal de kabel uit de auto, steek hem opnieuw in en start het laden opnieuw.", "Blijft de fout: neem contact op met een servicepunt."]),
+    N("Laadpoort geel / Verbonden (geel)", 1, "De kabel zit erin maar de auto laadt niet: laden kan starten, is gepauzeerd of staat stand-by, bijvoorbeeld door een eigen planning van het laadpunt of oververhitting.", ["Polestar noemt hier geen concrete stappen."]),
+    N("Laadpoort blauw / Laden start later", 1, "Er is een laadsessie ingepland.", ["Niets doen; het laden start op het geplande tijdstip."]),
+    N("Laadpoort knippert blauw / Stroomafgifte", 1, "De auto geeft stroom af (ontladen).", ["Niets doen."]),
+    N("Laadpoort knippert groen", 1, "De auto laadt.", ["Niets doen."]),
+    N("Laadpoort groen / Klaar", 1, "Het laden is klaar.", ["Niets doen."])
+  ]});
+})();
+(() => {
+  SRC.victronSbp = ["Victron Energy – Handleiding Smart BatteryProtect 12V/24V (NL), bijlage foutcodes", "https://www.victronenergy.com/media/pg/Smart_BatteryProtect_12V_24V/nl/appendix.html"];
+  SRC.victronSkylla = ["Victron Energy – Handleiding Skylla-IP65 (NL): foutindicatie", "https://victronenergy.com/media/pg/Skylla-IP65/nl/error-indication.html"];
+  const dlr = "Neem contact op met je dealer; het apparaat moet worden vervangen.";
+  MODELS.push({ id: "victron-smart-batteryprotect", brand: "Victron Energy", name: "Smart BatteryProtect: foutcodes E0–E8", dev: "Smart BatteryProtect 12V/24V", cat: "camper-caravan", years: "Victron Smart BatteryProtect 12V/24V", unit: null, also: "Victron BatteryProtect E1, Smart BatteryProtect E3 onderspanning, BatteryProtect E8 retourstroom, BatteryProtect E7 BMS, Victron SBP foutcode", intro: "De Victron Smart BatteryProtect schakelt belastingen af om de accu te beschermen en toont dan een foutcode (E) of waarschuwing (P).", weak: [], parts: [], tasks: [], src: ["victronSbp"], faults: [
+    F("E0", "Kalibratiefout", 3, "Interne storing door ontbrekende of foutieve kalibratiegegevens.", [dlr]),
+    F("E1", "Kortsluiting", 2, "Kortsluiting, overbelasting of te hoge aanloopstroom, bijvoorbeeld bij het direct inschakelen van een omvormer.", ["Controleer op kortsluiting en of de belastingsstroom binnen de limiet blijft.", "Gebruik voor belastingen met hoge aanloopstroom de remote aan/uit-functie.", "Controleer verbindingen en gebruik de juiste kabeldikte."]),
+    F("P2", "Waarschuwing hoge temperatuur", 1, "De interne temperatuur nadert de grens.", ["Grijp direct in om uitschakelen van de belasting te voorkomen."]),
+    F("E2", "Te hoge temperatuur", 2, "De interne temperatuur is te hoog.", ["Controleer of de stroom binnen de capaciteit van de BatteryProtect blijft.", "Controleer verbindingen en kabeldikte.", "Zet het apparaat koeler of zorg voor extra koeling."]),
+    F("P3", "Waarschuwing lage spanning", 1, "Zonder actie schakelt de beveiliging binnen 90 seconden in.", ["Grijp direct in; anders schakelt de beveiliging binnen 90 seconden in."]),
+    F("E3", "Te lage spanning", 1, "De ingangsspanning bleef 90 seconden onder de grens.", ["Schakel de belasting uit of koppel hem los.", "Laad de accu op en controleer laadsysteem en accu."]),
+    F("E4", "Te hoge spanning", 2, "De ingangsspanning is hoger dan 16 V (12V-systeem) of 32 V (24V-systeem).", ["Controleer de instellingen van alle laders, vooral systeem- en laadspanning.", "Controleer de systeemspanningsinstelling van de BatteryProtect en het laadsysteem."]),
+    F("E5", "Configuratiefout", 1, "Ontbrekende of foutieve configuratie.", ["Reset naar fabrieksinstellingen (Instellingen > Meer opties > Reset naar standaard).", "Koppel alle belastingen los, wacht 3 minuten en configureer opnieuw."]),
+    F("E6", "Storing referentiespanning", 3, "Intern defect.", [dlr]),
+    F("E7", "BMS-blokkering", 2, "De externe BMS liet de BatteryProtect drie keer achter elkaar uit- en inschakelen, meestal door lage celspanning. Hij blijft uit tot de spanning boven 13 V (12V) of 26 V (24V) komt.", ["Controleer de foutcodes van de BMS.", "Koppel de belasting los en laad de accu op.", "Controleer de bedrading tussen BMS en remote-aansluiting."]),
+    F("E8", "Retourstroom", 3, "Er is stroom terug gedetecteerd; dit kan de BatteryProtect blijvend beschadigen.", ["Controleer de installatierichting: stroom alleen van IN naar OUT.", "Sluit geen laadbron aan op OUT.", "Zorg dat er geen belasting op IN zit als je een laadbron loskoppelt."])
+  ]});
+  const D2 = "Neem contact op met je dealer.";
+  MODELS.push({ id: "victron-skylla-ip65", brand: "Victron Energy", name: "Skylla-IP65 acculader: foutnummers", dev: "Skylla-IP65 acculader", cat: "camper-caravan", years: "Victron Skylla-IP65", unit: null, also: "Victron Skylla fout 2, Skylla IP65 error 20 bulktijd, Skylla fout 17 te warm, Skylla 67 BMS, Victron lader foutnummer", intro: "De Victron Skylla-IP65 toont een foutnummer bij een storing. Bij oververhitting (1 en 17) stopt de lader vanzelf en gaat hij verder als alles is afgekoeld.", weak: [], parts: [], tasks: [], src: ["victronSkylla"], faults: [
+    F("1", "Accutemperatuur te hoog", 1, "Overladen of snel laden.", ["Controleer de luchtstroom bij de accu en verbeter de koeling; de lader gaat vanzelf verder na afkoelen."]),
+    F("2", "Accuspanning te hoog", 2, "Bedradingsfout of een andere lader overlaadt de accu.", ["Controleer alle laadapparatuur, kabels en aansluitingen."]),
+    F("3", "Fout temperatuursensor (3, 4, 5)", 2, "Bedradingsfout of defecte temperatuursensor; geldt ook voor 4 en 5.", ["Controleer de bedrading van de sensor.", "Helpt dat niet: vervang de sensor."]),
+    F("6", "Fout spanningssensor (6, 7, 8, 9)", 2, "Bedradingsfout; geldt ook voor 7, 8 en 9.", ["Controleer de bedrading van de spanningssensor."]),
+    F("17", "Temperatuur lader te hoog", 1, "De warmte van de lader kan niet weg.", ["Controleer de luchtstroom rond de behuizing en verbeter de koeling; de lader gaat vanzelf verder na afkoelen."]),
+    F("18", "Interne fout", 3, "Interne fout.", [D2]),
+    F("20", "Bulktijd verlopen", 2, "Na 10 uur bulkladen heeft de accu de absorptiespanning nog niet bereikt.", ["Mogelijk werken de cellen niet goed, of is er een hogere laadstroom nodig."]),
+    F("24", "Ventilatorstoring", 2, "De ventilator is waarschijnlijk defect of geblokkeerd.", [D2]),
+    F("34", "Interne fout", 3, "Interne fout.", [D2]),
+    F("37", "Geen ingangsspanning", 1, "Stroomuitval of een doorgebrande AC-zekering (alleen versies met drie uitgangen).", ["Controleer het net en de zekering."]),
+    F("65", "Lader viel uit tijdens bedrijf", 1, "Een gesynchroniseerde lader is uitgevallen.", ["Zet de lader uit en weer aan om de fout te wissen."]),
+    F("66", "Apparaat niet compatibel", 2, "Parallel geschakeld met een lader met andere instellingen of laadalgoritme.", ["Zorg dat alle instellingen gelijk zijn en werk de firmware van alle laders bij."]),
+    F("67", "BMS-verbinding verloren", 1, "De verbinding met de BMS is verbroken.", ["Controleer de VE.Can-bekabeling.", "Zonder BMS: zet instellingenmenu #31 (BMS Present) op N."]),
+    F("115", "Communicatiefout", 2, "Communicatiefout.", ["Controleer de bedrading en aansluitklemmen."]),
+    F("119", "Instellingen ongeldig", 1, "De instellingen zijn ongeldig.", ["Herstel de standaardinstellingen via instellingenmenu #62."]),
+    N("Interne fout 113, 114, 116, 117, 118", 3, "Interne fout.", [D2])
+  ]});
+})();
+(() => {
+  SRC.victronInvRs = ["Victron Energy – Handleiding Inverter RS Smart (NL): probleemoplossing en ondersteuning", "https://www.victronenergy.com/media/pg/Inverter_RS_Smart/nl/troubleshooting-and-support.html"];
+  const sup = "Blijft de fout: neem contact op met je Victron-leverancier.";
+  const dead = "Herstart met de aan/uit-schakelaar; blijft de fout, dan is het apparaat waarschijnlijk defect.";
+  const G = [
+    [["2"], "Accuspanning te hoog", 2, "Een andere laadbron op de accu, of een defecte laadregelaar.", ["Herstelt zich als de accuspanning daalt.", "Controleer andere laadbronnen."]],
+    [["3","4"], "Temperatuursensor verkeerd aangesloten", 1, "De T-sense-connector zit op BAT+ of BAT-.", ["Sluit hem juist aan; de fout herstelt vanzelf."]],
+    [["5"], "Verbinding temperatuursensor verbroken", 1, "De T-sense-connector is niet goed aangesloten.", ["Controleer de aansluiting; de fout reset niet vanzelf."]],
+    [["6","7"], "Accuspanningsensor omgekeerd", 1, "De V-sense zit omgekeerd op BAT+ of BAT-.", ["Sluit hem juist aan op de accupolen."]],
+    [["8"], "Verbinding accuspanningsensor verbroken", 1, "De V-sense is niet goed aangesloten.", ["Controleer de aansluiting op de accupolen."]],
+    [["11"], "Hoge rimpelspanning accu", 2, "Losse DC-verbindingen of te dunne kabels.", ["De omvormer herstart na 30 s; na 3 keer binnen 30 s blijft hij uit: zet hem uit en weer aan.", "Controleer de DC-verbindingen en kabeldikte; aanhoudende rimpel verkort de levensduur."]],
+    [["14"], "Accutemperatuur te laag", 1, "De lader stopt om LiFePO4-cellen te beschermen.", ["Wacht tot de accu is opgewarmd."]],
+    [["20"], "Maximale bulktijd", 2, "Bij PV-laders een verwijderde oude functie; bij AC-laders is de absorptiespanning na 10 uur niet bereikt (mogelijk een kortgesloten cel).", ["PV-lader: werk de firmware bij, of doe een fabrieksreset en configureer opnieuw.", "AC-lader: controleer de accu en stop het laden."]],
+    [["22","23"], "Interne temperatuursensor", 2, "Meetwaarden buiten bereik.", ["Koppel alle draden los en weer aan.", sup]],
+    [["26"], "Aansluitklem oververhit", 2, "Slechte of ongeschikte bedrading.", ["Controleer kabeltype en -dikte en draai de bouten vast; herstelt vanzelf."]],
+    [["27"], "Kortsluiting lader", 2, "Kortsluiting.", ["Herstelt meestal vanzelf; anders: loskoppelen, 3 minuten wachten en opnieuw starten.", "Blijft de fout: waarschijnlijk defect."]],
+    [["28"], "Probleem met fase (lader)", 3, "Defect.", ["Koppel alle draden los en weer aan; blijft de fout, dan moet het apparaat worden vervangen."]],
+    [["29"], "Beveiliging tegen overladen", 2, "De accuspanning is hoger dan verwacht, mogelijk door te veel panelen in serie.", ["Controleer absorptie- en druppelspanning en pas zo nodig de PV-bedrading aan; herstelt vanzelf."]],
+    [["43"], "Aardingsfout", 3, "Intern aardrelais defect, of op het net: aarddraad ontbreekt of fase en nul zijn omgewisseld.", ["Laat de installatie controleren en herstart met de aan/uit-schakelaar."]],
+    [["50","52"], "Overbelasting of piekstroom", 1, "Te hoge belasting of inschakelstroom van motoren of pompen.", ["Wacht 30 s; na 3 herstarts blijft hij uit: zet uit en weer aan.", "Verlaag de belasting."]],
+    [["51"], "Temperatuur te hoog", 1, "Hoge omgevingstemperatuur of langdurig hoge belasting.", ["Verlaag de belasting.", "Zet het apparaat op een beter geventileerde plek en maak de ventilator vrij; herstart na 30 s."]],
+    [["53","54"], "Uitgangsspanning", 1, "De accu is te leeg voor de grote AC-belasting.", ["Laad de accu op of verlaag de AC-belasting."]],
+    [["55","56","58"], "Zelftest mislukt", 3, "Een interne test is mislukt.", [dead]],
+    [["57"], "AC-spanning op de uitgang", 3, "De AC-uitgang is verbonden met een stopcontact of een andere omvormer.", ["Laat de installatie controleren en herstart met de aan/uit-schakelaar."]],
+    [["65"], "Communicatie parallelle lader verbroken", 1, "De verbinding met een parallelle lader is weg.", ["Zet de lader uit en weer aan."]],
+    [["66"], "Apparaat niet compatibel", 2, "Een parallelle lader heeft andere instellingen of een ander laadalgoritme.", ["Maak de instellingen gelijk en werk de firmware van alle laders bij."]],
+    [["67"], "BMS-verbinding verbroken", 2, "De lader staat op BMS-besturing maar ontvangt geen berichten.", ["Controleer de verbinding met de BMS.", "Zonder BMS: zet bij VE.Can instelling 31 (BMS) op N; bij VE.Direct: resetten en opnieuw configureren."]],
+    [["68"], "Netwerk verkeerd geconfigureerd", 2, "Te oude firmware, of VE.Direct en VE.Can tegelijk aangesloten.", ["Werk de firmware bij (VE.Direct: v1.48 of hoger).", "Haal een van beide kabels weg."]],
+    [["114"], "CPU-temperatuur te hoog", 2, "Hoge omgevingstemperatuur of geblokkeerde luchtstroom.", ["Laat afkoelen en maak de luchtopeningen vrij.", "Blijft het: waarschijnlijk defect."]],
+    [["116","121"], "Kalibratiegegevens verloren / testfout", 2, "Actief: defect. Alleen in de historie: niet kritisch.", ["Alleen in de historie: negeren.", "Actief: neem contact op met je leverancier voor vervanging."]],
+    [["119"], "Instellingen verloren", 2, "De lader kan zijn configuratie niet lezen.", ["Doe een fabrieksreset, koppel los, wacht 3 minuten en configureer opnieuw.", "Meld het aan je leverancier."]],
+    [["200"], "Interne DC-spanning", 3, "Fout in de interne DC-DC-omzetter.", [dead]],
+    [["201"], "Interne DC-spanning (meetcircuit)", 3, "Defect meetcircuit.", ["Zorg voor firmware v1.08 of hoger.", "Blijft de fout: laat het apparaat repareren of vervangen."]],
+    [["203","205","212","215"], "Interne voedingsspanning", 3, "Fout in de interne voeding.", [dead]]
+  ];
+  const faults = [];
+  for (const [codes, t, d, cause, steps] of G) for (const c of codes) faults.push(F(c, t, d, cause + (codes.length > 1 ? ` Victron geeft dezelfde uitleg voor ${codes.join(", ")}.` : ""), steps));
+  MODELS.push({ id: "victron-inverter-rs-smart", brand: "Victron Energy", name: "Inverter RS Smart: foutcodes", dev: "Inverter RS Smart", cat: "camper-caravan", years: "Victron Inverter RS Smart (ook geldig voor sommige Victron-laders en MPPT's)", unit: null, also: "Victron Inverter RS fout 50, Victron fout 11 rimpelspanning, Victron fout 67 BMS, Victron error 2 accuspanning te hoog, Inverter RS Smart foutcode", intro: "De Victron Inverter RS Smart toont bij een storing een foutnummer. Veel van deze nummers gelden ook voor andere Victron-apparaten zoals laders en MPPT's.", weak: [], parts: [], tasks: [], src: ["victronInvRs"], faults });
+})();
+(() => {
+  SRC.victronLynx = ["Victron Energy – Handleiding Lynx Smart BMS (NL), bijlage waarschuwingen, alarmen en fouten", "https://www.victronenergy.com/media/pg/Lynx_Smart_BMS/nl/appendix.html"];
+  SRC.victronOrionXs = ["Victron Energy – Handleiding Orion XS 12/12-50A (NL): probleemoplossing en ondersteuning", "https://www.victronenergy.com/media/pg/Orion_XS_12-12-50A_DC-DC_battery_charger/nl/troubleshooting---support.html"];
+  const lev = "Neem contact op met je Victron-leverancier.";
+  const L = [
+    ["W-B01","Waarschuwing lage celspanning",1,["Laad de accu op of verminder de belasting."]],["W-B02","Waarschuwing hoge stroom",1,["Verminder de stroom of zet belastingen uit."]],
+    ["W-B03","Waarschuwing hoge BMS-temperatuur",1,["Verlaag de omgevingstemperatuur.","Werken de ventilatoren niet: "+lev.toLowerCase()]],["W-B04","Waarschuwing defecte magneetschakelaar",2,["Verminder de stroom.",lev]],
+    ["W-B06","Belasting wordt binnen 30 s losgekoppeld",1,["Los de oorzaak op, bijvoorbeeld een lage accuspanning."]],["W-B07","Waarschuwing lage laadtoestand",1,["Laad de accu op of verminder de belasting."]],
+    ["W-B10","VE.Can losgekoppeld",1,["Controleer de communicatiekabel."]],
+    ["A-B01","Alarm lage celspanning",1,["Laad de accu op; de belastingen gaan weer aan als de accu voldoende geladen is."]],["A-B02","Alarm hoge stroom",1,["Verlaag de laadstroom of zet belastingen uit; het systeem probeert binnen 5 minuten opnieuw in te schakelen."]],
+    ["A-B06","Belasting losgekoppeld",1,["Laad de accu op. Blijft het probleem, dan opent uiteindelijk de magneetschakelaar."]],["A-B07","Alarm lage laadtoestand",1,["Laad de accu op; de belastingen gaan weer aan bij voldoende lading."]],
+    ["E-B01","Storing bij accu-initialisatie",2,["Controleer of alle accu's goed zijn aangesloten."]],["E-B02","Geen accu gevonden",2,["Controleer of de BMS-kabellus gesloten is."]],["E-B05","Ongeldig aantal accu's",2,["Controleer of alle accu's goed zijn aangesloten."]],
+    ["E-B09","Accuspanning niet toegestaan",2,["De spanning ligt buiten 9–60 V: controleer de accuspanning en de accu-instellingen in VictronConnect."]],["E-B11","Hardwarefout",3,[lev]],
+    ["E-B25","Voorlaadfout",2,["De belastingsweerstand is te laag: koppel enkele DC-belastingen los of verminder ze."]],["E-B26","Fout magneetschakelaar",3,[lev]],
+    ["E-B32","Fout in BMS-kabel",2,["Controleer de bekabeling van de accu (M8)."]],["E-B34","Verkeerde systeemspanning",2,["Controleer de accuspanningsinstellingen in VictronConnect."]],
+    ["E-B35","Voorlaad time-out",2,["Het laadvermogen is te hoog: koppel enkele DC-belastingen los."]],["E-B36","ATC/ATD-storing",2,["Controleer de ATC/ATD-bedrading en zorg dat alle belastingen en laders via ATC/ATD worden beheerd."]],
+    ["E-B116","Kalibratiegegevens verloren",3,[lev]],["E-B119","Instellingen verloren of beschadigd",1,["Herstel de standaardwaarden op de instellingenpagina."]]
+  ];
+  MODELS.push({ id: "victron-lynx-smart-bms", brand: "Victron Energy", name: "Lynx Smart BMS: waarschuwingen, alarmen en fouten", dev: "Lynx Smart BMS", cat: "camper-caravan", years: "Victron Lynx Smart BMS", unit: null, also: "Lynx Smart BMS W-B01, Lynx BMS A-B01 lage celspanning, Lynx Smart BMS E-B25 voorlaadfout, Lynx BMS E-B02 geen accu, Victron BMS foutcode", intro: "De Victron Lynx Smart BMS meldt waarschuwingen (W, het systeem gaat uit als je niets doet), alarmen (A, de reden waarom het systeem is uitgeschakeld) en fouten (E). W-D01 t/m W-D08 betekenen dat de communicatie met een Lynx Distributor is uitgevallen; A-F01 t/m A-F32 dat een zekering is doorgebrand.", weak: [], parts: [], tasks: [], src: ["victronLynx"], faults: L.map(([c,t,d,s]) => F(c,t,d,t+".",s)).concat([
+    N("W-D01 t/m W-D08: communicatie met Distributor uitgevallen", 1, "De communicatie met Lynx Distributor A t/m H is uitgevallen.", ["Controleer de kabel tussen BMS en Distributor."]),
+    N("A-F01 t/m A-F32: zekering doorgebrand", 2, "Zekering Fuse_1 t/m Fuse_32 is doorgebrand (de naam kan in VictronConnect zijn aangepast).", ["Controleer het systeem en vervang de zekering."])]) });
+  const O = [
+    ["1","Accutemperatuur te hoog",1,["Herstelt vanzelf na afkoelen; overweeg een externe temperatuursensor."]],["2","Accuspanning te hoog",2,["Herstelt vanzelf; controleer andere laadapparatuur en de laadregelaar."]],
+    ["17","Lader oververhit, stroom verlaagd",1,["Herstelt vanzelf; controleer omgevingstemperatuur en montage."]],["21","Probleem met stroomsensor",2,["Koppel alle draden los en weer aan.","Blijft de fout: "+lev.toLowerCase()]],
+    ["26","Aansluitklem oververhit",2,["Controleer bedrading, draadtype en bouten; herstelt vanzelf."]],["27","Kortsluiting aan accuzijde",2,["Herstelt meestal vanzelf; anders loskoppelen, 3 minuten wachten en opnieuw starten.","Blijft de fout: waarschijnlijk defect."]],
+    ["28","Probleem met vermogenstrap",3,["Koppel alle draden los en weer aan; blijft de fout, dan waarschijnlijk defect."]],["33","Ingangsspanning te hoog",1,["Herstelt vanzelf zodra de spanning veilig is."]],
+    ["67","BMS-verbinding verbroken",2,["Controleer de BMS-communicatie; de lader verlaagt de uitgang tot 12 V en herstelt als de verbinding terug is."]],
+    ["116","Kalibratiegegevens verloren",2,["Actief: het apparaat is defect, neem contact op met je leverancier. Alleen in de historie: negeren."]],["117","Incompatibele firmware",2,["Voer de update opnieuw uit via Bluetooth, VRM of een GX-apparaat."]],
+    ["119","Instellingen verloren",1,["Zet terug naar fabrieksinstellingen, koppel los, wacht 3 minuten en stel opnieuw in."]],["120","Fout interne voedingsspanning",3,["Controleer de installatie en herstart met de aan/uit-schakelaar; blijft de fout, dan waarschijnlijk defect."]],
+    ["122","Historische gegevens beschadigd",1,["Wis de historische gegevens in VictronConnect."]],
+    ["150","Waarschuwing accutemperatuur te hoog",1,["De uitgang gaat naar 12 V; herstelt vanzelf na afkoelen."]],["151","Waarschuwing accutemperatuur te laag",1,["Het laden is gestopt om de accu te beschermen; raadpleeg bij ongewenst gedrag je installateur."]],
+    ["160","Stroom teruggeregeld door hoge temperatuur",1,["Herstelt vanzelf; controleer ventilatie en omgevingstemperatuur."]],["161","Kortsluiting gedetecteerd (waarschuwing)",2,["Herstelt meestal vanzelf; anders loskoppelen, 3 minuten wachten en opnieuw starten."]],
+    ["162","Probleem in vermogenstrap (waarschuwing)",2,["De stroom is beperkt tot de helft; koppel alle draden los en weer aan. Blijft het: waarschijnlijk defect."]]
+  ];
+  MODELS.push({ id: "victron-orion-xs", brand: "Victron Energy", name: "Orion XS DC-DC-lader: fout- en waarschuwingscodes", dev: "Orion XS DC-DC acculader", cat: "camper-caravan", years: "Victron Orion XS 12/12-50A", unit: null, also: "Victron Orion XS foutcode 67, Orion XS laadt niet, Orion XS error 2, Orion XS 160 temperatuur, Victron DC-DC lader storing", intro: "De Victron Orion XS laadt een hulpaccu vanaf de startaccu of dynamo. Actieve fouten zie je in VictronConnect, op een display of een GX-apparaat. Codes onder 150 zijn fouten, 150 en hoger waarschuwingen.", weak: [], parts: [], tasks: [], src: ["victronOrionXs"], faults: O.map(([c,t,d,s]) => F(c,t,d,t+".",s)).concat([
+    N("Lader start niet", 1, "Losse draden of klemmen, geen accuspanning op de lader, of een interne fout.", ["Controleer draden en klemmen en draai ze vast.", "Herstel de accuvoeding (kabels, zekering, installatieautomaat).", "Is er spanning maar blijft hij uit: neem contact op met je leverancier.", "Staat hij aan: bekijk actieve fouten in VictronConnect."]),
+    N("Lader laadt niet", 1, "De remote aan/uit-klem of draadlus ontbreekt, of de lader staat uit.", ["Controleer connector en draadlus, en of een BMS of relais de aansturing heeft.", "Zet de lader aan in VictronConnect; 'Waarom staat de lader uit?' geeft de reden."])]) });
+})();
+(() => {
+  const B = "https://www.nintendo.com/";
+  const K = (k, code, path) => { SRC[k] = ["Nintendo Support – Foutcode " + code, B + path]; return k; };
+  const near = "Zet het systeem tijdelijk op 3 à 4 meter van de router (je kunt het uit de dock halen).";
+  const away = "Houd metalen objecten en elektronica (kasten, luidsprekers, stekkerdozen, glas, draadloze telefoons) uit de buurt van systeem en router.";
+  const band = "Ondersteunt je router 2,4 GHz en 5 GHz: verbind met de band die je nu niet gebruikt.";
+  const dns = "Voer handmatig een alternatieve DNS in.";
+  const resetnet = "Reset je thuisnetwerk: start modem en router opnieuw op.";
+  const restart = "Herstart het systeem: houd de POWER-knop 3 seconden ingedrukt en kies OPNIEUW OPSTARTEN.";
+  const router = "Blijft het: neem contact op met de routerfabrikant voor een firmware-update of een reset naar fabrieksinstellingen.";
+  const sd = ["Installeer de nieuwste systeemupdate; ben je al up-to-date, herstart dan het systeem.", "Zet het systeem uit en plaats de microSD-kaart opnieuw.", "Probeer een andere microSD-kaart.", "Formatteer de microSD-kaart op het systeem en probeer opnieuw (dit wist de gegevens op de kaart).", "Haal de kaart eruit en download naar het systeemgeheugen.", "Lukt het met meerdere kaarten of in het systeemgeheugen ook niet: laat het systeem repareren."];
+  const add = (k, code, path, t, d, cause, steps) => addF("nintendo-switch", K(k, code, path), F(code, t, d, cause, steps));
+  add("nsw20050003", "2005-0003", "nl-nl/Support/Problemen-oplossen/Foutcode-2005-0003-1339080.html", "Software kan niet worden gedownload (opslag)", 2, "Het systeem kan geen software downloaden; meestal een probleem met de opslag, vaak de microSD-kaart.", ["Werk het systeem bij, herstart en probeer de download opnieuw.", "Zet het systeem uit, haal de microSD-kaart eruit en controleer of hij compatibel is; wijkt de capaciteit meer dan 1 GB af van het etiket, neem dan contact op met de verkoper.", "Probeer een andere compatibele kaart; werkt dat, formatteer of vervang dan de oude kaart.", "Zonder kaart: download naar het systeemgeheugen.", "Lukt het nergens: het systeem moet worden gerepareerd."]);
+  add("nsw20050140", "2005-0140", "nl-be/Support/Problemen-oplossen/Foutcode-2005-0140-1938346.html", "Probleem met de microSD-kaart", 2, "Mogelijk een probleem met de microSD-kaart die je gebruikt.", sd);
+  add("nsw20050012", "2005-0012", "nl-be/Support/Problemen-oplossen/Foutcode-2005-0012-1499612.html", "Probleem met de microSD-kaart", 2, "Mogelijk een probleem met de microSD-kaart die je gebruikt.", sd);
+  const conn = [near, restart, "Maak een nieuwe internetverbinding aan, met het juiste netwerk en een sterk signaal.", dns, resetnet, away, band, "Kabel: controleer met een ander apparaat of het netwerk internet heeft; een dock zonder LAN-poort heeft een USB-LAN-adapter nodig.", router];
+  add("nsw21608006", "2160-8006", "nl-be/Support/Problemen-oplossen/Foutcode-2160-8006-2160-8007-1507490.html", "Verbindingstest mislukt", 1, "Het systeem kan de verbindingstest niet uitvoeren, mogelijk door de DNS, trage internet, draadloze storing of een zwak signaal. Geldt ook voor 2160-8007.", conn);
+  add("nsw21608007", "2160-8007", "nl-be/Support/Problemen-oplossen/Foutcode-2160-8006-2160-8007-1507490.html", "Verbindingstest mislukt", 1, "Het systeem kan de verbindingstest niet uitvoeren. Zelfde oplossing als 2160-8006.", conn);
+  add("nsw28117001", "2811-7001", "nl-be/Support/Nintendo-Switch/Problemen-oplossen/Foutcode-2811-7001-1348069.html", "Geen verbinding met online dienst (eShop)", 1, "Waarschijnlijk door je netwerk: de gebruikte DNS, een zwak of instabiel signaal, of een router die niet reageert.", ["Kijk op de Nintendo-pagina voor netwerkstatus of er onderhoud is; zo niet, probeer het later opnieuw.", near, restart, resetnet, dns, away, band]);
+})();
+(() => {
+  SRC.siemensKiNh = ["Siemens – Gebruiksaanwijzing inbouw-koelvriescombinatie KI..NH.. (EN/NL, 9001524619)", "https://media3.bsh-group.com/Documents/9001524619_A.pdf"];
+  SRC.siemensKi81 = ["Siemens – Gebruiksaanwijzing inbouwkoelkast KI81FH.. (EN/NL, 9001542671)", "https://media3.bsh-group.com/Documents/9001542671_B.pdf"];
+  const selftest = "Doe de zelftest: zet het apparaat uit, wacht ongeveer 5 minuten, zet het aan en houd binnen 10 seconden de bedieningstoets 3 à 5 seconden ingedrukt. Twee piepjes met de ingestelde temperatuur = in orde; vijf piepjes met knipperend display = neem contact op met de klantenservice.";
+  MODELS.push({ id: "siemens-inbouwkoelkast", brand: "Siemens", name: "Siemens inbouwkoelkast (KI..NH.., KI81FH..): storingen en alarmen", dev: "inbouwkoelkast / koelvriescombinatie", cat: "koelkasten", years: "Siemens KI..NH.. en KI81FH..", unit: null, also: "Siemens koelkast koelt niet maar licht brandt, Siemens koelkast showroommodus, Siemens vriezer display knippert, Siemens koelkast zelftest, Siemens koelkast foutsymbool, Siemens deuralarm", intro: "Bij Siemens-inbouwkoelkasten koelt het apparaat niet als de showroommodus aan staat, ook al branden licht en display. Met de zelftest controleer je of het apparaat in orde is.", weak: [], parts: [], tasks: [], src: ["siemensKiNh", "siemensKi81"], faults: [
+    N("Koelt niet, maar licht en display werken", 1, "De showroommodus staat aan.", [selftest]),
+    N("Apparaat werkt niet, geen display", 1, "Stekker niet goed in het stopcontact, zekering aangesproken of stroomstoring.", ["Controleer stekker en zekeringen.", "Bij een stroomstoring: leg koelelementen op het ingevroren eten."]),
+    N("Foutsymbool in het temperatuurdisplay", 3, "De elektronica heeft een fout gevonden.", ["Neem contact op met de klantenservice."]),
+    N("Vriezerdisplay knippert", 1, "De vriezer is te warm geworden.", ["Druk op de toets om de warmste bereikte temperatuur te zien en druk nogmaals om het knipperen te stoppen."]),
+    N("Vriezerdisplay knippert met alarmsignaal", 1, "Deur open, ventilatieopeningen geblokkeerd, te veel vers eten tegelijk ingevroren of invriescapaciteit overschreden.", ["Zet het alarm uit en sluit de deur.", "Maak de ventilatieopeningen vrij.", "Vries niet meer in dan de maximale invriescapaciteit."]),
+    N("Deuralarm piept", 1, "De deur stond lang open.", ["Sluit de deur of druk op de alarm-uit-toets."]),
+    N("Natte bodem in de koelruimte", 1, "Het condenswaterkanaal of de afvoeropening is verstopt.", ["Maak het condenswaterkanaal en de afvoeropening schoon."]),
+    N("Compressor draait vaak of lang", 1, "De deur gaat vaak open of de ventilatieopeningen zijn geblokkeerd.", ["Open de deur minder vaak.", "Maak de ventilatieopeningen vrij."]),
+    N("Temperatuur wijkt sterk af van de instelling", 1, "Verschillende oorzaken mogelijk.", ["Zet het apparaat uit, wacht ongeveer 5 minuten en zet het weer aan.", "Te warm: controleer na een paar uur opnieuw; te koud: de volgende dag."]),
+    N("LED-verlichting werkt niet", 2, "Oorzaak onbekend; de lampafdekking mag je niet verwijderen.", ["Neem contact op met de klantenservice."]),
+    N("Onaangename geur", 1, "Vuil apparaat of verpakking, of sterk ruikend eten niet afgesloten.", ["Maak apparaat en verpakkingen schoon en bewaar sterk ruikend eten luchtdicht.", "Controleer na 24 uur opnieuw."]),
+    N("Zelftest eindigt met vijf piepjes", 3, "De zelftest heeft een fout gevonden.", ["Neem contact op met de klantenservice."])
+  ]});
+})();
+(() => {
+  SRC.remehaNeptunaAce = ["Remeha – Gebruikershandleiding Neptuna Ace (NL, V5)", "https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Neptuna-Ace-Gebruikershandleiding-NL-V5.pdf"];
+  SRC.remehaTzerraPlus = ["Remeha – Installatie-, gebruikers- en servicehandleiding Tzerra Plus (V13), hoofdstuk 11 Storingen", "https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Installatie-gebruikers-en-servicehandleiding-Tzerra-Plus-V13.pdf"];
+  const inst = "Bel je installateur.";
+  const reset = "Reset: noteer de code, verhelp zo mogelijk de oorzaak, en zet de voeding van buiten- en binnenunit uit en weer aan. Komt de code terug: bel je installateur.";
+  const flow = ["Open een radiatorkraan.", "Controleer de filters en de circulatiepomp.", reset];
+  MODELS.push({ id: "remeha-neptuna-ace", brand: "Remeha", name: "Neptuna Ace warmtepomp: storingscodes", dev: "Neptuna Ace warmtepomp", cat: "warmtepompen", years: "Remeha Neptuna Ace", unit: null, also: "Remeha Neptuna Ace H02.23, Neptuna Ace E02.24, Neptuna Ace A02.06, Neptuna Ace rood lampje, Remeha warmtepomp resetten", intro: "De Remeha Neptuna Ace toont drie soorten codes: A-codes (waarschuwing, lampje knippert groen, het systeem werkt door), H-codes (blokkering, lampje continu rood, het systeem kan zichzelf herstellen) en E-codes (vergrendeling, lampje knippert rood, verwarming uit). De aanbevolen waterdruk is 1,5 à 2,0 bar.", weak: [], parts: [], tasks: [], src: ["remehaNeptunaAce"], faults: [
+    F("H02.07", "Waterdrukfout", 1, "De waterdruk in de installatie is niet in orde.", ["Controleer de druk in de installatie (aanbevolen 1,5–2,0 bar).", reset]),
+    F("H02.23", "Debietfout", 2, "Te weinig doorstroming.", flow),
+    F("H06.01", "Storing buitenunit", 2, "De buitenunit heeft een storing.", [inst]),
+    F("E00.00", "Aanvoersensor open of kortgesloten", 3, "Ook E00.01. Vergrendeling: de verwarming is uit.", [inst]),
+    F("E02.13", "Blokkerende ingang open", 2, "De BL-ingang staat open.", [inst]),
+    F("E02.24", "Debietvergrendeling", 2, "Vergrendeling door te weinig doorstroming.", ["Controleer radiatorkranen, filters en pomp.", inst]),
+    F("A02.06", "Waarschuwing waterdruk", 1, "De waterdruk is niet optimaal; het systeem werkt door.", ["Controleer de druk.", "Blijft de melding staan: bel je installateur."]),
+    N("H00.xx: sensorfout", 2, "Een sensor is open, kortgesloten of ontbreekt.", [inst]),
+    N("Lampje continu rood (H-code)", 2, "Blokkering: een afwijking die de verwarming beïnvloedt; het systeem kan zichzelf herstellen.", [reset]),
+    N("Lampje knippert rood (E-code)", 3, "Vergrendeling: een ernstige afwijking; de verwarming is uit tot aan de veiligheidsvoorwaarden is voldaan.", [inst]),
+    N("Radiatoren blijven koud", 1, "Richttemperatuur te laag, verwarming uit, kranen dicht, warmtepomp uit of waterdruk te laag.", ["Verhoog de richttemperatuur en zet de verwarming aan.", "Open de radiatorkranen.", "Controleer of de warmtepomp aan staat en of de zekeringen in orde zijn.", "Is de druk te laag: laat water bijvullen."]),
+    N("Tikkende geluiden in de leidingen", 1, "Leidingbeugels te vast of lucht in het systeem.", ["Draai de leidingbeugels iets los.", "Ontlucht de installatie."])
+  ]});
+  MODELS.push({ id: "remeha-tzerra-plus", brand: "Remeha", name: "Tzerra Plus cv-ketel: knipperend lampje (groen/rood)", dev: "Tzerra Plus cv-ketel", cat: "cv-ketels", years: "Remeha Tzerra Plus", unit: null, also: "Remeha Tzerra Plus rood knipperen, Tzerra Plus groen knipperen, Tzerra Plus resetten, Tzerra Plus storing, Remeha ketel lampje knippert", intro: "Bij de Remeha Tzerra Plus laat het statuslampje het aantal knipperingen zien. Groen knipperen is een tijdelijke blokkering: de ketel probeert zelf opnieuw te starten. Rood knipperen is een vergrendeling: de ketel start pas weer na het oplossen van de oorzaak en een reset. Resetten: houd de bedieningsknop 5 seconden ingedrukt; het lampje knippert snel rood en de ketel ontlucht ongeveer 4 minuten.", weak: [], parts: [], tasks: [], src: ["remehaTzerraPlus"], faults: [
+    N("Lampje knippert 1x groen", 2, "Temperatuurbeveiliging, doorstromings- of sensorfout.", ["Controleer de waterdruk.", "Laat de installateur doorstroming (pomp, kranen), warmtewisselaar en sensorbedrading controleren."]),
+    N("Lampje knippert 2x groen", 1, "Een blokkerende ingang is actief.", ["Laat de externe oorzaak wegnemen en parameters en bedrading controleren."]),
+    N("Lampje knippert 3x groen", 2, "Vlamverlies.", ["Controleer of de gaskraan open staat.", "Laat gasdruk, gasklep en lucht- en rookgasafvoer controleren door de installateur."]),
+    N("Lampje knippert 4x groen", 2, "Communicatiefout.", ["Laat de bedrading naar de aansluitbox en de BUS controleren."]),
+    N("Lampje knippert 5x groen", 2, "Parameter- of identificatiefout.", ["Laat de parameters herstellen of opnieuw invoeren."]),
+    N("Lampje knippert 6x groen", 1, "Overig: o.a. lage waterdruk, lage gasdruk of configuratiefout.", ["Vul water bij als de druk te laag is.", "Controleer of de gaskraan open staat.", "Configuratiefouten: installateur."]),
+    N("Lampje knippert 1x rood", 2, "Sensor-, temperatuur- of doorstromingsfout (vergrendeling).", ["Controleer de waterdruk en ontlucht de installatie.", "Reset: houd de bedieningsknop 5 seconden ingedrukt.", "Komt het terug: installateur."]),
+    N("Lampje knippert 2x rood", 2, "Maximale temperatuur overschreden.", ["Reset: houd de bedieningsknop 5 seconden ingedrukt.", "Komt het terug: laat doorstroming, sensoren en rookgasafvoer controleren."]),
+    N("Lampje knippert 3x rood", 2, "Ontstekingsfout: 5 mislukte starts of een vals vlamsignaal.", ["Controleer of de gaskraan open staat.", "Reset: houd de bedieningsknop 5 seconden ingedrukt.", "Komt het terug: laat ontsteking, gastoevoer en elektrode controleren."]),
+    N("Lampje knippert 4x rood", 3, "Ventilatorfout, bijvoorbeeld door sterke trek over de ketel of een defecte gas/lucht-unit.", ["Laat de schoorsteenaansluiting en de gas/lucht-unit controleren door de installateur."]),
+    N("Lampje knippert 5x rood", 3, "Parameterfout.", ["Laat de installateur bedrading en veiligheidsparameters controleren."]),
+    N("Lampje knippert 6x rood", 2, "Overige storing met verschillende mogelijke oorzaken.", ["Reset: houd de bedieningsknop 5 seconden ingedrukt.", "Komt het terug: installateur."])
+  ]});
+})();
+(() => {
+  SRC.remehaAvanta = ["Remeha – Gebruikershandleiding Avanta (NL, V14)", "https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Avanta-Gebruikershandleiding-NL-V14.pdf"];
+  const inst = "Verschijnt de code opnieuw: neem contact op met je installateur (noteer gassoort, type ketel, fabricagedatum en serienummer van de typeplaat).";
+  MODELS.push({ id: "remeha-avanta", brand: "Remeha", name: "Avanta cv-ketel: storingen en resetten", dev: "Avanta cv-ketel", cat: "cv-ketels", years: "Remeha Avanta", unit: null, also: "Remeha Avanta storing, Remeha Avanta - - - waterdruk, Remeha Avanta resetten, Avanta geen warm water, Avanta gasstoring, Remeha Avanta R knop", intro: "De Remeha Avanta reset je met de RESET-toets (R op het bedieningspaneel): druk erop en wacht enkele seconden. Werkt de ketel weer normaal, dan is de storing verholpen. De gebruikershandleiding beschrijft alleen de waterdruk- en gasstoring; voor andere codes moet je de installateur bellen.", weak: [], parts: [], tasks: [], src: ["remehaAvanta"], faults: [
+    F("- - -", "Waterdruk te laag of niet in orde", 1, "Er is een probleem met de waterdruk.", ["Controleer de waterdruk.", "Boven 0,8 bar: druk op RESET en wacht enkele seconden.", "Onder 0,8 bar: vul de installatie bij, druk op RESET en wacht enkele seconden.", inst]),
+    N("Gasstoring", 2, "De ketel krijgt geen of te weinig gas.", ["Controleer of de gaskraan open is en open hem zo nodig.", "Druk op RESET en wacht enkele seconden.", inst]),
+    N("Ketel staat op storing (andere code)", 2, "Een storing waarvoor de handleiding geen gebruikersoplossing geeft.", ["Druk 2 seconden op de resettoets en corrigeer de storing indien mogelijk.", inst]),
+    N("Geen warm water of ketel werkt niet", 1, "Geen spanning, gaskraan dicht, functie uit, lage waterdruk of verstopte douchekop.", ["Controleer spanning, zekeringen en schakelaars.", "Controleer of de gaskraan open is.", "Zet de warmwater- of cv-functie aan.", "Vul water bij als de druk onder 0,8 bar ligt.", "Maak de spaardouchekop schoon of vervang hem."]),
+    N("Radiatoren blijven koud", 1, "Temperatuur of thermostaat te laag, of radiatorkranen dicht.", ["Verhoog de verwarmingstemperatuur of de kamerthermostaat.", "Open de radiatorkranen."]),
+    N("Grote temperatuurschommelingen warm water", 1, "Te weinig watertoevoer.", ["Draai de kraan verder open."]),
+    N("Geluiden in de cv-leidingen", 1, "Te vast aangedraaide beugels, lucht in het systeem of te snelle waterstroom.", ["Lucht: ontlucht de installatie.", "Beugels of waterstroom: neem contact op met je installateur."]),
+    N("Waterlekkage bij de ketel", 3, "Er lekt water.", ["Bij een grote lekkage: sluit de watertoevoer.", "Neem contact op met je installateur."])
+  ]});
+})();
+(() => {
+  const K = (k, c) => { SRC[k] = ["Canon – Online handleiding TS7400 series: ondersteuningscode " + c, "https://ij.manual.canon/ij/webmanual/ErrorCode/TS7400%20series/NL/ERR/" + c + ".html"]; return k; };
+  const add = (c, t, d, cause, steps) => addF("canon-printer", K("canonTs74" + c, c), F(c, t, d, cause + " (Canon TS7400-serie)", steps));
+  add("1000", "Geen papier in de achterste lade", 1, "Er is geen papier meer in de achterste lade, of het zit niet goed.", ["Plaats papier in de achterste lade.", "Schuif de papiergeleiders tegen beide zijkanten van het papier.", "Sluit het klepje van de invoersleuf.", "Druk op OK op de printer."]);
+  add("1200", "Scanunit of klep staat open", 1, "De scanunit of klep staat open.", ["Sluit de scanunit of klep en wacht even.", "Vergeet de klep niet te sluiten na het vervangen van een FINE-cartridge."]);
+  add("1310", "Papierformaat niet geschikt voor dubbelzijdig", 1, "Het papierformaat is mogelijk niet geschikt voor automatisch dubbelzijdig afdrukken.", ["Dubbelzijdig werkt met A4, Letter, A5 of B5.", "Controleer of het papier in de printer overeenkomt met het ingestelde formaat.", "Verwijder het papier, plaats papier van het juiste formaat en druk op OK."]);
+  add("1686", "Inkt is wellicht op (niveau onbekend)", 1, "Het inktniveau kan niet betrouwbaar worden bepaald; de functie voor de resterende inkt wordt uitgeschakeld.", ["Vervang de cartridge door een nieuwe originele Canon-cartridge.", "Wil je toch doorprinten zonder inktniveaufunctie: houd de Stop-knop minstens 5 seconden ingedrukt."]);
+  add("1702", "Absorptiekussen voor inkt bijna vol", 2, "Het absorptiekussen voor inkt (inktopvang) is bijna vol.", ["Druk op OK om verder te printen.", "Neem contact op met het dichtstbijzijnde Canon-servicecentrum voor reparatie."]);
+  add("2110", "Papierinstelling past niet bij de cassette", 1, "Het ingestelde papierformaat of -type komt niet overeen met de papiergegevens die voor de cassette zijn geregistreerd.", ["Druk op OK en kies met de pijltjes: afdrukken op het geplaatste papier, papier vervangen, of afdrukken annuleren.", "Weet je niet welk papier erin moet: druk op Terug om formaat en type te zien."]);
+})();
+(() => {
+  SRC.apsTrouble = ["APsystems – Troubleshooting guide: tips for microinverters communication and production issues (Engels)", "https://global.apsystems.com/wp-content/uploads/2021/10/APsystems-Troubleshooting-guide-Tips-for-microinverters-communication-and-production-issues.pdf"];
+  const sup = "Blijft het: neem contact op met de technische ondersteuning van APsystems of je installateur.";
+  MODELS.push({ id: "apsystems-micro-omvormer", brand: "APsystems", name: "Micro-omvormers en ECU: geen communicatie of geen opbrengst", dev: "micro-omvormers (YC600, QS1, DS3, YC1000) met ECU", cat: "zonnepanelen", years: "APsystems micro-omvormers met ECU en EMA-monitoring", unit: null, also: "APsystems NC in EMA, APsystems ECU offline, APsystems 0 W, APsystems geen opbrengst, APsystems DS3 communiceert niet, ECU cloud lampje uit", intro: "Bij APsystems verzamelt de ECU de gegevens van de micro-omvormers en stuurt ze naar EMA. 'NC' in de module-weergave betekent dat een micro-omvormer niet communiceert; 0 W of 2 W betekent geen of lage opbrengst. Controleer eerst bij Diagnose of de ECU nog een 'heartbeat' stuurt. Communicatieverlies stopt de productie niet.", weak: [], parts: [], tasks: [], src: ["apsTrouble"], faults: [
+    N("ECU offline (geen heartbeat, cloud-lampje uit)", 1, "De ECU heeft geen stroom of internet, of het netwerk blokkeert hem (firewall, MAC/IP-filter).", ["Haal de stroom 1 minuut van de ECU en sluit weer aan.", "Houd de wifi-antenne buiten een metalen kast.", "Controleer de netwerkkabel, routerpoort en wifi-/ethernetverbinding; probeer de andere als één niet werkt.", "Laat zo nodig de benodigde poorten openzetten.", sup]),
+    N("Alle micro-omvormers tonen NC (ECU wel online)", 2, "De micro-omvormers zijn niet geregistreerd in de ECU, of de ECU-firmware past niet (vaak bij nieuwe modellen zoals DS3).", ["Laat in EMA via Remote Control > ECU Settings de omvormers zonder 'link' toevoegen en versturen; de link verschijnt binnen ongeveer 20 minuten.", "Laat de ECU ongeveer 5 minuten aan en verbonden staan, zodat de firmware zichzelf bijwerkt.", sup]),
+    N("Micro-omvormers communiceren af en toe of zwak", 1, "Zwak Zigbee-signaal door afstand of obstakels (beton, metalen dak).", ["Zet de ECU dichter bij de omvormers.", "Gebruik anders een 2,4 GHz-verlengantenne (tot 10 m) en controleer de antenne-aansluitingen.", "Tijdelijk verlies door instabiel internet: controleer na een paar uur opnieuw."]),
+    N("Enkele micro-omvormers ontbreken", 2, "Geen DC-aansluiting, of de omvormer is niet geregistreerd.", ["Laat de DC-bedrading controleren en de omvormers opnieuw registreren of synchroniseren."]),
+    N("Geen opbrengst bij alle micro-omvormers", 2, "Geen AC-spanning (groep of aansluiting), verkeerd netprofiel, 'zero export' actief op de ECU-C, of AC-beveiliging (netinstabiliteit of temperatuur boven 100 °C).", ["Controleer de groep (automaat) en de AC-aansluitingen.", "Laat het netprofiel controleren.", "Laat 'zero export' uitzetten in Remote Control > Meter Zero Export.", "AC-beveiliging herstelt vanzelf als de omstandigheden normaal zijn."]),
+    N("Geen of lage opbrengst bij enkele micro-omvormers", 2, "Groep uit, losse DC- of AC-aansluitingen, zero export, schaduw of een defect paneel.", ["Controleer de groep en de aansluitingen.", "Haal schaduwbronnen weg als dat kan; vaste schaduw op hetzelfde tijdstip is normaal.", "Is de DC-spanning van een paneel ongeveer een derde lager dan de rest: waarschijnlijk is de aansluitdoos defect; wissel het paneel om dit te bevestigen."])
+  ]});
+})();
+(() => {
+  SRC.victronEs2gx = ["Victron Energy – Handleiding EasySolar-II GX (NL): probleemoplossing", "https://victronenergy.com/media/pg/EasySolar-II_GX/nl/troubleshooting.html"];
+  const rs = "Zet alle apparatuur uit en weer aan.";
+  MODELS.push({ id: "victron-easysolar-ii-gx", brand: "Victron Energy", name: "EasySolar-II GX: storingen en VE.Bus-foutcodes", dev: "EasySolar-II GX (omvormer/lader + MPPT + GX)", cat: "camper-caravan", years: "Victron EasySolar-II GX", unit: null, also: "EasySolar-II GX Low battery, EasySolar Overload, EasySolar lader laadt niet, EasySolar Bulk protection, EasySolar VE.Bus fout 24, Victron EasySolar storing", intro: "De Victron EasySolar-II GX toont storingen als melding op het GX-scherm, met VE.Bus-foutcodes voor de omvormer/lader.", weak: [], parts: [], tasks: [], src: ["victronEs2gx"], faults: [
+    N("Low battery", 1, "De accuspanning is laag (bij 'shutdown' is de omvormer uitgeschakeld).", ["Laad de accu op.", "Controleer de accuaansluitingen."]),
+    N("Overload", 1, "De belasting is hoger dan het nominale vermogen (bij 'shutdown' is de omvormer uitgeschakeld).", ["Verlaag de belasting."]),
+    N("High temperature", 2, "De omgevingstemperatuur of de belasting is te hoog.", ["Zorg voor betere koeling en ventilatie, of verlaag de belasting."]),
+    N("Low Bat V overload shutdown", 2, "Lage accuspanning in combinatie met hoge belasting.", ["Laad de accu op en verlaag de belasting.", "Gebruik kortere of dikkere accukabels, of meer accucapaciteit."]),
+    N("High DC ripple / DC ripple shutdown", 2, "De rimpelspanning op de DC-ingang is te hoog (boven 1,5 Vrms).", ["Controleer kabels en aansluitingen.", "Vergroot zo nodig de accucapaciteit of gebruik kortere/dikkere kabels; zet daarna uit en weer aan."]),
+    N("Bulk protection", 2, "Bulkladen duurde langer dan 10 uur; dit kan wijzen op een accufout zoals een kortgesloten cel.", ["Controleer de accu's.", "Uit- en weer aanzetten heft de modus op."]),
+    N("Lader werkt niet", 2, "AC-ingangsspanning of -frequentie buiten bereik (standaard 185–265 V AC, 45–65 Hz), AC-ingangsautomaat open, accuzekering doorgebrand of vervormde AC-bron (zoals een aggregaat).", ["Controleer de AC-ingangsautomaat en de accuzekering.", "Bij een aggregaat: zet WeakAC en de dynamische stroombegrenzer aan."]),
+    N("Omvormer start niet", 1, "Accuspanning te hoog of te laag, of geen DC-ingang.", ["Breng de accuspanning binnen bereik."]),
+    N("Geen uitgang op AC-out-2 in omvormerbedrijf", 1, "AC-out-2 werkt alleen als de AC-ingang is aangesloten.", ["Volg de stappen uit de MultiPlus-FAQ over aggregaten."]),
+    N("Schakelt niet over naar aggregaat of net", 2, "De AC-ingangsautomaat of zekering is aangesproken door overbelasting.", ["Verhelp de overbelasting of kortsluiting op AC-out-1/2 en reset de automaat of zekering."]),
+    N("Laadstroom zakt naar 0 bij begin absorptie", 2, "Defecte temperatuursensor, of accu warmer dan 50 °C.", ["Haal de temperatuursensor los; laadt hij na ongeveer een minuut weer, vervang dan de sensor.", "Accu te warm: zet het systeem op een koelere plek."]),
+    F("VE.Bus 1", "Andere fase is uit", 2, "Een andere fase in het systeem is uit.", ["Controleer de uitgevallen fase."]),
+    F("VE.Bus 3", "Verkeerd aantal apparaten", 2, "Er is een verkeerd aantal apparaten gevonden.", ["Configureer opnieuw en controleer de communicatiekabels.", rs]),
+    F("VE.Bus 4", "Geen ander apparaat gevonden", 2, "Er is geen ander apparaat gedetecteerd.", ["Controleer het apparaat en de communicatiekabels."]),
+    F("VE.Bus 5", "Spanning AC-out te hoog", 2, "De spanning op AC-out is te hoog.", ["Controleer de AC-kabels."]),
+    F("VE.Bus 10", "Probleem tijdsynchronisatie", 2, "Probleem met de tijdsynchronisatie van het systeem.", ["Controleer de communicatiekabels."]),
+    F("VE.Bus 14", "Apparaat kan geen data verzenden", 2, "Het apparaat kan geen gegevens verzenden.", ["Controleer de communicatiekabels op kortsluiting."]),
+    F("VE.Bus 17", "Ander apparaat is master geworden", 2, "De oorspronkelijke master is defect.", ["Controleer de defecte unit en de kabels."]),
+    F("VE.Bus 18", "Spanning te hoog", 2, "Er is een te hoge spanning opgetreden.", ["Controleer de AC-kabels."]),
+    F("VE.Bus 22", "Apparaat kan niet als slave werken", 3, "Verouderd model.", ["Vervang het apparaat."]),
+    F("VE.Bus 24", "Beveiliging omschakelsysteem", 2, "De beveiliging van de omschakelschakelaar is aangesproken.", [rs, "Controleer de installatie; mogelijke oplossing: verhoog de ondergrens van de AC-ingang naar 210 V AC (fabriek 180 V AC)."]),
+    F("VE.Bus 25", "Firmware niet compatibel", 2, "De firmware van de apparaten past niet bij elkaar.", ["Zet de apparaten één voor één aan en werk de firmware bij van het laatst ingeschakelde apparaat."]),
+    F("VE.Bus 26", "Interne fout", 3, "Interne fout.", [rs, "Blijft het: neem contact op met Victron Energy."])
+  ]});
+})();
+(() => {
+  SRC.tqHpr40 = ["TQ – Servicehandleiding HPR40 (NL, Rev 01.00)", "https://www.tq-ebike.com/fileadmin/assets/tq-ebike/downloads/manuals/Service_Manual/DRVE_Servicemanual_HPR40_NL_Rev0100_Web.pdf"];
+  const base = "Herstart het systeem en laat de dealer met de servicetool een diagnose en firmware-update doen.";
+  const motor = "Blijft de fout (bij het opstarten): de motor moet worden vervangen door de dealer.";
+  MODELS.push({ id: "tq-hpr40", brand: "TQ", name: "TQ HPR40 e-bikemotor: foutcodes (ERR/WRN)", dev: "HPR40 e-bikesysteem", cat: "e-bikes", years: "TQ HPR40", unit: null, also: "TQ HPR40 foutcode, TQ ERR 0451 oververhit, TQ 04A8 snelheidssensor, TQ 5402 knop ingedrukt, TQ 5404 duwhulp, TQ 4487 software", intro: "De TQ HPR40 toont ERR- en WRN-codes. 04xx/06xx gaan over de aandrijving en sensoren, 44xx over de accu, 50xx over de Range Extender en 54xx over de bediening. Bij de meeste codes adviseert TQ: herstarten, firmware bijwerken, kabels en connectoren controleren en zo nodig het onderdeel laten vervangen. De servicehandleiding is bedoeld voor dealers.", weak: [], parts: [], tasks: [], src: ["tqHpr40"], faults: [
+    F("0451", "Motor of aandrijving oververhit (ook 0452, 047F, WRN 0602)", 1, "De motor of drive-unit is te warm.", ["Laat de aandrijving afkoelen en herstart.", base]),
+    F("0408", "Overstroom (ook 0445, 047D)", 2, "Overstroom; geldt als niet-beoogd gebruik.", ["Vermijd uitzonderlijke rijsituaties en herstart.", motor]),
+    F("0403", "Communicatiefout tussen onderdelen (ook 0498–049A, 04A0, 04A1, WRN 0603)", 2, "De onderdelen communiceren niet goed met elkaar.", ["Controleer de laadpoort op vuil.", "Laat kabelboom en connectoren controleren en verwijder onderdelen van derden."]),
+    F("04A8", "Snelheidssensor fout of ontbreekt (ook WRN 0601, 0605)", 1, "De snelheidssensor geeft een fout of wordt niet gevonden.", ["Controleer de afstand tussen spaakmagneet en sensor (1–8 mm).", "Herstart.", "Helpt het niet: laat de sensor updaten of vervangen."]),
+    F("04B0", "Blokkerende rotor", 2, "De rotor van de motor blokkeert.", ["Controleer het kettingblad.", "Zet de duwhulp krachtiger aan.", motor]),
+    F("04D1", "Motor draait achteruit bij inschakelen", 1, "De motor draaide achteruit tijdens het inschakelen.", ["Herstart zonder de pedalen te bewegen.", motor]),
+    F("0604", "Encoder-update koppelsensor", 1, "De koppelsensor wordt bijgewerkt (WRN).", ["Wacht ongeveer een minuut en schakel het systeem niet uit."]),
+    F("4487", "Accusoftware te oud", 1, "De software van de accu is te oud.", ["Laat de software bijwerken (minimaal versie 1.99.5)."]),
+    F("4485", "Accusoftware past niet bij Range Extender", 1, "De accusoftware is niet compatibel met de Range Extender.", ["Probeer zonder Range Extender of wissel de Range Extender."]),
+    F("5402", "Knop ingedrukt bij inschakelen (ook 5403)", 1, "Een knop van de bediening was ingedrukt tijdens het inschakelen.", ["Druk geen knop in tijdens het starten.", "Reinig vastzittende knoppen; helpt het niet, laat de bediening of het display vervangen."]),
+    F("5404", "Duwhulp verkeerd bediend", 1, "Gebruikersfout bij de duwhulp (WRN).", ["Houd de omhoogknop (Walk) ingedrukt tot 'Walk' op het display staat, laat los en druk opnieuw in."]),
+    N("Spanningsfout accu (4407–4415, 440A, 440C, 440F)", 2, "De accuspanning is te laag of niet in orde.", ["Laad de accu direct op.", "Blijft het: laat de accu vervangen."]),
+    N("Temperatuurfout accu (441B–4423, 442F, 4474, 4475, 4491, 4494)", 1, "De accu is te warm of te koud.", ["Breng de accu op kamertemperatuur en herstart.", "Blijft het: laat de accu vervangen."]),
+    N("Range Extender-fout (50xx)", 2, "Hardware-, spannings- of temperatuurfout van de Range Extender.", ["Herstart en controleer stekker en kabelboom.", "Laad de Range Extender op bij lage spanning; laat hem afkoelen of opwarmen bij temperatuurfouten.", "Blijft het: wissel de Range Extender."]),
+    N("Software- of elektronicafout motor (0401, 0407, 040B–040F e.a.)", 2, "Software- of elektronicafout in de aandrijving.", [base])
+  ]});
+})();
+(() => {
+  const K = (k, c, loc) => { SRC[k] = ["Sonos Support – Fout " + c + " bij het updaten van Sonos", "https://support.sonos.com/" + loc + "/article/error-" + c + "-when-updating-sonos"]; return k; };
+  const sup = "Lukt het niet: neem telefonisch of via livechat contact op met Sonos, of vraag het in de Sonos Community.";
+  const rs = "Herstart al je Sonos-producten; controleer daarna of ze allemaal in de Sonos-app staan en probeer de update opnieuw.";
+  const closeApp = "Sluit de Sonos-app helemaal (veeg hem weg in de app-wisselaar) en open hem opnieuw.";
+  const near = "Zet het product dichter bij je wifi-router en probeer opnieuw.";
+  const eth = "Sluit het product tijdelijk met een netwerkkabel aan op de router en probeer opnieuw; lukt het, haal de kabel dan weer weg.";
+  const add = (c, loc, t, d, cause, steps) => addF("sonos-lampjes", K("sonosErr" + c, c, loc), F(c, t, d, cause, steps.concat([sup])));
+  add("1002", "nl-nl", "Update kan niet worden voltooid", 1, "Een of meer Sonos-producten kunnen de update niet afronden; komt vooral voor met een Sonos Bridge.", ["Herstart al je Sonos-producten, ook de Bridge; controleer of ze in de app staan en probeer opnieuw.", "Lukt de update: haal de Bridge weg uit je systeem om dit in de toekomst te voorkomen."]);
+  add("1011", "nl-nl", "Update geannuleerd", 1, "De update is afgebroken voordat hij klaar was.", ["Probeer de update opnieuw.", "Laat hem helemaal afronden (kan een paar minuten duren) en houd de app open."]);
+  add("1016", "nl-be", "Verbinding met updateserver verloren", 1, "Een of meer producten verloren tijdens de update de verbinding met de updateserver; het foutscherm toont welk product.", [rs, near, eth]);
+  add("1017", "nl-nl", "Verbinding met updateserver verloren", 1, "Een of meer producten verloren tijdens de update de verbinding met de updateserver.", [closeApp, rs]);
+  add("6", "nl-nl", "Beta-update op niet-beta-product", 1, "Er is een Sonos Beta-update gestart op een product dat geen beta-software draait.", ["Doe je mee aan Sonos Beta: neem contact op met de Sonos Beta Community (beta.sonos.com).", "Anders: neem contact op met Sonos Support."]);
+  add("27", "nl-be", "Product maakt na update geen verbinding met het netwerk", 1, "Na de update kunnen een of meer producten niet opnieuw verbinden met je thuisnetwerk.", [closeApp, "Herstart de producten die op het foutscherm staan en probeer de update opnieuw.", near, eth]);
+  add("1106", "nl-be", "Kan Sonos-servers niet bereiken", 1, "Je Sonos-producten kunnen de servers niet bereiken om te zoeken naar updates.", ["Probeer de update opnieuw; blijft het, gebruik de optie 'Fix It' in de app.", "Haal alle Sonos-producten 10 seconden van de stroom en sluit ze weer aan.", closeApp, "Herstart modem, router, mesh-punten en eventuele switches (10 seconden stroom eraf)."]);
+  add("1005", "nl-be", "Geen verbinding met netwerk na update", 1, "Je Sonos-producten kunnen na een update niet opnieuw verbinden met je netwerk.", ["Kijk naar het statuslampje: wit continu of knipperend → ga verder met de stappen.", rs, "Zet het apparaat met de Sonos-app dichter bij je wifi-router en probeer opnieuw."]);
+  add("1014", "nl-be", "Update kan niet worden geïnstalleerd", 1, "Een of meer producten kunnen een update niet installeren.", ["Kies 'Probeer opnieuw' of zoek naar updates via Instellingen.", rs]);
+})();
+(() => {
+  const K = (k, c, loc) => { SRC[k] = ["Sonos Support – Fout " + c + " bij het updaten van Sonos", "https://support.sonos.com/" + loc + "/article/error-" + c + "-when-updating-sonos"]; return k; };
+  const sup = "Lukt het niet: neem telefonisch of via livechat contact op met Sonos, of vraag het in de Sonos Community.";
+  const add = (c, t, d, cause, steps) => addF("sonos-lampjes", K("sonosErr" + c, c, "nl-nl"), F(c, t, d, cause, steps.concat([sup])));
+  add("1013", "Update geblokkeerd of meerdere apps tegelijk", 1, "Meerdere Sonos-apps proberen tegelijk te updaten, een firewall blokkeert de update, of het apparaat met de Sonos-app heeft een zwakke netwerkverbinding.", ["Start de update vanaf één apparaat en zorg dat andere apparaten niet tegelijk updaten.", "Controleer of de firewall van je computer is ingesteld om met Sonos te werken.", "Zet het apparaat waarmee je Sonos bedient dichter bij je router en probeer de update opnieuw."]);
+  add("1001", "App kan geen verbinding maken met een product", 1, "De Sonos-app kon bij de start van de update geen verbinding maken met een van je Sonos-producten.", ["Controleer in het systeemoverzicht van de app (tik linksboven op je systeemnaam) of er producten ontbreken; verbind ontbrekende producten opnieuw en probeer de update opnieuw.", "Zet het apparaat met de Sonos-app dichter bij je wifi-router en probeer opnieuw.", "Herstart al je Sonos-producten, controleer of ze allemaal in de app staan en probeer de update opnieuw."]);
+  add("1009", "Geen verbinding met netwerk na update", 1, "Je Sonos-producten kunnen na een software-update niet opnieuw verbinden met je netwerk.", ["Kijk naar het statuslampje: wit continu of knipperend → ga verder met de stappen.", "Herstart al je Sonos-producten; controleer daarna of ze allemaal in de Sonos-app staan en probeer de update opnieuw.", "Zet het apparaat met de Sonos-app dichter bij je wifi-router en probeer opnieuw."]);
+})();
+(() => {
+  SRC.smegVw = ["Smeg – gebruiksaanwijzing vaatwasser LVS254CX (pdf, via De Schouw Witgoed)", "https://www.deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing-SMEG-vaatwasser-rvs-LVS254CX.pdf"];
+  const gen = ["Onderbreek het programma en schakel de vaatwasser uit.", "Schakel hem weer in, programmeer opnieuw en start een nieuwe wascyclus.", "Neem contact op met de technische servicedienst als het probleem niet verholpen kan worden."];
+  const svc = ["Dit alarm vereist een ingreep van de technische servicedienst van Smeg."];
+  MODELS.push({ id: "smeg-vaatwasser", brand: "Smeg", name: "vaatwasser: alarmcodes E 01 – E 11", dev: "vaatwasser", cat: "vaatwassers", years: "Modellen met display (o.a. LVS254CX)", unit: null, also: "Smeg vaatwasser E1, Smeg E01, Smeg E03, Smeg E05, Smeg E06, Smeg E11", intro: "Smeg-vaatwassers met display tonen bij een storing een alarmcode E 01 tot E 11. Voor E 01 en E 11 is de servicedienst nodig. Bij de andere alarmen adviseert Smeg: programma onderbreken, uitschakelen, opnieuw inschakelen en een nieuwe cyclus starten. E 07 is alleen een melding; de cyclus wordt gewoon afgerond.", weak: [], parts: [], tasks: [], src: ["smegVw"], faults: [
+    F("E01", "Overstromingsbeveiliging actief", 3, "De overstromingsbeveiliging (indien aanwezig) is in werking getreden.", svc),
+    F("E02", "Waterniveaubeveiliging ingegrepen", 2, "Het systeem dat het waterniveau beperkt heeft ingegrepen.", gen),
+    F("E03", "Water wordt niet verwarmd", 2, "Het apparaat verwarmt het water niet.", gen),
+    F("E04", "Temperatuursonde niet aangesloten", 2, "De temperatuursonde is niet aangesloten.", gen),
+    F("E05", "Vaatwasser vult niet met water", 1, "De vaatwasser vult zich niet met water.", gen),
+    F("E06", "Water wordt niet weggepompt", 1, "Het apparaat pompt het water niet uit de kuip.", gen),
+    F("E07", "Hoeveelheid ingelaten water niet nauwkeurig gemeten", 1, "De vaatwasser kan de hoeveelheid ingelaten water niet nauwkeurig meten. De melding verschijnt aan het einde van de cyclus.", ["De cyclus wordt afgerond en de werking wordt niet benadeeld; volgens Smeg is geen actie nodig."]),
+    F("E08", "Afwijking waterverdeling manden", 2, "Afwijking in het waterverdeelsysteem van de manden.", gen),
+    F("E09", "Afwijking watervulsysteem", 2, "Afwijking in het watervulsysteem.", gen),
+    F("E11", "Wasmotorpomp werkt niet", 3, "De wasmotorpomp werkt niet.", svc)
+  ]});
+})();
+(() => {
+  SRC.cbVeripart = ["Coolblue – hoe los je een Veripart wasmachine storing op?", "https://www.coolblue.nl/advies/hoe-los-je-een-veripart-wasmachine-storing-op.html"];
+  const mont = "Komt de storing terug of blijft de melding staan: neem contact op met een monteur.";
+  MODELS.push({ id: "veripart-wasmachine", brand: "Veripart", name: "wasmachine: storingscodes", dev: "wasmachine", cat: "wasmachines", years: "Alle bouwjaren met display", unit: null, also: "Veripart E01, Veripart E02, Veripart E03, Veripart E04, Veripart CL kinderslot", intro: "Veripart-wasmachines tonen een korte code bij een storing. CL is het kinderslot, E01 tot E04 gaan over de deur, de watertoevoer, het pompfilter en te veel water in de trommel.", weak: [], parts: [], tasks: [], src: ["cbVeripart"], faults: [
+    F("CL", "Kinderslot aan", 1, "Het kinderslot staat aan; het bedieningspaneel reageert niet.", ["Houd de knoppen met het slotje 3 seconden tegelijk ingedrukt.", "Staat het slotje onder één toets: houd alleen die toets 3 seconden ingedrukt. De combinatie verschilt per model."]),
+    F("E01", "Deur niet goed dicht", 1, "De deur sluit niet goed.", ["Open de deur en controleer of er geen was klem zit.", "Duw de deur stevig dicht tot je een duidelijke klik hoort.", "Blijft de code: trek de stekker 5 minuten uit het stopcontact, steek hem terug en zet de machine aan.", mont]),
+    F("E02", "Te weinig water", 1, "De wasmachine krijgt niet genoeg water.", ["Controleer of de kraan helemaal open staat.", "Controleer of de toevoerslang niet geknikt is en leg hem recht.", "Maak de toevoerfilters schoon: kraan dicht, emmer klaar, slang los, water laten weglopen, filter in de slang en in het apparaat reinigen met een oude tandenborstel; alles weer aansluiten en kraan open.", "Blijft de melding: draai de slang los van de kraan, houd een emmer eronder en open de kraan. Komt er weinig of geen water, neem contact op met een monteur."]),
+    F("E03", "Pompfilter verstopt of pomp werkt niet", 1, "Het pompfilter is verstopt of de pomp werkt niet goed.", ["Open het klepje rechtsonder en zet een teiltje onder de pomp.", "Draai het filter tegen de klok in los en laat het water weglopen.", "Verwijder het vuil uit het filter en de opening, plaats het filter terug en draai het met de klok mee vast.", "Blijft de melding: de pomp is waarschijnlijk defect; neem contact op met een monteur."]),
+    F("E04", "Te veel water in de trommel", 1, "Er zit te veel water in de trommel.", ["Druk op de start- of pauzeknop en laat het programma doorlopen; de machine pompt het water weg.", "Blijft de melding: neem contact op met een monteur."])
+  ]});
+})();
+
+(() => {
+  SRC.stiebelWpm = ["STIEBEL ELTRON – WPM meldcodelijst (storings- en waarschuwingscodes, pdf)", "https://www.stiebel-eltron.nl/content/dam/ste/nl/services/Downloads/Meldingenlijst_storingscodes/STIEBEL%20ELTRON%20WPM%20Meldcodelijst.pdf"];
+  const sens = "Controleer de sensor, de bekabeling en de stekkers; vervang de sensor als hij defect is.";
+  const reset = "Verhelp de oorzaak en reset daarna de warmtepomp via de WPM.";
+  const koud = "Mogelijk is koudemiddel in het cv-circuit gekomen: ontlucht de radiatoren niet en volg de ontluchtingsprocedure.";
+  const cable = "Controleer het contact van de communicatiekabel of vervang de kabel.";
+  const upd = "Laat de update uitvoeren.";
+  MODELS.push({ id: "stiebel-eltron-wpm", brand: "STIEBEL ELTRON", name: "warmtepomp (WPM-regelaar): meldcodes", dev: "warmtepomp", cat: "warmtepompen", years: "WPM-regelaar (WPM, WPM CN, WPM International)", unit: null, also: "Stiebel Eltron WPM foutcode, Stiebel Eltron warmtepomp storing 10003, 10004, 30480, 40481 systeemdruk laag, WPL, WPF, LWZ", intro: "De warmtepompmanager (WPM) van STIEBEL ELTRON toont vijfcijferige meldcodes. Codes die met 1 beginnen gaan vaak over druk en koudemiddel, 2xxxx over omvormer en compressor, 3xxxx over sensoren, communicatie en het watercircuit, 4xxxx over de systeemdruk en 5xxxx zijn blokkeringen na een herhaalde storing. De meldcodelijst is bedoeld voor installateurs; laat werk aan het koudemiddelcircuit en de elektrische installatie over aan je installateur.", weak: [], parts: [], tasks: [], src: ["stiebelWpm"], faults: [
+    F("10002", "Compressor of startrelais blijft hangen", 2, "De compressor of het startrelais blijft hangen.", ["Controleer de relais K1 en K2."]),
+    F("10003", "Minimale lagedrukbeveiliging aangesproken", 3, "Lekkend koudemiddel, een expansieventiel dat niet opent of een ventilator die niet draait.", [koud]),
+    F("10004", "Hogedrukbeveiliging aangesproken", 2, "Te weinig doorstroming aan de cv-zijde of een slecht gekoppelde sensor.", ["Controleer de doorstroming aan de cv-zijde en de koppeling van de sensor.", "Controleer de ingestelde ruimtetemperatuur of de stooklijn."]),
+    F("10005", "Lagedrukschakelaar aangesproken", 3, "Lekkend koudemiddel of een expansieventiel dat niet opent.", ["Laat het koudemiddelcircuit en het expansieventiel controleren."]),
+    F("10015", "Vorstbeveiliging tijdens ontdooien", 2, "Te weinig waterdoorstroming of te lage watertemperatuur.", ["Controleer de waterdoorstroming en de watertemperatuur."]),
+    F("10023", "Grens hogedruksensor overschreden", 2, "Te weinig doorstroming aan de cv-zijde of een te hoge ruimtetemperatuur of stooklijn.", ["Controleer de doorstroming en verlaag zo nodig de ingestelde ruimtetemperatuur of stooklijn."]),
+    F("10024", "Heetgastemperatuur te hoog", 3, "Injectieventiel of expansieventiel defect, of lekkend koudemiddel.", ["Laat het koudemiddelcircuit controleren."]),
+    F("10027", "Hogedruk stijgt niet na de start", 2, "De hogedruk komt na het opstarten niet boven de lagedruk uit; vaak een verkeerde fasevolgorde of een zekering.", ["Corrigeer de fasevolgorde of controleer de zekering van de warmtepomp.", "Reset daarna de warmtepomp via de WPM."]),
+    F("10047", "Lagedrukschakelaar aangesproken tijdens ontdooien", 3, "Koudemiddel ontsnapt of het expansieventiel opent niet.", [koud]),
+    F("10495", "Te weinig doorstroming om te koelen", 2, "De laadpomp is defect of afsluiters staan dicht.", ["Controleer de laadpomp en of alle afsluiters open staan."]),
+    F("10503", "Gaswaarschuwing veiligheidsmodule", 3, "De veiligheidsmodule detecteert gas; mogelijk koudemiddel in het cv-circuit of slechte ventilatie.", [koud]),
+    F("20033", "Aanvoertemperatuur te laag", 2, "De minimale aanvoertemperatuur is onderschreden (schakelpunt 6,5 °C).", ["Controleer de doorstroming van het cv-water en de koelaanvoersensor."]),
+    F("20036", "Omvormer te warm", 1, "De omvormer van de compressor is oververhit; de melding reset vanzelf.", ["Maak het koellichaam van de frequentieomvormer schoon."]),
+    F("20012", "Uitgangsbeveiliging compressor", 2, "Mogelijk is de netspanning te laag of de netimpedantie te hoog.", ["Laat de netspanning en aansluiting controleren."]),
+    F("20063", "Spanningsonbalans tussen de drie fasen", 2, "Omvormerfout: de spanning op de drie ingangsfasen is ongelijk.", ["Controleer de omvormer en de voeding."]),
+    F("20241", "Update WPM geslaagd", 1, "De software-update van de WPM is gelukt.", ["Geen actie nodig."]),
+    F("20244", "Update WPM mislukt", 1, "Stroomonderbreking of de microSD-kaart is tijdens de update verwijderd.", ["De meldcodelijst noemt geen actie; neem contact op met je installateur."]),
+    F("30019", "Buitentemperatuursensor buiten bereik", 1, "De buitentemperatuursensor geeft een waarde buiten het bereik.", [sens]),
+    F("30031", "Aanvoertemperatuursensor defect", 1, "De aanvoertemperatuursensor geeft een waarde buiten het bereik.", [sens]),
+    F("30032", "Retourtemperatuursensor defect", 1, "De retourtemperatuursensor geeft een waarde buiten het bereik.", [sens]),
+    F("30007", "Minimale brijndruk aangesproken", 2, "De brijndruk in het broncircuit is te laag.", ["Controleer het broncircuit."]),
+    F("30053", "Twee modules met dezelfde buscode", 2, "Er zitten minstens twee modules met dezelfde buscode op de bus.", [reset]),
+    F("30054", "Thermistorrelais compressor aangesproken", 3, "Injectie defect, thermistorcircuit onderbroken, compressor of motorbeveiligingsrelais defect.", [reset]),
+    F("30063", "Spanningsonbalans omvormer (IWS)", 2, "Een fase in de voedingskabel is onderbroken of een zekering is gesprongen.", ["Controleer de fasen en de zekeringen."]),
+    F("30106", "Minimale brontemperatuur niet gehaald", 2, "De ingestelde minimale brontemperatuur wordt niet gehaald.", ["Controleer en pas de minimale brontemperatuur aan; controleer de bronvolumestroom en de dimensionering."]),
+    F("30107", "Bedieningsdeel (FES) communiceert niet met WPM", 1, "De communicatie tussen het bedieningsdeel en de WPM werkt niet.", [cable]),
+    F("10115", "Communicatie met bedieningsdeel (FES) werkt niet", 1, "De WPM kan niet communiceren met het bedieningsdeel.", [cable]),
+    F("30111", "Versieconflict: bedieningsdeel (FES) heeft update nodig", 1, "De softwareversies passen niet bij elkaar.", [upd]),
+    F("30114", "Versieconflict: WPM heeft update nodig", 1, "De softwareversies passen niet bij elkaar.", [upd]),
+    F("30117", "Communicatie IWS/CWS onderbroken", 2, "De communicatie met de warmtepompregeling is onderbroken.", ["Controleer de bekabeling en stekkers; vervang defecte onderdelen."]),
+    F("30172", "Vlotterschakelaar aangesproken", 1, "De condenswaterafvoer werkt niet goed.", ["Controleer de condenspomp en de afvoer."]),
+    F("30479", "Te weinig doorstroming voor de bijverwarming", 2, "De pomp is defect of het cv-circuit staat niet genoeg open.", ["Controleer de pomp en of het cv-circuit voldoende open staat."]),
+    F("30480", "Installatiedruk te laag", 1, "Drukverlies door ontluchten, een defect of verkeerd expansievat, of een lek in het cv-circuit.", ["Controleer de waterdruk, het expansievat en het cv-circuit op lekken."]),
+    F("40481", "Systeemdruk laag", 1, "Drukverlies door ontluchten, een defect of verkeerd expansievat, of een lek in het cv-circuit.", ["Controleer de waterdruk, het expansievat en het cv-circuit op lekken."]),
+    F("40482", "Systeemdruk te hoog", 2, "Het expansievat is defect of niet geschikt.", ["Laat het expansievat controleren."]),
+    F("30483", "Bijverwarming zonder stroom", 2, "De maximaalthermostaat is aangesproken of de hoofdzekering is gesprongen.", ["Controleer de maximaalthermostaat en de zekering."]),
+    F("30497", "Opofferingsanode", 1, "De anode is verbruikt of het contact is open.", ["Laat de anode controleren en zo nodig vervangen."]),
+    F("30514", "Ventilator haalt nominaal debiet niet", 1, "Een kanaal is geblokkeerd, ventilatieventielen staan dicht of er is een installatiefout.", ["Verwijder de blokkade of zet de ventilatieventielen open."]),
+    F("50008", "WP-typeschakelaar op IWS verkeerd", 2, "De schuifschakelaar voor het warmtepomptype op de IWS staat verkeerd.", ["Haal de warmtepomp van het net, zet de schakelaar goed en reset via de WPM."]),
+    F("50003", "Blokkering na herhaalde storing 10003", 3, "Storing 10003 trad herhaaldelijk op; de warmtepomp is geblokkeerd.", [koud, reset])
+  ]});
+})();
+(() => {
+  SRC.alkFtc7 = ["Alklima – handleiding montage en inbedrijfstelling Ecodan R32 E-generatie FTC7 (pdf)", "https://alklima.nl/library/downloads/id/7529/Handleiding_Ecodan_Montage_en_IBS_R32-E-gen_FTC7.pdf"];
+  addF("mitsubishi-ecodan", "alkFtc7", F("P6", "Storing bij opstarten in koelbedrijf", 2, "Kan optreden als de warmtepomp in koelbedrijf opstart terwijl het water in het circuit te koud is.", ["Zorg dat de watertemperatuur in het circuit vóór het opstarten minimaal 10 °C is."]));
+})();
+(() => {
+  SRC.nibeS1155 = ["NIBE – handleiding voor installateur S1155PC (IHB NL 2150-1, pdf)", "https://assetstore.nibe.se/hcms/v2.3/entity/document/121104/storage/MTIxMTA0LzAvbWFzdGVy"];
+  const basis = "Controleer eerst de groeps- en hoofdzekeringen, de aardlekschakelaar, de automatische zekering (FC1) en de temperatuurbegrenzer (FQ10) van de warmtepomp.";
+  MODELS.push({ id: "nibe-s1155", brand: "NIBE", name: "S1155 bodemwarmtepomp: alarm en storingen", dev: "bodemwarmtepomp", cat: "warmtepompen", years: "S1155 en S1155PC", unit: null, also: "NIBE S1155 alarm, NIBE S1155PC storing, NIBE statuslampje rood, NIBE hulpstand, NIBE geen warm water, NIBE compressor start niet", intro: "Bij een alarm brandt het statuslampje van de NIBE S-serie permanent rood en toont de Smartguide op het display wat er aan de hand is. Vaak is 'Reset het alarm en probeer het opnieuw' al genoeg. Zonder alarm geeft NIBE per klacht (te koud, te weinig warm water, lage druk) de mogelijke oorzaken.", weak: [], parts: [], tasks: [], src: ["nibeS1155"], faults: [
+    N("Statuslampje rood (alarm)", 1, "Er is een alarm; de Smartguide op het display geeft informatie.", ["Kies 'Ik wil meer zien over het alarm' voor details.", "Kies 'Reset het alarm en probeer het opnieuw'; gaat het witte lampje branden, dan is het alarm verholpen.", "Blijft het probleem: kies 'Start hulpstand' (vereist een ingestelde alarmhandeling in menu 7.1.8.1). De compressor kan dan uit zijn en de bijverwarming levert warmte; het lampje blijft rood.", "Neem bij een aanhoudende storing contact op met je installateur."]),
+    N("Te weinig warm tapwater", 1, "Bijvoorbeeld een dichte vulklep, een te lage mengklep, een te lage warmwaterinstelling, veel verbruik, vakantiestand of te lage prioriteit voor warm water.", [basis, "Open de afsluiter van de externe vulklep en stel de mengklep af.", "Kies een hogere vraagstand in menu 2.2 of activeer 'Meer warmwater' (menu 2.1 of myUplink).", "Stand Auto: kies een hogere waarde voor 'Stop bijverwarming' (menu 7.1.10.2).", "Verhoog zo nodig de prioriteitstijd voor warm water in menu 7.1.10.1 (dat gaat ten koste van verwarming).", "Staat Vakantie aan in menu 6? Zet het uit."]),
+    N("Kamer te koud", 1, "Bijvoorbeeld dichte kamerthermostaten, een te lage stooklijn, verkeerde bedrijfsstand, vakantiestand, lucht in het systeem of dichte kleppen QM31/QM32.", [basis, "Zet de thermostaten in de kamers zoveel mogelijk open en regel de temperatuur via het beginscherm Verwarming.", "Verhoog bij alleen koud weer de helling van de stooklijn in menu 1.30.1.", "Stand Auto: kies een hogere waarde voor 'Stop verwarming' (menu 7.1.10.2).", "Staat Vakantie aan in menu 6? Zet het uit; controleer ook externe schakelaars.", "Ontlucht het afgiftesysteem en open de kleppen QM31 en QM32."]),
+    N("Kamer te warm", 1, "De instelwaarde van de automatische regeling is te hoog of een externe schakelaar verandert de kamertemperatuur.", ["Pas de instelling aan via de Smartguide of het beginscherm Verwarming; verlaag bij alleen koud weer de helling in menu 1.30.1.", "Controleer alle externe schakelaars."]),
+    N("Lage systeemdruk", 1, "Er zit te weinig water in het afgiftesysteem.", ["Vul het klimaatsysteem bij en controleer op lekkages."]),
+    N("Compressor start niet", 1, "Er is geen warmtevraag, de temperatuur ligt buiten het werkbereik, de minimale tijd tussen starts is niet verstreken, of er is een alarm.", ["Geen vraag naar verwarming, warm water of koeling: dan is er niets te doen.", "Wacht tot de temperatuur binnen het werkbereik ligt.", "Wacht minstens 30 minuten en controleer opnieuw.", "Is er een alarm: volg de instructies op het display."]),
+    N("Jankend geluid in de radiatoren", 1, "Dichte kamerthermostaten met een onjuiste stooklijn, een te snelle circulatiepomp of ongelijke doorstroming.", ["Zet de thermostaten zoveel mogelijk open en stel de stooklijn bij.", "Verlaag de snelheid van de circulatiepomp in menu 7.1.2.2.", "Verdeel de doorstroming beter over de radiatoren."])
+  ]});
+})();
+(() => {
+  SRC.ubbinkW225 = ["Ubbink – installatie- en gebruikershandleiding Ubiflux Vigor W225 (NL, pdf)", "https://cdn.ubbink.com/be/getmedia/2f90e01c-409f-4e46-a2c6-33c7306234c6/Ubiflux-Vigor-W225-NL.pdf"];
+  const filt = "Maak de filters schoon of vervang ze en controleer of de kanalen verstopt zijn.";
+  const inst = "Dit is werk voor je installateur.";
+  MODELS.push({ id: "ubbink-vigor", brand: "Ubbink", name: "Ubiflux Vigor WTW: storingscodes en filtermelding", dev: "wtw-unit", cat: "ventilatie", years: "Ubiflux Vigor W225 (Vigor-serie)", unit: null, also: "Ubbink Vigor foutcode, Ubbink WTW storing E105, E104, E000, E113, sleutelsymbool, filtermelding resetten", intro: "De Ubbink Ubiflux Vigor toont een storingscode met een subcode, bijvoorbeeld E105 (E1011). Bij een vergrendelende storing staat het toestel stil en zie je het sleutelsymbool. Veel meldingen over debiet los je zelf op met schone filters; voor defecte onderdelen schakel je de installateur in. Filters vervang je jaarlijks.", weak: [], parts: [], tasks: [], src: ["ubbinkW225"], faults: [
+    F("E105 (E1011)", "Toevoerdebiet wordt niet gehaald", 1, "Het gevraagde toevoerdebiet wordt niet gehaald.", [filt]),
+    F("E104 (E1012)", "Afvoerdebiet wordt niet gehaald", 1, "Het gevraagde afvoerdebiet wordt niet gehaald.", [filt]),
+    F("E000 (E1013)", "Buitenlucht te warm (vergrendelend)", 1, "De temperatuur van de buitenlucht is te hoog; het toestel gaat naar standby.", ["Bij warm weer en een luchttoevoer direct onder de pannen: wacht tot de lucht is afgekoeld, of laat een dakdoorvoer plaatsen in plaats van een doorvoer onder de pannen.", "Bij koud weer of als de lucht niet van onder de pannen komt: maak het toestel spanningsloos en laat de luchttemperatuursensor (NTC) vervangen."]),
+    F("E190 (E1000)", "Zelftest niet goed", 1, "De zelftest is niet goed verlopen.", ["Geen actie nodig volgens Ubbink."]),
+    F("E152 (E1001)", "Flashgeheugen defect (vergrendelend)", 3, "Het flashgeheugen is defect; het toestel stopt indien mogelijk.", ["De basisprint UWA2-B moet worden vervangen.", inst]),
+    F("E153 (E1002)", "EEPROM defect", 2, "Het EEPROM-geheugen is defect; het toestel gaat naar fabrieksinstelling, ventilatiestand 2.", ["De basisprint UWA2-B moet worden vervangen.", inst]),
+    F("E105 (E1100)", "Toevoerventilator defect (vergrendelend)", 3, "De toevoerventilator is defect; het toestel gaat naar standby.", ["De toevoerventilator moet worden vervangen; de storing reset automatisch na weer inschakelen.", inst]),
+    F("E104 (E1120)", "Afvoerventilator defect (vergrendelend)", 3, "De afvoerventilator is defect; het toestel gaat naar standby.", ["De afvoerventilator moet worden vervangen; de storing reset automatisch na weer inschakelen.", inst]),
+    F("E103 (E1200)", "Bypass defect", 2, "De bypass werkt niet.", ["Controleer de bedrading; vervang zo nodig de bypass of de kabelboom.", inst]),
+    F("E106 (E1300)", "Temperatuursensor NTC1 defect (vergrendelend)", 2, "Sensor NTC1 is defect; het toestel gaat naar standby.", ["Controleer de bedrading; vervang de NTC-sensor of de bedrading.", inst]),
+    F("E111 (E1400)", "Vochtsensor (RHT) defect", 1, "RHT-sensor 1 is defect; de vochtregeling werkt niet.", ["Controleer de bedrading; vervang de RHT-sensor of de bedrading.", inst]),
+    F("E114 (E1500)", "Standenschakelaar defect", 1, "De standenschakelaar is defect; het toestel gaat naar stand 1.", ["Vervang de standenschakelaar."]),
+    F("E113 (E1600)", "Interne voorverwarmer defect", 2, "De interne voorverwarmer is defect; de vorstbeveiliging gaat naar onbalansmodus.", ["Controleer de smeltzekeringen en de bedrading; vervang beschadigde bedrading, anders de interne voorverwarmer. De storing reset automatisch na weer inschakelen.", inst]),
+    F("E130 (E1800)", "Relaisuitgang defect", 2, "Relaisuitgang 1 is defect; de signaaluitgang werkt niet.", ["Maak het toestel spanningsloos; de print UWA2-B moet worden vervangen.", inst]),
+    F("E1155 (E2000)", "Touchscreenfout", 1, "Fout in het touchscreen; foutcodes zijn alleen met de servicetool te zien.", ["Controleer de bedrading naar het touchscreen en vervang die zo nodig; bij schade het touchscreen vervangen; blijft de storing, dan de print UWA2-B vervangen.", inst]),
+    F("E120 (E2100)", "eBus-fout", 1, "Air Control en andere eBus-accessoires werken niet; het toestel werkt wel.", ["Controleer de bekabeling naar de accessoires en Air Control; vervang defecte accessoires.", "Blijft de storing: toestel spanningsloos maken en basisprint UWA2-B laten vervangen."]),
+    F("E121 (E2200)", "Externe busfout", 1, "Air Control en andere accessoires werken niet; het toestel werkt wel.", ["Controleer de bekabeling naar de accessoires en Air Control; vervang defecte accessoires.", "Blijft de storing: toestel spanningsloos maken en basisprint UWA2-B laten vervangen."]),
+    F("E122 (E2300)", "Interne ModBus-fout", 2, "Interne communicatiefout; het toestel gaat naar standby.", ["Controleer bedrading en aansluitingen op de UWA2-B en de ventilatoren; vervang een beschadigde kabelboom.", inst]),
+    F("E123 (E2400)", "Externe ModBus-fout", 1, "Bediening via Modbus werkt niet.", ["Controleer de bekabeling en accessoires en vervang wat beschadigd of defect is.", "Blijft de storing: toestel spanningsloos maken en basisprint UWA2-B laten vervangen."]),
+    F("E124 (E2500)", "USB-poort fout", 1, "De USB-interface is niet bruikbaar.", ["Vervang het USB-accessoire.", "Blijft de storing: toestel spanningsloos maken en basisprint UWA2-B laten vervangen."]),
+    F("E170 (E2600)", "CO2-sensor defect", 1, "Een of meer CO2-sensoren zijn defect; het toestel werkt zonder CO2-regeling.", ["Controleer de bekabeling van de CO2-sensor(en) en vervang beschadigde kabels of defecte sensoren."]),
+    F("E171 (E2700)", "Externe voorverwarmer of smeltveiligheid defect", 2, "Geen voorverwarming; de comfortregeling reageert anders.", ["Ontkoppel de voorverwarmer en controleer de smeltveiligheid; vervang die bij defect.", "Blijft de storing: externe voorverwarmer vervangen. Zet de spanning weer aan; de storing reset automatisch.", inst]),
+    F("E172 (E2800)", "Externe naverwarmer of smeltveiligheid defect", 2, "Geen naverwarming; de comfortregeling reageert anders.", ["Ontkoppel de naverwarmer en controleer de smeltveiligheid; vervang die bij defect.", "Blijft de storing: externe naverwarmer vervangen. Zet de spanning weer aan; de storing reset automatisch.", inst]),
+    N("Filtermelding resetten", 1, "Het filtersymbool staat op het display of de rode led op de standenschakelaar brandt. Filters jaarlijks vervangen; na drie keer reinigen de vierde keer vervangen.", ["Houd het filtersymbool langer dan 3 seconden ingedrukt en volg de filterwizard op het display (kan niet worden afgebroken).", "Bevestig na afloop en ga met de Home-toets terug; de timer is dan gereset.", "Alternatief: stapnummer 4.2 in het instelmenu opent de wizard, 4.3 reset de timer direct (verlaat daarna het menu met Home of Return).", "Laat het toestel nooit zonder filters draaien."])
+  ]});
+})();
+(() => {
+  SRC.brinkElan = ["Brink Climate Systems – Elan 10 2.0 / 16 2.0 / 25 2.1: hoofdstuk storing (614227, pdf)", "https://www.brinkclimatesystems.nl/documenten/8-storing-614227.pdf"];
+  const auto = "Zet de spanning er weer op; de storing reset automatisch.";
+  const inst = "Dit is werk voor je installateur.";
+  MODELS.push({ id: "brink-elan", brand: "Brink", name: "Elan ventilatie-unit: storingscodes", dev: "ventilatie-unit", cat: "ventilatie", years: "Elan 10 2.0, Elan 16 2.0, Elan 25 2.1", unit: null, also: "Brink Elan E101, E102, E104, E105, E106, E107, E152, E999", intro: "De Brink Elan geeft bij een storing een E-code. Bij de meeste codes stopt de ventilator of draait hij op minimale stand. De acties in de Brink-documentatie zijn bedoeld voor de installateur; maak het toestel altijd eerst spanningsloos.", weak: [], parts: [], tasks: [], src: ["brinkElan"], faults: [
+    F("E101", "Temperatuursensor afvoerlucht defect", 2, "De temperatuursensor van de afvoerlucht is defect; de ventilator wordt uitgeschakeld.", ["Maak het toestel spanningsloos en vervang de temperatuursensor.", auto, inst]),
+    F("E102", "Watertemperatuursensor defect", 2, "De watertemperatuursensor is defect; de ventilator wordt uitgeschakeld.", ["Maak het toestel spanningsloos en vervang de temperatuursensor.", auto, inst]),
+    F("E104", "Systeemventilator defect", 3, "De ventilator is defect; het toestel doet niets.", ["Maak het toestel spanningsloos, controleer de bedrading en vervang de ventilator.", auto, inst]),
+    F("E105", "Fout op relaisuitgang X15", 2, "Het vermogen van het aangesloten relais is te hoog of er is kortsluiting (X15, pin 5–6 of 7–8); de ventilator draait op minimale stand.", ["Controleer de bedrading en het vermogen van het aangesloten relais.", inst]),
+    F("E106", "Stand van standenschakelaar onbekend", 1, "De stand van de (optionele) standenschakelaar is onbekend; de ventilator draait op minimale stand.", ["Maak het toestel spanningsloos en controleer de aansluiting van de standenschakelaar en of de modulaire connector goed is gemonteerd.", "Werkt stand 2 niet: de modulaire connector zit waarschijnlijk andersom; laat een RJ-connector vervangen en omgekeerd monteren."]),
+    F("E107", "Externe storing op ingang X15", 1, "Een op de Elan aangesloten apparaat (bijvoorbeeld een condensing unit) heeft een storing; het normale bedrijf kan doorgaan.", ["Controleer alle aangesloten apparaten en verhelp de storing daar."]),
+    F("E152", "Flashgeheugen defect", 3, "Fout in de besturingsprint.", ["Maak het toestel spanningsloos en vervang de besturingsprint.", auto, inst]),
+    F("E999", "DIP-switches verkeerd ingesteld", 2, "De DIP-switches op de besturingsprint staan verkeerd; het toestel doet niets en de rode storingsled wordt niet aangestuurd.", ["Maak het toestel spanningsloos en zet de DIP-switches in de juiste stand (zie het DIP-switchschema).", "Zet de spanning er weer op; blijft E999, dan moet de print door het juiste type worden vervangen.", inst])
+  ]});
+})();
+(() => {
+  SRC.xsenseXs01w = ["X-Sense – handleiding XS01-W draadloze rookmelder (NL, pdf, via Brandpreventiewinkel)", "https://www.brandpreventiewinkel.nl/wp-content/uploads/2020/12/X-Sense-handleiding.pdf"];
+  MODELS.push({ id: "x-sense-xs01-w", brand: "X-Sense", name: "XS01-W draadloze rookmelder: lampjes en piepjes", dev: "rookmelder", cat: "rookmelders", years: "XS01-W (draadloos koppelbaar)", unit: null, also: "X-Sense rookmelder piept, X-Sense piept elke 40 seconden, X-Sense piept elke minuut, X-Sense rood lampje knippert, X-Sense stilteknop", intro: "De X-Sense XS01-W laat met de rode led en piepjes zien wat er aan de hand is. Eén knipper per minuut zonder geluid is normaal. Eén piep per minuut betekent een bijna lege batterij, twee piepjes per 40 seconden een storing. In beide gevallen adviseert X-Sense de melder direct te vervangen (bij een storing eerst reinigen).", weak: [], parts: [], tasks: [], src: ["xsenseXs01w"], faults: [
+    N("Rode led knippert één keer per 60 seconden, zonder geluid", 1, "Normale werking.", ["Geen actie nodig: de melder werkt normaal."]),
+    N("Eén piep en rode knipper per 60 seconden", 1, "De batterij is bijna leeg. Elke melder waarschuwt zelfstandig.", ["Vervang de rookmelder direct."]),
+    N("Twee piepjes en twee knippers per 40 seconden", 2, "Storing: de melder functioneert niet. Elke melder waarschuwt zelfstandig.", ["Reinig de rookmelder of vervang hem direct."]),
+    N("Rode led knippert één keer per 5 seconden", 1, "De stille modus is actief; het alarm is 9 minuten gedempt.", ["Geen actie nodig; na 9 minuten keert de melder terug naar normaal."]),
+    N("Alarm dempen met de stilteknop", 1, "Tijdens een rookalarm kun je de melder 9 minuten stil zetten.", ["Druk tijdens het alarm op de test/stilte-knop; het alarm is 9 minuten stil.", "Druk op de knop van de melder die het alarm startte om de andere gekoppelde melders te dempen; de startende melder kun je niet via een andere melder dempen.", "Gekoppelde melders kunnen tijdens de stille modus wel reageren op nieuwe rook."]),
+    N("Geen geluid tijdens de test", 1, "De melder zit niet goed op de montageplaat, de knop is niet goed ingedrukt of de positie of het draadloze signaal is niet goed.", ["Controleer of de melder goed op de montageplaat zit.", "Druk de testknop stevig in.", "Controleer de installatiepositie en het draadloze signaal."]),
+    N("Vals alarm bij koken of douchen", 1, "De melder hangt op een ongeschikte plek of is vuil.", ["Controleer de plek van de melder volgens de installatie-aanwijzingen.", "Reinig de melder."]),
+    N("Gekoppelde melder ontkoppelen", 1, "Je wilt de draadloze verbinding van een melder verbreken.", ["Druk 4 keer op de knop; de melder piept één keer.", "Houd de knop daarna ingedrukt tot je een piep hoort."])
+  ]});
+})();
+(() => {
+  SRC.savsS10w = ["SAVS – handleiding LinkSmart S10-W rookmelder (NL, pdf, via Brandpreventiewinkel)", "https://www.brandpreventiewinkel.nl/wp-content/uploads/2024/06/S10-W_NL_Check-v1_3.pdf"];
+  MODELS.push({ id: "savs-linksmart-s10-w", brand: "SAVS", name: "LinkSmart S10-W rookmelder: lampjes en piepjes", dev: "rookmelder", cat: "rookmelders", years: "LinkSmart S10-W (koppelbaar, vaste batterij)", unit: null, also: "SAVS rookmelder piept, SAVS S10-W rood knipperen, LinkSmart rookmelder storing, SAVS koppelen", intro: "De SAVS LinkSmart S10-W knippert normaal eenmaal per minuut groen. Twee rode knippers per minuut betekent een storing, een rode knipper met een piep elke 60 seconden een bijna lege batterij. De batterij is niet vervangbaar, dus dan vervang je de hele melder.", weak: [], parts: [], tasks: [], src: ["savsS10w"], faults: [
+    N("Groene led knippert eenmaal per minuut", 1, "Stand-by: de melder werkt normaal.", ["Geen actie nodig."]),
+    N("Rode led knippert tweemaal per minuut", 2, "De melder heeft een storing.", ["Raadpleeg de veelgestelde vragen en het onderhoudsgedeelte van de handleiding en test opnieuw.", "Blijft het probleem: stuur de melder terug naar fabrikant of leverancier."]),
+    N("Rode knipper en piep elke 60 seconden", 1, "De batterij is bijna leeg.", ["Vervang de melder onmiddellijk (de batterij van de S10-W is niet vervangbaar).", "Neem voor advies contact op met de technische ondersteuning."]),
+    N("Piept met tussenpozen", 1, "De sensor kan vervuild zijn of de melder hangt op een ongeschikte plek.", ["Reinig de melder.", "Monteer de melder eventueel op een andere plek."]),
+    N("Gaat niet af tijdens de test", 1, "De melder is nog niet gestabiliseerd of de testknop is niet stevig ingedrukt.", ["Geef de melder na het inschakelen eerst even tijd om te stabiliseren.", "Druk de testknop stevig in.", "Werkt het niet: raadpleeg de veelgestelde vragen en het onderhoudsgedeelte en test opnieuw; blijft het probleem, stuur de melder terug naar fabrikant of leverancier."]),
+    N("Rode led knippert snel met korte piep (koppelmodus)", 1, "De melder staat in koppelmodus en wacht drie minuten op een koppeling. Drie korte piepjes met groen knipperen betekent: koppeling gelukt.", ["Wacht tot de koppeling klaar is; alle gekoppelde melders geven een korte piep als de koppelmodus is afgesloten."])
+  ]});
+})();
+(() => {
+  SRC.honXw100 = ["Honeywell – handleiding XW100 draadloze module X-serie (NL, pdf, via Brandpreventiewinkel)", "https://www.brandpreventiewinkel.nl/wp-content/uploads/2020/12/XW100-I56-6220-000_A_NL-1.pdf"];
+  const klant = "Werkt het niet: neem contact op met de klantenservice via homesafety.honeywell.com of met je leverancier (bij garantie met aankoopbewijs en een omschrijving van de fout).";
+  MODELS.push({ id: "honeywell-xw100", brand: "Honeywell", name: "XW100 draadloze module (X-serie rook- en CO-melders): koppelen en storingen", dev: "draadloze module voor melders", cat: "rookmelders", years: "X-serie met XW100-module", unit: null, also: "Honeywell XW100 blauw lampje, Honeywell X-serie koppelen, Honeywell rookmelder draadloos, drie piepjes per minuut module", intro: "Met de XW100-module koppel je Honeywell X-serie rook-, hitte- en CO-melders draadloos. Het blauwe lampje van de module laat zien of hij is ingesteld en hoeveel modules in het netwerk zitten. Drie piepjes per minuut op de melder betekent dat de module aan het einde van zijn levensduur is.", weak: [], parts: [], tasks: [], src: ["honXw100"], faults: [
+    N("Drie piepjes per minuut op de melder (module)", 1, "De batterij is bijna leeg; de XW100-module is aan het einde van zijn levensduur.", ["Vervang de module.", klant]),
+    N("Blauw lampje knippert één keer kort na een korte druk", 1, "De module is nog niet ingesteld voor een netwerk.", ["Start een nieuw netwerk: druk op elke melder twee keer op de knop van de module terwijl die nog niet is ingesteld.", "Stop de instelsessie met 3 seconden drukken op de moduleknop (of hij stopt na een uur vanzelf)."]),
+    N("Module ontvangt meldingen van een ander netwerk", 1, "De module hoort bij een verkeerd of oud netwerk.", ["Bouw het netwerk opnieuw op: houd de knop van een module in het netwerk 10 seconden ingedrukt en rond de instelsessie af."]),
+    N("Defecte module staat nog in het netwerk", 1, "Een defecte module heeft het netwerk verlaten maar wordt nog herkend.", ["Houd op een willekeurige module in het netwerk de knop 10 seconden ingedrukt; de blauwe lampjes knipperen ongeveer 10 seconden.", "Rond daarna de instelsessie af."]),
+    N("Module toevoegen of verwijderen", 1, "Je wilt een melder aan het draadloze netwerk toevoegen of eruit halen.", ["Toevoegen: druk drie keer op de knop van de nieuwe én van een bestaande module. Zat de module eerder in een netwerk, wis dan eerst de configuratie.", "Verwijderen: houd de knop 5 seconden ingedrukt tijdens normaal bedrijf; alle modules knipperen ongeveer 30 seconden blauw."]),
+    N("Gekoppelde melders testen", 1, "Je wilt alle gekoppelde melders tegelijk testen.", ["Houd de knop Test/Stilte van de melder 18 seconden ingedrukt; de module knippert eens per 6 seconden met een piep.", "Druk nogmaals om terug te gaan naar normaal bedrijf, of wacht 10 minuten.", klant])
+  ]});
+})();
+(() => {
+  SRC.novo573 = ["Novoferm – montage- en bedieningshandleiding garagedeuraandrijving Novomatic 573 / Tormatic N-573 S (NL, pdf)", "https://www.novoferm.nl/fileadmin/user_upload/Novoferm.nl/Montagehandleidingen_2024/Novomatic_573.pdf"];
+  MODELS.push({ id: "novoferm-novomatic-573", brand: "Novoferm", name: "Novomatic 573 garagedeuropener: storingen", dev: "garagedeuraandrijving", cat: "garagedeuren", years: "Novomatic 573 (Tormatic N-573 S)", unit: null, also: "Novoferm garagedeur gaat niet dicht, Novomatic handzender werkt niet, Novoferm deur gaat weer open, Novoferm aandrijving maakt lawaai", intro: "De Novomatic 573 heeft een led-matrix die bij een storing een diagnosesymbool toont (zie hoofdstuk 8.2 van de handleiding). Veel voorkomende klachten zoals een deur die niet helemaal sluit of een handzender die niet werkt hebben een eenvoudige oorzaak.", weak: [], parts: [], tasks: [], src: ["novo573"], faults: [
+    N("Deur gaat niet helemaal open of dicht", 1, "De deurmechaniek is veranderd, de kracht staat te laag of een eindpositie klopt niet.", ["Laat de deur controleren.", "Stel de kracht bij (menu 5 en 6).", "Stel de eindposities opnieuw in."]),
+    N("Deur gaat na het sluiten een stukje open", 1, "Er zit een obstakel vlak voor de dichtstand of de eindpositie DICHT klopt niet.", ["Verwijder het obstakel.", "Stel de eindpositie DICHT opnieuw in."]),
+    N("Motor draait maar de deur beweegt niet", 1, "De aandrijving is ontgrendeld.", ["Vergrendel de aandrijving weer (zie het hoofdstuk over de noodontgrendeling)."]),
+    N("Handzender werkt niet, wandschakelaar wel", 1, "De batterij van de handzender is leeg, de antenne ontbreekt of hangt verkeerd, of er is geen handzender ingeleerd.", ["Vervang de batterij.", "Plaats of richt de antenne goed.", "Leer de handzender in (menu 1)."]),
+    N("Deur reageert op geen enkel signaal", 1, "Zie de diagnoseweergave op de led-matrix.", ["Lees het symbool op de led-matrix af en zoek het op in hoofdstuk 8.2 van de handleiding."]),
+    N("Bereik van de handzender is slecht", 1, "Lege batterij, ontbrekende of verkeerd gerichte antenne, of afscherming door het gebouw.", ["Vervang de batterij.", "Plaats of richt de antenne goed.", "Sluit eventueel een externe antenne (accessoire) aan."]),
+    N("Riem of aandrijving maakt veel lawaai", 1, "De riem is vuil of staat te strak.", ["Maak de riem schoon en spuit hem in met siliconenspray (geen producten op oliebasis).", "Zet de riem minder strak."])
+  ]});
+})();
+(() => {
+  SRC.novo423 = ["Novoferm – montagehandleiding Tormatic Novomatic 423 accu (pdf)", "https://www.novoferm.de/fileadmin/files/novoferm_nl/app-doc/Garagedeuren_en_Aandrijvingen/Technische_documentatie/Montagehandleidingen_aandrijvingen/Montagehandleiding_Tormatic_Novomatic_423_accu.pdf"];
+  MODELS.push({ id: "novoferm-novomatic-423-accu", brand: "Novoferm", name: "Novomatic 423 accu garagedeuropener: accustatus en storingen", dev: "garagedeuraandrijving op accu", cat: "garagedeuren", years: "Novomatic 423 accu (Tormatic)", unit: null, also: "Novoferm 423 accu leeg, Novomatic 423 piept bij start, Novoferm accu bijladen, Novoferm 0 blijft branden, Novoferm garagedeur reageert niet", intro: "De Novomatic 423 accu toont bij het starten met een cijfer en korte signalen hoe vol de accu is: 9 en 8 is vol, 3 of lager betekent bijladen. Op de diagnose-indicatie blijft een 0 branden als de krachtleerrit niet is afgerond.", weak: [], parts: [], tasks: [], src: ["novo423"], faults: [
+    N("Eén kort signaal bij start (accu 3)", 1, "De accu is nog ongeveer 30% vol.", ["Laad de accu bij."]),
+    N("Twee korte signalen bij start (accu 2)", 1, "De accu is nog ongeveer 20% vol.", ["Laad de accu dringend bij."]),
+    N("Drie korte signalen bij start (accu 1)", 2, "De accu is nog ongeveer 10% vol; de aandrijving kan stoppen.", ["Laad de accu direct bij."]),
+    N("Meerdere korte signalen, aandrijving reageert niet (accu 0)", 2, "De accu is minder dan 5% vol; de aandrijving reageert niet meer.", ["Laad de accu op."]),
+    N("Continu signaal bij start", 2, "De laadspanning is te hoog.", ["Laat dit controleren door een vakman."]),
+    N("Diagnose: 0 blijft branden", 1, "De krachtleerrit is niet voltooid.", ["Herhaal de krachtleerrit."]),
+    N("Deur drukt hard in de eindposities", 1, "De eindposities zijn niet optimaal ingesteld.", ["Stel de eindposities opnieuw in (menu 3 en 4)."]),
+    N("Deur blokkeert vlak voor DICHT of gaat weer een stukje open", 1, "Er zit een obstakel of de eindpositie DICHT klopt niet.", ["Verwijder het obstakel.", "Stel de eindpositie DICHT opnieuw in (menu 4)."]),
+    N("Deur gaat niet helemaal open of dicht", 1, "De deurmechaniek is veranderd, de kracht is te zwak of de eindposities kloppen niet.", ["Laat de deur controleren.", "Stel de kracht in (menu 5 en 6).", "Stel de eindposities opnieuw in (menu 3 en 4)."]),
+    N("Handzender werkt niet, drukknop wel", 1, "Batterij van de handzender leeg, antenne ontbreekt of niet uitgericht, of geen handzender geprogrammeerd.", ["Vervang de batterij.", "Sluit de antenne aan en richt hem uit.", "Programmeer de handzender (menu 1)."]),
+    N("Deur sluit niet meer (STOP B onderbroken)", 1, "Een externe veiligheidsvoorziening, zoals een fotocel, is actief.", ["Controleer de fotocel of andere veiligheidsvoorziening."]),
+    N("Deur opent en sluit niet (STOP A of zelftest)", 2, "Een externe veiligheidsvoorziening (bijv. loopdeur) is actief, of de zelftest gaf een fout.", ["Controleer de veiligheidsvoorziening, zoals het loopdeurcontact.", "Bij een fout in de zelftest: onderbreek de voeding.", "Draait de motor helemaal niet: schakel een vakbedrijf in."])
+  ]});
+})();
+(() => {
+  SRC.boseSsbRed = ["Bose Support – Smart Soundbar: lampje brandt continu rood (Engels)", "https://bose.co.uk/en_gb/support/articles/HC2607/productCodes/SSB-SOUNDBAR/article.html"];
+  MODELS.push({ id: "bose-smart-soundbar", brand: "Bose", name: "Smart Soundbar: lampje brandt rood", dev: "soundbar", cat: "audio", years: "Bose Smart Soundbar", unit: null, also: "Bose soundbar rood lampje, Bose Smart Soundbar error, Bose soundbar reageert niet na update, Bose recovery mode", intro: "Brandt het lampje van de Bose Smart Soundbar continu rood, dan is er een fout opgetreden. Bose adviseert eerst een reset; hangt de soundbar na een update, dan helpt de herstelmodus met een handmatige update.", weak: [], parts: [], tasks: [], src: ["boseSsbRed"], faults: [
+    N("Lampje brandt continu rood", 2, "De soundbar heeft een fout gevonden, bijvoorbeeld tijdens of na een software-update.", ["Reset de soundbar (vergelijkbaar met het herstarten van een telefoon).", "Reageert hij niet meer tijdens of na een update: zet hem in herstelmodus (Recovery mode).", "Installeer de update handmatig; het snelst met een computer en USB-kabel (Direct IP of het ingebouwde setup-netwerk kan ook). In herstelmodus sla je de stap over om de soundbar in Setup-modus te zetten.", "Helpt dit niet: de soundbar moet mogelijk naar de service van Bose."])
   ]});
 })();
 module.exports = { CATS, MODELS, SRC, COST };

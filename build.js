@@ -251,7 +251,9 @@ for (const m of MODELS) {
   <p class="lead">${esc(m.intro)}</p>
   ${brandLinks(m) ? `<p class="row">${brandLinks(m)}</p>` : ""}
   <dl class="facts"><div><dt>Bouwjaren</dt><dd>${esc(m.years)}</dd></div><div><dt>Onderhoud</dt><dd>${m.tasks.length} taken</dd></div><div><dt>Storingen</dt><dd>${m.faults.length} beschreven</dd></div>${m.also ? `<div class="wide"><dt>Geldt ook voor</dt><dd>${esc(m.also)}</dd></div>` : ""}</dl>
+  <p><button type="button" class="btn-print" id="printcard">🖨️ Storingskaart printen</button></p>
 </section>
+${printCard(m)}
 ${codes.length ? fold("Foutcodes", `<div class="results">${codes.map(f => `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(f.code)}</span> ${esc(f.t)}</span><span>${D[f.d][0]}</span></a>`).join("")}</div>`, true, codes.length) : ""}
 ${plain.length ? `<section class="stack"><h2>${codes.length ? "Andere storingen" : "Storingen"}</h2>
 ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
@@ -274,7 +276,20 @@ ${KB.some(a => a.cat === m.cat) ? fold("Uitleg in de kennisbank", `<ul class="kb
 
 // ───────── Advertentie (affiliate) bij laad-gerelateerde pagina's
 function isEvCharge(m) { return m.cat === "laadpalen" || (m.cat === "auto" && /laad|laden/.test(m.id)); }
-function adBlock(m) { return isEvCharge(m) ? `<aside class="ad"><span class="ad-label">Advertentie</span><a href="https://lt45.net/c/?si=12933&amp;li=1570912&amp;wi=446984&amp;ws=" rel="sponsored noopener" target="_blank">🔌 Laadkabel voor uw elektrische auto</a><small>Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner.</small></aside>` : ""; }
+function adHtml(href, title, sub) { return `<aside class="ad"><span class="ad-label">Advertentie</span><a href="${href}" rel="sponsored noopener" target="_blank">${title}</a><small>${sub}</small></aside>`; }
+function adBlock(m) {
+  if (isEvCharge(m)) return adHtml("https://lt45.net/c/?si=12933&amp;li=1570912&amp;wi=446984&amp;ws=", "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner.");
+  if (m.cat === "auto") return adHtml("https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=", "🚗 Auto verkopen?", "Is repareren de moeite niet meer waard? Vraag een bod aan bij onze partner.");
+  if (m.cat === "camper-caravan") return adHtml("https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=&amp;dl=camper-verkopen%2F", "🚐 Camper verkopen?", "Vraag een bod aan bij onze partner.");
+  return "";
+}
+
+function helpedBox() { return `<div class="helped" role="group" aria-label="Feedback"><span>Heeft dit geholpen?</span><button type="button" data-v="ja">👍 Ja</button><button type="button" data-v="nee">👎 Nee</button><span class="helped-thx" hidden>Bedankt voor je reactie!</span></div>`; }
+function printCard(m) {
+  const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
+  const rows = (codes.length ? codes : plain).map(f => `<tr><td class="pc-code">${esc(f.code || "")}</td><td>${esc(f.t)}</td><td>${D[f.d][0]}</td></tr>`).join("");
+  return `<section class="printcard" aria-hidden="true"><div class="pc-head"><div><p class="pc-brand">Foutcodezoeker.nl · storingskaart</p><h2>${esc(fullName(m))}</h2><p>${esc(m.years)}</p><p class="pc-url">${SITE.replace(/^https?:\/\//, "")}/${m.id}.html</p></div><div class="pc-qr" data-url="${SITE}/${m.id}.html"></div></div><table><thead><tr><th>${codes.length ? "Code" : ""}</th><th>${codes.length ? "Betekenis" : "Storing"}</th><th>Zelf doen?</th></tr></thead><tbody>${rows}</tbody></table><p class="pc-foot">Scan de QR-code voor de oorzaak en de stappen per storing. Bron: zie de pagina.</p></section>`;
+}
 function warnGas() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Zelf mag je bijvullen en één keer resetten. Al het andere werk aan een gasketel laat je over aan een erkend installateur. Ruik je gas? Ramen open, gaskraan dicht en bel 0800-9009.</p></div>`; }
 function warnEbike() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Open nooit zelf een e-bike-accu. Bij een beschadigde, warme of opgezwollen accu: niet laden en naar een specialist.</p></div>`; }
 
@@ -302,6 +317,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
+  ${helpedBox()}
 </article>
 ${costBlock(m, f)}
 ${adBlock(m)}
@@ -338,6 +354,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
+  ${helpedBox()}
 </article>
 ${costBlock(m, f)}
 ${adBlock(m)}
@@ -584,6 +601,6 @@ Elke foutcode heeft een eigen pagina (${SITE}/foutcode-<model>-<code>) met: een 
 `);
 fs.writeFileSync(path.join(OUT, "favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>`);
 if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSync(path.join(__dirname, "static"))) fs.copyFileSync(path.join(__dirname, "static", f), path.join(OUT, f));
-for (const f of ["style.css", "app.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
+for (const f of ["style.css", "app.js", "qrcode.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
 
 console.log(`${pages.length} pagina's gebouwd (${allCodes.length} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);

@@ -320,3 +320,28 @@ header.top{position:relative;z-index:58}
 .ad-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.65}
 .ad a{font-weight:700;font-size:17px}
 .ad small{opacity:.75}
+/* Heeft dit geholpen? */
+.helped{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line,#ddd)}
+.helped span{font-weight:600}
+.helped button,.btn-print,.btn-report{font:inherit;cursor:pointer;padding:8px 14px;border-radius:999px;border:1px solid var(--line,#ccc);background:var(--paper,#fff);color:inherit}
+.helped button:hover,.btn-print:hover,.btn-report:hover{border-color:currentColor}
+.helped .helped-thx{font-weight:400;opacity:.8}
+/* Storingskaart */
+.printcard{display:none}
+@media print{
+  body.printing-card *{visibility:hidden}
+  body.printing-card .printcard,body.printing-card .printcard *{visibility:visible}
+  body.printing-card .printcard{display:block;position:absolute;left:0;top:0;width:100%;color:#000;background:#fff;font-size:11pt}
+  .printcard .pc-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;border-bottom:2px solid #000;padding-bottom:8px;margin-bottom:10px}
+  .printcard h2{margin:2px 0;font-size:18pt}
+  .printcard p{margin:2px 0}
+  .printcard .pc-brand{font-size:9pt;text-transform:uppercase;letter-spacing:.05em}
+  .printcard .pc-url{font-size:9pt}
+  .printcard .pc-qr{width:30mm;height:30mm;flex:none}
+  .printcard .pc-qr svg{width:100%;height:100%}
+  .printcard table{width:100%;border-collapse:collapse}
+  .printcard th,.printcard td{border-bottom:1px solid #999;padding:3px 4px;text-align:left;vertical-align:top}
+  .printcard tr{break-inside:avoid}
+  .printcard .pc-code{font-family:monospace;font-weight:700;white-space:nowrap}
+  .printcard .pc-foot{margin-top:8px;font-size:9pt}
+}
