@@ -335,6 +335,7 @@ function ADS() { return {
   motardinn: [TI(20600, 1873778, "motardinn"), "🛵 Onderdelen voor scooter en motor", "Accu's, banden en onderdelen bij MotardInn."],
   techinn: [TI(20616, 1874238, "techinn"), "🔌 Elektronica en accessoires", "Opladers, kabels en elektronica bij TechInn."],
   camperverkopen: ["https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=&amp;dl=camper-verkopen%2F", "🚐 Camper verkopen?", "Vraag een bod aan bij onze partner."],
+  eufy: ["https://bdt9.net/c/?si=18489&amp;li=1849129&amp;wi=446984&amp;ws=", "🤖 Eufy robotstofzuigers, camera's en deurbellen", "Nieuw apparaat of onderdelen nodig? Bekijk het aanbod bij Eufy."],
   refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie bij Remarkt."]
 }; }
 function adsFor(m) {
@@ -348,6 +349,7 @@ function adsFor(m) {
     case "scooters": return ["motardinn"];
     case "televisies": case "audio": case "printers": return ["techinn"];
     case "laptops": case "smartphones": case "spelcomputers": return ["refurbished", "techinn"];
+    case "stofzuigers": case "slim-huis": return ["eufy"];
     default: return [];
   }
 }
