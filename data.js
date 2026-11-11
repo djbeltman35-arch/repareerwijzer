@@ -11312,4 +11312,14 @@ Object.assign(SRC,{ aegDroogSup: ["AEG Support – foutmeldingen droger (E22, E9
   F("C0", "Geen storing", 1, "Volgens AEG is C0 geen storingsmelding.", ["Geen actie nodig. Twijfel je, neem dan contact op met de AEG-servicedienst."]),
   F("dEn", "Demonstratiestand", 1, "De droger staat in de winkelstand en telt af naar nul.", ["Haal de stekker ongeveer 30 seconden uit het stopcontact en steek hem er weer in.", "Lukt het niet? " + SVC]));
   m.src.push("aegDroogSup"); })(MODELS.find(m => m.id === "aeg-droger"));
+
+Object.assign(SRC,{ aegOvenSup: ["AEG Support – foutmeldingen oven (F136, F137, F142, F192, F602, F603, E2020)", "https://support.aeg.nl/support-articles/koken/ovens"] });
+(m => { const SVC = "Plan een afspraak met de AEG-servicedienst; dit lost een monteur op.";
+  m.faults.push(
+  F("F136 / F137", "Vleesthermometer werkt niet", 2, "De vleesthermometer (kerntemperatuurvoeler) geeft een storing.", ["Haal de vleesthermometer uit de aansluiting, maak de stekker schoon en droog en steek hem er opnieuw in.", "Blijft de code? " + SVC]),
+  F("F192", "Probleem met de kerntemperatuurvoeler", 2, "De voedseltemperatuurmeter geeft een fout.", ["Probeer de oven zonder kerntemperatuurvoeler te gebruiken.", SVC]),
+  F("F142", "Waterniveausensor stoomfunctie", 2, "De sensor die het water voor de stoomfunctie meet, geeft een probleem.", ["Vul het waterreservoir helemaal voordat je start; bij lange programma's ongeveer elke 30 minuten bijvullen.", "Blijft de code? " + SVC]),
+  F("F602 / F603", "Geen wifi-signaal", 1, "De oven vindt geen wifi-netwerk. Koken werkt gewoon door.", ["Zet de oven uit en weer aan.", "Blijft de code? Mogelijk is de wifi-module uitgeschakeld als veiligheidsmaatregel. " + SVC]),
+  F("E2020", "Elektronisch probleem", 3, "De oven meldt een fout in de elektronica.", [SVC]));
+  m.src.push("aegOvenSup"); })(MODELS.find(m => m.id === "aeg-oven"));
 module.exports = { CATS, MODELS, SRC, COST };
