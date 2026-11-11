@@ -11585,4 +11585,11 @@ Object.assign(SRC,{ aegNlKoffie: ["AEG Support – meldingen inbouw-koffiemachin
       N("Geur blijft hangen in de keuken", 1, "De kap staat te kort aan, de filters zijn vuil of de kap hangt te hoog.", ["Zet de kap 10 minuten voor het koken aan en laat hem 10 minuten na het koken doorlopen.", "Reinig de vetfilters en reinig of vervang de koolstoffilters.", "Controleer de afstand tot de kookplaat en de diameter van de afvoer."])
     ]});
 }
+Object.assign(SRC,{ elxNlMagn: ["Electrolux Support – foutmeldingen combi-magnetron (o.a. F139)", "https://support.electrolux.nl/support-articles/koken/magnetrons"], elxNlAirco: ["Electrolux Support – foutmeldingen airconditioner", "https://support.electrolux.nl/support-articles/luchtbehandeling/airconditioners"], elxNlKoffie: ["Electrolux Support – meldingen inbouw-koffiemachine", "https://support.electrolux.nl/support-articles/koken/inbouwkoffiemachines"] });
+// Dezelfde apparaten en codes bij Electrolux (zelfde concern): merk toevoegen in plaats van dubbele pagina's
+(m => { m.brand = "Zanussi / AEG / Electrolux"; m.also += ", AEG combi-magnetron F139, Electrolux magnetron foutcode";
+  m.faults.push(F("F139", "Probleem met de deurschakelaars", 2, "De deur is niet goed dicht of een deurhaakje is afgebroken.", ["Controleer of de deur goed sluit.", "Kijk of er geen haakje van de deur is afgebroken.", "Lost dit het niet op? Maak een afspraak met de servicedienst."]));
+  m.src.push("elxNlMagn"); })(MODELS.find(m => m.id === "zanussi-combi-magnetron"));
+(m => { m.brand = "AEG / Electrolux"; m.src.push("elxNlAirco"); })(MODELS.find(m => m.id === "aeg-mobiele-airco"));
+(m => { m.brand = "AEG / Electrolux"; m.src.push("elxNlKoffie"); })(MODELS.find(m => m.id === "aeg-inbouw-koffiemachine"));
 module.exports = { CATS, MODELS, SRC, COST };
