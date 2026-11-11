@@ -10668,4 +10668,34 @@ const MON = "Blijft de code, schakel een monteur in.";
   F("401", "Geen communicatie met de vermogensmodule", 3, "De verbinding met de vermogensmodule is verbroken.", ["Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
   F("406 / 407", "Temperatuursensor defect", 3, "Een temperatuursensor in de omvormer werkt niet goed.", ["De omvormer probeert het zelf opnieuw.", "Blijft de code steeds zichtbaar, schakel dan je installateur in."]),
   F("408", "Gelijkstroom in het net gedetecteerd", 3, "De omvormer meet gelijkstroom op het net.", ["Blijft de code steeds zichtbaar, schakel dan je installateur in."])); })(MODELS.find(m => m.id === "fronius-primo-symo"));
+(m => { m.faults.push(
+  F("0300-4008", "AMS kon niet van filament wisselen", 2, "Het automatische filamentsysteem (AMS) kon het filament niet wisselen.", ["Controleer of het filament niet vastzit of geknakt is in de AMS en de toevoerbuis.", "Volg de aanwijzing op het scherm en probeer opnieuw."]),
+  F("0300-4009", "XY-homing mislukt", 2, "De printkop kon zijn nulpositie op de X- of Y-as niet vinden.", ["Controleer of er niets de beweging van de printkop blokkeert.", "Start de print opnieuw; blijft het, neem contact op met Bambu Lab-support."]),
+  F("0300-4000", "Print gestopt: Z-homing mislukt", 2, "De printer kon de hoogte van het printbed niet bepalen.", ["Controleer of het printbed goed ligt en er niets onder de nozzle zit.", "Maak de nozzle schoon en probeer opnieuw."]),
+  F("0300-400B", "Interne communicatiefout", 2, "Er ging iets mis in de communicatie binnen de printer.", ["Zet de printer uit en weer aan.", "Blijft de fout, neem contact op met Bambu Lab-support."]),
+  F("0500-4005 / 0500-4009", "Printopdracht geblokkeerd tijdens update", 1, "Er loopt een firmware-update of een log-update.", ["Wacht tot de update klaar is en start de print opnieuw."]),
+  F("0500-4002", "Bestandspad of bestandsnaam niet ondersteund", 1, "De naam of de map van het printbestand wordt niet ondersteund.", ["Geef het bestand een eenvoudige naam zonder speciale tekens en zet het niet in een diepe map."]),
+  F("0500-4014", "Slicen mislukt", 1, "Het printbestand kon niet worden gesliced.", ["Slice het model opnieuw in Bambu Studio en stuur het opnieuw naar de printer."]),
+  F("0500-C010", "Lees- of schrijffout microSD-kaart", 1, "De printer kan de microSD-kaart niet goed lezen of beschrijven.", ["Haal de kaart eruit en plaats hem opnieuw.", "Formatteer de kaart of gebruik een andere kaart."]),
+  F("0500-401F / 0501-401F", "Autorisatie verlopen", 1, "De koppeling met je account is verlopen.", ["Log opnieuw in in Bambu Studio of Bambu Handy en koppel de printer opnieuw."]),
+  F("0500-401C / 0501-401C", "Cloudtoegang geweigerd", 1, "De Bambu-cloud weigert de verbinding.", ["Probeer het later opnieuw.", "Blijft het, neem contact op met Bambu Lab-support."]),
+  F("0500-4024 / 0501-4024", "Geen verbinding met de cloud", 1, "Wifi-storing, geen internet of een firewall op de router blokkeert de verbinding.", ["Controleer of de printer verbonden is met wifi en of er internet is.", "Controleer of de router of firewall de verbinding niet blokkeert."]),
+  F("1200-8001", "Filament snijden mislukt", 2, "De snijder kon het filament niet doorknippen.", ["Controleer of de snijder vrij kan bewegen en niet vastzit.", "Volg de aanwijzing op het scherm en probeer opnieuw."]),
+  F("1001-C001", "Timelapse niet mogelijk in spiraalmodus", 1, "Timelapse werkt niet samen met de spiral vase-modus.", ["Zet timelapse of de spiral vase-modus uit en start opnieuw."])
+); })(MODELS.find(m => m.id === "bambu-lab-foutcodes"));
+(() => { SRC.autelCompactUm = ["Autel – MaxiCharger AC Compact gebruikershandleiding, foutcodelijst (Engels)", "https://cdn.shopify.com/s/files/1/0616/4486/5757/files/MaxiCharger_AC_Compact_User_Manual_V1.1_EN_20230706.pdf"];
+(m => { m.faults.push(
+  F("01", "Netspanning te hoog", 2, "De spanning op het net is 263 V of hoger.", ["Laat een installateur de spanning meten; is die te hoog, neem contact op met je netbeheerder."]),
+  F("02", "Netspanning te laag", 2, "De spanning op het net is 161 V of lager.", ["Laat een installateur de spanning meten; is die te laag, neem contact op met je netbeheerder."]),
+  F("10", "Fase ontbreekt", 2, "Een van de fasen van de aansluiting valt weg.", ["Controleer of alle groepen in de meterkast aan staan.", "Neem contact op met je installateur of Autel-support."]),
+  F("20", "Fase en nul verwisseld", 3, "De laadpaal is verkeerd aangesloten.", ["Laat de aansluiting controleren door je installateur."]),
+  F("40", "Aardingsfout", 3, "De laadpaal is niet goed geaard.", ["Laat de aarding controleren door je installateur."]),
+  F("100", "Te hoge temperatuur", 1, "De laadpaal of de laadkabel wordt te warm.", ["Controleer of de laadkabel goed vastzit in de auto.", "Stop met laden en start pas opnieuw als de temperatuur weer normaal is."]),
+  F("200 / 800000", "Lekstroom gedetecteerd", 2, "De laadpaal meet lekstroom.", ["Haal de stekker uit de auto en steek hem er opnieuw in.", "Blijft het, neem contact op met Autel-support of je installateur."]),
+  F("400", "Afwijkende spanning op het communicatiesignaal (CP)", 2, "De communicatie tussen laadpaal en auto klopt niet.", ["Haal de stekker uit de auto en steek hem er opnieuw in.", "Blijft het, neem contact op met Autel-support."]),
+  F("8000 / 10000", "Probleem met het stekkersignaal (PP)", 2, "Het signaal van de laadstekker valt weg of klopt niet.", ["Controleer of de stekker goed in de laadpaal en de auto zit.", "Probeer een andere laadkabel als je die hebt.", "Blijft het, neem contact op met Autel-support."]),
+  F("20000", "Storing elektronisch slot", 2, "Het slot dat de stekker vergrendelt werkt niet.", ["Haal de stekker eruit en steek hem opnieuw in.", "Blijft het, neem contact op met Autel-support."]),
+  F("4000000", "Aardfout op de uitgang", 3, "Fout in de aarding aan de laadkant.", ["Laat de aarding controleren door je installateur."]),
+  F("800 / 1000 / 100000 / 2000000 / 10000000 / 40000000", "Interne storing", 3, "Een fout in de schakelaar, de stroommeting, de besturing of de voeding van de laadpaal.", ["Neem contact op met Autel-support (evsupport.eu@autel.com) of je installateur."])
+); m.src.push("autelCompactUm"); })(MODELS.find(m => m.id === "autel-compact")); })();
 module.exports = { CATS, MODELS, SRC, COST };
