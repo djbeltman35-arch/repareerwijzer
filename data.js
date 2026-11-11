@@ -12239,4 +12239,17 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("DEMO of dON: droogt niet", 1, "De demostand staat aan.", ["Zet de machine uit en weer aan met AAN/UIT.", "Druk tegelijk op AAN/UIT en START/PAUZE tot dOFF verschijnt."])
     ]});
 }
+{ (m => { m.faults.push(
+    N("Lampje van de condensor blijft branden", 1, "De condensor moet worden schoongemaakt.", ["Maak de condensor schoon.", "Reset daarna: zet de programmaknop op de stand tegenover 0 (uit) en druk 5 seconden op Start."])); })(MODELS.find(m => m.id === "whirlpool-droger"));
+  MODELS.push({ id: "whirlpool-koelkast", brand: "Whirlpool", name: "Koelkast, Amerikaanse koelkast en vriezer", cat: "koelkasten", years: "Whirlpool-koelkasten, side-by-side en vriezers", unit: null, also: "Whirlpool koelkast AF, Whirlpool Amerikaanse koelkast F1%, Whirlpool waterfilter lampje rood",
+    intro: "Whirlpool-koelkasten tonen een paar korte meldingen, vooral over het water- of antibacteriële filter. Het zijn meestal geen storingen.", weak: [], parts: [],
+    tasks: [{ m: 6, t: "Waterfilter vervangen (waterdispenser)" }],
+    src: ["whirlpoolNlFaq"], faults: [
+      F("AF", "Antibacteriële filter versleten (ook het vergrootglassymbool)", 1, "Geen storing: het antibacteriële filter moet worden vervangen.", ["Vervang het filter.", "Houd daarna de OK-knop 5 seconden ingedrukt om de indicator te resetten."]),
+      F("F1%", "Waterfilter versleten, ook na vervangen", 1, "De filterindicator van de Amerikaanse koelkast is na het vervangen niet gereset.", ["Houd de OK-knop op het lcd-scherm 3 seconden ingedrukt tot F99% verschijnt."]),
+      N("Lampje van de waterdispenser is oranje of rood", 1, "Het waterfilter gaat zes maanden mee. Oranje: 90% van de levensduur is bereikt. Rood: vervangen.", ["Vervang het waterfilter en houd de reset-knop ongeveer 3 seconden ingedrukt; het lampje wordt weer groen."]),
+      N("Water- en ijsdispenser werkt niet", 1, "Vaak is de vriezerdeur niet goed dicht of zit de ijsbak niet goed.", ["Sluit de vriezerdeur goed en zet de ijsbak goed op zijn plaats."]),
+      N("Rood lampje op de diepvriezer", 1, "De temperatuur in de vriezer is te hoog. (Groen = stroom aan, oranje = snelvriezen staat aan.)", ["Controleer of de deur goed sluit en of de vriezer niet te vol is.", "Controleer het eten: ontdooid eten niet opnieuw invriezen."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
