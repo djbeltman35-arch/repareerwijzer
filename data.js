@@ -11030,4 +11030,30 @@ Object.assign(SRC,{ vicMultiRs: ["Victron Energy – Multi RS Solar, handleiding
       F("119", "Instellingen verloren", 2, "De lader kan zijn instellingen niet lezen en is gestopt.", ["Zet terug naar fabrieksinstellingen in VictronConnect (menu met drie puntjes).", "Koppel alle bronnen los, wacht 3 minuten, zet aan en stel opnieuw in."]),
       F("200 / 201 / 202 / 203 / 204 / 212 / 215", "Interne fout (spanning of lekstroomsensor)", 3, "De interne diagnose vond een fout in een spanningsmeting, de lekstroomsensor of de interne voeding.", ["Werk bij fout 201 eerst de firmware bij (v1.08 of hoger).", "Controleer de installatie en herstart.", "Blijft het? Het apparaat moet waarschijnlijk worden gerepareerd of vervangen. " + SUP])], src: ["vicMultiRs"] });
 }
+
+Object.assign(SRC,{ vicMultiHs: ["Victron Energy – Multi HS19 Solar, probleemoplossing (nl)", "https://www.victronenergy.com/media/pg/Multi_HS19_Solar/nl/troubleshooting.html"] });
+{ const RST = "Controleer de installatie en herstart met de aan/uit-schakelaar.";
+  const RET = "Blijft de fout na 3 automatische pogingen en een herstart? Dan is het apparaat waarschijnlijk defect; neem contact op met je leverancier.";
+  MODELS.push({ id: "victron-multi-hs19-solar", brand: "Victron Energy", name: "Multi HS19 Solar 15k", dev: "Multi HS19", cat: "zonnepanelen", years: "Multi HS19 Solar 15 k (hoogvolt-accu)", unit: null, also: "Victron Multi HS19 foutcode Err 10 Err 15 Err 16 Err 24 Err 41 Err 42 Err 180",
+    intro: "De Victron Multi HS19 Solar werkt met een hoogvolt-accu en toont foutnummers in VictronConnect. Veel fouten probeert het apparaat zelf 3 keer te herstellen.", weak: [], parts: [], tasks: [],
+    faults: [
+      F("2", "Accuspanning te hoog", 2, "Andere laadapparatuur op de accu of een interne fout.", ["Controleer andere laders op de accu.", "De fout verdwijnt vanzelf als de spanning daalt."]),
+      F("10", "Accuspanning te laag (onder 650 V)", 1, "De accu is te leeg om de omvormer te starten.", ["Laad de accu op via de panelen of een externe bron."]),
+      F("15", "Fout accurelais", 3, "Het relais naar de accu werkt niet goed.", [RST, RET]),
+      F("16", "Accu niet gevonden", 2, "Meer dan 3 minuten geen communicatie met de accu, of de spanning klopt niet.", ["Controleer de communicatiekabel tussen accu en omvormer.", RST, RET]),
+      F("23", "Temperatuursensor lader los", 3, "De verbinding met de temperatuursensor van de lader is verbroken.", [RST, RET]),
+      F("24", "Ventilator lader werkt niet", 2, "De ventilator krijgt een signaal maar trekt geen stroom: hij is kapot of geblokkeerd.", ["Kijk of de ventilator vrij kan draaien en niets de luchtstroom blokkeert.", "Neem contact op met je leverancier."]),
+      F("40", "Interne fout", 3, "Een interne fout in het apparaat.", [RST, RET]),
+      F("41", "Isolatieweerstand panelen te laag", 3, "Fout in de PV-bekabeling of de isolatie van een paneel.", ["Laat bekabeling en panelen controleren door een vakman. De omvormer start vanzelf na herstel."]),
+      F("42", "Aardlekstroom boven 30 mA", 3, "Lekstroom in de PV- of accubekabeling.", ["Laat de bekabeling en isolatie controleren.", RST]),
+      F("43", "Fout aardrelais", 3, "Te hoge spanning tussen nul en aarde: aarddraad ontbreekt of fase en nul zijn verwisseld, of (off-grid) een defect aardrelais.", ["Laat de aarding en aansluiting controleren door een installateur."]),
+      F("50 / 52", "Omvormer overbelast", 1, "Te veel vermogen gevraagd of een hoge aanloopstroom van een motor of pomp.", ["Schakel apparaten uit en wacht 30 seconden.", "Na 3 keer overbelast binnen 30 seconden: zet het apparaat uit en weer aan."]),
+      F("51", "Omvormer te warm", 1, "Hoge belasting of slechte ventilatie.", ["Verminder de belasting en houd de ventilatieopeningen vrij. Hij start na 30 seconden weer."]),
+      F("59", "Fout relais AC-ingang", 3, "Meestal een vastzittend relais in de AC-ingang.", [RST, RET]),
+      F("116 / 118", "Kalibratiegegevens verloren of hardware niet compatibel", 3, "Het apparaat is defect of herkent zijn hardware niet.", ["Koppel alle stroombronnen los, wacht 3 minuten en start opnieuw.", "Blijft het? Neem contact op met je leverancier voor vervanging."]),
+      F("117", "Ongeldige firmware (update onderbroken)", 1, "Een firmware-update is niet afgemaakt.", ["Doe de update opnieuw via VictronConnect (Bluetooth of VRM)."]),
+      F("119", "Instellingen verloren", 2, "Het apparaat kan zijn instellingen niet lezen en is gestopt.", ["Zet terug naar fabrieksinstellingen in VictronConnect, koppel alles 3 minuten los en stel opnieuw in."]),
+      F("180", "Voorladen mislukt", 3, "Er ging iets mis in de opstartvolgorde.", [RST, RET]),
+      F("201", "Interne DC-spanningsmeting", 3, "De interne spanningsmeting klopt niet.", ["Werk eerst de firmware bij.", RST, RET])], src: ["vicMultiHs"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
