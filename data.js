@@ -11100,4 +11100,18 @@ Object.assign(SRC,{ vicEvcs: ["Victron Energy – EV Charging Station, problemen
       N("Auto wordt niet herkend of laden stopt en start steeds", 1, "Afwijking in het CP-signaal tussen laadpaal en auto.", ["Doe een CP-kalibratie via de webinterface (instellingen → algemeen → lader) of VictronConnect. Vanaf firmware 2.02 gebeurt dit automatisch bij elke aansluiting."]),
       N("Laadt in auto-modus niet bij weinig zonnestroom", 1, "De laadpaal heeft minimaal 6 A (ongeveer 1,3 kW) nodig.", ["Zet de optie aan om bij weinig overschot aan zonnestroom aan te vullen met stroom van het net."])], src: ["vicEvcs"] });
 }
+
+Object.assign(SRC,{ karVc7: ["Kärcher – gebruiksaanwijzing VC 7 Cordless yourMax (nl)", "https://s1.kaercher-media.com/documents/manuals/html/BTA-5746030-000-00/NL.html"] });
+MODELS.push({ id: "karcher-vc7-cordless", brand: "Kärcher", name: "VC 7 Cordless yourMax steelstofzuiger", dev: "steelstofzuiger", cat: "stofzuigers", years: "VC 7 Cordless yourMax", unit: null, also: "Kärcher steelstofzuiger rood lampje knippert, accu-lampjes knipperen, zuigt slecht",
+  intro: "De Kärcher VC 7 Cordless yourMax geeft storingen aan met knipperende rode lampjes bij het zuigkanaal, de vloermond of de stofsensor. Meestal is het een verstopping, een volle bak of een vuil filter.", weak: [], parts: [],
+  tasks: [{ w: "Na elk gebruik", t: "Stofbak legen en luchtinlaatfilter reinigen" }, { w: "Bij zichtbaar vuil", t: "HEPA-filter reinigen (volledig laten drogen)" }],
+  faults: [
+    N("Drie groene accu-lampjes knipperen snel", 2, "Er is een fout in de accu.", ["Het signaal stopt na 30 seconden.", "Is de accu defect? Vervang hem door een originele Kärcher-accu."]),
+    N("Rood lampje bij het zuigkanaal knippert snel", 1, "Het zuigkanaal is verstopt, de stofbak is vol of de filters zijn vuil.", ["Verwijder de verstopping in de buis of opening.", "Leeg de stofbak.", "Maak de filters schoon en laat ze droog worden."]),
+    N("Rood lampje bij de vloermond knippert snel", 1, "De vloermond is verstopt of de borstelrol zit vast, bijvoorbeeld in hoogpolig tapijt.", ["Til de stofzuiger op zodat de vloermond loskomt van het tapijt.", "Haal de verstopping of haren uit de vloermond en de borstelrol.", "Leeg de stofbak en maak de filters schoon."]),
+    N("Rood lampje bij de stofsensor knippert snel", 1, "Storing in de stofsensor.", ["Zet de stofzuiger uit en weer aan."]),
+    N("Start niet", 1, "De accu is leeg, zit niet goed vast of is defect.", ["Laad de accu op.", "Schuif de accu erin tot hij vastklikt.", "Werkt het nog niet? Mogelijk is de accu defect."]),
+    N("Accu laadt niet op", 1, "De stekker zit niet goed, het stopcontact werkt niet of je gebruikt een verkeerde lader.", ["Controleer de laadstekker en het stopcontact.", "Gebruik de originele lader."]),
+    N("Stopt tijdens het zuigen of zuigt zwak", 1, "De accu is te warm, er is een verstopping, de stofbak is vol, de filters zijn vuil of de borstelrol zit vast.", ["Laat de accu afkoelen.", "Haal verstoppingen weg, leeg de bak en maak de filters en borstelrol schoon."])],
+  src: ["karVc7"] });
 module.exports = { CATS, MODELS, SRC, COST };
