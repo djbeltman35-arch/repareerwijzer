@@ -1279,6 +1279,106 @@ const A = [
   ],
   src: [["Bosch Home Comfort – Cv-ketel maakt brommende geluiden, wat zijn de oorzaken?", "https://www.bosch-homecomfort.com/be/nl/residentieel/info-advies/je-bosch-oplossing-uitgelegd!/verwarming-op-gas/cv-ketel-maakt-brommende-geluiden/"]],
   rel: [["kennisbank-radiatoren-ontluchten.html", "Radiatoren ontluchten"], ["kennisbank-cv-ketel-druk-zakt.html", "Druk cv-ketel zakt"], ["cv-ketels.html", "Alle cv-ketels en foutcodes"]]
+},
+{
+  id: "koelkast-blijft-draaien",
+  cat: "koelkasten",
+  q: "Waarom blijft mijn koelkast steeds draaien?",
+  title: "Koelkast blijft draaien of slaat bijna niet af: 7 oorzaken",
+  desc: "Hoor je je koelkast steeds zoemen? Warme plek, deur vaak open, warm eten, lekkende deurrubbers, te koude stand, ijslaag of Fast Freeze. Stappenplan volgens Beko.",
+  lead: "Een koelkast draait niet continu, maar slaat aan en af. Draait hij bijna altijd, dan moet hij te hard werken om koud te blijven. Meestal ligt dat aan de omgeving of de deur.",
+  secs: [
+    ["Eerst: is het normaal?", "<p>Grote koelkasten draaien langer dan kleine. Ook vlak na het plaatsen of na een grote boodschappenronde duurt het een tijd voor de temperatuur weer goed is.</p>"],
+    ["Controleer deze punten", "<ol><li><b>Warmtebron:</b> staat de koelkast naast een radiator, oven of kookplaat, of is het in de ruimte erg warm? Zet hem op een koelere plek.</li><li><b>Deur:</b> open de deur niet vaak of lang en kijk of er niets tussen zit.</li><li><b>Warm eten:</b> laat eten eerst afkoelen voordat het de koelkast in gaat.</li><li><b>Deurrubbers:</b> kijk of er kieren zitten. Trek het rubber voorzichtig wat naar je toe en maak het schoon met warm water en een zachte doek. Is het los of gescheurd, laat het dan vervangen.</li><li><b>Temperatuur:</b> Beko adviseert 4 tot 5 °C in de koelkast en ongeveer −18 °C in de vriezer. Een koudere stand laat hem langer draaien.</li><li><b>IJslaag:</b> zit er een dikke ijslaag in het vriesvak, ontdooi het dan. Modellen met NoFrost doen dit zelf.</li><li><b>Fast Freeze:</b> staat snelvriezen aan, dan draait hij langer. Bij Beko schakelt het na 8 uur vanzelf uit.</li></ol>"],
+    ["Helpt niets?", "<p>Dan is er mogelijk een technisch probleem. Neem contact op met een erkend servicebedrijf.</p>"]
+  ],
+  faq: [
+    ["Is het normaal dat een koelkast lang draait?", "Na plaatsen, na het bijvullen en bij grote modellen wel. Draait hij bijna altijd, controleer dan de plek, de deur, de rubbers en de temperatuurstand."],
+    ["Welke temperatuur moet een koelkast hebben?", "Beko adviseert 4 tot 5 °C voor de koelkast en ongeveer −18 °C voor de vriezer."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn koelkast blijft draaien (koelen)?", "https://www.beko.com/nl-nl/ondersteuning/koel-vriescombinatie--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-koelkast-blijft-draaien-koelen"]],
+  rel: [["kennisbank-koelkast-vriezer-temperatuur.html", "Juiste temperatuur koelkast en vriezer"], ["kennisbank-vriezer-ontdooien.html", "Vriezer ontdooien"], ["koelkasten.html", "Alle koelkasten en foutcodes"]]
+},
+{
+  id: "koelkast-werkt-niet",
+  cat: "koelkasten",
+  q: "Wat doe je als je koelkast helemaal niet werkt?",
+  title: "Koelkast werkt niet of koelt niet meer: zo controleer je het",
+  desc: "Is je koelkast stil of wordt hij niet koud? Stroom en zekering, temperatuurknop, koude garage, deurrubbers, te volle koelkast en een stoffige condensor. Volgens Beko.",
+  lead: "Doet je koelkast helemaal niets, of wordt hij niet meer koud? Loop eerst deze punten na voordat je een monteur belt.",
+  secs: [
+    ["1. Stroom", "<p>Werken lampen en andere apparaten wel? Dan is misschien de groep van de koelkast uitgevallen. Kijk in de meterkast. Slaat de groep steeds af, schakel dan een erkende elektricien in.</p>"],
+    ["2. Temperatuurknop", "<p>Staat de knop misschien op uit? Zet hem op een stand die ongeveer 4 tot 5 °C geeft (vriezer rond −18 °C).</p>"],
+    ["3. Te koude of te warme plek", "<p>In een onverwarmde garage of schuur kan een koelkast slecht werken. Verplaats hem naar een binnenruimte.</p>"],
+    ["4. Deurrubbers en volle schappen", "<ul><li>Kieren in het deurrubber laten warme lucht binnen. Trek het rubber voorzichtig wat naar je toe; blijven er kieren, laat het dan vervangen.</li><li>Een propvolle koelkast blokkeert de luchtstroom. Haal wat weg, vooral bij de ventilatieopeningen.</li></ul>"],
+    ["5. Condensor schoonmaken", "<p>De koelspiralen achter of onder de koelkast voeren warmte af. Zitten ze vol stof, dan koelt hij slecht. Stekker eruit en de spiralen voorzichtig afborstelen of afzuigen op een lage stand.</p>"],
+    ["Helpt niets?", "<p>Dan is er waarschijnlijk een technisch defect. Neem contact op met een erkend servicebedrijf. Houd de deur zo veel mogelijk dicht om het eten koel te houden.</p>"]
+  ],
+  faq: [
+    ["Waarom koelt mijn koelkast niet meer?", "Vaak door een verkeerde temperatuurstand, lekkende deurrubbers, een te volle koelkast of een stoffige condensor. Werkt hij helemaal niet, controleer dan eerst de stroom."],
+    ["Kan een koelkast in de garage staan?", "In een onverwarmde ruimte kan hij slecht werken als het te koud of te warm wordt. Kijk in de handleiding voor welke omgevingstemperatuur jouw model geschikt is."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn koelkast niet werkt?", "https://www.beko.com/nl-nl/ondersteuning/koel-vriescombinatie--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-koelkast-niet-werkt"]],
+  rel: [["kennisbank-koelkast-lekt-of-koelt-niet.html", "Koelkast lekt of koelt niet"], ["kennisbank-stroomstoring-wat-doen.html", "Stroomstoring: wat doen?"], ["koelkasten.html", "Alle koelkasten en foutcodes"]]
+},
+{
+  id: "ijs-of-water-in-koelkast",
+  cat: "koelkasten",
+  q: "Waarom zit er ijs of water in mijn koelkast?",
+  title: "IJs op de achterwand of water op de bodem van de koelkast",
+  desc: "Dikke ijslaag op de achterwand of een plas water onderin je koelkast? Meestal een verstopte dooiwaterafvoer, lekkende deurrubbers of een te koude stand. Volgens Beko.",
+  lead: "Een dun laagje ijs op de achterwand is normaal. Een dikke ijslaag of een plas water op de bodem niet. Beide hebben vaak dezelfde oorzaken.",
+  secs: [
+    ["Water op de bodem: afvoer ontstoppen", "<p>Achter de groentelades zit een afvoergaatje voor het dooiwater. Is dat verstopt, dan loopt het water de koelkast in.</p><ol><li>Haal de groentelades eruit en kijk of het water uit dat gaatje komt.</li><li>Steek een ontstoppingsveer (bouwmarkt) in de afvoer en draai rechtsom tot de verstopping los is.</li><li>Giet wat warm water door de afvoer om te controleren of hij vrij is.</li></ol>"],
+    ["Dikke ijslaag: temperatuur en deur", "<ul><li>Zet de koelkast op 4 tot 5 °C en de vriezer rond −18 °C.</li><li>Open de deur niet vaak of lang: warme lucht die binnenkomt, wordt ijs.</li></ul>"],
+    ["Deurrubbers controleren", "<p>Kieren in het deurrubber laten steeds vochtige lucht binnen. Trek het rubber voorzichtig wat naar je toe. Blijven er kieren, laat het rubber dan zo snel mogelijk vervangen.</p>"]
+  ],
+  faq: [
+    ["Waarom staat er water onderin mijn koelkast?", "Meestal is de afvoer voor dooiwater achter de groentelades verstopt. Maak hem vrij met een ontstoppingsveer en spoel na met warm water."],
+    ["Is ijs op de achterwand van de koelkast normaal?", "Een dun laagje wel. Een dikke ijslaag wijst op een te koude stand, een deur die vaak openstaat of lekkende deurrubbers."]
+  ],
+  src: [["Beko – Wat moet ik doen bij ijsvorming in mijn koelkast?", "https://www.beko.com/nl-nl/ondersteuning/koel-vriescombinatie--problemen-oplossen--artikel/wat-moet-ik-doen-bij-ijsvorming-in-mijn-koelkast"], ["Beko – Waarom is de bodem aan de binnenkant van de koelkast nat?", "https://www.beko.com/nl-nl/ondersteuning/koel-vriescombinatie--problemen-oplossen--artikel/waarom-is-de-bodem-aan-de-binnenkant-van-de-koelkast-nat"]],
+  rel: [["kennisbank-koelkast-lekt-of-koelt-niet.html", "Koelkast lekt of koelt niet"], ["kennisbank-vriezer-ontdooien.html", "Vriezer ontdooien"], ["koelkasten.html", "Alle koelkasten en foutcodes"]]
+},
+{
+  id: "koelkast-waterdispenser-ijsblokjes",
+  cat: "koelkasten",
+  q: "Waarom geeft mijn koelkast geen water of ijsblokjes?",
+  title: "Waterdispenser of ijsblokjesmaker van de koelkast werkt niet of lekt",
+  desc: "Komt er geen water of ijs uit je Amerikaanse koelkast, of druppelt de dispenser? Reservoir, aansluiting, ontluchten met 15 liter, filter en waterdruk. Volgens Beko.",
+  lead: "Bij een koelkast met waterdispenser of ijsblokjesmaker zit het probleem bijna altijd in de watertoevoer of in lucht in de leiding.",
+  secs: [
+    ["1. Watertoevoer", "<ul><li><b>Zonder wateraansluiting:</b> is het waterreservoir gevuld?</li><li><b>Met wateraansluiting:</b> zitten de aansluitingen goed en zijn ze niet geknikt of verstopt? Komt er wel water uit de kranen in huis? Staat de hoofdkraan open?</li></ul>"],
+    ["2. Leiding ontluchten", "<p>Na het aansluiten en na elke filterwissel zit er lucht in de leiding. Daardoor komt er geen water of blijft het druppelen.</p><ol><li>Zet een grote bak onder de dispenser.</li><li>Druk de hendel in en laat hem los, elke vijf seconden, tot er water komt.</li><li>Ga daarna door tot er in totaal ongeveer 15 liter is doorgelopen.</li></ol><p>Druppelt het daarna nog, zet het waterfilter dan opnieuw goed vast.</p>"],
+    ["3. Waterdruk en filter", "<p>Haal het waterfilter er tijdelijk uit (zie de handleiding). Komt er dan wel water, dan is het filter verstopt of de waterdruk te laag.</p>"],
+    ["4. IJsblokjesmaker", "<ul><li>Open de vriezerdeur niet vaak of lang; dan wordt het te warm om ijs te maken.</li><li>Kijk of er ijsblokjes klem zitten in de opening of het kanaal naar de dispenser.</li></ul>"],
+    ["Helpt niets of lekt het mondstuk?", "<p>Zit de afdichting van het mondstuk los, of blijft het probleem, neem dan contact op met een erkend servicebedrijf.</p>"]
+  ],
+  faq: [
+    ["Hoe ontlucht ik de waterdispenser van mijn koelkast?", "Druk de hendel elke vijf seconden in en laat los tot er water komt, en ga door tot er ongeveer 15 liter is doorgelopen. Doe dit na het aansluiten en na elke filterwissel."],
+    ["Waarom maakt mijn koelkast geen ijsblokjes?", "Vaak is het waterreservoir leeg, zit de wateraansluiting dicht, staat de vriezerdeur vaak open of zitten er ijsblokjes klem in de opening."]
+  ],
+  src: [["Beko – Geen water uit de waterdispenser van mijn koelkast", "https://www.beko.com/nl-nl/ondersteuning/koel-vriescombinatie--problemen-oplossen--artikel/wat-moet-ik-doen-als-er-geen-water-uit-de-waterdispenser-van-mijn-koelkast-komt"], ["Beko – Wat moet ik doen als de waterdispenser lekt?", "https://www.beko.com/nl-nl/ondersteuning/koel-vriescombinatie--problemen-oplossen--artikel/wat-moet-ik-doen-als-de-waterdispenser-lekt"], ["Beko – Wat moet ik doen als mijn ijsblokjesmaker geen ijs maakt?", "https://www.beko.com/nl-nl/ondersteuning/koel-vriescombinatie--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-ijsblokjesmaker-geen-ijs-maakt"]],
+  rel: [["kennisbank-koelkast-lekt-of-koelt-niet.html", "Koelkast lekt of koelt niet"], ["koelkasten.html", "Alle koelkasten en foutcodes"]]
+},
+{
+  id: "oven-wordt-niet-warm-of-rookt",
+  cat: "ovens",
+  q: "Waarom wordt mijn oven niet warm of rookt hij?",
+  title: "Oven wordt niet warm of geeft rook: oorzaken en wat je doet",
+  desc: "Warmt je oven niet op, of komt er rook uit? Functie en temperatuur, de timer, productieresten bij nieuw gebruik, vet en schoonmaakmiddel. Wanneer je moet stoppen. Volgens Beko.",
+  lead: "Een oven die niet opwarmt, is vaak verkeerd ingesteld. Rook komt meestal van vet of resten. Bij veel rook zet je hem direct uit.",
+  secs: [
+    ["Oven wordt niet warm", "<ol><li>Zit de stekker in een werkend stopcontact en staat de groep aan?</li><li>Heb je een ovenfunctie én een temperatuur gekozen?</li><li>Heeft je oven een klok, stel dan ook de bereidingstijd in. Bij combi-ovens met magnetron regelt de timer soms alleen de magnetron.</li><li>Warmt hij nog steeds niet op, dan is er waarschijnlijk een defect. Bel een erkend servicebedrijf.</li></ol>"],
+    ["Oven geeft rook", "<ul><li><b>Nieuwe oven:</b> bij het eerste gebruik verbranden resten van de productie. Dat is normaal.</li><li><b>Vet:</b> vet dat op het element druppelt of aan de wanden zit, verbrandt bij de volgende keer. Maak de oven schoon of gebruik de pyrolysefunctie als je die hebt.</li><li><b>Schoonmaakmiddel:</b> resten van ovenreiniger kunnen roken. Neem de wanden na met schoon water.</li></ul>"],
+    ["Wanneer stoppen?", "<p>Blijft er na het schoonmaken veel rook komen, zet de oven dan meteen uit, haal de stekker eruit of zet de groep uit, en neem contact op met een erkend servicebedrijf.</p>"]
+  ],
+  faq: [
+    ["Is rook uit een nieuwe oven normaal?", "Ja. Bij het eerste gebruik verbranden resten uit de fabriek. Laat de oven een keer leeg opwarmen en zet een raam open."],
+    ["Waarom warmt mijn oven niet op?", "Vaak is er geen functie of temperatuur gekozen, of moet bij ovens met een klok ook de bereidingstijd worden ingesteld. Werkt het dan nog niet, laat de oven nakijken."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn oven niet warm wordt?", "https://www.beko.com/nl-nl/ondersteuning/oven--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-oven-niet-warm-wordt"], ["Beko – De oven produceert rook als deze in werking is", "https://www.beko.com/nl-nl/ondersteuning/oven--problemen-oplossen--artikel/de-oven-produceert-rook-als-deze-in-werking-is"]],
+  rel: [["kennisbank-oven-schoonmaken-pyrolyse.html", "Oven schoonmaken en pyrolyse"], ["ovens.html", "Alle ovens en foutcodes"]]
 }
 ];
 module.exports = { KB: A };
