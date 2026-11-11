@@ -172,10 +172,70 @@
       store.set(key, st); render();
       b = box.querySelector('button[data-i="' + b.dataset.i + '"]'); if (b) b.focus();
     });
+    // Herinneringen: agenda-bestand (.ics) met terugkerende afspraak en meldingen bij een bezoek
+    var hasDate = cfg.tasks.some(function (t) { return t.m && !t.w; });
+    if (hasDate) {
+      var rem = document.createElement("div"); rem.className = "remind";
+      rem.innerHTML = '<p><b>🔔 Herinnering voor je volgende onderhoud</b><br><small>Zet de klussen in je agenda (iPhone, Android, Google, Outlook). Je krijgt dan vanzelf een melding als het tijd is, ook als je deze site niet opent.</small></p>' +
+        '<div class="remind-btns"><button class="btn btn-main" type="button" id="ics">📅 Zet in mijn agenda</button>' +
+        ("Notification" in window ? '<button class="btn" type="button" id="ntf"></button>' : "") + "</div>";
+      box.parentNode.appendChild(rem);
+      var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+      var ymd = function (d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()); };
+      var icsEsc = function (s) { return String(s).replace(/[\\;,]/g, function (c) { return "\\" + c; }); };
+      document.getElementById("ics").addEventListener("click", function () {
+        var now = new Date(), L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Foutcodezoeker//Onderhoud//NL", "CALSCALE:GREGORIAN"];
+        cfg.tasks.forEach(function (t, i) {
+          if (!t.m || t.w) return;
+          var days = Math.max(1, Math.round(t.m * 30.4)), last = st.d[t.t] || now.getTime(), due = new Date(last + days * 864e5);
+          if (due < now) due = new Date(now.getTime() + 864e5);
+          var end = new Date(due.getTime() + 864e5);
+          var rule = t.m >= 1 && t.m === Math.round(t.m) ? "FREQ=MONTHLY;INTERVAL=" + t.m : "FREQ=DAILY;INTERVAL=" + days;
+          L.push("BEGIN:VEVENT", "UID:" + cfg.id + "-" + i + "-" + now.getTime() + "@foutcodezoeker.nl", "DTSTAMP:" + now.toISOString().replace(/[-:]/g, "").replace(/\.\d+/, ""),
+            "DTSTART;VALUE=DATE:" + ymd(due), "DTEND;VALUE=DATE:" + ymd(end), "RRULE:" + rule,
+            "SUMMARY:" + icsEsc("Onderhoud " + cfg.name + ": " + t.t), "DESCRIPTION:" + icsEsc("Interval: " + t.label.toLowerCase() + ". Uitleg: https://foutcodezoeker.nl/" + cfg.id + ".html"),
+            "URL:https://foutcodezoeker.nl/" + cfg.id + ".html", "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + icsEsc(t.t), "TRIGGER:PT9H", "END:VALARM", "END:VEVENT");
+        });
+        L.push("END:VCALENDAR");
+        var blob = new Blob([L.join("\r\n")], { type: "text/calendar;charset=utf-8" }), a = document.createElement("a");
+        a.href = URL.createObjectURL(blob); a.download = "onderhoud-" + cfg.id + ".ics"; document.body.appendChild(a); a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+        gcEvent("onderhoud-agenda/" + cfg.id, "Onderhoud in agenda");
+      });
+      var ntf = document.getElementById("ntf");
+      var ntfTxt = function () { if (ntf) ntf.textContent = st.notify && Notification.permission === "granted" ? "🔕 Meldingen uit" : "🔔 Melding bij bezoek"; };
+      if (ntf) { ntfTxt(); ntf.addEventListener("click", function () {
+        if (st.notify && Notification.permission === "granted") { st.notify = false; store.set(key, st); ntfTxt(); return; }
+        Notification.requestPermission().then(function (p) { st.notify = p === "granted"; store.set(key, st); ntfTxt(); });
+      }); }
+    }
+    st.meta = { name: cfg.name, tasks: cfg.tasks.filter(function (t) { return t.m && !t.w; }).map(function (t) { return { t: t.t, m: t.m }; }) };
     var cnt = document.getElementById("cnt");
     if (cnt) { cnt.value = st.count || ""; cnt.placeholder = "0"; cnt.addEventListener("input", function () { st.count = Math.max(0, +cnt.value || 0); store.set(key, st); render(); }); }
     render();
   }
+
+  // Melding op elke pagina als bijgehouden onderhoud aan de beurt is
+  try {
+    var dueList = [];
+    for (var k = 0; k < localStorage.length; k++) {
+      var kk = localStorage.key(k); if (!kk || kk.indexOf("rw-") !== 0) continue;
+      var s2 = store.get(kk); if (!s2 || !s2.meta || !s2.d) continue;
+      s2.meta.tasks.forEach(function (t) { var last = s2.d[t.t]; if (last && Date.now() - last >= t.m * 30.4 * 864e5) dueList.push({ id: kk.slice(3), name: s2.meta.name, t: t.t, notify: s2.notify }); });
+    }
+    if (dueList.length && !document.getElementById("tasks-data")) {
+      var bar = document.createElement("div"); bar.className = "duebar";
+      bar.innerHTML = "🔧 Onderhoud aan de beurt: <a href=\"" + esc(dueList[0].id) + ".html#counter\">" + esc(dueList[0].t) + " (" + esc(dueList[0].name) + ")</a>" + (dueList.length > 1 ? " en nog " + (dueList.length - 1) + " andere" : "");
+      var mainEl = document.querySelector("main") || document.body; mainEl.insertBefore(bar, mainEl.firstChild);
+    }
+    var today = new Date().toDateString(), toNote = dueList.filter(function (x) { return x.notify; });
+    if (toNote.length && "Notification" in window && Notification.permission === "granted" && store.get("rw-noted") !== today) {
+      store.set("rw-noted", today);
+      var title = "Onderhoud aan de beurt", body = toNote[0].t + " – " + toNote[0].name + (toNote.length > 1 ? " (+" + (toNote.length - 1) + ")" : ""), url = "/" + toNote[0].id + ".html#counter";
+      var show = function () { try { var n = new Notification(title, { body: body, icon: "/icon-192.png" }); n.onclick = function () { location.href = url; }; } catch (e) {} };
+      if (navigator.serviceWorker && navigator.serviceWorker.ready) navigator.serviceWorker.ready.then(function (r) { r.showNotification(title, { body: body, icon: "/icon-192.png", data: { url: url } }); }).catch(show); else show();
+    }
+  } catch (e) {}
 
   // Rekenhulp
   var calc = document.getElementById("calc");

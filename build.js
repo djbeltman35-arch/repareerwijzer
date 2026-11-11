@@ -253,7 +253,7 @@ ${k.note ? `<p>${esc(k.note)}</p>` : ""}
 };
 for (const m of MODELS) {
   const c = catOf(m.cat);
-  const tasksJson = JSON.stringify({ id: m.id, unit: m.unit, unitLabel: UNIT[m.unit] || null, tasks: m.tasks.map(t => ({ ...t, label: intervalLabel(t, m) })) }).replace(/</g, "\\u003c");
+  const tasksJson = JSON.stringify({ id: m.id, name: fullName(m), unit: m.unit, unitLabel: UNIT[m.unit] || null, tasks: m.tasks.map(t => ({ ...t, label: intervalLabel(t, m) })) }).replace(/</g, "\\u003c");
   const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
   layout({
     file: `${m.id}.html`,
