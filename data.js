@@ -10698,4 +10698,11 @@ const MON = "Blijft de code, schakel een monteur in.";
   F("4000000", "Aardfout op de uitgang", 3, "Fout in de aarding aan de laadkant.", ["Laat de aarding controleren door je installateur."]),
   F("800 / 1000 / 100000 / 2000000 / 10000000 / 40000000", "Interne storing", 3, "Een fout in de schakelaar, de stroommeting, de besturing of de voeding van de laadpaal.", ["Neem contact op met Autel-support (evsupport.eu@autel.com) of je installateur."])
 ); m.src.push("autelCompactUm"); })(MODELS.find(m => m.id === "autel-compact")); })();
+(() => { SRC.alkL6 = ["Alklima kennisbank – L6-storing (vorstbeveiliging)", "https://kennisbank.alklima.nl/hc/nl/articles/37671857064081-L6-storing"]; SRC.alkL8 = ["Alklima kennisbank – L8-storing (te weinig warmtelevering)", "https://kennisbank.alklima.nl/hc/nl/articles/37672284622097-L8-storing"]; SRC.alkU6 = ["Alklima kennisbank – U6-storing (overstroombeveiliging compressor)", "https://kennisbank.alklima.nl/hc/nl/articles/41981441977489-U6-storing"];
+const I = "Laat de installateur dit verder onderzoeken.";
+(m => { m.faults.push(
+  F("L6", "Vorstbeveiliging cv-water", 2, "Het water in het primaire circuit wordt te koud (voelers THW1 of THW2 meten 1 tot 3 °C of minder), meestal door te weinig doorstroming: een defecte pomp, lucht in de installatie of een verstopt vuilfilter.", ["Controleer of de radiator- en vloerverwarmingskranen open staan.", "Controleer de waterdruk en of het systeem ontlucht is.", I]),
+  F("L8", "Te weinig warmtelevering", 2, "De voelers zien in 20 minuten nauwelijks temperatuurverandering. Mogelijke oorzaken: de zekering van het elektrisch element is gesprongen, de stekker van het element zit los, aanvoer- en retourvoeler zijn verwisseld, of een probleem in het koudemiddelcircuit.", ["Controleer in de meterkast of de groep van het elektrisch element aan staat.", "Controleer of de stekker van het element in het stopcontact zit.", I]),
+  F("U6", "Overstroombeveiliging compressor (buitenunit)", 3, "De compressor trekt te veel stroom: hij zit mechanisch vast, de vermogensprint is defect of er is een fout in de wikkelingen.", ["Laat dit onderzoeken door de installateur; dit vraagt metingen aan de compressor."])
+); m.src.push("alkL6", "alkL8", "alkU6"); })(MODELS.find(m => m.id === "mitsubishi-ecodan")); })();
 module.exports = { CATS, MODELS, SRC, COST };
