@@ -1113,6 +1113,131 @@ const A = [
   ],
   src: [["Liander – Handleiding Landis+Gyr ZCF110 / ZMF110 (PDF)", "https://www.liander.nl/-/media/alliander/liander/meter-manuals/handleidingen/landis-gyr/handleiding-landis-gyr-zcf110--zmf110.pdf"], ["Stedin – Handleiding slimme meter Landis+Gyr E360 (PDF)", "https://www.stedin.net/-/media/feature/handleidingzoeken/handleidingen/handleiding-slimme-meter-e-landis-gyr-e360cd2d.pdf"]],
   rel: [["homewizard-p1-meter.html", "HomeWizard P1-meter"], ["aardlekschakelaar-groepenkast.html", "Aardlekschakelaar slaat af"], ["meterkast.html", "Meterkast en stroomstoringen"]]
+},
+{
+  id: "wasmachine-geen-water",
+  cat: "wasmachines",
+  q: "Waarom krijgt mijn wasmachine geen water?",
+  title: "Wasmachine krijgt geen water: kraan, slang, filtertjes en deur",
+  desc: "Loopt je wasmachine niet vol? Controleer de kraan, de toevoerslang, de twee inlaatfiltertjes en de deur. Stappenplan volgens Beko.",
+  lead: "Blijft de trommel leeg terwijl het programma loopt, dan komt er geen water binnen. Meestal zit het probleem in de kraan, de slang of de kleine filtertjes in de aansluiting.",
+  secs: [
+    ["1. Kraan en toevoerslang", "<ul><li>Staat de kraan helemaal open en is er waterdruk in huis?</li><li>De slang tussen kraan en machine mag niet geknikt of verstopt zijn. Leg hem recht.</li><li>Een lekkende, doorgeprikte of roestige slang vervang je.</li></ul>"],
+    ["2. De inlaatfiltertjes", "<p>Er zitten twee zeefjes in de toevoer: één bij de kraan en één waar de slang de machine in gaat. Na verloop van tijd raken ze vol met kalk en vuil.</p><ol><li>Draai de kraan dicht en schroef de slang los.</li><li>Haal de zeefjes eruit (zitten ze vast, gebruik dan een tang) en borstel ze schoon onder stromend water.</li><li>Zet ze terug en draai de moeren met de hand aan.</li></ol>"],
+    ["3. De deur", "<p>Ziet de machine de deur als open, dan laat hij geen water in. Haal wat er tussen de deur zit weg en duw de deur dicht tot hij hoorbaar vergrendelt.</p>"],
+    ["Helpt niets?", "<p>Dan is er waarschijnlijk een technisch defect, zoals de inlaatklep. Schakel een erkend servicebedrijf in. Staat er een foutcode op het display, zoek die dan op via de zoekbalk bovenaan.</p>"]
+  ],
+  faq: [
+    ["Waar zitten de filters van de watertoevoer?", "Er zijn er twee: één in de slangkoppeling bij de kraan en één waar de slang op de achterkant van de wasmachine is aangesloten."],
+    ["Kan een open deur ervoor zorgen dat er geen water komt?", "Ja. Detecteert de machine dat de deur niet goed dicht is, dan vult hij niet met water."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn wasmachine geen water krijgt?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-geen-water-krijgt"]],
+  rel: [["kennisbank-wasmachine-onderhoud.html", "Wasmachine onderhouden"], ["wasmachines.html", "Alle wasmachines en foutcodes"]]
+},
+{
+  id: "wasmachine-trommel-draait-niet",
+  cat: "wasmachines",
+  q: "Waarom draait de trommel van mijn wasmachine niet?",
+  title: "Trommel van de wasmachine draait niet: 6 oorzaken die je zelf checkt",
+  desc: "Draait de trommel niet of stopt hij tijdens het wassen? Deur, onbalans, te veel schuim, water in de trommel, de aandrijfriem en een reset. Stappenplan volgens Beko.",
+  lead: "De trommel draait langzaam om te wassen en snel om te centrifugeren. Staat hij stil, dan is dat vaak een beveiliging en geen defect.",
+  secs: [
+    ["1. Deur goed dicht?", "<p>Met een open deur werkt de machine niet. Haal weg wat er tussen zit en duw de deur dicht tot je een klik hoort.</p>"],
+    ["2. Was ongelijk verdeeld", "<p>Een sensor stopt de trommel als de was op één plek klontert. Vooral dekens en badmatten zijn berucht. Was een groot stuk samen met minstens één ander zwaar stuk, zoals een grote handdoek. Stopt de trommel halverwege: zet de machine stil, laat hem leeglopen en verdeel de was opnieuw.</p>"],
+    ["3. Te veel wasmiddel", "<p>Bij te veel schuim stopt de trommel en probeert de machine het schuim eerst weg te werken. Gebruik het juiste wasmiddel en niet meer dan de dosis op de verpakking.</p>"],
+    ["4. Water blijft staan", "<p>Centrifugeren start pas als het water weg is. Zet de machine uit en controleer de afvoerslang op knikken en verstoppingen en maak het pompfilter schoon. Beko raadt aan dat filter elke drie maanden te reinigen.</p>"],
+    ["5. Aandrijfriem", "<p>Draai de trommel met de hand (stekker eruit). Voel je helemaal geen weerstand, dan is de riem mogelijk los of gebroken. Laat dit door een servicebedrijf vervangen.</p>"],
+    ["6. Reset", "<p>Een spanningspiek kan de machine laten stoppen. Haal de stekker een minuut uit het stopcontact en start het programma opnieuw. Blijft het probleem, bel dan een erkend servicebedrijf.</p>"]
+  ],
+  faq: [
+    ["Waarom stopt mijn wasmachine met draaien bij een deken?", "Een groot, zuigend stuk maakt de lading uit balans. De sensor stopt dan de trommel om schade te voorkomen. Was het samen met een ander zwaar stuk."],
+    ["Hoe weet ik of de aandrijfriem kapot is?", "Draai met de stekker eruit aan de trommel. Draait hij zonder enige weerstand, dan is de riem waarschijnlijk los of gebroken."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn wasmachine niet draait?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-niet-draait"], ["Beko – Wat moet ik doen als mijn wasmachine halverwege de wasbeurt stopt?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-halverwege-de-wasbeurt-stopt"]],
+  rel: [["kennisbank-wasmachine-centrifugeert-niet.html", "Wasmachine centrifugeert niet"], ["wasmachines.html", "Alle wasmachines en foutcodes"]]
+},
+{
+  id: "wasmachine-spoelt-niet-goed",
+  cat: "wasmachines",
+  q: "Waarom zitten er wasmiddelresten in mijn was?",
+  title: "Wasmachine spoelt niet goed: witte vlekken en zeepresten",
+  desc: "Witte vlekken of een zeperig gevoel na het wassen? Te volle trommel, te veel wasmiddel, verkeerd vakje, slang, pompfilter of waterdruk. Stappenplan volgens Beko.",
+  lead: "Witte strepen op donkere kleding of was die zeperig aanvoelt: het wasmiddel is er niet goed uitgespoeld. Bijna altijd los je dat zelf op.",
+  secs: [
+    ["1. Minder was in de trommel", "<p>In een te volle trommel lost het wasmiddel niet goed op en blijft het in de kleding achter. In de handleiding staat per programma hoeveel kilo erin mag.</p>"],
+    ["2. Minder of ander wasmiddel", "<p>Gebruik een wasmiddel dat bij je machine past en niet meer dan de dosis op de verpakking.</p>"],
+    ["3. Het juiste vakje", "<p>Vak I is voor de voorwas, vak II voor de hoofdwas en het middelste vak voor wasverzachter. Doe je zonder voorwas toch wasmiddel in vak I, dan spoelt het pas mee tijdens het spoelen en geeft het vlekken.</p>"],
+    ["4. Afvoerslang en pompfilter", "<p>Volgens Beko is een verstopt pompfilter de meest waarschijnlijke oorzaak. Het filter zit rechtsonder aan de voorkant.</p><ol><li>Leg handdoeken of een bakje onder het klepje.</li><li>Heeft je machine een noodslangetje, laat dan eerst daarmee het water weglopen. Anders draai je het filter linksom los; er komt meteen water mee.</li><li>Haal pluis, haar, munten en knopen weg, spoel het filter af en veeg de opening schoon.</li><li>Draai het filter rechtsom vast en zet het klepje terug.</li></ol><p>Controleer ook of de afvoerslang niet geknikt of verstopt is.</p>"],
+    ["5. Waterdruk", "<p>Een Beko-wasmachine heeft 1 tot 10 bar waterdruk nodig om het wasmiddel uit de lade te spoelen. Is de druk lager, laat dan een installateur de leidingen nakijken.</p>"]
+  ],
+  faq: [
+    ["Waar komen witte vlekken op mijn was vandaan?", "Meestal van wasmiddel dat niet is opgelost of uitgespoeld: door een te volle trommel, te veel wasmiddel, het verkeerde vakje of een verstopt pompfilter."],
+    ["Hoe vaak moet ik het pompfilter schoonmaken?", "Beko adviseert ongeveer elke drie maanden, en altijd als het verstopt is."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn wasmachine niet spoelt?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-niet-spoelt"]],
+  rel: [["kennisbank-wasmachine-stinkt.html", "Wasmachine stinkt"], ["wasmachines.html", "Alle wasmachines en foutcodes"]]
+},
+{
+  id: "wasmachine-start-programma-niet",
+  cat: "wasmachines",
+  q: "Waarom start mijn wasmachine geen programma of duurt het zo lang?",
+  title: "Wasmachine start geen programma of doet er te lang over",
+  desc: "Gaat de wasmachine aan maar start het programma niet, of duurt een was veel langer dan normaal? Kinderslot, deur, waterdruk, stroom en extra opties. Volgens Beko.",
+  lead: "Het display brandt, maar er gebeurt niets. Of de was duurt een uur langer dan in de handleiding staat. Dit zijn de bekende oorzaken.",
+  secs: [
+    ["Programma start niet: kinderslot", "<p>Met het kinderslot aan kun je programma, temperatuur en toerental niet wijzigen. Bij veel Beko-modellen zet je het uit door de eerste en tweede optieknop drie seconden tegelijk in te drukken, of door de programmaknop op Aan/Uit te zetten als de machine stilstaat. Dit verschilt per model; kijk zo nodig in de handleiding. Een hangslotje of <b>Con</b> op het display hoort bij het kinderslot.</p>"],
+    ["Programma start niet: deur", "<p>Is de deur niet vergrendeld, dan begint de machine niet. Duw hem dicht tot je de vergrendeling hoort.</p>"],
+    ["Was duurt te lang: waterdruk", "<p>Bij te lage waterdruk (minder dan 1 bar) duurt het vullen langer. Laat een installateur de leidingen nakijken.</p>"],
+    ["Was duurt te lang: stroom, opties en schuim", "<ul><li>Bij te lage netspanning pauzeert de machine en gaat daarna verder.</li><li>Opties als extra spoelen of voorwas maken een programma langer.</li><li>Te veel wasmiddel geeft schuim; de machine spoelt dan extra.</li></ul><p>De tijden in de handleiding zijn gemiddelden en kunnen dus wat afwijken.</p>"],
+    ["Helpt niets?", "<p>Dan is er mogelijk een technisch probleem. Neem contact op met een erkend servicebedrijf.</p>"]
+  ],
+  faq: [
+    ["Hoe zet ik het kinderslot van een Beko-wasmachine uit?", "Bij veel modellen door de eerste en tweede optieknop drie seconden tegelijk in te drukken. De exacte manier verschilt per model en staat in de handleiding."],
+    ["Waarom duurt mijn was langer dan aangegeven?", "Door lage waterdruk, lage netspanning, extra opties zoals voorwas of extra spoelen, of te veel schuim."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn wasmachine geen programma start?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-geen-programma-start"], ["Beko – Wat moet ik doen als mijn wasmachine te lang over een wasbeurt doet?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-te-lang-over-een-wasbeurt-doet"]],
+  rel: [["kennisbank-wasmachine-onderhoud.html", "Wasmachine onderhouden"], ["wasmachines.html", "Alle wasmachines en foutcodes"]]
+},
+{
+  id: "droger-stopt-halverwege",
+  cat: "drogers",
+  q: "Waarom stopt mijn droger halverwege?",
+  title: "Droger stopt halverwege het programma: reservoir, riem of reset",
+  desc: "Stopt je wasdroger midden in een programma? Vaak is het waterreservoir vol. Verder: de aandrijfriem en een reset na een spanningspiek. Volgens Beko.",
+  lead: "Een droger die halverwege stopt, heeft meestal een vol waterreservoir. Dat is snel opgelost.",
+  secs: [
+    ["1. Waterreservoir vol", "<p>Is de droger niet op de afvoer aangesloten, dan vangt een reservoir het water op. Leeg het na elke droogbeurt. Zit het vol, dan stopt de droger. Trek het reservoir eruit (bij Beko linksboven), giet het leeg en spoel pluis eruit. Daarna gaat de droger verder.</p>"],
+    ["2. Aandrijfriem", "<p>Draai de trommel met de hand. Voel je helemaal geen weerstand, dan is de riem mogelijk gebroken. Laat dit door een servicebedrijf vervangen.</p>"],
+    ["3. Reset", "<p>Na een spanningspiek of storing kan de droger stoppen. Haal de stekker een minuut uit het stopcontact en start opnieuw.</p>"],
+    ["Droogt hij wel, maar niet goed?", "<p>Kijk dan naar het pluizenfilter, de filterlade of het condensfilter en de hoeveelheid was. Zie het artikel over een droger die niet goed droogt.</p>"]
+  ],
+  faq: [
+    ["Waarom stopt mijn condensdroger steeds?", "Meestal omdat het waterreservoir vol is. Leeg het na elke droogbeurt."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn wasdroger halverwege een cyclus stopt?", "https://www.beko.com/nl-nl/ondersteuning/wasdroger--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasdroger-halverwege-een-cyclus-stopt"], ["Beko – Wat moet ik doen als mijn wasdroger niet droogt?", "https://www.beko.com/nl-nl/ondersteuning/wasdroger--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasdroger-niet-droogt"]],
+  rel: [["kennisbank-droger-droogt-niet-goed.html", "Droger droogt niet goed"], ["drogers.html", "Alle drogers en foutcodes"]]
+},
+{
+  id: "afzuigkap-zuigt-slecht",
+  cat: "kookplaten",
+  q: "Waarom zuigt mijn afzuigkap slecht?",
+  title: "Afzuigkap zuigt slecht of nauwelijks: filters, binnenkant, hoogte",
+  desc: "Blijven damp en geur in de keuken hangen? Vetfilter, koolstoffilter, vuil in de kap, het afvoerkanaal, het vermogen en de ophanghoogte. Volgens Beko.",
+  lead: "Een afzuigkap die steeds minder trekt, is bijna altijd vervuild. Pas als schoonmaken niet helpt, ligt het aan de installatie of een defect.",
+  secs: [
+    ["1. Vetfilter schoonmaken", "<p>Een kap met afvoer naar buiten heeft een metalen vetfilter. Week het in heet water met afwasmiddel of ontvetter, schrob het met een zachte borstel en laat het goed drogen. Beko adviseert dit elke maand. Sommige filters mogen in de vaatwasser.</p>"],
+    ["2. Koolstoffilter vervangen", "<p>Een recirculatiekap (zonder afvoer naar buiten) heeft een koolstoffilter dat je niet schoonmaakt maar vervangt: ongeveer elke zes maanden, of elke drie tot vier maanden als je veel bakt en frituurt.</p>"],
+    ["3. Binnenkant controleren", "<p>Is de kap lang niet schoongemaakt, dan kan vet langs de filters tot in de ventilator komen. Haal alle losse delen eruit en veeg de binnenkant schoon met een vochtige doek en afwasmiddel. Maak alles droog voor je het terugplaatst.</p>"],
+    ["4. Vermogen en hoogte", "<p>Een kap met te weinig afzuigcapaciteit (m³ per uur) voor de keuken of kookplaat trekt nooit goed. Hangt hij te hoog, dan ontsnappen damp en vet. Voor de meeste kappen raadt Beko ongeveer 65 cm boven de kookplaat aan.</p>"],
+    ["Afvoerkanaal of defect", "<p>Zit er iets vast in het afvoerkanaal of het ventilatiemechanisme, of trekt hij na alles nog slecht? Schakel dan een erkend servicebedrijf in.</p>"]
+  ],
+  faq: [
+    ["Hoe vaak moet je het koolstoffilter vervangen?", "Ongeveer elke zes maanden. Kook je veel of frituur je vaak, dan elke drie tot vier maanden."],
+    ["Hoe hoog moet een afzuigkap boven de kookplaat hangen?", "Voor de meeste afzuigkappen ongeveer 65 cm. Kijk voor jouw model in de installatiehandleiding."]
+  ],
+  src: [["Beko – Wat moet ik doen als mijn afzuigkap geen zuigkracht meer heeft?", "https://www.beko.com/nl-nl/ondersteuning/afzuigkap--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-afzuigkap-geen-zuigkracht-meer-heeft"], ["Beko – Wat moet ik doen als mijn afzuigkap de lucht niet goed afzuigt?", "https://www.beko.com/nl-nl/ondersteuning/afzuigkap--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-afzuigkap-de-lucht-niet-goed-afzuigt"]],
+  rel: [["kennisbank-afzuigkap-filters.html", "Afzuigkapfilters reinigen of vervangen"], ["kookplaten.html", "Alle kookplaten en foutcodes"]]
 }
+
 ];
 module.exports = { KB: A };
