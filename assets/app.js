@@ -92,7 +92,9 @@
 
   // Keuzehulp: merk → apparaat → foutcodes
   var pm = document.getElementById("pm"), pa = document.getElementById("pa"), pres = document.getElementById("pres");
-  if (pm && pa && pres) {
+  var initPicker = function () {
+    if (!(pm && pa && pres) || pm.getAttribute("data-ready")) return;
+    pm.setAttribute("data-ready", "1");
     var codes = (window.SEARCH || []).filter(function (d) { return d.c && d.b; });
     var brands = {};
     codes.forEach(function (d) { d.b.forEach(function (b) { brands[b] = true; }); });
@@ -117,6 +119,25 @@
       show();
     });
     pa.addEventListener("change", show);
+  };
+
+  // Zoekindex pas laden als iemand gaat zoeken (scheelt 2 MB bij het openen van de pagina)
+  if ((q && res) || (pm && pa && pres)) {
+    var idxReady = function () { initPicker(); if (q && q.value) q.dispatchEvent(new Event("input")); };
+    var loadIdx = function () {
+      if (window.SEARCH) { idxReady(); return; }
+      if (window.fczIdxLoading) return;
+      window.fczIdxLoading = true;
+      var sc = document.createElement("script"); sc.src = "search.js"; sc.onload = idxReady; document.head.appendChild(sc);
+    };
+    if (q) ["focus", "pointerdown", "keydown"].forEach(function (ev) { q.addEventListener(ev, loadIdx); });
+    if (pm) {
+      ["focus", "pointerdown"].forEach(function (ev) { pm.addEventListener(ev, loadIdx); });
+      var det = pm.closest ? pm.closest("details") : null;
+      if (det) det.addEventListener("toggle", loadIdx);
+    }
+    if (/[?&]q=/.test(location.search) || (pm && !(pm.closest && pm.closest("details")))) loadIdx();
+    else window.addEventListener("load", function () { setTimeout(loadIdx, 4000); });
   }
 
   // Onderhoudsteller

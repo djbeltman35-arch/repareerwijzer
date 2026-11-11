@@ -107,7 +107,7 @@ ${body}
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
   <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="over-foutcodezoeker.html">Over Foutcodezoeker</a> · <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
-${/id="(q|pm)"/.test(body) ? '<script src="search.js" defer></script>\n' : ""}<script src="app.js" defer></script>
+<script src="app.js" defer></script>
 ${scripts}
 </body>
 </html>`;
