@@ -10884,4 +10884,27 @@ Object.assign(SRC,{ pcA24: ["Portacon – handleiding A24 motorsturing voor 24V-
       F("FULL", "Geheugen ontvanger vol", 1, "Er passen geen afstandsbedieningen meer bij.", ["Laat ongebruikte afstandsbedieningen uit het geheugen verwijderen.", PC]),
       F("ERR", "Handeling mislukt", 1, "Een programmeerstap of het aanleren van een afstandsbediening is niet gelukt.", ["Probeer het opnieuw volgens de handleiding.", PC])], src: ["pcA24"] });
 }
+
+Object.assign(SRC,{ sommerGiga: ["SOMMER – montage- en gebruikershandleiding GIGAslide (nl, pdf)", "https://sommer.eu/SOMMER/Downloads/Montageanleitung/Schiebetorantriebe/GIGAslide/GIGAslide_S13884-00006_NL.pdf"] });
+{ const VK = "Alleen de meldingen in dit hoofdstuk mag je als gebruiker zelf verhelpen; laat andere storingen over aan een vakman.";
+  const SAFE = ["Kijk of er iets tegen de beveiliging aan zit of ertussen staat en haal het weg.", "Maak fotocellen schoon en controleer of ze recht tegenover elkaar staan.", "Blijft de melding? Bel je installateur."];
+  MODELS.push({ id: "sommer-gigaslide", brand: "SOMMER", name: "GIGAslide schuifpoortaandrijving", dev: "schuifpoort", cat: "garagedeuren", years: "GIGAslide (frequentieregelaar)", unit: null, also: "SOMMER schuifpoort, Thermo, Encoder controleren, Runtime error, Geblokkeerd, Zekering 24V",
+    intro: "De SOMMER GIGAslide is een aandrijving voor zware schuifpoorten. De besturing toont foutmeldingen in tekst. " + VK, weak: [], parts: [["Zekering F5", "40 mA F"]],
+    tasks: [{ m: 1, t: "Omkeerfunctie testen met een voorwerp van 40 mm hoog op de grond" }, { m: 1, t: "Noodontgrendeling testen" }, { m: 12, t: "Onderhoudsbeurt door een vakman (of na 20.000 bewegingen)" }],
+    faults: [
+      F("Thermo", "Noodontgrendeling actief of motor te warm", 1, "De handmatige noodontgrendeling staat open, of de motor is oververhit.", ["Controleer of de noodontgrendeling weer helemaal is vergrendeld.", "Laat de motor afkoelen; de melding verdwijnt vanzelf.", "Blijft hij? Bel je installateur."]),
+      F("Veiligheidsketting 2", "Loopdeur open of noodstop", 1, "Het contact van de loopdeur in de poort of een noodstop is geactiveerd.", ["Sluit de loopdeur goed en zet een ingedrukte noodstop terug.", "Blijft de melding? Bel je installateur."]),
+      F("Schakell. 1 geactiveerd / Schakell. 2 geactiveerd", "Veiligheidslijst geactiveerd", 1, "Een veiligheidslijst (schakellijst) is geraakt of geeft een signaal.", SAFE),
+      F("OSE 1 geactiveerd / OSE 2 geactiveerd", "Optische veiligheidslijst geactiveerd", 1, "Een optische veiligheidslijst (OSE) is onderbroken.", SAFE),
+      F("4-draads fotocel geactiveerd / 2-draads fotocel geactiveerd", "Fotocel onderbroken", 1, "De fotocel ziet een obstakel. Staat er 'Niet aangesloten', dan is er geen fotocel aangesloten of is hij defect.", SAFE),
+      F("FR Standby", "Frequentieregelaar uit of geen communicatie", 3, "De frequentieregelaar staat uit of de communicatie ermee is verstoord.", ["Bel je installateur."]),
+      F("Thermoschakelaar", "Frequentieregelaar oververhit", 2, "De frequentieregelaar is te warm geworden.", ["Laat de aandrijving afkoelen; de melding verdwijnt vanzelf.", "Komt hij vaak terug? Bel je installateur."]),
+      F("Encoder controleren / Motor/Encoder controleren", "Encoder of kabel defect", 3, "De absolute encoder of de verbindingskabel is defect, of de encoderwaarden veranderen niet bij een startcommando.", ["Bel je installateur."]),
+      F("Fout in configuratie", "Systeemfout, besturing defect", 3, "De besturing heeft een systeemfout.", ["Laat de besturing repareren door een vakman."]),
+      F("Veiligheidseindsch.", "Eindpositie overschreden", 3, "De poort is voorbij de ingestelde eindpositie gelopen.", ["Bel je installateur."]),
+      F("Runtime error", "Ingeleerde looptijd overschreden", 2, "De poort doet er langer over dan bij het inleren (bij mechanische eindschakelaars).", ["Kijk of de poort ergens stroef loopt of geblokkeerd wordt.", "Laat de eindposities opnieuw inleren door je installateur."]),
+      F("Foute richting", "Aandrijving draait de verkeerde kant op", 3, "De fasen zijn verwisseld, waardoor de motor de verkeerde kant op draait.", ["Laat de draairichting controleren door je installateur."]),
+      F("Geblokkeerd", "Bewegen niet mogelijk", 1, "De aandrijving kan niet bewegen. Op het display staat een extra melding met de reden.", ["Lees de extra melding op het display en zoek die hier op.", "Bel je installateur als het niet duidelijk is."]),
+      F("Zekering 24V", "Zekering F5 doorgebrand", 2, "De 24V-zekering F5 in de besturing is doorgebrand.", ["Laat zekering F5 (40 mA F) vervangen door een vakman, met de stroom eraf."])], src: ["sommerGiga"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
