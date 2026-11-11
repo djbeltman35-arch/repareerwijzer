@@ -2282,7 +2282,17 @@ Object.assign(SRC,{ nefitTAP: ["Nefit – gebruikersinstructie TrendLine AquaPow
   F("2L266 / 2P212 / 2P341 / 2U213", "Storing in waterstroming of waterdruk", 2, "De doorstroming of druk in de cv-installatie klopt niet (2F-, 2L-, 2P-, 2U- en 2Y-codes).", ["Controleer of afsluiters en voldoende radiatorkranen open staan.", "Controleer de waterdruk en ontlucht de installatie.", "Reset; komt de code terug, bel je installateur."]),
   F("4F219 / 4L220", "Storing in temperatuurbeveiliging", 2, "Code uit de groep 4F/4L; de gebruikersinstructie geeft geen nadere omschrijving.", I),
   F("H11 / H12", "Temperatuur warm water niet gemeten", 1, "AquaPower: geen uitstroom- of boilertemperatuur gemeten. De ketel berekent die zelf en blijft werken.", ["Neem contact op met je installateur."]),
-  F("P--", "Waterdruk hoger dan 4 bar", 1, "Te veel bijgevuld of het expansievat werkt niet goed.", ["Laat via een radiator water af tot de druk rond 1,5 bar staat.", "Bij de hoogste cv-temperatuur hoort de druk niet boven 3 bar te komen; loopt hij steeds op, bel de installateur."]));
+  F("P--", "Waterdruk hoger dan 4 bar", 1, "Te veel bijgevuld of het expansievat werkt niet goed.", ["Laat via een radiator water af tot de druk rond 1,5 bar staat.", "Bij de hoogste cv-temperatuur hoort de druk niet boven 3 bar te komen; loopt hij steeds op, bel de installateur."]),
+  F("-H / =H", "Brander aan (verwarming of warm water)", 1, "Bedrijfscode: bij -H stookt de ketel voor de cv, bij =H maakt hij warm tapwater.", ["Niets aan doen; dit is geen storing."]),
+  F("0H", "Stand-by, geen warmtevraag", 1, "Bedrijfscode: de ketel staat klaar maar er is geen vraag naar warmte.", ["Niets aan doen; dit is geen storing."]),
+  F("0A", "Wachttijd voor opnieuw starten", 1, "Bedrijfscode: er kwam binnen 10 minuten meer dan één keer warmtevraag (anti-pendel), of de ketel wacht na een warmwatervraag.", ["Wacht maximaal 10 minuten; de ketel start daarna vanzelf."]),
+  F("0C", "Brander wordt voorbereid", 1, "Bedrijfscode: ventilator, pomp en gloeiplug starten op.", ["Even wachten."]),
+  F("0E", "Warmtevraag lager dan minimaal vermogen", 1, "Bedrijfscode: de ketel stookt met tussenpozen omdat de vraag kleiner is dan het minimale vermogen.", ["Niets aan doen; dit is geen storing."]),
+  F("0L", "Gasregelblok wordt aangestuurd", 1, "Bedrijfscode tijdens het starten.", ["Niets aan doen; dit is geen storing."]),
+  F("0U", "Opstarten na inschakelen of reset", 1, "Bedrijfscode: de ketel start op (tot 4 minuten) en controleert de waterstroming.", ["Even wachten.", "Blijft 0U staan, controleer de waterdruk (rond 1,5 bar)."]),
+  F("0Y", "Aanvoertemperatuur boven de gewenste waarde", 1, "Bedrijfscode: het water is al warmer dan nodig, dus de brander staat uit.", ["Niets aan doen; dit is geen storing."]),
+  F("-A", "Schoorsteenvegerstand", 1, "Servicestand voor metingen, maximaal 30 minuten.", ["Wacht tot de stand vanzelf stopt, of laat de installateur hem beëindigen."]),
+  F("rE", "Reset bezig", 1, "Verschijnt nadat je de resettoets 5 seconden hebt ingedrukt.", ["Wacht tot de normale bedrijfscode terugkomt."]));
   m.name = "TrendLine II en (Top/Trend)Line AquaPower"; m.intro = m.intro + " Reset: houd de resettoets ongeveer 5 seconden ingedrukt tot rE verschijnt.";
   m.src.push("nefitTAP", "nefitTB63", "nefitTopAP"); })(MODELS.find(m => m.id === "nefit-trendline"));
 Object.assign(SRC,{ boschManual: ["Bosch eBike Systems – handleiding boordcomputer, foutcodetabel (pdf, 2020)", "https://terratrike.com/wp-content/uploads/2025/01/Bosch-Error-Codes.pdf"] });
@@ -9210,18 +9220,6 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("i50", "Storing in de wasmotor", 3, "De pomp die het water rondspuit werkt niet goed.", [OFF, MON]),
     F("i60 / i61 / i69 / i6C", "Probleem met de verwarming", 2, "Het water wordt niet goed verwarmd.", [OFF, MON]),
     F("iF0 / iFo / iF1", "Probleem met het waterniveau", 2, "Er staat te veel of te weinig water in de vaatwasser.", ["Maak het filter onderin schoon.", OFF, MON])
-  ]});
-})();
-(() => {
-  SRC.nwThermomix = ["Netzwelt – de 6 meest voorkomende Thermomix-foutcodes (Duits)", "https://www.netzwelt.de/news/243547-thermomix-probleme-ade-so-behebt-6-gaengigsten-fehlercodes.html"];
-  const KS = "Blijft de fout terugkomen, neem contact op met de klantenservice van Vorwerk.";
-  MODELS.push({ id: "thermomix", brand: "Vorwerk", name: "Thermomix (TM31, TM5, TM6)", dev: "Thermomix", cat: "kleine-apparaten", years: "TM31, TM5, TM6", unit: null, also: "Thermomix foutcode, Thermomix TM6 storing, Thermomix deksel vergrendelt niet, Thermomix wifi werkt niet, Thermomix Fehlercode", intro: "De Thermomix toont bij een storing een melding met een foutnummer. De meeste meldingen los je op met een herstart of door het deksel en de contactpunten te controleren.", weak: ["Vocht of vuil op de contactpinnen onder de mengbeker."], parts: [], tasks: [], src: ["nwThermomix"], faults: [
-    F("32", "Thermomix schakelt zichzelf uit of herstart", 1, "Een tijdelijk softwareprobleem.", ["TM31: haal de stekker een paar seconden eruit en start opnieuw.", "TM5: start het apparaat opnieuw.", "TM6: wacht tot het herstel ('wird wiederhergestellt') klaar is.", KS]),
-    F("52", "Slecht contact tussen mengbeker en apparaat", 1, "Vocht of vuil op de contactpinnen onder de mengbeker.", ["Haal de mengbeker eruit en droog de contactpunten goed af.", "Bij ijskoude of bevroren ingrediënten: spoel de beker vooraf met warm water.", "Blijft de fout, dan moet de beker misschien vervangen worden of het apparaat gerepareerd."]),
-    F("142", "Deksel kan niet vergrendelen", 1, "Het deksel zit niet goed op de mengbeker of het slot sluit niet.", ["Zet het deksel opnieuw goed op de beker.", "TM6: controleer of beker en deksel goed geplaatst zijn.", KS]),
-    F("208", "Overbelasting of mechanisch probleem", 2, "Het apparaat is mogelijk overbelast of er is een mechanisch probleem.", ["Start het apparaat opnieuw.", "TM6: duurt het openen of sluiten van de beker vaak lang, neem dan contact op met de klantenservice."]),
-    F("705", "Geen wifi-verbinding", 1, "Het apparaat kan geen verbinding maken met de router.", ["Probeer het opnieuw.", "Herstart de router en controleer het wifi-wachtwoord.", "TM6: zet wifi op het apparaat uit, herstart en maak opnieuw verbinding.", "Helpt het niet, zet het apparaat terug naar fabrieksinstellingen of neem contact op met Vorwerk."]),
-    F("1003", "Fout in het accu-element (Cookidoo offline beperkt)", 2, "Het accu-element meldt een fout; offline toegang tot Cookidoo is beperkt.", ["Start het apparaat opnieuw.", "Komt de fout terug, dan is het accu-element waarschijnlijk defect: neem contact op met de klantenservice."])
   ]});
 })();
 (() => {
