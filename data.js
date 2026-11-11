@@ -12087,4 +12087,44 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("Koelkast of vriezer voelt warm", 1, "Soms moet de elektronica opnieuw opstarten.", ["Haal de stekker eruit, wacht 60 seconden en sluit weer aan."])
     ]});
 }
+{ const SVC = "Komt de code terug? Boek een servicebezoek bij Indesit.";
+  const R2 = ["Haal de stroom 2 minuten van de kookplaat (groep uit) en zet hem weer aan.", SVC];
+  const RH = ["Kijk of er stroom in huis is (doet het licht het?).", ...R2];
+  const ADAPT = "Je gebruikt een adapter of pan met een diameter die niet past bij de kookzone.";
+  MODELS.push({ id: "indesit-kookplaat", brand: "Indesit", name: "Kookplaat (inductie en keramisch)", cat: "kookplaten", years: "Indesit-inductie- en keramische kookplaten", unit: null, also: "Indesit inductieplaat F0E1, Indesit kookplaat U, Indesit kookplaat F43, Indesit kookplaat H",
+    intro: "Indesit-kookplaten tonen F-codes (F01 tot F63), FxEy-codes zoals F0E1 en meldingen als U, H en C81. Vaak gaat het om een verkeerde pan, vocht op het bedieningspaneel of een stroomprobleem.",
+    weak: ["Een inductieplaat heeft ruimte eronder nodig voor ventilatie (C81, oververhitting)."], parts: [], tasks: [],
+    src: ["indesitNlFaq"], faults: [
+      F("U", "Geen of ongeschikte pan", 1, "De pan is niet geschikt voor inductie of te klein voor de zone.", ["Gebruik pannen van gietijzer, geëmailleerd staal of inductie-rvs; test met een magneet.", "Gebruik een pan met een vlakke, schone, droge bodem en dezelfde diameter als de kookzone."]),
+      F("H / h", "Restwarmte", 1, "Geen storing: H betekent dat de zone heter is dan 60 °C, h tussen 40 en 60 °C.", ["Raak de zone niet aan tot de indicatie weg is."]),
+      F("F0E1", "Pan niet geschikt of niet goed geplaatst", 1, "De pan past niet bij inductie of staat niet goed.", ["Druk twee keer op AAN/UIT om F0E1 te wissen.", "Zet de pan op een andere zone en gebruik een inductiegeschikte pan."]),
+      F("F0E7", "Pan niet gecentreerd of verkeerde maat", 1, "De pan staat niet in het midden of is te klein of te groot voor de zone.", ["Zet de pan midden op een passende kookzone.", "Zet de kookplaat uit en weer aan met AAN/UIT."]),
+      F("F0E2 / F0EC / F6E3", "Storing na een stroomprobleem", 1, "Vaak na een stroomstoring.", ["Druk twee keer op AAN/UIT en zet daarna de groep een paar seconden uit.", SVC]),
+      F("F0E9", "Installatiefout", 2, "Er kan iets mis zijn met de installatie.", ["Controleer of de installatie volgens het boekje is gedaan.", "Druk twee keer op AAN/UIT en zet de groep minstens 10 seconden uit."]),
+      F("F0EA", "Bedieningspaneel oververhit", 1, "Na intensief gebruik is het bedieningspaneel te heet.", ["Laat de kookplaat afkoelen.", "Druk twee keer op AAN/UIT en zet de groep minstens 10 seconden uit.", SVC]),
+      F("F07", "Spanningspiek of -dip in het stroomnet", 1, "De kookplaat beschermt zijn elektronica bij een te hoge of te lage netspanning.", ["Haal de stroom een paar minuten eraf en zet hem weer aan.", "Laat bij herhaling de elektrische installatie controleren."]),
+      F("F43", "Netspanning te laag", 2, "De netspanning is lager dan 195 V.", ["Laat de netspanning controleren door een installateur."]),
+      F("F41", "Bedieningspaneel: controleer aanraken en loslaten", 1, "Het aanraakpaneel registreert een probleem.", ["Haal de stroom één minuut eraf en sluit weer aan.", SVC]),
+      F("F13", "Installatieprobleem", 2, "Vaak bij een kookplaat die in de laatste 30 dagen is geplaatst of verplaatst (valt niet onder de garantie).", ["Neem contact op met de installateur."]),
+      F("F03", "Te hoge temperatuur", 1, "De kookplaat meet een te hoge temperatuur.", ["Haal de stroom 10 minuten eraf en sluit weer aan.", SVC]),
+      F("F04", "Stroomprobleem", 1, "Controleer eerst of er stroom in huis is.", RH),
+      F("F12 / F21 / F25 / F40", "Stroomprobleem of storing", 1, "Controleer eerst of er stroom in huis is.", RH),
+      F("F56 / F59 / F61 / F63", "Stroomprobleem of storing", 1, "Controleer eerst of er stroom in huis is.", RH),
+      F("F01 / F02 / F05 / F06 / F08 / F09", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F10 / F11 / F14 / F15 / F16", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F17 / F18 / F19 / F20", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F34 / F35 / F36 / F37", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("F42 / F47 / F58 / F60", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("C83 / C84", "Storing", 1, "Indesit adviseert eerst een reset.", R2),
+      F("C81", "Kookplaat te warm: te weinig ventilatie", 1, "De kookplaat is mogelijk niet goed ingebouwd: er moet ruimte onder zitten voor luchtcirculatie.", ["Controleer de inbouw en de ventilatieruimte volgens de installatiehandleiding."]),
+      F("C82", "Verkeerde adapter of pandiameter", 1, ADAPT, ["Gebruik het juiste accessoire of een pan met de juiste diameter."]),
+      F("C85", "Verkeerde adapter of pandiameter", 1, ADAPT, ["Gebruik het juiste accessoire of een pan met de juiste diameter."]),
+      F("EE", "Fout bij instellen van het maximale vermogen", 1, "Er ging iets mis bij het aanpassen van het maximale vermogen van de kookplaat.", ["Haal de stroom enkele seconden eraf.", "Doe de instelling opnieuw volgens de gebruiksaanwijzing."]),
+      F("F00 / F-FF", "Piepen na het schoonmaken: vocht op het bedieningspaneel", 1, "Geen defect: er zit vocht op of in het bedieningspaneel.", ["Wacht tot het paneel droog is.", "Gebruik voortaan een goed uitgewrongen doek."]),
+      F("DEMO / DE", "Demostand: kookplaat wordt niet warm", 1, "De demostand staat aan, bijvoorbeeld na lang (meer dan 5 seconden) indrukken van een knop.", ["Binnen 60 seconden na het aansluiten van de stroom: zet de kookplaat aan en houd + van zone 1 en zone 4 drie seconden ingedrukt (of beide buitenste toetsen minstens 5 seconden, afhankelijk van het model).", "Haal daarna de stroom eraf en sluit weer aan.", "Zie de gebruiksaanwijzing van jouw model."]),
+      N("Alle lampjes gaan aan na aansluiten", 1, "Geen storing: de kookplaat kalibreert het aanraakpaneel en schakelt lampjes en ventilator aan en uit.", ["Ontgrendel daarna met de slotknop; dan is de kookplaat klaar.", "Doe dit met schone, vetvrije vingers en niet in fel licht, anders kan FL verschijnen."]),
+      N("Kookplaat piept en schakelt uit", 1, "Er ligt iets op het bedieningspaneel: metaal, vloeistof of de rand van een pan.", ["Maak het oppervlak schoon en droog.", "Zet geen pannen op de bediening, vooral niet op AAN/UIT."]),
+      N("Inductieplaat staat aan maar wordt niet warm", 1, "Vaak te weinig ventilatieruimte of een defecte ventilator.", ["Controleer de minimale inbouwafstanden.", "Haal de stroom 3 minuten eraf en zet hem weer aan: de ventilator moet kort draaien. Zo niet, dan is hij waarschijnlijk defect.", SVC])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
