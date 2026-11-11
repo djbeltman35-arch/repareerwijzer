@@ -11631,4 +11631,27 @@ Object.assign(SRC,{ mieleNlWas: ["Miele – eerste hulp bij storingen wasmachine
     F("F252", "Deurcontacten vuil", 1, "De deurcontacten bij het scharnier zijn vuil.", ["Maak de deurcontacten bij het deurscharnier schoon.", RE]),
     F("F373", "Lek bij het afvoerfilter", 1, "Er is een lek ontdekt bij het afvoerfilter, dat niet goed is vastgedraaid.", ["Draai de afvoerfilters stevig vast.", RE]));
   m.src.push("mieleNlWas"); })(MODELS.find(m => m.id === "miele-wasmachine"));
+Object.assign(SRC,{ mieleNlDroog: ["Miele – eerste hulp bij storingen drogers", "https://www.miele.nl/support/customer-assistance/drogers-839/alle"] });
+(m => { const SVC = "Dit kun je niet zelf verhelpen: maak een reparatie-afspraak bij Miele Service.";
+  m.faults.push(
+    F("F1", "Kortsluiting in de temperatuurvoeler koelmiddel", 3, "Kortsluiting in de temperatuurvoeler koelmiddel.", [SVC]),
+    F("F2", "Onderbreking in de temperatuurvoeler koelmiddel", 3, "Onderbreking in de temperatuurvoeler koelmiddel.", [SVC]),
+    F("F3", "Kortsluiting in de temperatuurvoeler proceslucht", 3, "Kortsluiting in de temperatuurvoeler proceslucht.", [SVC]),
+    F("F4", "Onderbreking in de temperatuurvoeler proceslucht", 3, "Onderbreking in de temperatuurvoeler proceslucht.", [SVC]),
+    F("F30", "Signaal van deur en deurcontact komt niet overeen", 3, "Signaal van deur en deurcontact komt niet overeen.", [SVC]),
+    F("F36", "Deurcontact (reedcontact) defect", 3, "Deurcontact (reedcontact) defect.", [SVC]),
+    F("F38 / F40 / F41 / F45 / F46 / F108", "Storing in de elektronica", 3, "Storing in de elektronica.", [SVC]),
+    F("F43", "Geen of verkeerd apparaattype geprogrammeerd", 3, "Geen of verkeerd apparaattype geprogrammeerd.", [SVC]),
+    F("F53", "Aandrijfmotor defect of fout in de elektronica", 3, "Aandrijfmotor defect of fout in de elektronica.", [SVC]),
+    F("F99", "Apparaat geblokkeerd", 3, "Apparaat geblokkeerd.", [SVC]),
+    F("F104", "Netspanning op de aandrijfmotor te laag", 3, "Netspanning op de aandrijfmotor te laag.", [SVC]),
+    F("F156", "Kortsluiting in de temperatuurvoeler koelmiddel na de condensor", 3, "Kortsluiting in de temperatuurvoeler koelmiddel na de condensor.", [SVC]),
+    F("F157", "Onderbreking in de temperatuurvoeler koelmiddel na de condensor", 3, "Onderbreking in de temperatuurvoeler koelmiddel na de condensor.", [SVC]),
+    F("F158", "Droger oververhit", 3, "Droger oververhit.", [SVC]),
+    F("F159", "Startfout van de compressor", 3, "Startfout van de compressor.", [SVC]),
+    F("F206", "Kortsluiting in de temperatuurvoeler koelmiddel na de compressor", 3, "Kortsluiting in de temperatuurvoeler koelmiddel na de compressor.", [SVC]),
+    F("F207", "Onderbreking in de temperatuurvoeler koelmiddel na de compressor", 3, "Onderbreking in de temperatuurvoeler koelmiddel na de compressor.", [SVC]),
+    F("F242", "Storing in de elektronica (touchscreen)", 3, "Storing in de elektronica (touchscreen).", [SVC]),
+    F("F252", "Deurcontacten vuil", 1, "De deurcontacten bij het scharnier zijn vuil.", ["Maak de deurcontacten bij het deurscharnier schoon.", "Blijft de storing? Neem contact op met Miele Service."]));
+  m.src.push("mieleNlDroog"); })(MODELS.find(m => m.id === "miele-droger"));
 module.exports = { CATS, MODELS, SRC, COST };
