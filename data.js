@@ -9058,4 +9058,19 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     N("Netstoring (1046–1052)", 1, "Er is een storing in het openbare net.", ["Wacht tot het net weer binnen de normale grenzen is."])
   ]});
 })();
+(() => {
+  SRC.huaweiL0 = ["Huawei – SUN2000-(2KTL-5KTL)-L0 gebruikershandleiding, alarmlijst (Engels, via ManualsLib)", "https://www.manualslib.com/manual/1599035/Huawei-Sun2000-2ktl-L0.html?page=67"];
+  const DLR = "Blijft de melding, neem contact op met je installateur.";
+  const DC = "Werk nooit zelf aan de DC-kant (panelen en strings): daar staat hoge gelijkspanning op. Laat dit doen door je installateur.";
+  MODELS.push({ id: "huawei-sun2000-omvormer", brand: "Huawei", name: "omvormer SUN2000 (2KTL–5KTL-L0)", dev: "Huawei-omvormer", cat: "zonnepanelen", years: "SUN2000-2KTL t/m 5KTL-L0", unit: null, also: "Huawei SUN2000 storing, Huawei omvormer alarm, FusionSolar app melding, Grid Failure, Low Insulation Resistance, Huawei omvormer produceert niet", intro: "Huawei SUN2000-omvormers tonen een alarm met een nummer (alarm-ID) in de FusionSolar- of SUN2000-app. Veel meldingen gaan over het stroomnet en lossen zichzelf op; meldingen over de panelen of de omvormer zelf zijn werk voor de installateur.", weak: [], parts: [], tasks: [], src: ["huaweiL0"], faults: [
+    F("2011", "Panelenstring omgekeerd aangesloten (String Reversed)", 3, "De plus en min van een panelenstring zitten omgedraaid. Cause ID 1 is string 1, cause ID 2 is string 2.", ["Laat de installateur de polariteit van de string controleren.", DC]),
+    F("2032", "Geen netspanning (Grid Failure)", 1, "Stroomstoring in de wijk, of de AC-groep of werkschakelaar staat uit.", ["Controleer of de groep van de zonnepanelen in de meterkast aan staat.", "Controleer of de AC-kabel is aangesloten en de AC-schakelaar op ON staat.", "Bij een stroomstoring: wacht tot die voorbij is; de omvormer start vanzelf."]),
+    F("2033", "Netspanning te laag (Grid Undervoltage)", 1, "De spanning op het net is lager dan de ondergrens.", ["Gebeurt het af en toe, dan herstelt de omvormer zichzelf als het net weer normaal is.", "Gebeurt het vaak, laat de installateur de netspanning controleren en neem zo nodig contact op met je netbeheerder.", DLR]),
+    F("2062", "Isolatieweerstand te laag (Low Insulation Resistance)", 3, "Een panelenstring heeft sluiting naar aarde, of heeft lang in een vochtige omgeving gehangen. Komt vaak voor bij regen of ochtenddauw.", ["Verdwijnt de melding als het droog wordt, noteer dan wanneer hij optreedt.", "Komt hij vaak terug, laat de installateur de isolatie van de panelen en kabels meten.", DC]),
+    F("2063", "Omvormer te warm (Overtemperature)", 2, "Slechte ventilatie, een te hoge omgevingstemperatuur of een storing in de omvormer.", ["Zorg dat er rondom de omvormer genoeg ruimte en ventilatie is en dat hij niet in de volle zon hangt.", "Is de plek in orde, neem contact op met je installateur."]),
+    F("2064", "Storing in de omvormer (Device Fault)", 2, "Een interne storing die niet vanzelf herstelt.", ["Zet de AC-schakelaar en de DC-schakelaar uit.", "Wacht 5 minuten en zet ze weer aan.", DLR]),
+    F("2065", "Software-update mislukt (Upgrade Failed)", 1, "De update is niet goed afgerond.", ["Voer de update opnieuw uit via de app.", "Mislukt het meerdere keren, neem contact op met je installateur."]),
+    F("61440", "Storing monitoringeenheid (Monitoring Unit Faulty)", 2, "Het flashgeheugen is vol of heeft slechte sectoren.", ["Neem contact op met je installateur of dealer."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
