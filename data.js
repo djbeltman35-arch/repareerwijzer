@@ -934,8 +934,13 @@ MODELS.push(
   faults: [
     F("F2", "Water wordt niet afgevoerd", 1, "Verstopte slang of filters.", ["Controleer afvoerslang en filters op verstoppingen en maak ze schoon.", "Blijft de code, reset het programma volgens de handleiding."]),
     F("F5", "Te weinig water", 1, "Kraan, druk of filter.", ["Draai de kraan helemaal open en test de druk: 10 liter in een minuut.", "Maak het filter van de toevoerslang schoon en haal knikken eruit."]),
-    F("F1 / F3 / F6 / F7 / F8 / FE", "Mogelijk een kapot onderdeel", 3, "Onderdeel defect.", ["Niet zelf repareren.", "Kraan dicht, stekker eruit en contact opnemen met Inventum."])],
-  src: ["inventumVaat"] },
+    F("F1", "Overloopbeveiliging actief", 3, "De beveiliging tegen wateroverloop is aangesproken: er staat water in de bodem.", ["Haal de stekker eruit en draai de kraan dicht.", "Neem contact op met de Inventum-service."]),
+    F("F3", "Watertoevoer stopt niet", 3, "De vaatwasser blijft water innemen.", ["Draai direct de kraan dicht.", "Neem contact op met de Inventum-service."]),
+    F("F6", "Fout in de temperatuursensor", 3, "De warmtesensor geeft een fout.", ["Neem contact op met de Inventum-service."]),
+    F("F7", "Temperatuur te hoog", 3, "Het water of de vaatwasser wordt te warm.", ["Zet de vaatwasser uit en neem contact op met de Inventum-service."]),
+    F("F8", "Fout in het verwarmingselement", 3, "Het water wordt niet goed opgewarmd.", ["Neem contact op met de Inventum-service."]),
+    F("FE", "Elektronische fout", 3, "Een fout in de besturing.", ["Haal de stekker 1 minuut eruit en start opnieuw.", "Komt de code terug? Neem contact op met de Inventum-service."])],
+  src: ["inventumVaat", "inventumVvw6008"] },
 
 { id: "wisberg-vaatwasser", brand: "Wisberg", name: "Vaatwasser (alle modellen)", cat: "vaatwassers", years: "Alle bouwjaren", unit: null,
   intro: "Het Coolblue-huismerk. Een schoon filter onderin voorkomt de meeste storingen.", weak: [], parts: [], tasks: DISH_TASKS,
@@ -11146,4 +11151,5 @@ MODELS.push({ id: "karcher-sc4-easyfix", brand: "Kärcher", name: "SC 4 EasyFix 
 
 Object.assign(SRC,{ karK5sc: ["Kärcher – gebruiksaanwijzing K 5 (Premium) Smart Control (nl)", "https://s1.kaercher-media.com/documents/manuals/html/BTA-5943997-000-00/NL.html"] });
 (m => { m.also = (m.also ? m.also + ", " : "") + "zelfde storingen bij de K 5 (Premium) Smart Control"; m.src.push("karK5sc"); })(MODELS.find(m => m.id === "karcher-k7-smart-control"));
+Object.assign(SRC,{ inventumVvw6008: ["Inventum – gebruiksaanwijzing vaatwasser VVW6008AW (nl, pdf)", "https://www.deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing_INVENTUM_vaatwasser_VVW6008AW.pdf"] });
 module.exports = { CATS, MODELS, SRC, COST };
