@@ -11114,4 +11114,20 @@ MODELS.push({ id: "karcher-vc7-cordless", brand: "Kärcher", name: "VC 7 Cordles
     N("Accu laadt niet op", 1, "De stekker zit niet goed, het stopcontact werkt niet of je gebruikt een verkeerde lader.", ["Controleer de laadstekker en het stopcontact.", "Gebruik de originele lader."]),
     N("Stopt tijdens het zuigen of zuigt zwak", 1, "De accu is te warm, er is een verstopping, de stofbak is vol, de filters zijn vuil of de borstelrol zit vast.", ["Laat de accu afkoelen.", "Haal verstoppingen weg, leeg de bak en maak de filters en borstelrol schoon."])],
   src: ["karVc7"] });
+
+Object.assign(SRC,{ karRcv3: ["Kärcher – gebruiksaanwijzing RCV 3 robotstofzuiger (nl)", "https://s1.kaercher-media.com/documents/manuals/html/BTA-5814299-000-04/NL.html"] });
+MODELS.push({ id: "karcher-rcv3", brand: "Kärcher", name: "RCV 3 robotstofzuiger", dev: "robotstofzuiger", cat: "stofzuigers", years: "RCV 3 (zuig- en dweilrobot)", unit: null, also: "Kärcher robot lampje knippert rood, keert niet terug naar station, start niet, offline",
+  intro: "De Kärcher RCV 3 geeft een storing aan met een snel rood knipperend lampje en een geluidssignaal. Hieronder per klacht de oorzaak en oplossing volgens Kärcher.", weak: [], parts: [],
+  tasks: [{ m: 1, t: "Valsensoren reinigen met een droge doek" }, { m: 4, t: "Filter en zijborstel vervangen (elke 3 tot 6 maanden)" }, { m: 9, t: "Hoofdborstel vervangen (elke 6 tot 12 maanden)" }],
+  faults: [
+    N("Lampje knippert snel rood", 1, "Er is een storing. Na 5 minuten zonder actie gaat de robot in slaapstand.", ["Kijk in de app welke storing het is en zoek de klacht hieronder op."]),
+    N("Lampje knippert langzaam rood", 1, "De accu is te leeg om te starten.", ["Zet de robot op het laadstation en laad hem op."]),
+    N("Robot start niet", 1, "Te lage of hoge temperatuur, lege accu, geblokkeerde LiDAR- of botssensor, vuile valsensoren, een verkeerd geplaatste stofbak, filter of dweilhouder, of hij zit vast.", ["Gebruik de robot tussen 0 en 35 °C en laad hem op.", "Maak de LiDAR-sensor en valsensoren schoon met een droge doek; tik voorzichtig op de botssensor.", "Plaats stofbak, filter en dweildoek opnieuw tot ze vastklikken.", "Zet hem op een vlakke vloer en haal obstakels weg."]),
+    N("Robot keert niet terug naar het laadstation", 1, "De accu is helemaal leeg, hij staat te ver weg, er is te weinig vrije ruimte rond het station, of hij is niet vanaf het station gestart.", ["Zet de robot met de hand op het station.", "Zorg voor genoeg vrije ruimte rond het station en zet het in een open ruimte."]),
+    N("Accu laadt niet op", 1, "Vuile laadcontacten of een temperatuur onder 0 of boven 35 °C.", ["Veeg de laadcontacten van robot en station af met een droge doek.", "Laad op in een ruimte tussen 0 en 35 °C."]),
+    N("Maakt vreemde geluiden", 1, "Er zit iets vast in de borstel, zijborstel of een wiel.", ["Zet de robot uit en haal het voorwerp weg."]),
+    N("Zuigt slecht of laat stof liggen", 1, "Volle stofbak, verstopt filter of iets vast in de borstel.", ["Leeg de stofbak, maak het filter schoon en verwijder haren uit de borstels."]),
+    N("Gaat niet verder met schoonmaken", 1, "De modus Niet storen staat aan, of de robot is met de hand op het station gezet en laadt eerst op.", ["Zet Niet storen uit in de app of wacht tot hij vol is."]),
+    N("Geen wifi-verbinding of offline", 1, "Geen of te zwak signaal, verkeerd wachtwoord, of een 5 GHz-netwerk.", ["Gebruik een 2,4 GHz-netwerk en controleer het wachtwoord.", "Reset de wifi: houd de aan/uit-knop en 'terug naar station' 7 seconden ingedrukt en verbind opnieuw."])],
+  src: ["karRcv3"] });
 module.exports = { CATS, MODELS, SRC, COST };
