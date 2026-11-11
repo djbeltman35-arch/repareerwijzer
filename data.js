@@ -11377,4 +11377,28 @@ Object.assign(SRC,{ elxNlWas: ["Electrolux Support – foutmeldingen wasmachine 
       F("CLE", "Herinnering: trommel reinigen", 1, "Geen storing: na ongeveer 60 wasbeurten vraagt de machine om een reinigingswas.", ["Draai met een lege trommel en een beetje wasmiddel een katoenprogramma op 95 °C. Daarna verdwijnt de melding."])
     ]});
 }
+Object.assign(SRC,{ zanNlDroog: ["Zanussi Support – foutmeldingen droger (Err, dEn, C0)", "https://support.zanussi.nl/support-articles/wassen-en-drogen/drogers"], zanNlWD: ["Zanussi Support – foutmeldingen was-droogcombinatie", "https://support.zanussi.nl/support-articles/wassen-en-drogen/was-droogcombinaties"], zanNlVaat: ["Zanussi Support – meldingen vaatwasser (Machine Care, d:On, iC0, i80)", "https://support.zanussi.nl/support-articles/afwassen/vaatwassers"] });
+{ const SVC = "Lost dit het niet op? Maak een afspraak met de Zanussi-servicedienst.";
+  const STOP = "Gebruik het apparaat tot de reparatie niet meer: stekker eruit en kraan dicht.";
+  (m => { m.faults.push(
+    F("Err", "Deur open bij het starten of instelling gewijzigd tijdens het programma", 1, "De deur was niet goed dicht bij de start, er is tijdens het drogen een optie veranderd, er zit stof in het gaatje van de deurpen, of de deurpen zit na het omdraaien van de deur niet goed.", ["Sluit de deur en start het programma opnieuw.", "Verander geen instellingen terwijl de droger bezig is.", "Zuig het gaatje waar de deurpen in valt schoon met de stofzuiger.", "Heb je de draairichting van de deur veranderd? Controleer of de deurpen goed is teruggeplaatst.", SVC]),
+    F("dEn", "Demostand staat aan", 1, "De droger staat in de demonstratiestand en telt terug naar nul.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem er weer in.", SVC]),
+    F("C0", "Geen storing", 1, "Volgens Zanussi betekent C0 dat er geen probleem is.", ["Je hoeft niets te doen. Werkt de droger toch niet goed, kijk dan bij de andere storingen."]));
+    m.src.push("zanNlDroog"); })(MODELS.find(m => m.id === "zanussi-droger"));
+  (m => { m.faults.push(
+    F("EF0 / EFO", "Algemene melding met meerdere oorzaken", 1, "Deels verstopt filter, te veel wasmiddel en schuim, onbalans door één groot stuk, of te weinig water door een dichte of defecte kraan.", ["Draai het filter onderaan los, vang het water op en maak filter en filterruimte schoon.", "Gebruik minder wasmiddel en draai met een lege trommel een katoenprogramma op 60 °C of een reinigingsprogramma.", "Was nooit één groot stuk alleen, zoals een dekbedhoes of slaapzak. Probeer een centrifugeprogramma met een lege trommel.", "Controleer of de kraan open staat en er genoeg water uit komt.", SVC, STOP]),
+    F("E90", "Storing in de elektronica", 2, "De elektronica geeft een fout.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem er weer in.", SVC, STOP]),
+    F("C3 / F3", "Lekkage in het apparaat", 3, "Er lekt water in de machine.", ["Maak een afspraak met de Zanussi-servicedienst.", STOP]),
+    F("E82", "Programmaknop tussen twee standen", 1, "De programmaknop stond tussen twee programma's toen je op start drukte.", ["Zet het apparaat uit en kies opnieuw een programma.", SVC]),
+    F("E60", "Probleem met het verwarmingselement", 3, "Het verwarmingselement werkt niet goed.", ["Maak een afspraak met de Zanussi-servicedienst.", STOP]),
+    F("dEn", "Demostand staat aan", 1, "Het apparaat staat in de demonstratiestand.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem er weer in.", SVC]),
+    F("11 piepjes", "Start/pauze-knop knippert of piept 11 keer: stroomprobleem", 1, "Er is een probleem met de stroomvoorziening, door het stopcontact of de huisinstallatie.", ["Test het stopcontact met een ander apparaat. Gebruik geen verlengsnoer.", "Haal de stekker 30 seconden eruit, zet het apparaat weer aan, kies een programma en druk op start.", SVC, STOP]));
+    m.src.push("zanNlWD"); })(MODELS.find(m => m.id === "zanussi-was-droogcombinatie"));
+  (m => { m.faults.push(
+    F("Machine Care", "Herinnering: reinigingsprogramma draaien", 1, "Geen storing. Na 60 afwasbeurten vraagt de vaatwasser om een reinigingsprogramma (ook getoond als een icoontje met een ster).", ["Haal alle vaat uit de vaatwasser en doe een machinereiniger erin.", "Houd Extra Power en AUTO (Sense) tegelijk ongeveer 3 seconden ingedrukt tot de lampjes knipperen en de duur op het display staat.", "Sluit de deur: het programma start. Na afloop gaat de melding uit."]),
+    F("d:On", "Demostand staat aan, programma start niet", 1, "De vaatwasser staat in de demonstratiestand.", ["Zet de vaatwasser aan en wacht tot het display aan is.", "Bij QuickSelect-modellen vanaf eind 2025: druk eerst op de Quick-toets.", "Houd ECO en Auto 5 seconden ingedrukt tot d:Of in beeld komt. De demostand is nu uit."]),
+    F("iC0 / iCO", "Communicatiefout in de elektronica", 3, "De bedieningselektronica en de besturingselektronica praten niet goed met elkaar.", ["Maak een afspraak met de Zanussi-servicedienst; dit lost een monteur op."]),
+    F("i80", "Probleem met de automatische deuropener", 2, "Het keukenpaneel is niet als schuivend (sliding door) paneel gemonteerd, het paneel is te zwaar, te lang of te dik, of de vaatwasser staat niet waterpas waardoor de deur blokkeert bij het drogen met lucht.", ["Controleer of het keukenpaneel als sliding door is gemonteerd.", "Controleer of het paneel voldoet aan de maten en het gewicht in de installatie-instructie.", "Zet de vaatwasser waterpas.", SVC]));
+    m.src.push("zanNlVaat"); })(MODELS.find(m => m.id === "zanussi-vaatwasser"));
+}
 module.exports = { CATS, MODELS, SRC, COST };
