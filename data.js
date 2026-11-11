@@ -11839,4 +11839,21 @@ Object.assign(SRC,{ mieleNlRobot: ["Miele – eerste hulp bij storingen robotsto
       N("Led op de greep knippert", 1, "De accu is leeg.", ["Laad de accu op, direct met de laadkabel of in de wandhouder."])
     ]});
 }
+Object.assign(SRC,{ remTzerraIs: ["Remeha – installatie- en servicehandleiding Tzerra M (CW3, CW4, CW5), §8 Bij storing", "https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Installatie-en-servicehandleiding-Tzerra-V6.pdf"] });
+(m => { const INST = "Bel je installateur; hij kan de exacte code uitlezen met Remeha-servicesoftware.", RESET = "Houd de resettoets 5 seconden ingedrukt. Het lampje knippert snel rood, de ketel start opnieuw en ontlucht zich ongeveer 4 minuten.";
+  m.faults.push(
+    F("Groen 1x", "Blokkering: temperatuurbeveiliging (1 keer groen knipperen)", 1, "Tijdelijke blokkering: de aanvoertemperatuur is te hoog of stijgt te snel, meestal door te weinig doorstroming of te lage waterdruk.", ["Controleer de waterdruk en vul zo nodig bij.", "Ontlucht de radiatoren.", "Controleer of radiatorkranen open staan.", "De ketel start vanzelf weer als de oorzaak weg is.", INST]),
+    F("Groen 2x", "Blokkering: blokkerende ingang of vorstbeveiliging (2 keer groen)", 2, "Een externe aansturing blokkeert de ketel, of de vorstbeveiliging is actief.", ["Neem een externe oorzaak weg als je die kent; de ketel start daarna vanzelf.", INST]),
+    F("Groen 3x", "Blokkering: vlamverlies (3 keer groen)", 1, "De vlam viel weg tijdens het branden, bijvoorbeeld doordat de gaskraan niet helemaal open staat.", ["Controleer of de gaskraan van de ketel helemaal open staat.", INST]),
+    F("Groen 4x", "Blokkering: communicatiefout (4 keer groen)", 3, "De elektronica van de ketel communiceert niet goed.", [INST]),
+    F("Groen 5x", "Blokkering: parameter- of identificatiefout (5 keer groen)", 3, "De instellingen van de ketel kloppen niet.", [INST]),
+    F("Groen 6x", "Blokkering: overige (6 keer groen)", 3, "Bijvoorbeeld te lage gasdruk of een interne fout in de gas/lucht-unit.", ["Controleer of de gaskraan helemaal open staat.", INST]),
+    F("Rood 1x", "Storing: sensor-, temperatuur- of doorstromingsfout (1 keer rood)", 1, "Een sensor geeft een fout, of er is te weinig doorstroming door lucht of lage waterdruk.", ["Controleer de waterdruk en vul zo nodig bij.", "Ontlucht de cv-installatie.", RESET, "Blijft het lampje rood knipperen? " + INST]),
+    F("Rood 2x", "Storing: maximale temperatuur overschreden (2 keer rood)", 2, "De warmtewisselaar of de automaat werd te heet, bijvoorbeeld door te weinig doorstroming of een probleem met luchttoevoer of rookgasafvoer.", ["Controleer de waterdruk en ontlucht de installatie.", RESET, "Komt het terug? " + INST]),
+    F("Rood 3x", "Storing: ontstekingsfout (3 keer rood)", 2, "Vijf mislukte starts: geen vonk, geen vlam, te weinig ionisatie of vijf keer vlamverlies.", ["Controleer of de gaskraan helemaal open staat.", RESET, "Komt het terug? " + INST]),
+    F("Rood 4x", "Storing: ventilatorfout (4 keer rood)", 3, "De ventilator werkt niet goed, bijvoorbeeld door trek via de schoorsteen of een defecte gas/lucht-unit.", [INST]),
+    F("Rood 5x", "Storing: parameterfout (5 keer rood)", 3, "De veiligheidsinstellingen van de ketel zijn niet gevonden.", [INST]),
+    F("Rood 6x", "Storing: overige (6 keer rood)", 3, "Diverse oorzaken; de precieze code is alleen met servicesoftware uit te lezen.", [RESET, INST]));
+  m.also = (m.also ? m.also + ", " : "") + "Remeha Tzerra lampje knippert 3 keer rood, Tzerra knippert groen, Tzerra M CW3 CW4 CW5";
+  m.src.push("remTzerraIs"); })(MODELS.find(m => m.id === "remeha-tzerra"));
 module.exports = { CATS, MODELS, SRC, COST };
