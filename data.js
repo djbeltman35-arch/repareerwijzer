@@ -10721,4 +10721,16 @@ const I = "Laat de installateur dit verder onderzoeken.";
   F("E02.13", "Blokkerende ingang", 2, "De warmtepomp wordt geblokkeerd door een extern apparaat op het blokkeercontact.", ["Controleer of een aangesloten apparaat (bijvoorbeeld een energiemanager) de warmtepomp blokkeert.", "Laat dit verder controleren door je installateur."]),
   F("A02.55", "Serienummer ontbreekt of is ongeldig", 3, "Het serienummer van het toestel ontbreekt of klopt niet.", ["Laat dit verder controleren door je installateur."])
 ); })(MODELS.find(m => m.id === "remeha-elga-ace")); })();
+(m => { m.faults.push(
+  F("H00.32 / H00.33 / H00.34", "Storing buitenvoeler", 3, "De buitentemperatuurvoeler is los, defect, heeft kortsluiting of wordt niet gevonden.", ["Neem contact op met je installateur."]),
+  F("H00.17", "Storing voeler warmwaterboiler", 3, "De voeler in de warmwaterboiler heeft kortsluiting of meet buiten bereik.", ["Neem contact op met je installateur."]),
+  F("H00.47 / H00.48 / H00.49", "Storing aanvoervoeler warmtepomp", 3, "De aanvoervoeler van de warmtepomp is los, defect of wordt niet gevonden.", ["Neem contact op met je installateur."]),
+  F("H00.51 / H00.52", "Storing retourvoeler warmtepomp", 3, "De retourvoeler van de warmtepomp is los of heeft kortsluiting.", ["Neem contact op met je installateur."]),
+  F("H02.09 / H02.10", "Toestel (gedeeltelijk) geblokkeerd", 2, "Er is een gedeeltelijke of volledige blokkering van het toestel gedetecteerd, bijvoorbeeld door een extern blokkeercontact.", ["Neem contact op met je installateur."]),
+  F("E00.01", "Aanvoervoeler kortgesloten", 3, "De aanvoertemperatuurvoeler heeft kortsluiting of meet buiten bereik.", ["Neem contact op met je installateur."]),
+  F("A02.22", "Waarschuwing waterstroming", 1, "De waterstroming in de installatie is te laag; de warmtepomp blijft voorlopig werken.", ["Open een radiatorkraan als de stroming laag is.", "Controleer of kranen en thermostaatkranen open staan.", "Laat de installateur filters reinigen en de pomp controleren als het terugkomt."]),
+  F("A02.55", "Serienummer ontbreekt of is ongeldig", 1, "Het serienummer van het toestel ontbreekt of klopt niet.", ["Neem contact op met je installateur als de code blijft staan."]),
+  F("A00.32 / A00.33 / A00.34", "Waarschuwing buitenvoeler", 1, "De buitenvoeler meet buiten bereik of wordt niet gevonden.", ["Neem contact op met je installateur als de code blijft staan."]),
+  F("A10.45 / A10.46 / A10.47", "Ruimtevoeler niet gevonden", 1, "De ruimtevoeler (kamerthermostaat) van groep A, B of C wordt verwacht maar niet gevonden.", ["Controleer of de kamerthermostaat stroom of batterijen heeft en verbonden is.", "Neem contact op met je installateur als de code blijft staan."])
+); })(MODELS.find(m => m.id === "remeha-neptuna-ace"));
 module.exports = { CATS, MODELS, SRC, COST };
