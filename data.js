@@ -9332,4 +9332,16 @@ const RS = "Reset: zet de machine uit, haal de stekker 30 seconden uit het stopc
   F("F55", "Programmatijd overschreden", 1, "Het programma duurde te lang.", [RS]),
   F("F138", "Lekkage gedetecteerd (Waterproof)", 2, "Het lekbeveiligingssysteem heeft water op de bodemplaat gemeten.", ["Draai de kraan dicht en zet de machine uit.", "Neem contact op met de Miele-servicedienst."])
 ); m.src.push("dsMieleWas"); })(MODELS.find(m => m.id === "miele-wasmachine")); })();
+(() => { SRC.dsAegWas = ["De Schouw Witgoed – AEG wasmachine storingen en foutcodes", "https://www.deschouwwitgoed.nl/wasmachine/aeg-wasmachine-storingen-en-foutcodes"];
+const RS = "Zet de machine uit, haal de stekker 30 seconden uit het stopcontact en start opnieuw.";
+const MON = "Blijft de code, schakel een monteur in.";
+(m => { m.faults.push(
+  F("E1", "Onvoldoende water", 1, "De watertoevoer klopt niet.", ["Controleer of de kraan open staat en de toevoerslang niet geknikt is.", "Maak het zeefje in de slangaansluiting schoon.", RS]),
+  F("E2", "Water wordt niet afgevoerd", 1, "probleem met pomp, filter of afvoer.", ["Maak het pompfilter schoon.", "Controleer de afvoerslang op knikken en verstoppingen.", RS]),
+  F("E3", "Water in de lekbak", 2, "Er staat water in de bodem van de machine.", ["Draai de kraan dicht en haal de stekker eruit.", "Schakel een monteur in."]),
+  F("ED", "Deurslot sluit niet", 1, "De deur is niet goed vergrendeld.", ["Controleer of de deur goed dicht is en er geen wasgoed tussen zit.", RS, MON]),
+  F("EE", "Zeepbakje niet goed geplaatst", 1, "Het deksel of de lade van het zeepbakje zit niet goed.", ["Controleer of het zeepbakje goed dicht zit en niet beschadigd is."]),
+  F("E13", "Machine verliest water", 2, "De machine lekt water.", ["Controleer slangen, aansluitingen, het pompfilter en het deurrubber.", MON]),
+  F("EB1 / EB2 / EB3 / EBE / EBF", "Afwijkende netspanning of netfrequentie", 1, "De stroomvoorziening klopt niet.", ["Controleer het stopcontact en gebruik geen verlengsnoer.", RS, MON])
+); m.src.push("dsAegWas"); })(MODELS.find(m => m.id === "aeg-wasmachine")); })();
 module.exports = { CATS, MODELS, SRC, COST };
