@@ -10966,4 +10966,12 @@ Object.assign(SRC,{ nibeMtWh21: ["NIBE – handleiding warmtepompboiler MT-WH21 
       F("Er8", "Verdamper te koud", 2, "De verdamper komt onder de -25 °C, door een defecte ventilator, te weinig luchtstroom of te koude aanzuiglucht.", ["Kijk of de luchtaanvoer en -afvoer vrij zijn en het filter schoon is.", "De installateur kan het ventilatortoerental of de minimale luchttemperatuur verhogen.", "Blijft het? " + INST]),
       F("Er10", "Luchtfilter vervangen", 1, "Geen storing: het luchtfilter moet vervangen worden. De warmtepomp blijft gewoon werken.", ["Vervang het luchtfilter.", "Zet daarna de filtertimer terug via menu D32."])], src: ["nibeMtWh21"] });
 }
+
+Object.assign(SRC,{ haierHW80: ["Haier – gebruikershandleiding wasmachine HW80/HW90/HW100-B16939 (nl, pdf)", "https://data.vandenborre.be/manual/HAIER/HAIER_M_NL_HW80B16939.pdf"] });
+(m => { m.faults.push(
+  F("E5", "Water niet binnen 1 minuut weggepompt (Refresh-programma)", 1, "Bij het Refresh-programma is het water niet op tijd afgevoerd.", ["Maak het pompfilter schoon (laat het water eerst afkoelen).", "Controleer of de afvoerslang goed is aangesloten en niet geknikt is."]),
+  F("E8", "Fout beveiligingswaterniveau", 3, "Het waterniveau komt boven het veilige niveau of de beveiliging geeft een fout.", ["Draai de kraan dicht, haal de stekker eruit en neem contact op met Haier-service."]),
+  N("Pompt af tijdens het vullen", 1, "De afvoerslang hangt lager dan 80 cm of het uiteinde hangt in het water, waardoor de machine leeghevelt.", ["Hang de afvoerslang hoger (tussen 80 en 100 cm) en zorg dat het uiteinde niet in water hangt."]));
+  m.tasks = (m.tasks || []).concat(m.tasks && m.tasks.some(t => /pompfilter/i.test(t.t)) ? [] : [{ m: 1, t: "Pompfilter schoonmaken" }]);
+  m.src.push("haierHW80"); })(MODELS.find(m => m.id === "haier-wasmachine"));
 module.exports = { CATS, MODELS, SRC, COST };
