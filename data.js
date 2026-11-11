@@ -9184,4 +9184,25 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("1003", "Fout in het accu-element (Cookidoo offline beperkt)", 2, "Het accu-element meldt een fout; offline toegang tot Cookidoo is beperkt.", ["Start het apparaat opnieuw.", "Komt de fout terug, dan is het accu-element waarschijnlijk defect: neem contact op met de klantenservice."])
   ]});
 })();
+(() => {
+  SRC.wodpCodes = ["What's On Disney Plus – Disney+ foutcodes (Engels, 2019)", "https://whatsondisneyplus.com/disney-error-code-list/"];
+  const NET = "Controleer je internetverbinding, herstart je router en het apparaat en probeer opnieuw.";
+  const LOG = "Log helemaal uit en log opnieuw in.";
+  MODELS.push({ id: "disney-plus-foutcodes", brand: "Disney+", name: "foutcodes op tv, telefoon en streamingapparaat", dev: "app", cat: "televisies", years: "Disney+ op smart-tv, telefoon, tablet, console en streamingapparaat", unit: null, also: "Disney+ foutcode, Disney plus error 83, Disney plus error 73, Disney+ werkt niet, Disney+ VPN, Disney+ te veel apparaten", intro: "Disney+ toont een foutcode als afspelen, inloggen of je account niet lukt. De meeste codes komen door je verbinding, je account of een limiet (apparaten, profielen, gelijktijdig kijken). De betekenissen hieronder komen uit een overzicht uit 2019; Disney+ kan codes sindsdien aangepast hebben.", weak: [], parts: [], tasks: [], src: ["wodpCodes"], faults: [
+    F("83", "Onbekende afspeelfout", 1, "Meestal een probleem met het apparaat of de verbinding; soms een accountprobleem.", ["Controleer of je apparaat Disney+ ondersteunt en de app is bijgewerkt.", NET, "Werkt het nog niet, neem contact op met de klantenservice van Disney+."]),
+    F("73", "Niet beschikbaar in je regio of VPN actief", 1, "Disney+ denkt dat je ergens bent waar het niet beschikbaar is, vaak door een VPN.", ["Zet je VPN uit.", "Gebruik je geen VPN, test dan via een andere verbinding (bijvoorbeeld mobiel internet): mogelijk geeft je provider een verkeerde locatie door."]),
+    F("75", "Te veel apparaten tegelijk", 1, "Het maximum aantal apparaten dat tegelijk kijkt is bereikt.", ["Stop het kijken op een ander apparaat en probeer opnieuw."]),
+    F("76", "Verbinding te traag", 1, "Je internetsnelheid is te laag om te streamen.", [NET, "Zet de router dichter bij het apparaat of gebruik een netwerkkabel."]),
+    F("24", "Geen verbinding met je account", 1, "Er ging iets mis bij het verbinden met je account voordat het afspelen begon.", [NET]),
+    F("25", "Interne fout", 1, "Er ging iets mis bij je laatste actie.", ["Doe de actie opnieuw."]),
+    F("28", "Video niet gevonden", 1, "De video kon niet worden gevonden.", ["Probeer het opnieuw."]),
+    F("13", "Maximum aantal apparaten voor downloads", 1, "Je hebt op te veel apparaten gedownload.", ["Verwijder alle downloads van een apparaat dat je eerder gebruikte en download daarna op het nieuwe apparaat."]),
+    F("30", "Apparaat kan niet worden toegevoegd", 1, "Het maximum aantal apparaten is bereikt, er ging iets mis bij het koppelen, of het apparaat is al gekoppeld.", ["Probeer het koppelen opnieuw.", "Is het apparaat al gekoppeld, log er dan direct op in."]),
+    F("32", "Verbinding met account mislukt, opnieuw inloggen", 1, "Je moet opnieuw inloggen.", ["Log opnieuw in.", "Lukt dat niet, stel je wachtwoord opnieuw in."]),
+    F("34", "Maximum aantal profielen bereikt", 1, "Je account heeft al het maximum aantal profielen.", ["Verwijder een bestaand profiel (niet dat van de hoofdgebruiker) via Profiel bewerken > Profiel verwijderen."]),
+    F("38", "Tijd van het apparaat klopt niet", 1, "De video kon niet synchroniseren met de tijdsinstellingen van je apparaat.", ["Controleer of datum en tijd op je apparaat goed staan (zet ze op automatisch) en probeer opnieuw."]),
+    F("72", "Probleem met je account", 1, "Er is een probleem met je accountgegevens.", [LOG]),
+    F("87", "Profiel niet gevonden", 1, "Bij het inloggen werd je profiel niet gevonden; mogelijk is het verwijderd.", [LOG])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
