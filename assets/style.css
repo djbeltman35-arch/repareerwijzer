@@ -400,3 +400,5 @@ footer .wrap{padding-bottom:88px}
 .hero-sub{font-size:15px;max-width:62ch;margin:4px 0 12px;opacity:.85}
 .fbstat{margin:12px 0 0;font-weight:600}
 .hero2 h1 .h1-sub{display:block;font-size:.44em;line-height:1.2;font-weight:700;letter-spacing:0;margin-top:.4em;max-width:20ch;color:var(--muted)}
+.hero2 h1 mark.hl{background:linear-gradient(transparent 62%,var(--accent,#f6b800) 62%,var(--accent,#f6b800) 92%,transparent 92%);color:inherit;padding:0 .04em}
+.hero2 h1 .h1-sub{font-size:.42em;font-weight:600;color:var(--ink);opacity:.82;max-width:22ch;margin-top:.55em;line-height:1.25}
