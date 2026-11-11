@@ -276,10 +276,10 @@ const MODELS = [
   weak: ["Het filter onderin verstopt snel als het niet regelmatig wordt uitgespoeld."], parts: [],
   tasks: [{ m: 0.25, t: "Filter uitspoelen", v: 1 }, { m: 1, t: "Machinereiniger op het heetste programma", v: 1 }],
   faults: [
-    F("E24 / E25", "Probleem met de afvoer", 1, "Knik in de slang, vuil filter of afvoerpomp.", ["Maak knikken in de afvoerslang recht.", "Maak het filter of de afvoerpomp schoon.", "Bij een nieuwe machine: haal het transportplaatje uit de sifonaansluiting."]),
-    F("E22", "Filter verstopt", 1, "Vuil filter.", ["Haal het filter eruit en spoel het onder de kraan schoon met een borsteltje."]),
+    F("E24 / E25 / E:61-03 / E:61-02", "Probleem met de afvoer", 1, "Knik in de slang, vuil filter of afvoerpomp.", ["Maak knikken in de afvoerslang recht.", "Maak het filter of de afvoerpomp schoon.", "Bij een nieuwe machine: haal het transportplaatje uit de sifonaansluiting."]),
+    F("E22 / E:92-40", "Filter verstopt", 1, "Vuil filter.", ["Haal het filter eruit en spoel het onder de kraan schoon met een borsteltje."]),
     F("E14 / E16 / E17 / E18 / E32", "Probleem met de watertoevoer", 1, "Kraan, druk of filter.", ["Draai de kraan helemaal open. Een emmer hoort in een minuut ongeveer 10 liter te vullen.", "Maak de toevoerslang recht en het filter schoon met een borsteltje."]),
-    F("E15", "Water in de bodemplaat", 3, "Het lekbeveiligingssysteem is aangesproken.", ["Draai de kraan dicht en haal de stekker eruit.", "Probeer het niet zelf te repareren; er kan een onderdeel kapot zijn.", "Neem contact op met Bosch of Siemens."]),
+    F("E15 / E:31-00", "Water in de bodemplaat", 3, "Het lekbeveiligingssysteem is aangesproken.", ["Draai de kraan dicht en haal de stekker eruit.", "Probeer het niet zelf te repareren; er kan een onderdeel kapot zijn.", "Neem contact op met Bosch of Siemens."]),
     F("E09", "Mogelijk een kapot onderdeel", 3, "Vaak het verwarmingsdeel.", ["Kraan dicht, stekker eruit.", "Neem contact op met Bosch of Siemens."]),
     F("E61", "Probleem met de afvoer", 1, "Verstopte slang of sifonaansluiting.", ["Controleer de afvoerslang op verstoppingen en knikken.", "Controleer of de sifonaansluiting open is en het pompdeksel vastzit."]),
     F("E01 / E02 / E03 / E04 / E05", "Technische storing", 1, "Tijdelijke storing.", ["Zet de machine uit, wacht een paar minuten en zet hem weer aan."])],
@@ -11471,4 +11471,7 @@ Object.assign(SRC,{ boschNlDroog: ["Bosch – foutcodes en storingen oplossen wa
     F("E:04 / E:91-00", "Was te nat of trommel te vol", 1, "Het wasgoed is nog te nat, of er zit te veel was in de trommel.", ["Doe minder was in de trommel.", "Centrifugeer de was eerst op een hoger toerental voordat je gaat drogen."]),
     F("E28", "Storing in de elektronica", 3, "De elektronica van de droger geeft een fout.", [SVC]));
   m.src.push("boschNlDroog"); })(MODELS.find(m => m.id === "bosch-droger"));
+Object.assign(SRC,{ boschNlVaat: ["Bosch – foutcodes en storingen oplossen vaatwassers", "https://www.bosch-home.nl/service/ondersteuning/vaatwassers/foutcodes"] });
+(m => { m.faults.push(N("Lampje 'zout bijvullen' blijft branden", 1, "De sensor ziet geen zout, bijvoorbeeld bij zouttabletten, of je gebruikt all-in-one tabletten en de zoutmelding staat nog aan.", ["Gebruik los vaatwasserzout in plaats van zouttabletten.", "Roer het zout met een houten lepel door het water in het zoutreservoir, zodat het zich goed verdeelt.", "Gebruik je all-in-one tabletten, zet dan in het basismenu de instelling 'Zout bijvullen' uit."]));
+  m.src.push("boschNlVaat"); })(MODELS.find(m => m.id === "bosch-siemens-vaatwasser"));
 module.exports = { CATS, MODELS, SRC, COST };
