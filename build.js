@@ -16,6 +16,8 @@ const VERDICT = { 1: "Dit kun je zelf oplossen. Volg de stappen hieronder, één
 const UNIT = { km: "km", uur: "printuren" };
 const catOf = id => CATS.find(c => c.id === id);
 const pages = [];
+// Versie van deze build: verandert zodra data, build of assets veranderen, zodat bezoekers altijd de nieuwste bestanden krijgen
+const VER = (() => { const h = require("crypto").createHash("sha1"); for (const f of ["data.js", "build.js", "assets/style.css", "assets/app.js", "static/sw.js"]) { try { h.update(fs.readFileSync(path.join(__dirname, f))); } catch (e) {} } return h.digest("hex").slice(0, 8); })();
 // Laatst gewijzigd per pagina: alleen een nieuwe datum als de inhoud echt verandert (betere lastmod voor Google)
 const LASTMOD_FILE = path.join(__dirname, "lastmod.json");
 const LASTMOD = (() => { try { return JSON.parse(fs.readFileSync(LASTMOD_FILE, "utf8")); } catch (e) { return {}; } })();
@@ -89,7 +91,7 @@ ${file === "index.html" ? '<meta name="e0d5a73bd035a1c" content="277030417ea9ada
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=${VER}">
 ${bc}${extraHead}
 <script data-goatcounter="https://foutcode.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -112,7 +114,7 @@ ${body}
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
   <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="over-foutcodezoeker.html">Over Foutcodezoeker</a> · <a href="onderhoud-herinnering.html">Onderhoudsherinnering</a> · <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
-<script src="app.js" defer></script>
+<script src="app.js?v=${VER}" data-v="${VER}" defer></script>
 ${scripts}
 </body>
 </html>`;
@@ -750,6 +752,7 @@ Elke foutcode heeft een eigen pagina (${SITE}/foutcode-<model>-<code>) met: een 
 `);
 fs.writeFileSync(path.join(OUT, "favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>`);
 if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSync(path.join(__dirname, "static"))) fs.copyFileSync(path.join(__dirname, "static", f), path.join(OUT, f));
+fs.writeFileSync(path.join(OUT, "sw.js"), fs.readFileSync(path.join(OUT, "sw.js"), "utf8").replace(/const V = "[^"]*";/, `const V = "fcz-${VER}";`));
 for (const f of ["style.css", "app.js", "qrcode.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
 
 console.log(`${pages.length} pagina's gebouwd (${allCodes.length} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);

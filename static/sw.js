@@ -7,6 +7,6 @@ self.addEventListener("fetch", e => {
   const r = e.request;
   if (r.method !== "GET" || new URL(r.url).origin !== location.origin) return;
   e.respondWith(fetch(r).then(res => { if (res.ok) { const copy = res.clone(); caches.open(V).then(c => c.put(r, copy)); } return res; })
-    .catch(() => caches.match(r).then(m => m || (r.mode === "navigate" ? caches.match("/") : undefined))));
+    .catch(() => caches.match(r).then(m => m || caches.match(r, { ignoreSearch: true })).then(m => m || (r.mode === "navigate" ? caches.match("/") : undefined))));
 });
 self.addEventListener("notificationclick", e => { e.notification.close(); const u = (e.notification.data && e.notification.data.url) || "/"; e.waitUntil(clients.matchAll({ type: "window" }).then(ws => { for (const w of ws) if ("focus" in w) { w.navigate(u); return w.focus(); } return clients.openWindow(u); })); });

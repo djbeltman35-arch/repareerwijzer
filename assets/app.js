@@ -2,6 +2,8 @@
   "use strict";
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var norm = function (s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]/g, ""); };
+  var VER = (document.querySelector("script[data-v]") || { getAttribute: function () { return ""; } }).getAttribute("data-v") || "";
+  window.fczVer = VER;
   var store = {
     get: function (k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -128,7 +130,7 @@
       if (window.SEARCH) { idxReady(); return; }
       if (window.fczIdxLoading) return;
       window.fczIdxLoading = true;
-      var sc = document.createElement("script"); sc.src = "search.js"; sc.onload = idxReady; document.head.appendChild(sc);
+      var sc = document.createElement("script"); sc.src = "search.js?v=" + VER; sc.onload = idxReady; document.head.appendChild(sc);
     };
     if (q) ["focus", "pointerdown", "keydown"].forEach(function (ev) { q.addEventListener(ev, loadIdx); });
     if (pm) {
@@ -262,7 +264,7 @@
 })();
 
 (function () {
-  if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js").catch(function () {}); });
+  if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js", { updateViaCache: "none" }).then(function (r) { r.update(); }).catch(function () {}); });
   var box = document.getElementById("installapp"); if (!box) return;
   var btn = document.getElementById("installbtn"), txt = document.getElementById("installtxt"), ev = null;
   var standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
@@ -300,7 +302,7 @@
   var loading = null;
   var ensureIndex = function () {
     if (window.SEARCH) return Promise.resolve();
-    if (!loading) loading = new Promise(function (ok, fail) { var s = document.createElement("script"); s.src = "search.js"; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+    if (!loading) loading = new Promise(function (ok, fail) { var s = document.createElement("script"); s.src = "search.js?v=" + (window.fczVer || ""); s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
     return loading;
   };
   var fab = el("button", "chat-fab"); fab.type = "button"; fab.setAttribute("aria-haspopup", "dialog"); fab.setAttribute("aria-expanded", "false");
