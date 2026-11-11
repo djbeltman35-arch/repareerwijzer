@@ -1237,7 +1237,48 @@ const A = [
   ],
   src: [["Beko – Wat moet ik doen als mijn afzuigkap geen zuigkracht meer heeft?", "https://www.beko.com/nl-nl/ondersteuning/afzuigkap--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-afzuigkap-geen-zuigkracht-meer-heeft"], ["Beko – Wat moet ik doen als mijn afzuigkap de lucht niet goed afzuigt?", "https://www.beko.com/nl-nl/ondersteuning/afzuigkap--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-afzuigkap-de-lucht-niet-goed-afzuigt"]],
   rel: [["kennisbank-afzuigkap-filters.html", "Afzuigkapfilters reinigen of vervangen"], ["kookplaten.html", "Alle kookplaten en foutcodes"]]
+},
+{
+  id: "wasmachine-wasverzachter-niet-opgenomen",
+  cat: "wasmachines",
+  q: "Waarom neemt mijn wasmachine de wasverzachter niet op?",
+  title: "Wasmachine neemt wasverzachter niet op: bakje blijft vol",
+  desc: "Blijft de wasverzachter in het bakje staan, of loopt hij juist meteen weg? Spoeldop, vervuilde lade, inlaatfilters, waterpas, MAX-streep en het juiste middel. Volgens Samsung.",
+  lead: "Blijft er wasverzachter in het bakje achter, of verdwijnt hij al voor het spoelen? Bijna altijd is de lade vervuild of te vol. Dit los je zelf op.",
+  secs: [
+    ["1. Spoeldop en lade schoonmaken", "<p>Opgedroogde wasverzachter in de lade, de vakjes of de kleine sifon (spoeldop) blokkeert de doorstroom. Haal de lade eruit, haal de losse delen (spoeldop, geleider) los en borstel alles schoon onder warm water. Maak ook de opening waar de lade in zit schoon. Zet de dop goed terug, anders werkt de hevel niet.</p>"],
+    ["2. Niet boven de MAX-streep", "<p>Een te vol vakje hevelt de wasverzachter al voor het spoelen de trommel in, of laat hem juist staan. Vul nooit boven de MAX-lijn.</p>"],
+    ["3. Juiste middel", "<p>Dikke of klonterende wasverzachter lost slecht op. Gebruik de juiste hoeveelheid van een middel dat niet klontert. In koud water lost het slechter op.</p>"],
+    ["4. Waterdruk en inlaatfilters", "<p>Bij te weinig waterdruk spoelt het bakje niet goed door. Draai de kraan dicht, schroef de slang los en maak de zeefjes in de aansluiting schoon.</p>"],
+    ["5. Machine waterpas", "<p>Staat de machine scheef, dan blijft er middel in de hoek van het vakje staan. Zet hem waterpas op een stevige, vlakke vloer.</p>"],
+    ["Daarna", "<p>Draai met een lege trommel een spoel- en centrifugeerprogramma om resten weg te spoelen. Lekt de machine of blijft het probleem, neem dan contact op met de service van het merk.</p>"]
+  ],
+  faq: [
+    ["Waarom blijft er wasverzachter in het bakje staan?", "Meestal door een vervuilde of verkeerd geplaatste spoeldop, opgedroogde resten in de lade, te lage waterdruk of te veel wasverzachter boven de MAX-streep."],
+    ["Waarom loopt de wasverzachter meteen weg?", "Het vakje is te vol gevuld. Boven de MAX-streep hevelt de wasverzachter direct de trommel in."]
+  ],
+  src: [["Samsung – Wat moet ik doen als de wasverzachter niet goed afvoert?", "https://www.samsung.com/nl/support/home-appliances/wat-moet-ik-doen-als-de-wasverzachter-niet-goed-afvoert/"]],
+  rel: [["kennisbank-wasmachine-spoelt-niet-goed.html", "Wasmachine spoelt niet goed"], ["wasmachines.html", "Alle wasmachines en foutcodes"]]
+},
+{
+  id: "cv-ketel-maakt-geluid",
+  cat: "cv-ketels",
+  q: "Waarom maakt mijn cv-ketel geluid?",
+  title: "Cv-ketel maakt geluid: brommen, bonken, tikken, zoemen of fluiten",
+  desc: "Welk geluid maakt je cv-ketel? Brommen en bonken wijzen vaak op lucht, tikken op uitzettende leidingen, schuren op de pomp en fluiten op een verstopte warmtewisselaar. Volgens Bosch.",
+  lead: "Een ketel die geluid maakt, vertelt vaak zelf wat er aan de hand is. Sommige geluiden los je op met ontluchten, voor andere bel je de installateur.",
+  secs: [
+    ["Welk geluid?", "<ul><li><b>Brommen of bonken</b>: meestal lucht of drukverschillen in het systeem, soms trillende leidingen of de pomp. Ontlucht de radiatoren en controleer de druk.</li><li><b>Tikken of ploffen</b>: metalen leidingen zetten uit bij opwarmen en krimpen bij afkoelen. Vaak onschuldig; controleer of de beugels goed vastzitten.</li><li><b>Zoemen</b>: trillende kleine onderdelen of losse schroeven. Meestal niet gevaarlijk, maar laat het nakijken.</li><li><b>Schuren</b>: wijst op versleten pomponderdelen, zoals de lagers. Laat de installateur de pomp controleren.</li><li><b>Fluiten</b>: kan wijzen op een verstopte warmtewisselaar, waardoor het water te heet wordt. Bel direct de installateur.</li></ul>"],
+    ["Zelf ontluchten", "<ol><li>Zet de thermostaat laag, haal de stekker van de ketel eruit en wacht ongeveer 20 minuten.</li><li>Draai alle radiatorkranen helemaal open.</li><li>Ontlucht elke radiator, te beginnen op de laagste verdieping, tot er water uit komt. Sissen is daarbij normaal.</li><li>Controleer de druk en vul bij als die onder 1,5 bar zit.</li><li>Zet de ketel weer aan en de thermostaat terug.</li></ol>"],
+    ["Wanneer bel je de installateur?", "<ul><li>Het geluid blijft na het ontluchten.</li><li>Je ziet of hoort een lek.</li><li>Het water wordt te heet.</li><li>Je hoort het alleen als je warm water tapt.</li><li>Het geluid is schurend, zoemend of fluitend.</li></ul>"]
+  ],
+  faq: [
+    ["Waarom bromt mijn cv-ketel?", "Meestal door lucht of drukverschillen in het systeem. Ontlucht de radiatoren en controleer de druk. Blijft het, laat dan de pomp nakijken."],
+    ["Is een tikkende cv-ketel gevaarlijk?", "Meestal niet: het zijn leidingen die uitzetten en krimpen. Blijft het storend of vertrouw je het niet, laat het controleren."],
+    ["Wat betekent een fluitende cv-ketel?", "Het kan wijzen op een verstopte warmtewisselaar. Laat dit direct door een installateur bekijken."]
+  ],
+  src: [["Bosch Home Comfort – Cv-ketel maakt brommende geluiden, wat zijn de oorzaken?", "https://www.bosch-homecomfort.com/be/nl/residentieel/info-advies/je-bosch-oplossing-uitgelegd!/verwarming-op-gas/cv-ketel-maakt-brommende-geluiden/"]],
+  rel: [["kennisbank-radiatoren-ontluchten.html", "Radiatoren ontluchten"], ["kennisbank-cv-ketel-druk-zakt.html", "Druk cv-ketel zakt"], ["cv-ketels.html", "Alle cv-ketels en foutcodes"]]
 }
-
 ];
 module.exports = { KB: A };
