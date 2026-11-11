@@ -296,7 +296,7 @@ const MODELS = [
     F("F33", "Deur niet goed dicht", 1, "Iets blokkeert de deur.", ["Haal vaat of vuil weg dat de deur blokkeert.", "Sluit de deur stevig en start opnieuw."]),
     F("F32 / F78", "Technische storing", 1, "Tijdelijke storing.", ["Uitzetten, een paar seconden wachten, aanzetten en het programma opnieuw kiezen."]),
     F("F601", "Storing AutoDos", 1, "PowerDisk niet goed geplaatst.", ["Controleer of de PowerDisk en de houder goed zitten.", "Zet AutoDos weer aan. Blijft de code, zet AutoDos uit en doseer met de hand."]),
-    F("F10 / F18 / F24 / F40", "Andere storing", 3, "Onderdeel defect.", ["Niet zelf repareren.", "Zet de machine uit, draai de kraan dicht en neem contact op met Miele."])],
+    F("F10 / F18 / F40", "Andere storing", 3, "Onderdeel defect.", ["Niet zelf repareren.", "Zet de machine uit, draai de kraan dicht en neem contact op met Miele."])],
   src: ["mieleVaat"] },
 
 // ───────── Drogers
