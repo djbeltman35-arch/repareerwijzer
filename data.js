@@ -10951,4 +10951,19 @@ Object.assign(SRC,{ faacE124: ["FAAC – handleiding besturing E124 (732557 rev.
       F("45", "Werkt op de accu", 1, "Geen storing: de netstroom is weg en de poort werkt op de accu.", ["Controleer of de stroom er is en of de groep niet is uitgeschakeld."]),
       F("35 / 50", "Timer of HOLD CLOSE actief", 1, "Geen storing: de timerfunctie (35) of HOLD CLOSE (50) is ingeschakeld.", ["Geen actie nodig; laat de instelling zo nodig wijzigen door je installateur."])], src: ["faacE124"] });
 }
+
+Object.assign(SRC,{ nibeMtWh21: ["NIBE – handleiding warmtepompboiler MT-WH21 (OE01:967-1804, nl, pdf)", "https://assetstore.nibe.se/hcms/v2.3/entity/document/28146/storage/MDI4MTQ2LzAvbWFzdGVy"] });
+{ const INST = "Laat dit controleren of herstellen door je installateur.";
+  MODELS.push({ id: "nibe-mt-wh21", brand: "NIBE", name: "Warmtepompboiler MT-WH21", dev: "warmtepompboiler", cat: "warmtepompen", years: "MT-WH21-019-F(S) en MT-WH21-026-F(S)", unit: null, also: "NIBE boiler Er1 Er2 Er3 Er6 Er8 Er10 filter alarm",
+    intro: "De NIBE MT-WH21 is een warmtepompboiler voor warm tapwater. Alarmen staan in het Info-menu als Er gevolgd door een nummer. Er10 (filter) los je zelf op; de meeste andere vragen om een installateur.", weak: [], parts: [], tasks: [{ w: "Bij alarm Er10", t: "Luchtfilter vervangen en filtertimer resetten (menu D32)" }],
+    faults: [
+      F("Er1", "Sensor luchtinlaat (T1) buiten bereik", 3, "De temperatuursensor van de aangezogen lucht is defect of niet aangesloten op de printplaat.", [INST]),
+      F("Er2", "Sensor verdamper (T2) buiten bereik", 3, "De temperatuursensor van de verdamper is defect of niet aangesloten.", [INST]),
+      F("Er3", "Sensor boilervat (T3) buiten bereik", 3, "De temperatuursensor in het watervat is defect of los. Zolang dit alarm actief is, verwarmt de warmtepomp geen water.", [INST]),
+      F("Er4 / Er5", "Extra sensor T4 of T5 buiten bereik", 1, "Een optionele extra sensor geeft een foutwaarde. Het toestel negeert dit alarm en werkt gewoon door.", ["Geen actie nodig voor normaal gebruik. Gebruik je de sensor wel, laat hem dan controleren."]),
+      F("Er6", "Hogedrukschakelaar aangesproken", 2, "De druk in het koudemiddelcircuit is te hoog geworden, of de hogedrukschakelaar is defect of los.", ["Zet de gewenste watertemperatuur iets lager.", "De installateur kan het maximale ventilatortoerental verlagen.", "Blijft het? " + INST]),
+      F("Er7 / Er9", "Verdampertemperatuur klopt niet", 3, "De verdampersensor zit niet goed op zijn plek, of er is een lek in het koudemiddel.", ["Laat een gecertificeerde installateur de sensor en het koudemiddelcircuit controleren."]),
+      F("Er8", "Verdamper te koud", 2, "De verdamper komt onder de -25 °C, door een defecte ventilator, te weinig luchtstroom of te koude aanzuiglucht.", ["Kijk of de luchtaanvoer en -afvoer vrij zijn en het filter schoon is.", "De installateur kan het ventilatortoerental of de minimale luchttemperatuur verhogen.", "Blijft het? " + INST]),
+      F("Er10", "Luchtfilter vervangen", 1, "Geen storing: het luchtfilter moet vervangen worden. De warmtepomp blijft gewoon werken.", ["Vervang het luchtfilter.", "Zet daarna de filtertimer terug via menu D32."])], src: ["nibeMtWh21"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
