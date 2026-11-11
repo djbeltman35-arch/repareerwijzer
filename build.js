@@ -16,6 +16,11 @@ const VERDICT = { 1: "Dit kun je zelf oplossen. Volg de stappen hieronder, één
 const UNIT = { km: "km", uur: "printuren" };
 const catOf = id => CATS.find(c => c.id === id);
 const pages = [];
+// Laatst gewijzigd per pagina: alleen een nieuwe datum als de inhoud echt verandert (betere lastmod voor Google)
+const LASTMOD_FILE = path.join(__dirname, "lastmod.json");
+const LASTMOD = (() => { try { return JSON.parse(fs.readFileSync(LASTMOD_FILE, "utf8")); } catch (e) { return {}; } })();
+const TODAY = new Date().toISOString().slice(0, 10), modOf = {};
+const pageHash = html => { const m = html.match(/<main[\s\S]*<\/main>/); return require("crypto").createHash("sha1").update((m ? m[0] : html).replace(/<aside class="adbox">[\s\S]*?<\/aside>/g, "")).digest("hex").slice(0, 12); };
 
 const codeUrl = (m, f) => `foutcode-${m.id}-${slug(f.code.split("/")[0])}.html`;
 const lc1 = (t, m) => { const w = t.split(/[ :,]/)[0]; if (!/^[A-Z][a-zà-ÿ]*$/.test(w)) return t; if (m && `${m.brand} ${m.name} ${m.also || ""}`.split(/[^A-Za-zÀ-ÿ]+/).includes(w)) return t; return t[0].toLowerCase() + t.slice(1); };
@@ -113,6 +118,7 @@ ${scripts}
 </html>`;
   fs.writeFileSync(path.join(OUT, file), html);
   pages.push(file);
+  { const h = pageHash(html), old = LASTMOD[file]; modOf[file] = old && old[0] === h ? old : [h, TODAY]; }
 }
 
 const pill = d => `<span class="pill ${D[d][1]}">${D[d][0]}</span>`;
@@ -715,7 +721,8 @@ const index = [
   ...brandNames.map(b => ({ t: `${b} storingen en foutcodes`, s: "Merk", u: brandUrl(b), k: `${b} merk storing foutcode` }))
 ];
 fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(index)};`);
-fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${new Date().toISOString().slice(0, 10)}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, "llms.txt"), `# Foutcodezoeker
 
