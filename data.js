@@ -12255,7 +12255,7 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
 Object.assign(SRC,{ bekoNlKoel: ["Beko Nederland – helpcentrum koel-vriescombinatie: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/koel-vriescombinatie--problemen-oplossen"] });
 { const SVC = "Lost dit het niet op? Neem contact op met een erkend servicebedrijf.";
   const AIR = ["Ontlucht de leiding: zet een grote bak onder de dispenser en druk de hendel om de 5 seconden in en laat los tot er water komt.", "Blijf daarna indrukken en loslaten tot er in totaal 15 liter water uit is gekomen. Doe dit ook na elke filterwissel."];
-  MODELS.push({ id: "beko-koelkast", brand: "Beko", name: "Koelkast en koel-vriescombinatie", dev: "koelkast", cat: "koelkasten", years: "Beko-koelkasten en koel-vriescombinaties", unit: null, also: "Beko koelkast lekt, Beko koelkast werkt niet, Beko waterdispenser",
+  MODELS.push({ id: "beko-koelkast", brand: "Beko", name: "Koelkast, koel-vriescombinatie en vriezer", dev: "koelkast", cat: "koelkasten", years: "Beko-koelkasten, koel-vriescombinaties en vriezers", unit: null, also: "Beko koelkast lekt, Beko koelkast werkt niet, Beko waterdispenser",
     intro: "De meeste problemen met een Beko-koelkast hebben geen foutcode: hij lekt, koelt niet, blijft draaien of de water- en ijsdispenser werkt niet. Dit zijn de oplossingen die Beko zelf geeft.",
     weak: ["Een verstopte dooiwaterafvoer achter de groentelades geeft water op de bodem."], parts: [],
     tasks: [{ w: "Volgens het filterlampje of de handleiding", t: "Waterfilter vervangen" }, { w: "Statische koeling: ongeveer maandelijks of bij 0,5 cm ijs", t: "Vriezer ontdooien" }],
@@ -12321,5 +12321,15 @@ Object.assign(SRC,{ bekoNlOven: ["Beko Nederland – helpcentrum oven: problemen
       N("Binnenunit lekt water", 1, "Vuile filters, losse afvoeraansluitingen of een geknikte afvoerslang.", ["Zet de airco uit.", "Maak de luchtfilters schoon (elke drie maanden).", "Controleer of de afvoerslang goed vastzit, naar beneden loopt en niet geknikt is.", SVC]),
       N("Water bij de buitenunit", 1, "Een beetje water is normaal: de airco voert vocht uit de lucht af. Blijft er een plas staan, dan is de afvoer misschien niet goed.", ["Zet de airco uit en controleer de afvoerleidingen en aansluitingen.", "Laat de condensor en de spoelen schoonmaken door een erkend bedrijf.", SVC])
     ]});
+}
+Object.assign(SRC,{ bekoNlVries: ["Beko Nederland – helpcentrum vriezer: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/vriezer--problemen-oplossen"] });
+{ const SVC = "Lost dit het niet op? Neem contact op met een erkend servicebedrijf.";
+  (m => { m.faults.push(
+    N("Oranje lampje van de vriezer brandt", 1, "Geen storing: Fast Freeze staat aan. De koelkast draait dan langer.", ["Laat Fast Freeze niet langer dan vijf uur aan.", "Druk op de Fast Freeze-knop tot het lampje uitgaat."]),
+    N("Rood lampje of hoge-temperatuuralarm van de vriezer", 1, "De vriezer is niet koud genoeg, bijvoorbeeld net na het aansluiten, na warm eten of door een lekkende deurrubber.", ["Net aangesloten: houd de deur dicht; het lampje gaat binnen een paar uur uit.", "Zet geen warm eten in de vriezer.", "Controleer de deurrubber op spleten; vervang een kapotte rubber.", SVC]),
+    N("Vriezer piept", 1, "De deur staat open of sluit niet goed.", ["Sluit de deur goed; het signaal stopt dan."]),
+    N("Vriezer vriest niet of ontdooit", 1, "Deur te vaak open, ijsafzetting, vuile condensorspoelen, te vol, of de vriezer staat in een te koude ruimte (garage): dan slaat de thermostaat af.", ["Stel de vriezer in op ongeveer −15 tot −18 °C.", "Ontdooi de vriezer als er een ijslaag op de wanden zit.", "Haal de stekker eruit en maak de condensorspoelen achter of onder het apparaat droog schoon met een zachte borstel.", "Zet de vriezer niet te vol en niet in een onverwarmde ruimte.", SVC]),
+    N("Buitenkant van de koelkast voelt warm", 1, "Normaal: de warmte van de compressor wordt via de zijkanten afgevoerd, vooral bij vochtig weer.", ["Je hoeft niets te doen."])
+  ); m.src.push("bekoNlVries"); })(MODELS.find(m => m.id === "beko-koelkast"));
 }
 module.exports = { CATS, MODELS, SRC, COST };
