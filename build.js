@@ -276,6 +276,23 @@ ${KB.some(a => a.cat === m.cat) ? fold("Uitleg in de kennisbank", `<ul class="kb
 function isEvCharge(m) { return m.cat === "laadpalen" || (m.cat === "auto" && /laad|laden/.test(m.id)); }
 function AFF(si, li) { return `https://lt45.net/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=`; }
 function TI(si, li, shop) { return `https://partners.tradeinn.com/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=&amp;dl=${shop}%2Fnl`; }
+function BOL(q, name) { return `https://partner.bol.com/click/click?p=1&amp;t=url&amp;s=1558346&amp;url=${encodeURIComponent("https://www.bol.com/nl/nl/s/?searchtext=" + q.replace(/ /g, "+"))}&amp;f=TXL&amp;name=${encodeURIComponent(name)}&amp;subid=`; }
+function BOLCAT_() { return {
+  koffiemachines: ["ontkalker koffiemachine", "🧴 Ontkalker voor je koffiemachine", "Ontkalkers en reinigingstabletten bij bol."],
+  wasmachines: ["wasmachine reiniger", "🧺 Wasmachinereiniger", "Reinigers tegen vuil, kalk en geurtjes bij bol."],
+  vaatwassers: ["vaatwasser reiniger", "🍽️ Vaatwasserreiniger en -zout", "Reinigers, zout en glansspoelmiddel bij bol."],
+  drogers: ["pluizenfilter droger", "🌀 Filters voor je droger", "Pluizen- en sokkelfilters bij bol."],
+  stofzuigers: ["stofzuiger filter", "🧹 Filters en borstels voor je stofzuiger", "Vervangende filters, borstels en zakken bij bol."],
+  ovens: ["ovenreiniger", "🔥 Ovenreiniger", "Reinigers voor oven en bakplaten bij bol."],
+  kookplaten: ["kookplaatreiniger", "🍳 Kookplaatreiniger en schraper", "Reinigers voor inductie- en keramische kookplaten bij bol."],
+  rookmelders: ["rookmelder 10 jaar batterij", "🔔 Nieuwe rookmelder", "Rookmelders met 10-jaarsbatterij bij bol."],
+  "cv-ketels": ["radiator ontluchtingssleutel", "🔧 Ontluchtingssleutel en vulslang", "Alles om je cv bij te vullen en te ontluchten bij bol."],
+  airco: ["airco reiniger", "❄️ Aircoreiniger", "Reinigingssprays voor binnenunits bij bol."],
+  printers: ["printer inkt cartridge", "🖨️ Inkt en toner", "Cartridges en toners bij bol."],
+  laptops: ["laptop oplader", "🔌 Laptopoplader", "Universele en merkladers bij bol."],
+  smartphones: ["telefoon oplader usb-c", "🔌 Oplader en kabel voor je telefoon", "Snelladers en kabels bij bol."],
+  "3d-printers": ["pla filament", "🧵 Filament voor je 3D-printer", "PLA, PETG en meer bij bol."]
+}; }
 function ADS() { return {
   laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
   acculader: [AFF(12933, 1570313), "🔋 Acculader of starthulp", "Accu leeg of zwak? Bekijk acculaders en jumpstarters bij Acculaders.nl."],
@@ -302,7 +319,7 @@ function adsFor(m) {
     default: return [];
   }
 }
-function adBlock(m) { return adsFor(m).map(k => { const [u, t, d] = ADS()[k]; return `<aside class="ad"><span class="ad-label">Advertentie</span><a href="${u}" rel="sponsored noopener" target="_blank">${t}</a><small>${d}</small></aside>`; }).join(""); }
+function adBlock(m) { const list = adsFor(m).map(k => ADS()[k]); const b = BOLCAT_()[m.cat]; if (b) list.push([BOL(b[0], m.cat), b[1], b[2]]); return list.map(([u, t, d]) => { return `<aside class="ad"><span class="ad-label">Advertentie</span><a href="${u}" rel="sponsored noopener" target="_blank">${t}</a><small>${d}</small></aside>`; }).join(""); }
 function warnGas() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Zelf mag je bijvullen en één keer resetten. Al het andere werk aan een gasketel laat je over aan een erkend installateur. Ruik je gas? Ramen open, gaskraan dicht en bel 0800-9009.</p></div>`; }
 function warnEbike() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Open nooit zelf een e-bike-accu. Bij een beschadigde, warme of opgezwollen accu: niet laden en naar een specialist.</p></div>`; }
 
