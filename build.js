@@ -132,7 +132,7 @@ ${scripts}
 
 const pill = d => `<span class="pill ${D[d][1]}">${D[d][0]}</span>`;
 const srcList = m => m.src.length ? `<ul class="sources">${m.src.map(k => `<li><a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a></li>`).join("")}</ul>` : `<p class="muted">Gebaseerd op kennis uit de gebruikersgemeenschap. Controleer met de handleiding van je eigen exemplaar.</p>`;
-const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length} onderhoudstaken · ${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${codes} foutcodes)` : ""}${m.also ? ` · ook: ${esc(m.also)}` : ""}</span></a>`; };
+const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length ? `${m.tasks.length} onderhoudstaken · ` : ""}${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${codes} foutcodes)` : ""}${m.also ? ` · ook: ${esc(m.also)}` : ""}</span></a>`; };
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
@@ -284,7 +284,7 @@ for (const m of MODELS) {
   <h1>${esc(fullName(m))}</h1>
   <p class="lead">${esc(m.intro)}</p>
   ${brandLinks(m) ? `<p class="row">${brandLinks(m)}</p>` : ""}
-  <dl class="facts"><div><dt>Bouwjaren</dt><dd>${esc(m.years)}</dd></div><div><dt>Onderhoud</dt><dd>${m.tasks.length} taken</dd></div><div><dt>Storingen</dt><dd>${m.faults.length} beschreven</dd></div>${m.also ? `<div class="wide"><dt>Geldt ook voor</dt><dd>${esc(m.also)}</dd></div>` : ""}</dl>
+  <dl class="facts"><div><dt>Bouwjaren</dt><dd>${esc(m.years)}</dd></div>${m.tasks.length ? `<div><dt>Onderhoud</dt><dd>${m.tasks.length} ${m.tasks.length === 1 ? "taak" : "taken"}</dd></div>` : ""}<div><dt>Storingen</dt><dd>${m.faults.length} beschreven</dd></div>${m.also ? `<div class="wide"><dt>Geldt ook voor</dt><dd>${esc(m.also)}</dd></div>` : ""}</dl>
   <p><button type="button" class="btn-print" id="printcard">🖨️ Storingskaart printen</button></p>
 </section>
 ${printCard(m)}
@@ -296,12 +296,12 @@ ${COST[m.cat] ? modelCost(m) : ""}
 ${adBlock(m)}
 ${rvCta(m)}
 ${remCta(m, true)}
-<section class="stack"><details class="fold"><summary><h2>Onderhoudsteller en herinnering</h2>${m.tasks.length ? `<span class="cnt">${m.tasks.length}</span>` : ""}</summary><div class="fold-body">
+${m.tasks.length ? `<section class="stack"><details class="fold"><summary><h2>Onderhoudsteller en herinnering</h2>${m.tasks.length ? `<span class="cnt">${m.tasks.length}</span>` : ""}</summary><div class="fold-body">
   <div class="counter" id="counter">
     ${m.unit ? `<div class="counter-top"><label for="cnt">Huidige stand (${UNIT[m.unit]})<input id="cnt" type="number" min="0" inputmode="numeric"></label><p class="muted">Vul je stand in en tik op Gedaan na elke klus. Alles blijft op dit apparaat.</p></div>` : `<p class="muted">Tik op Gedaan na een klus; de datum blijft bewaard op dit apparaat.</p>`}
     <div class="tasks" id="tasks">${m.tasks.map(t => `<div class="task"><span class="dot" aria-hidden="true"></span><div class="what"><b>${esc(t.t)}</b><small>${esc(intervalLabel(t, m))}${t.s ? " · " + esc(t.s) : ""}${t.v ? " · vuistregel" : ""}</small></div></div>`).join("")}</div>
   </div>
-</div></details></section>
+</div></details></section>` : ""}
 ${m.weak.length ? fold("Bekende zwakke plekken", `<ul class="weak">${m.weak.map(w => `<li>${esc(w)}</li>`).join("")}</ul>`, false, m.weak.length) : ""}
 ${m.parts.length ? fold("Onderdelen en middelen", `<div class="tbl"><table><thead><tr><th>Onderdeel</th><th>Specificatie</th></tr></thead><tbody>${m.parts.map(p => `<tr><td class="strong">${esc(p[0])}</td><td>${esc(p[1])}</td></tr>`).join("")}</tbody></table></div>`, false, m.parts.length) : ""}
 ${KB.some(a => a.cat === m.cat) ? fold("Uitleg in de kennisbank", `<ul class="kb-list">${KB.filter(a => a.cat === m.cat).map(a => `<li><a href="kennisbank-${a.id}.html">${esc(a.q)}</a></li>`).join("")}</ul>`, false, KB.filter(a => a.cat === m.cat).length) : ""}
