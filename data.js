@@ -11302,4 +11302,14 @@ MODELS.push(
 
 Object.assign(SRC,{ aegE70: ["AEG – wasmachine geeft foutmelding E70", "https://support.aeg.nl/support-articles/article/wasmachine-geeft-foutmelding-e70-op-het-display-weer"] });
 (m => { m.faults.push(F("E70", "Temperatuursensor verwarming defect", 3, "De temperatuursensor bij het verwarmingselement werkt waarschijnlijk niet meer.", ["Zet de wasmachine uit en haal de stekker eruit.", "Plan een afspraak met de AEG-servicedienst of een monteur."])); m.src.push("aegE70"); })(MODELS.find(m => m.id === "aeg-wasmachine"));
+
+Object.assign(SRC,{ aegDroogSup: ["AEG Support – foutmeldingen droger (E22, E91, CE/CF, C0, dEn)", "https://support.aeg.nl/support-articles/wassen-en-drogen/drogers"] });
+(m => { const SVC = "Plan een afspraak met de AEG-servicedienst.";
+  m.faults.push(
+  F("E22", "Probleem met de waterafvoer (warmtepompdroger)", 2, "De warmtepompdroger kan het condenswater niet goed afvoeren.", ["Leeg het condensreservoir en controleer of de afvoerslang (als die is aangesloten) niet geknikt of verstopt is.", "Komt de code terug? " + SVC]),
+  F("E91", "Storing in het bedieningspaneel", 3, "De elektronica van het bedieningspaneel geeft een fout.", ["Haal de stekker 30 seconden uit het stopcontact en start opnieuw.", "Blijft de code? " + SVC]),
+  F("CE / CF", "Elektronisch probleem", 3, "De droger meldt een fout in de elektronica.", ["Haal de stekker 30 seconden uit het stopcontact en start opnieuw.", "Blijft de code? " + SVC]),
+  F("C0", "Geen storing", 1, "Volgens AEG is C0 geen storingsmelding.", ["Geen actie nodig. Twijfel je, neem dan contact op met de AEG-servicedienst."]),
+  F("dEn", "Demonstratiestand", 1, "De droger staat in de winkelstand en telt af naar nul.", ["Haal de stekker ongeveer 30 seconden uit het stopcontact en steek hem er weer in.", "Lukt het niet? " + SVC]));
+  m.src.push("aegDroogSup"); })(MODELS.find(m => m.id === "aeg-droger"));
 module.exports = { CATS, MODELS, SRC, COST };
