@@ -9073,4 +9073,31 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("61440", "Storing monitoringeenheid (Monitoring Unit Faulty)", 2, "Het flashgeheugen is vol of heeft slechte sectoren.", ["Neem contact op met je installateur of dealer."])
   ]});
 })();
+(() => {
+  SRC.ferroliBht = ["Ferroli – Bluehelix Tech, hoofdstuk 4.4 storingen (Engels, via ManualsLib)", "https://manualslib.mx/manual/123868/Ferroli-Bluehelix-Tech-S-45H.html?page=39"];
+  const RES = "Druk op de resetknop (RESET) van de ketel. Gaat de ketel opnieuw in storing, bel je installateur.";
+  const INST = "Laat dit nakijken door je installateur.";
+  const SEN = ["De voeler of de bedrading is defect.", ["Dit is werk voor de installateur: de voeler of de bedrading moet worden gecontroleerd of vervangen."]];
+  MODELS.push({ id: "ferroli-bluehelix", brand: "Ferroli", name: "Bluehelix Tech cv-ketel", dev: "Bluehelix-cv-ketel", cat: "cv-ketels", years: "Ferroli Bluehelix Tech", unit: null, also: "Ferroli cv-ketel storing, Ferroli A01, Ferroli F37 waterdruk, Ferroli ketel geen warm water, Agpo Ferroli", intro: "Ferroli-ketels tonen een code met een A of een F. Een A-code is een blokkering: de ketel stopt en moet je resetten. Een F-code is een tijdelijke storing die vanzelf verdwijnt zodra de oorzaak weg is.", weak: [], parts: [], tasks: [{ m: 1, t: "Waterdruk controleren", s: "Tussen 1 en 2 bar als de ketel koud is.", v: 1 }], src: ["ferroliBht"], faults: [
+    F("A01", "Brander ontsteekt niet", 2, "Geen gas, een vuile of verkeerd geplaatste ontstekingselektrode, een defecte gasklep, te lage gasdruk of een verstopte sifon.", ["Controleer of de gaskraan open staat en of andere gastoestellen werken.", RES, INST]),
+    F("A02", "Vlamsignaal terwijl de brander uit is", 3, "Een fout in de elektrode of in de besturingsprint.", [INST]),
+    F("A03", "Oververhittingsbeveiliging", 2, "Geen watercirculatie, lucht in de installatie of een defecte voeler.", ["Controleer of de waterdruk tussen 1 en 2 bar staat en vul zo nodig bij.", "Ontlucht de radiatoren.", RES]),
+    F("A04", "Rookgasbeveiliging geactiveerd", 2, "Storing F07 (te hoge rookgastemperatuur) is drie keer in 24 uur opgetreden.", [RES, INST]),
+    F("A05", "Ventilatorbeveiliging geactiveerd", 3, "Storing F15 (ventilator) duurde een uur aan één stuk.", [RES, INST]),
+    F("A06", "Geen vlam na ontsteking", 2, "De vlam ging zes keer binnen vier minuten uit: vuile elektrode, verstopte luchttoevoer of rookgasafvoer, of een verstopte sifon.", ["Controleer of de dakdoorvoer en luchttoevoer buiten vrij zijn (bladeren, nesten, sneeuw).", RES, INST]),
+    F("F07", "Rookgastemperatuur te hoog", 3, "De rookgasvoeler meet een te hoge temperatuur; de warmtewisselaar kan vervuild zijn.", [INST]),
+    F("F10", "Storing aanvoervoeler", 3, ...SEN),
+    F("F11", "Storing retourvoeler", 3, ...SEN),
+    F("F12", "Storing warmwatervoeler", 3, ...SEN),
+    F("F13", "Storing rookgasvoeler", 3, ...SEN),
+    F("F14", "Storing aanvoervoeler 2", 3, ...SEN),
+    F("F15", "Storing ventilator", 3, "Het toerentalsignaal van de ventilator valt weg of de ventilator is defect.", [INST]),
+    F("F34", "Netspanning te laag (onder 170 V)", 1, "Probleem met de stroomvoorziening.", ["Controleer of andere apparaten normaal werken.", "Komt de storing vaak terug, laat de elektrische installatie controleren."]),
+    F("F35", "Netfrequentie onjuist", 1, "Probleem met de stroomvoorziening.", ["Wacht af; de storing verdwijnt als de stroomvoorziening weer normaal is.", "Komt hij vaak terug, laat de elektrische installatie controleren."]),
+    F("F37", "Waterdruk te laag", 1, "Te weinig water in de installatie, of de drukschakelaar is defect of los.", ["Vul de installatie bij tot 1,5 bar (koude ketel) via de vulkraan.", "Moet je vaak bijvullen, dan is er ergens een lek: " + INST.toLowerCase()]),
+    F("F39", "Storing buitenvoeler", 2, "De buitenvoeler is beschadigd of de bedrading heeft kortsluiting.", [INST]),
+    F("A41", "Buitenvoeler losgekoppeld", 2, "De buitenvoeler is losgeraakt terwijl weersafhankelijke regeling aan staat.", ["Laat de buitenvoeler opnieuw aansluiten, of de weersafhankelijke regeling uitzetten."]),
+    F("F43", "Beveiliging warmtewisselaar", 2, "Geen watercirculatie of lucht in de installatie.", ["Controleer de waterdruk en ontlucht de radiatoren.", "Blijft de storing, laat de circulatiepomp controleren."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
