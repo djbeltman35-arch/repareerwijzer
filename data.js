@@ -38,6 +38,7 @@ const SRC = {
   sonosLib: ["Sonos – error 1001 en 1002 bij de muziekbibliotheek (Engels)", "https://support.sonos.com/en-in/article/error-1001-and-1002-when-using-the-music-library"],
   sonosQueue: ["Sonos – nummers niet aan de wachtrij toe te voegen, error 701/1001 (Engels)", "https://support.sonos.com/s/article/4761"],
   sonosUpd: ["Sonos – error 1002 bij updaten (Engels)", "https://support.sonos.com/s/article/4886"],
+  philipsErrCa: ["Philips – foutcode op mijn Philips-espressomachine (Engels)", "https://www.philips.ca/c-t/XC000004106"],
   mieleDroog: ["Coolblue – storingen Miele droger", "https://www.coolblue.nl/advies/hoe-verhelp-je-een-miele-wasdroger-storing.html"],
   boschDroog: ["Coolblue – storingen Bosch droger", "https://www.coolblue.be/nl/advies/hoe-verhelp-je-zelf-een-bosch-droogkast-storing.html"],
   delonghi: ["Coolblue – foutmeldingen De'Longhi Dinamica en Magnifica", "https://www.coolblue.be/nl/advies/hoe-los-je-foutmeldingen-bij-de-delonghi-dinamica-en-magnifica-op.html"],
@@ -2155,7 +2156,7 @@ Object.assign(SRC,{ philipsEP3510: ["Philips – gebruiksaanwijzing Series 3100 
   F("03 / 04", "Probleem met de zetgroep", 1, "De zetgroep is vuil, niet goed ingevet of zit niet goed.", ["Zet de machine uit.", "Spoel de zetgroep af met schoon water, laat hem drogen en vet hem in.", "Plaats hem terug met de twee markeringen tegenover elkaar.", "Zet de machine weer aan."]),
   F("05", "Probleem met de waterdoorloop", 1, "Lucht in het systeem, of het AquaClean-filter is niet goed voorbereid.", ["Zet de machine uit en plaats het waterreservoir goed; controleer of er geen koffiebonen in liggen.", "Zet aan en tap 2 à 3 koppen heet water.", "Haal het AquaClean-filter eruit, dompel het ondersteboven in koud water tot er geen luchtbellen meer komen en plaats het terug.", "Blijft 05? Vervang het filter."]),
   F("14", "Machine oververhit", 1, "Verschillende oorzaken mogelijk.", ["Zet de machine uit en na 30 seconden weer aan."]));
-  m.src.push("philipsEP3510", "philipsEP4050"); m.name = m.name + " (en Series 3100, 4000)"; })(MODELS.find(m => m.id === "philips-volautomaat"));
+  m.src.push("philipsEP3510", "philipsEP4050", "philipsErrCa"); m.name = m.name + " (en Series 3100, 4000)"; })(MODELS.find(m => m.id === "philips-volautomaat"));
 Object.assign(SRC,{ ithoCveS: ["Itho Daalderop – handleiding CVE-S eco (pdf via Eco-logisch)", "https://www.eco-logisch.nl/pdfupload/01-02364-007-handleiding-cve-s-eco-idnl_1882514446717.pdf"] });
 (m => { m.faults.push(
   N("Ventilator maakt geluid", 1, "Vervuilde waaier, onbalans of een defect.", ["Haal de stekker eruit en maak de waaier schoon; let op de balanceerklemmetjes.", "Blijft het lawaai? Laat de installateur de motormodule vervangen."]),
