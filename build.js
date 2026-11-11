@@ -214,7 +214,7 @@ ${seasonBlock()}
 <section class="stack">
   <h2>🔔 Onderhoud bijhouden, met herinnering</h2>
   <p>Bij elk model staat een onderhoudsteller. Tik op Gedaan na een klus en je ziet wat er nu aan de beurt is. Met <b>📅 Zet in mijn agenda</b> komen de klussen als terugkerende afspraak in je agenda (iPhone, Android, Google, Outlook), dus je krijgt vanzelf een herinnering als het tijd is. Alles blijft op je eigen telefoon of computer. <a href="onderhoud-herinnering.html">Zo stel je een onderhoudsherinnering in →</a></p>
-  <div class="models">${["la-marzocco-linea-mini", "bosch-ebike", "prusa-mk4", "husqvarna-automower"].map(id => modelCard(MODELS.find(m => m.id === id))).join("")}</div>
+  <div class="models">${["bosch-siemens-wasmachine", "intergas-hre", "bosch-siemens-vaatwasser", "bosch-ebike"].map(id => modelCard(MODELS.find(m => m.id === id))).join("")}</div>
 </section>`
 });
 
