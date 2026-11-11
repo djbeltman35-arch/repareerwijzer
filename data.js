@@ -11725,4 +11725,26 @@ Object.assign(SRC,{ mieleNlKook: ["Miele – eerste hulp bij storingen kookplate
     N("Controlelampje knippert op de gaskookplaat", 1, "Er komt geen gas binnen.", ["Open de gaskraan (veiligheidsaansluiting).", "Draai alle knoppen naar rechts op 0; daarna werkt de kookplaat weer.", "Blijft het: haal de stroom een paar seconden van het apparaat en sluit hem weer aan."]),
     N("Restwarmte-indicaties knipperen", 1, "Er is een stroomstoring geweest terwijl de kookplaat aan stond of nog warm was.", ["Laat de kookplaat afkoelen; de indicatie verdwijnt vanzelf."]));
   m.src.push("mieleNlKook"); })(MODELS.find(m => m.id === "miele-kookplaat"));
+Object.assign(SRC,{ mieleNlOven: ["Miele – eerste hulp bij storingen ovens", "https://www.miele.nl/support/customer-assistance/ovens-826/alle"], mieleNlMagn: ["Miele – eerste hulp bij storingen magnetrons", "https://www.miele.nl/support/customer-assistance/magnetrons-830/alle"] });
+{ const SVC = "Dit kun je niet zelf verhelpen: maak een reparatie-afspraak bij Miele Service.";
+  (m => { m.faults.push(
+    F("F38", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+    F("F134", "Temperatuur in de ovenruimte te hoog", 3, "De temperatuursensor meet een te hoge temperatuur in de ovenruimte.", [SVC]),
+    F("E0 – E5", "Ontkalken bezig (geen storing)", 1, "Bij ovens met stoomfunctie toont het display de stappen van het ontkalken: E0 ontkalkingsmiddel opzuigen, E1 inwerken, E2 tot E4 spoelen, E5 restwater verdampen.", ["Laat het ontkalkingsprogramma uitlopen."]),
+    F("0--o", "Vergrendeling staat aan, oven reageert niet", 1, "De vergrendeling of ingebruiknamebeveiliging is ingeschakeld.", ["Zet de vergrendeling uit zoals de gebruiksaanwijzing beschrijft."]),
+    F("MES", "Demostand: oven warmt niet op", 1, "De demofunctie staat aan.", ["Bevestig met OK.", "Zet de functieknop op 0 of verlichting, ga naar Instellingen, kies P9 en zet die op S0; houd OK minstens 4 seconden ingedrukt."]),
+    F("EC", "Energiebesparende fase (geen storing)", 1, "De oven zet de verwarming al uit voor het einde van de bereidingstijd en maakt het gerecht af met restwarmte.", ["Je hoeft niets te doen."]),
+    N("0:00 knippert", 1, "De oven is zonder stroom geweest.", ["Stel de tijd opnieuw in en programmeer geplande bereidingen opnieuw."]),
+    N("Melding 'Max. gebruiksduur bereikt'", 1, "De veiligheidsschakelaar heeft de oven na lange tijd uitgeschakeld.", ["Zet de oven uit en weer aan; daarna kun je hem direct weer gebruiken."]),
+    N("Temperatuur in °F in plaats van °C", 1, "De verkeerde temperatuureenheid is ingesteld.", ["Kies onder Instellingen, Eenheden de eenheid °C."]));
+    m.src.push("mieleNlOven"); })(MODELS.find(m => m.id === "miele-oven"));
+  MODELS.push({ id: "miele-magnetron", brand: "Miele", name: "Magnetron", dev: "magnetron", cat: "ovens", years: "Miele-magnetrons (inbouw en vrijstaand)", unit: null, also: "Miele magnetron door, Miele magnetron H:H, Miele magnetron F38",
+    intro: "Een Miele-magnetron toont korte meldingen zoals door of H:H. De meeste zijn geen storing.", weak: [], parts: [], tasks: [], src: ["mieleNlMagn"], faults: [
+      F("door", "Start ingedrukt zonder dat de deur open is geweest", 1, "Als de deur in de 20 minuten voor het starten niet open is geweest, kan de magnetron leeg zijn. Om schade te voorkomen start hij dan niet.", ["Open de deur, zet het gerecht erin, sluit de deur en druk op Start."]),
+      F("H:H", "Warmhoudfunctie (Hold Heat)", 1, "Geen storing: haal je het gerecht er niet uit, dan houdt de magnetron het nog maximaal 15 minuten warm.", ["Haal het gerecht eruit; de functie stopt dan."]),
+      F("MES_", "Demostand staat aan", 1, "De demofunctie is ingeschakeld.", ["Zet de demofunctie uit via de instellingen (zie de gebruiksaanwijzing)."]),
+      F("F38", "Storing in de elektronica", 3, "De elektronica geeft een fout.", [SVC]),
+      F("F267", "Storing in de temperatuurbegrenzer", 3, "De temperatuurbegrenzer werkt niet goed.", [SVC])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
