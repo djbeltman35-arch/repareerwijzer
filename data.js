@@ -12252,4 +12252,23 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("Rood lampje op de diepvriezer", 1, "De temperatuur in de vriezer is te hoog. (Groen = stroom aan, oranje = snelvriezen staat aan.)", ["Controleer of de deur goed sluit en of de vriezer niet te vol is.", "Controleer het eten: ontdooid eten niet opnieuw invriezen."])
     ]});
 }
+Object.assign(SRC,{ bekoNlKoel: ["Beko Nederland – helpcentrum koel-vriescombinatie: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/koel-vriescombinatie--problemen-oplossen"] });
+{ const SVC = "Lost dit het niet op? Neem contact op met een erkend servicebedrijf.";
+  const AIR = ["Ontlucht de leiding: zet een grote bak onder de dispenser en druk de hendel om de 5 seconden in en laat los tot er water komt.", "Blijf daarna indrukken en loslaten tot er in totaal 15 liter water uit is gekomen. Doe dit ook na elke filterwissel."];
+  MODELS.push({ id: "beko-koelkast", brand: "Beko", name: "Koelkast en koel-vriescombinatie", dev: "koelkast", cat: "koelkasten", years: "Beko-koelkasten en koel-vriescombinaties", unit: null, also: "Beko koelkast lekt, Beko koelkast werkt niet, Beko waterdispenser",
+    intro: "De meeste problemen met een Beko-koelkast hebben geen foutcode: hij lekt, koelt niet, blijft draaien of de water- en ijsdispenser werkt niet. Dit zijn de oplossingen die Beko zelf geeft.",
+    weak: ["Een verstopte dooiwaterafvoer achter de groentelades geeft water op de bodem."], parts: [],
+    tasks: [{ w: "Volgens het filterlampje of de handleiding", t: "Waterfilter vervangen" }, { w: "Statische koeling: ongeveer maandelijks of bij 0,5 cm ijs", t: "Vriezer ontdooien" }],
+    src: ["bekoNlKoel"], faults: [
+      N("Koelkast lekt water", 1, "Vaak staat de koelkast niet waterpas zodat de opvangbak overloopt, is de dooiwaterafvoer verstopt, of lekt een wateraansluiting.", ["Kijk of de koelkast wiebelt en zet hem waterpas met de stelpoten op een vlakke vloer.", "Haal de groentelades eruit: staat er water op de bodem, dan is de afvoer verstopt. Maak die vrij met een ontstoppingsveer en spoel na met warm water.", "Heeft je koelkast een waterdispenser? Controleer of de wateraansluitingen goed vastzitten.", SVC]),
+      N("Koelkast werkt niet", 1, "Mogelijk geen stroom, de temperatuurknop staat uit, de ruimte is te koud of te warm, of de deur sluit niet goed.", ["Controleer of er stroom is en of de groep niet is uitgeschakeld.", "Zet de temperatuurknop aan: ongeveer 4 à 5 °C voor de koelkast en −18 °C voor de vriezer.", "Staat hij in een onverwarmde garage? Zet hem in een andere ruimte.", "Controleer de deurrubber op spleten en zet de koelkast niet te vol.", SVC]),
+      N("Koelkast blijft draaien", 1, "De ruimte is te warm, de deur gaat vaak open of sluit slecht, of de koelkast is net gevuld of geplaatst (dan is dit normaal).", ["Zet de koelkast niet naast een radiator, kookplaat of oven.", "Laat warm eten eerst afkoelen.", "Maak de deurrubbers schoon met warm water; vervang een kapotte rubber.", SVC]),
+      N("Eten bevriest in het koelvak", 1, "De temperatuur staat te laag of het eten ligt voor de luchtuitlaat.", ["Stel de koelkast in op 4 à 5 °C.", "Leg gevoelig eten niet voor de ventilatieopeningen op de bovenste plank.", "Meet de echte temperatuur met een thermometer in een kopje water. Wijkt die sterk af? Dan is er mogelijk een technisch probleem.", SVC]),
+      N("IJsblokjesmaker maakt geen ijs", 1, "Het reservoir is leeg, de vriezerdeur gaat te vaak open, of de wateraansluiting of de uitgang is verstopt.", ["Vul het waterreservoir (modellen zonder wateraansluiting).", "Controleer de wateraansluitingen en of er ijsblokjes vastzitten in de uitgang.", SVC]),
+      N("IJsblokjes smaken of ruiken raar", 1, "Ze nemen geur op van open eten, of het waterfilter of reservoir is vuil.", ["Bewaar eten goed afgesloten.", "Vervang het waterfilter op tijd.", "Maak het waterreservoir schoon met warm water."]),
+      N("Waterdispenser lekt", 1, "Na het plaatsen of na een filterwissel zit er lucht in de leiding of het filter, of de afdichting van de uitloop zit los.", [...AIR, "Plaats het filter opnieuw en kijk of het nog lekt.", SVC]),
+      N("Geen water uit de waterdispenser", 1, "Het reservoir is leeg, de aansluiting is verstopt of er zit lucht in de leiding.", ["Vul het reservoir (modellen zonder wateraansluiting).", "Controleer of er water uit de kranen in huis komt en of de aansluiting goed zit.", ...AIR, SVC]),
+      N("Koelkast trilt tijdens het draaien", 1, "De koelkast staat niet waterpas.", ["Zet de koelkast uit en draai de twee voorste stelpoten tot ze stevig op de vloer staan; controleer met een waterpas."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
