@@ -12049,7 +12049,7 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
 { const SVC = "Komt de code terug? Neem contact op met de Indesit-consumentenservice.", ONLY = "Indesit geeft hiervoor geen oplossing die je zelf kunt doen: neem contact op met de Indesit-consumentenservice.";
   const R10 = ["Haal de stekker eruit, wacht 10 seconden en steek hem er weer in.", SVC];
   const FOOD = "Controleer het eten: ontdooid eten niet opnieuw invriezen maar snel (gekookt) gebruiken.";
-  MODELS.push({ id: "indesit-koelkast", brand: "Indesit", name: "Koelkast en koel-vriescombinatie", cat: "koelkasten", years: "Indesit-koelkasten en koel-vriescombinaties met display", unit: null, also: "Indesit koelkast LF, Indesit koelkast SA, Indesit koelkast E13, Indesit koelvriescombinatie dEon",
+  MODELS.push({ id: "indesit-koelkast", brand: "Indesit", name: "Koelkast en koel-vriescombinatie", dev: "koelkast", cat: "koelkasten", years: "Indesit-koelkasten en koel-vriescombinaties met display", unit: null, also: "Indesit koelkast LF, Indesit koelkast SA, Indesit koelkast E13, Indesit koelvriescombinatie dEon",
     intro: "Indesit-koelkasten tonen codes zoals LF, LC, SA, LOPO, AL01 of E1 tot E24. Veel meldingen komen na een stroomstoring of als de deur te lang open stond; dat los je meestal zelf op.",
     weak: [], parts: [], tasks: [],
     src: ["indesitNlFaq"], faults: [
@@ -12091,7 +12091,7 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
   const R2 = ["Haal de stroom 2 minuten van de kookplaat (groep uit) en zet hem weer aan.", SVC];
   const RH = ["Kijk of er stroom in huis is (doet het licht het?).", ...R2];
   const ADAPT = "Je gebruikt een adapter of pan met een diameter die niet past bij de kookzone.";
-  MODELS.push({ id: "indesit-kookplaat", brand: "Indesit", name: "Kookplaat (inductie en keramisch)", cat: "kookplaten", years: "Indesit-inductie- en keramische kookplaten", unit: null, also: "Indesit inductieplaat F0E1, Indesit kookplaat U, Indesit kookplaat F43, Indesit kookplaat H",
+  MODELS.push({ id: "indesit-kookplaat", brand: "Indesit", name: "Kookplaat (inductie en keramisch)", dev: "kookplaat", cat: "kookplaten", years: "Indesit-inductie- en keramische kookplaten", unit: null, also: "Indesit inductieplaat F0E1, Indesit kookplaat U, Indesit kookplaat F43, Indesit kookplaat H",
     intro: "Indesit-kookplaten tonen F-codes (F01 tot F63), FxEy-codes zoals F0E1 en meldingen als U, H en C81. Vaak gaat het om een verkeerde pan, vocht op het bedieningspaneel of een stroomprobleem.",
     weak: ["Een inductieplaat heeft ruimte eronder nodig voor ventilatie (C81, oververhitting)."], parts: [], tasks: [],
     src: ["indesitNlFaq"], faults: [
@@ -12204,7 +12204,7 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
   const NOWATER = ["Controleer of er water in huis is en of de kraan open staat.", "Haal knikken uit de toevoerslang.", "Haal de slang van de machine en maak het filtertje in de inlaat schoon; kijk of er water uit de slang komt.", SVC];
   const R10 = ["Haal de stekker eruit, wacht 10 seconden en sluit weer aan.", SVC];
   const R5 = ["Zet de machine uit en haal de stekker 5 minuten eruit.", "Sluit weer aan en zet hem aan.", SVC];
-  MODELS.push({ id: "indesit-was-droogcombinatie", brand: "Indesit", name: "Was-droogcombinatie", cat: "wasmachines", years: "Indesit-was-droogcombinaties", unit: null, also: "Indesit wasdroger F05, Indesit was-droogcombinatie H2O, Indesit wasdroogcombinatie ERR E43",
+  MODELS.push({ id: "indesit-was-droogcombinatie", brand: "Indesit", name: "Was-droogcombinatie", dev: "was-droogcombinatie", cat: "wasmachines", years: "Indesit-was-droogcombinaties", unit: null, also: "Indesit wasdroger F05, Indesit was-droogcombinatie H2O, Indesit wasdroogcombinatie ERR E43",
     intro: "Indesit-was-droogcombinaties tonen F-codes zoals F05 (afvoer) en F06 (deur), en nieuwere codes zoals Eb01 en ERR-E43. Veel los je zelf op met het pompfilter, de slangen of een reset.",
     weak: [], parts: [], tasks: [{ m: 1, t: "Pompfilter schoonmaken" }, { w: "Bij melding C01", t: "Trommelreiniging draaien" }],
     src: ["indesitNlFaq"], faults: [
@@ -12241,7 +12241,7 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
 }
 { (m => { m.faults.push(
     N("Lampje van de condensor blijft branden", 1, "De condensor moet worden schoongemaakt.", ["Maak de condensor schoon.", "Reset daarna: zet de programmaknop op de stand tegenover 0 (uit) en druk 5 seconden op Start."])); })(MODELS.find(m => m.id === "whirlpool-droger"));
-  MODELS.push({ id: "whirlpool-koelkast", brand: "Whirlpool", name: "Koelkast, Amerikaanse koelkast en vriezer", cat: "koelkasten", years: "Whirlpool-koelkasten, side-by-side en vriezers", unit: null, also: "Whirlpool koelkast AF, Whirlpool Amerikaanse koelkast F1%, Whirlpool waterfilter lampje rood",
+  MODELS.push({ id: "whirlpool-koelkast", brand: "Whirlpool", name: "Koelkast, Amerikaanse koelkast en vriezer", dev: "koelkast", cat: "koelkasten", years: "Whirlpool-koelkasten, side-by-side en vriezers", unit: null, also: "Whirlpool koelkast AF, Whirlpool Amerikaanse koelkast F1%, Whirlpool waterfilter lampje rood",
     intro: "Whirlpool-koelkasten tonen een paar korte meldingen, vooral over het water- of antibacteriële filter. Het zijn meestal geen storingen.", weak: [], parts: [],
     tasks: [{ m: 6, t: "Waterfilter vervangen (waterdispenser)" }],
     src: ["whirlpoolNlFaq"], faults: [
