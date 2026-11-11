@@ -11230,7 +11230,10 @@ Object.assign(SRC,{ toshRavSdt: ["Toshiba (Intercool) – owner's manual RAV-HM�
       F("P31", "Andere binnenunit in de groep geeft een alarm", 2, "Een andere binnenunit in dezelfde groep heeft een storing.", ["Kijk welke code de andere binnenunit geeft en zoek die op."])], src: ["toshRavSdt"] });
 }
 // Toevoeging Foutcodezoeker: Beko (vaatwasser BDIN, wasmachine BM3/BM5) en Toshiba (airco wandmodellen, Estia warmtepomp).
-// Plakken in data.js, direct VOOR de laatste regel "module.exports = { CATS, MODELS, SRC, COST };".
+// Plakken in data.js, direct VOOR de laatste regel "
+Object.assign(SRC,{ aegE70: ["AEG – wasmachine geeft foutmelding E70", "https://support.aeg.nl/support-articles/article/wasmachine-geeft-foutmelding-e70-op-het-display-weer"] });
+(m => { m.faults.push(F("E70", "Temperatuursensor verwarming defect", 3, "De temperatuursensor bij het verwarmingselement werkt waarschijnlijk niet meer.", ["Zet de wasmachine uit en haal de stekker eruit.", "Plan een afspraak met de AEG-servicedienst of een monteur."])); m.src.push("aegE70"); })(MODELS.find(m => m.id === "aeg-wasmachine"));
+module.exports = { CATS, MODELS, SRC, COST };".
 // Alle inhoud komt uit de officiële handleidingen hieronder (eigen woorden, geen letterlijke tekst).
 
 Object.assign(SRC, {
