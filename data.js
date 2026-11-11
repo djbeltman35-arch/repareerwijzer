@@ -11706,4 +11706,23 @@ Object.assign(SRC,{ mieleNlStoom: ["Miele – eerste hulp bij storingen stoomove
       N("'Demo-functie actief', oven verwarmt niet", 1, "De demonstratiestand staat aan.", ["Bevestig de melding met OK.", "Zet de demofunctie uit via Instellingen, Handelaar, Demo-functie (de exacte route verschilt per bediening)."])
     ]});
 }
+Object.assign(SRC,{ mieleNlKook: ["Miele – eerste hulp bij storingen kookplaten", "https://www.miele.nl/support/customer-assistance/kookplaten-829/alle"] });
+(m => { const RE = "Blijft de storing? Neem contact op met Miele Service.";
+  m.faults.push(
+    F("Err 039 / 040 / 408 / 412", "Storing in de elektronica", 2, "In het timerdisplay knippert Err afwisselend met 039, 040, 408 of 412.", ["Haal de stroom ongeveer 1 minuut van de kookplaat (groep in de meterkast uit).", RE]),
+    F("Err 044", "Oververhittingsbeveiliging", 1, "De kookplaat is te heet geworden: een lege pan, vet of olie op een hoge stand, te weinig ventilatie onder de kookplaat, of een hete zone weer aangezet na een stroomstoring.", ["Laat de kookplaat afkoelen.", "Neem de oorzaak weg (geen lege pannen, niet te heet frituren, ventilatie onder de plaat vrij).", RE]),
+    F("Err 047 / 048 / 049", "Ventilator geblokkeerd of defect", 1, "De ventilator onder de kookplaat zit vast of is kapot.", ["Kijk of er iets tegen de ventilator zit (bijvoorbeeld uit de lade eronder) en haal het weg.", RE]),
+    F("FE49", "Ventilator geblokkeerd of te weinig ventilatie", 1, "Voorwerpen in een lade onder de kookplaat of stof blokkeren de ventilator, of er is te weinig ruimte om af te koelen.", ["Haal blokkades bij de ventilator weg.", "Controleer of bij de inbouw de minimale afstanden zijn aangehouden (zie de installatievoorschriften).", RE]),
+    F("Err 709", "Verbinding tussen pannen en kookplaat verbroken (M Sense)", 1, "De slimme pannen hebben geen verbinding meer met de kookplaat.", ["Zet de pan aan.", "Koppel de pannen opnieuw zoals de gebruiksaanwijzing beschrijft (pannen op de plaat, kookplaat aan, binnen 10 seconden bevestigen)."]),
+    F("F31 / FE31", "Netstoring", 3, "Er is een storing in de stroomvoorziening opgetreden.", ["Dit kun je niet zelf verhelpen: maak een reparatie-afspraak bij Miele Service."]),
+    F("E2", "Oververhittingsbeveiliging actief", 1, "De inductiespoelen of de elektronica worden te warm. De kookplaat zet dan de booster uit, verlaagt de stand of schakelt zones uit.", ["Laat de kookplaat afkoelen.", "Zorg voor genoeg ventilatie onder de kookplaat en verhit geen lege pannen.", RE]),
+    F("C", "Kookplaat uitgeschakeld: toetsen langer dan 10 seconden bedekt", 1, "Een of meer sensortoetsen waren langer dan ongeveer 10 seconden bedekt, door een vinger, overgekookt eten of een voorwerp.", ["Haal vuil of voorwerpen van de bedieningsstrip en zet de kookplaat opnieuw aan."]),
+    F("L", "Ingebruiknamebeveiliging staat aan (kookplaat met knoppen)", 1, "De kookplaat is vergrendeld.", ["Draai de (rechter)knop naar links tot de aanslag en houd hem vast tot L uitgaat."]),
+    F("u_", "Geen of geen geschikte pan op de kookzone", 1, "Er staat geen pan op de zone, of de pan is niet geschikt voor inductie (aluminium, koper, keramiek of rvs zonder magnetische bodem).", ["Zet een inductiegeschikte pan op de zone: rvs met magnetische bodem, geëmailleerd staal of gietijzer."]),
+    F("0 / 9 knipperen", "Panbeveiliging (ExtraSpeed-zone)", 1, "Op de ExtraSpeed-zone knippert 0 afwisselend met 9: de panbeveiliging heeft ingegrepen.", ["Stel opnieuw een vermogensstand in om de zone weer te gebruiken."]),
+    F("BAT", "Batterijen van de M Sense-pan bijna leeg", 1, "De batterijen in de greep van de slimme pan moeten binnenkort vervangen worden.", ["Vervang de twee knoopcellen (CR2477) in de greep met een kruiskopschroevendraaier (PH 2), zoals de gebruiksaanwijzing beschrijft."]),
+    N("Ingestelde vermogensstand knippert", 1, "Er staat geen pan, een ongeschikte pan of een te kleine pan op de zone.", ["Zet binnen korte tijd een geschikte pan op de zone; anders schakelt de zone uit."]),
+    N("Controlelampje knippert op de gaskookplaat", 1, "Er komt geen gas binnen.", ["Open de gaskraan (veiligheidsaansluiting).", "Draai alle knoppen naar rechts op 0; daarna werkt de kookplaat weer.", "Blijft het: haal de stroom een paar seconden van het apparaat en sluit hem weer aan."]),
+    N("Restwarmte-indicaties knipperen", 1, "Er is een stroomstoring geweest terwijl de kookplaat aan stond of nog warm was.", ["Laat de kookplaat afkoelen; de indicatie verdwijnt vanzelf."]));
+  m.src.push("mieleNlKook"); })(MODELS.find(m => m.id === "miele-kookplaat"));
 module.exports = { CATS, MODELS, SRC, COST };
