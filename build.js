@@ -164,7 +164,7 @@ layout({
     </svg>
   </div>
   <p class="lead">Typ merk en code. Je ziet meteen wat er mis is en wat je zelf kunt doen.</p>
-  <p class="hero-sub">Foutcodes van Bosch, Siemens, Samsung, Miele, AEG, Intergas, Vaillant en honderden andere merken: wasmachines, cv-ketels, warmtepompen, auto's, e-bikes, laadpalen, zonnepanelen en meer. Met de oorzaak, wat je zelf kunt doen, wanneer je een monteur belt en de bron.</p>
+  <p class="hero-sub">Onafhankelijke, gratis kennisbank met foutcodes van Bosch, Siemens, Samsung, Miele, AEG, Intergas, Vaillant en honderden andere merken: wasmachines, cv-ketels, warmtepompen, auto's, e-bikes, laadpalen, zonnepanelen en meer. Met de oorzaak, wat je zelf kunt doen, wanneer je een monteur belt en de bron.</p>
   <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
   <div class="chips"><span>Probeer:</span>${[["Bosch E18","Bosch E18"],["Samsung 4C","Samsung 4C"],["Intergas storing","Intergas"],["Miele F55","Miele F55"]].map(([l, q]) => `<a href="?q=${encodeURIComponent(q)}" data-q="${esc(q)}">${l}</a>`).join("")}</div>
@@ -444,6 +444,7 @@ for (const [id, [cat, re]] of Object.entries(KBLINK)) {
 const codeFaq = (m, f, dev) => { const k = COST[m.cat], hit = costHit(m, f), c = codeShort(f);
   const q = [[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${c}?`, f.steps.join(" ")],
     [`Is foutcode ${c} gevaarlijk?`, f.d === 3 ? `Probeer dit niet zelf te repareren: het gaat om onderdelen waar een vakman aan moet werken. Doe alleen de veilige controles en bel een monteur.` : f.d === 2 ? `Niet direct, maar wees voorzichtig: haal eerst de stekker eruit of zet het apparaat uit voordat je iets controleert. Twijfel je, bel dan een monteur.` : `Meestal niet. Het gaat om iets dat je veilig zelf kunt controleren, zoals een filter, slang of instelling. Haal wel eerst de stekker eruit als je iets losmaakt.`],
+    [`Kun je het apparaat blijven gebruiken bij foutcode ${c}?`, f.d === 3 ? `Liever niet. Zet het apparaat uit en gebruik het pas weer als een monteur ernaar heeft gekeken, zeker als er water lekt, het apparaat heet wordt of je iets brandends ruikt.` : f.d === 2 ? `Alleen als de code na de controles hierboven verdwijnt. Komt hij terug, zet het apparaat dan uit en laat het nakijken.` : `Meestal wel, zodra je de oorzaak hebt weggenomen en de code verdwenen is. Komt de code steeds terug, laat het dan nakijken.`],
     [`Moet er een monteur komen bij foutcode ${c}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]];
   if (k) q.push([`Wat kost het om foutcode ${c} te laten repareren?`, `${k.uur ? `Een monteur rekent ${k.uur}. ` : ""}${hit ? `${hit[0]}: gemiddeld ${hit[1]}.` : k.gem ? `Een reparatie kost gemiddeld ${k.gem}.` : ""} Vraag altijd vooraf een prijsopgave.`.replace(/\s+/g, " ").trim()]);
   return q; };
@@ -536,7 +537,9 @@ ${others.length ? fold(`Andere storingen: ${esc(fullName(m))}`, `<div class="res
 
 // ───────── Merkpagina's
 const SKIP = new Set(["Alle merken", "E61-groep"]);
-const brandsOf = m => m.brand.split("/").map(b => b.trim()).filter(b => !SKIP.has(b));
+// Eén merkpagina per merk, ook als de schrijfwijze verschilt (MINI/Mini, GARDENA/Gardena): de meest gebruikte schrijfwijze wint
+const BRAND_CANON = (() => { const n = {}; for (const m of MODELS) for (const b of m.brand.split("/").map(x => x.trim())) { const k = b.toLowerCase(); (n[k] = n[k] || {})[b] = (n[k][b] || 0) + 1; } const c = {}; for (const [k, v] of Object.entries(n)) c[k] = Object.entries(v).sort((x, y) => y[1] - x[1])[0][0]; return c; })();
+const brandsOf = m => [...new Set(m.brand.split("/").map(b => b.trim()).filter(b => !SKIP.has(b)).map(b => BRAND_CANON[b.toLowerCase()] || b))];
 const BRANDS = {};
 for (const m of MODELS) for (const b of brandsOf(m)) (BRANDS[b] = BRANDS[b] || []).push(m);
 const brandUrl = b => `merk-${slug(b)}.html`;
