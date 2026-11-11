@@ -7458,13 +7458,13 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     N("Smart Lock laadt niet op", 1, "Een losse kabel, te zwakke voeding, een oude Power Pack zonder Power Delivery, verouderde firmware of een Power Pack die nog boven 75% zit (dan laadt hij bewust niet).", ["Druk de kabel goed aan en draai hem licht heen en weer.", "Ultra en Pro: gebruik de magnetische USB-C-kabel met een adapter van minstens 10 W.", "Power Pack van voor juli 2024: gebruik een gewone 5W-lader in plaats van een snellader.", "Werk de firmware bij in de app.", "Brandt er helemaal geen rode led bij aansluiten, neem contact op met support."])
   );
   MODELS.push({ id: "nuki-keypad", brand: "Nuki", name: "Keypad: foutsignalen van de lampjes", dev: "Keypad", cat: "slim-huis", years: "Keypad en Keypad 2.0", unit: null, also: "Nuki keypad knippert 2 keer, Nuki keypad foutmelding, Nuki keypad niet gekoppeld, Nuki vingerafdruk fout", intro: "Het Nuki Keypad geeft een fout aan door de lampjes een aantal keer te laten knipperen. Het aantal keer vertelt welke fout het is.", weak: ["Slot buiten bereik van het keypad."], parts: [], tasks: [], src: ["nukiKeypad"], faults: [
-    N("Lampjes knipperen 1×: vingerafdruk niet herkend", 1, "Fout bij het scannen of herkennen van de vingerafdruk.", ["Leg je vinger opnieuw plat en schoon op de sensor.", "Lukt het steeds niet, registreer de vingerafdruk opnieuw in de Nuki-app."]),
-    N("Lampjes knipperen 2×: slot buiten bereik of verbindingsfout", 2, "Het keypad kan het Smart Lock niet bereiken.", ["Controleer of het slot werkt en batterij heeft.", "Verklein de afstand tussen keypad en slot."]),
-    N("Lampjes knipperen 3×: autorisatiefout", 1, "De code of vingerafdruk heeft geen toegang.", ["Controleer in de Nuki-app of de gebruiker toegang heeft."]),
-    N("Lampjes knipperen 4×: keypad gedeactiveerd", 1, "Het keypad is uitgeschakeld in het gebruikersbeheer.", ["Activeer het keypad weer in het gebruikersbeheer van de Nuki-app."]),
-    N("Lampjes knipperen 5×: tijdsbeperking actief", 1, "Op slot of open doen mag op dit moment niet, omdat het keypad in tijd beperkt is.", ["Controleer de tijdsinstellingen van het keypad in de app."]),
-    N("Lampjes knipperen 6×: keypad niet gekoppeld", 2, "Het keypad is aan geen enkel Smart Lock gekoppeld.", ["Koppel het keypad opnieuw aan het slot via de Nuki-app."]),
-    N("Lampjes knipperen 7×: overige fout", 2, "Een andere fout.", ["Kijk in de Nuki-app voor meer informatie."])
+    N("Lampjes knipperen 1×: vingerafdruk niet herkend", 1, "Fout bij het scannen of herkennen van de vingerafdruk.", ["Nuki geeft bij dit signaal alleen de betekenis, geen oplossingsstappen. Neem bij twijfel contact op met Nuki support."]),
+    N("Lampjes knipperen 2×: slot buiten bereik of verbindingsfout", 2, "Het keypad kan het Smart Lock niet bereiken.", ["Nuki geeft bij dit signaal alleen de betekenis, geen oplossingsstappen. Neem bij twijfel contact op met Nuki support."]),
+    N("Lampjes knipperen 3×: autorisatiefout", 1, "De code of vingerafdruk heeft geen toegang.", ["Nuki geeft bij dit signaal alleen de betekenis, geen oplossingsstappen. Neem bij twijfel contact op met Nuki support."]),
+    N("Lampjes knipperen 4×: keypad gedeactiveerd", 1, "Het keypad is uitgeschakeld in het gebruikersbeheer.", ["Nuki geeft bij dit signaal alleen de betekenis, geen oplossingsstappen. Neem bij twijfel contact op met Nuki support."]),
+    N("Lampjes knipperen 5×: tijdsbeperking actief", 1, "Op slot of open doen mag op dit moment niet, omdat het keypad in tijd beperkt is.", ["Nuki geeft bij dit signaal alleen de betekenis, geen oplossingsstappen. Neem bij twijfel contact op met Nuki support."]),
+    N("Lampjes knipperen 6×: keypad niet gekoppeld", 2, "Het keypad is aan geen enkel Smart Lock gekoppeld.", ["Nuki geeft bij dit signaal alleen de betekenis, geen oplossingsstappen. Neem bij twijfel contact op met Nuki support."]),
+    N("Lampjes knipperen 7×: overige fout", 2, "Een andere fout.", ["Nuki geeft bij dit signaal alleen de betekenis, geen oplossingsstappen. Neem bij twijfel contact op met Nuki support."])
   ]});
 })();
 (() => {
@@ -7826,6 +7826,1109 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     V("Return failed, please clear the area around the station", "terugkeren mislukt", 1, "De robot vond het station maar kon er niet in.", ["Haal obstakels rond het station weg."]),
     V("Failed to return to station or dock", "station niet gevonden", 1, "De robot vangt het signaal van het station niet op.", ["Controleer of de stekker van het station in het stopcontact zit."]),
     V("Unable to leave the station", "kan station niet verlaten", 1, "Iets blokkeert de uitgang van het station.", ["Maak de ruimte rond het station vrij."])
+  ]});
+})();
+(() => {
+  const G = "https://support.google.com/googlenest/answer/";
+  SRC.nestWorking = ["Google Nest Help – How Nest Protect lets you know it's working (Engels)", G + "9232412?hl=en"];
+  SRC.nestFalse = ["Google Nest Help – Prevent false alarms (Engels)", G + "9257402?hl=en"];
+  SRC.nestReplace = ["Google Nest Help – When to replace your Nest Protect (Engels)", G + "9249296"];
+  SRC.nestSmoke = ["Google Nest Help – What to do if Nest Protect detects smoke in your home (Engels)", G + "9225118?hl=en"];
+  MODELS.push({ id: "google-nest-protect", brand: "Google", name: "Nest Protect: geel lampje, piepen en vals alarm", dev: "Nest Protect rook- en CO-melder", cat: "rookmelders", years: "Nest Protect (2e generatie)", unit: null, also: "Nest Protect geel lampje, Nest Protect piept elke minuut, Nest Protect expired, Nest Protect sensor failed, Nest Protect vals alarm douche", intro: "De Google Nest Protect is een slimme rook- en koolmonoxidemelder. Hij laat met een gekleurde ring en een gesproken bericht weten wat er is. Groen betekent dat alles werkt, geel dat er een probleem is. De melder moet 10 jaar na de productiedatum vervangen worden.", weak: ["Stof in de rookkamer.", "Stoom van een douche of luchtbevochtiger."], parts: [], tasks: [], src: ["nestWorking", "nestFalse", "nestReplace", "nestSmoke"], faults: [
+    N("Ring kleurt geel (Nightly Promise)", 1, "De Protect heeft een probleem, bijvoorbeeld een bijna lege batterij. Hij vertelt met een gesproken bericht wat er is.", ["Luister naar het bericht of kijk in de Nest- of Google Home-app; die beschrijft het probleem en de volgende stappen."]),
+    N("Vals rookalarm zonder rook", 2, "Stof in de rookkamer of stoom (douche, luchtbevochtiger) kan een vals alarm geven.", ["Maak de Protect schoon volgens de schoonmaakinstructies van Google.", "Zet Steam Check aan in de app.", "Hang de melder verder van de badkamer en luchtbevochtigers; alleen dat neemt vals alarm door stoom helemaal weg."]),
+    N("Piept ongeveer elke minuut en app meldt sensorprobleem", 2, "Vaak stof in de rookkamer, of een kapotte sensor.", ["Maak de rookkamer schoon als er geen groot incident was.", "Stoppen de meldingen, dan kun je hem blijven gebruiken; zo niet, vervang de melder.", "Valt hij nog onder garantie, dien een claim in via g.co/warrantyclaim."]),
+    N("Melding 'The sensors have failed': sensoren defect", 3, "De rook- of CO-sensor werkt niet meer.", ["Maak eerst de rookkamer schoon (stof kan de oorzaak zijn).", "Blijven de meldingen, vervang de Nest Protect."]),
+    N("Melding 'will expire': verloopt binnenkort", 1, "De melder bereikt bijna 10 jaar na productie; de CO-sensor gaat niet langer mee. De ring wordt geel en de app toont 'Expiring soon'.", ["Controleer de datum bij 'Replace by' in de app of op de achterkant.", "Koop op tijd een nieuwe melder."]),
+    N("Piept continu en zegt 'has expired': verlopen", 2, "De melder is ouder dan 10 jaar en beschermt niet meer betrouwbaar.", ["Vervang de Nest Protect nu en installeer de nieuwe direct na het verwijderen van de oude.", "Bedraad model: zet eerst de groep in de meterkast uit.", "Verwijder de oude melder uit je Google-account."]),
+    N("Heads-Up: lichte rook gedetecteerd", 1, "Een lage hoeveelheid rook, bijvoorbeeld stoom van de douche of rook van het koken.", ["Zoek de bron en neem die voorzichtig weg."]),
+    N("Noodalarm: continu alarm met gesproken waarschuwing", 3, "Rook op een gevaarlijk niveau.", ["Verlaat direct het huis volgens je vluchtplan en help kinderen en wie extra hulp nodig heeft.", "Voel eerst met de rug van je hand aan een deur voor je hem opent; sluit deuren achter je.", "Verzamel buiten, tel iedereen en bel 112.", "Ga niet terug naar binnen tot de brandweer zegt dat het veilig is."])
+  ]});
+})();
+(() => {
+  SRC.boraErr = ["BORA – Service: Error codes (Engels)", "https://www.bora.com/en-au/service/error-codes"];
+  SRC.boraTs18 = ["BORA – Troubleshooting kookplaat (Engels, PDF)", "https://www.bora.com/fileadmin/downloads/18_troubleshooting_en_gb2638.pdf"];
+  const svc = "Neem contact op met de BORA-servicedienst.";
+  MODELS.push({ id: "bora-kookplaat", brand: "BORA", name: "Kookplaat met afzuiging: foutcodes en meldingen", dev: "kookplaat met afzuiging", cat: "kookplaten", years: "BORA kookplaatafzuigsystemen (o.a. Pure, Classic, Professional, X Pure)", unit: null, also: "BORA Er03, BORA Er81 Er82 ventilator, BORA F filter, BORA kookplaat u, BORA kookplaat E, BORA afzuiging zuigt slecht", intro: "BORA maakt inductiekookplaten met een afzuiging in het midden. Meldingen verschijnen in het display van een kookzone of van de ventilator. Een F betekent dat een filter aan vervanging toe is; begint de code met iets anders dan F of E, dan adviseert BORA een serviceticket.", weak: ["Vuil vetfilter of verzadigd koolfilter."], parts: [], tasks: [], src: ["boraErr", "boraTs18"], faults: [
+    F("u", "Pan niet herkend", 1, "Er staat geen pan op de zone, of de pan is niet geschikt.", ["Gebruik geschikte (inductie)pannen."]),
+    F("L", "Kinderslot actief", 1, "Het kinderslot staat aan.", ["Schakel het kinderslot uit (zie het hoofdstuk Bediening van de handleiding)."]),
+    F("Er03", "Sensorfout: kookplaat schakelt uit", 1, "Een of meer aanraaktoetsen worden afgedekt door een vinger of voorwerp.", ["Haal het voorwerp weg en maak het bedieningspaneel schoon."]),
+    F("/", "Toets ingedrukt of bedieningspaneel vuil", 1, "Een of meer toetsen worden ingedrukt gehouden, of het paneel is vuil of afgedekt.", ["Maak het bedieningspaneel schoon of haal voorwerpen eraf."]),
+    F("F", "Filter aan vervanging toe", 1, "Het actieve-koolfilter is verzadigd; het vetfilter kan vuil zijn.", ["Vervang het koolfilter (alleen bij recirculatie).", "Maak het rvs-vetfilter schoon; vervang het bij zware vervuiling."]),
+    F("Er81 / Er82", "Ventilatorfout", 3, "Een defecte ventilator of een losse kanaalaansluiting.", [svc]),
+    F("E. (ventilator)", "Ventilator gaat niet aan", 2, "Het Home-In-contact is onderbroken (bijvoorbeeld een raamschakelaar) of een veiligheidsvoorziening is defect.", ["Gebruik je een raamcontactschakelaar, zet dan het raam open.", "Is de veiligheidsvoorziening defect: " + svc.toLowerCase()]),
+    F("E (kookzone)", "Fout in de elektronica", 3, "Een storing in de elektronica, kookzone of vermogensdeel.", ["Haal de stroom ongeveer 1 minuut van de kookplaat.", "Blijft de fout, noteer het foutnummer en " + svc.toLowerCase()]),
+    N("Kookzone of hele kookplaat schakelt vanzelf uit", 1, "De maximale gebruiksduur van een zone is bereikt, of de oververhittingsbeveiliging is aangesproken (lege pan verhit, olie op hoog vermogen, of zone na stroomuitval weer aangezet).", ["Zet de zone opnieuw aan.", "Bij oververhitting: laat de kookplaat afkoelen, verhit olie op laag vermogen en gebruik pannen met inhoud."]),
+    N("Afzuiging zuigt minder goed", 1, "Een sterk vervuild vetfilter, een verzadigd koolfilter (recirculatie) of een voorwerp in de luchtgeleiding.", ["Maak het vetfilter schoon of vervang het.", "Vervang het koolfilter.", "Haal het voorwerp weg."]),
+    N("Kookplaat gaat niet aan", 2, "Een defecte zekering of uitgeschakelde groep, of de stroomvoorziening is onderbroken.", ["Vervang de zekering of zet de groep weer aan.", "Slaat de groep steeds weer af: " + svc.toLowerCase(), "Laat een elektricien de stroomvoorziening controleren."])
+  ]});
+})();
+(() => {
+  SRC.dysonHp02E = ["Dyson Support – Pure Hot + Cool Link: My purifier displays an E code (Engels)", "https://support.dyson.com.au/support/hp02/pure-hot-cool-link-white-silver/my-dyson-purifier-is-not-working/my-purifier-displays-an-e-code"];
+  SRC.dysonPh = ["Dyson – Gebruikershandleiding luchtreiniger-luchtbevochtiger (PDF)", "https://www.dyson.nl/content/dam/dyson/maintenance/user-guides/nl_NL/airtreatment/purifier-humidifier/275413-01.pdf"];
+  SRC.dysonAm06 = ["Dyson Support – AM06: My machine displays an error code (Engels)", "https://support.dyson.co.nz/global-content/global-support/am06/my-machine-is-not-working/my-machine-displays-an-error-code.aspx"];
+  MODELS.push({ id: "dyson-luchtreiniger", brand: "Dyson", name: "Luchtreinigers en ventilatoren: E-code, F4 en waarschuwingsdriehoek", dev: "luchtreiniger / ventilator", cat: "airco", years: "Pure Hot + Cool Link (HP02), Pure Cool Link, luchtreiniger-luchtbevochtiger, AM06", unit: null, also: "Dyson luchtreiniger E knippert, Dyson Pure Cool E code, Dyson ventilator F4, Dyson driehoek op display, Dyson filter resetten, Dyson Humidify diepe reiniging", intro: "Dyson-luchtreinigers en ventilatoren melden een storing met een E, een F-code of een waarschuwingsdriehoek op het display. Bijna altijd begin je met de stekker eruit halen en weer terugsteken.", weak: ["Verstopte luchtinlaat of vol filter.", "Kalkaanslag in de verdamper (luchtbevochtiger)."], parts: [], tasks: [], src: ["dysonHp02E", "dysonPh", "dysonAm06"], faults: [
+    F("E (knippert)", "Luchtreiniger kan de opdracht niet uitvoeren", 1, "De reiniger kan niet doen wat je vraagt, bijvoorbeeld door een verstopping, een vol filter of een te koude ruimte.", ["Haal de stekker eruit, wacht 10 seconden, steek hem stevig terug en zet het apparaat weer aan.", "Controleer of de kamer warmer is dan 5 °C.", "Borstel de luchtinlaatgaatjes van de filterbehuizing en de kleine opening in de luchtring schoon met een zachte borstel.", "Controleer de filterlevensduur in de app en vervang het filter zo nodig.", "Blijft de code, neem contact op met Dyson."]),
+    F("E (brandt continu)", "Luchtreiniger werkt niet meer goed", 2, "Het apparaat is gestopt met goed werken.", ["Volg dezelfde stappen: stekker 10 seconden eruit, kamer warmer dan 5 °C, inlaten schoonmaken en filter controleren.", "Blijft de code, neem contact op met Dyson."]),
+    F("F4", "Foutcode F4 (AM06-ventilator)", 2, "Een storing in de ventilator; Dyson noemt geen specifieke oorzaak.", ["Zet de ventilator uit, haal de stekker eruit en wacht 60 seconden.", "Steek de stekker terug en test hem; herhaal dit tot 3 keer.", "Blijft de code, neem contact op met Dyson."]),
+    N("Waarschuwingsdriehoek blijft branden", 2, "Er is een handeling nodig (luchtreiniger-luchtbevochtiger).", ["Zet de ventilator uit, haal de stekker 10 seconden eruit, steek hem terug en zet hem aan.", "Verdwijnt de driehoek niet, neem contact op met Dyson."]),
+    N("Waarschuwingsdriehoek verschijnt even", 1, "Een tijdelijke waarschuwing; verdwijnt het symbool vanzelf, dan mag de ventilator blijven werken.", ["Je hoeft niets te doen. Verschijnen er andere waarschuwingen, neem dan contact op met Dyson."]),
+    N("Melding filters vervangen", 1, "De filters zijn aan vervanging toe.", ["Zet de ventilator uit en haal de stekker eruit.", "Vervang de filters volgens de handleiding en sluit de ventilator weer aan.", "Reset de filtermelding: houd de knop Nachtstand op de afstandsbediening ingedrukt tot het display van 5 naar 1 heeft afgeteld."]),
+    N("Melding diepe reinigingscyclus nodig", 1, "Er zit kalk in de verdamper van de luchtbevochtiger; de knop Diepe reiniging gaat branden.", ["Start de diepe reinigingscyclus en volg de aanwijzingen op het display.", "Doe 150 g citroenzuur in de watertank en laat de ventilator aanstaan tot de cyclus klaar is."])
+  ]});
+})();
+(() => {
+  SRC.specBatLed = ["Specialized – Vado/Como Gen2 and Turbo Tero: Battery LED Error Codes (Engels)", "https://content.specialized.com/?p=9393"];
+  SRC.specTcu = ["Specialized – TCU: Error Messages (Engels)", "https://content.specialized.com/?p=2835"];
+  SRC.specApp = ["Specialized App Support – Bike Status (Engels)", "https://support.specialized.com/specialized-app/en/using-the-app/bike-status"];
+  const dlr = "Blijft het probleem, ga naar een erkende Specialized-dealer.";
+  const rb = "Zet de fiets uit en weer aan (herstart) en kijk in de Specialized-app (Mission Control) wat er gemeld wordt.";
+  MODELS.push({ id: "specialized-turbo", brand: "Specialized", name: "Turbo e-bikes: foutmeldingen en accu-lampjes", dev: "Turbo e-bike (Vado, Como, Tero, Levo)", cat: "e-bikes", years: "Turbo Vado/Como Gen2, Turbo Tero, Turbo-modellen met TCU", unit: null, also: "Specialized Battery Error, Specialized Motor Not Found, Specialized accu lampjes knipperen, Specialized Vado foutmelding, Specialized Turbo error", intro: "Specialized Turbo e-bikes tonen foutmeldingen op het display of in de Specialized-app (Mission Control). Een melding 'Not found' wijst meestal op een losse of beschadigde stekker of kabel; een 'Error' op een mogelijk defect onderdeel. De accu zelf geeft fouten aan met knipperende lampjes als hij uit het frame is.", weak: ["Losse stekkers en kabels (Not found).", "Vuil in de laadpoort."], parts: [], tasks: [], src: ["specTcu", "specBatLed", "specApp"], faults: [
+    N("Melding 'Battery Error'", 2, "Een fout in de accu.", [rb, dlr]),
+    N("Melding 'Battery Not Found'", 2, "De accu communiceert niet, meestal door een verbindingsprobleem.", [rb, dlr]),
+    N("Melding 'Motor Error'", 2, "Een fout in de motor; sommige motorfouten hebben een andere oorzaak, zoals een ontbrekende magneet van de snelheidssensor.", [rb, dlr]),
+    N("Melding 'Motor Not Found'", 2, "De motor communiceert niet, meestal door een verbindingsprobleem.", [rb, dlr]),
+    N("Melding 'Battery & Motor Error'", 3, "Een gecombineerde fout in accu en motor.", ["Ga naar een erkende Specialized-dealer."]),
+    N("Melding 'TCU Coin Cell Battery Low'", 1, "De knoopcelbatterij in de TCU (het bedieningsdisplay) is bijna leeg.", ["Vervang de knoopcelbatterij in de TCU."]),
+    N("Melding 'Range Extender Error'", 1, "Een probleem met de extra accu (range extender).", ["Controleer of de stekker van de range extender helemaal in de laadpoort zit en vastklikt.", "Koppel hem los en kijk of er water op de stekker zit.", dlr]),
+    N("Accu: 3 lampjes knipperen", 1, "Temperatuurbeveiliging: de cellen zijn te warm of te koud om te laden.", ["Laat de accu op kamertemperatuur komen voor je laadt of fietst."]),
+    N("Accu: 4 lampjes knipperen", 2, "Kortsluitbeveiliging.", ["Haal de lader uit het stopcontact en de laadstekker uit de accu.", "Controleer laadpoort en stekker op metaaldeeltjes of vuil en maak ze schoon met een zacht borsteltje of doekje."]),
+    N("Accu: lampje 1 en 4 knipperen", 3, "Een interne fout in het accubeheersysteem.", ["Laat de dealer de accu uitlezen (Turbo Studio) en hem op een andere fiets testen."]),
+    N("Accu: lampjes 1/4 en 2/3 knipperen om en om", 2, "Te hoge laadstroom.", ["Haal de lader los en maak laadpoort en stekker schoon.", "Test de accu met een andere, goed werkende lader.", "Gebruik alleen originele of geschikte Specialized-laders."]),
+    N("App: 'Event Detected'", 1, "De fiets heeft een mogelijk probleem vastgelegd in het Event Log, met een ernst: Notice (informatie), Warning (rijden kan, prestaties minder) of Permanent Failure (onderdeel moet waarschijnlijk vervangen).", ["Open het Event Log in de app en lees de melding.", "Zet de fiets uit en weer aan; dat lost het vaak op.", "Bij een Permanent Failure of een blijvende melding: geef de foutcode en het serienummer (begint met WSBC) aan je dealer."])
+  ]});
+})();
+(() => {
+  SRC.dlMagS = ["De'Longhi – Gebruiksaanwijzing ECAM23X/25X (Magnifica S) en FEB25XY (PDF)", "https://dls.delonghigroup.com/files/pdfmanuals/NL-57132C9285.pdf"];
+  SRC.dlTxt = ["De'Longhi – Gebruiksaanwijzing volautomaat met tekstdisplay en melkreservoir (PDF)", "https://dls.delonghigroup.com/files/docs/5/NL-5713216371.pdf"];
+  const m = MODELS.find(x => x.id === "delonghi-magnifica");
+  m.src.push("dlMagS");
+  m.faults.push(
+    N("Maalgraad-lampje knippert: koffie te fijn gemalen", 1, "De koffie is te fijn gemalen, waardoor hij te langzaam of niet doorloopt.", ["Zet opnieuw koffie en draai tijdens het malen de maalgraadknop één klik richting 7.", "Beoordeel pas na minstens twee kopjes en draai zo nodig nog een klik.", "Blijft het, zet de stoom/heetwaterknop op I en laat even water uit het stoompijpje lopen (ook handig bij een luchtbel door een waterfilter)."]),
+    N("Lampje voorgemalen koffie knippert of brandt", 1, "De functie voorgemalen koffie staat aan, maar er zit geen gemalen koffie in de trechter.", ["Doe gemalen koffie in de trechter of zet de functie uit."]),
+    N("Lampje trechter knippert: trechter verstopt", 1, "De trechter voor voorgemalen koffie is verstopt.", ["Maak de trechter schoon met een kwastje."]),
+    N("Aroma-lampje knippert: te veel koffie", 1, "Er is te veel koffie gebruikt voor de ingestelde hoeveelheid.", ["Kies een lichter aroma door de aromaknop linksom te draaien."]),
+    N("Zetgroep-lampje knippert: zetgroep ontbreekt", 1, "De zetgroep is na het schoonmaken niet teruggeplaatst.", ["Plaats de zetgroep terug volgens de handleiding."]),
+    N("Melding hydraulisch circuit leeg", 1, "Het watercircuit is leeg.", ["Draai de stoom/heetwaterknop naar I tot er geen water meer komt en zet hem terug op 0.", "Herhaal tot het water regelmatig komt.", "Controleer of het waterreservoir goed vastzit."]),
+    N("Lampje 'binnenkant vuil' brandt continu", 2, "De binnenkant van de machine is erg vuil.", ["Maak de machine grondig schoon volgens de handleiding.", "Blijft de melding, neem contact op met een servicecentrum."]),
+    N("Stoom/heetwaterknop knippert", 1, "De regelknop voor stoom en heet water staat niet in de juiste stand.", ["Draai de knop naar de juiste stand."])
+  );
+  MODELS.push({ id: "delonghi-tekstdisplay", brand: "De'Longhi", name: "Volautomaat met tekstdisplay en melkreservoir: meldingen", dev: "volautomaat met tekstdisplay", cat: "koffiemachines", years: "De'Longhi-volautomaten met tekstmeldingen en melkreservoir (modelnummer op het typeplaatje)", unit: null, also: "De'Longhi algemeen alarm, De'Longhi te fijn gemalen regel maalgraad, De'Longhi plaats zetgroep, De'Longhi druk op de toets clean, De'Longhi ledig koffiedikbakje", intro: "Sommige De'Longhi-volautomaten tonen hun meldingen als tekst op het display, zoals 'vul reservoir!' of 'algemeen alarm!'. Hieronder staat wat elke melding betekent volgens de Nederlandse handleiding.", weak: ["Te fijn gemalen koffie.", "Vuile binnenkant (algemeen alarm)."], parts: [], tasks: [], src: ["dlTxt"], faults: [
+    N("Melding 'vul reservoir!'", 1, "Te weinig water in het reservoir, of het reservoir zit niet goed.", ["Vul het reservoir en druk het aan tot het vastklikt."]),
+    N("Melding 'TE FIJN GEMALEN REGEL MAALGRAAD'", 1, "De koffie is te fijn gemalen en loopt te langzaam of niet.", ["Draai tijdens het malen de maalgraadknop één klik richting 7 en zet opnieuw koffie.", "Beoordeel pas na minstens twee kopjes.", "Blijft het, druk op OK en laat water uit het pijpje lopen tot de afgifte normaal is."]),
+    N("Melding 'PLAATS WATERAFGIFTEGROEP!'", 1, "Het heetwaterpijpje ontbreekt of zit niet goed.", ["Plaats het heetwaterpijpje helemaal."]),
+    N("Melding 'ledig koffiedikbakje!'", 1, "Het koffiedikbakje is vol, of er zijn 3 dagen verstreken sinds de eerste koffie.", ["Leeg en reinig het bakje en plaats het terug.", "Leeg het bakje altijd ook als je het lekbakje verwijdert."]),
+    N("Melding 'plaats koffiedikbakje!'", 1, "Het koffiedikbakje is na het schoonmaken niet teruggezet.", ["Open het servicedeurtje, haal het lekbakje eruit en plaats het koffiedikbakje."]),
+    N("Melding 'voorgemalen koffie inbrengen!'", 1, "De functie voorgemalen koffie staat aan, maar de trechter is leeg.", ["Doe gemalen koffie in de trechter of zet de functie uit."]),
+    N("Melding 'ontkalk!'", 1, "De machine moet ontkalkt worden.", ["Voer zo snel mogelijk het ontkalkprogramma uit."]),
+    N("Melding 'Minder koffie!'", 1, "Er wordt te veel koffie gebruikt.", ["Kies een milder aroma of gebruik minder voorgemalen koffie."]),
+    N("Melding 'KOFFIEBONENRESERVOIR VULLEN!'", 1, "De bonen zijn op, of de trechter voor voorgemalen koffie is verstopt.", ["Vul het bonenreservoir.", "Maak anders de trechter leeg en schoon."]),
+    N("Melding 'PLAATS ZETGROEP!'", 1, "De zetgroep is na het schoonmaken niet teruggeplaatst.", ["Plaats de zetgroep terug."]),
+    N("Melding 'Sluit deurtje!'", 1, "Het servicedeurtje staat open.", ["Sluit het deurtje."]),
+    N("Melding 'plaats melkreservoir!'", 1, "Het melkreservoir zit niet goed vast.", ["Plaats het melkreservoir helemaal."]),
+    N("Melding 'druk op de toets clean!'", 1, "Er is net melk afgegeven; de melkleidingen moeten worden gespoeld.", ["Houd de toets CLEAN minstens 8 seconden in tot de reinigingsmelding verschijnt."]),
+    N("Melding 'algemeen alarm!'", 2, "De binnenkant van de machine is erg vuil.", ["Maak de machine grondig schoon volgens de handleiding.", "Blijft de melding, neem contact op met een servicecentrum."])
+  ]});
+})();
+(() => {
+  SRC.nesPop = ["Nespresso – Troubleshooting Vertuo POP (Engels)", "https://www.nespresso.com/za/en/machine-assistance/vertuo-pop-machine-assistance"];
+  const cs = "Blijft het probleem, neem contact op met Nespresso.";
+  MODELS.push({ id: "nespresso-vertuo-pop", brand: "Nespresso", name: "Vertuo POP: wat betekent het lampje?", dev: "Vertuo POP", cat: "koffiemachines", years: "Vertuo POP", unit: null, also: "Nespresso Vertuo Pop knippert, Vertuo Pop oranje lampje, Vertuo Pop knippert 2 keer, Vertuo Pop ontkalken stoppen, Vertuo Pop geen koffie", intro: "De Nespresso Vertuo POP heeft één knop met een lampje. Het knipperpatroon (wit of oranje, 1, 2 of 3 keer) vertelt wat er aan de hand is.", weak: ["Kop niet goed vergrendeld.", "Ontkalkmodus per ongeluk gestart."], parts: [], tasks: [], src: ["nesPop"], faults: [
+    N("Geen lampje op de knop", 1, "De machine is automatisch uitgegaan (na 2 minuten niet gebruiken) of krijgt geen stroom.", ["Druk op de knop of ontgrendel de hendel.", "Blijft het donker, controleer stopcontact, stekker en zekering."]),
+    N("Lampje brandt, maar machine start niet", 1, "De hendel is niet vergrendeld of de verkeerde handeling staat klaar.", ["Voor koffie: plaats een nieuwe capsule goed, vergrendel de hendel en druk op de knop.", "Voor reinigen, ontkalken of leegmaken: haal de capsule eruit, sluit en vergrendel, en druk op de knop."]),
+    N("Lampje knippert 1 keer, pauze, enzovoort", 1, "Het waterreservoir is leeg.", ["Vul het reservoir, controleer of de hendel vergrendeld is en druk op de knop."]),
+    N("Lampje knippert 2 keer, pauze: machine doet niets", 2, "Een probleem met de capsule of hendel, of er zit nog een capsule in tijdens reinigen of ontkalken.", ["Controleer of de capsule nieuw en onbeschadigd is, de hendel vergrendeld is en het reservoir vol is.", "Bij reinigen of ontkalken: zorg dat de capsule eruit is.", "Helpt dat niet: open de kop, vervang zo nodig de capsule, haal de stekker 10 seconden eruit, sluit de kop, zet de machine aan en druk op de knop.", cs]),
+    N("Lampje knippert 3 keer en brandt dan continu", 1, "De machine moet ontkalkt worden.", ["Je kunt nog een paar kopjes zetten, maar ontkalk binnenkort."]),
+    N("Lampje knippert, machine draait niet", 1, "De machine leest de barcode van de capsule en maakt hem nat, of is oververhit na veel gebruik.", ["Wacht tot de koffie begint te lopen.", "Anders: controleer capsule, hendel en water, zet de machine uit (knop 3 seconden indrukken), weer aan, en laat hem na veel gebruik ongeveer 20 minuten afkoelen.", "Gaat hij niet uit, houd de knop 7 seconden in om de ontkalkmodus te verlaten."]),
+    N("Lampje knippert en er komt alleen water", 1, "Reinigen, ontkalken of leegmaken is bezig.", ["Heb je dit niet gestart, druk op de knop om te stoppen.", "Blijft hij knipperen, houd de knop minstens 7 seconden in om de ontkalkmodus te verlaten.", cs]),
+    N("Knop knippert oranje (rustig)", 1, "Een reinigingscyclus is bezig.", ["Wacht tot hij klaar is, of druk op de knop om te stoppen."]),
+    N("Knop knippert snel oranje", 1, "Ontkalken of leegmaken is bezig.", ["Wacht tot het klaar is.", "Na het ontkalken (lampje stopt met snel knipperen en brandt): laat de machine 10 minuten drogen."]),
+    N("Knop knippert 5 keer oranje, daarna wit", 1, "De fabrieksinstellingen zijn hersteld.", ["Je hoeft niets te doen."]),
+    N("Geen koffie of water", 1, "Leeg reservoir, verkeerd geplaatste capsule of kalk.", ["Controleer het reservoir en plaats een nieuwe capsule goed.", "Ontkalk zo nodig.", "Open de kop om de capsule uit te werpen en draai een reinigingscyclus."]),
+    N("Koffie niet warm genoeg", 1, "Koud kopje of kalk.", ["Verwarm het kopje voor met heet kraanwater.", "Ontkalk zo nodig."]),
+    N("Koffiedik in het kopje", 1, "Er zit vuil in de machine.", ["Voer de reinigingsprocedure twee keer uit."])
+  ]});
+})();
+(() => {
+  SRC.groheBlue = ["GROHE – FAQ GROHE Blue (Engels)", "https://contenthub.grohe.com/en_gb/services-consumer/faq-s/product-information/kitchen-faqs/grohe-blue.html"];
+  const cs = "Blijft de fout, neem contact op met de GROHE-klantenservice.";
+  MODELS.push({ id: "grohe-blue", brand: "GROHE", name: "GROHE Blue waterbar: foutcodes E1 tot EE en EC", dev: "GROHE Blue (Home en Professional)", cat: "kleine-apparaten", years: "GROHE Blue Home en GROHE Blue Professional", unit: null, also: "GROHE Blue E1, GROHE Blue E8 filter, GROHE Blue EC CO2-fles, GROHE Blue handgreep knippert rood, GROHE Blue geen bruiswater, GROHE Blue E9 HI", intro: "GROHE Blue is een keukenkraan met filter, koeler en soms bruiswater (CO2). Foutcodes staan op het display van de koeler; de hendel van de kraan knippert er vaak bij in een kleur.", weak: ["Filter niet recht geplaatst.", "CO2-fles na vervangen niet gereset."], parts: [], tasks: [], src: ["groheBlue"], faults: [
+    F("E1", "Pomp-veiligheidsuitschakeling", 1, "De pomp is uit veiligheid uitgeschakeld; er komt geen gefilterd water en de hendel knippert rood.", ["Haal de stroom ongeveer 30 seconden van de koeler.", "Controleer of het filter recht geplaatst is."]),
+    F("E3", "Geen verbinding tussen kraan en koeler", 2, "Een verbindingsfout tussen de kraan en de koeler/carbonator; er komt geen gefilterd water.", ["Controleer de stekkerverbinding.", cs]),
+    F("E5", "Fout in koeler of carbonator", 2, "Een storing in de koeler of carbonator; de hendel knippert rood.", ["Haal de stroom 30 seconden van de koeler en zet hem weer aan."]),
+    F("E7", "Vocht in de koeler", 2, "Er is vocht gemeten in de koeler; de hendel knippert rood.", ["Haal de stroom 15 minuten van de koeler en zet hem weer aan.", cs]),
+    F("E8", "Filtercapaciteit overschreden", 1, "Het filter is op; de hendel knippert oranje.", ["Vervang de filterpatroon meteen."]),
+    F("E9", "Koeler oververhit (wisselt met HI)", 1, "De koeler/carbonator is te warm geworden.", ["Sluit de hendel en zorg voor ventilatie rond de koeler; de omgeving mag maximaal 32 °C zijn.", "Laat 10 tot 15 minuten afkoelen en reset de E9-melding."]),
+    F("EE", "Fout die niet zelf te verhelpen is", 3, "Een storing die met de andere stappen niet verdwijnt.", ["Haal de stroom van de koeler en noteer het serienummer.", "Neem contact op met een installateur of met GROHE (bij Blue Home mag alleen de GROHE-klantenservice repareren)."]),
+    F("EC", "CO2-fles bijna leeg of niet gereset", 1, "De CO2-fles is bijna leeg of is na vervangen niet gereset; de hendel knippert wit.", ["Vervang de CO2-fles.", "Reset: houd de rechterknop ingedrukt tot het display knippert en 'ro' verschijnt; houd hem daarna opnieuw in tot het knipperen stopt."]),
+    F("SE", "Configuratiemodus actief (knippert)", 1, "De wifi-instelmodus (access point) staat aan; dit is geen storing.", ["Gebruik de modus om de koeler aan wifi te koppelen; zorg voor een stabiele internetverbinding."]),
+    N("Hendel knippert: filter bijna op", 1, "Het filter heeft nog minder dan 10% capaciteit.", ["Bestel een nieuw filter en plaats het; vervang het filter ook na een jaar."]),
+    N("Geen water uit de kraan", 1, "Filter niet goed geplaatst, geknikte slangen, watertoevoer dicht of afsluiters dicht.", ["Controleer het filter en de slangen, en of alle afsluiters helemaal open staan."]),
+    N("Maar een straaltje bruiswater", 1, "De CO2-fles is leeg.", ["Vervang de CO2-fles en reset hem."]),
+    N("Lek bij het plaatsen van een filter", 1, "Een afdichting in de filterkop is verschoven.", ["Leg de afdichting weer goed op zijn plek."])
+  ]});
+})();
+(() => {
+  SRC.ninjaCreami = ["Ninja Kitchen Support – NC300 Series Ninja CREAMi 7-in-1 Ice Cream Maker FAQs (Engels)", "https://old-support.ninjakitchen.com/hc/en-us/articles/4407283592338-NC300-Series-Ninja-CREAMi-7-in-1-Ice-Cream-Maker-FAQs"];
+  MODELS.push({ id: "ninja-creami", brand: "Ninja", name: "CREAMi ijsmachine: start niet, kom zit vast, ijs te kruimelig", dev: "CREAMi ijsmachine", cat: "kleine-apparaten", years: "CREAMi NC300-serie", unit: null, also: "Ninja Creami start niet, Ninja Creami kom zit vast, Ninja Creami poederig ijs, Ninja Creami lampjes knipperen, Ninja Creami re-spin", intro: "De Ninja CREAMi maakt ijs van een bevroren basis in een beker. De meeste problemen komen door de volgorde van inschakelen, een scheef bevroren beker of een te koude vriezer.", weak: ["Beker scheef ingevroren.", "Vriezer te koud."], parts: [], tasks: [], src: ["ninjaCreami"], faults: [
+    N("CREAMi start niet", 1, "De buitenkom is geplaatst voordat de stekker in het stopcontact zat, of de beker is scheef bevroren.", ["Steek eerst de stekker in het stopcontact en plaats daarna pas de buitenkom.", "Controleer of de inhoud niet scheef is bevroren."]),
+    N("Middelste twee lampjes van de voortgangsbalk knipperen", 1, "Het mes trekt zich terug nadat je een programma hebt gestopt.", ["Wacht tot de lampjes stoppen met knipperen voordat je de buitenkom eraf haalt."]),
+    N("Buitenkom komt niet los na het draaien", 1, "De kom zit vast, vaak door vocht in de mesholte.", ["Wacht ongeveer 2 minuten, houd de ontgrendelknop links op de voet ingedrukt en draai de hendel met de klok mee.", "Zit hij nog vast: ontgrendel het deksel en draai het tegen de klok in; leg een doek eronder en probeer het na ongeveer 10 minuten los te trekken.", "Lukt het nog niet, wacht nog 10 tot 20 minuten.", "Voorkom het door de mesholte droog te houden en het mes tussen verschillende bases af te drogen."]),
+    N("Beker scheef bevroren", 1, "De inhoud is schuin bevroren; dan niet verwerken.", ["Laat de inhoud in de koelkast ontdooien, roer hem door en vries hem opnieuw in op een vlakke ondergrond met een glad oppervlak."]),
+    N("IJs is poederig of kruimelig", 1, "De basis is erg koud.", ["Gebruik RE-SPIN (niet als je daarna nog MIX-IN doet, en niet bij restjes)."]),
+    N("Vaak RE-SPIN nodig", 1, "De vriezer staat waarschijnlijk te koud. De basis hoort tussen ongeveer -13 °C en -22 °C te zijn.", ["Zet de vriezer iets warmer of zet de beker op een warmere plek, zoals voorin.", "Of laat de beker een paar minuten op het aanrecht staan."]),
+    N("IJs is zacht of vloeibaar", 1, "De basis is niet lang genoeg ingevroren.", ["Vries de basis minstens 24 uur in."]),
+    N("Machine schuift over het aanrecht", 1, "De ondergrond is nat of niet vlak, of de voetjes zijn vies.", ["Zet hem op een droge, vlakke ondergrond en maak de voetjes schoon en droog."])
+  ]});
+})();
+(() => {
+  SRC.zpOne = ["Zonneplan – Handleiding van jouw Zonneplan One omvormer", "https://www.zonneplan.nl/zonnepanelen/one-handleiding"];
+  SRC.zpOneOpt = ["Zonneplan – Handleiding van jouw Zonneplan One Optimized", "https://www.zonneplan.nl/zonnepanelen/one-optimized-handleiding"];
+  SRC.zpZever = ["Zonneplan – Handleiding van jouw Zeversolar omvormer", "https://www.zonneplan.nl/zonnepanelen/zeversolar-handleiding"];
+  const net = N("Omvormer staat uit of geeft niets", 1, "Normaal bij donker of sneeuw op de panelen. Overdag kan ook de groep in de meterkast uit staan of is er een stroomstoring.", ["Wacht tot er genoeg licht is; de omvormer start vanzelf.", "Controleer of de groep van de omvormer in de meterkast aan staat.", "Na een stroomstoring start hij weer zodra er netspanning is."]);
+  const hoog = N("Omvormer schakelt uit bij hoge netspanning", 1, "Boven 253 volt schakelt de omvormer zichzelf uit om apparaten te beschermen.", ["Je hoeft niets te doen: hij probeert later opnieuw op te starten."]);
+  const sneeuw = N("Sneeuw of vuil op de panelen", 1, "Geen storing, maar minder opbrengst.", ["Laat sneeuw liggen en veeg de panelen niet schoon; het verlies in de winter is te verwaarlozen.", "Dalt de opbrengst bij een snelweg, industrie of landbouw, laat de panelen dan door een glazenwasser schoonmaken."]);
+  const blik = N("Na blikseminslag", 2, "De omvormer kan zijn uitgevallen.", ["Is hij niet zwaar beschadigd, dan start hij weer zodra de huisinstallatie spanning heeft.", "Bij twijfel of schade: neem contact op met Zonneplan."]);
+  MODELS.push({ id: "zonneplan-one-omvormer", brand: "Zonneplan", name: "Zonneplan One en One Optimized omvormer: lampjes en storingen", dev: "One en One Optimized omvormer", cat: "zonnepanelen", years: "Zonneplan One en Zonneplan One Optimized (1-fase en 3-fasen)", unit: null, also: "Zonneplan omvormer rood lampje, Zonneplan One storing, Zonneplan omvormer knippert groen, Zonneplan omvormer staat uit, omvormer 253 volt", intro: "De Zonneplan One-omvormer heeft één led (1-fase) of drie leds in verschillende kleuren (3-fasen). Groen knipperen bij het opstarten is normaal; een rood lampje dat blijft branden betekent een storing.", weak: ["Hoge netspanning in de wijk.", "Groep in de meterkast uitgeschakeld."], parts: [], tasks: [], src: ["zpOne", "zpOneOpt"], faults: [
+    N("Leds knipperen groen (ongeveer 30 seconden)", 1, "De omvormer start op, vaak bij zonsopkomst, schemer of bewolkt weer.", ["Wacht; je hoeft niets te doen."]),
+    N("Leds knipperen groen in het donker of bij grijs weer", 1, "De omvormer is uit en wacht op genoeg licht (One Optimized).", ["Wacht; hij start vanzelf weer."]),
+    N("Leds branden continu groen", 1, "De omvormer is opgestart en werkt (One Optimized).", ["Je hoeft niets te doen."]),
+    N("1 of 3 leds branden continu rood", 2, "Er is een storing in de omvormer.", ["Voer een reset uit volgens de resetpagina van Zonneplan.", "Helpt dat niet, ga naar zonneplan.nl/contact en volg het stappenplan."]),
+    net, hoog, sneeuw, blik
+  ]});
+  MODELS.push({ id: "zeversolar-omvormer", brand: "Zeversolar", name: "Zeversolar omvormer: lampjes en storingen", dev: "omvormer", cat: "zonnepanelen", years: "Zeversolar-omvormers (o.a. geleverd door Zonneplan)", unit: null, also: "Zeversolar rood lampje, Zeversolar omvormer knippert, Zeversolar geen internet, Zeversolar storing", intro: "Zeversolar-omvormers hebben drie lampjes. Knipperen bij zonsopkomst en -ondergang is normaal opstarten; rood dat blijft branden betekent een storing.", weak: ["Internetverbinding valt weg."], parts: [], tasks: [], src: ["zpZever"], faults: [
+    N("Geen lampjes", 1, "Het is donker; de omvormer is uit.", ["Je hoeft niets te doen."]),
+    N("Alle drie lampjes knipperen", 1, "Het systeem start op, meestal bij zonsopkomst of -ondergang of op grijze dagen.", ["Wacht tot het opstarten klaar is."]),
+    N("Lampje brandt continu rood", 2, "Er is een storing.", ["Voer een reset uit.", "Helpt dat niet, neem contact op met Zonneplan via het contactformulier."]),
+    N("Geen internetverbinding", 1, "De omvormer gaat 's nachts of bij weinig licht uit; ook de verbinding (kabel, powerline of wifi) kan weg zijn.", ["Wacht tot er genoeg zon is.", "Herstel de verbinding via kabel, powerline of wifi."]),
+    sneeuw, blik
+  ]});
+})();
+(() => {
+  SRC.smaEv = ["SMA – Operating manual SBxx-1VL-40: Event Messages (Engels)", "https://manuals.sma.de/SBxx-1VL-40/en-US/391460235.html"];
+  SRC.smaLed = ["SMA – Sunny Boy 3000TL–5000TL: LED Signals (Engels)", "https://manuals.sma.de/SB30-50TL-21/en-US/517769867.html"];
+  const svc = "Neem contact op met je installateur of SMA Service.";
+  const gnd = "Laat de installateur de PV-installatie controleren op een aardfout (isolatiefout).";
+  const ev = (c, t, d, cause, steps) => F(c, t, d, cause, steps);
+  MODELS.push({ id: "sma-sunny-boy", brand: "SMA", name: "Sunny Boy omvormer: eventnummers en lampjes", dev: "Sunny Boy omvormer", cat: "zonnepanelen", years: "Sunny Boy 1-fase (typenummer SB…-1VL-40); lampjes ook Sunny Boy 3000TL–5000TL", unit: null, also: "SMA omvormer rood lampje, SMA event 3501 isolatiefout, SMA 6501 te warm, SMA 202 netstoring, SMA 3302 weinig zon, SMA 10286 wifi weg, SMA Sunny Boy foutcode", intro: "Een SMA Sunny Boy-omvormer meldt storingen als event met een nummer, zichtbaar op het display of in de webinterface/app. Een rode led betekent een fout die een vakman moet oplossen. Werk nooit zelf aan de DC-kant: zonnepanelen leveren gevaarlijke spanning zolang er licht op valt.", weak: ["Netspanning te hoog in de wijk (101-105, 302).", "Te warme plek of vuile koelribben (6501, 8003)."], parts: [], tasks: [], src: ["smaEv", "smaLed"], faults: [
+    N("Groene led brandt", 1, "De omvormer levert stroom aan het net.", ["Je hoeft niets te doen."]),
+    N("Groene led knippert", 1, "Er zijn nog niet genoeg voorwaarden om te leveren (bijvoorbeeld te weinig licht); hij begint vanzelf zodra het kan.", ["Wacht."]),
+    N("Rode led brandt", 2, "Er is een fout; de foutmelding en het eventnummer staan op het display.", ["Noteer het eventnummer.", "De fout moet door een vakman worden opgelost: " + svc.toLowerCase()]),
+    N("Blauwe led brandt", 1, "Bluetooth-communicatie is actief.", ["Je hoeft niets te doen."]),
+    ev("101-105", "Netstoring: netspanning of netimpedantie te hoog", 2, "De netspanning of de impedantie van het net is te hoog.", ["Laat de netspanning controleren; neem contact op met de netbeheerder of " + svc.toLowerCase()]),
+    ev("202-206", "Netstoring: net weg, kabel beschadigd of spanning te laag", 2, "Het net is weggevallen, de AC-kabel is beschadigd of de netspanning is te laag.", ["Controleer of de groep van de omvormer in de meterkast aan staat.", "Laat kabel, landinstelling en netspanning controleren door de installateur."]),
+    ev("302", "Vermogen beperkt: AC-spanning te hoog", 1, "De netspanning is te hoog; de omvormer levert minder.", ["Laat de netspanning controleren; gebeurt het vaak, neem contact op met de netbeheerder."]),
+    ev("401 / 404", "Netstoring: eilandnet of grote frequentieverandering", 2, "Het net is weg (eilandnet) of de frequentie verandert sterk.", ["Laat de netaansluiting controleren op frequentieschommelingen."]),
+    ev("501 / 507 / 701", "Netfrequentie buiten bereik", 1, "De netfrequentie is te hoog of te laag.", ["Laat de frequentie controleren; gebeurt het vaak, neem contact op met de netbeheerder."]),
+    ev("801", "Wachten op netspanning / netuitval", 1, "De omvormer ziet geen netspanning.", ["Controleer de groep in de meterkast.", "Laat AC-kabel, landinstelling en netspanning controleren."]),
+    ev("901", "Aardgeleider ontbreekt", 3, "De aardleiding is niet aangesloten.", ["Laat de aardleiding correct aansluiten door een installateur."]),
+    ev("1001 / 1101 / 1302", "Aansluitfout L en N", 3, "L en N zijn verwisseld, een tweede fase zit op N, of L of N is niet aangesloten.", ["Laat de AC-aansluiting corrigeren door een installateur."]),
+    ev("3302 / 3303", "Onstabiel bedrijf: te weinig DC-vermogen", 1, "De panelen leveren te weinig stroom, bijvoorbeeld door sneeuw of schaduw.", ["Controleer op sneeuw of schaduw.", "Komt het vaak voor, laat de installateur het PV-ontwerp en de bekabeling controleren."]),
+    ev("3401", "DC-overspanning", 3, "De spanning van de panelen is te hoog voor de omvormer.", ["Laat de omvormer direct van alle spanningsbronnen scheiden en neem contact op met je installateur of SMA Service."]),
+    ev("3501", "Isolatiefout: aardfout in de panelen", 3, "Er is een aardfout in het PV-veld.", [gnd]),
+    ev("3601 / 3701", "Lekstroom of reststroom te hoog", 3, "Er loopt te veel lek- of reststroom.", [gnd]),
+    ev("3801", "DC-overstroom", 3, "Er loopt te veel stroom van de panelen.", ["Laat controleren of het PV-veld goed is gedimensioneerd en bedraad."]),
+    ev("3901 / 3902", "Wachten op DC-startvoorwaarden", 1, "Er is nog te weinig licht om te starten.", ["Haal sneeuw of schaduw weg en wacht op meer licht.", "Gebeurt het 's ochtends vaak, laat de installateur de startspanning aanpassen."]),
+    ev("6001-6438", "Zelfdiagnose: storing in de omvormer", 3, "De omvormer heeft een interne storing gevonden.", [svc]),
+    ev("6501 / 6502 / 6509", "Uitgeschakeld door oververhitting", 1, "De omvormer is te warm geworden.", ["Maak de koelribben en luchtkanalen schoon en zorg voor ventilatie.", "Voorkom directe zon en een omgeving warmer dan 40 °C."]),
+    ev("6512", "Onder minimale bedrijfstemperatuur", 1, "Het is te koud; de omvormer levert weer vanaf -25 °C.", ["Je hoeft niets te doen."]),
+    ev("6603 / 6604", "Overbelasting", 3, "De omvormer is overbelast.", [svc]),
+    ev("7001 / 7002", "Fout in temperatuursensor", 2, "Een temperatuursensor werkt niet.", [svc]),
+    ev("8003", "Vermogen langer dan 10 minuten beperkt door temperatuur", 1, "De omvormer wordt te warm en levert minder.", ["Maak de koeling schoon, zorg voor ventilatie en vermijd hitte en directe zon."]),
+    ev("7619", "Geen communicatie met energiemeter", 1, "De omvormer bereikt de energiemeter niet.", ["Zorg dat de meter op hetzelfde netwerk zit.", "Verbeter de wifi of gebruik een netwerkkabel."]),
+    ev("10284", "Geen wifi-verbinding", 1, "De omvormer kan geen verbinding maken met wifi.", ["Controleer netwerknaam, wachtwoord en versleuteling.", "Controleer of de router binnen bereik is of gebruik een repeater."]),
+    ev("10286", "Wifi-verbinding verbroken", 1, "De wifi-verbinding is weggevallen.", ["Controleer of de router aan staat en binnen bereik is; gebruik eventueel een repeater."]),
+    ev("10283", "Wifi-module defect", 2, "De wifi-module werkt niet.", [svc]),
+    ev("10252", "Netwerkcommunicatie onderbroken", 1, "De verbinding via de netwerkkabel is onderbroken.", ["Controleer kabel en stekkers, router en switches."]),
+    ev("10282", "Inloggen geblokkeerd na foute pogingen", 1, "Te vaak een verkeerd wachtwoord ingevoerd.", ["Wacht 15 minuten (gebruiker) of 12 uur (Grid Guard-code) en probeer opnieuw."])
+  ]});
+})();
+(() => {
+  SRC.zpOneReset = ["Zonneplan – Reset van jouw Zonneplan One", "https://www.zonneplan.nl/zonnepanelen/one-handleiding/reset"];
+  SRC.zp4g = ["Zonneplan – Reset witte 4G module", "https://www.zonneplan.nl/zonnepanelen/one-handleiding/reset-witte-4g-module"];
+  SRC.zpZevReset = ["Zonneplan – Reset van jouw Zeversolar-omvormer", "https://www.zonneplan.nl/zonnepanelen/zeversolar-handleiding/reset"];
+  SRC.zpEvo = ["Zonneplan – Handleiding van jouw Zonneplan Evo", "https://www.zonneplan.nl/zonnepanelen/evo-handleiding"];
+  const reset = (draai) => ["Zet de " + draai + " aan de onderkant van de omvormer op 0 en wacht 1 minuut.", "Zet de werkschakelaar bij de omvormer uit (of de schakelaar 'PV' op de pv-verdeler).", "Zet de groep van de zonnepanelen in de meterkast helemaal omlaag, tot je een klik voelt.", "Wacht 15 minuten.", "Zet eerst de groep in de meterkast weer aan, dan de werkschakelaar, en zet de omvormer weer op 1.", "Na een paar minuten hoort het groene lampje continu te branden.", "Blijft de storing, meld het via Kiki op de contactpagina van Zonneplan."];
+  const one = MODELS.find(m => m.id === "zonneplan-one-omvormer");
+  one.src.push("zpOneReset", "zp4g", "zpEvo");
+  one.years = "Zonneplan One, One Optimized en Evo (1-fase en 3-fasen)";
+  one.name = "Zonneplan One, One Optimized en Evo: lampjes en storingen";
+  const r = one.faults.find(f => f.t.startsWith("1 of 3 leds"));
+  r.steps = reset("draaiknop");
+  one.faults.push(N("Geen opbrengst zichtbaar in de Zonneplan-app", 1, "De internetverbinding van de omvormer (witte 4G-module) is waarschijnlijk niet actief.", ["Zet de draaiknop van de omvormer op 0, wacht 1 minuut en zet de werkschakelaar (of PV-schakelaar) uit.", "Draai de wartel los, haal de 4G-module eruit en wacht 5 minuten.", "Duw de module met het logo naar je toe terug tot hij klikt.", "Zet de werkschakelaar weer aan en de omvormer op 1.", "Het lampje van de module knippert eerst onregelmatig en na ongeveer 15 minuten stabiel groen.", "Blijft het, meld het via Kiki op de contactpagina van Zonneplan."]));
+  const z = MODELS.find(m => m.id === "zeversolar-omvormer");
+  z.src.push("zpZevReset");
+  z.faults.find(f => f.t.startsWith("Lampje brandt continu rood")).steps = reset("schakelaar");
+})();
+(() => {
+  SRC.solisAlarm = ["Solis Service – Complete list of alarm display messages (Engels)", "https://solis-service.solisinverters.com/en/support/solutions/articles/44002492654-complete-list-of-alarm-display-messages"];
+  const rs = ["Herstart de omvormer.", "Blijft de melding, neem contact op met je installateur of Solis-support."];
+  const ins = "Laat dit controleren door je installateur: werk nooit zelf aan de DC-kant (zonnepanelen geven spanning zolang er licht op valt).";
+  MODELS.push({ id: "solis-omvormer", brand: "Solis", name: "Solis omvormer: alarmmeldingen op het display", dev: "omvormer (netgekoppeld)", cat: "zonnepanelen", years: "Solis netgekoppelde omvormers (Ginlong Solis)", unit: null, also: "Solis NO-Grid, Solis OV-G-V 01, Solis PV ISO-PRO, Solis OV-TEM, Solis ILeak-PRO, Ginlong omvormer storing, Solis Failsafe", intro: "Solis-omvormers (Ginlong) tonen een storing als korte tekst op het display, zoals NO-Grid of OV-G-V 01, soms met een code tussen haakjes. De meeste meldingen over het net (G-V, G-F) komen door de netspanning in de wijk en verdwijnen vanzelf.", weak: ["Te hoge netspanning (OV-G-V).", "Isolatiefout bij vocht of regen (PV ISO-PRO)."], parts: [], tasks: [], src: ["solisAlarm"], faults: [
+    F("OV-G-V 01 (1010)", "Netspanning te hoog", 1, "De netspanning ligt een bepaalde tijd boven de ingestelde grens. Ook OV-G-V 02 tot 05 zijn varianten van te hoge netspanning.", ["Laat het net en de AC-bedrading controleren.", "Gebeurt het vaak: limieten mogen alleen worden aangepast met toestemming van de netbeheerder."]),
+    F("UN-G-V (1011)", "Netspanning te laag", 1, "De netspanning ligt onder de grens.", ["Laat de netspanning controleren."]),
+    F("OV-G-F (1012)", "Netfrequentie te hoog", 1, "De frequentie van het net is te hoog.", ["Laat de netfrequentie en de beveiligingsinstellingen controleren."]),
+    F("UN-G-F (1013)", "Netfrequentie te laag", 1, "De frequentie van het net is te laag.", ["Laat de netfrequentie en de beveiligingsinstellingen controleren."]),
+    F("NO-Grid (1015)", "Geen net gedetecteerd", 1, "De omvormer ziet geen netspanning.", ["Controleer of de groep van de omvormer in de meterkast aan staat.", "Laat de netaansluiting en de ingestelde netnorm controleren."]),
+    F("G-PHASE (1016)", "Driefasennet uit balans", 2, "De fasen van het net zijn ongelijk.", ["Laat de netaansluiting controleren."]),
+    F("OV-G-I (1018)", "Uitgangsstroom te hoog", 2, "Te veel stroom aan de netkant.", ["Laat de netaansluiting controleren."]),
+    F("OV-DC (1020)", "DC-spanning te hoog", 3, "De spanning van de panelen is hoger dan de omvormer aankan.", [ins]),
+    F("Reve-DC (1028)", "DC verkeerd om aangesloten", 3, "De plus en min van de panelen zijn verwisseld.", [ins]),
+    F("PvMidIso (1029)", "Lage isolatie PV-middenpunt", 1, "Normaal vroeg in de ochtend, laat op de dag of bij regen.", ["Komt het op andere momenten voor: " + ins.charAt(0).toLowerCase() + ins.slice(1)]),
+    F("GRID-INTF. (1030)", "Netstoring", 1, "Storing op het net.", rs),
+    F("OV-TEM (1032)", "Omvormer te warm", 1, "De interne temperatuur is te hoog.", ["Controleer de plaatsing en de omgevingstemperatuur (ventilatie, geen directe zon).", "Herstart de omvormer na 15 minuten."]),
+    F("PV ISO-PRO 01 (1033)", "Isolatiefout zonnepanelen", 2, "De isolatie van het PV-veld is te laag; ook PV ISO-PRO 02. Kan na regen of dauw voorkomen.", ["Let op of het alleen bij nat weer of 's ochtends gebeurt.", ins]),
+    F("ILeak-PRO 01 (1034)", "Lekstroombeveiliging", 2, "Er loopt te veel lekstroom; ook ILeak-PRO 02 tot 04.", [ins]),
+    F("ARC-FAULT (1041)", "Vlamboog in DC-bekabeling", 3, "De omvormer heeft een vlamboog aan de DC-kant gemeten.", ["Laat de installateur de MC4-stekkers, aansluitingen, aansluitdozen en panelen controleren voor je de omvormer herstart."]),
+    F("UN-TEM (103A)", "Temperatuur te laag", 1, "Het is te koud voor de omvormer.", ["Controleer de omgevingstemperatuur en herstart.", "Blijft de melding, neem contact op met support."]),
+    F("Failsafe (2010)", "Geen communicatie met energiemeter (EPM)", 1, "De verbinding tussen omvormer en meter of exportbegrenzer is weg.", ["Controleer de communicatiekabel tussen omvormer en meter."]),
+    F("INI-FAULT (1031)", "Initialisatiefout", 2, "Een interne fout bij het opstarten.", rs),
+    F("RelayChk-FAIL (1035)", "Relaiszelftest mislukt", 2, "Het relais in de omvormer slaagt niet voor de zelftest.", rs),
+    F("12Power-FAULT (1038)", "Fout in 12V-voeding", 3, "De interne 12V-voeding werkt niet goed.", rs),
+    F("L&PE FAULT (F017)", "Lage weerstand tussen L en PE", 3, "Mogelijk een aardfout in de AC-bedrading.", ["Laat de AC-bedrading controleren op een aardfout en herstart daarna."])
+  ]});
+})();
+(() => {
+  SRC.tadoE0st = ["tado° Help Center – My Smart Thermostat or Wireless Temperature Sensor shows an E0 error (Engels)", "https://support.tado.com/en/articles/3405530"];
+  SRC.tadoE0rad = ["tado° Help Center – My Smart Radiator Thermostat shows an E0 error / the warning symbol is on (Engels)", "https://support.tado.com/en/articles/4639742-my-smart-radiator-thermostat-shows-an-e0-error-the-warning-symbol-is-on-how-can-i-fix-this"];
+  SRC.tadoE10 = ["tado° Help Center – My Smart Thermostat/Wireless Temperature Sensor shows an E10 error (Engels)", "https://support.tado.com/en/articles/3405531"];
+  SRC.tadoE124 = ["tado° Help Center – My Smart Radiator Thermostat displays an E1, E2 or E4 error (Engels)", "https://support.tado.com/en/articles/3482479"];
+  const sup = "Lukt het na een paar pogingen niet, neem contact op met tado° support via de chat.";
+  const pair = ["Houd het apparaat 3 tot 8 meter van de Internet Bridge.", "Zet de koppelmodus op de Internet Bridge aan (het koppellampje knippert).", "Houd de knop van het apparaat ongeveer 3 seconden in om opnieuw te koppelen."];
+  MODELS.push({ id: "tado-foutcodes", brand: "tado°", name: "Slimme thermostaat en radiatorknop: foutcodes E0, E1, E2, E4 en E10", dev: "slimme thermostaat en slimme radiatorknop", cat: "cv-ketels", years: "tado° V3+ en eerder: Smart Thermostat, draadloze temperatuursensor, Smart Radiator Thermostat (ook Basic)", unit: null, also: "tado E0, tado E1 radiatorknop, tado E2, tado E4 kalk, tado E10 bedrading, tado uitroepteken, tado koppelen mislukt", intro: "tado° toont een foutcode op het display van de thermostaat of radiatorknop. E0 gaat over koppelen, E1, E2 en E4 over het kalibreren op de radiatorkraan, en E10 over de bedrading van de slimme thermostaat.", weak: ["Vastzittend kraanpennetje door kalk (E4).", "Bevestigingsring niet vast genoeg (E1)."], parts: [], tasks: [], src: ["tadoE0st", "tadoE0rad", "tadoE10", "tadoE124"], faults: [
+    F("E0", "Koppelen mislukt (thermostaat, sensor of radiatorknop)", 1, "Het koppelen met de Internet Bridge is tijdens de installatie mislukt. Bij een radiatorknop kan ook het waarschuwingssymbool branden.", pair.concat(["Gelukt als de streepjes van de radiatorknop blijven branden (Basic: waarschuwingssymbool gaat uit), of als op de thermostaat de twee schakels samen blijven.", sup])),
+    F("E1", "Radiatorknop vindt dichte stand van de kraan niet", 1, "De knop kon de gesloten stand van de radiatorkraan niet vinden.", ["Haal de knop van de kraan.", "Controleer of de bevestigingsring stevig op het kraanhuis zit.", "Herstart en monteer de knop opnieuw zodat hij opnieuw kalibreert.", "Gebruik je een adapter: kijk of je het meegeleverde verlengpennetje nodig hebt."]),
+    F("E2", "Motor raakt het kraanpennetje niet", 1, "De motor van de knop maakt geen contact met het pennetje van de kraan.", ["Controleer of bevestigingsring en eventuele adapter stevig vastzitten.", "Herstart en monteer de knop opnieuw.", "Gebruik je een adapter: kijk of je het verlengpennetje nodig hebt."]),
+    F("E4", "Te weinig slag tussen open en dicht (vaak kalk)", 1, "De afstand tussen de open en dichte stand van de kraan is te klein, vaak door kalkaanslag.", ["Maak het kraanpennetje los: druk het een paar keer in en uit met een sleutel, of zet de oude knop terug en draai de kraan een paar keer open en dicht.", "Herstart en monteer de knop opnieuw.", "Blijft de fout, vervang de batterijen en monteer opnieuw.", "Lukt het nog niet, stuur tado° support via de chat een duidelijke foto van het kraanhuis."]),
+    F("E10", "Bedrading past niet bij de instelling", 2, "De bedrading van de slimme thermostaat of sensor klopt niet met hoe hij de verwarming moet aansturen. Zolang E10 in beeld is, regelt tado° de verwarming niet.", ["Door een installateur geplaatst: stel de apparaten in volgens de installatiehandleiding van tado°.", "Zelf geplaatst met de online installatiehulp: controleer of je alle stappen hebt doorlopen en of de bedrading klopt.", "Blijft E10 na een tijd staan, houd de knop van het apparaat 10 seconden in om te herstarten.", "Helpt dat niet, neem contact op met tado° support."])
+  ]});
+})();
+(() => {
+  const T = "https://support.tado.com/en/articles/";
+  SRC.tadoBrNet = ["tado° Help Center – The Internet Bridge does not connect to the internet (Engels)", T + "3482506"];
+  SRC.tadoBrRouter = ["tado° Help Center – The 'Router' LED on the Internet Bridge is blinking (Engels)", T + "3458235-the-router-led-on-the-internet-bridge-is-blinking-what-does-it-mean"];
+  SRC.tadoBrCloud = ["tado° Help Center – The 'Cloud' LED on the Internet Bridge is blinking (Engels)", T + "3455907"];
+  SRC.tadoBrInet = ["tado° Help Center – The 'Internet' LED on the Bridge is blinking (Engels)", T + "3458282"];
+  SRC.tadoBrLink = ["tado° Help Center – What do the 'Link' LED states on the Bridge mean? (Engels)", T + "3458224"];
+  const srv = ["Knippert hij langer dan 10 minuten: haal de stekker van de Bridge 10 seconden eruit en sluit hem weer aan.", "Controleer of een website laadt op hetzelfde netwerk.", "Controleer of app.tado.com bereikbaar is en of ouderlijk toezicht in de router hem niet blokkeert.", "Zet in de router Google DNS als primaire DNS.", "Reserveer in de router een vast IP-adres voor de Bridge."];
+  const lan = ["Druk de netwerkkabel stevig aan in Bridge en router.", "Probeer een andere kabel en/of een andere LAN-poort van de router.", "Gaan de lampjes van de routerpoort niet aan, zet de poort aan in de routerinstellingen."];
+  MODELS.push({ id: "tado-internet-bridge", brand: "tado°", name: "Internet Bridge: lampjes Router, Cloud, Internet en Link", dev: "Internet Bridge", cat: "slim-huis", years: "tado° Internet Bridge (met en zonder koppelknop)", unit: null, also: "tado bridge cloud lampje knippert, tado bridge router lampje knippert, tado bridge geen internet, tado bridge lampjes uit, tado glasvezel router", intro: "De tado° Internet Bridge zit met een netwerkkabel aan je router en verbindt de thermostaten met internet. Zijn de lampjes allemaal aan, dan is hij verbonden. Een knipperend lampje laat zien waar de verbinding stokt. De meeste problemen los je op in de instellingen van de router.", weak: ["Router ondersteunt de snelheid van de Bridge niet (10 Mbit/s half-duplex).", "Uitgeschakelde of IPTV-poort op de router."], parts: [], tasks: [], src: ["tadoBrNet", "tadoBrRouter", "tadoBrCloud", "tadoBrInet", "tadoBrLink"], faults: [
+    N("Alle lampjes uit", 1, "De Bridge krijgt niet genoeg stroom.", ["Controleer de voeding van de Bridge: kabel en stroombron."]),
+    N("Alleen Power (of Link) brandt, rest uit", 1, "De Bridge heeft stroom maar ziet geen netwerkverbinding.", lan),
+    N("Router-lampje knippert", 1, "De Bridge ziet de netwerkkabel en wacht op een IP-adres van de router (DHCP).", ["Sommige nieuwere routers ondersteunen de snelheid van de Bridge (10 Mbit/s half-duplex) niet, ook na een firmware-update. Zet dan een 10/100 Mbit/s-switch tussen Bridge en router.", "Controleer de kabel en probeer een andere LAN-poort, niet een poort met IP-TV.", "Haal de stroom even van de Bridge en sluit hem weer aan."]),
+    N("Cloud-lampje knippert", 1, "De Bridge maakt verbinding met de servers van tado°; brandt het continu, dan is het gelukt.", srv),
+    N("Internet-lampje knippert (oudere Bridge)", 1, "De Bridge probeert de servers van tado° te bereiken.", srv),
+    N("Link-lampje knippert", 1, "De Bridge staat in koppelmodus, bijvoorbeeld tijdens de installatie.", ["Je hoeft niets te doen; het knipperen stopt vanzelf binnen een paar uur."])
+  ]});
+})();
+(() => {
+  SRC.fritzLed = ["AVM – FRITZ!Box 7590: Meaning of the LEDs (Engels)", "https://service.avm.de/help/en/FRITZ-Box-7590/019/hilfe_system_bedeutung_leuchtdioden"];
+  SRC.fritzRed = ["AVM Knowledge Base – FRITZ!Box 7590: The Info LED glows red continuously (Engels)", "https://en.avm.de/service/knowledge-base/dok/FRITZ-Box-7590/1654_The-Info-LED-glows-red-continuously"];
+  SRC.fritzInfo = ["AVM Knowledge Base – FRITZ!Box 7682: Info LED flashes (Engels)", "https://en.avm.de/service/knowledge-base/dok/FRITZ-Box-7682/66_Info-LED-flashes"];
+  MODELS.push({ id: "fritzbox-lampjes", brand: "AVM", name: "FRITZ!Box: wat betekenen de lampjes (Info rood, Power/DSL knippert)?", dev: "FRITZ!Box router", cat: "internet", years: "FRITZ!Box 7590 (lampjes); Info-lampje ook 7682", unit: null, also: "FRITZ!Box info lampje rood, FRITZ!Box power dsl knippert, FRITZ!Box wlan knippert, FRITZ!Box connect wps knippert snel, Fritzbox geen internet", intro: "Een FRITZ!Box van AVM heeft lampjes voor Power/DSL, WLAN, Fon/DECT, Connect/WPS en Info. Een rood Info-lampje betekent een fout; de precieze oorzaak staat dan op de pagina Overzicht in de gebruikersinterface (meestal via fritz.box in je browser).", weak: ["DSL-verbinding valt weg (Power/DSL knippert)."], parts: [], tasks: [], src: ["fritzLed", "fritzRed", "fritzInfo"], faults: [
+    N("Power/DSL knippert", 1, "De FRITZ!Box heeft stroom, maar de DSL-verbinding wordt opgebouwd of is onderbroken.", ["Wacht even tot de verbinding is opgebouwd.", "Blijft het knipperen, kijk op de pagina Overzicht in de gebruikersinterface voor details."]),
+    N("Info-lampje rood (knippert of brandt)", 2, "Er is een fout opgetreden: beperkte functies, ongebruikelijk gebruik of een andere dringende melding. Internet of telefoon werkt mogelijk niet.", ["Open de gebruikersinterface van de FRITZ!Box en lees de melding op de pagina Overzicht; die blijft staan tot het probleem is opgelost.", "Volg de aanwijzingen die daar staan."]),
+    N("Info-lampje knippert rood of meerdere lampjes blijven knipperen na update", 3, "Een update van FRITZ!OS is mislukt (FRITZ!Box 7682).", ["Neem contact op met AVM of je provider voor herstel van de software."]),
+    N("Info-lampje knippert groen", 1, "FRITZ!OS wordt bijgewerkt, Stick & Surf is bezig, het online-tijdbudget is bereikt of een zelf ingestelde gebeurtenis (zoals een nieuw voicemailbericht) is opgetreden.", ["Bij een update: haal de stroom er niet af en wacht.", "Kijk onder Systeem > Knoppen en leds welke gebeurtenis aan het Info-lampje hangt en handel die af (bericht afluisteren, fax openen of data/tegoed verhogen)."]),
+    N("Connect/WPS knippert snel", 1, "Het koppelen via WPS is afgebroken, meestal omdat meer dan twee apparaten tegelijk WPS probeerden.", ["Herhaal het koppelen met één apparaat tegelijk."]),
+    N("WLAN-lampje uit", 1, "De wifi staat uit.", ["Zet wifi aan met de WLAN-knop of in de gebruikersinterface."]),
+    N("Fon/DECT knippert", 1, "Een DECT-telefoon of slim-huisapparaat wordt aangemeld, of er wachten voicemailberichten.", ["Je hoeft niets te doen; luister eventueel je berichten af."])
+  ]});
+})();
+(() => {
+  SRC.deco = ["TP-Link FAQ – What Do Deco LED Colors Mean? (Engels)", "https://www.tp-link.com/support/faq/1464/"];
+  SRC.nestWifi = ["Google Nest Help – Wifi device light meanings (Engels)", "https://support.google.com/googlenest/answer/6191584?"];
+  SRC.orbi = ["NETGEAR – What Do Orbi Lights Mean? (Engels)", "https://www.netgear.com/hub/network/orbi-led-lights/"];
+  MODELS.push({ id: "tp-link-deco", brand: "TP-Link", name: "Deco mesh-wifi: wat betekent het lampje?", dev: "Deco mesh-wifi", cat: "internet", years: "Deco X- en Be-serie, M5, P7, M9 Plus, M4, E4, W2400, M3W", unit: null, also: "Deco rood lampje, Deco knippert rood, Deco geel lampje blijft branden, Deco blauw knippert, Deco geen internet", intro: "Een TP-Link Deco laat met één gekleurd lampje zien wat hij doet. Groen (bij M4, E4 en W2400 wit) betekent dat alles werkt; rood betekent een probleem met internet of met de verbinding naar de hoofd-Deco.", weak: ["Satelliet te ver van de hoofd-Deco."], parts: [], tasks: [], src: ["deco"], faults: [
+    N("Rood lampje brandt continu", 2, "Er is een probleem: internet is weg of er is een fout.", ["Herstart de Deco en controleer je internetverbinding (modem).", "Blijft het rood, volg de offline-hulp van TP-Link."]),
+    N("Rood lampje knippert", 1, "Deze satelliet heeft geen verbinding meer met de hoofd-Deco.", ["Controleer de verbinding tussen de Deco's (afstand of kabel) en herstart de satelliet."]),
+    N("Geel lampje blijft branden", 1, "De Deco start op.", ["Wacht 1 à 2 minuten.", "Verandert er niets, haal de stroom er even af en sluit hem weer aan."]),
+    N("Geel lampje knippert", 1, "De Deco wordt gereset.", ["Laat de reset afmaken; heb je die niet gestart, kijk dan in de reset-uitleg van TP-Link."]),
+    N("Blauw lampje knippert", 1, "Klaar om in te stellen.", ["Start de installatie in de Deco-app.", "Blijft hij blauw knipperen zonder verder te gaan (M4, E4, W2400), dan hangt hij in de instelmodus: volg de installatiehandleiding."]),
+    N("Groen (of wit) lampje knippert", 1, "Er wordt een firmware-update geïnstalleerd.", ["Laat de Deco aan staan tot de update klaar is."]),
+    N("Deco M3W: Signal-lampje rood", 1, "Continu rood: verbonden met de hoofd-Deco maar geen internet. Knipperend rood: geen verbinding met de hoofd-Deco.", ["Controleer het internet op de hoofd-Deco, of zet de M3W dichter bij de hoofd-Deco."])
+  ]});
+  MODELS.push({ id: "google-nest-wifi", brand: "Google", name: "Google Wifi, Nest Wifi en Nest Wifi Pro: lampjes", dev: "Google Wifi / Nest Wifi", cat: "internet", years: "Google Wifi, Nest Wifi router en punt, Nest Wifi Pro", unit: null, also: "Google Wifi oranje knippert, Nest Wifi geel lampje, Nest Wifi rood lampje, Nest Wifi Pro geel knippert, Google Wifi geen internet", intro: "Google Wifi en Nest Wifi tonen hun status met een lampje. Wit betekent online. Geel of oranje wijst meestal op een netwerkfout (geen verbinding met het modem), rood op een probleem met het apparaat zelf.", weak: ["Losse netwerkkabel tussen router en modem."], parts: [], tasks: [], src: ["nestWifi"], faults: [
+    N("Google Wifi: lampje pulseert oranje", 1, "Geen internetverbinding.", ["Controleer de netwerkkabel tussen het hoofdpunt en het modem."]),
+    N("Google Wifi: lampje pulseert rood", 3, "Er is een probleem met het punt.", ["Zet het punt terug naar fabrieksinstellingen.", "Blijft het rood pulseren, neem contact op met Google."]),
+    N("Nest Wifi router: geel pulserend lampje", 1, "Netwerkfout.", ["Controleer de netwerkkabels tussen router en modem en sluit ze zo nodig opnieuw aan."]),
+    N("Nest Wifi (router of punt): rood lampje", 3, "Er is iets mis met het apparaat.", ["Zet hem terug naar fabrieksinstellingen.", "Blijft het rood, neem contact op met Google."]),
+    N("Nest Wifi punt: geel lampje pulseert langzaam", 1, "Netwerkfout.", ["Controleer de verbinding tussen modem en router of hoofdpunt.", "Herstart het punt in de app, of reset het en stel het opnieuw in."]),
+    N("Nest Wifi punt: oranje lampje brandt", 1, "De microfoon staat uit.", ["Zet de schakelaar aan de achterkant om om de microfoon aan te zetten."]),
+    N("Nest Wifi Pro: geel lampje knippert langzaam", 1, "Netwerkfout of WAN-verbinding verbroken.", ["Controleer de netwerkkabel tussen router en modem, zorg dat beide aan staan en sluit opnieuw aan."]),
+    N("Nest Wifi Pro: rood lampje knippert snel", 3, "Kritieke storing.", ["Zet de router terug naar fabrieksinstellingen.", "Blijft het rood, neem contact op met Google."]),
+    N("Geel lampje brandt continu", 1, "Fabrieksreset bezig (tot 10 minuten), of bij Nest Wifi Pro een netwerkfout tijdens het instellen.", ["Wacht; daarna is het apparaat klaar om opnieuw in te stellen."]),
+    N("Geen lampje", 1, "Geen stroom, of het lampje is gedimd in de app.", ["Controleer stroomkabel en stopcontact.", "Kijk in de Home-app naar de helderheid van het lampje."])
+  ]});
+  MODELS.push({ id: "netgear-orbi", brand: "NETGEAR", name: "Orbi mesh-wifi: magenta, oranje en rood lampje", dev: "Orbi mesh-wifi", cat: "internet", years: "Orbi router en satellieten", unit: null, also: "Orbi magenta lampje, Orbi paars lampje, Orbi oranje ring, Orbi rood knippert, Orbi satelliet geen verbinding", intro: "Bij een NETGEAR Orbi laat de ring aan de voorkant zien hoe goed de satelliet verbonden is: blauw is goed, oranje (amber) redelijk en magenta betekent geen verbinding of geen internet.", weak: ["Satelliet te ver van de router."], parts: [], tasks: [], src: ["orbi"], faults: [
+    N("Ring brandt magenta", 2, "Geen verbinding tussen satelliet en router (backhaul), of geen internet.", ["Controleer of het modem aan staat en verbonden is met de router en kijk de netwerkkabels na.", "Herstart modem, router en satellieten.", "Zorg dat de satelliet binnen bereik van de router staat."]),
+    N("Ring pulseert magenta", 1, "Het koppelen van de satelliet is mislukt of de verbinding is verbroken.", ["Koppel opnieuw: druk op Sync op de router en binnen 2 minuten op Sync op de satelliet; wacht op blauw of oranje."]),
+    N("Ring brandt oranje (amber)", 1, "De verbinding tussen router en satelliet is redelijk.", ["Zet de satelliet dichter bij de router of haal obstakels weg."]),
+    N("Status pulseert rood", 2, "Het apparaat heeft aandacht nodig, mogelijk een hardware- of verbindingsprobleem. NETGEAR geeft geen specifieke oplossing.", ["Herstart het apparaat en controleer de verbindingen.", "Blijft het, neem contact op met NETGEAR-support."]),
+    N("Status pulseert oranje", 1, "Fabrieksreset of firmware-update bezig.", ["Laat het afmaken en haal de stroom er niet af."]),
+    N("Orbi resetten naar fabrieksinstellingen", 1, "Als niets anders helpt, kun je de Orbi terugzetten naar fabrieksinstellingen.", ["Houd de resetknop aan de achterkant 10 seconden in tot het lampje oranje pulseert.", "Stel de Orbi daarna opnieuw in met de Orbi-app."])
+  ]});
+})();
+(() => {
+  SRC.nestCamLights = ["Google Nest Help – Nest camera and doorbell lights and sounds (Engels)", "https://support.google.com/googlenest/answer/9268073?hl=en"];
+  SRC.arloLed = ["Arlo Support – What do the different LED behaviors on my Arlo camera mean? (Engels)", "https://www.arlo.com/en_ch/support/faq/642/What-do-the-different-LED-behaviors-on-my-Arlo-camera-mean"];
+  SRC.reoBell = ["Reolink Support – Understanding the Status Light of Your Video Doorbell (Engels)", "https://support.reolink.com/hc/en-us/articles/10304740093337-Understanding-the-Status-Light-of-Your-Video-Doorbell"];
+  MODELS.push({ id: "google-nest-doorbell-cam", brand: "Google", name: "Nest Doorbell en Nest Cam: geel lampje en andere signalen", dev: "Nest Doorbell / Nest Cam", cat: "slim-huis", years: "Nest Doorbell (batterij, bedraad 2e/3e gen, origineel), Nest Cam (bedraad, batterij, met floodlight)", unit: null, also: "Nest Doorbell geel lampje, Nest deurbel pulseert geel, Nest Cam knippert geel, Nest doorbell 10 keer geel, Nest deurbel te weinig stroom transformator", intro: "Nest-deurbellen en -camera's geven met een statuslampje aan wat er mis is. Geel is bijna altijd een probleem met stroom, batterij of verbinding.", weak: ["Te zwakke beltransformator bij bedrade deurbel.", "Verkeerde voedingsadapter bij Nest Cam."], parts: [], tasks: [], src: ["nestCamLights"], faults: [
+    N("Nest Doorbell (batterij): lampje pulseert langzaam geel", 1, "Probleem met de batterij; de deurbel werkt mogelijk niet.", ["Controleer en laad de batterij."]),
+    N("Nest Doorbell: lampje knippert 10 keer geel", 1, "Verbinden is mislukt.", ["Probeer de installatie opnieuw."]),
+    N("Nest Doorbell (bedraad): lampje pulseert langzaam geel", 2, "Te weinig stroom.", ["Vervang de beltransformator door een exemplaar van 16-24 V AC en 10-40 VA."]),
+    N("Nest Doorbell (origineel): lichtring knippert geel", 2, "Te weinig stroom.", ["Laat de spanning van de beltransformator controleren."]),
+    N("Nest Doorbell (origineel): lichtring knippert 5 keer geel", 1, "Problemen met verbinden tijdens het instellen.", ["Kijk in de app welke foutmelding er staat en volg die."]),
+    N("Statuslampje brandt continu geel", 1, "Een fabrieksreset is gestart (bij Nest Cam met batterij of floodlight tijdens laden: batterijprobleem).", ["Bij een reset: wacht tot hij klaar is.", "Bij laden: controleer de batterij."]),
+    N("Nest Cam (bedraad): lampje knippert langzaam geel", 1, "De voedingsadapter levert het verkeerde vermogen.", ["Gebruik een USB-A-adapter en kabel van 7,5 W; sommige adapters van andere merken werken niet."]),
+    N("Nest Cam: lampje knippert snel geel", 1, "Verbinden mislukt tijdens het instellen (of aftellen naar een fabrieksreset).", ["Probeer de installatie opnieuw, of blijf de knop indrukken als je wilt resetten."]),
+    N("Statuslampje uit", 1, "Normaal in rust of als het lampje is uitgezet; kan ook betekenen: offline, lege batterij, geen stroom of mislukte update.", ["Controleer in de app of het apparaat online is.", "Controleer batterij of stroomvoorziening."])
+  ]});
+  MODELS.push({ id: "arlo-camera-lampjes", brand: "Arlo", name: "Arlo-camera: wat betekent het oranje, blauwe of paarse lampje?", dev: "beveiligingscamera", cat: "slim-huis", years: "Arlo Ultra, Pro 2 t/m Pro 5S, Essential, Go, Go 2, Q, Baby, Wired Floodlight", unit: null, also: "Arlo oranje lampje knippert, Arlo amber licht, Arlo paars lampje, Arlo camera synchroniseert niet, Arlo batterij bijna leeg", intro: "Arlo-camera's laten met een lampje zien wat ze doen. Blauw is meestal goed (aan of verbonden), oranje (amber) wijst op een probleem met verbinding, koppelen of batterij, en paars bij de Q en Baby op wifi zonder internet. Wissel blauw en oranje elkaar af, dan loopt er een update: zet de camera dan niet uit.", weak: ["Camera te ver van basisstation of router.", "Lege batterij."], parts: [], tasks: [], src: ["arloLed"], faults: [
+    N("Oranje knippert langzaam", 1, "Camera niet gevonden of buiten bereik, koppelfout, of batterij bijna leeg (Ultra, Pro, Essential).", ["Laad de batterij op.", "Zet de camera dichter bij het basisstation, de SmartHub of de router en koppel opnieuw."]),
+    N("Oranje knippert snel", 1, "Synchroniseren met SmartHub, basisstation of wifi is mislukt (bij Go/Go 2: geen verbinding met wifi of 4G).", ["Probeer opnieuw te koppelen."]),
+    N("Oranje brandt continu", 1, "Bij bedrade floodlight en Essential Indoor: geen internetverbinding. Bij Go 2: geen geactiveerde simkaart. Bij Q en Baby: opstarten.", ["Controleer de internetverbinding, of de simkaart bij een Go 2."]),
+    N("Paars brandt continu (Q, Baby)", 1, "Verbonden met wifi maar niet met internet.", ["Controleer de internetverbinding van je router."]),
+    N("Paars knippert (Q, Baby)", 1, "De camera staat te ver van de router.", ["Zet de camera dichter bij de router."]),
+    N("Blauw en oranje wisselen af", 1, "Er wordt een firmware-update geïnstalleerd.", ["Zet de camera niet uit tot de update klaar is."]),
+    N("Oranje knippert 1 of 2 keer per minuut (Go 2)", 1, "Batterij bijna leeg (1 keer) of kritiek laag (2 keer).", ["Laad de batterij op."])
+  ]});
+  MODELS.push({ id: "reolink-deurbel", brand: "Reolink", name: "Reolink Video Doorbell: wat betekent het lampje?", dev: "Video Doorbell", cat: "slim-huis", years: "Alle Reolink Video Doorbell-modellen", unit: null, also: "Reolink deurbel wit knippert, Reolink deurbel blauw knippert, Reolink doorbell geen netwerk, Reolink deurbel lampje draait", intro: "De ring rond de knop van een Reolink-videodeurbel geeft de status aan. Wit dat knippert, draait of 'ademt' betekent bijna altijd dat de deurbel geen netwerkverbinding heeft.", weak: ["Wifi-bereik bij de voordeur."], parts: [], tasks: [], src: ["reoBell"], faults: [
+    N("Wit lampje knippert", 1, "De deurbel is opgestart maar zit niet op het netwerk.", ["Controleer de netwerkverbinding."]),
+    N("Wit lampje draait rond na indrukken", 1, "Er is aangebeld terwijl het netwerk weg is.", ["Controleer de netwerkverbinding."]),
+    N("Wit lampje 'ademt' (langzaam aan en uit)", 1, "Persoon of beweging gezien terwijl het netwerk weg is.", ["Controleer de netwerkverbinding."]),
+    N("Blauw lampje knippert", 1, "Er wordt een firmware-update geïnstalleerd.", ["Wacht tot de update klaar is."]),
+    N("Wit lampje brandt continu", 1, "Het lampje staat in de app op altijd aan of alleen 's nachts aan.", ["Pas het aan in de Reolink-app: tandwiel > Light > Button Ring Light."])
+  ]});
+})();
+(() => {
+  SRC.reoBatLed = ["Reolink Support – Working Modes and the Status LED of Battery-powered WiFi Cameras (Engels)", "https://support.reolink.com/hc/en-us/articles/16102415624857-Introduction-to-the-Working-Modes-and-the-Status-LED-of-Battery-powered-WiFi-Cameras"];
+  SRC.reoRedBlue = ["Reolink Support – Reolink Camera Blinking Red and Blue (Engels)", "https://support.reolink.com/articles/36764588569753-Reolink-Camera-Blinking-Red-and-Blue/"];
+  MODELS.push({ id: "reolink-accucamera", brand: "Reolink", name: "Reolink camera op accu: rood of blauw lampje", dev: "camera op accu (wifi)", cat: "slim-huis", years: "Argus (2E, 3, 4, Eco, PT, Track, MagiCam), Altas, Duo, TrackMix (accu)", unit: null, also: "Reolink rood lampje, Reolink Argus rood knippert, Reolink camera rood blauw knippert, Reolink geen wifi", intro: "Reolink-camera's op accu hebben een statuslampje. Blauw betekent dat wifi verbonden is, rood dat de wifi-verbinding mislukt is. Knipperen betekent stand-by (stroombesparing), continu branden dat de camera actief is.", weak: ["Wifi-bereik bij de camera."], parts: [], tasks: [], src: ["reoBatLed", "reoRedBlue"], faults: [
+    N("Rood lampje brandt continu", 1, "De camera is actief maar de wifi-verbinding is mislukt.", ["Controleer de wifi bij de camera.", "Lukt het niet, dien een verzoek in bij Reolink-support."]),
+    N("Rood lampje knippert", 1, "De camera staat in stand-by en de wifi-verbinding is mislukt.", ["Controleer de wifi bij de camera.", "Lukt het niet, dien een verzoek in bij Reolink-support."]),
+    N("Lampje knippert om en om rood en blauw", 2, "Een storing waarvoor Reolink geen zelf-oplossing geeft; soms onderbreken gesproken meldingen het.", ["Neem contact op met Reolink-support via het verzoekformulier.", "Stuur een video van het knipperende lampje mee, met het model en de UID van de camera."]),
+    N("Blauw lampje knippert", 1, "Stand-by (stroombesparing) met wifi verbonden; dit is normaal.", ["Je hoeft niets te doen."])
+  ]});
+})();
+(() => {
+  SRC.silenceS01 = ["Silence – Manuel d'utilisation S01 MY22 (Frans, PDF)", "https://www.silence.eco/wp-content/uploads/2022/09/MU_S01-MY22_FRA-Manuel-dUtilisation-S01-MY22-V007.pdf"];
+  const svc = "Neem contact op met een officiële Silence-servicedealer.";
+  MODELS.push({ id: "silence-s01", brand: "Silence", name: "S01 elektrische scooter: lampjes en meldingen op het dashboard", dev: "S01 elektrische scooter", cat: "scooters", years: "S01 (MY22)", unit: null, also: "Silence S01 BATT OUT, Silence S01 OBD lampje, Silence S01 0x foutcode, Silence scooter te warm, Silence S01 accu te koud, Seat Mó", intro: "De Silence S01 is een elektrische scooter met uitneembare accu (trolley). Het dashboard toont waarschuwingen voor temperatuur, accu en storingen. Een melding die met 0x begint is een storingscode; die laat je door een Silence-dealer uitlezen.", weak: ["Accu niet goed geplaatst (BATT OUT).", "Accu te koud in de winter."], parts: [], tasks: [], src: ["silenceS01"], faults: [
+    N("OBD-lampje brandt", 2, "Er is een storing opgetreden (boorddiagnose).", ["Is de storing voorbij, start de scooter 3 keer opnieuw.", "Zo niet: " + svc.toLowerCase()]),
+    N("Melding 'BATT OUT'", 1, "De accu is niet goed verbonden met de scooter.", ["Plaats de accu opnieuw en goed; daarna verschijnt de gewone informatie weer."]),
+    N("Melding '0x…' op het scherm", 2, "Een storingscode; de betekenis staat niet in de handleiding.", [svc]),
+    N("Temperatuur motor of controller: lampje knippert of brandt", 1, "Knipperen: motor (100 °C) of controller (70 °C) bijna aan de grens. Continu: grens overschreden (motor 110 °C, controller 75 °C).", ["Bij knipperen: gebruik de SPORT-stand niet.", "Bij continu branden: stop en laat de scooter afkoelen."]),
+    N("Accutemperatuur te hoog", 1, "Knippert bij 50 °C, brandt continu bij 60 °C.", ["Gebruik de SPORT-stand niet, stop en laat de accu afkoelen."]),
+    N("Accutemperatuur te laag", 1, "Knippert bij 5 °C, brandt continu bij -10 °C.", ["Zet de scooter of accu op een warmere plek en sluit hem aan op de lader; de accu heeft een interne verwarming."]),
+    N("Fout in laadtoestand (SoC)", 1, "De weergegeven lading loopt niet gelijk met de echte lading.", ["Laad de accu helemaal vol.", "Blijft het, neem contact op met de officiële dealer."]),
+    N("Lampje zijstandaard brandt, scooter rijdt niet", 1, "De zijstandaard is uitgeklapt; uit veiligheid is rijden geblokkeerd.", ["Klap de zijstandaard in."]),
+    N("Lampje D brandt niet: scooter niet rijklaar", 1, "De scooter is nog niet klaar om te rijden.", ["Start goed: druk op MODE terwijl je de linkerremhendel inknijpt, en controleer de overige voorwaarden."])
+  ]});
+})();
+(() => {
+  SRC.makitaDc18 = ["Makita – Gebruiksaanwijzing acculader DC18RA/DC18RC (PDF, gehost door Hornbach)", "https://media.hornbach.nl/hb/ownersmanual/as.56164664.pdf"];
+  SRC.ryobi18 = ["RYOBI Support – What do the LED lights mean on RYOBI 18V chargers? (Engels)", "https://support.ryobi.com.au/article/what-do-led-lights-mean-ryobi-18v-chargers"];
+  MODELS.push({ id: "makita-dc18rc-lader", brand: "Makita", name: "Acculader DC18RC / DC18RA: wat betekent het lampje?", dev: "acculader DC18RC / DC18RA", cat: "gereedschap", years: "DC18RC en DC18RA (18V LXT en 14,4V)", unit: null, also: "Makita lader knippert rood, Makita lader rood groen afwisselend, Makita lader geel lampje, Makita accu laadt niet, DC18RC knippert", intro: "De Makita-lader DC18RC (en DC18RA) laat met een gekleurd lampje zien of hij laadt, klaar is of een probleem ziet. Rood en groen om en om betekent dat laden niet lukt.", weak: ["Stof op de contacten.", "Accu te warm na gebruik."], parts: [], tasks: [], src: ["makitaDc18"], faults: [
+    N("Rood lampje knippert: laden start niet", 1, "De accu is te warm (net gebruikt of in de zon) of te koud.", ["Laat de accu op temperatuur komen (10-40 °C); het laden start dan vanzelf."]),
+    N("Rood en groen knipperen om en om: laden niet mogelijk", 2, "Stof op de contacten, of de accu is versleten of beschadigd.", ["Maak de contacten van lader en accu schoon.", "Blijft het, dan is de accu versleten of beschadigd en moet hij vervangen worden."]),
+    N("Geel lampje knippert: koelprobleem", 1, "De ventilator werkt niet goed of de accu koelt niet genoeg af (bijvoorbeeld door stof). Laden lukt wel, maar duurt langer.", ["Luister of de ventilator draait en maak de ventilatieopeningen van lader en accu schoon.", "Knippert het vaak, laat de lader repareren of onderhouden."]),
+    N("Geel lampje brandt: conditioneringslading", 1, "De lader laadt rustiger door een hoge of lage temperatuur, een al volle accu of een diep ontladen accu.", ["Je hoeft niets te doen; het laden duurt langer dan normaal."]),
+    N("Groen lampje knippert (zonder accu)", 1, "De lader is aangesloten en klaar om te laden.", ["Plaats de accu."])
+  ]});
+  MODELS.push({ id: "ryobi-18v-lader", brand: "RYOBI", name: "ONE+ 18V-lader: rood en groen lampje", dev: "ONE+ 18V-lader (enkele poort)", cat: "gereedschap", years: "RC18120, RC18150U, RC18115, RC18130, BCL1418IV en starterkits", unit: null, also: "Ryobi lader rood knippert, Ryobi lader rood en groen knipperen, Ryobi accu laadt niet, Ryobi ONE+ lader", intro: "De RYOBI ONE+-lader voor één accu toont met een rood en groen lampje wat hij doet. Rood knipperen betekent wachten (temperatuur of lege accu), rood en groen samen knipperen een defect.", weak: ["Diep ontladen accu."], parts: [], tasks: [], src: ["ryobi18"], faults: [
+    N("Rood lampje knippert, groen uit", 1, "De lader wacht: de accu is te warm, te koud of diep ontladen. Hij koelt of warmt eerst op, of laadt een lege accu eerst langzaam voor.", ["Wacht; daarna start het snelladen vanzelf."]),
+    N("Rood en groen knipperen samen: defect", 2, "De accu of de lader is defect.", ["Haal de accu eruit en plaats hem opnieuw.", "Komt het terug, probeer een andere accu: laadt die wel, dan is de eerste accu waarschijnlijk defect.", "Knippert het ook met een tweede accu, dan is de lader mogelijk defect."]),
+    N("Rood lampje brandt (zonder accu)", 1, "De lader is klaar om te laden.", ["Plaats een accu."]),
+    N("Groen lampje knippert", 1, "De accu wordt snel geladen.", ["Je hoeft niets te doen."])
+  ]});
+})();
+(() => {
+  SRC.homepodLight = ["Apple Support – Identify status lights on HomePod and HomePod mini (Engels)", "https://support.apple.com/en-us/HT208248"];
+  SRC.atvLight = ["Apple Support – Apple TV 4K User Guide: status light (Engels)", "https://support.apple.com/en-kw/guide/tv/atvba38a4135/tvos"];
+  MODELS.push({ id: "apple-homepod", brand: "Apple", name: "HomePod en HomePod mini: wat betekent het lampje?", dev: "HomePod / HomePod mini", cat: "audio", years: "HomePod en HomePod mini", unit: null, also: "HomePod wit knippert, HomePod mini oranje knippert, HomePod rood draait, HomePod geen geluid, HomePod resetten", intro: "Bovenop een Apple HomePod zit een lampje dat laat zien wat de speaker doet. Wit knipperen wijst op een probleem; oranje knipperen bij de HomePod mini betekent een verkeerde voedingsadapter.", weak: ["Te zwakke USB-C-adapter bij de HomePod mini."], parts: [], tasks: [], src: ["homepodLight"], faults: [
+    N("Wit lampje knippert", 2, "De HomePod gaat steeds aan en uit; er is een probleem.", ["Haal de stekker eruit, wacht 15 seconden en steek hem weer in.", "Blijft het, zet de HomePod terug naar fabrieksinstellingen.", "Blijft het daarna nog, laat hem repareren door Apple."]),
+    N("HomePod mini: oranje lampje knippert", 1, "De mini zit aan een computer of aan een adapter die geen 20 W (9V, 2,22A) levert.", ["Gebruik een USB-C-adapter van 20 W (9V, 2,22A)."]),
+    N("Rood lampje draait rond", 1, "De HomePod wordt gereset.", ["Wacht tot de reset klaar is en stel hem daarna opnieuw in."]),
+    N("Rood lampje beweegt heen en weer", 1, "De aanraakbediening is vergrendeld.", ["Ontgrendel de aanraakbediening volgens de HomePod-handleiding."]),
+    N("Wit lampje brandt maar geen geluid", 1, "De HomePod speelt audio af, maar het volume staat waarschijnlijk te laag.", ["Zet het volume hoger."]),
+    N("Wit lampje draait rond", 1, "De HomePod start op of installeert een software-update.", ["Laat hem aangesloten tot de update klaar is."])
+  ]});
+  MODELS.push({ id: "apple-tv", brand: "Apple", name: "Apple TV 4K: statuslampje knippert", dev: "Apple TV 4K", cat: "televisies", years: "Apple TV 4K", unit: null, also: "Apple TV lampje knippert snel, Apple TV lampje knippert langzaam, Apple TV start niet, Apple TV lampje uit", intro: "Voorop de Apple TV 4K zit een statuslampje. Snel knipperen betekent een software-update, langzaam knipperen dat hij opstart.", weak: [], parts: [], tasks: [], src: ["atvLight"], faults: [
+    N("Lampje knippert snel", 1, "De Apple TV installeert een software-update.", ["Wacht tot de update klaar is; zie anders de uitleg 'Apple TV 4K bijwerken' van Apple."]),
+    N("Lampje knippert langzaam", 1, "De Apple TV start op.", ["Wacht tot het opstarten klaar is; zie anders de uitleg 'Apple TV 4K herstarten' van Apple."]),
+    N("Lampje is uit", 1, "De Apple TV staat uit of in stand-by.", ["Je hoeft niets te doen; druk op de afstandsbediening om hem aan te zetten."])
+  ]});
+})();
+(() => {
+  SRC.echoLights = ["Amazon Help – What Do the Lights on Your Echo Speaker Mean? (Engels)", "https://digprjsurvey.amazon.com/csad/help/node/GKLDRFT7FP4FZE56"];
+  SRC.nestSpk = ["Google Help – Learn about the lights on your speaker (Engels)", "https://support.google.com/assistant/answer/7073219?hl=en"];
+  MODELS.push({ id: "amazon-echo-lampjes", brand: "Amazon", name: "Echo met Alexa: wat betekent de lichtring?", dev: "Echo-speaker", cat: "audio", years: "Echo, Echo Dot, Echo Show en andere Echo-speakers", unit: null, also: "Alexa geel lampje, Alexa rood lampje, Echo oranje ring, Echo paars licht, Alexa ring blijft geel", intro: "Een Amazon Echo laat met de lichtring zien wat Alexa doet. Geel betekent een melding, rood dat de microfoon uit staat, oranje dat hij verbinding zoekt of in instelmodus staat.", weak: ["Wifi-problemen tijdens instellen (paars)."], parts: [], tasks: [], src: ["echoLights"], faults: [
+    N("Geel licht flitst om de paar seconden", 1, "Je hebt een bericht, melding of gemiste herinnering.", ["Vraag 'Alexa, wat zijn mijn meldingen?' of 'Alexa, wat zijn mijn berichten?'."]),
+    N("Rood lampje brandt", 1, "De microfoon staat uit; Alexa luistert niet.", ["Druk op de microfoonknop om de microfoon weer aan te zetten."]),
+    N("Oranje licht", 1, "De Echo staat in instelmodus of probeert verbinding te maken met internet.", ["Rond het instellen af in de Alexa-app.", "Lukt verbinden niet, volg de wifi-hulp van Amazon."]),
+    N("Paars licht tijdens instellen", 1, "Er is een probleem met wifi.", ["Volg de wifi-hulp van Amazon."]),
+    N("Paars licht kort na een vraag", 1, "Niet storen staat aan.", ["Je hoeft niets te doen, of zet Niet storen uit in de app."]),
+    N("Blauw en blauwgroen draaien langzaam", 1, "De Echo start op of herstart na een update; niet ingesteld wordt hij daarna oranje.", ["Wacht."])
+  ]});
+  MODELS.push({ id: "google-nest-speaker", brand: "Google", name: "Nest Mini, Nest Audio en Google Home: oranje of rode lampjes", dev: "Nest-speaker / Google Home", cat: "audio", years: "Nest Mini, Nest Audio, Home Mini, Home Max, Google Home, Google Home Speaker", unit: null, also: "Nest Mini oranje lampjes, Nest Audio twee rode lampjes, Google Home oranje, Google Home Mini reageert niet, Google speaker geel knippert", intro: "Google-speakers tonen hun status met lampjes. Vier oranje lampjes betekenen meestal dat de microfoon uit staat; twee rode lampjes dat een update langer duurt dan verwacht.", weak: ["Microfoonschakelaar per ongeluk omgezet."], parts: [], tasks: [], src: ["nestSpk"], faults: [
+    N("4 oranje lampjes branden", 1, "De microfoon staat uit; de speaker reageert niet op 'Hey Google'.", ["Zet de microfoonschakelaar om (naast het snoer, achterop bij Home Max; bij de oude Google Home de mute-knop achterop)."]),
+    N("2 rode lampjes branden", 2, "Een update duurt langer dan verwacht (Nest Mini, Nest Audio, Home Max).", ["Volg de hulp van Google voor problemen met updates."]),
+    N("6 oranje lampjes branden (Google Home)", 2, "Een update duurt langer dan verwacht.", ["Volg de hulp van Google voor problemen met updates."]),
+    N("Oranje lampjes tellen af", 1, "Bevestiging van een fabrieksreset; bij 4 oranje lampjes is de reset bevestigd.", ["Laat los als je niet wilt resetten."]),
+    N("Google Home Speaker: gele ring pulseert snel", 2, "Te weinig stroom of een netwerkfout.", ["Controleer de stroom en de netwerkverbinding."]),
+    N("Google Home Speaker: oranje pulseert", 1, "De microfoon staat uit.", ["Zet de microfoonschakelaar aan de onderkant om."]),
+    N("4 witte lampjes knipperen en doven", 1, "De assistent hoorde 'Hey Google' maar begreep de vraag niet; dit is geen storing.", ["Probeer het opnieuw."])
+  ]});
+})();
+(() => {
+  SRC.ambroL60 = ["Ambrogio Robot – Handleiding L60 Elite / 7060DE0 (Engels, PDF)", "https://ambrogiorobot.com/uploads/L60_vers.5.2_INGLESE.pdf"];
+  const svc = "Is de motor defect, laat hem dan repareren of vervangen bij een erkend servicecentrum.";
+  MODELS.push({ id: "ambrogio-l60", brand: "Ambrogio", name: "L60 robotmaaier zonder draad: knipperende lampjes", dev: "L60 robotmaaier", cat: "tuin", years: "L60 (7060DE0, versie A en B)", unit: null, also: "Ambrogio L60 groen lampje knippert, Ambrogio maaier knippert 3 keer, Ambrogio L60 storing, Ambrogio rood lampje", intro: "De Ambrogio L60 is een kleine robotmaaier die zonder begrenzingsdraad werkt (hij herkent gras met sensoren). Storingen zie je aan het aantal keer dat het groene aan/uit-lampje knippert; geel en rood gaan over pauze en accu.", weak: ["Oneffen gazon of obstakels (wielmotor).", "Te hoog gras."], parts: [], tasks: [], src: ["ambroL60"], faults: [
+    N("Groen lampje knippert 1 keer: rechter wielmotor", 1, "De rechter wielmotor loopt vast door oneffen grond of obstakels, of de motor is defect.", ["Maak het gazon vlak, vul gaten en haal stenen en obstakels weg.", svc]),
+    N("Groen lampje knippert 2 keer: linker wielmotor", 1, "De linker wielmotor loopt vast door oneffen grond of obstakels, of de motor is defect.", ["Maak het gazon vlak, vul gaten en haal stenen en obstakels weg.", svc]),
+    N("Groen lampje knippert 3 keer: mes of maaimotor", 1, "Het mes is beschadigd, er zit tape, touw of plastic omheen, de maaier startte binnen 1 meter van een obstakel, het gras is te hoog of de maaimotor is defect.", ["Zet de maaier veilig uit en haal met handschoenen aan het vuil van het mes.", "Vervang een beschadigd mes.", "Haal obstakels weg en start opnieuw.", "Is het gras te hoog: zet de maaihoogte hoger of maai eerst met een gewone maaier.", svc]),
+    N("Groen lampje knippert 4 keer: kantelfout", 1, "De helling is te steil of het werkgebied is niet afgebakend, of de kantelsensor is defect.", ["Controleer de installatieregels en baken het gebied af.", "Start opnieuw; blijft het, laat de maaier nakijken bij een servicecentrum."]),
+    N("Groen lampje knippert 5 keer: randsensor", 1, "De sensor voor een stoeprand of afgrond werd bij het starten niet goed uitgelezen.", ["Maak de sensoren schoon en start opnieuw.", "Blijft het, start met de randsensoren uit of neem contact op met een servicecentrum."]),
+    N("Rood lampje knippert of brandt", 1, "Accu half leeg (knippert 1 keer) of bijna leeg (brandt).", ["Laad de accu op."]),
+    N("Geel lampje knippert 1 keer in pauze", 1, "Het gazon is al gemaaid.", ["Laad op en start na 1 à 2 dagen opnieuw als het gras gegroeid is."]),
+    N("Geel lampje knippert 2 keer in pauze", 1, "Er is geen gras gevonden.", ["Controleer het werkgebied en het gras volgens de installatie-uitleg in de handleiding."]),
+    N("Maaier gaat uit zonder melding", 1, "De accubeveiliging is ingeschakeld.", ["Sluit de maaier aan op de lader; het kan een paar minuten duren voor hij aangaat."]),
+    N("Lampje op de voeding brandt niet", 1, "De voeding krijgt geen stroom.", ["Controleer of de stekker goed in het stopcontact zit."])
+  ]});
+})();
+(() => {
+  SRC.mammoYuka = ["Mammotion – Gebruikershandleiding Yuka-serie, hoofdstuk 6.3 Foutcodes (Engels, PDF)", "https://support.mammotion.com/hc/article_attachments/25326324757015"];
+  const as = "Blijft de fout na een paar keer herstarten, neem contact op met de klantenservice van Mammotion.";
+  MODELS.push({ id: "mammotion-yuka", brand: "Mammotion", name: "Yuka robotmaaier: foutcodes", dev: "Yuka robotmaaier", cat: "tuin", years: "Yuka-serie (3D Vision)", unit: null, also: "Mammotion Yuka error 323, Yuka 1300 positie, Yuka 1301 laadstation verplaatst, Yuka 2727 accu, Mammotion Yuka foutcode", intro: "De Mammotion Yuka is een robotmaaier zonder draad, met camera en een opveegfunctie. Een storing verschijnt als nummer in de Mammotion-app. De handleiding noemt alleen de meest voorkomende codes.", weak: ["Vastgelopen maaischijf (323).", "Laadstation verschoven (1301)."], parts: [], tasks: [], src: ["mammoYuka"], faults: [
+    F("316", "Linker maaischijfmotor oververhit", 1, "De motor van de linker maaischijf is te warm.", ["Wacht een paar minuten tot de motor is afgekoeld; daarna werkt de Yuka weer normaal."]),
+    F("318", "Sensor linker maaischijfmotor defect", 2, "De sensor van de linker maaischijfmotor werkt niet.", ["Herstart de Yuka.", as]),
+    F("323", "Rechter maaischijfmotor overbelast", 1, "De rechter maaischijf wordt te zwaar belast.", ["Kijk of de maaischijf vastzit en maak hem vrij.", "Of zet de maaihoogte hoger."]),
+    F("325", "Rechter maaischijfmotor start niet", 2, "De rechter maaischijfmotor komt niet op gang.", ["Kijk of de maaischijf vastzit.", "Zo niet, herstart de Yuka.", as]),
+    F("326", "Rechter maaischijfmotor oververhit", 1, "De motor van de rechter maaischijf is te warm.", ["Herstart de Yuka.", as]),
+    F("328", "Sensor rechter maaischijfmotor defect", 2, "De sensor van de rechter maaischijfmotor werkt niet.", ["Herstart de Yuka.", as]),
+    F("1005", "Accu bijna leeg", 1, "De accu is bijna leeg.", ["Je hoeft niets te doen: de Yuka gaat verder zodra hij tot 80% is geladen."]),
+    F("1300", "Positiebepaling slecht", 1, "De maaier weet niet goed waar hij is.", ["Wacht tot de Yuka zijn positie opnieuw heeft bepaald."]),
+    F("1301", "Laadstation is verplaatst", 1, "Het laadstation staat niet meer op de plek die de maaier kent.", ["Zet het laadstation terug op zijn oorspronkelijke plek."]),
+    F("1420", "Wielsnelheid niet uit te lezen", 2, "De maaier krijgt te laat gegevens over de wielsnelheid.", ["Herstart de Yuka.", as]),
+    F("2713", "Laden gestopt: accuspanning te laag", 2, "Het laden is gestopt omdat de accuspanning te laag is.", ["Herstart de Yuka.", as]),
+    F("2726", "Accu overladen", 2, "De accu is overladen.", ["Stop meteen met laden.", "Gebeurt het vaker, neem contact op met de klantenservice."]),
+    F("2727", "Accu te diep ontladen", 1, "De accu is te ver leeggelopen.", ["Laad de Yuka op."])
+  ]});
+})();
+(() => {
+  SRC.ei650 = ["Ei Electronics – Gebruiksaanwijzing Ei650-serie (Nederlands, PDF)", "https://asset.conrad.com/media10/add/160267/c1/-/nl/001307583ML03/upute-za-rukovanje-1307583-ei-electronics-ei650-detektor-dima-uklj-10-godisnja-baterija-baterijski-pogon.pdf"];
+  SRC.genius = ["Hekatron – Handleiding Genius Plus / Plus X rookmelder (Nederlands, PDF)", "https://d10mspt9893vz6.cloudfront.net/files/ez-base-import-bestanden/2025/8/Handleiding_Genius_Plus-Plus_X_NL.pdf"];
+  const vervang = "Vervang de rookmelder (de vervangdatum staat op de zijkant).";
+  MODELS.push({ id: "ei-electronics-ei650", brand: "Ei Electronics", name: "Ei650 rookmelder: piepjes en knipperend rood lampje", dev: "Ei650 / Ei650i rookmelder", cat: "rookmelders", years: "Ei650, Ei650i, Ei650W, Ei650iW", unit: null, also: "Ei650 piept elke 32 seconden, Ei650 2 piepjes, Ei650 vals alarm, Ei650 batterij leeg, Ei Electronics rookmelder piept, rookmelder piept om de halve minuut", intro: "De Ei650 van Ei Electronics is een veelgebruikte rookmelder met een vaste batterij die 10 jaar meegaat. Piept hij om de 32 seconden, dan is de batterij bijna leeg (1 piep) of is er een storing in de rookkamer (2 piepjes). In beide gevallen vervang je de hele melder.", weak: ["Stof of insecten in de rookkamer (vals alarm)."], parts: [], tasks: [], src: ["ei650"], faults: [
+    N("1 piep en 1 rode flits om de 32 seconden", 1, "De batterij is bijna leeg.", [vervang, "Bij de i-serie kun je de waarschuwing 12 uur stil zetten met de knop, maar vervang de melder zo snel mogelijk."]),
+    N("2 piepjes en 2 rode flitsen om de 32 seconden", 2, "Storing in de rookkamer: vervuild of defect.", [vervang]),
+    N("Piep om de 32 seconden, lampje knippert niet", 2, "De zelftest heeft een defect onderdeel gevonden.", [vervang]),
+    N("Vals alarm (geen rook)", 1, "Vaak stof, spinnenwebben of insecten in de rookkamer.", ["Druk de knop in en laat los: de melder is 10 minuten stil (lampje knippert om de 8 seconden).", "Zuig de melder voorzichtig af of borstel de openingen schoon, wacht 5 minuten en test opnieuw.", "Komt het alarm steeds terug, vervang de melder."]),
+    N("Rood lampje knippert 2 keer per 16 seconden (i-serie)", 1, "Alarmgeheugen: er is de afgelopen 24 uur een alarm geweest.", ["Controleer waar het alarm vandaan kwam."]),
+    N("Alle melders piepen 2 seconden om de 4 uur (draadloos)", 1, "In een draadloos systeem heeft een van de melders een lege batterij.", ["Controleer alle melders en zoek de melder met de lege batterij."]),
+    N("Groen lampje draadloze module knippert om de 10 seconden", 1, "De batterij van de draadloze module is leeg.", ["Vervang de draadloze module."])
+  ]});
+  MODELS.push({ id: "hekatron-genius-plus", brand: "Hekatron", name: "Genius Plus / Plus X rookmelder: lampjes en piepjes", dev: "Genius Plus / Plus X rookmelder", cat: "rookmelders", years: "Genius Plus en Genius Plus X", unit: null, also: "Hekatron rookmelder rood knippert, Genius Plus oranje lampje, Genius Plus piept om de 48 seconden, Hekatron rookmelder storing", intro: "De Hekatron Genius Plus test zichzelf regelmatig. Groen knipperen om de 48 seconden betekent dat hij goed werkt; oranje of rood knipperen met een korte piep betekent dat je de melder moet vervangen. De batterij zit vast en is niet te vervangen.", weak: [], parts: [], tasks: [], src: ["genius"], faults: [
+    N("Oranje lampje knippert om de 8 seconden, piep om de 48 seconden", 1, "Het einde van de levensduur is bereikt.", ["Vervang de rookmelder.", "Druk kort op de testknop om het geluid 24 uur uit te zetten."]),
+    N("Rood lampje knippert om de 8 seconden, piep om de 48 seconden", 2, "Er is een fout gevonden, bijvoorbeeld een lege batterij.", ["Vervang de rookmelder (de batterij is niet los te vervangen).", "Druk kort op de testknop om het geluid 24 uur uit te zetten."]),
+    N("Groen lampje knippert 2 keer om de 48 seconden", 1, "Alarmgeheugen: er is eerder brandalarm geweest.", ["Controleer de omgeving op de oorzaak.", "Druk kort op de testknop om het geheugen te wissen."]),
+    N("Negatieve toon bij testen, groen lampje", 1, "De melder raakt vervuild; het einde van de levensduur kan binnen 15 maanden komen.", ["Maak de melder schoon met een droge zachte doek (bij hardnekkig vuil een vochtige doek zonder schoonmaakmiddel) en test opnieuw."]),
+    N("Negatieve toon bij testen, oranje of rood lampje", 2, "Einde levensduur (oranje) of een fout (rood).", ["Vervang de rookmelder."]),
+    N("Rood lampje knippert elke seconde met luid alarm", 3, "Er is rook gedetecteerd.", ["Verlaat het gebouw.", "Bij vals alarm: druk kort op de testknop; het alarm is 10 minuten stil en gaat weer af als er nog rook is."])
+  ]});
+})();
+(() => {
+  SRC.faberSvc = ["Faber – Servicehandboek gashaarden 2019 (Nederlands, PDF)", "https://www.faberfires.com/sites/g/files/emiian311/files/2023-03/Faber%20Service%20handboek%202019%20NL.pdf"];
+  const svc = "Gebeurt het vaker, laat de haard nakijken door een erkende gashaardmonteur.";
+  MODELS.push({ id: "faber-gashaard", brand: "Faber", name: "Gashaard (Mertik-bediening): foutcodes F04-F46 en piepjes", dev: "gashaard met Mertik-bediening", cat: "kachels", years: "Faber-gashaarden met Mertik-ontvanger en Symax/ITC-afstandsbediening", unit: null, also: "Faber gashaard F06, Faber F40 batterij, Faber gashaard piept 3 keer, Faber waakvlam gaat uit, Faber haard gaat na 20 seconden uit, Mertik ontvanger piept", intro: "Veel Faber-gashaarden worden bediend met een Mertik-ontvanger en een afstandsbediening. Een F-code staat op de afstandsbediening; de ontvanger geeft daarnaast piepsignalen. Werk nooit zelf aan gasonderdelen: dat is voor de monteur.", weak: ["Lege batterijen in afstandsbediening of ontvanger.", "Decoratie (houtblokken, steentjes) op het thermokoppel."], parts: [], tasks: [], src: ["faberSvc"], faults: [
+    F("F04", "Ontvanger reageert niet, geen ontsteking", 2, "De ontvanger piept 5 seconden en de haard ontsteekt niet, bijvoorbeeld door een probleem met de motor of microschakelaar.", ["Zet de haard uit en weer aan.", svc]),
+    F("F06", "Derde startpoging binnen 5 minuten mislukt", 1, "Geen gas, lucht in de leiding of geen vonk.", ["Wacht 5 minuten en controleer of de gaskraan open staat.", svc]),
+    F("F09", "Geen reactie: koppelen mislukt", 1, "De haard reageert niet of afstandsbediening en ontvanger zijn niet gekoppeld.", ["Koppel de afstandsbediening opnieuw met de ontvanger volgens de handleiding."]),
+    F("F40", "Batterij afstandsbediening bijna leeg", 1, "De batterijspanning van de afstandsbediening is te laag.", ["Vervang de batterijen (2x AAA 1,5 V)."]),
+    F("F46", "Slechte verbinding met de haard", 1, "Onderbroken of geen reactie: slechte verbinding, geen spanning op de ontvanger of te weinig bereik.", ["Controleer batterijen en adapter van de ontvanger.", "Ga dichter bij de haard staan.", svc]),
+    N("Ontvanger piept 3 keer kort na elk commando", 1, "De batterijen van de ontvanger zijn leeg of de 6V-adapter is defect.", ["Vervang de batterijen van de ontvanger (4x AA 1,5 V) of controleer de adapter."]),
+    N("Ontvanger geeft 1 lange piep", 1, "Afstandsbediening en ontvanger passen niet bij elkaar.", ["Controleer of de typenummers van afstandsbediening en ontvanger overeenkomen."]),
+    N("Ontvanger piept 5 seconden, geen ontsteking", 2, "Mogelijk een los contact in het thermokoppelcircuit, een defecte magneetspoel of een gebroken thermokoppel.", ["Controleer of de stekkerverbindingen goed vastzitten.", "Blijft het, laat een monteur komen."]),
+    N("Geen reactie op de afstandsbediening", 1, "Lege batterijen, defecte adapter of niet gekoppeld.", ["Vervang de batterijen, controleer de adapter en koppel opnieuw.", "Geen ontsteking en geen piep: druk één keer kort op de resetknop van de ontvanger (1 piep)."]),
+    N("Haard en waakvlam gaan na ongeveer 20 seconden uit", 1, "Het tweede thermokoppel zit niet goed of wordt geblokkeerd door decoratiemateriaal.", ["Haal decoratie weg rond het thermokoppel.", "Controleer de afdichting van het glas."]),
+    N("Waakvlam brandt, hoofdbrander start niet", 1, "Knop A staat niet op ON.", ["Zet knop A op ON."]),
+    N("Wel vonk, geen waakvlam", 2, "Geen gas, lucht in de leiding, een verstopte waakvlaminspuiter of een probleem met de bedrading.", ["Controleer of de gaskraan open staat.", "Laat de rest (gasdruk, inspuiter, thermokoppel) controleren door een monteur."]),
+    N("Haard gaat vanzelf terug naar waakvlam", 1, "Normaal gedrag: na 3 uur zonder wijziging van de vlamhoogte, bij een te warme ontvanger, of als de batterijen van de ontvanger bijna leeg zijn.", ["Zet de haard opnieuw hoger; vervang zo nodig de batterijen van de ontvanger."])
+  ]});
+})();
+(() => {
+  SRC.atagCx = ["ATAG – Gebruiksaanwijzing oven met magnetron CX4611C (PDF, gehost door De Schouw Witgoed)", "https://deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing-ATAG-oven-met-magnetron-inbouw-CX4611C.pdf"];
+  SRC.atagCs = ["ATAG – Gebruiksaanwijzing combi-stoomoven CS6695D (PDF, gehost door De Schouw Witgoed)", "https://deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing-ATAG-combi-stoomoven-inbouw-grafiet-CS6695D.pdf"];
+  MODELS.push({ id: "atag-oven", brand: "ATAG", name: "Oven, combimagnetron en stoomoven: FOUT XX en andere storingen", dev: "oven / combimagnetron / combi-stoomoven", cat: "ovens", years: "ATAG-inbouwovens met display, o.a. CX4611C en CS6695D", unit: null, also: "ATAG oven FOUT, ATAG oven foutmelding, ATAG combimagnetron vonken, ATAG stoomoven ontkalken melding, ATAG oven display reageert niet", intro: "ATAG-ovens met een display tonen een storing in de elektronica als 'FOUT' met een nummer. ATAG publiceert geen lijst van die nummers: de eerste stap is altijd de stroom er een paar minuten af halen.", weak: ["Kalk in het stoomsysteem (stoomoven)."], parts: [], tasks: [], src: ["atagCx", "atagCs"], faults: [
+    N("Melding 'FOUT XX' op het display", 2, "Een storing in de elektronische module; XX is het foutnummer.", ["Haal de stekker (of groep) een paar minuten van de oven, sluit weer aan en stel de tijd in.", "Komt de fout terug, neem contact op met de ATAG-klantenservice. Houd model- en serienummer bij de hand (binnenkant ovendeur)."]),
+    N("Toetsen en display reageren niet", 1, "Een hapering in de elektronica, bijvoorbeeld na een stroomstoring.", ["Haal de oven een paar minuten van het net, sluit weer aan, zet hem aan en stel de tijd opnieuw in."]),
+    N("Vonken in de ovenruimte (magnetron)", 2, "De afdekplaatjes van de lamp zitten niet goed of de afstandshouders op de geleiderails ontbreken.", ["Stop de magnetron en controleer de lampafdekking en de afstandshouders."]),
+    N("Stroomgroep valt regelmatig uit", 3, "De oorzaak wordt niet genoemd.", ["Laat een servicemonteur de oven nakijken."]),
+    N("Eten blijft rauw (magnetron)", 1, "De timer is niet ingesteld, de starttoets is niet ingedrukt, de deur zit niet goed dicht of de zekering is uitgeschakeld.", ["Controleer de instellingen, sluit de deur goed en kijk of de groep in de meterkast aan staat."]),
+    N("Melding 'Apparaat moet worden ontkalkt' (stoomoven)", 1, "Er zit kalk in het stoomsysteem. Na drie waarschuwingen werken de stoomfuncties niet meer.", ["Start het ontkalkingsprogramma: Instellingen > Koken > Stoominstellingen > Ontkalken, met ontkalkingsmiddel.", "Is het ontkalken onderbroken, start het programma opnieuw vanaf het begin."])
+  ]});
+})();
+(() => {
+  SRC.swapErr = ["Swapfiets Help – I received an error code, do I need a swap? (Engels)", "https://help.swapfiets.com/error-codes"];
+  SRC.stromerIcons = ["Stromer Support – What do the icons in the status bar of my Stromer touchscreen mean? (Engels)", "https://www.stromerbike.com/en/support/faq/display/what-do-the-icons-in-the-status-bar-of-my-stromer-touchscreen-mean"];
+  const app = "Maak een afspraak via de Swapfiets-app.";
+  MODELS.push({ id: "swapfiets-e-bike", brand: "Swapfiets", name: "Elektrische Swapfiets: foutcodes W011, W104 en W105", dev: "elektrische Swapfiets (Power)", cat: "e-bikes", years: "Elektrische Swapfietsen (Power-modellen)", unit: null, also: "Swapfiets foutcode, Swapfiets W011, Swapfiets W104, Swapfiets W105, Swapfiets Power ondersteuning werkt niet, Swapfiets accu te warm", intro: "Een elektrische Swapfiets toont soms een foutcode op het display. Bij de meeste codes maak je via de Swapfiets-app een afspraak; bij sommige helpt eerst uit- en aanzetten. Je hoeft zelf niets te repareren.", weak: [], parts: [], tasks: [], src: ["swapErr"], faults: [
+    F("W011", "Snelheid wordt niet gemeten", 2, "De fiets ziet de rijsnelheid niet.", [app]),
+    F("W104", "Geen ondersteuning tijdens het fietsen", 2, "De trapondersteuning werkt niet.", [app]),
+    F("W105", "Systeemmelding: opnieuw opstarten", 1, "Een melding die vaak verdwijnt na herstarten.", ["Zet de fiets uit en weer aan.", "Helpt dat niet: " + app.toLowerCase()]),
+    N("Melding zonder code bij het aanzetten", 1, "Er werd getrapt terwijl het systeem aanging.", ["Trap niet terwijl je het systeem aanzet; herstart het en probeer opnieuw."]),
+    N("Accutemperatuur te hoog", 1, "De accu is te warm geworden.", ["Zet de accu binnen op een koele plek, uit de zon, tot hij is afgekoeld."]),
+    N("Andere foutcode", 1, "Een code die Swapfiets niet apart uitlegt.", ["Neem contact op met Swapfiets of " + app.toLowerCase()])
+  ]});
+  MODELS.push({ id: "stromer-omni", brand: "Stromer", name: "Stromer speed pedelec: gele en rode driehoek op het touchscreen", dev: "speed pedelec met OMNI C-touchscreen", cat: "e-bikes", years: "Stromer-modellen met OMNI C-touchscreen", unit: null, also: "Stromer rode driehoek, Stromer gele driehoek, Stromer foutmelding display, Stromer OMNI update, Stromer storing", intro: "Stromer speed pedelecs tonen meldingen in de statusbalk van het OMNI-touchscreen. Een gele driehoek is een waarschuwing (meestal kun je verder rijden), een rode driehoek een storing (stop met rijden).", weak: [], parts: [], tasks: [], src: ["stromerIcons"], faults: [
+    N("Gele driehoek in de statusbalk", 1, "Een waarschuwing: functies kunnen beperkt zijn, maar meestal kun je veilig verder rijden.", ["Stop, tik op de statusbalk, kies de waarschuwing en volg de aanwijzingen.", "Komt de waarschuwing steeds terug, neem contact op met je dealer (meldingen worden opgeslagen voor diagnose)."]),
+    N("Rode driehoek in de statusbalk", 3, "Een storing: verder rijden is meestal niet meer mogelijk of veilig.", ["Rijd niet door; er kan meer schade ontstaan.", "Stop, tik op de statusbalk, kies de storing en volg de aanwijzingen.", "Verdwijnt hij eenmalig na een herstart, dan kun je voorzichtig verder; blijft hij na een paar herstarts, ga naar je dealer."]),
+    N("Update-icoon in de statusbalk", 1, "Een OMNI-software-update is gedownload en klaar om te installeren.", ["Zet de fiets uit via 'OFF' op het touchscreen en accepteer de installatie, of tik op de statusbalk en kies 'UPDATE'."])
+  ]});
+})();
+(() => {
+  SRC.pw3 = ["Tesla – Powerwall 3 Owner's Manual (EMEA): Troubleshooting (Engels)", "https://energylibrary.tesla.com/docs/Public/EnergyStorage/Powerwall/3/OwnerManual/en-emea-apac/GUID-24C85EED-636A-4028-ACDE-58DB8163B167.html"];
+  SRC.pwTs = ["Tesla Support – Troubleshooting Your Powerwall (Engels)", "https://www.tesla.com/support/energy/powerwall/own/troubleshooting"];
+  const ts = "Gebruik op de Tesla-supportpagina de knop 'Troubleshoot' (inloggen met je Tesla-account) en doorloop de eerste stappen; blijft het, dan neemt een supportmedewerker contact op.";
+  MODELS.push({ id: "tesla-powerwall", brand: "Tesla", name: "Powerwall thuisbatterij: rood lampje, Gateway offline en Breaker Open", dev: "Powerwall thuisbatterij", cat: "zonnepanelen", years: "Powerwall 3 (lampjes) en Powerwall in het algemeen (app-meldingen)", unit: null, also: "Powerwall rood knippert, Powerwall Gateway Offline, Powerwall Meter Offline, Powerwall Breaker Open, Tesla thuisbatterij storing", intro: "De Tesla Powerwall is een thuisbatterij. Bij de Powerwall 3 brandt het lampje wit als alles normaal is; rood knipperen betekent een omvormerstoring. De Powerwall en de Backup Gateway zijn niet door de gebruiker te repareren: maak de Gateway nooit zelf open.", weak: [], parts: [], tasks: [], src: ["pw3", "pwTs"], faults: [
+    N("Powerwall 3: lampje knippert rood", 3, "Een storing in de omvormer.", ["Neem contact op met Tesla of een gecertificeerde installateur; de Powerwall is niet door de gebruiker te repareren."]),
+    N("Powerwall 3: lampje uit", 1, "De Powerwall staat uit of slaapt.", ["Kijk of het systeem aangezet of opnieuw opgestart moet worden; volg daarvoor de juiste volgorde uit de handleiding ('Turning the System Off')."]),
+    N("App kan geen verbinding maken", 1, "De Powerwall is niet bereikbaar via de Tesla-app.", ["Controleer of het internet thuis werkt.", "Werkt internet wel, stel de wifi-verbinding van de Powerwall opnieuw in volgens de uitleg van Tesla."]),
+    N("Melding 'Gateway Offline'", 1, "De Gateway is offline: geen energiegegevens in de app, grijs of leeg stroomschema, of de Gateway piept.", [ts]),
+    N("Melding 'Meter Offline'", 1, "De meter is offline: een deel van de gegevens ontbreekt, of de batterij staat dagen op 0% of laadt niet onder 10%.", [ts]),
+    N("Melding 'Breaker Open'", 2, "De installatieautomaat staat open; de Powerwall kan geen energie opslaan. Het lampje rechts op de Powerwall kan uit zijn.", [ts, "Zie je rook of ruik je brand bij de groepenkast: stop en bel de Tesla-klantenservice."])
+  ]});
+})();
+(() => {
+  SRC.zpBatReset = ["Zonneplan – Reset van jouw thuisbatterij", "https://www.zonneplan.nl/thuisbatterij/reset"];
+  SRC.zpBat5 = ["Zonneplan – Handleiding van jouw thuisbatterij (5 kWh)", "https://www.zonneplan.nl/thuisbatterij/5-kwh-handleiding"];
+  SRC.zpNexus = ["Zonneplan – Handleiding van jouw thuisbatterij (Nexus)", "https://www.zonneplan.nl/thuisbatterij/solis-handleiding"];
+  const m = MODELS.find(x => x.id === "zonneplan-thuisbatterij");
+  m.src.push("zpBatReset", "zpBat5", "zpNexus");
+  const cnt = "Neem contact op met Zonneplan (via Kiki op de contactpagina).";
+  m.faults.push(
+    N("Thuisbatterij resetten: zo doe je het", 1, "Alleen als het hele huis stroom heeft. Heeft het hele huis geen stroom, dan is het een stroomstoring; de batterij is geen noodstroom en start daarna vanzelf.", ["Zet de werkschakelaar naast de batterij uit (zwarte knop linksom).", "Open de kap (twee grijze knoppen linksom) en zet de batterijschakelaar naar rechts tot hij klikt (groen = uit).", "Zet de groep met de gele BESS-sticker in de meterkast helemaal omlaag.", "Zet daarna alles in omgekeerde volgorde weer aan: groep, batterijschakelaar naar links (rood), kap dicht, werkschakelaar aan.", "Houd de rode startknop minstens 5 seconden in tot je een piep hoort; opstarten duurt 10 tot 30 seconden.", "Blauw lampje: alles werkt. Oranje lampje: geen communicatie met de omvormer; houd de startknop 20 seconden in tot je getik hoort en wacht 30 seconden.", "Blijft het, " + cnt.toLowerCase()]),
+    N("5 kWh-batterij: WARN brandt rood", 2, "De batterij is in storing.", ["Voer een reset uit.", cnt]),
+    N("Statuslampje continu oranje", 2, "De batterij (of een module) is in storing.", [cnt]),
+    N("Nexus: statuslampje knippert oranje", 1, "De verbinding is verloren.", ["Blijft het, " + cnt.toLowerCase()]),
+    N("Nexus: omvormer brandt continu rood", 2, "Storing in de omvormer.", [cnt]),
+    N("Nexus: lampje van een batterijpack brandt oranje", 2, "Storing in dat batterijpack.", [cnt]),
+    N("Lampje noodstroomstopcontact gaat uit", 1, "De batterij is leeg, of het verbruik zat te lang boven 16 A (ongeveer 3680 W).", ["Bij overbelasting probeert het systeem na ongeveer een minuut zelf opnieuw in te schakelen.", "Lukt dat niet, haal eerst alle apparaten uit het noodstroomstopcontact.", "Gebruik geen opgerolde haspel en minimaal 3x1,5 mm² kabel."])
+  );
+})();
+(() => {
+  SRC.zpCh23 = ["Zonneplan – Gebruikershandleiding Charge 2 en Charge 3", "https://www.zonneplan.nl/laadpaal/charge-2-3-handleiding"];
+  SRC.zpCh1 = ["Zonneplan – Gebruikershandleiding Charge 1", "https://www.zonneplan.nl/laadpaal/charge-1-handleiding"];
+  SRC.zpChReset = ["Zonneplan – Reset Zonneplan Charge laadpaal", "https://www.zonneplan.nl/laadpaal/charge-reset"];
+  const reset = ["Haal de laadkabel uit de auto.", "Zet de groep van de laadpaal in de meterkast (vaak een aparte aardlekautomaat) helemaal omlaag tot hij klikt.", "Wacht 10 minuten en zet de groep weer omhoog; de paal verschijnt binnen 10 minuten weer in de Zonneplan-app.", "Blijft de storing, mail service@zonneplan.nl met postcode, huisnummer, een foto van het statuslampje en een foto van de meterkast (met de groep met EV-sticker)."];
+  MODELS.push({ id: "zonneplan-charge", brand: "Zonneplan", name: "Zonneplan Charge laadpaal: rood of geel lampje en resetten", dev: "Charge laadpaal", cat: "laadpalen", years: "Zonneplan Charge 1, Charge 2 en Charge 3", unit: null, also: "Zonneplan laadpaal rood lampje, Zonneplan Charge storing, Zonneplan laadpaal offline, Zonneplan laadpaal resetten, laadpaal laadt niet Zonneplan", intro: "De Zonneplan Charge is een thuislaadpaal met een eigen 4G-verbinding. Een rood of geel lampje, of helemaal geen lampje, betekent een storing; de oplossing is bijna altijd een reset via de meterkast.", weak: ["Slimme laadinstellingen in de auto die de app overrulen."], parts: [], tasks: [], src: ["zpCh23", "zpCh1", "zpChReset"], faults: [
+    N("Rood lampje brandt", 2, "Er is een storing.", reset),
+    N("Geel lampje knippert of brandt", 2, "Er is een storing.", reset),
+    N("Geen lampje", 2, "Een storing (of geen stroom).", reset),
+    N("Laadpaal offline, maar geen storing", 1, "De paal heeft geen verbinding met de app.", ["Na een reset werkt de paal als plug & charge: steek de kabel erin en het laden start vanzelf.", "Komt de verbinding terug, dan stopt die sessie; start het laden dan opnieuw in de Zonneplan-app."]),
+    N("Auto laadt niet terwijl dat wel zou moeten", 1, "Sommige auto's hebben eigen slimme laadinstellingen die de Zonneplan-app overrulen.", ["Zet de slimme laadinstellingen in de auto uit.", "Helpt dat niet, gebruik Help in de Zonneplan-app."]),
+    N("Vuil op de laadpaal", 1, "Geen storing.", ["Spoel voorzichtig af met kraanwater onder lage druk; geen schuurmiddel of hogedrukreiniger."])
+  ]});
+})();
+(() => {
+  SRC.teslaMyPort = ["Tesla – Model Y handleiding: Statuslampen laadpoort", "https://service.tesla.com/docs/Public/diy/modely/nl_nl/GUID-07FBA723-779F-4CF0-B9A7-AA8076335CE4.html"];
+  SRC.ps2Port = ["Polestar – Handleiding Polestar 2 (2021): lampje in de laadaansluiting", "https://www.polestar.com/nl/manual/polestar-2/2021/article/48b981e858c58771c0a801517251d3af/"];
+  SRC.ps2Cable = ["Polestar – Handleiding Polestar 2 (2024): Laadstatus op regeleenheid laadkabel", "https://www.polestar.com/nl/manual/polestar-2/2024/article/c77389d2d7b20c19c0a80151045dccff/"];
+  MODELS.push({ id: "tesla-laadpoort", brand: "Tesla", name: "Model Y: kleur van het lampje bij de laadpoort", dev: "laadpoort Model Y", cat: "auto", years: "Tesla Model Y", unit: null, also: "Tesla laadpoort rood, Tesla laadpoort oranje, Tesla laadpoort blauw, Tesla laadt niet, Tesla Model Y laadlampje", intro: "Bij de laadpoort van een Tesla Model Y zit een lampje dat laat zien wat er gebeurt. Groen knipperen is laden; oranje betekent dat de stekker niet goed in de poort zit; rood is een storing.", weak: ["Stekker niet helemaal ingestoken."], parts: [], tasks: [], src: ["teslaMyPort"], faults: [
+    N("Laadpoort brandt rood", 2, "Er is een storing; laden is gestopt of kan niet beginnen.", ["Kijk of het touchscreen een storingsmelding toont.", "Zo niet: probeer een andere laadkabel of reset de laadbron (mobiele connector of Wall Connector).", "Helpt dat niet, zet de auto uit en probeer het opnieuw via het touchscreen."]),
+    N("Laadpoort brandt oranje", 1, "De connector zit niet helemaal in de laadpoort.", ["Houd de stekker recht voor de poort en duw hem er helemaal in.", "Kijk of er iets in de weg zit; probeer anders een andere laadkabel."]),
+    N("Laadpoort knippert oranje", 1, "De auto laadt met minder stroom omdat de connector niet helemaal is aangesloten.", ["Duw de stekker recht en helemaal in de poort; probeer anders een andere kabel."]),
+    N("Laadpoort brandt blauw, auto laadt niet", 1, "Het laden is gepland voor later (Gepland opladen).", ["Wil je nu laden: zet Gepland opladen uit of tik op Opladen starten op het touchscreen of in de app."]),
+    N("Laadpoort knippert blauw", 1, "De auto communiceert met het laadpunt.", ["Wacht een paar seconden tot hij groen knippert of blauw blijft branden."]),
+    N("Geen lampje bij de laadpoort", 1, "De auto is vergrendeld en slaapt.", ["Ontgrendel de auto of druk op de knop van de laadgreep."])
+  ]});
+  MODELS.push({ id: "polestar-2-laden", brand: "Polestar", name: "Polestar 2: laadlampje rood, geel of uit", dev: "Polestar 2 (laden)", cat: "auto", years: "Polestar 2 (laadaansluiting MJ2021; mode 2-laadkabel MJ2024)", unit: null, also: "Polestar 2 laadlampje rood, Polestar 2 laadt niet, Polestar laadkabel rood knippert, Polestar 2 geel lampje laadpoort", intro: "De Polestar 2 heeft een lampje in de laadaansluiting, en de meegeleverde laadkabel (mode 2, voor het stopcontact) heeft een eigen lampje op het regelkastje. Groen knipperen bij de auto en wit knipperen op de kabel betekenen dat er geladen wordt.", weak: ["Portier open of stekker niet vergrendeld (geel)."], parts: [], tasks: [], src: ["ps2Port", "ps2Cable"], faults: [
+    N("Laadaansluiting: geel lampje brandt", 1, "De auto wacht op laden, bijvoorbeeld omdat een portier open staat of de stekker niet vergrendeld is.", ["Controleer of de stekker vergrendeld is en de portieren dicht zijn."]),
+    N("Laadaansluiting: rood lampje", 2, "Er is een storing opgetreden.", ["Kijk op het bestuurdersdisplay welke laadmelding er staat."]),
+    N("Laadaansluiting: blauw lampje", 1, "Gepland laden staat aan; het laden start op de ingestelde tijd.", ["Je hoeft niets te doen."]),
+    N("Laadkabel (mode 2): lampje uit", 1, "De kabel krijgt geen stroom; laden kan niet.", ["Haal de stekker uit het stopcontact en steek hem terug, of gebruik een ander stopcontact.", "Blijft het, neem contact op met Polestar."]),
+    N("Laadkabel: wit lampje brandt, laden start niet", 1, "Laden kan, maar is nog niet begonnen.", ["Koppel de kabel los van de auto en sluit hem opnieuw aan.", "Knippert het lampje niet binnen ongeveer 10 seconden wit: haal de kabel uit auto en stopcontact, steek eerst de stekker in het stopcontact en dan in de auto."]),
+    N("Laadkabel: lampje brandt rood", 1, "Laden kan niet door een tijdelijke storing.", ["Haal de kabel uit de auto, wacht even en sluit hem weer aan.", "Blijft het, neem contact op met Polestar."]),
+    N("Laadkabel: lampje knippert rood", 2, "Laden kan niet door een ernstige storing.", ["Haal de kabel eerst uit de auto en dan uit het stopcontact, wacht, en sluit eerst het stopcontact en dan de auto weer aan.", "Blijft het, neem contact op met Polestar."])
+  ]});
+})();
+(() => {
+  SRC.kiaChg = ["Kia Owner's Manual (2025) – Checking charging status (Engels)", "https://ownersmanual.kia.com/full_webhelp/SV1/2025/en_RG/topics/t00033.html"];
+  MODELS.push({ id: "kia-ev-laadlampje", brand: "Kia", name: "Elektrische Kia: laadlampje knippert rood", dev: "elektrische Kia (laadstatuslampje)", cat: "auto", years: "Elektrische Kia met laadstatuslampje (handleiding 2025)", unit: null, also: "Kia laadlampje rood knippert, Kia EV laadt niet, Kia laadstatus oranje, Kia laadlampje groen knippert", intro: "Bij de laadklep van een elektrische Kia zit een lampje dat de laadstatus toont. Groen knipperen is laden, groen continu is vol, oranje is gepland laden en rood knipperen betekent dat er iets het laden tegenhoudt.", weak: ["Auto niet in P.", "Laadkabel niet goed aangesloten."], parts: [], tasks: [], src: ["kiaChg"], faults: [
+    N("Laadlampje knippert rood", 2, "Een probleem met de auto of de lader houdt het laden tegen.", ["Zet de auto in P.", "Controleer of de laadkabel goed is aangesloten.", "Mogelijke andere oorzaken: accu in de auto te warm, lader te warm of te koud, spanning van de lader te hoog of te laag, of een probleem in het laadsysteem van de auto.", "Bij V2L (stroom uit de auto) kan het lampje ook rood knipperen als V2L niet volgens de handleiding wordt gebruikt."]),
+    N("Laadlampje oranje", 1, "Gepland laden staat aan.", ["Je hoeft niets te doen, tenzij je het schema wilt aanpassen."]),
+    N("Laadlampje knippert lichtblauw", 1, "De stekker is aangesloten en de auto communiceert met de lader.", ["Wacht tot het laden begint."]),
+    N("Laadlampje knippert groen", 1, "De auto laadt; het knipperen wordt langzamer naarmate de accu voller is.", ["Je hoeft niets te doen."])
+  ]});
+})();
+(() => {
+  SRC.volvoXc40Port = ["Volvo Cars Support – XC40 Recharge Plug-in Hybrid: Charging status in the car's charging input socket (Engels)", "https://volvocars.com/in/support/car/xc40-recharge-plug-in-hybrid/article/1105a9017f60b92dc0a801510582f280"];
+  MODELS.push({ id: "volvo-xc40-recharge-laden", brand: "Volvo", name: "XC40 Recharge plug-in hybride: lampje laadaansluiting", dev: "XC40 Recharge Plug-in Hybrid (laden)", cat: "auto", years: "XC40 Recharge Plug-in Hybrid (2024)", unit: null, also: "Volvo XC40 laadlampje rood, Volvo XC40 Recharge laadt niet, Volvo laadaansluiting geel, Volvo plug-in laadlampje", intro: "In de laadaansluiting van de Volvo XC40 Recharge plug-in hybride zit een lampje. Groen knipperen betekent laden; geel dat hij wacht (portier open of stekker niet vergrendeld); rood een storing.", weak: ["Laadstekker niet helemaal vergrendeld."], parts: [], tasks: [], src: ["volvoXc40Port"], faults: [
+    N("Lampje laadaansluiting rood", 2, "Er is een storing opgetreden.", ["Controleer de aansluiting van de kabel op de auto en op de stroombron.", "Haal de kabel eruit, wacht even en steek hem terug.", "Blijft het, neem contact op met je Volvo-dealer."]),
+    N("Lampje laadaansluiting geel", 1, "De auto wacht: het laden is nog niet gestart, bijvoorbeeld omdat een portier is geopend of de stekker niet helemaal vergrendeld is.", ["Sluit de portieren en controleer of de laadstekker goed vastzit."]),
+    N("Lampje laadaansluiting blauw", 1, "Gepland laden staat aan.", ["Je hoeft niets te doen."])
+  ]});
+})();
+(() => {
+  SRC.megEtech = ["Renault – Instructieboekje Mégane E-Tech 100% elektrisch (Nederlands, PDF)", "https://world.e-guides.renault.com/sites/default/files/olds_pdfs/1402_2_BCB_Megane-E-TECH-100/Megane_E-TECH-100_1402-2_NLD.pdf"];
+  SRC.skodaWb = ["Škoda – User manual LED states Wallbox 5LA054400 (Engels, PDF)", "https://eshop.skoda-auto.sk/medias/sys_master/root/h91/hda/9345524858910/5LA054400_USER_ MANUAL_LED_STATES/5LA054400-USER-MANUAL-LED-STATES.pdf"];
+  MODELS.push({ id: "renault-megane-e-tech-laden", brand: "Renault", name: "Mégane E-Tech elektrisch: kleur van het laadlampje", dev: "Mégane E-Tech 100% elektrisch (laden)", cat: "auto", years: "Mégane E-Tech 100% elektrisch", unit: null, also: "Renault Megane E-Tech laadlampje rood, Megane E-Tech laadt niet, Renault laadlampje geel knippert, Renault E-Tech laadklep", intro: "Bij de laadaansluiting van de Renault Mégane E-Tech zit een lampje met verschillende kleuren. Blauw knipperen betekent laden, groen dat de accu vol is en rood een storing.", weak: ["Verlengsnoer of beschadigd laadsnoer."], parts: [], tasks: [], src: ["megEtech"], faults: [
+    N("Laadlampje knippert rood", 2, "Er is een bedrijfsstoring tijdens het laden.", ["Stop met laden als ook het lampje op de wandcontactdoos of het laadsnoer rood wordt, en kijk in de handleiding van dat snoer.", "Gebruik geen verlengsnoer, adapter of stekkerdoos, en geen beschadigd of nat snoer."]),
+    N("Laadlampje brandt continu rood", 3, "Een storing waarvoor de dealer nodig is.", ["Neem contact op met een Renault-dealer; die kan eventueel adviseren het laadsnoer te vervangen."]),
+    N("Laadlampje knippert geel", 1, "De laadkabel is aangesloten en de auto voert controles uit.", ["Wacht tot het laden begint (blauw knipperen)."]),
+    N("Laadlampje brandt blauw", 1, "Uitgesteld laden is ingesteld.", ["Je hoeft niets te doen."]),
+    N("Laadkabel komt niet los of laadklep vergrendelt niet", 2, "De vergrendeling werkt niet goed.", ["Neem contact op met een Renault-dealer."])
+  ]});
+  MODELS.push({ id: "skoda-wallbox", brand: "Škoda", name: "Škoda Wallbox: oranje, rode en gele ledbalk", dev: "Wallbox (5LA054400)", cat: "laadpalen", years: "Škoda Wallbox 5LA054400", unit: null, also: "Skoda wallbox oranje knippert, Skoda wallbox rood, Skoda laadpaal storing, Skoda iV charger lampjes, Skoda wallbox wit knippert", intro: "De Škoda Wallbox heeft een ledbalk met iconen voor huis, energie en auto. Een oranje knipperend lampje onder een van die iconen laat zien waar het probleem zit: bij de lader, de huisaansluiting of de auto.", weak: [], parts: [], tasks: [], src: ["skodaWb"], faults: [
+    N("Oranje lampje knippert onder het huis-icoon", 2, "Een kritieke fout in de elektrische aansluiting van het huis.", ["Laat de aansluiting controleren door een installateur."]),
+    N("Oranje lampje knippert onder het auto-icoon", 2, "Een kritieke fout aan de kant van de auto.", ["Controleer de auto en de kabel; neem zo nodig contact op met de dealer."]),
+    N("Oranje lampje knippert onder het energie-icoon", 2, "Een kritieke fout in de lader.", ["Neem contact op met de klantenservice van Škoda."]),
+    N("Hele ledbalk rood en RFID-symbool knippert rood", 3, "Een ernstige storing in de lader.", ["Neem contact op met de klantenservice."]),
+    N("Bovenste icoon knippert 5 keer rood", 1, "Aanmelden met laadpas of app is geweigerd.", ["Probeer opnieuw met een geldige laadpas of de app."]),
+    N("Bovenste icoon knippert wit", 1, "De lader wacht op aanmelding.", ["Meld je aan met de laadpas of de app."]),
+    N("Middelste led knippert groen", 1, "Laden is gepauzeerd en gaat vanzelf verder (bijvoorbeeld als er genoeg energie is of een schema begint).", ["Je hoeft niets te doen."]),
+    N("Hele ledbalk knippert geel", 1, "Er wordt een software-update geïnstalleerd.", ["Wacht tot de update klaar is."]),
+    N("Middelste led knippert blauw", 1, "De lader moet nog worden ingesteld.", ["Stel hem in via de mobiele app of de web-app."])
+  ]});
+})();
+(() => {
+  SRC.leafEvse = ["Nissan – Leaf Owner's Manual 2023: NISSAN EVSE cable control box indicator light (Engels)", "https://www.nissan.com.mt/ownership/owners-manuals/manuals.html/iom/leaf/0ze1/e0/2023/nissan-evse-electric-vehicle-supply-equipment-cable-control-box-indicator-light-where-fitted-1.shtml"];
+  SRC.leafFlash = ["Nissan – Leaf Owner's Manual 2023: When the indicator light flashes (Engels)", "https://www.nissan.com.mt/ownership/owners-manuals/manuals.html/iom/leaf/0ze1/e0/2023/when-the-indicator-light-flashes-1.shtml"];
+  SRC.ps3Port = ["Polestar – Handleiding Polestar 3 (2024): laadstatus in de laadaansluiting", "https://www.polestar.com/nl/manual/polestar-3/2024/article/a3d4c324d33d417cc0a8cc37744d76ea-ec8b59f1d33539aec0a8cc374c819eab-059c61879f5b4d80c0a8b0c163d5e0f7/"];
+  const dlr = "Stop met gebruiken en neem contact op met een Nissan EV-dealer.";
+  MODELS.push({ id: "nissan-leaf-laadkabel", brand: "Nissan", name: "Leaf: lampjes op het kastje van de laadkabel (EVSE)", dev: "Leaf laadkabel (EVSE)", cat: "auto", years: "Nissan Leaf (2023) met Nissan-laadkabel voor het stopcontact", unit: null, also: "Nissan Leaf laadkabel rood lampje, Leaf EVSE fault, Leaf laadkabel knippert, Nissan Leaf laadt niet, Leaf lampje knippert dashboard", intro: "De laadkabel van de Nissan Leaf voor een gewoon stopcontact heeft een kastje met drie lampjes: READY (groen), POWER (oranje) en FAULT (rood). De combinatie vertelt wat er mis is, vaak met het stopcontact.", weak: ["Slecht geaard of warm wordend stopcontact."], parts: [], tasks: [], src: ["leafEvse", "leafFlash"], faults: [
+    N("Alle lampjes uit", 1, "Het stopcontact levert geen stroom.", ["Controleer de groep in de meterkast.", "Werkt het stopcontact wel en gaan de lampjes niet even aan bij aansluiten, dan is de kabel mogelijk defect: " + dlr.toLowerCase()]),
+    N("READY knippert, POWER brandt", 1, "Het stopcontact is niet goed genoeg geaard voor betrouwbaar laden.", ["Laat het stopcontact controleren door een erkende elektricien."]),
+    N("Alle drie lampjes knipperen", 2, "De stekker wordt te warm, waarschijnlijk door een probleem met het stopcontact; laden stopt of gaat met minder stroom.", ["Gebruik dit stopcontact niet meer en laat het controleren door een elektricien.", "Blijft de waarschuwing, neem contact op met een Nissan EV-dealer."]),
+    N("READY en POWER knipperen, FAULT brandt", 2, "Een fout in de temperatuurmeting in de stekker.", ["Neem contact op met een Nissan EV-dealer."]),
+    N("READY brandt, POWER knippert, FAULT brandt", 3, "Een interne storing in de laadkabel.", [dlr]),
+    N("READY brandt, FAULT knippert", 3, "Lekstroom- of signaalfout (PWM).", [dlr]),
+    N("Laadlampje in de auto (3) knippert", 1, "Normaal: de 12V-accu wordt geladen, de stroom viel weg tijdens laden (tot 5 minuten), of klimaatregeling of accuverwarming is actief.", ["Controleer bij een stroomonderbreking of de laadstekker er nog in zit; laden gaat vanzelf verder als de stroom terug is."])
+  ]});
+  MODELS.push({ id: "polestar-3-laden", brand: "Polestar", name: "Polestar 3: laadlampje rood of geel", dev: "Polestar 3 (laden)", cat: "auto", years: "Polestar 3 (MJ2024)", unit: null, also: "Polestar 3 laadlampje rood, Polestar 3 laadkabel zit vast, Polestar 3 laadt niet, Polestar 3 geel knippert", intro: "Bij de laadaansluiting van de Polestar 3 zit een lampje. Groen knipperen is laden, geel knipperen betekent dat het laden is gestopt, rood een fout.", weak: [], parts: [], tasks: [], src: ["ps3Port"], faults: [
+    N("Laadlampje brandt rood", 2, "Er is een fout bij het laden.", ["Kijk op de displays voor meer informatie.", "Controleer of de kabel goed aan de auto zit en of de laadkabel of het laadstation werkt.", "Koppel de kabel los, sluit hem weer aan en start het laden opnieuw.", "Blijft het, neem contact op met een Polestar-servicepunt."]),
+    N("Laadlampje knippert rood bij ontgrendelen kabel", 1, "De auto is vergrendeld en er wordt geen sleutel gevonden.", ["Zorg dat een sleutel binnen bereik is, of ontgrendel met de NFC-sleutel, en probeer opnieuw."]),
+    N("Laadlampje knippert geel", 1, "Het laden is gestopt.", ["Kijk op het bestuurdersdisplay voor meer informatie over de laadstatus."]),
+    N("Laadlampje brandt blauw", 1, "Het laden is gepland voor later.", ["Je hoeft niets te doen."])
+  ]});
+})();
+(() => {
+  SRC.pg208 = ["Peugeot – Instructieboekje 208 / e-208 (Nederlands, PDF)", "https://public.servicebox.peugeot.com/APddb/modeles/208.p2/eGuide_p21_ed01-23/pdfs/9999_9999_494_nl-NL.pdf"];
+  const dlr = "Neem contact op met een Peugeot-dealer of gekwalificeerde werkplaats.";
+  MODELS.push({ id: "peugeot-e-208-laden", brand: "Peugeot", name: "e-208: laadlampje en FAULT-lampje op de laadkabel", dev: "e-208 (laden)", cat: "auto", years: "Peugeot e-208 (instructieboekje 2023)", unit: null, also: "Peugeot e-208 laadlampje rood knippert, e-208 laadt niet, Peugeot laadkabel fault rood, e-208 laadkabel geen lampjes, Peugeot laadstekker vergrendelt niet", intro: "Bij de laadaansluiting van de Peugeot e-208 zit een lampje dat de laadstatus toont. Ook de laadkabel voor het stopcontact (mode 2) heeft een regelkastje met lampjes POWER, CHARGE en FAULT.", weak: ["Laadstekker niet goed vergrendeld."], parts: [], tasks: [], src: ["pg208"], faults: [
+    N("Laadlampje knippert rood", 1, "De laadstekker zit niet goed of kan niet vergrendelen.", ["Haal de stekker eruit en steek hem er opnieuw goed in."]),
+    N("Laadlampje brandt rood", 2, "Rood permanent betekent volgens het instructieboekje dat de stekker vergrendeld is, maar wordt ook genoemd als teken van een storing.", ["Laadt de auto niet en blijft het lampje rood: " + dlr.toLowerCase()]),
+    N("Laadkabel: FAULT-lampje brandt rood", 2, "Er is een storing; er mag niet worden geladen.", ["Controleer of alle aansluitingen in orde zijn en of de elektrische installatie niet defect is.", "Reset: haal tegelijk de stekker uit de auto en uit het stopcontact, en sluit eerst het stopcontact weer aan.", "Brandt het lampje daarna weer, laat de regeleenheid controleren door een Peugeot-dealer voordat je opnieuw laadt."]),
+    N("Laadkabel: geen lampjes bij aansluiten op stopcontact", 1, "Het stopcontact krijgt geen stroom of de kabel is defect.", ["Controleer de zekering van het stopcontact.", "Is die gesprongen, laat een elektricien de installatie controleren.", "Is die niet gesprongen, gebruik de laadkabel niet meer: " + dlr.toLowerCase()]),
+    N("Auto start niet, laadkabellampje brandt", 1, "De laadkabel is nog aangesloten; dan kan de auto niet starten.", ["Koppel de laadkabel los en sluit de laadklep."]),
+    N("Laadlampje brandt blauw", 1, "Geprogrammeerd laden is actief.", ["Je hoeft niets te doen."])
+  ]});
+})();
+(() => {
+  SRC.sonyLed = ["Sony Support – Red, green, or orange lights are on or blinking on my TV (Engels)", "https://www.sony.ca/en/electronics/support/televisions-projectors-oled-tvs-android-/articles/00011057"];
+  SRC.tclBlink = ["TCL Support – What can I do if the standby indicator keeps blinking? (Engels)", "https://www.tcl.com/ph/en/support-tv/faq/15080"];
+  SRC.tclStart = ["TCL Support – Que faire si le téléviseur ne démarre pas depuis la veille ? (Frans)", "https://www.tcl.com/ma/fr/support/faq/2224"];
+  MODELS.push({ id: "sony-bravia-rood-lampje", brand: "Sony", name: "Bravia tv: rood lampje knippert", dev: "Bravia-televisie", cat: "televisies", years: "Sony Bravia (lcd, oled, Android/Google TV)", unit: null, also: "Sony tv rood lampje knippert, Sony Bravia knippert 6 keer, Sony tv gaat niet aan rood lampje, Sony tv knippert rood 2 keer", intro: "Knippert het rode lampje van een Sony Bravia-tv, dan heeft de tv een probleem gevonden. Het aantal keer (meestal 2 tot 8) verschilt per model. Vaak is service nodig, maar probeer eerst deze stappen.", weak: ["Slechte ventilatie.", "Stekkerdoos."], parts: [], tasks: [], src: ["sonyLed"], faults: [
+    N("Rood lampje knippert", 2, "De tv heeft een probleem gevonden; de meeste rode knippercodes vragen om service.", ["Zet de tv uit en aan. Reageert hij niet, haal de stekker 1 minuut eruit en steek hem terug.", "Zit de tv op een stekkerdoos, steek hem direct in het stopcontact.", "Maak de ventilatieopeningen schoon en laat ruimte rond de tv.", "Koppel alle aangesloten apparaten los en zet de tv weer aan; stopt het knipperen, dan zit de oorzaak bij een van die apparaten.", "Werk de software bij (Instellingen > Software-update).", "Blijft het, tel het aantal keer knipperen en neem contact op met Sony."]),
+    N("Tv met mediabox: rood lampje knippert", 2, "De kabel tussen mediabox en scherm zit mogelijk los.", ["Controleer of de kabel tussen mediabox en scherm stevig vastzit."])
+  ]});
+  MODELS.push({ id: "tcl-tv-standby", brand: "TCL", name: "TCL-tv: standbylampje knippert of tv gaat niet aan", dev: "televisie", cat: "televisies", years: "TCL-televisies", unit: null, also: "TCL tv lampje knippert, TCL tv gaat niet aan, TCL tv blijft in standby, TCL tv zwart scherm", intro: "Blijft het standbylampje van een TCL-tv knipperen, of komt de tv niet uit stand-by, dan helpen een paar eenvoudige stappen vaak al.", weak: [], parts: [], tasks: [], src: ["tclBlink", "tclStart"], faults: [
+    N("Standbylampje blijft knipperen", 1, "Het lampje staat zo ingesteld, of de tv start niet goed op.", ["Start de tv wel op: zet het lampje op Normaal via Instellingen > Systeem > Geavanceerde instellingen > LED-indicator.", "Start hij niet: controleer of de afstandsbediening en de aan/uit-knop achterop werken.", "Haal de stekker uit het stopcontact en steek hem terug.", "Blijft het, bel de TCL-helpdesk."]),
+    N("Tv komt niet uit stand-by", 1, "De tv reageert niet op de afstandsbediening.", ["Haal de stekker eruit en steek hem terug.", "Probeer een andere, werkende TCL-afstandsbediening.", "Druk op de aan/uit-knop achterop de tv.", "Blijft het, bel de TCL-helpdesk."])
+  ]});
+})();
+(() => {
+  SRC.dirigera = ["IKEA – Product support: Smart home DIRIGERA hub (Engels)", "https://www.ikea.com/ie/en/customer-service/product-support/smart-home-dirigera-hub"];
+  SRC.homeyPro = ["Homey Support – Understanding Homey Pro's LED Ring (Engels)", "https://support.homey.app/hc/en-us/articles/360009618514-Understanding-Homey-Pro-s-LED-Ring"];
+  SRC.homeyMini = ["Homey Support – Understanding the LED of Homey Pro mini (Engels)", "https://support.homey.app/hc/en-us/articles/18747048021916-Understanding-the-LED-of-Homey-Pro-mini"];
+  MODELS.push({ id: "ikea-dirigera", brand: "IKEA", name: "DIRIGERA hub: lampjes en apparaat offline", dev: "DIRIGERA hub", cat: "slim-huis", years: "DIRIGERA hub voor slimme producten", unit: null, also: "IKEA Dirigera knippert, Dirigera geen internet, IKEA slimme lamp offline, Dirigera rood lampje, IKEA Home smart koppelen lukt niet", intro: "De IKEA DIRIGERA hub verbindt slimme lampen, sensoren en afstandsbedieningen. Het lampje in het midden brandt wit als alles werkt; dubbel knipperen betekent geen internet.", weak: ["Zwakke wifi of telefoon op ander netwerk."], parts: [], tasks: [], src: ["dirigera"], faults: [
+    N("Middenlampje knippert 2 keer wit", 1, "Geen internetverbinding.", ["Je kunt apparaten nog bedienen via de app op je wifi thuis.", "Herstart je router (30 seconden stroom eraf)."]),
+    N("Middenlampje knippert 4 keer rood", 1, "De hub is na een fabrieksreset klaar om opnieuw in te stellen.", ["Stel de hub opnieuw in via de IKEA Home smart-app."]),
+    N("Ring draait wit", 1, "De hub wordt bijgewerkt of verwerkt veel gegevens.", ["Wacht tot het klaar is."]),
+    N("Product staat in de app maar verbindt niet", 1, "Zwakke wifi of de telefoon zit op een ander netwerk.", ["Zorg voor een sterk wifi-signaal en zet je telefoon op hetzelfde netwerk als de hub (bij voorkeur 2,4 GHz).", "Herstart router, hub en telefoon.", "Zet het product terug naar fabrieksinstellingen en koppel opnieuw.", "Haal tijdelijk andere Thread-routers (zoals Nest Hub of Apple TV) van de stroom en controleer of IPv6 in de router aan staat."]),
+    N("Product is offline", 1, "Geen stroom, schakelaar uit of lege batterij.", ["Controleer de stroom; bij een slimme lamp of de schakelaar aan staat.", "Vervang de batterij bij batterijapparaten.", "Herstart de hub."]),
+    N("Hub resetten naar fabrieksinstellingen", 1, "Als niets anders helpt; alle gegevens op de hub worden gewist.", ["Druk met een pin in het gaatje aan de onderkant tot de lampjes uitgaan.", "Wacht tot het middenlampje 4 keer rood knippert."])
+  ]});
+  MODELS.push({ id: "homey-pro", brand: "Homey", name: "Homey Pro en Homey Pro mini: wat betekent het lampje?", dev: "Homey Pro / Homey Pro mini", cat: "slim-huis", years: "Homey Pro en Homey Pro mini", unit: null, also: "Homey Pro rode ring, Homey Pro mini rood knippert, Homey paars draait, Homey Pro start niet, Homey herstelmodus", intro: "Homey Pro toont met de ledring wat hij doet; de Homey Pro mini heeft één lampje. Rood betekent dat Homey niet goed opstart of is vastgelopen.", weak: [], parts: [], tasks: [], src: ["homeyPro", "homeyMini"], faults: [
+    N("Homey Pro: ring pulseert rood", 2, "Homey Pro kon niet goed opstarten.", ["Start Homey in de herstelmodus (Recovery Mode) om het op te lossen."]),
+    N("Homey Pro: ring draait paars", 1, "Er wordt een update geïnstalleerd.", ["Laat de stroom aangesloten.", "Staat Homey ondersteboven: zet hem uit, rechtop neer en weer aan."]),
+    N("Homey Pro mini: lampje 'ademt' rood", 2, "Homey is vastgelopen en start vanzelf opnieuw.", ["Gebeurt het vaker, herstel de firmware met de Homey USB Tool."]),
+    N("Homey Pro mini: lampje knippert rood", 1, "Homey wordt teruggezet naar fabrieksinstellingen (na 30 seconden pinnetje indrukken).", ["Wacht tot het klaar is."]),
+    N("Homey Pro mini: lampje 'ademt' oranje", 1, "Homey staat in de herstelmodus.", ["Sluit hem aan op een pc of Mac om de firmware bij te werken of een lokale back-up te maken of terug te zetten."]),
+    N("Homey Pro mini: lampje roze knippert", 1, "Er wordt een update geïnstalleerd.", ["Laat de stroom aangesloten."]),
+    N("Lampje uit", 1, "Geen stroom, of de screensaver staat uit.", ["Controleer de stroomaansluiting."])
+  ]});
+})();
+(() => {
+  SRC.awbVr = ["AWB – Installatiehandleiding ThermoMaster VR 24 / VR 24T (PDF)", "https://www.awb.nl/downloads/handleidingen/installatiehandleidingen-1/installatiehandleiding-thermomastervr-187138.pdf"];
+  SRC.awbEl6 = ["AWB – Bedieningshandleiding ThermoElegance 6 Advance (PDF)", "https://www.awb.nl/downloads/handleidingen/gebruikershandleidingen/bedieningshandleiding-thermoelegance-6-advance-183491.pdf"];
+  const inst = "Laat dit verder controleren door een erkende installateur; AWB (0492-469 500) kan een installateur in de buurt noemen.";
+  const reset = "Houd de resetknop 5 seconden in, laat los en zet de ketel weer aan met de keuzeschakelaar.";
+  MODELS.push({ id: "awb-thermomaster-vr", brand: "AWB", name: "ThermoMaster VR: storingscodes 01 tot 22", dev: "ThermoMaster VR 24 / VR 24T cv-ketel", cat: "cv-ketels", years: "ThermoMaster VR 24 en VR 24T", unit: null, also: "AWB storing 01, AWB ketel storing 05 pomp, AWB 21 waterdruk, AWB ThermoMaster rood lampje knippert, AWB cv-ketel storingscode", intro: "AWB is een Nederlands merk cv-ketels. Bij de ThermoMaster VR knippert bij een storing de rode led en staat er een storingscode op het display. Een paar storingen (ontsteking, luchtdebiet, te weinig water) los je zelf op; de rest is voor de installateur.", weak: ["Te lage waterdruk (21).", "Pomp vast of lucht in het systeem (05)."], parts: [], tasks: [], src: ["awbVr"], faults: [
+    F("01", "Ontsteekfout", 2, "Geen vlam gemeten: de gaskraan is dicht of er is te weinig gas.", ["Controleer of de gaskraan open staat.", reset, inst]),
+    F("02", "Ventilatorfout", 2, "De ventilator haalt het starttoerental niet, of bedrading of luchtdrukschakelaar is defect.", [reset, inst]),
+    F("03", "Herhaalde luchtfout", 2, "Zelfde oorzaak als 02.", [reset, inst]),
+    F("04", "Herhaalde ontsteekfout", 2, "Zelfde oorzaak als 01.", ["Controleer of de gaskraan open staat.", reset, inst]),
+    F("05", "Pompfout", 2, "De pomp zit vast of is defect, of er is te weinig circulatie: radiatoren dicht, lucht in ketel of installatie, of pomp te laag ingesteld.", ["Zet de radiatorkranen open en ontlucht de radiatoren; vul zo nodig water bij.", inst]),
+    F("06 / 07 / 08 / 19", "Temperatuursensor (NTC) defect", 3, "Een temperatuursensor (aanvoer, tapwater of boiler) of de bedrading ervan is defect.", [inst]),
+    F("09", "Waterdruksensor defect", 3, "De waterdruksensor of de bedrading is defect.", [inst]),
+    F("11 / 12 / 13 / 18", "Fout in hoofdprint of bediening", 3, "Geen signaal van de hoofdprint, ventilator of bedieningspaneel, of een verkeerde instelling.", [inst]),
+    F("14", "Aanvoertemperatuur boven 95 °C", 2, "Te weinig doorstroming door de installatie; reset automatisch na 15 minuten. Bij een te snelle temperatuurstijging moet de stekker eruit om te resetten.", ["Zet de radiatorkranen open.", "Wacht 15 minuten; bij een snelle temperatuurstijging: haal de stekker even uit het stopcontact.", inst]),
+    F("15 / 16", "Fout gasblok of vlamdetectie", 3, "De stappenmotor van het gasblok, de bedrading of de aarding is niet in orde.", [inst]),
+    F("17", "Netspanning te laag of printfout", 3, "Netspanning onder 170 V, bedrading of hoofdprint defect.", [inst]),
+    F("20", "Software niet compatibel", 3, "Een softwareconflict.", ["Neem contact op met de AWB-service."]),
+    F("21", "Waterdruk te laag of circulatieprobleem", 1, "Te weinig water in het systeem (lekkage, expansievat) of te weinig circulatie. Na 3 keer blokkeert de ketel.", ["Vul water bij tot 1,5 à 2 bar.", "Zet radiatorkranen open en ontlucht.", "Blokkeert de ketel: haal de stekker even uit het stopcontact nadat de oorzaak is opgelost.", "Moet je vaak bijvullen, dan is er waarschijnlijk een lek: " + inst.charAt(0).toLowerCase() + inst.slice(1)]),
+    F("22", "Waterdruk te hoog (boven 2,7 bar)", 1, "Het systeem is te vol of het expansievat is defect.", ["Laat water aflaten via een radiatorontluchter tot ongeveer 1,5 à 2 bar.", "Gebeurt het steeds weer, laat het expansievat controleren."])
+  ]});
+  MODELS.push({ id: "awb-thermoelegance-6", brand: "AWB", name: "ThermoElegance 6: rood lampje knippert, storing xx", dev: "ThermoElegance 6 A cv-combiketel", cat: "cv-ketels", years: "ThermoElegance 6 (A / Advance)", unit: null, also: "AWB ThermoElegance storing, AWB ThermoElegance rood lampje, AWB ketel waterdruk laag, AWB ThermoElegance reset", intro: "De AWB ThermoElegance 6 is een cv-combiketel. Een knipperende rode led betekent een storing; op het display staat dan een code (xx). AWB publiceert voor gebruikers geen lijst van die codes: reset één keer en bel anders de installateur.", weak: ["Te lage waterdruk."], parts: [], tasks: [], src: ["awbEl6"], faults: [
+    N("Rode led knippert, storing met code", 2, "Een storing in de ketel.", ["Druk op reset en wacht 5 seconden.", "Blijft de storing met de code staan, laat de ketel uit en bel een erkende installateur (AWB: 0492-469 500)."]),
+    N("Waterdruk onder 0,5 bar", 1, "Te weinig water in de cv-installatie.", ["Open de vulkraan tot de meter 1,0 à 1,5 bar aangeeft.", "Moet dit vaak, dan is er waarschijnlijk een lek: bel de installateur."]),
+    N("Waterdruk te hoog", 1, "Er zit te veel water in de installatie.", ["Laat via een radiatorontluchter wat water weg, of bel de installateur."]),
+    N("Ketel werkt niet, geen stroom", 1, "Onderbreking van de netspanning.", ["Controleer de stroomvoorziening en de stekker; de ketel start vanzelf als de stroom terug is.", "Werkt hij dan nog niet, bel de installateur."]),
+    N("Display zonder symbolen", 1, "De ketel staat in vorstbeveiliging (cv en warm water uit).", ["Zet cv en warm water weer aan met de bediening."])
+  ]});
+})();
+(() => {
+  SRC.awbEl6i = ["AWB – Installatiehandleiding ThermoElegance 6 (PDF)", "https://www.awb.nl/downloads/handleidingen/installatiehandleidingen-1/installatiehandleiding-thermoelegance-6-192366.pdf"];
+  const m = MODELS.find(x => x.id === "awb-thermoelegance-6");
+  m.src.push("awbEl6i");
+  m.name = "ThermoElegance 6: storingscodes F01 tot 22";
+  m.intro = "De AWB ThermoElegance 6 is een cv-combiketel. Een vergrendelende storing zie je aan een rood knipperend lampje; de code (F met een cijfer) staat achter het klepje. Een paar storingen kun je zelf resetten, de rest is voor de installateur.";
+  const inst = "Bel een erkende installateur (AWB: 0492-469 500).";
+  m.faults.push(
+    F("F01 / F04", "Ontstekingsfout: geen vlam", 2, "Geen gas, gaskraan dicht, of ontstekingspen of bedrading defect.", ["Controleer of de gaskraan open staat.", "Druk op reset.", "Blijft het, " + inst.toLowerCase()]),
+    F("F02 / F03", "Storing luchtstroming (ventilator)", 2, "De ventilator haalt het starttoerental niet, of zekering of bedrading is defect.", ["Wacht 5 seconden en start opnieuw.", "Blijft de storing, " + inst.toLowerCase()]),
+    F("F05 / F14 / F24 / F25 / F26", "Oververhitting: aanvoer- of retourtemperatuur te hoog", 2, "Te weinig doorstroming: pomp staat stil of te laag, lucht in het systeem, radiatoren dicht of te weinig bypass.", ["Zet de radiatorkranen open en ontlucht de radiatoren.", inst]),
+    F("06 / 07 / 08 / 10 / 19", "Temperatuursensor (NTC) defect", 3, "Een temperatuursensor of de bedrading is defect, of de aanvoersensor zit niet goed vast.", [inst]),
+    F("09", "Waterdruksensor defect", 3, "De sensor of bedrading is defect.", [inst]),
+    F("11 / 12 / 13", "Fout in hoofdprint, bediening of ventilator", 3, "Geen signaal van hoofdprint of bedieningspaneel, of een verkeerde instelling.", [inst]),
+    F("15", "Fout driewegklep", 3, "De driewegklep of de bedrading is defect.", [inst]),
+    F("16", "Foutieve vlamdetectie", 3, "Onvoldoende aarding.", [inst]),
+    F("17", "Netspanning onder 170 V of hoofdprint defect", 3, "Transformator, zekering, bedrading of hoofdprint defect.", [inst]),
+    F("20", "Software niet compatibel", 3, "Verkeerde softwareversie.", ["Neem contact op met de servicedienst van AWB."]),
+    F("21", "Waterdruk te laag", 1, "Te weinig water, mogelijk door een lek of een defect expansievat.", ["Vul bij tot 1 à 2 bar.", "Moet je vaak bijvullen, laat de installateur zoeken naar een lek."]),
+    F("22", "Waterdruk te hoog (2,7 bar of meer)", 1, "Te veel water in het systeem of een defect expansievat.", ["Laat via een radiatorontluchter water weg tot ongeveer 1,5 bar.", "Blijft het terugkomen, laat het expansievat controleren."])
+  );
+  m.faults = m.faults.filter(f => !/^Waterdruk onder|^Waterdruk te hoog$/.test(f.t));
+})();
+(() => {
+  SRC.awbGrand = ["AWB – Bedieningshandleiding ThermoGrand S (PDF)", "https://www.awb.nl/downloads/handleidingen/gebruikershandleidingen/bedieningshandleiding-thermogrand-183494.pdf"];
+  const bij = "Vul de cv-installatie bij tot 1,0 à 2,0 bar (bij een koude installatie).";
+  const inst = "Verlies je vaak druk of start de ketel niet: schakel een erkende installateur in.";
+  MODELS.push({ id: "awb-thermogrand", brand: "AWB", name: "ThermoGrand S: storingscodes F.22 tot F.32 en statuscodes", dev: "ThermoGrand S gaswandketel", cat: "cv-ketels", years: "ThermoGrand S (0010007401 en 0010007402)", unit: null, also: "AWB F.22, AWB F.28 geen ontsteking, AWB ThermoGrand storing, AWB F.23 watergebrek, AWB S.34", intro: "De AWB ThermoGrand S toont storingen als F-code (bijvoorbeeld F.28) met een rood lampje. Met de i-toets zie je statuscodes (S.); die zijn bedoeld voor de installateur en geen storing.", weak: ["Te lage waterdruk (F.22-F.24)."], parts: [], tasks: [], src: ["awbGrand"], faults: [
+    F("F.22", "Droogkoken: waterdruk onder 0,3 bar", 1, "Er zit te weinig water in de installatie; de ketel is uitgeschakeld.", [bij, inst]),
+    F("F.23 / F.24", "Watergebrek in de cv-installatie", 1, "Te weinig water; de ketel is uitgeschakeld.", [bij, inst]),
+    F("F.28 / F.29", "Geen ontsteking na vijf pogingen", 2, "De brander ontsteekt niet; het rode lampje brandt.", ["Houd de resetknop ongeveer 1 seconde in.", "Blijft de storing na de derde reset, bel een erkende installateur."]),
+    F("F.32", "Ventilator werkt niet goed", 3, "De ventilator werkt niet goed; de ketel is uitgeschakeld.", ["Grijp niet zelf in; bel een erkende installateur."]),
+    N("Waterdruk knippert op het display", 1, "De druk is onder 0,6 bar; de ketel werkt nog.", [bij]),
+    F("S.34", "Vorstbeveiliging actief", 1, "Statusmelding, geen storing: de cv-vorstbeveiliging is aan.", ["Je hoeft niets te doen."]),
+    F("S.31", "Zomerfunctie actief", 1, "Statusmelding: alleen warm water, geen verwarming.", ["Zet de verwarming aan als je wilt stoken."])
+  ]});
+})();
+(() => {
+  SRC.aiperSgp = ["Aiper – Seagull Pro error codes (Engels)", "https://aiper.com/blogs/troubleshooting/sgp-error-codes/"];
+  SRC.aiperX1 = ["Aiper – Scuba X1 error codes reset (Engels)", "https://aiper.com/blogs/troubleshooting/x1-error-codes-reset/"];
+  SRC.dolphin = ["Maytronics – Dolphin gebruikershandleiding 8180090: probleemoplossing (Engels, PDF)", "https://manuals.maytronics.com/images/pdfs/8180090.pdf"];
+  const sup = "Komt de fout terug, neem contact op met Aiper-support met de foutcode en het serienummer.";
+  const cyc = "Zet de robot uit, wacht 15 seconden, zet hem aan en laat hem ongeveer 30 seconden opstarten.";
+  MODELS.push({ id: "aiper-zwembadrobot", brand: "Aiper", name: "Seagull Pro en Scuba X1 zwembadrobot: foutcodes E1 tot E5", dev: "accu-zwembadrobot", cat: "spa", years: "Seagull Pro en Scuba X1", unit: null, also: "Aiper E1, Aiper E5 water, Aiper Seagull Pro rood knippert, Aiper Seagull geel knippert, Aiper zwembadrobot foutcode, Aiper resetten", intro: "Aiper maakt zwembadrobots op accu. Een storing verschijnt als code E1 tot E5 in de Aiper-app; de Seagull Pro geeft het ook aan met een gekleurd lampje.", weak: ["Vol filtermandje.", "Haar of vuil om de rollen."], parts: [], tasks: [], src: ["aiperSgp", "aiperX1"], faults: [
+    F("E1", "Probleem met aandrijfmotor", 1, "Er zit vuil in de wielen of rollen.", ["Haal vuil uit de wielen of rollen en spoel de robot af.", cyc, sup]),
+    F("E2", "Filter of pomp verstopt", 1, "Het filtermandje of de pomp is verstopt.", ["Haal het filtermandje eruit en spoel het schoon.", cyc, sup]),
+    F("E3", "Sensorfout", 1, "Een sensor (zoals ultrasoon of infrarood) geeft een afwijkende waarde.", [cyc + " Laat de robot helemaal initialiseren.", "Laat hem uit het water tot alle sensoren normaal zijn (te zien in de app).", sup]),
+    F("E4", "Accu- of laadfout", 2, "Een probleem met de accu of het laden.", [cyc, sup]),
+    F("E5", "Water binnengedrongen", 3, "De robot heeft water binnenin gemeten.", ["Haal de robot meteen uit het water en zet hem niet aan.", "Laat hem 24 tot 48 uur drogen, uit de zon.", "Controleer de afdichting van de onderklep en de panelen.", "Komt E5 terug, dan lekt de afdichting: neem contact op met Aiper voor garantie."]),
+    N("Seagull Pro: lampje knippert geel", 1, "Het filtermandje is verstopt of de zuigkracht is verminderd.", ["Controleer en reinig het filtermandje."]),
+    N("Seagull Pro: lampje knippert rood", 3, "Motorfout of water binnengedrongen.", ["Stop meteen met gebruiken."]),
+    N("Seagull Pro: lampje brandt rood", 3, "Kritieke fout.", ["Neem contact op met Aiper-support."]),
+    N("Fabrieksreset", 1, "Laatste redmiddel bij een fout die blijft terugkomen.", ["Houd de aan/uit-knop 10 seconden in tot het lampje 3 keer knippert en laat los.", "Wifi, schema's en voorkeuren zijn dan gewist: voeg de robot opnieuw toe in de Aiper-app."])
+  ]});
+  MODELS.push({ id: "dolphin-zwembadrobot", brand: "Maytronics Dolphin", name: "Dolphin zwembadrobot: lampjes op de voeding en problemen", dev: "Dolphin zwembadrobot", cat: "spa", years: "Dolphin-robots met app-verbinding (handleiding 8180090)", unit: null, also: "Dolphin voeding rood lampje, Dolphin oranje lampje filter, Dolphin robot draait rondjes, Dolphin kabel in de knoop, Dolphin robot zinkt niet, Maytronics storing", intro: "Bij een Dolphin-zwembadrobot van Maytronics zitten de lampjes op de voeding (het kastje naast het zwembad). Een rood lampje betekent een fout, oranje dat het filter verstopt is.", weak: ["Vol filter.", "Kabel in de knoop."], parts: [], tasks: [], src: ["dolphin"], faults: [
+    N("Aan/uit-lampje brandt rood", 2, "Er is een fout.", ["Werk de stappen bij de problemen hieronder en de verbindingsstappen af.", "Lost het niet op, neem contact op met je dealer."]),
+    N("Aan/uit-lampje oranje", 1, "Het filter is verstopt.", ["Haal de filterelementen eruit, maak ze schoon en spoel ze met schoon water."]),
+    N("Verbindingslampje knippert groen", 1, "De voeding probeert wifi en de cloud te bereiken.", ["Zet de voeding dichter bij de router of gebruik een wifi-versterker.", "Controleer of je router 2,4 GHz gebruikt."]),
+    N("Kabel raakt in de knoop", 1, "Obstakels of te veel kabel in het zwembad, of een vuil filter.", ["Haal obstakels en overtollige kabel uit het zwembad.", "Maak het filter schoon.", "Leg de kabel recht en af en toe in de zon."]),
+    N("Robot draait rondjes of slaat plekken over", 1, "Vuil in bewegende delen, vuil filter of te weinig kabel.", ["Haal vuil uit de bewegende delen, maak de filters schoon en sluit de filterklepjes.", "Leg genoeg kabel uit om het hele zwembad te bereiken."]),
+    N("Robot zinkt niet", 1, "Er zit lucht in de borstels.", ["Laat de borstels helemaal vol water lopen."]),
+    N("Motor draait niet", 2, "De waaier of aandrijving zit vast, of er is geen stroom.", ["Kijk of de waaier of de aandrijving geblokkeerd is.", "Controleer de stroomvoorziening; is die in orde, neem contact op met je dealer."]),
+    N("Robot kantelt op zijn zij", 1, "Het filter is vuil.", ["Maak het filter schoon."])
+  ]});
+})();
+(() => {
+  SRC.elvi = ["EVBox – Elvi gebruikershandleiding (Engels, PDF, gehost door The Mobility House)", "https://www.mobilityhouse.com/media/productattachments/files/USER_ELVI_DIGITAL_V3.pdf"];
+  SRC.smappeeLed = ["Smappee Support – What do the LED colours of my charging station mean? (Engels)", "https://support.smappee.com/hc/en-gb/articles/4404724890644-What-do-the-LED-colours-of-my-charging-station-mean"];
+  MODELS.push({ id: "evbox-elvi", brand: "EVBox", name: "Elvi laadpaal: rode of gele ledring", dev: "Elvi thuislaadpaal", cat: "laadpalen", years: "EVBox Elvi", unit: null, also: "EVBox rood lampje, EVBox Elvi knippert rood, EVBox geel lampje auto laadt niet, EVBox laadpaal reageert niet, EVBox aardlek", intro: "De EVBox Elvi is een veelgebruikte thuislaadpaal. De ledring toont de status: blauw is laden, geel is vol of wachten, rood een fout.", weak: ["Aarding van de installatie.", "Laadpas niet geregistreerd."], parts: [], tasks: [], src: ["elvi"], faults: [
+    N("Ledring brandt rood", 2, "Elvi heeft een fout gevonden, vaak een probleem met de aarding.", ["Laat controleren of de elektrische installatie goed geaard is.", "Blijft het, neem contact op met je installateur of leverancier (support@evbox.com)."]),
+    N("Ledring knippert 10 keer rood, aardlek voorkomt laden", 3, "Een aardfout in de laadpaal, een speciale aardingseis van de auto, of een fout in auto of laadkabel.", ["Schakel een servicemonteur in; er zitten geen onderdelen in die je zelf mag repareren."]),
+    N("Ledring knippert rood na laadpas", 1, "De laadpas is niet toegestaan of de paal heeft geen verbinding met de beheer-app.", ["Controleer of de pas goed is geregistreerd.", "Controleer de wifi bij de paal: herstart de router, daarna Elvi, en kijk in de app of Elvi verbonden is."]),
+    N("Ledring blijft geel, auto laadt niet", 1, "De auto staat op een timer, is al vol, of de aardingsweerstand is te hoog (moet onder 50 Ohm voor sommige auto's).", ["Controleer of de stekker goed in de auto zit.", "Pas de timer in de auto aan.", "Vervang de laadkabel.", "Laat een elektricien de aardingsweerstand meten."]),
+    N("Ledring knippert geel", 1, "Het laden staat in de wachtrij (alleen bij Smart Charging); het start zodra er vermogen is.", ["Je hoeft niets te doen."]),
+    N("Laadpaal reageert niet", 1, "Geen stroom op de laadpaal.", ["Controleer of de aardlekschakelaar en de groep in de meterkast aan staan.", "Zet de paal uit en na 20 seconden weer aan via de groep of hoofdschakelaar."])
+  ]});
+  MODELS.push({ id: "smappee-laadpaal", brand: "Smappee", name: "Smappee laadpaal: rood of blauw lampje", dev: "laadpaal (EV Wall, EV Line)", cat: "laadpalen", years: "Smappee-laadpalen", unit: null, also: "Smappee laadpaal rood lampje, Smappee EV Wall rood, Smappee laadpas geweigerd, Smappee blauw lampje laadt niet", intro: "Het lampje aan de buitenkant van een Smappee-laadpaal geeft de status. Wit is vrij, groen pulserend is laden, rood betekent een fout of dat de paal nog niet geactiveerd is.", weak: [], parts: [], tasks: [], src: ["smappeeLed"], faults: [
+    N("Lampje brandt rood", 2, "De laadpaal is niet beschikbaar of heeft een fout; een paal die nog niet geactiveerd is, toont ook rood.", ["Smappee geeft geen stappen; vraag hulp via 'Submit a request' op de Smappee-supportsite."]),
+    N("Lampje knippert rood", 1, "De laadpas is geweigerd bij het aanmelden.", ["Vraag hulp via de Smappee-support of controleer je laadpas bij je provider."]),
+    N("Lampje brandt blauw", 1, "Er is een auto aangesloten, maar die mag nog niet laden.", ["Smappee noemt geen stappen; controleer of laden moet worden vrijgegeven (bijvoorbeeld met een laadpas of app)."]),
+    N("Lampje brandt groen (niet pulserend)", 1, "De auto is gestopt met laden.", ["Kijk in de auto of het laden klaar is of door de auto is gestopt."])
+  ]});
+})();
+(() => {
+  SRC.v2cTrydan = ["V2C – Ondersteuning Trydan: indicaties van de LED-kleuren van het logo", "https://v2charge.com/nl/?p=114898"];
+  MODELS.push({ id: "v2c-trydan", brand: "V2C", name: "Trydan laadpaal: wat betekent de kleur van het logo?", dev: "Trydan laadpaal", cat: "laadpalen", years: "V2C Trydan", unit: null, also: "V2C Trydan rood, Trydan geel lampje, Trydan oranje wacht op vermogen, V2C laadpaal storing, Trydan roze lampje", intro: "Het logo van de V2C Trydan-laadpaal licht op in een kleur die de status aangeeft. Rood is een storing (met foutcode op het scherm), geel een communicatiefout met de auto.", weak: [], parts: [], tasks: [], src: ["v2cTrydan"], faults: [
+    N("Logo rood", 2, "Er is een storing; op het scherm staan een foutcode en korte omschrijving.", ["Volg de oplossing bij die foutcode op de supportpagina van V2C."]),
+    N("Logo geel", 1, "Fout in de pilotcommunicatie met de auto, of te weinig vermogen voor dynamisch laden.", ["V2C geeft hiervoor geen stappen."]),
+    N("Logo lichtroze", 2, "Fout in de lokale load balancing.", ["V2C geeft hiervoor geen stappen."]),
+    N("Logo oranje", 1, "De laadpaal wacht op beschikbaar vermogen.", ["Wacht; het laden start als er vermogen is."]),
+    N("Logo knippert wit", 1, "De wifi-verbinding wordt (opnieuw) opgebouwd.", ["Wacht tot het klaar is."]),
+    N("Logo roze", 1, "De laadpaal wordt bijgewerkt.", ["Wacht tot de update klaar is."])
+  ]});
+})();
+(() => {
+  SRC.v2cDynErr = ["V2C – Ondersteuning: foutcodes voor verbinding (dynamische vermogensregeling) en hun oplossing", "https://v2charge.com/nl/ondersteuning/vermogensregeling/dynamische/oplossing-fouten/"];
+  const st = "Werkt het niet: neem contact op met de technische dienst van V2C en schakel de dynamische regeling uit, zodat de laadpaal met een vaste stroom laadt.";
+  MODELS.push({ id: "v2c-trydan-dynamisch", brand: "V2C", name: "Trydan dynamische vermogensregeling: foutcodes XX YYY", dev: "Trydan laadpaal (dynamische regeling)", cat: "laadpalen", years: "V2C Trydan, firmware 1.6.18 of hoger", unit: null, also: "V2C Trydan foutcode 006, Trydan 009 timeout, Trydan meter fout, Trydan omvormer verbinding, V2C 000 metingen buiten bereik", intro: "Bij een verbindingsfout in de dynamische vermogensregeling toont de Trydan een code in de vorm XX YYY. De eerste twee cijfers geven de meter of omvormer aan (bijv. 00 Shelly, 03 Huawei, 06 Fronius, 22 wifi-P1-meter); de laatste drie cijfers de fout. De oplossingen gelden voor firmware 1.6.18 of hoger; V2C raadt aan oudere laadpalen eerst bij te werken.", weak: [], parts: [], tasks: [], src: ["v2cDynErr"], faults: [
+    F("000", "Metingen buiten bereik", 2, "De metingen vallen buiten het bereik.", ["Controleer of de interne meter van de laadpaal is ingesteld (merk, eenfase of driefase), of laat support dit op afstand instellen.", "Controleer of de meter fysiek op de stroomtang is aangesloten.", st]),
+    F("001", "Goodwe-omvormer (UDP)", 2, "Geen verbinding met de Goodwe-omvormer via UDP.", ["Zorg dat omvormer en laadpaal allebei internet hebben.", "Controleer of het IP-adres van de omvormer goed in de e-Charger staat.", st]),
+    F("002", "V2C-meter 1.0/2.0 ontvangt beschadigde frames", 2, "De meter ontvangt corrupte gegevens.", ["Controleer of de RJ-45-stekkers aan beide kanten goed zijn gekrimpt.", "Kies de meter die bij de installatie hoort.", st]),
+    F("003", "Mogelijke ruis op signaal V2C ControlBox", 2, "Storing op het signaal van de ControlBox.", ["Controleer of de RJ-45-stekkers aan beide kanten goed zijn gekrimpt.", "Kies de meter die bij de installatie hoort.", st]),
+    F("004", "Wifi valt steeds weg", 2, "De Trydan verliest en herstelt steeds de wifi-verbinding, terwijl de wifi-meter die nodig heeft.", ["Verbind beide apparaten met de wifi van de klant (niet die van de laadpaal).", "Zorg voor een sterk signaal of plaats een repeater.", st]),
+    F("005", "V2C ControlBox reageert niet", 2, "De ControlBox reageert niet via RJ-45.", ["Controleer of de RJ-45-stekkers aan beide kanten goed zijn gekrimpt.", st]),
+    F("006", "HTTP- of Modbus TCP-verbindingsfout", 2, "Geen verbinding met de meter of omvormer via HTTP (o.a. Shelly, Solax, Enphase, P1) of Modbus TCP (o.a. Huawei, Fronius, SMA, SolarEdge).", ["Verbind beide apparaten met hetzelfde wifi-netwerk van de klant.", "Controleer of het IP-adres van de omvormer klopt.", "Versterk het signaal of gebruik een repeater.", "Controleer de communicatie-instellingen van de omvormer.", st]),
+    F("007", "Shelly niet gevonden", 2, "Automatisch zoeken vond geen Shelly-apparaat.", ["Geef de Shelly een vast IP-adres in de Trydan.", "Verbind beide apparaten met hetzelfde wifi-netwerk van de klant.", st]),
+    F("008", "Trydan nooit met wifi verbonden", 2, "Er is een wifi-meter gekozen, maar de Trydan heeft nooit verbinding gemaakt met het wifi-netwerk.", ["Verbind beide apparaten met hetzelfde wifi-netwerk van de klant, met voldoende signaal.", st]),
+    F("009", "Time-out bij uitlezen meter", 2, "De meter reageert niet op tijd.", ["Controleer de RJ-45-stekkers.", "Controleer de communicatie-instellingen van de omvormer.", "Gebruik bij wifi-apparaten hetzelfde netwerk met sterk signaal.", "Vul het IP-adres van de omvormer goed in bij de dynamische regeling van de Trydan.", "Bij Solax: gebruik Pocket WiFi versie V2.033.20.", st]),
+    F("010", "Gegevens van niet-aangesloten klem", 2, "Er komen gegevens binnen op een kanaal waar geen klem op hoort.", ["Plaats de stroomtangen op de juiste fasen volgens het juiste installatieschema.", st]),
+    N("Codes 021–032, 244–256, 275 (Modbus/TCP)", 3, "Modbus/TCP-fouten; volgens V2C alleen voor gespecialiseerde technici.", ["Dien een verzoek in bij het technische supportcentrum van V2C."])
+  ]});
+})();
+(() => {
+  SRC.froniusWattpilot = ["Fronius – Bedieningshandleiding Wattpilot Go 11 J / 22 J / Home 11 J (LED-indicaties en statuscodes)", "https://manuals.fronius.com/html/4204260400/en.html"];
+  MODELS.push({ id: "fronius-wattpilot", brand: "Fronius", name: "Wattpilot laadpaal: statuscodes en LED-ring", dev: "Wattpilot laadpaal", cat: "laadpalen", years: "Wattpilot Go 11 J, Go 22 J, Home 11 J", unit: null, also: "Fronius Wattpilot foutcode, Wattpilot rood knipperen, Wattpilot statuscode 12, Wattpilot laadt niet, Wattpilot geen LED", intro: "De LED-ring van de Fronius Wattpilot geeft met kleuren aan wat de laadpaal doet; bij een fout knipperen de bovenste LEDs rood. De statuscode is uit te lezen in de Fronius Solar.wattpilot-app.", weak: [], parts: [], tasks: [], src: ["froniusWattpilot"], faults: [
+    F("1", "Lekstroom gedetecteerd", 3, "De aardlekbeveiliging heeft een fout gevonden; mogelijk is de laadapparatuur van de auto defect.", ["Haal de laadkabel los en sluit hem opnieuw aan.", "Laat de laadapparatuur van de auto door een specialist controleren."]),
+    F("3", "Minstens één fase ontbreekt", 2, "Het apparaat krijgt maar 2 fasen binnen.", ["Controleer of fase 2 en 3 goed zijn aangesloten.", "Voeding via alleen fase 1 is ook mogelijk."]),
+    F("8", "Aardingsfout", 3, "Er is een fout in de aarding gevonden.", ["Laat controleren of de aansluiting goed geaard is."]),
+    F("10", "Relaisfout", 2, "Het relais heeft niet geschakeld.", ["Haal de voeding van het apparaat 5 seconden weg."]),
+    F("11", "Noodstroommodus (53 Hz)", 2, "Er is 53 Hz netstroom gedetecteerd (noodstroom).", ["Volg de aanwijzingen in de bedieningshandleiding."]),
+    F("12", "Vergrendelen type 2-stekker mislukt", 1, "De vergrendeling werkt niet of de stekker zit niet helemaal in de laadpaal.", ["Haal vreemde deeltjes uit de stekkerbehuizing.", "Steek de type 2-stekker volledig in tot hij klikt."]),
+    F("13", "Ontgrendelen type 2-stekker mislukt", 1, "De auto is nog aangesloten, 'Altijd vergrendeld' staat aan, of de ontgrendeling zit vast.", ["Koppel de auto los en zet 'Altijd vergrendeld' uit in de app.", "Zit de ontgrendeling vast: steek de stekker opnieuw volledig in, druk op de drukknop van het apparaat, kies 'Altijd vergrendeld' en sla op, en kies daarna 'Standaardmodus' bij kabelontgrendeling en sla op."]),
+    F("100", "Interne communicatiefout", 2, "Het apparaat verstuurt geen gegevens.", ["Koppel het apparaat los en sluit het opnieuw aan.", "Voer een firmware-update uit.", "Helpt het niet: stuur het apparaat retour."]),
+    F("101", "Temperatuur te hoog", 2, "Door langdurige belasting of verkeerd geïnstalleerde kabels is het apparaat te warm.", ["Koppel het apparaat los en laat het afkoelen."]),
+    F("105", "Geen gegevens flexibel stroomtarief", 1, "Het tarief kan niet worden opgehaald.", ["Controleer de wifi- en internetverbinding.", "Of wacht tot de server weer bereikbaar is."]),
+    F("109", "Geen verbinding met omvormer", 1, "De Wattpilot bereikt de omvormer niet.", ["Controleer de netwerkinstellingen en de instellingen van de omvormer."]),
+    F("114", "Eco-modus heeft PV-overschot of flexibel tarief nodig", 1, "Eco-modus staat aan zonder 'PV-overschot gebruiken' of flexibel tarief.", ["Zet 'PV-overschot gebruiken' en/of het flexibele tarief aan, of kies een andere modus.", "Staat het tarief aan maar is er geen internet: controleer de netwerkinstellingen."]),
+    F("115", "Ingestelde energie niet haalbaar", 1, "De ingestelde hoeveelheid energie kan niet in de opgegeven tijd geladen worden.", ["Verleng de laadtijd of verlaag de gewenste hoeveelheid energie."]),
+    F("116", "Bijwerken flexibele tarieven mislukt", 1, "Geen verbinding om de tarieven op te halen.", ["Controleer de netwerkinstellingen."]),
+    N("Alle LEDs knipperen rood", 2, "Interne communicatiefout.", ["Lees de foutcode uit in de app en zoek die op in de statuscodes."]),
+    N("Roze, bovenste LEDs knipperen rood", 3, "Lekstroom gedetecteerd (≥ 6 mA DC of ≥ 30 mA AC).", ["Start de Wattpilot opnieuw."]),
+    N("Groen en geel, bovenste LEDs knipperen rood", 3, "De aarding van de voedingskabel is niet in orde.", ["Laat de aarding van de voedingskabel controleren."]),
+    N("Blauw, bovenste LEDs knipperen rood", 2, "Een of meer fasen van de voeding zijn uitgevallen.", ["Controleer de fasen van de voedingskabel."]),
+    N("Geel, bovenste LEDs knipperen rood", 1, "Het apparaat is te warm; de laadstroom wordt verlaagd.", ["Fronius noemt hier geen stappen; de laadpaal verlaagt zelf de stroom."]),
+    N("Afwisselend roze en rood", 2, "De firmware-update is mislukt.", ["Fronius noemt hier geen stappen."]),
+    N("Laden start niet, LEDs in 'gereed'-kleur", 1, "De auto wordt niet herkend.", ["Controleer de kabel van de auto en of de laadstekkers goed vastzitten."]),
+    N("Geen LEDs na aansluiten", 2, "Er staat geen spanning op de aansluitkast, of de LED-helderheid staat op 0 / 'LEDs uit na 10 s stand-by' staat aan.", ["Controleer de installatieautomaat van de aansluiting.", "Controleer de LED-helderheid en de instelling 'LEDs uit na 10 s stand-by' in de app."])
+  ]});
+})();
+(() => {
+  SRC.ohmeLights = ["Ohme – Home Pro: how do I know what my charger is doing?", "https://ohme-ev.com/support/ohme-home-pro-how-do-i-know-what-my-charger-is-doing/"];
+  SRC.ohmeVolt = ["Ohme – Troubleshooting voltage errors", "https://ohme-ev.com/support/troubleshooting-voltage-errors/"];
+  MODELS.push({ id: "ohme-home-pro", brand: "Ohme", name: "Home Pro laadpaal: lampje en spanningsfouten", dev: "Home Pro laadpaal", cat: "laadpalen", years: "Ohme Home Pro", unit: null, also: "Ohme rood lampje, Ohme Overvoltage, Ohme Undervoltage, Ohme laadt niet, Ohme blauw lampje", intro: "Het lampje van de Ohme Home Pro geeft de status aan: blauw is uitgesteld laden, groen is aangesloten of aan het laden, rood is een fout. Spanningsfouten (Overvoltage/Undervoltage) laten het rode lampje knipperen.", weak: [], parts: [], tasks: [], src: ["ohmeLights", "ohmeVolt"], faults: [
+    N("Rood lampje", 2, "Er is een fout.", ["Neem contact op met de klantenservice van Ohme."]),
+    N("Blauw lampje", 1, "Het laden is uitgesteld, bijvoorbeeld tot goedkope stroom.", ["Niets doen; het laden start volgens planning."]),
+    N("Groen lampje brandt continu", 1, "De auto is aangesloten maar neemt geen stroom af.", ["Ohme noemt hier geen stappen."]),
+    N("Geen lampje", 1, "Het laden is klaar of de lader is losgekoppeld.", ["Niets doen."]),
+    F("Overvoltage", "Overspanning", 2, "De netspanning is hoger dan 253 V; Ohme pauzeert het laden tot de spanning weer binnen 207–253 V ligt.", ["Controleer de spanning: tik met de auto aangesloten twee keer op 'Next View' om de actuele waarde te zien.", "Vraag de netbeheerder de spanning te meten; die moet dit een paar dagen volgen. Blijf de lader intussen gewoon gebruiken.", "Blijft de fout na aanpassing door de netbeheerder: neem contact op met Ohme, met de rapporten van de netbeheerder."]),
+    F("Undervoltage", "Onderspanning", 2, "De netspanning is lager dan 207 V; Ohme pauzeert het laden tot de spanning weer binnen 207–253 V ligt.", ["Controleer de spanning: tik met de auto aangesloten twee keer op 'Next View' om de actuele waarde te zien.", "Vraag de netbeheerder de spanning te meten; die moet dit een paar dagen volgen. Blijf de lader intussen gewoon gebruiken.", "Blijft de fout na aanpassing door de netbeheerder: neem contact op met Ohme, met de rapporten van de netbeheerder."])
+  ]});
+})();
+(() => {
+  SRC.mennekesProf = ["MENNEKES – Storingsoplossing AMTRON Professional (v01, 2022-12-13, NL)", "https://nl.v13.mennekes.de/fileadmin/MEN-Deutschland/emobility/01_documents/04_installer/Storingsoplossing_AMTRON_Professional_v01_2022-12-13_nl.pdf"];
+  const el = "Alleen een elektricien mag het laadstation openen.";
+  const sup = "Lost het niets op: noteer artikel- en serienummer en neem contact op met MENNEKES-support.";
+  MODELS.push({ id: "mennekes-amtron-professional", brand: "MENNEKES", name: "AMTRON Professional: foutmeldingen en storingsoplossing", dev: "AMTRON Professional laadstation", cat: "laadpalen", years: "AMTRON Professional (firmware 5.12.0)", unit: null, also: "Mennekes Amtron storing, Amtron Contactor welded, Amtron rode LED storing, Mennekes laadpaal fout, Amtron Signal Weak, Amtron Vehicle signals error", intro: "De foutmeldingen van de MENNEKES AMTRON Professional staan in de webinterface onder 'State' > 'Errors list'. MENNEKES raadt aan eerst de softwareversie te controleren en zo nodig bij te werken. Brandt of knippert de rode LED 'Storing', schakel dan de aardlekschakelaar en installatieautomaat (indien aanwezig) weer in met de multifunctionele knop.", weak: [], parts: [], tasks: [], src: ["mennekesProf"], faults: [
+    N("Rode LED 'Storing' brandt of knippert", 2, "Er is een storing; mogelijk zijn aardlekschakelaar of installatieautomaat afgeslagen.", ["Schakel aardlekschakelaar en installatieautomaat (indien aanwezig) weer in met de multifunctionele knop.", "Lees de fout uit in de webinterface onder 'State' > 'Errors list'.", sup]),
+    F("RCD-MCB triggered from unique input", "Aardlek/automaat aangesproken", 3, "De terugmelding van het fasevolgorderelais klopt niet: geen voedingsspanning, verkeerd draaiveld, onder- of overspanning, fase-uitval, losse of gebroken bedrading, afgeslagen aardlek/automaat of defecte ingang van de controller.", ["Controleer de voedingsspanning.", "Vervang zo nodig de controller.", el, sup]),
+    F("Contactor welded", "Relais vastgelast", 3, "De terugmelding van het spiegelcontact van het relais klopt niet: losse verbindingen, gebroken draad, vastzittend relais of defecte ingang van de controller.", ["Schakel het laadstation 3 minuten spanningsloos en start opnieuw.", "Blijft het: test het relais en controleer of het van B naar C schakelt; controleer de spanning op het spiegelcontact (12 V DC en 0 V DC); vervang relais, spiegelcontact of controller.", el, sup]),
+    F("Housing temperature approaching limit", "Behuizing bijna te warm – laadstroom verlaagd", 1, "De temperatuur in de behuizing is 50–55 °C.", ["Wacht tot het laadstation is afgekoeld."]),
+    F("Housing temperature too high", "Behuizing te warm – laden gepauzeerd", 2, "De temperatuur in de behuizing is boven 55 °C, of de temperatuursensor is defect.", ["Wacht tot het laadstation is afgekoeld.", "Komt het vaker terug: laat de temperatuursensor controleren.", el]),
+    F("Possible CP and PR wiring issue", "Mogelijk probleem bedrading CP/PR", 2, "Defecte laadkabel, of CP en PR verkeerd bedraad.", ["Vervang de laadkabel.", sup]),
+    F("Vehicle signals error", "Voertuig meldt fout", 2, "De auto meldt een fout (status E) of de kabel wordt niet herkend: kortsluiting CP, ongeldig CP-signaal of PP-weerstand niet herkend.", ["Voer een functietest uit met de MENNEKES-testbox.", "Vervang de laadkabel.", "Raadpleeg een garage voor de auto."]),
+    F("State D detected, charging is paused", "Status D – laden gepauzeerd", 2, "De auto vraagt status D (gasvormende accu), die niet wordt geaccepteerd, of het CP-signaal valt buiten het geldige bereik.", ["Controleer kabels en stekkers.", "Meet CP–PP (12 V DC in status A) en vervang zo nodig de controller.", el]),
+    F("RFID reader not communicating", "RFID-lezer communiceert niet", 2, "Geen communicatie met de RFID-lezer.", ["Controleer de stekker tussen ECU en RFID-lezer.", el]),
+    F("Residual current detected via sensor", "Lekstroom via sensor / stroomtransformator defect", 3, "De meetstroomtransformator is defect (ook gemeld als 'The current transformer has a defect').", ["Controleer de stekker tussen ECU en stroomtransformator.", el, sup]),
+    F("Diagnostic failed", "Diagnose mislukt", 1, "Het diagnosebestand kon niet naar de backend worden gestuurd.", ["Controleer de verbinding met de backend, de simkaart en de mobiele ontvangst."]),
+    F("Signal Weak", "Zwak signaal", 1, "Slechte of geen verbinding met de backend.", ["Controleer de verbinding met de backend, de simkaart en de mobiele ontvangst."]),
+    F("Not all DLM Slaves connected", "Niet alle DLM-slaves verbonden", 2, "De communicatie tussen DLM-master en -slaves is verstoord.", ["Controleer de verbinding."]),
+    F("FW Update in progress", "Firmware-update bezig", 1, "Er loopt een firmware-update.", ["Wacht tot de update klaar is."]),
+    F("Firmware update failed", "Firmware-update mislukt", 1, "De firmware-update kon niet worden voltooid.", ["Download het firmwarebestand opnieuw.", "Start de update opnieuw."])
+  ]});
+})();
+(() => {
+  SRC.mennekesCompact = ["MENNEKES – Troubleshooting AMTRON Compact 2.0s (v01, 2022-06-23)", "https://www.mennekes.org/fileadmin/MEN-Deutschland/emobility/01_documents/04_installer/Troubleshooting_AMTRON_Compact_2.0_s__v01_2022-06-23_en.pdf"];
+  const el = "Werk waarbij het laadstation open moet, mag alleen een elektricien doen.";
+  const sup = "Lost het niets op: neem contact op met MENNEKES-support en stuur het logbestand mee.";
+  const rs = "Maak het laadstation 3 minuten spanningsloos en start opnieuw.";
+  MODELS.push({ id: "mennekes-amtron-compact-2", brand: "MENNEKES", name: "AMTRON Compact 2.0s: foutmeldingen", dev: "AMTRON Compact 2.0s wallbox", cat: "laadpalen", years: "AMTRON Compact 2.0s", unit: null, also: "Mennekes Compact 2.0 storing, Amtron Compact rode LED, Amtron Compact Relay faulty, Mennekes wallbox fout, Amtron lekstroom", intro: "Brandt of knippert de rode 'Error'-LED van de MENNEKES AMTRON Compact 2.0s, lees dan de foutmelding uit in de configuratietool. MENNEKES raadt aan de laadpaal 3 minuten spanningsloos te maken, opnieuw te starten en te controleren of de firmware actueel is.", weak: [], parts: [], tasks: [], src: ["mennekesCompact"], faults: [
+    N("Rode Error-LED brandt of knippert", 2, "Er is een storing.", ["Lees de foutmelding uit in de configuratietool.", rs, "Controleer of de firmware actueel is.", "Noteer bij aanhoudende storing artikel- en serienummer en neem contact op met MENNEKES-support."]),
+    N("Vehicle incompatible / charging cable defective", 2, "De auto meldt een fout of is niet compatibel, de kabel wordt niet herkend, of er is een fout in het CP-signaal, de stroommeting of de controller.", ["Haal de kabel los, controleer kabels en aansluitingen en start het laden opnieuw.", "Laat de auto controleren bij een garage.", el, sup]),
+    N("Residual current detection triggered", 3, "Defecte isolatie van de laadkabel of lekstroom naar aarde.", ["Haal de kabel los en controleer hem.", rs, "Laat de auto en de lekstroomgrens controleren.", sup]),
+    N("Modbus fault", 2, "Communicatiefout met de energiemeter of een externe master.", ["Controleer kabels, stekkers en de configuratie.", el, sup]),
+    N("Relay faulty", 3, "De terugmelding van het relais klopt niet, meestal door een defect relais in de controller.", [rs, "Vervang zo nodig de controller.", el, sup]),
+    N("Device fault", 3, "Defecte hardware (controller, flashgeheugen of lekstroomsensor), onvolledige firmware of blijvende lekstroom naar aarde.", [rs, "Werk zo nodig de firmware bij.", el, sup]),
+    N("Installation error / supply network connection faulty", 3, "Onder- of overspanning, fase-uitval, losse klemmen, kabelbreuk of spanningspieken.", ["Laat controleren of de faseconfiguratie bij het net past en de installatie volgens DIN EN 50678 in orde is.", el, sup]),
+    N("Internal communication fault", 2, "Onderbroken verbinding tussen interne onderdelen of defecte controller.", ["Laat kabels en stekkers controleren.", el, sup]),
+    N("Internal event", 2, "Systeemfout.", ["Controleer of de firmware actueel is en werk die zo nodig bij.", sup]),
+    N("Configuration error", 2, "DIP-schakelaars 1, 2 en 3 (bank S2) staan alle drie op ON; dit is geen geldige stand.", ["Laat de DIP-schakelaars controleren en start het laadstation opnieuw.", "Stel de gewenste maximale laadstroom in.", el])
+  ]});
+})();
+(() => {
+  SRC.boschGal18v6 = ["Bosch Professional – Gebruiksaanwijzing GAL 18V6-80 (NL)", "https://www.bosch-pt.com.ph/manuals/professional/ph/en/online-manual/200654966/Resources/pdf/GAL%2018V6-80__nl.pdf"];
+  MODELS.push({ id: "bosch-gal-18v6-80", brand: "Bosch Professional", name: "GAL 18V6-80 meervoudige lader: rode en groene lampjes", dev: "GAL 18V6-80 acculader (6 schachten)", cat: "gereedschap", years: "Bosch Professional GAL 18V6-80", unit: null, also: "Bosch lader rood knipperen, Bosch GAL 18V6-80 alle lampjes knipperen, Bosch acculader laadt niet, Bosch Professional lader storing", intro: "De Bosch Professional GAL 18V6-80 laadt zes 18V-accu's tegelijk. Per laadschacht is er een groene oplaadaanduiding en een rode aanduiding voor temperatuur en fouten.", weak: [], parts: [], tasks: [], src: ["boschGal18v6"], faults: [
+    N("Alle zes rode lampjes knipperen tegelijk", 2, "Interne fout in de oplader.", ["Controleer of alle accu's volledig zijn ingestoken.", "Trek de stekker uit het stopcontact en steek hem weer in.", "Komt de fout terug: laat de oplader nakijken door een geautoriseerde Bosch-klantendienst."]),
+    N("Rood lampje van één laadschacht knippert", 2, "De accu zit niet goed, de contacten zijn vuil, of de accu in die schacht is defect.", ["Steek de accu correct in de oplader.", "Trek de stekker uit en reinig de accu- en laadcontacten droog.", "Helpt dat niet: vervang de accu."]),
+    N("Rood lampje brandt continu", 1, "De accutemperatuur ligt buiten 0–45 °C.", ["Wacht tot de accu weer binnen dat bereik is; het laden start dan vanzelf."]),
+    N("Geen enkel lampje brandt", 1, "De stekker zit niet goed, of het stopcontact, het netsnoer of de oplader is defect.", ["Steek de netstekker volledig in het stopcontact.", "Sluit de oplader aan op een ander, werkend stopcontact.", "Komt de fout terug: laat de oplader nakijken door een geautoriseerde klantendienst."])
+  ]});
+})();
+(() => {
+  SRC.victronQuattro2 = ["Victron Energy – Handleiding Quattro-II 230V: foutindicaties (NL)", "https://www.victronenergy.com/media/pg/Quattro-II_230V/nl/error-indications.html"];
+  const rs = "Zet alle apparatuur uit en weer aan.";
+  MODELS.push({ id: "victron-quattro-ii", brand: "Victron Energy", name: "Quattro-II: LED-foutindicaties en VE.Bus-foutcodes", dev: "Quattro-II omvormer/lader", cat: "camper-caravan", years: "Quattro-II 230V", unit: null, also: "Victron Quattro Low battery knippert, Quattro Overload, Quattro VE.Bus fout, Quattro Bulk knippert, Victron Quattro Inverter on knippert", intro: "De Victron Quattro-II meldt storingen met de LEDs 'Low battery', 'Overload' en 'Temperature'. Knippert 'Inverter on' tegengesteld aan de andere LEDs, dan is er een VE.Bus-foutcode; die lees je af aan de LEDs 'Inverter on', 'Bulk', 'Absorption' en 'Float' met het LED-schema in de handleiding. Voor de volledige lijst adviseert Victron de Victron Toolkit-app.", weak: [], parts: [], tasks: [], src: ["victronQuattro2"], faults: [
+    N("Low battery knippert", 1, "De accuspanning is laag.", ["Laad de accu op.", "Controleer de accuaansluitingen."]),
+    N("Low battery brandt", 2, "De omvormer is uitgeschakeld door te lage accuspanning.", ["Laad de accu op.", "Controleer de accuaansluitingen."]),
+    N("Overload knippert", 1, "De belasting is hoger dan het nominale vermogen.", ["Verlaag de belasting."]),
+    N("Overload brandt", 2, "De omvormer is uitgeschakeld door te hoge belasting.", ["Verlaag de belasting."]),
+    N("Temperature knippert of brandt", 2, "De omgevingstemperatuur of de belasting is te hoog.", ["Plaats het apparaat koeler en beter geventileerd.", "Verlaag de belasting."]),
+    N("Low battery en Overload knipperen om en om", 2, "Lage accuspanning in combinatie met te hoge belasting.", ["Laad de accu's op.", "Verlaag of ontkoppel de belasting.", "Gebruik een accu met meer capaciteit en kortere of dikkere accukabels."]),
+    N("Low battery en Overload knipperen tegelijk", 2, "De rimpelspanning op de DC-aansluiting is te hoog (boven 1,5 Vrms).", ["Controleer de accukabels en aansluitingen.", "Verhoog zo nodig de accucapaciteit."]),
+    N("Low battery en Overload branden", 2, "De omvormer is uitgeschakeld door te hoge rimpelspanning op de ingang.", ["Gebruik een accu met meer capaciteit en kortere of dikkere kabels.", "Herstel door het apparaat uit en weer aan te zetten."]),
+    N("Mains on knippert, geen uitgangsspanning", 1, "Het apparaat staat in alleen-laden-modus: er is netspanning, maar die wordt (nog) niet geaccepteerd of het apparaat synchroniseert nog.", ["Victron noemt hier geen stappen."]),
+    N("Bulk knippert en Mains on brandt", 2, "De bulkbeveiliging is actief: de maximale bulklaadtijd van 10 uur is overschreden. Dit kan wijzen op een accufout, zoals een kortgesloten cel.", ["Controleer de accu's.", "Herstel door het apparaat uit en weer aan te zetten."]),
+    N("Bulk en Absorption knipperen synchroon", 1, "De spanningssensor wijkt meer dan 7 V af; waarschijnlijk is de aansluiting fout. Het apparaat blijft werken.", ["Victron noemt hier geen stappen; het apparaat blijft werken."]),
+    N("Absorption en Float knipperen synchroon", 1, "De gemeten accutemperatuur is onwaarschijnlijk; de sensor is mogelijk defect of verkeerd aangesloten. Het apparaat blijft werken.", ["Victron noemt hier geen stappen; het apparaat blijft werken."]),
+    F("VE.Bus 1", "Andere fase is uit", 2, "Het apparaat is uitgeschakeld omdat een andere fase in het systeem uit is.", ["Controleer de ontbrekende fase."]),
+    F("VE.Bus 3", "Niet alle apparaten gevonden", 2, "Niet alle verwachte apparaten zijn gevonden.", ["Configureer het systeem opnieuw.", "Controleer de communicatiekabel.", rs]),
+    F("VE.Bus 4", "Geen ander apparaat gedetecteerd", 2, "Er is geen ander apparaat gedetecteerd.", ["Controleer de communicatiekabels."]),
+    F("VE.Bus 5", "Spanning op AC-OUT te hoog", 2, "De spanning op AC-OUT is te hoog.", ["Controleer de AC-kabels."]),
+    F("VE.Bus 10", "Probleem met tijdsynchronisatie", 2, "Probleem met de tijdsynchronisatie; hoort bij goed geïnstalleerde apparatuur niet voor te komen.", ["Controleer de communicatiekabels."]),
+    F("VE.Bus 14", "Apparaat kan geen gegevens verzenden", 2, "Het apparaat kan geen gegevens verzenden.", ["Controleer de communicatiekabels op kortsluiting."]),
+    F("VE.Bus 17", "Ander apparaat heeft masterrol overgenomen", 2, "De oorspronkelijke master werkt niet meer.", ["Controleer de defecte eenheid en de communicatiekabels."]),
+    F("VE.Bus 18", "Te hoge spanning opgetreden", 2, "Er is een te hoge spanning opgetreden.", ["Controleer de AC-kabels."]),
+    F("VE.Bus 22", "Apparaat kan niet als slave werken", 3, "Het apparaat is verouderd.", ["Vervang het apparaat."]),
+    F("VE.Bus 24", "Beveiliging omschakelsysteem geactiveerd", 2, "De beveiliging van het omschakelsysteem is aangesproken.", [rs, "Komt het terug: controleer de installatie.", "Mogelijke oplossing: verhoog de ondergrens van de AC-ingangsspanning naar 210 V AC (fabrieksinstelling 180 V AC)."]),
+    F("VE.Bus 25", "Firmware niet compatibel", 2, "De firmware van een van de apparaten is niet compatibel.", ["Zet de apparaten één voor één opnieuw aan.", "Werk de firmware bij, bij voorkeur van het laatst ingeschakelde apparaat."]),
+    F("VE.Bus 26", "Interne fout", 3, "Interne fout.", [rs, "Blijft het: neem contact op met Victron Energy."])
+  ]});
+})();
+(() => {
+  SRC.bulexThemaPlus = ["Bulex – Gebruikshandleiding ThemaPlus Condens (0020292720_01)", "https://www.bulex.be/downloads/documentatie/documenten/gebruikshandleiding/gebruikshandleiding-themaplus-condens-0020292720-01-2556822.pdf"];
+  const vak = "Lukt het niet: neem contact op met een vakman.";
+  MODELS.push({ id: "bulex-themaplus-condens", brand: "Bulex", name: "ThemaPlus Condens: foutcodes F.022 en F.028", dev: "ThemaPlus Condens cv-ketel", cat: "cv-ketels", years: "Bulex ThemaPlus Condens", unit: null, also: "Bulex F.22, Bulex F28 storing, Bulex ketel geen warm water, Bulex waterdruk bijvullen, Bulex ThemaPlus storing", intro: "De Bulex ThemaPlus Condens toont storingen als F.XXX. De gebruiker kan zelf F.022 (te weinig water) en F.028 (ontsteekstoring) verhelpen. Bij noodbedrijfcodes (N.XXX), onderhoudsmeldingen (I.XXX) en andere F-codes moet je volgens Bulex een vakman bellen. De vuldruk lees je af via MENU → INFORMATIE → Waterdruk; onder 0,8 bar moet je water bijvullen.", weak: [], parts: [], tasks: [], src: ["bulexThemaPlus"], faults: [
+    F("F.022", "Te weinig water of waterdruk te laag", 1, "Watergebrek in de cv-installatie.", ["Controleer de vuldruk via MENU → INFORMATIE → Waterdruk.", "Is de druk lager dan 0,8 bar: vul cv-water bij met de vulkraan (vraag de installateur waar die zit).", "Ontlucht daarna alle radiatoren en controleer de druk opnieuw."]),
+    F("F.028", "Ontsteekstoring – geen vlam herkend", 2, "Het vlamsignaal wordt tijdens de ontsteking niet herkend; na vijf mislukte pogingen gaat de ketel in storing.", ["Controleer of de gasafsluitkraan open staat.", "Houd de resettoets langer dan 3 seconden ingedrukt (maximaal 3 keer).", "Lukt het niet: vraag advies aan uw installateur."]),
+    N("N.XXX of I.XXX op het display", 2, "Een noodbedrijfcode (N.XXX) of onderhoudsmelding (I.XXX).", ["Neem contact op met een vakman."]),
+    N("Ketel start niet: geen warm water en cv blijft koud", 1, "Gaskraan dicht, stroom onderbroken, koudwaterkraan dicht, product uitgeschakeld, temperatuur te laag ingesteld of lucht in de installatie.", ["Open de gaskranen (de kraan die de installateur plaatste en die op het product).", "Controleer de zekering; de ketel start vanzelf als de stroom terug is.", "Open de koudwaterstopkraan.", "Stel de cv-aanvoertemperatuur en de warmwatertemperatuur in.", "Ontlucht de installatie.", vak]),
+    N("Verwarming start niet, warm water werkt wel", 1, "De externe thermostaat is niet goed ingesteld.", ["Stel de thermostaat in volgens de gebruiksaanwijzing van de thermostaat."]),
+    N("Druksymbool knippert", 1, "De vuldruk ligt buiten het toegestane bereik.", ["Controleer de vuldruk en vul bij als die onder 0,8 bar is.", "Bij meerdere verdiepingen is mogelijk een hogere druk nodig; vraag advies aan de installateur."])
+  ]});
+})();
+(() => {
+  SRC.bulexFas = ["Bulex – Gebruikshandleiding Thema CONDENS F AS 45 A / 65 A", "https://www.bulex.be/downloads/documentatie/documenten/gebruikshandleiding/handleiding-thema-condens-fas-45-65-688449.pdf"];
+  const fill = ["Vul de cv-installatie bij met water.", "Daalt de druk steeds weer: laat een erkende installateur het lek zoeken."];
+  const ign = ["Houd de resettoets ongeveer één seconde ingedrukt.", "Start de ketel na de derde poging nog steeds niet: laat een erkende installateur hem controleren."];
+  MODELS.push({ id: "bulex-thema-condens-fas", brand: "Bulex", name: "Thema Condens F AS 45/65: storingscodes", dev: "Thema Condens F AS 45 A / 65 A cv-ketel", cat: "cv-ketels", years: "Bulex Thema CONDENS F AS 45 A en 65 A", unit: null, also: "Bulex Thema Condens F.22, Bulex F.28, Bulex F.32 ventilator, Bulex Thema Condens storing, Bulex druk te laag", intro: "Deze codes gelden voor de Bulex Thema CONDENS F AS 45 A en 65 A (grotere cv-ketels). Alleen de codes hieronder mag de gebruiker zelf behandelen; andere foutcodes moeten volgens Bulex door een bevoegde vakman worden verholpen.", weak: [], parts: [], tasks: [], src: ["bulexFas"], faults: [
+    F("F.22", "Waterdruk te laag", 1, "De druk is te laag; onder 0,3 bar schakelt de ketel uit.", fill),
+    F("F.23", "Watergebrek", 1, "Er is te weinig water in de installatie.", fill),
+    F("F.24", "Watergebrek", 1, "Er is te weinig water in de installatie.", fill),
+    F("F.28", "Ontsteking mislukt", 2, "De ontsteking is na vijf pogingen mislukt.", ign),
+    F("F.29", "Ontsteking mislukt", 2, "De ontsteking is na vijf pogingen mislukt.", ign),
+    F("F.32", "Ventilator werkt slecht", 3, "De ventilator werkt slecht; de ketel schakelt zichzelf uit.", ["Bel een erkende installateur.", "Breng zelf geen wijzigingen aan het toestel aan."]),
+    N("Geen warm water en geen verwarming", 1, "De ketel start niet.", ["Controleer of de gaskraan bij de meter en die van het toestel open zijn.", "Controleer of er stroom is in het gebouw en de hoofdschakelaar van het toestel op I staat.", "Controleer of de vuldruk hoog genoeg is en of er lucht in de installatie zit.", "Werkt het nog niet: schakel het toestel uit en neem contact op met de installateur."]),
+    N("Warm water werkt, verwarming niet", 1, "Er komt geen warmtevraag.", ["Controleer of de externe regeling of kamerthermostaat warmte vraagt."])
+  ]});
+})();
+(() => {
+  SRC.volvoEx30Port = ["Volvo Cars – EX30 support: Charging status in the charging port (Engels)", "https://www.volvocars.com/sg/support/car/ex30/article/a3d4c324d33d417cc0a8cc37744d76ea-ec8b59f1d33539aec0a8cc374c819eab-059c61879f5b4d80c0a8b0c163d5e0f7/"];
+  MODELS.push({ id: "volvo-ex30-laden", brand: "Volvo", name: "EX30: kleur van het lampje bij de laadpoort", dev: "EX30 laadpoort", cat: "auto", years: "Volvo EX30", unit: null, also: "Volvo EX30 laadt niet, EX30 laadpoort rood, EX30 geel lampje laadpoort, EX30 blauw lampje laden, Volvo EX30 laadstatus", intro: "Bij de laadpoort van de Volvo EX30 zit een lampje dat de laadstatus aangeeft. Rood betekent een laadfout; op het display staat dan meer informatie.", weak: [], parts: [], tasks: [], src: ["volvoEx30Port"], faults: [
+    N("Laadpoort rood", 2, "Er is een laadfout. Op het display staat meer informatie.", ["Controleer of de kabel goed in de laadpoort zit en of de stroombron werkt.", "Haal de kabel los, sluit hem opnieuw aan en start het laden opnieuw.", "Blijft de fout: neem contact op met een erkende Volvo-werkplaats."]),
+    N("Laadpoort geel", 1, "De kabel is aangesloten en de accu wordt eerst opgewarmd.", ["Niets doen; het laden start daarna."]),
+    N("Laadpoort blauw", 1, "Het laden is ingepland en start later.", ["Niets doen; het laden start op het ingeplande moment."]),
+    N("Laadpoort groen pulserend", 1, "Er wordt geladen, of de kabel is ontgrendeld.", ["Niets doen."]),
+    N("Laadpoort groen continu", 1, "Het laden is klaar of gestopt.", ["Niets doen."]),
+    N("Laadpoort wit", 1, "Het laadklepje is open zonder kabel, of de kabel zit erin maar er wordt niet geladen.", ["Volvo noemt hier geen stappen."])
+  ]});
+})();
+(() => {
+  SRC.hyundaiIoniq5Man = ["Hyundai – Handleiding IONIQ 5 (2025, NL)", "https://dmassets.hyundai.com/is/content/hyundaiautoever/Handleiding+IONIQ+5+2025pdf"];
+  const alt = ["Probeer een andere, goedgekeurde lader.", "Werkt die wel: neem contact op met de fabrikant van de eerste lader.", "Werkt die ook niet: laat de auto nakijken door een erkende Hyundai-dealer."];
+  MODELS.push({ id: "hyundai-ioniq-5-laden", brand: "Hyundai", name: "IONIQ 5 laadt niet: lampjes en controlepunten", dev: "IONIQ 5 laden", cat: "auto", years: "Hyundai IONIQ 5 (handleiding 2025)", unit: null, also: "Ioniq 5 laadt niet, Ioniq 5 laadkabel rood lampje, Ioniq 5 stekker zit vast, Ioniq 5 V2L rood, Ioniq 5 ICCB storing, Ioniq 5 Plug & Charge mislukt", intro: "Laadt de Hyundai IONIQ 5 niet, dan geeft de handleiding een reeks controlepunten. De draagbare lader (ICCB) en het stopcontact in de auto (V2L) hebben eigen lampjes; een rood lampje wijst op een storing.", weak: [], parts: [], tasks: [], src: ["hyundaiIoniq5Man"], faults: [
+    N("Auto laadt niet", 2, "Gepland laden staat aan, de lader is niet gereed, de stekker zit niet goed of er is een storing.", ["Controleer de instelling voor gepland laden; het laden start pas als aan de voorwaarden is voldaan.", "Controleer de status van de lader (de aanduiding verschilt per fabrikant).", "Lees een eventuele waarschuwing op het instrumentenpaneel.", "Wiebelt de stekker: houd de handgreep vast en duw hem volledig naar binnen."].concat(alt)),
+    N("Draagbare lader: rood STORING-lampje knippert", 2, "Lekstroom, communicatiefout, overstroom of oververhitting.", ["Reset de draagbare lader: haal de stroomstekker eruit en steek hem weer in, en houd daarna de knop op de regeleenheid langer dan 2 seconden ingedrukt.", "Komt de fout terug: laat de auto nakijken door een erkende Hyundai-dealer."]),
+    N("Draagbare lader: blauw lampje knippert", 1, "Er wordt geladen, maar de stroom is beperkt tot 6 A.", ["Hyundai noemt hier geen stappen."]),
+    N("V2L-stopcontact rood", 2, "Er komt geen stroom uit het stopcontact in de auto, ook al is de stekker aangesloten.", ["Hyundai noemt hier geen stappen."]),
+    N("Plug & Charge mislukt", 1, "Mogelijk is het contractcertificaat verlopen.", ["Controleer of het contractcertificaat verlopen is.", "Na twee mislukte pogingen schakelt het systeem bij de derde poging over op een externe betaalmethode."]),
+    N("Laadstekker komt niet los", 2, "Bijvoorbeeld door een lege accu of defecte bedrading.", ["Forceer de stekker niet; dat kan stekker of laadingang beschadigen.", "Open de achterklep en trek aan de noodkabel aan de rechterwand.", "Komt de stekker nog niet los: laat de auto nakijken door een erkende Hyundai-dealer."])
+  ]});
+})();
+(() => {
+  SRC.hyundaiKonaEvMan = ["Hyundai – Handleiding KONA (SX2) Electric 2025 (NL)", "https://dmassets.hyundai.com/is/content/hyundaiautoever/Handleiding+KONA+SX2+Electric+2025pdf"];
+  const rs = ["Reset de draagbare lader: haal de stekker uit het stopcontact, steek hem weer in en houd de knop op het bedieningskastje langer dan 2 seconden ingedrukt.", "Komt dezelfde storing terug: raadpleeg een erkende Hyundai-dealer."];
+  const c = (code, t, d, cause) => F(code, t, d, cause, rs);
+  MODELS.push({ id: "hyundai-kona-electric-laden", brand: "Hyundai", name: "KONA Electric: foutcodes draagbare lader (E1–E9, F1–F8) en laden", dev: "KONA Electric draagbare lader (ICCB)", cat: "auto", years: "Hyundai KONA Electric (SX2), handleiding 2025", unit: null, also: "Kona Electric laadkabel E2, Hyundai ICCB foutcode, Kona laadt niet, Kona V2L rood lampje, Hyundai draagbare lader F2 aarding", intro: "De draagbare lader (ICCB) van de Hyundai KONA Electric heeft een rood STORING-lampje en toont foutcodes E1–E9 en F1–F8. Bij elke fout geeft de handleiding dezelfde reset; komt de storing terug, dan moet een erkende Hyundai-dealer kijken.", weak: [], parts: [], tasks: [], src: ["hyundaiKonaEvMan"], faults: [
+    c("E1", "Communicatiefout met de auto (Control Pilot)", 2, "De lader communiceert niet goed met het voertuig."),
+    c("E2", "Stroomlek", 3, "Er is een lekstroom gedetecteerd."),
+    c("E3", "Fout in de lader", 2, "Interne fout in de lader."),
+    c("E4", "Stekker wordt te warm (waarschuwing)", 2, "De temperatuur van de stekker loopt op."),
+    c("E5", "Fout door stekkertemperatuur", 2, "De stekker is te warm geworden."),
+    c("E6", "Fout in de lader", 2, "Interne fout in de lader."),
+    c("E7", "Stroomsterkte te hoog (waarschuwing)", 2, "De stroomsterkte tijdens het laden is te hoog."),
+    c("E8", "Lader oververhit", 2, "De interne temperatuur van de lader is te hoog."),
+    c("E9", "Fout in de lader", 2, "Interne fout in de lader."),
+    c("F1", "Fout relaiszekering", 2, "Fout in de lader (relaiszekering)."),
+    c("F2", "Slechte aarding", 3, "De aansluiting (stopcontact) is slecht of niet geaard."),
+    c("F3", "Storing in voedingsspanning", 2, "Storing in de spanning van de voeding."),
+    c("F4", "Afwijkende voedingsspanning", 2, "De voedingsspanning wijkt af."),
+    c("F5", "Spanningsfout Control Pilot (−)", 2, "Spanningsfout op de negatieve Control Pilot."),
+    c("F6", "Spanningsfout Control Pilot (+)", 2, "Spanningsfout op de positieve Control Pilot."),
+    c("F7", "Fout temperatuursensor stekker", 2, "De temperatuursensor in de stekker is defect."),
+    c("F8", "Fout interne temperatuursensor", 2, "De temperatuursensor op de printplaat is defect."),
+    N("Laden start niet", 2, "Gepland laden staat aan, de lader is niet gereed of de stekker zit niet goed.", ["Controleer of gepland opladen is ingesteld; dan start het laden pas op het ingestelde moment.", "Controleer de status van de lader en let op meldingen op het instrumentenpaneel.", "Hangt of trilt de connector: houd de hendel vast en duw hem helemaal naar binnen.", "Probeer een andere goedgekeurde lader. Werkt die wel: neem contact op met de fabrikant van de eerste lader. Werkt het ook dan niet: laat de auto nakijken door de dealer."]),
+    N("V2L-stopcontact rood", 2, "Er komt geen stroom uit het stopcontact in de auto, ondanks aansluiting.", ["Lees de melding op het instrumentenpaneel, bijvoorbeeld 'Energieverbruik te hoog. V2L gestopt' (apparaat vraagt te veel vermogen) of 'Niet voldaan aan voorwaarden V2L'.", "Is de ontlaadlimiet bereikt: verlaag de limiet om door te gaan."]),
+    N("Laadstekker komt niet los", 2, "Bijvoorbeeld door een lege accu of defecte bedrading.", ["Druk eerst op de ontgrendelknop van de connector; trek niet met kracht.", "Stop het laden: druk op de deurknop van de smart key en houd binnen 15 seconden de laadknop langer dan 2 seconden ingedrukt.", "Is de accu leeg of de bedrading defect: open de motorkap en trek aan de noodkabel.", "Komt de connector nog niet los: laat de auto nakijken door de dealer."])
+  ]});
+})();
+(() => {
+  SRC.kostalG3 = ["KOSTAL – Eventlijst PLENTICORE G3 (NL, 04/2024)", "https://www.kostal-solar-electric.com/fileadmin/downloadcenter/kse/Eventlist-G3_nl.pdf"];
+  const heat = ["Schakel de omvormer uit en laat hem ongeveer 20 minuten afkoelen.", "Controleer de installatie en de ventilator."];
+  const rst = ["Start de omvormer opnieuw (via de DC-schakelaar; wacht 5 minuten)."];
+  const sup = "Komt het terug: neem contact op met de servicedienst van KOSTAL.";
+  MODELS.push({ id: "kostal-plenticore-g3", brand: "KOSTAL", name: "PLENTICORE G3 hybride omvormer: eventcodes", dev: "PLENTICORE G3 hybride omvormer", cat: "zonnepanelen", years: "KOSTAL PLENTICORE G3", unit: null, also: "Kostal Plenticore foutcode, Kostal 1025 geen net, Kostal 1044 isolatie, Kostal event 6021 backup, Kostal omvormer LED knippert", intro: "De KOSTAL PLENTICORE G3 toont eventcodes: 1000–1118 gaan over omvormer en net, 6000–6099 over randapparatuur (energiemeter, ventilator, overspanningsbeveiliging, BackUp Switch) en 6250–6691 over de accu. De LED knippert bij een waarschuwing, brandt bij een fout en is uit bij een informatiemelding. Codes die niet in de lijst staan, moet je aan de servicedienst doorgeven.", weak: [], parts: [], tasks: [], src: ["kostalG3"], faults: [
+    F("1002", "Oververhitting vermogenstrap", 2, "De AC/DC-vermogenstrap is te warm.", heat),
+    F("1003", "Oververhitting processor (waarschuwing)", 2, "De processor is te warm.", heat),
+    F("1006", "Oververhitting processor (fout)", 2, "De processor is te warm.", heat),
+    F("1007", "Spanning PV-generator 1 te hoog", 3, "De spanning van PV-generator 1 is te hoog (1008–1010 gelden voor generator 2–4).", ["Laat de installatie en configuratie van de panelen controleren."]),
+    F("1011", "Overstroom PV-generator", 1, "Overstroom op een PV-generator; kan door het weer komen.", ["Controleer generator en omvormer.", sup]),
+    F("1012", "Negatieve spanning PV-generator 1", 3, "Negatieve spanning op PV-generator 1 (1013–1015 voor generator 2–4).", ["Laat de configuratie van de panelen controleren."]),
+    F("1016", "Ompoling of verwisselde strings", 3, "De polariteit is omgedraaid of strings zijn verwisseld.", ["Laat de bedrading corrigeren."]),
+    F("1022", "Vermogen verlaagd door netbeheerder", 1, "De netbeheerder heeft opdracht gegeven het vermogen te verlagen.", ["Niets doen."]),
+    F("1023", "Vermogen verlaagd door hoge netfrequentie", 1, "De netfrequentie is te hoog.", ["Niets doen."]),
+    F("1025", "Geen verbinding met het net", 2, "Er is geen verbinding met het openbare net.", ["Herstel de netverbinding.", "Controleer de zekering."]),
+    F("1029", "Interne communicatiefout accu", 2, "Interne fout in de communicatie met de accu.", rst),
+    F("1031", "Communicatiekabel accu gestoord", 2, "De communicatiekabel naar de accu is gestoord.", rst),
+    F("1034", "Energiemeter gestoord", 2, "De energiemeter is gestoord.", rst),
+    F("1039", "Lekstroom te hoog", 2, "De lekstroom is te hoog; kan door het weer komen.", ["Laat de installatie controleren."]),
+    F("1044", "Isolatieweerstand te laag", 3, "De isolatieweerstand is lager dan de grens; ook bedrading van N en PE kan dit veroorzaken.", ["Laat de isolatie van de panelen en de bedrading aan netzijde (vooral N en PE) controleren."]),
+    F("1058", "Ingangsspanning accu te hoog", 3, "De spanning op de accu-ingang is te hoog.", ["Neem contact op met de installateur."]),
+    F("1064", "Relais vastgelast", 3, "Minstens één relais is vastgelast.", rst),
+    F("1065", "Relais niet aan te sturen", 3, "Minstens één relais kan niet worden aangestuurd.", rst.concat([sup])),
+    F("1118", "Overspanning in het net", 1, "Er is overspanning in het AC-net.", ["Niets doen."]),
+    F("6016", "Overspanningsbeveiliging defect", 2, "De overspanningsbeveiliging is defect, bijvoorbeeld door blikseminslag in de buurt.", ["Laat de overspanningsbeveiligingsmodule vervangen."]),
+    F("6019", "Overbelasting in backup-modus", 1, "Te veel verbruik tijdens noodstroom.", ["Schakel apparaten met een hoog verbruik uit."]),
+    F("6020", "Signaalkabel BackUp Switch onderbroken", 2, "De signaalkabel naar de BackUp Switch is kapot.", ["Laat de kabel controleren en repareren."]),
+    F("6021", "Net uitgevallen – klaar voor backup", 1, "Het net is uitgevallen; de omvormer is klaar voor backup-modus.", ["Zet de BackUp Switch in de stand 'Huis/batterij'."]),
+    F("6022", "Net weer beschikbaar", 1, "Het net is weer beschikbaar.", ["Zet de BackUp Switch terug in de stand 'Net'."]),
+    F("6312", "Verkeerd aantal panelen ingesteld", 2, "Het ingestelde aantal panelen klopt niet.", ["Corrigeer het aantal panelen.", "Schakel de omvormer volledig uit (AC en DC) en start hem opnieuw."]),
+    N("Ventilatorfout (6010–6013, 6017)", 2, "Een ventilator is defect, vuil of gestoord.", ["Controleer of reinig de ventilator."]),
+    N("Netstoring (1046–1052)", 1, "Er is een storing in het openbare net.", ["Wacht tot het net weer binnen de normale grenzen is."])
   ]});
 })();
 module.exports = { CATS, MODELS, SRC, COST };

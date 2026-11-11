@@ -1091,6 +1091,28 @@ const A = [
   ],
   src: [["ANWB – Snel je autoruit ontdooien: 6 tips", "https://www.anwb.nl/auto/onderhoud-en-reparatie/ruiten-en-ruitenwissers/autoruit-ontdooien"], ["ANWB – Koud? Zo rijd je 's ochtends snel weg", "https://www.anwb.nl/wegenwacht/informatie/zo-rijd-je-snel-weg"]],
   rel: [["kennisbank-auto-winterklaar-maken.html", "Auto winterklaar maken"], ["kennisbank-beslagen-ramen-auto.html", "Beslagen ramen in de auto"], ["auto.html", "Auto-storingen per merk en model"]]
+},
+{
+  id: "slimme-meter-aflezen",
+  cat: "meterkast",
+  q: "Hoe lees ik mijn slimme meter af en wat betekenen 1.8.1, 1.8.2, 2.8.1 en 2.8.2?",
+  title: "Slimme meter aflezen: wat betekenen 1.8.1, 1.8.2, 2.8.1, 2.8.2 en 16.7?",
+  desc: "Op je slimme meter staan codes als 1.8.1 en 2.8.2. Dit zijn de meterstanden voor verbruik en teruglevering per tarief. Zo lees je ze af, volgens Liander en Stedin.",
+  lead: "Een slimme meter toont om de beurt vier meterstanden: twee voor stroom die je hebt verbruikt en twee voor stroom die je hebt teruggeleverd, elk voor tarief 1 en tarief 2.",
+  secs: [
+    ["Wat betekenen de codes?", "<p>Bij veel meters (zoals de Landis+Gyr ZCF110 en ZMF110) wisselt het display elke 5 seconden:</p><ul><li><b>1.8.1</b>: geleverd aan jou in tarief 1 (kWh).</li><li><b>1.8.2</b>: geleverd aan jou in tarief 2 (kWh).</li><li><b>2.8.1</b>: door jou teruggeleverd in tarief 1 (kWh).</li><li><b>2.8.2</b>: door jou teruggeleverd in tarief 2 (kWh).</li><li><b>16.7</b>: het vermogen dat je nu gebruikt (kW).</li></ul><p>Teruggeleverd is <b>netto</b>: wat je zonnepanelen opwekken min wat je direct zelf verbruikt.</p>"],
+    ["Symbolen en het knipperende lampje", "<ul><li><b>T2</b> in beeld: de meter telt nu in tarief 2.</li><li><b>+P</b>: je verbruikt nu stroom.</li><li>Het <b>lampje knippert</b> sneller naarmate je meer stroom verbruikt of teruglevert. Dat is normaal.</li></ul>"],
+    ["Meters met tekst op het display", "<p>Nieuwere meters, zoals de Landis+Gyr E360, tonen tekst in plaats van codes: <i>Geleverd laag</i>, <i>Geleverd hoog</i>, <i>Teruggelev. laag</i>, <i>Teruggelev. hoog</i> en <i>Actueel vermogen</i>. Met de groene knop zet je de verlichting aan en blader je door de gegevens. Is er een slimme gasmeter aangesloten, dan zie je die stand ook op dit display.</p><p>Net na plaatsing kan het een paar dagen duren voordat hoog- en laagtarief goed werken; tot die tijd telt de meter alles als laag tarief.</p>"],
+    ["Storing of vragen?", "<ul><li>Verbreek nooit de zegels van de meter.</li><li>Stroomstoring of storing aan de meter: bel het landelijke storingsnummer <b>0800-9009</b>.</li><li>Weet je niet wie je netbeheerder is? Zoek het op via eancodeboek.nl.</li></ul>"]
+  ],
+  faq: [
+    ["Wat is het verschil tussen 1.8.1 en 1.8.2?", "Beide zijn stroom die aan jou is geleverd: 1.8.1 in tarief 1 en 1.8.2 in tarief 2."],
+    ["Wat betekent 2.8.1 op de slimme meter?", "Dat is de stroom die je in tarief 1 hebt teruggeleverd, netto: opwek min wat je direct zelf gebruikte."],
+    ["Waarom knippert het lampje op mijn slimme meter?", "Dat is normaal. Het lampje knippert sneller naarmate je meer stroom verbruikt of teruglevert."],
+    ["Wie bel ik bij een storing aan de slimme meter?", "Het landelijke storingsnummer 0800-9009."]
+  ],
+  src: [["Liander – Handleiding Landis+Gyr ZCF110 / ZMF110 (PDF)", "https://www.liander.nl/-/media/alliander/liander/meter-manuals/handleidingen/landis-gyr/handleiding-landis-gyr-zcf110--zmf110.pdf"], ["Stedin – Handleiding slimme meter Landis+Gyr E360 (PDF)", "https://www.stedin.net/-/media/feature/handleidingzoeken/handleidingen/handleiding-slimme-meter-e-landis-gyr-e360cd2d.pdf"]],
+  rel: [["homewizard-p1-meter.html", "HomeWizard P1-meter"], ["aardlekschakelaar-groepenkast.html", "Aardlekschakelaar slaat af"], ["meterkast.html", "Meterkast en stroomstoringen"]]
 }
 ];
 module.exports = { KB: A };

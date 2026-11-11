@@ -315,3 +315,8 @@ header.top{position:relative;z-index:58}
 .pickfold summary::after{content:"+";margin-left:auto;font:700 26px/1 var(--body)}
 .pickfold[open] summary::after{content:"−"}
 .aidfold .steps4,.aidfold>p{margin-top:10px}
+/* Advertentie */
+.ad{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px dashed var(--line,#ccc);border-radius:12px;margin:18px 0}
+.ad-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.65}
+.ad a{font-weight:700;font-size:17px}
+.ad small{opacity:.75}
