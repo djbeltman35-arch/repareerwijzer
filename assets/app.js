@@ -7,6 +7,14 @@
     set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   };
 
+  // Telling via GoatCounter (anoniem, geen cookies). Werkt alleen als het script geladen is.
+  var gcEvent = function (path, title) {
+    var send = function () { try { window.goatcounter.count({ path: path, title: title, event: true }); } catch (e) {} };
+    if (window.goatcounter && window.goatcounter.count) send(); else setTimeout(function () { if (window.goatcounter && window.goatcounter.count) send(); }, 3000);
+  };
+
+  window.fczGc = gcEvent; window.fczStore = store;
+
   // Zoeken
   var q = document.getElementById("q"), res = document.getElementById("res");
   {
@@ -62,8 +70,16 @@
       res.innerHTML = hits.length ? hits.slice(0, 15).map(function (h, i) {
         var d = h[1];
         return '<a href="' + d.u + '"' + (i === 0 ? ' class="best"' : "") + '><span>' + (d.c ? '<span class="code">' + esc(d.c) + "</span> " : "") + esc(d.t) + "</span><span>" + esc(d.s) + "</span></a>";
-      }).join("") : '<p class="muted" style="padding:10px 2px">Niets gevonden voor "' + esc(q.value) + '". Probeer alleen het merk en de code, bijvoorbeeld "Bosch E24".</p>';
+      }).join("") : '<p class="muted" style="padding:10px 2px">Niets gevonden voor "' + esc(q.value) + '". Probeer alleen het merk en de code, bijvoorbeeld "Bosch E24".</p><p style="padding:0 2px 10px"><button type="button" class="btn-report" id="fcz-report">📮 Meld deze code, dan zoeken we hem op</button></p>';
+      clearTimeout(window.__fczNr);
+      if (!hits.length && q.value.trim().length >= 2) { var nq = q.value.trim().toLowerCase().slice(0, 60); window.__fczNr = setTimeout(function () { gcEvent("zoek-niet-gevonden/" + nq, "Niet gevonden: " + nq); }, 1500); }
     };
+    res.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("#fcz-report"); if (!b) return;
+      var nq = q.value.trim().toLowerCase().slice(0, 60);
+      gcEvent("code-gemeld/" + nq, "Gemeld: " + nq);
+      b.outerHTML = '<span class="muted">Bedankt! We kijken of we deze code kunnen toevoegen.</span>';
+    });
     q.addEventListener("input", run);
     q.addEventListener("keydown", function (e) {
       if (e.key !== "Enter") return;
@@ -284,5 +300,40 @@
     var sb = document.getElementById("showcats"), g = document.querySelector(".cat-grid");
     if (sb && g) sb.addEventListener("click", function () { var o = g.classList.toggle("open"); sb.textContent = o ? "Minder tonen" : sb.getAttribute("data-t"); });
     if (sb) sb.setAttribute("data-t", sb.textContent);
+  })();
+  // Heeft dit geholpen?
+  (function () {
+    var gcEvent = window.fczGc || function () {}, store = window.fczStore || { get: function () { return null; }, set: function () {} };
+    var page = location.pathname.replace(/^\//, "") || "index.html";
+    Array.prototype.forEach.call(document.querySelectorAll(".helped"), function (box) {
+      var done = store.get("fb-" + page);
+      var finish = function () { Array.prototype.forEach.call(box.querySelectorAll("button"), function (b) { b.hidden = true; }); box.querySelector(".helped-thx").hidden = false; };
+      if (done) finish();
+      box.addEventListener("click", function (e) {
+        var b = e.target.closest && e.target.closest("button[data-v]"); if (!b) return;
+        var v = b.getAttribute("data-v");
+        gcEvent("feedback-" + v + "/" + page, (v === "ja" ? "Geholpen: " : "Niet geholpen: ") + document.title);
+        store.set("fb-" + page, v); finish();
+      });
+    });
+  })();
+
+  // Storingskaart printen (met QR-code)
+  (function () {
+    var gcEvent = window.fczGc || function () {};
+    var btn = document.getElementById("printcard"), card = document.querySelector(".printcard");
+    if (!btn || !card) return;
+    var draw = function () {
+      var box = card.querySelector(".pc-qr");
+      if (box && !box.firstChild && window.qrcode) { var qr = window.qrcode(0, "M"); qr.addData(box.getAttribute("data-url")); qr.make(); box.innerHTML = qr.createSvgTag({ cellSize: 3, margin: 0, scalable: true }); }
+      document.body.classList.add("printing-card");
+      gcEvent("storingskaart/" + location.pathname.replace(/^\//, ""), "Storingskaart: " + document.title);
+      setTimeout(function () { window.print(); }, 50);
+    };
+    window.addEventListener("afterprint", function () { document.body.classList.remove("printing-card"); });
+    btn.addEventListener("click", function () {
+      if (window.qrcode) return draw();
+      var sc = document.createElement("script"); sc.src = "qrcode.js"; sc.onload = draw; sc.onerror = draw; document.head.appendChild(sc);
+    });
   })();
 })();

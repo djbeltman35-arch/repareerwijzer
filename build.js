@@ -268,7 +268,9 @@ for (const m of MODELS) {
   <p class="lead">${esc(m.intro)}</p>
   ${brandLinks(m) ? `<p class="row">${brandLinks(m)}</p>` : ""}
   <dl class="facts"><div><dt>Bouwjaren</dt><dd>${esc(m.years)}</dd></div><div><dt>Onderhoud</dt><dd>${m.tasks.length} taken</dd></div><div><dt>Storingen</dt><dd>${m.faults.length} beschreven</dd></div>${m.also ? `<div class="wide"><dt>Geldt ook voor</dt><dd>${esc(m.also)}</dd></div>` : ""}</dl>
+  <p><button type="button" class="btn-print" id="printcard">🖨️ Storingskaart printen</button></p>
 </section>
+${printCard(m)}
 ${codes.length ? fold("Foutcodes", `<div class="results">${codes.map(f => `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(f.code)}</span> ${esc(f.t)}</span><span>${D[f.d][0]}</span></a>`).join("")}</div>`, true, codes.length) : ""}
 ${plain.length ? `<section class="stack"><h2>${codes.length ? "Andere storingen" : "Storingen"}</h2>
 ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
@@ -329,13 +331,15 @@ function ADS() { return {
   bricoinn: [TI(20604, 1873782, "bricoinn"), "🧰 Klusgereedschap en onderdelen", "Gereedschap en klusspullen bij BricoInn."],
   motardinn: [TI(20600, 1873778, "motardinn"), "🛵 Onderdelen voor scooter en motor", "Accu's, banden en onderdelen bij MotardInn."],
   techinn: [TI(20616, 1874238, "techinn"), "🔌 Elektronica en accessoires", "Opladers, kabels en elektronica bij TechInn."],
+  camperverkopen: ["https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=&amp;dl=camper-verkopen%2F", "🚐 Camper verkopen?", "Vraag een bod aan bij onze partner."],
   refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie bij Remarkt."]
 }; }
 function adsFor(m) {
   if (isEvCharge(m)) return ["laadkabel"];
   switch (m.cat) {
     case "auto": return ["acculader", "autoverkopen"];
-    case "camper-caravan": case "boten": return ["acculader"];
+    case "camper-caravan": return ["acculader", "camperverkopen"];
+    case "boten": return ["acculader"];
     case "e-bikes": return ["ebike", "bikeinn"];
     case "gereedschap": case "tuin": return ["gereedschap", "bricoinn"];
     case "scooters": return ["motardinn"];
@@ -345,6 +349,13 @@ function adsFor(m) {
   }
 }
 function adBlock(m) { const list = adsFor(m).map(k => ADS()[k]); const b = BOLCAT_()[m.cat]; if (b) list.push([BOL(b[0], m.cat), b[1], b[2]]); if (!list.length) return ""; return `<aside class="adbox" aria-label="Advertenties"><div class="adbox-head"><h2>🛒 Handig bij deze storing</h2><span class="ad-label">Advertentie</span></div><div class="adgrid">${list.map(([u, t, d]) => { const ic = (t.match(/^\S+/) || [""])[0]; const tt = t.replace(/^\S+\s/, ""); return `<a class="adcard" href="${u}" rel="sponsored noopener" target="_blank"><span class="adic" aria-hidden="true">${ic}</span><span class="adtx"><b>${tt}</b><small>${d}</small></span><span class="adbtn">Bekijk →</span></a>`; }).join("")}</div><p class="adnote">Koop je via deze links, dan krijgt Foutcodezoeker een kleine vergoeding. Jij betaalt niets extra.</p></aside>`; }
+
+function helpedBox() { return `<div class="helped" role="group" aria-label="Feedback"><span>Heeft dit geholpen?</span><button type="button" data-v="ja">👍 Ja</button><button type="button" data-v="nee">👎 Nee</button><span class="helped-thx" hidden>Bedankt voor je reactie!</span></div>`; }
+function printCard(m) {
+  const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
+  const rows = (codes.length ? codes : plain).map(f => `<tr><td class="pc-code">${esc(f.code || "")}</td><td>${esc(f.t)}</td><td>${D[f.d][0]}</td></tr>`).join("");
+  return `<section class="printcard" aria-hidden="true"><div class="pc-head"><div><p class="pc-brand">Foutcodezoeker.nl · storingskaart</p><h2>${esc(fullName(m))}</h2><p>${esc(m.years)}</p><p class="pc-url">${SITE.replace(/^https?:\/\//, "")}/${m.id}.html</p></div><div class="pc-qr" data-url="${SITE}/${m.id}.html"></div></div><table><thead><tr><th>${codes.length ? "Code" : ""}</th><th>${codes.length ? "Betekenis" : "Storing"}</th><th>Zelf doen?</th></tr></thead><tbody>${rows}</tbody></table><p class="pc-foot">Scan de QR-code voor de oorzaak en de stappen per storing. Bron: zie de pagina.</p></section>`;
+}
 function warnGas() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Zelf mag je bijvullen en één keer resetten. Al het andere werk aan een gasketel laat je over aan een erkend installateur. Ruik je gas? Ramen open, gaskraan dicht en bel 0800-9009.</p></div>`; }
 function warnEbike() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Open nooit zelf een e-bike-accu. Bij een beschadigde, warme of opgezwollen accu: niet laden en naar een specialist.</p></div>`; }
 
@@ -373,6 +384,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
+  ${helpedBox()}
 </article>
 ${adBlock(m)}
 ${costBlock(m, f)}
@@ -410,6 +422,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
+  ${helpedBox()}
 </article>
 ${adBlock(m)}
 ${costBlock(m, f)}
@@ -693,6 +706,6 @@ Elke foutcode heeft een eigen pagina (${SITE}/foutcode-<model>-<code>) met: een 
 `);
 fs.writeFileSync(path.join(OUT, "favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>`);
 if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSync(path.join(__dirname, "static"))) fs.copyFileSync(path.join(__dirname, "static", f), path.join(OUT, f));
-for (const f of ["style.css", "app.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
+for (const f of ["style.css", "app.js", "qrcode.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
 
 console.log(`${pages.length} pagina's gebouwd (${allCodes.length} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);
