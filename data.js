@@ -11474,4 +11474,30 @@ Object.assign(SRC,{ boschNlDroog: ["Bosch – foutcodes en storingen oplossen wa
 Object.assign(SRC,{ boschNlVaat: ["Bosch – foutcodes en storingen oplossen vaatwassers", "https://www.bosch-home.nl/service/ondersteuning/vaatwassers/foutcodes"] });
 (m => { m.faults.push(N("Lampje 'zout bijvullen' blijft branden", 1, "De sensor ziet geen zout, bijvoorbeeld bij zouttabletten, of je gebruikt all-in-one tabletten en de zoutmelding staat nog aan.", ["Gebruik los vaatwasserzout in plaats van zouttabletten.", "Roer het zout met een houten lepel door het water in het zoutreservoir, zodat het zich goed verdeelt.", "Gebruik je all-in-one tabletten, zet dan in het basismenu de instelling 'Zout bijvullen' uit."]));
   m.src.push("boschNlVaat"); })(MODELS.find(m => m.id === "bosch-siemens-vaatwasser"));
+Object.assign(SRC,{ zanNlMagn: ["Zanussi Support – foutmeldingen combi-magnetron", "https://support.zanussi.nl/support-articles/koken/magnetrons"], zanNlKook: ["Zanussi Support – kookplaat geeft E18", "https://support.zanussi.nl/support-articles/article/storing-kookplaat-geeft-foutmelding-e18-weer"] });
+{ const SVC = "Maak een afspraak met de Zanussi-servicedienst; dit lost een monteur op.", RE = "Lost dit het niet op? Maak een afspraak met de Zanussi-servicedienst.";
+  MODELS.push({ id: "zanussi-combi-magnetron", brand: "Zanussi", name: "Combi-magnetron (inbouw)", dev: "combi-magnetron", cat: "ovens", years: "Inbouw combi-magnetrons met display", unit: null, also: "Zanussi magnetron foutcode, Zanussi magnetron ERR C, Zanussi magnetron ECON, Zanussi magnetron PLAT OFF",
+    intro: "Zanussi-combimagnetrons (magnetron met oven of grill) tonen bij een storing een code of korte melding op het display. Zanussi hoort bij Electrolux; veel codes zijn gelijk aan die van AEG en Electrolux.",
+    weak: [], parts: [], tasks: [{ m: 1, t: "Binnenkant en draaiplateau schoonmaken", v: 1 }], src: ["zanNlMagn"], faults: [
+      F("ERR C / ERRC", "Temperatuursensor ovenruimte: ruimte te koud", 1, "De ruimte waarin de magnetron staat is te koud (onder 16 °C).", ["Verwarm de ruimte naar minimaal 18 °C en probeer opnieuw.", RE]),
+      F("ERR M / ERRM", "Temperatuursensor magnetron: ruimte te koud", 1, "De ruimte waarin de magnetron staat is te koud (onder 16 °C).", ["Verwarm de ruimte naar minimaal 18 °C en probeer opnieuw.", RE]),
+      F("---C", "Deur open bij het kiezen van een functie", 1, "Het display toont drie streepjes en een gradenteken: de deur stond open toen je een functie koos.", ["Sluit de deur en kies opnieuw een functie.", "Controleer of de haakjes van de deur heel zijn.", RE]),
+      F("E15", "Oven te heet voor de gekozen functie", 1, "De ovenruimte is nog te warm voor de functie die je kiest.", ["Zet de deur even open om de oven te laten afkoelen en kies de functie opnieuw.", RE]),
+      F("PLAT OFF", "Draaiplateau staat uit", 1, "Het draaiplateau is uitgeschakeld.", ["Druk tijdens een programma op de twee buitenste toetsen; het draaiplateau gaat dan weer aan."]),
+      F("ECON", "Spaarstand: klok niet ingesteld", 1, "Na het aansluiten is de klok niet binnen 3 minuten ingesteld, dus de magnetron gaat in de spaarstand.", ["Haal de stekker eruit en steek hem er weer in.", "Stel de klok in terwijl het display aftelt van 3.00 naar 0."]),
+      F("LAMP", "Probleem met de binnenverlichting", 2, "De lamp in de ovenruimte werkt niet.", [SVC]),
+      F("HOT", "Besturing te heet", 2, "De besturingsmodule is te warm geworden.", ["Laat de magnetron afkoelen.", SVC]),
+      F("E14", "Probleem met de luchtklep", 3, "De luchtklep van de magnetron werkt niet goed.", [SVC]),
+      F("F104", "Temperatuursensor ovenruimte", 3, "De sensor in de ovenruimte geeft een fout.", [SVC]),
+      F("F105", "Ovenruimte te heet", 3, "De sensor meet een te hoge temperatuur in de ovenruimte.", [SVC]),
+      F("F109", "Communicatiefout in de elektronica", 3, "De besturing en de bediening praten niet goed met elkaar.", [SVC]),
+      F("F130", "Aansturingsprobleem", 3, "De aansturing van de magnetron geeft een fout.", [SVC]),
+      F("F134", "Elektronisch probleem", 3, "De elektronica geeft een fout.", [SVC]),
+      F("F215", "Bedieningselektronica", 3, "De bedieningselektronica geeft een fout.", [SVC]),
+      F("F239", "Communicatiefout bedieningselektronica", 3, "De bedieningselektronica communiceert niet goed.", [SVC]),
+      F("F241", "Functieschakelaar", 3, "De knop waarmee je de functie kiest, geeft een fout.", [SVC]),
+      N("Code van 4 tekens in drie blokken na het aansluiten (bijvoorbeeld P026)", 1, "Geen storing: na het aansluiten of na een stroomstoring toont de magnetron de softwareversie in drie blokken van vier tekens.", ["Wacht tot de klok op 00:00 gaat knipperen en stel de tijd in."])
+    ]});
+  (m => { m.faults.push(F("E18", "18 knippert, geen invoer mogelijk: verkeerde aansluiting of zekering", 2, "Bij een nieuwe kookplaat is hij vaak verkeerd aangesloten; anders kan de zekering in de meterkast zijn aangesproken.", ["Nieuwe kookplaat? Laat de aansluiting controleren door een elektricien.", "Controleer de groep in de meterkast.", RE])); m.src.push("zanNlKook"); })(MODELS.find(m => m.id === "aeg-zanussi-kookplaat"));
+}
 module.exports = { CATS, MODELS, SRC, COST };
