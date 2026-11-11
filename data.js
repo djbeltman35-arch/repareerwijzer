@@ -31,6 +31,7 @@ const SRC = {
   daikinFtxf: ["Daikin – gebruikershandleiding FTXF-A (storingscodes)", "https://www.daikin.eu/content/dam/document-library/user%20reference%20guide/ac/Split/ftxf-a/FTXF-A_4PNL513685-3_User%20Reference%20Guide_Dutch.pdf"],
   domexMiele: ["Domex – Miele droger foutcodes", "https://www.domex-uk.co.uk/help-advice/how-to-troubleshoot-miele-tumble-dryer-error-codes/"],
   esparesHC: ["eSpares – foutcodes Hoover en Candy wasmachines (Engels)", "https://ewww.espares.co.uk/advice/careandmaintenance/how-to-understand-hoover-and-candy-washing-machine-error-codes"],
+  upwayStromer: ["Upway – Stromer foutcodes uitgelegd (Engels)", "https://en.upway.be/blogs/news/codes-d-erreur-stromer"],
   mieleDroog: ["Coolblue – storingen Miele droger", "https://www.coolblue.nl/advies/hoe-verhelp-je-een-miele-wasdroger-storing.html"],
   boschDroog: ["Coolblue – storingen Bosch droger", "https://www.coolblue.be/nl/advies/hoe-verhelp-je-zelf-een-bosch-droogkast-storing.html"],
   delonghi: ["Coolblue – foutmeldingen De'Longhi Dinamica en Magnifica", "https://www.coolblue.be/nl/advies/hoe-los-je-foutmeldingen-bij-de-delonghi-dinamica-en-magnifica-op.html"],
@@ -8469,10 +8470,30 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     N("Accutemperatuur te hoog", 1, "De accu is te warm geworden.", ["Zet de accu binnen op een koele plek, uit de zon, tot hij is afgekoeld."]),
     N("Andere foutcode", 1, "Een code die Swapfiets niet apart uitlegt.", ["Neem contact op met Swapfiets of " + app.toLowerCase()])
   ]});
-  MODELS.push({ id: "stromer-omni", brand: "Stromer", name: "Stromer speed pedelec: gele en rode driehoek op het touchscreen", dev: "speed pedelec met OMNI C-touchscreen", cat: "e-bikes", years: "Stromer-modellen met OMNI C-touchscreen", unit: null, also: "Stromer rode driehoek, Stromer gele driehoek, Stromer foutmelding display, Stromer OMNI update, Stromer storing", intro: "Stromer speed pedelecs tonen meldingen in de statusbalk van het OMNI-touchscreen. Een gele driehoek is een waarschuwing (meestal kun je verder rijden), een rode driehoek een storing (stop met rijden).", weak: [], parts: [], tasks: [], src: ["stromerIcons"], faults: [
+  MODELS.push({ id: "stromer-omni", brand: "Stromer", name: "Stromer speed pedelec: gele en rode driehoek op het touchscreen", dev: "speed pedelec met OMNI C-touchscreen", cat: "e-bikes", years: "Stromer-modellen met OMNI C-touchscreen", unit: null, also: "Stromer rode driehoek, Stromer gele driehoek, Stromer foutmelding display, Stromer OMNI update, Stromer storing", intro: "Stromer speed pedelecs tonen meldingen in de statusbalk van het OMNI-touchscreen. Een gele driehoek is een waarschuwing (meestal kun je verder rijden), een rode driehoek een storing (stop met rijden).", weak: [], parts: [], tasks: [], src: ["stromerIcons", "upwayStromer"], faults: [
     N("Gele driehoek in de statusbalk", 1, "Een waarschuwing: functies kunnen beperkt zijn, maar meestal kun je veilig verder rijden.", ["Stop, tik op de statusbalk, kies de waarschuwing en volg de aanwijzingen.", "Komt de waarschuwing steeds terug, neem contact op met je dealer (meldingen worden opgeslagen voor diagnose)."]),
     N("Rode driehoek in de statusbalk", 3, "Een storing: verder rijden is meestal niet meer mogelijk of veilig.", ["Rijd niet door; er kan meer schade ontstaan.", "Stop, tik op de statusbalk, kies de storing en volg de aanwijzingen.", "Verdwijnt hij eenmalig na een herstart, dan kun je voorzichtig verder; blijft hij na een paar herstarts, ga naar je dealer."]),
-    N("Update-icoon in de statusbalk", 1, "Een OMNI-software-update is gedownload en klaar om te installeren.", ["Zet de fiets uit via 'OFF' op het touchscreen en accepteer de installatie, of tik op de statusbalk en kies 'UPDATE'."])
+    N("Update-icoon in de statusbalk", 1, "Een OMNI-software-update is gedownload en klaar om te installeren.", ["Zet de fiets uit via 'OFF' op het touchscreen en accepteer de installatie, of tik op de statusbalk en kies 'UPDATE'."]),
+    F("0x200000", "Storing in de aandrijving", 2, "De trapondersteuning werkt niet goed.", ["Wacht even en herstart de fiets.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("210000", "Controller herstart", 1, "Normaal na stand-by of laden.", ["Je hoeft niets te doen."]),
+    F("E 210001", "Geen verbinding met de accu", 1, "Vuil of slecht contact.", ["Haal de accu eruit en maak de contactpinnen schoon.", "Plaats de accu terug en herstart."]),
+    F("E 210002", "Laden niet mogelijk", 1, "Accuvak niet goed gesloten of een communicatiefout.", ["Sluit het accuvak volledig en herstart.", "Controleer de aansluiting van de lader."]),
+    F("E 210003 / E 21041A", "Ondersteuning afgebroken", 1, "Metaaldeeltjes op de magnetische laadconnector.", ["Maak de connector schoon met een pluisvrije doek."]),
+    F("210004 / 210005", "Communicatiefout of trapkrachtsensor", 2, "Komt vaak voor na het wisselen van het achterwiel.", ["Controleer of de achteras met precies 20 Nm is aangedraaid.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 21000C", "Geen ondersteuning", 1, "Communicatieprobleem tussen accu en motor.", ["Haal de accu eruit en plaats hem opnieuw.", "Herstart de fiets."]),
+    F("0x21000B", "Accufout", 2, "Probleem met de accu.", ["Plaats de accu opnieuw en controleer of er een firmware-update is.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 210102 / 210109 / 210110", "Accu uitgeschakeld", 2, "Veiligheidsuitschakeling: de accu is niet gereed.", ["Plaats de accu opnieuw en herstart.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 210205", "Onregelmatige ondersteuning", 3, "De controller leest de hallsensoren van de motor niet goed.", ["Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 210207", "Vocht in de motorconnector of kortsluiting", 1, "Regen of vocht in de aansluitingen of motorfasen.", ["Laat de fiets een nacht op een warme plek drogen.", "Herstart daarna; blijft de code, ga naar de dealer."]),
+    F("E 21020A", "Motor oververhit (boven 150 °C)", 1, "De fiets schakelt uit ter bescherming.", ["Laat de motor afkoelen voordat je verder rijdt."]),
+    F("E 21020E", "Problemen met de ondersteuning", 2, "De motorconnector of de schroef in de linker kettingbladafdekking zit los of is nat.", ["Controleer de motorconnector en die schroef.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 210247", "Fout hallsensor", 3, "De controller leest het sensorsignaal niet meer; rijden met ondersteuning kan niet.", ["Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 210281", "Waarschuwing hallsensor", 2, "Een waarschuwing van de sensoren in de motor.", ["Herstart de fiets.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 210284 / E 210285", "Fout motorpositie", 3, "De motor meldt een onmogelijke positie.", ["Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("E 2102A4 / E 210288", "Motortemperatuur hoog (boven 142 °C)", 1, "Het vermogen wordt verlaagd om de motor te laten afkoelen.", ["Rij rustiger of laat de motor afkoelen; het vermogen komt vanzelf terug."]),
+    F("E 210410", "Laden niet mogelijk (rode led)", 1, "Meestal de lader of de laadpoort.", ["Controleer de lader en de laadpoort op vuil en schade.", "Probeer een andere lader als je die hebt."]),
+    F("E 21041C", "Accu laadt niet", 2, "Vuile Rosenberger-connectoren, of een defecte lader of accu.", ["Maak de Rosenberger-connectoren schoon.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."]),
+    F("270100", "Algemene sensorfout", 2, "Een fout in een sensor.", ["Plaats de accu opnieuw en herstart.", "Blijft de code terugkomen, laat de fiets nakijken door een Stromer-dealer."])
   ]});
 })();
 (() => {
