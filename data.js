@@ -11229,4 +11229,75 @@ Object.assign(SRC,{ toshRavSdt: ["Toshiba (Intercool) – owner's manual RAV-HM�
       F("P22 / P26 / P29", "Ventilator of omvormer buitenunit", 3, "Storing in de ventilatormotor (P22), kortsluitbeveiliging van de compressoraansturing (P26) of positiefout van de compressormotor (P29).", M),
       F("P31", "Andere binnenunit in de groep geeft een alarm", 2, "Een andere binnenunit in dezelfde groep heeft een storing.", ["Kijk welke code de andere binnenunit geeft en zoek die op."])], src: ["toshRavSdt"] });
 }
+// Toevoeging Foutcodezoeker: Beko (vaatwasser BDIN, wasmachine BM3/BM5) en Toshiba (airco wandmodellen, Estia warmtepomp).
+// Plakken in data.js, direct VOOR de laatste regel "module.exports = { CATS, MODELS, SRC, COST };".
+// Alle inhoud komt uit de officiële handleidingen hieronder (eigen woorden, geen letterlijke tekst).
+
+Object.assign(SRC, {
+  bekoBdin4s: ["Beko – gebruikershandleiding vaatwasser BDIN4S560WP, hoofdstuk Foutcodes (pdf)", "https://www.beko.com/content/dam/belgium-be-aem/belgium-be-aemProductCatalog/product-documents/7647493477-BDIN4S560WP/nl-NL-7647493477-MDM2-USER-MANUAL-FILE-nl-NL.pdf"],
+  bekoBm5wfu: ["Beko – gebruikershandleiding wasmachine BM5WFU6941B, foutcodetabel (pdf)", "https://www.beko.com/content/dam/belgium-be-aem/belgium-be-aemProductCatalog/product-documents/7004840008-BM5WFU6941B/nl-NL-7004840008-MDM2-USER-MANUAL-FILE-nl-NL.pdf"],
+  bekoBm3w0u: ["Beko – gebruikershandleiding wasmachine BM3W0U61141TW, foutcodetabel (pdf)", "https://www.beko.com/content/dam/belgium-be-aem/belgium-be-aemProductCatalog/product-documents/7004240051-BM3W0U61141TW-/nl-BE-7004240051-MDM2-USER-MANUAL-FILE-nl-BE.pdf"],
+  toshibaKazumiPlus: ["Toshiba (Intercool) – gebruikershandleiding Kazumi+ RAS-..G3KVSG, Storingen verhelpen (pdf)", "https://www.intercool.nl/intercool/downloadcenter/download/attachment/2792/16"],
+  toshibaHaori: ["Toshiba (Intercool) – gebruikershandleiding Haori RAS-..N4KVRG, Storingen verhelpen (pdf)", "https://www.intercool.nl/intercool/downloadcenter/download/attachment/3537/16"],
+  toshibaEstia5: ["Toshiba (Intercool) – gebruikershandleiding Estia 5-serie hydro-unit HWS-PHR, Problemen oplossen (pdf)", "https://www.intercool.nl/intercool/downloadcenter/download/attachment/930/16"]
+});
+
+MODELS.push(
+{ id: "beko-vaatwasser-bdin", brand: "Beko", name: "Vaatwasser BDIN-serie (nieuwere inbouwmodellen)", cat: "vaatwassers", years: "Nieuwere modellen", unit: null,
+  also: "Getest met de handleiding van de BDIN4S560WP. Let op: de codes wijken af van oudere Beko-vaatwassers, kijk ook op de pagina Vaatwasser (alle modellen).",
+  intro: "Op deze Beko-vaatwassers zie je een E-code op het display. Zonder display knippert een lampje (P1, P2, P6 of F1/F2). E02 los je meestal zelf op; bij de andere codes stopt het programma en is vaak een monteur nodig.",
+  weak: [], parts: [], tasks: DISH_TASKS,
+  faults: [
+    F("E01", "Water in de bodem (lekbeveiliging)", 3, "Er is water in de bodem van de machine gekomen; het aan/uit-lampje of lampje P1 knippert en het programma stopt.", ["Zet de vaatwasser uit en haal de stekker eruit.", "Draai de waterkraan dicht.", "Komt de fout terug, neem contact op met een erkende Beko-monteur."]),
+    F("E02", "Geen of te weinig water", 1, "De watertoevoer is onderbroken of het filter in de toevoer zit dicht; het kraansymbool of lampje P2 knippert.", ["Controleer of er water uit de kraan komt en of de kraan helemaal open staat.", "Stekker eruit, kraan dicht en de toevoerslang losschroeven.", "Maak het zeefje in de slangaansluiting schoon, sluit alles weer aan en zet de stroom erop.", "Blijft de code, bel een erkende monteur."]),
+    F("E06", "Temperatuursensor defect", 3, "De sensor die de watertemperatuur meet werkt niet goed; P2 en P6 knipperen. Je merkt het vaak aan slechtere wasresultaten.", ["Zet de vaatwasser uit en weer aan.", "Blijft de fout en wordt de vaat minder schoon, neem contact op met een erkende monteur."]),
+    F("E07", "Watermeter defect", 3, "De machine kan niet meten hoeveel water er binnenkomt; F2 of F1 en F2 knipperen en het programma stopt.", ["Zet de vaatwasser uit en draai de kraan dicht.", "Komt de fout terug, neem contact op met een erkende monteur."])],
+  src: ["bekoBdin4s"] },
+
+{ id: "beko-wasmachine-bm-serie", brand: "Beko", name: "Wasmachine BM3- en BM5-serie (2023 en later)", cat: "wasmachines", years: "2023 en later", unit: null,
+  also: "BM5WFU6941B, BM5WFU6943T, BM3W0U61141TW en vergelijkbare BM-modellen met display",
+  intro: "Deze nieuwere Beko-wasmachines tonen korte codes zoals E5 en E8. Zie je de code niet meer? Zet de machine uit en houd hulpfunctieknop 1 en 2 lang ingedrukt. Na een aftelling (3-2-1) zie je het aantal wasbeurten en daarna de laatste foutcodes. Let op: deze codes betekenen iets anders dan bij oudere Beko-modellen.",
+  weak: [], parts: [], tasks: [{ m: 1, t: "Pompfilter schoonmaken", v: 1 }],
+  faults: [
+    F("E5", "Water wordt niet weggepompt", 1, "Het pompfilter is waarschijnlijk verstopt.", ["Pomp het restwater weg en maak het pompfilter schoon (zie de handleiding).", "Start daarna het centrifugeerprogramma.", "Helpt het niet, bel de Beko-service."]),
+    F("E8", "Geen watertoevoer", 1, "De kraan is dicht, er is een storing in de waterlevering of de toevoerslang is geknikt.", ["Zet de kraan helemaal open en kijk of er water uit komt.", "Haal knikken uit de toevoerslang.", "Maak het pompfilter schoon, sluit het klepje goed en start opnieuw.", "Blijft de code, bel de Beko-service."]),
+    F("E12", "Water onder of in de machine", 2, "De machine heeft water in de bodem gedetecteerd.", ["Haal de stekker eruit en veeg het water onder de machine weg.", "Stekker er weer in en probeer een kort programma.", "Komt de code terug of lekt een slang: kraan dicht en de service bellen."]),
+    F("E17", "Te veel schuim", 1, "Te veel of verkeerd wasmiddel, of wasmiddel in het verkeerde vakje.", ["Gebruik minder wasmiddel, zeker bij luchtige stoffen zoals tule.", "Doe het wasmiddel in het juiste vakje en bewaar het droog.", "Draai het trommelreinigingsprogramma, of 90 °C katoen, met een lege machine."]),
+    F("E18", "Onbalans, centrifugeren start niet", 1, "Het wasgoed ligt ongelijk verdeeld of er zit te weinig in de trommel.", ["Verdeel het wasgoed met de hand gelijkmatig over de trommel.", "Doe er eventueel meer was bij en start het centrifugeren opnieuw."]),
+    F("E27", "Probleem met de afvoer", 1, "De afvoerslang is niet goed aangesloten.", ["Controleer hoe de afvoerslang op de afvoer is aangesloten (zie de handleiding) en haal knikken eruit."]),
+    F("E29", "Zelfbescherming door de voeding", 2, "Problemen met de netspanning of de waterdruk; de machine beschermt zichzelf.", ["Draai de programmaknop naar een ander programma om het programma af te breken.", "Start opnieuw. Blijft het terugkomen, bel de Beko-service."]),
+    F("E84", "Bluetooth-verbinding mislukt", 1, "De machine kan geen BLE-verbinding maken met de HomeWhiz-app.", ["Controleer de verbinding op je telefoon en probeer het opnieuw.", "Lukt het niet, bel de Beko-service."]),
+    F("Err", "Veiligheidscontrole bezig", 1, "De machine voert een veiligheidscontrole uit.", ["Wacht tot de melding verdwijnt."]),
+    F("SC", "Klacht niet opgelost tijdens de controle", 3, "De zelftest heeft een probleem gevonden dat niet vanzelf is verholpen.", ["Bel de Beko-service."])],
+  src: ["bekoBm5wfu", "bekoBm3w0u"] },
+
+{ id: "toshiba-airco-wandmodel", brand: "Toshiba", name: "Airco wandmodel (Seiya, Kazumi, Haori, Shorai, Daiseikai)", cat: "airco", years: "Alle bouwjaren", unit: null,
+  also: "In Nederland geleverd door Intercool",
+  intro: "De gebruikershandleidingen van Toshiba-airco's geven geen foutcodetabel; die staat alleen in de servicehandleiding voor installateurs. Veel klachten hebben een eenvoudige oorzaak, zoals een vuil filter, een timer of een beveiliging die even wacht. Zie je een code op de afstandsbediening, geef die door aan je installateur.",
+  weak: [], parts: [], tasks: [{ w: "Elke 2 weken", t: "Luchtfilters schoonmaken" }],
+  faults: [
+    N("Airco doet helemaal niets", 1, "Geen stroom, de hoofdschakelaar staat uit, de groep in de meterkast is gesprongen of de AAN-timer staat ingesteld.", ["Controleer de hoofdschakelaar en de groep in de meterkast.", "Kijk of er een AAN-timer is ingesteld op de afstandsbediening."]),
+    N("Koelt of verwarmt slecht", 1, "Vuile filters, een verkeerde temperatuur, open ramen of deuren, een geblokkeerde buitenunit, een te lage ventilatorstand, de stand FAN of DRY, of vermogensbeperking op 75% of 50%.", ["Maak de filters schoon.", "Controleer de ingestelde temperatuur en de stand.", "Sluit ramen en deuren en haal wat de luchtin- en uitlaat van de buitenunit blokkeert weg.", "Zet de ventilator hoger en zet de vermogensbeperking (POWER-SEL) terug op 100%."]),
+    N("Start niet direct na aanzetten", 1, "Een beveiliging van drie minuten voorkomt dat de airco direct na een herstart weer opstart.", ["Wacht drie minuten; daarna start hij vanzelf."]),
+    N("Bij verwarmen komt eerst geen warme lucht", 1, "De airco warmt ongeveer vijf minuten voor voordat hij gaat blazen.", ["Even wachten; dit is normaal."]),
+    N("Ventilatoren stoppen tijdens verwarmen", 1, "De buitenunit ontdooit zichzelf; dan draaien de ventilatoren niet.", ["Even wachten; na het ontdooien gaat hij vanzelf verder."]),
+    N("Kraakgeluid", 1, "Kunststof zet uit en krimpt door temperatuurverschillen.", ["Dit is normaal en geen storing."]),
+    N("Afstandsbediening kwijt of batterijen leeg", 1, "Je kunt de airco ook zonder afstandsbediening bedienen.", ["Druk op de RESET-knop op de binnenunit; de airco start dan automatisch op 24 °C.", "Druk nog eens om hem uit te zetten."]),
+    N("Twee airco's reageren op dezelfde afstandsbediening", 1, "Beide units staan op afstandsbediening A.", ["Stel voor één unit afstandsbediening B in volgens de handleiding (A-B selectie): RESET op de binnenunit, dan de knoppen op de afstandsbediening."]),
+    N("Start niet meer vanzelf na een stroomstoring", 1, "De automatische herstart staat uit.", ["Houd de OPERATION-knop op de binnenunit 3 seconden ingedrukt. Drie piepjes zonder knipperen betekent: automatische herstart aan.", "Knippert het lampje 5 keer, dan heb je hem juist uitgezet; doe het nog een keer."])],
+  src: ["toshibaKazumiPlus", "toshibaHaori"] },
+
+{ id: "toshiba-estia-warmtepomp", brand: "Toshiba", name: "Estia lucht-water-warmtepomp (5-serie)", cat: "warmtepompen", years: "Alle bouwjaren", unit: null,
+  also: "Hydro-unit HWS-PHR; in Nederland geleverd door Intercool",
+  intro: "Bij een Toshiba Estia geeft de afstandsbediening een foutcode als er iets mis is. Die codes los je niet zelf op: noteer de code en bel je installateur. De andere klachten hieronder kun je vaak zelf verhelpen.",
+  weak: [], parts: [], tasks: [{ m: 12, t: "Onderhoud door de installateur" }],
+  faults: [
+    N("Er verschijnt een foutcode op de afstandsbediening", 3, "De warmtepomp meldt een storing.", ["Noteer de code en neem contact op met je installateur."]),
+    N("Afstandsbediening blijft leeg", 1, "Geen stroom of de groep in de meterkast is gesprongen.", ["Controleer de stroomtoevoer en de groep in de meterkast."]),
+    N("De tijd knippert", 1, "Datum en tijd zijn niet ingesteld, bijvoorbeeld na een stroomstoring.", ["Stel datum en tijd opnieuw in."]),
+    N("Huis wordt niet warm of koel", 1, "Een schema of nachtverlaging staat aan, de automatische stand past de temperatuur aan op de buitentemperatuur, of een kraan staat dicht.", ["Controleer schema's en nachtverlaging op de afstandsbediening.", "Staat de automatische stand aan? Laat de installateur de temperatuur daarvan aanpassen.", "Controleer of de kranen van de watertoevoer open staan."]),
+    N("Geen warm water", 1, "De kraan van de watertoevoer staat dicht, of er is meer warm water gebruikt dan de boiler kan leveren.", ["Controleer de kranen.", "Wacht tot de boiler weer is opgewarmd; bij veel verbruik komt er tijdelijk minder warm water."])],
+  src: ["toshibaEstia5"] }
+);
+
 module.exports = { CATS, MODELS, SRC, COST };
