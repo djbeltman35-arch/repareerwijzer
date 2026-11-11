@@ -159,7 +159,7 @@ layout({
   <p class="lead">Typ merk en code. Je ziet meteen wat er mis is en wat je zelf kunt doen.</p>
   <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
-  <div class="chips"><span>Probeer:</span>${[["Bosch E18","Bosch E18"],["Samsung 4C","Samsung 4C"],["Intergas storing","Intergas"],["Vaatwasser stinkt","vaatwasser stinkt"]].map(([l, q]) => `<a href="?q=${encodeURIComponent(q)}" data-q="${esc(q)}">${l}</a>`).join("")}</div>
+  <div class="chips"><span>Probeer:</span>${[["Bosch E18","Bosch E18"],["Samsung 4C","Samsung 4C"],["Intergas storing","Intergas"],["Miele F55","Miele F55"]].map(([l, q]) => `<a href="?q=${encodeURIComponent(q)}" data-q="${esc(q)}">${l}</a>`).join("")}</div>
   <div class="installapp" id="installapp" hidden><strong>📱 Foutcodezoeker als app</strong><span id="installtxt">Zet Foutcodezoeker op je beginscherm: altijd binnen handbereik, ook in de schuur of kelder.</span><button type="button" id="installbtn" hidden>Installeer de app</button></div>
   <p class="herostats"><span><b>${stats.codes}</b> foutcodes</span><span><b>${stats.models}</b> apparaten</span></p>
 </section>
@@ -578,7 +578,7 @@ layout({
 <section class="stack"><h2>Zo werkt het</h2><ol>${REM_STEPS.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
 <p>Open je de site later weer, dan zie je bovenaan een gele balk als er iets aan de beurt is. Wil je ook een melding van je browser, tik dan op <b>🔔 Melding bij bezoek</b>.</p></section>
 <section class="stack"><h2>Kies je apparaat</h2>
-${remModels.map(([c, ms]) => `<h3>${esc(c.name)}</h3><ul>${ms.map(m => { const t = m.tasks.find(x => x.m && !x.w); return `<li><a href="${m.id}.html#counter">${esc(fullName(m))}</a> <small class="muted">· ${esc(t.t.toLowerCase())}: ${esc(intervalLabel(t, m).toLowerCase())}</small></li>`; }).join("")}</ul>`).join("\n")}
+${remModels.map(([c, ms]) => `<h3>${esc(c.name)}</h3><ul class="kb-list">${ms.map(m => { const t = m.tasks.find(x => x.m && !x.w); return `<li><a href="${m.id}.html#counter">${esc(fullName(m))}</a> <small class="muted">· ${esc(t.t.toLowerCase())}: ${esc(intervalLabel(t, m).toLowerCase())}</small></li>`; }).join("")}</ul>`).join("\n")}
 <p>Staat je apparaat er niet bij? <a href="merken.html">Zoek je merk</a> of gebruik de zoekbalk bovenaan.</p></section>
 <section class="stack"><h2>Veelgestelde vragen</h2>${REM_FAQ.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("")}</section>`
 }); }

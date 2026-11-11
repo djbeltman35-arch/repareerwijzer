@@ -372,3 +372,10 @@ header.top{position:relative;z-index:58}
 }
 .remind{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}.remind p{margin:0}.remind small{color:var(--muted)}.remind-btns{display:flex;flex-wrap:wrap;gap:8px}.btn-main{background:var(--ink);color:var(--bg);border-color:var(--ink)}.duebar{background:#fff4d6;color:#4a3800;border:1px solid #e8c766;border-radius:4px;padding:10px 14px;margin:12px 0;font-weight:600}.duebar a{color:inherit}
 .remcta{border-color:#e0a800}.remcta .rvbtn{background:#b07d00}
+/* Tikdoelen: links in lijsten minimaal 44px hoog (Lighthouse / Google mobiel) */
+.probs ul{gap:0}
+.probs ul a{display:flex;align-items:center;min-height:48px;padding:4px 0}
+.kb-list li{margin:0}.kb-list a,.sources a,.crumbs a,.row a,footer a{display:inline-block;padding-block:14px}
+.sources li{margin:0}
+footer .wrap{padding-bottom:88px}
+.crumbs a{padding-block:8px}
