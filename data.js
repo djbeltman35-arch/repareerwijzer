@@ -11196,4 +11196,37 @@ Object.assign(SRC,{ etnaVw339: ["ETNA – gebruiksaanwijzing vaatwasser VW339M (
   F("High VBF1", "Aanvoertemperatuur te hoog", 2, "De aanvoertemperatuur van verwarmingssysteem 1 is te hoog (alarm 9).", ["Controleer of de circulatiepomp draait en de radiator- of vloerkranen open staan.", INST]),
   F("High VVM VVG", "Boilertemperatuur te hoog", 2, "De temperatuur in de boiler is te hoog (alarm 13).", [INST]),
   F("High KF", "Condensor-uittemperatuur te hoog", 2, "De temperatuur na de condensor is te hoog, vaak door te weinig doorstroming aan de afgiftezijde (alarm 22).", ["Controleer waterdruk en vuilfilter van de cv-kant.", INST])); })(MODELS.find(m => m.id === "nibe-1x40"));
+
+Object.assign(SRC,{ toshRavSdt: ["Toshiba (Intercool) – owner's manual RAV-HM…SDTY-E, check codes (Engels, pdf)", "https://intercool.nl/intercool/downloadcenter/download/attachment/2694/16"] });
+{ const M = ["Zet de airco uit met de afstandsbediening en schakel daarna de stroom (groep) een paar minuten uit.", "Komt de code terug? Noteer de code en bel je installateur. Werk aan koudemiddel en elektronica alleen door een gecertificeerde monteur."];
+  const S = ["Laat de genoemde sensor en de bekabeling controleren door je installateur.", "Werk aan de airco alleen door een gecertificeerde monteur."];
+  MODELS.push({ id: "toshiba-airco", brand: "Toshiba", name: "Airco (RAV-binnenunits): check codes", dev: "airco", cat: "airco", years: "Toshiba split-airco's met RAV-binnenunit, onder meer RAV-HM SDTY-E (slim duct)", unit: null, also: "Toshiba airco foutcode E01 E03 E04 F01 F08 H01 H02 L03 P04 P15 P19 P22, lampjes knipperen, check code",
+    intro: "Toshiba-airco's tonen bij een storing een check code op de bedrade afstandsbediening, of laten de lampjes op de binnenunit knipperen. De codes hieronder komen uit de officiële Toshiba-handleiding (via importeur Intercool). Ze gelden voor de RAV-binnenunits; bij andere Toshiba-modellen kunnen ze afwijken.", weak: [], parts: [], tasks: [{ m: 1, t: "Luchtfilter van de binnenunit schoonmaken", v: 1 }, { m: 12, t: "Onderhoudsbeurt door een gecertificeerde monteur", v: 1 }],
+    faults: [
+      F("E01 / E02 / E09", "Probleem met de afstandsbediening", 1, "Geen signaal tussen afstandsbediening en binnenunit, de bedrade afstandsbediening is niet goed ingesteld, of er zijn twee hoofd-afstandsbedieningen ingesteld.", ["Controleer of de bekabeling van de bedrade afstandsbediening niet beschadigd is.", "Laat de instelling van de afstandsbedieningen controleren door je installateur."]),
+      F("E03", "Binnenunit krijgt geen data van de afstandsbediening", 2, "Communicatiefout tussen afstandsbediening of netwerkadapter en de printplaat van de binnenunit. Herstelt vaak vanzelf.", M),
+      F("E04", "Geen communicatie tussen binnen- en buitenunit", 2, "Probleem met de verbindingskabel of een printplaat van de binnen- of buitenunit. Herstelt vanzelf als de verbinding terugkomt.", ["Controleer of de buitenunit stroom heeft (groep, werkschakelaar).", ...M]),
+      F("E08 / E10 / E11 / E18", "Communicatie- of adresfout binnenunit", 3, "Dubbele adressen, of een communicatiefout tussen interne printplaten of tussen hoofd- en volgunits.", M),
+      F("E31", "Communicatiefout in de buitenunit", 3, "Storing in de communicatie tussen de omvormer (IPDU) en de printplaat in de buitenunit.", M),
+      F("F01 / F02", "Temperatuursensor warmtewisselaar binnenunit", 3, "Open of kortgesloten sensor (TCJ of TC) in de binnenunit.", S),
+      F("F04 / F06 / F07", "Temperatuursensor buitenunit", 3, "Open of kortgesloten persgas-, warmtewisselaar- of TL-sensor in de buitenunit. De airco stopt.", S),
+      F("F08", "Buitentemperatuursensor", 3, "Open of kortgesloten buitenluchtsensor (TO). De airco blijft werken.", S),
+      F("F10", "Kamertemperatuursensor", 3, "Open of kortgesloten kamertemperatuursensor (TA) in de binnenunit.", S),
+      F("F12 / F13 / F15", "Sensorprobleem buitenunit", 3, "Losse of verkeerd aangesloten sensoren, of een te hoge temperatuur van de koelplaat van de omvormer.", S),
+      F("F29 / F31", "Printplaat (EEPROM) defect", 3, "Fout in het geheugen van de printplaat van de binnen- (F29) of buitenunit (F31).", M),
+      F("F30", "Storing aanwezigheidssensor", 2, "De aanwezigheidssensor werkt niet goed. De airco blijft werken.", M),
+      F("H01 / H02 / H03", "Compressorstoring", 3, "De compressor slaat af door te hoge stroom (H01), zit vast (H02) of de stroommeting geeft een fout (H03).", M),
+      F("H04 / H06", "Beveiliging buitenunit", 3, "De thermostaat van de compressorbehuizing (H04) of de lagedrukbeveiliging (H06) is aangesproken.", M),
+      F("L03 / L07 / L08 / L09", "Adres- of capaciteitsinstelling binnenunit", 3, "De adressen of de capaciteit van de binnenunit(s) zijn niet goed ingesteld.", ["Laat de installateur de adres- en capaciteitsinstellingen controleren."]),
+      F("L10 / L29 / L30 / L31", "Storing buitenunit of extern signaal", 3, "Een instelling op de printplaat van de buitenunit, een storing in de buitenunit, een extern stopsignaal (L30) of een verkeerde fasevolgorde (L31).", M),
+      F("L20", "Fout in de netwerkcommunicatie", 3, "Dubbel adres of een fout in de centrale besturing of netwerkadapter.", M),
+      F("P01 / P12", "Ventilator binnenunit", 3, "De ventilatormotor van de binnenunit is overbelast of zit vast.", ["Kijk of niets de ventilator blokkeert en of het filter schoon is.", ...M]),
+      F("P03 / P04 / P20", "Te hoge druk of persgastemperatuur", 3, "De beveiliging tegen te hoge druk of te hoge temperatuur van het persgas is aangesproken.", ["Zorg dat de buitenunit vrij staat (geen bladeren, sneeuw of afdekking).", ...M]),
+      F("P05 / P07", "Fase-uitval of koelplaat oververhit", 3, "Een fase ontbreekt of de stroomkabel is verkeerd aangesloten (P05), of de koelplaat van de omvormer is te warm (P07).", M),
+      F("P10", "Water in de binnenunit (afvoer)", 2, "De condensafvoer is verstopt of de vlotterschakelaar is aangesproken.", ["Controleer of de condensafvoerslang niet verstopt of geknikt is.", ...M]),
+      F("P15", "Koudemiddellek gedetecteerd", 3, "Er lekt mogelijk koudemiddel uit een leiding of aansluiting.", ["Zet de airco uit en bel een gecertificeerde monteur."]),
+      F("P19", "Storing vierwegklep", 3, "De vierwegklep (omschakeling koelen/verwarmen) of een temperatuursensor werkt niet goed.", M),
+      F("P22 / P26 / P29", "Ventilator of omvormer buitenunit", 3, "Storing in de ventilatormotor (P22), kortsluitbeveiliging van de compressoraansturing (P26) of positiefout van de compressormotor (P29).", M),
+      F("P31", "Andere binnenunit in de groep geeft een alarm", 2, "Een andere binnenunit in dezelfde groep heeft een storing.", ["Kijk welke code de andere binnenunit geeft en zoek die op."])], src: ["toshRavSdt"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
