@@ -11143,4 +11143,7 @@ MODELS.push({ id: "karcher-sc4-easyfix", brand: "Kärcher", name: "SC 4 EasyFix 
     N("Waterreservoir werkt niet goed", 1, "Het reservoir zit niet goed vast of is verkalkt.", ["Haal het reservoir eruit, spoel het om, zet het terug en druk het aan tot het vastklikt."]),
     N("Stoomhendel laat zich niet indrukken", 1, "Het kinderslot staat aan.", ["Schuif de keuzeschakelaar voor de stoomhoeveelheid naar voren."])],
   src: ["karSc4"] });
+
+Object.assign(SRC,{ karK5sc: ["Kärcher – gebruiksaanwijzing K 5 (Premium) Smart Control (nl)", "https://s1.kaercher-media.com/documents/manuals/html/BTA-5943997-000-00/NL.html"] });
+(m => { m.also = (m.also ? m.also + ", " : "") + "zelfde storingen bij de K 5 (Premium) Smart Control"; m.src.push("karK5sc"); })(MODELS.find(m => m.id === "karcher-k7-smart-control"));
 module.exports = { CATS, MODELS, SRC, COST };
