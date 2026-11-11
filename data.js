@@ -11770,4 +11770,25 @@ Object.assign(SRC,{ mieleNlKoffie: ["Miele – eerste hulp bij storingen koffiem
       N("'Spoelen' in het display na een nieuw ontkalkingspatroon", 1, "Geen storing: het nieuwe ontkalkingspatroon wordt met water gevuld. Na ongeveer 10 minuten is het klaar.", ["Wacht tot de machine zichzelf uitschakelt; zet hem niet geforceerd uit."])
     ]});
 }
+Object.assign(SRC,{ mieleNlKoel: ["Miele – eerste hulp bij storingen koelen en vriezen", "https://www.miele.nl/support/customer-assistance/koelen_en_vriezen-834/alle"] });
+{ const SVC = "Dit kun je niet zelf verhelpen: neem contact op met Miele Service.", RE = "Blijft de storing? Neem contact op met Miele Service.";
+  MODELS.push({ id: "miele-koelkast", brand: "Miele", name: "Koelkast, vriezer en wijnklimaatkast", dev: "koelkast", cat: "koelkasten", years: "Miele-koel- en vriesapparaten met display", unit: null, also: "Miele koelkast F0, F141, F383, Miele vriezer alarm, Miele wijnklimaatkast alarm",
+    intro: "Miele-koel- en vriesapparaten tonen F-codes en alarmen. Codes F141 tot F146 en de meeste alarmen betekenen dat een deur te lang openstaat.", weak: [], parts: [],
+    tasks: [{ w: "Bij de melding", t: "Waterfilter of Active AirClean-filter vervangen" }], src: ["mieleNlKoel"], faults: [
+      F("F141 / F142 / F143", "Deur van de koelzone staat 15, 30 of 45 minuten open", 1, "De deur van de koelzone is te lang open.", ["Sluit de deur van de koelzone."]),
+      F("F144 / F145 / F146", "Deur van de diepvrieszone staat 15, 30 of 45 minuten open", 1, "De deur van de vriezer is te lang open.", ["Sluit de deur van de diepvrieszone."]),
+      F("F120", "Netspanning te laag", 2, "De netspanning is tijdelijk te laag of schommelt sterk.", ["Laat de netspanning door een elektricien controleren."]),
+      F("F121", "IJsblokjesbereider defect", 1, "Spanningsschommelingen, geen watertoevoer, te lage waterdruk of een lekkende klep waardoor de ijsmaker bevriest.", ["Zet het apparaat uit en weer aan.", "Controleer of de watertoevoer open staat en de waterdruk voldoende is.", RE]),
+      F("F383", "Watertoevoer van de ijsblokjesbereider defect", 1, "De toevoerslang is geknikt, de zeef in de toevoer is vuil of het waterreservoir zit niet goed.", ["Haal knikken uit de toevoerslang.", "Maak de zeef in de watertoevoer schoon.", "Haal het waterreservoir eruit, maak de plek eronder schoon en zet het goed terug.", RE]),
+      F("F384 / F385", "Software vastgelopen", 1, "De software van het apparaat is vastgelopen.", ["Haal de stroom 2 minuten van het apparaat en zet het weer aan.", "Reset het daarna naar de fabrieksinstellingen onder Instellingen.", RE]),
+      F("F114", "Voeler verdamper diepvrieszone defect", 3, "De temperatuurvoeler van de verdamper in de vriezer is defect.", [SVC]),
+      F("F0 – F5 / S1 – S3", "Technische storing", 3, "Het apparaat meldt een storing.", [SVC]),
+      N("Symbool Alarm brandt en er klinkt een signaal", 1, "De deur heeft te lang opengestaan (deuralarm).", ["Sluit de deur; het alarm stopt dan."]),
+      N("Temperatuuralarm, temperatuur van de vriezer knippert", 1, "De vriezer is warmer dan ingesteld, bijvoorbeeld omdat hij vaak open is geweest of er veel nieuwe levensmiddelen in zijn gelegd.", ["Houd de vriezer een tijd dicht; de temperatuur daalt vanzelf weer."]),
+      N("Wijnklimaatkast: symbool Alarm knippert met signaal", 1, "De temperatuur wijkt af van de ingestelde waarde, door een vaak geopende deur, afgedekte ventilatiesleuven of een stroomstoring.", ["Hef het alarm op en neem de oorzaak weg."]),
+      N("Binnenverlichting knippert", 1, "Het deuralarm is geactiveerd.", ["Sluit de deur."]),
+      N("Lampje waterfilter brandt of knippert rood", 1, "Het waterfilter moet vervangen worden.", ["Vervang het waterfilter zoals de gebruiksaanwijzing beschrijft."]),
+      N("Temperatuuralarm terwijl de deur dicht is", 2, "Bij een hoge buitentemperatuur en een automatische ontdooicyclus kan de alarmgrens worden overschreden.", ["Zet de temperatuur tijdelijk op de laagste waarde en neem contact op met Miele Service."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
