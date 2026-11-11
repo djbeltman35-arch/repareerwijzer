@@ -11817,4 +11817,26 @@ Object.assign(SRC,{ mieleNlWD: ["Miele – eerste hulp bij storingen was-droogco
     N("Controlelampje Overbelading knippert", 1, "De trommel is te vol om goed te drogen; kwetsbaar textiel kan kreuken.", ["Houd je aan de maximale belading voor drogen (zie de gebruiksaanwijzing).", "Droog vochtige stukken na met een tijdprogramma."]),
     N("Storingen door pluizen (lange programmaduur, thermostaat slaat af)", 1, "Bij het drogen blijven pluizen in de trommel en kuip achter.", ["Draai regelmatig het programma Pluizen uitspoelen (niet gebruiken om textiel te spoelen)."]));
   m.src.push("mieleNlWD"); })(MODELS.find(m => m.id === "miele-was-droogcombinatie"));
+Object.assign(SRC,{ mieleNlRobot: ["Miele – eerste hulp bij storingen robotstofzuigers (Scout RX1, RX2, RX3)", "https://www.miele.nl/support/customer-assistance/robotstofzuigers-844/alle"], mieleNlSteel: ["Miele – eerste hulp bij storingen snoerloze steelstofzuigers (Triflex)", "https://www.miele.nl/support/customer-assistance/snoerloze_steelstofzuigers-845/alle"] });
+{ const OFF = "Zet de robot uit met de schakelaar aan de zijkant (I/0 op 0 of ON/OFF op OFF) en leg hem ondersteboven op een vlakke, schone ondergrond.", RE = "Blijft de storing? Neem contact op met Miele Service.";
+  MODELS.push({ id: "miele-scout-robotstofzuiger", brand: "Miele", name: "Scout robotstofzuiger (RX1, RX2, RX3)", dev: "robotstofzuiger", cat: "stofzuigers", years: "Scout RX1, RX2 en RX3", unit: null, also: "Miele Scout F1, F4, F6, F7",
+    intro: "De Miele Scout-robotstofzuiger toont een F-code als er iets vastzit of vuil is. Bijna alle codes los je zelf op.", weak: ["Haren rond de wielen en zijborstels zijn de meest voorkomende oorzaak."], parts: [],
+    tasks: [{ m: 0.25, t: "Stofreservoir legen" }, { m: 1, t: "Wielen, zijborstels en sensoren schoonmaken" }, { m: 6, t: "Uitblaasfilter vervangen (RX1: elke 3 maanden)" }],
+    src: ["mieleNlRobot"], faults: [
+      F("F1", "Ondergrond niet vlak of aandrijfwiel zit vast", 1, "De robot staat schuin, of een of beide aandrijfwielen kunnen niet vrij bewegen.", ["Zet de robot op een vlakke ondergrond.", OFF, "Haal vuil en haren van de aandrijfwielen.", RE]),
+      F("F2", "Sensor vuil", 1, "Een van de sensoren aan de onderkant is vuil.", [OFF, "Maak de sensoren voorzichtig schoon met een droog wattenstaafje (RX1: ook de sensoren aan de zijkant).", RE]),
+      F("F3", "Stofreservoir of filter niet herkend", 1, "Het stofreservoir zit er niet (goed) in, of het uitblaasfilter ontbreekt.", ["Plaats het stofreservoir met het uitblaasfilter en druk het aan tot het hoorbaar vastklikt; herhaal dit zo nodig een paar keer.", RE]),
+      F("F4", "Aandrijfwielen vuil", 1, "Vuil of haar blokkeert de aandrijfwielen.", [OFF, "Haal vuil en haren van beide wielen en controleer of ze vrij op en neer bewegen.", RE]),
+      F("F5", "Zijborstels vuil", 1, "Haar of draden zitten om de zijborstels.", [OFF, "Haal de zijborstels eraf en maak ze schoon.", RE]),
+      F("F6", "Ventilator of motor overbelast", 1, "Het stofreservoir is vol of het uitblaasfilter is aan vervanging toe.", ["Leeg en maak het stofreservoir schoon en klik het weer vast.", "Vervang het uitblaasfilter (RX2/RX3 na ongeveer 6 maanden, RX1 na ongeveer 3 maanden).", RE]),
+      F("F7", "Interne systeemfout of te warm/koud", 1, "Een systeemfout, of de robot werkt buiten de toegestane omgevingstemperatuur. Bij RX2/RX3 kwam F7 ook voor na software-update 123; versie 124 lost dat op.", ["Zet de robot uit en weer aan met de schakelaar aan de zijkant.", "Gebruik hem binnen de toegestane omgevingstemperatuur.", "RX2/RX3 na een update: herstart en open de Scout-app; na een paar minuten volgt de update die het oplost.", RE]),
+      F("F8", "Voorwiel vuil", 1, "Draadjes en haren zitten bij het voorwiel of de houder.", [OFF, "Haal draadjes en haren weg en maak het voorwiel, de afdekking en de houder schoon.", RE])
+    ]});
+  MODELS.push({ id: "miele-triflex", brand: "Miele", name: "Triflex snoerloze steelstofzuiger", dev: "steelstofzuiger", cat: "stofzuigers", years: "Triflex HX1 en HX2", unit: null, also: "Miele Triflex lampje knippert, Miele steelstofzuiger led knippert",
+    intro: "De Miele Triflex geeft storingen aan met knipperende lampjes op de handgreep.", weak: [], parts: [], tasks: [{ m: 1, t: "Fijnstoffilter reinigen" }], src: ["mieleNlSteel"], faults: [
+      N("Bovenste of onderste controlelampje knippert snel", 1, "De Comfort-handgreep wordt niet herkend.", ["Zet de stofzuiger uit, druk op de ontgrendelknop en haal de Comfort-handgreep er naar boven af.", "Zet hem van bovenaf weer stevig terug op de aansluiting.", "Blijft het? Neem contact op met Miele Service."]),
+      N("Middelste controlelampje knippert snel", 1, "De motor is oververhit, meestal omdat het fijnstoffilter of voorfilter vuil is.", ["Haal het stofreservoir eruit en leeg het.", "Reinig het fijnstoffilter (minstens één keer per maand) en het voorfilter.", "Laat de stofzuiger afkoelen."]),
+      N("Led op de greep knippert", 1, "De accu is leeg.", ["Laad de accu op, direct met de laadkabel of in de wandhouder."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
