@@ -11152,4 +11152,26 @@ MODELS.push({ id: "karcher-sc4-easyfix", brand: "Kärcher", name: "SC 4 EasyFix 
 Object.assign(SRC,{ karK5sc: ["Kärcher – gebruiksaanwijzing K 5 (Premium) Smart Control (nl)", "https://s1.kaercher-media.com/documents/manuals/html/BTA-5943997-000-00/NL.html"] });
 (m => { m.also = (m.also ? m.also + ", " : "") + "zelfde storingen bij de K 5 (Premium) Smart Control"; m.src.push("karK5sc"); })(MODELS.find(m => m.id === "karcher-k7-smart-control"));
 Object.assign(SRC,{ inventumVvw6008: ["Inventum – gebruiksaanwijzing vaatwasser VVW6008AW (nl, pdf)", "https://www.deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing_INVENTUM_vaatwasser_VVW6008AW.pdf"] });
+
+Object.assign(SRC,{ pelgOvm216: ["Pelgrim – gebruiksaanwijzing inbouwoven OVM216GLS (nl, pdf)", "https://www.deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing_PELGRIM_oven_inbouw_OVM216GLS.pdf"],
+  pelgIf960: ["Pelgrim – gebruiksaanwijzing inductiefornuis IF960 (nl, pdf)", "https://www.deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing_PELGRIM_fornuis_inductie_IF960MAT.pdf"] });
+MODELS.push(
+{ id: "pelgrim-oven", brand: "Pelgrim", name: "Inbouwoven: storingen", dev: "oven", cat: "ovens", years: "Onder meer OVM216GLS", unit: null, also: "Pelgrim oven foutcode, display vastgelopen, toetsen reageren niet, oven wordt niet warm",
+  intro: "Pelgrim-ovens tonen bij een storing in de elektronica een foutcode. De eerste stap is altijd: een paar minuten de stroom eraf. Veel andere 'storingen' zijn normaal gedrag.", weak: [], parts: [], tasks: OVEN_TASKS,
+  faults: [
+    N("Display toont een foutcode", 2, "Een storing in de elektronische module.", ["Haal de stroom een paar minuten van de oven (stekker of groep).", "Zet de stroom terug en stel de klok opnieuw in.", "Blijft de code? Bel de Pelgrim-service met het model- en serienummer (binnenin de ovendeur)."]),
+    N("Toetsen reageren niet of display is vastgelopen", 1, "Storing in de besturing.", ["Haal de stroom een paar minuten van de oven en stel daarna de tijd opnieuw in."]),
+    N("Gerecht blijft rauw", 1, "De klok of timer staat verkeerd, de deur is niet goed dicht of er is geen stroom.", ["Controleer de klokinstelling en of de deur goed sluit.", "Controleer de groep en de stekker."]),
+    N("Hoofdzekering slaat regelmatig uit", 3, "Mogelijk een elektrische storing in de oven.", ["Gebruik de oven niet meer en laat hem nakijken door een servicemonteur."]),
+    N("Ventilator blijft draaien na uitzetten, condens of klikgeluiden", 1, "Normaal: de koelventilator koelt de oven af, condens ontstaat door vocht uit het eten en klikken hoort bij het opwarmen en afkoelen.", ["Geen actie nodig. Veeg condens na gebruik weg."])],
+  src: ["pelgOvm216"] },
+{ id: "pelgrim-inductiefornuis", brand: "Pelgrim", name: "Inductiefornuis IF960: foutcodes", dev: "inductiekookplaat", cat: "kookplaten", years: "IF960RVS en IF960MAT", unit: null, also: "Pelgrim fornuis foutcode F, symbool U knippert, kookplaat werkt niet",
+  intro: "Het Pelgrim IF960-fornuis heeft een inductiekookplaat en een elektrische oven. De kookplaat toont een foutcode, een F of een U. H, L, P en A zijn geen storingen maar functies (restwarmte, kinderslot, boost, aankookfunctie).", weak: [], parts: [], tasks: [],
+  faults: [
+    F("F", "Defect in de kookplaat", 3, "Een defect dat je niet zelf kunt oplossen.", ["Bel de Pelgrim-servicedienst."]),
+    F("U", "Pan niet geschikt of te klein", 1, "De kookplaat herkent de pan niet: hij is niet geschikt voor inductie of te klein. U wordt ook gebruikt voor de warmhoudfunctie.", ["Gebruik een inductiepan die groot genoeg is (test met een magneet: die moet blijven plakken)."]),
+    N("Foutcode op het bedieningspaneel", 1, "Het paneel is vuil of nat, je drukt twee toetsen tegelijk in, of er is een softwarefout.", ["Maak het bedieningspaneel schoon en droog.", "Druk één toets tegelijk in.", "Maak het fornuis kort spanningsloos (stekker of groep uit)."]),
+    N("Kookplaat werkt niet, display blijft leeg", 1, "Geen stroom of een verkeerde aansluiting.", ["Controleer de groep in de meterkast.", "Slaat de groep door bij inschakelen? Laat de aansluiting controleren."]),
+    N("Oven wordt niet warm of schakelt niet in", 1, "De oven staat niet op handbediening, de dagtijd is niet ingesteld of er is geen temperatuur gekozen.", ["Stel eerst de dagtijd in en zet de oven op handbediening.", "Kies een temperatuur met de thermostaatknop."])],
+  src: ["pelgIf960"] });
 module.exports = { CATS, MODELS, SRC, COST };
