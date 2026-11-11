@@ -12332,4 +12332,16 @@ Object.assign(SRC,{ bekoNlVries: ["Beko Nederland – helpcentrum vriezer: probl
     N("Buitenkant van de koelkast voelt warm", 1, "Normaal: de warmte van de compressor wordt via de zijkanten afgevoerd, vooral bij vochtig weer.", ["Je hoeft niets te doen."])
   ); m.src.push("bekoNlVries"); })(MODELS.find(m => m.id === "beko-koelkast"));
 }
+Object.assign(SRC,{ bekoNlStof: ["Beko Nederland – helpcentrum stofzuiger: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/stofzuiger--problemen-oplossen"] });
+{ const SVC = "Lost dit het niet op? Neem contact op met een erkend servicebedrijf.";
+  MODELS.push({ id: "beko-stofzuiger", brand: "Beko", name: "Stofzuiger (met en zonder snoer)", dev: "stofzuiger", cat: "stofzuigers", years: "Beko-stofzuigers en snoerloze steelstofzuigers", unit: null, also: "Beko stofzuiger zuigt niet, Beko snoerloze stofzuiger laadt niet op, Beko stofzuiger stinkt",
+    intro: "Minder zuigkracht, een vieze lucht of een accu die niet laadt: dit zijn de oplossingen die Beko zelf geeft.", weak: [], parts: [],
+    tasks: [{ w: "Als het lampje brandt of de bak vol is", t: "Stofzak vervangen of stofbak legen" }, { w: "Volgens de handleiding", t: "Filters schoonmaken of vervangen" }],
+    src: ["bekoNlStof"], faults: [
+      N("Stofzuiger heeft geen zuigkracht meer", 1, "Een volle stofzak of bak, verstopte filters, een verstopte of gescheurde slang, of een verstopt mondstuk.", ["Leeg de stofbak of vervang de stofzak; veel Beko-stofzuigers hebben een lampje dat aangeeft dat de zak vol is.", "Maak de spons- en gaasfilters schoon of vervang ze.", "Haal slang en hulpstukken los en duw een verstopping eruit met een bezemsteel.", "Zit er een scheur in de slang? Laat die vervangen.", SVC]),
+      N("Stofzuiger stinkt", 1, "Vieze inhoud in de bak of zak, een verstopt mondstuk of rolborstel (kan een brandgeur geven) of verstopte filters.", ["Leeg de bak of vervang de zak.", "Maak mondstuk en rolborstel schoon en haal opgehoopt vuil weg.", "Maak de filters schoon of vervang ze."]),
+      N("Snoerloze stofzuiger laadt niet op", 1, "Het stopcontact, het laadstation, de adapter of de accu is het probleem.", ["Probeer een ander stopcontact.", "Kijk of de lampjes op laadstation en adapter branden; zo niet, laat dat onderdeel repareren of vervangen.", "Een accu gaat niet eeuwig mee; is de stofzuiger oud, dan is de accu mogelijk versleten.", SVC]),
+      N("Snoer rolt niet helemaal op", 1, "Het snoer is maar deels ingetrokken.", ["Trek het snoer helemaal uit en laat los, of druk op de oprolknop.", "Rolt alleen een deel op: trek even aan het snoer en laat weer los.", SVC])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
