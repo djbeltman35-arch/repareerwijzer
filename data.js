@@ -41,6 +41,7 @@ const SRC = {
   philipsErrCa: ["Philips – foutcode op mijn Philips-espressomachine (Engels)", "https://www.philips.ca/c-t/XC000004106"],
   igXtendIv: ["Intergas – installatievoorschrift Xtend, hoofdstuk 12 storingen en notificaties", "https://www.intergas-verwarming.nl/app/uploads/2022/09/880084-Installatievoorschrift-Xtend-NL.pdf"],
   zehnderQIm: ["Zehnder – ComfoAir Q installateurshandleiding, foutmeldingen (Engels)", "https://cdn.shopify.com/s/files/1/0061/1945/6856/files/comfoair_q_installer_manual.pdf"],
+  mitsuBlink: ["Mitsubishi Electric – foutcodes wandunits MSZ (knippercodes, Duits, 2012)", "https://headless.schiessl-kaelte.com/Dokumentationen/St%C3%B6rungscodes_DE/Fehlercodes%20Wandger%C3%A4te%20MSZ.pdf"],
   mieleDroog: ["Coolblue – storingen Miele droger", "https://www.coolblue.nl/advies/hoe-verhelp-je-een-miele-wasdroger-storing.html"],
   boschDroog: ["Coolblue – storingen Bosch droger", "https://www.coolblue.be/nl/advies/hoe-verhelp-je-zelf-een-bosch-droogkast-storing.html"],
   delonghi: ["Coolblue – foutmeldingen De'Longhi Dinamica en Magnifica", "https://www.coolblue.be/nl/advies/hoe-los-je-foutmeldingen-bij-de-delonghi-dinamica-en-magnifica-op.html"],
@@ -2748,8 +2749,16 @@ MODELS.push({ id: "mitsubishi-airco", brand: "Mitsubishi Electric", name: "Airco
   intro: "Mitsubishi Electric-airco's tonen een storingscode op de bediening. De meeste codes zijn voor de installateur; geef de code door.", weak: [], parts: [], tasks: [{ m: 0.5, t: "Luchtfilters schoonmaken", v: true }],
   faults: [
     F("E6 / E8 / 6840", "Communicatie tussen binnen- en buitenunit", 2, "De binnen- en buitenunit communiceren niet, vaak door een losse, verbrande of beschadigde verbindingskabel.", ["Laat de installateur de verbindingskabel en de klemmen controleren."]),
-    F("7101", "Binnen- en buitenunit passen niet bij elkaar", 2, "De capaciteitscodes van binnen- en buitenunit verschillen. Komt meestal voor na installatie of vervanging.", ["Neem contact op met je installateur."])],
-  src: ["alk6840", "alk7101"] });
+    F("7101", "Binnen- en buitenunit passen niet bij elkaar", 2, "De capaciteitscodes van binnen- en buitenunit verschillen. Komt meestal voor na installatie of vervanging.", ["Neem contact op met je installateur."]),
+    N("Bedieningslampje knippert 1 keer per seconde: fout in bedrading of signaal", 2, "De verbinding tussen binnen- en buitenunit geeft een fout.", ["Schakel de stroom van de airco 5 minuten uit en zet hem weer aan.", "Noteer het aantal keer knipperen en geef het door aan je installateur."]),
+    N("Bedieningslampje knippert 2 keer, dan pauze: storing temperatuurvoeler binnenunit", 3, "De voeler van de verdamper of de kamertemperatuur is defect of zit los.", ["Noteer het aantal keer knipperen en geef het door aan je installateur."]),
+    N("Bedieningslampje knippert 3 keer, dan pauze: storing ventilatormotor binnenunit", 3, "De ventilatormotor van de binnenunit werkt niet goed.", ["Noteer het aantal keer knipperen en geef het door aan je installateur."]),
+    N("Bedieningslampje knippert 4 keer, dan pauze: storing besturing binnenunit", 3, "De besturingsprint van de binnenunit is mogelijk defect.", ["Noteer het aantal keer knipperen en geef het door aan je installateur."]),
+    N("Bedieningslampje knippert 5 keer, dan pauze: storing voeding buitenunit", 3, "Probleem met de inverter of compressor van de buitenunit.", ["Noteer het aantal keer knipperen en geef het door aan je installateur."]),
+    N("Bedieningslampje knippert 6 keer, dan pauze: storing temperatuurvoeler buitenunit", 3, "Een voeler in de buitenunit is defect.", ["Noteer het aantal keer knipperen en geef het door aan je installateur."]),
+    N("Bedieningslampje knippert 7 keer, dan pauze: storing besturing buitenunit", 3, "De besturings- of inverterprint van de buitenunit is mogelijk defect.", ["Noteer het aantal keer knipperen en geef het door aan je installateur."]),
+    N("Bedieningslampje knippert 14 keer, dan pauze: andere storing", 2, "Een storing die alleen uit het foutgeheugen te lezen is.", ["Noteer het aantal keer knipperen en geef het door aan je installateur."])],
+  src: ["alk6840", "alk7101", "mitsuBlink"] });
 Object.assign(SRC,{ invModul: ["Inventum – storingslijst Modul AIR (pdf)", "https://service.inventum.com/downloads/20240123-Modul-AIR-storingslijst.pdf"] });
 { const I = ["Neem contact op met je installateur en geef de code door."]; const P = ["Vul de cv-installatie bij tot 1,5 à 2,0 bar.", "Moet je vaak bijvullen? Laat de installateur naar een lek zoeken."];
 MODELS.push({ id: "inventum-modul-air", brand: "Inventum", name: "Modul AIR ventilatiewarmtepomp", cat: "warmtepompen", years: "Alle bouwjaren", unit: null, also: "Ook met GreenComfort",
