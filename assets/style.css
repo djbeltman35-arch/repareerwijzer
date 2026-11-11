@@ -178,8 +178,8 @@ table th{text-transform:uppercase;font-size:12px;letter-spacing:.06em}
 @media (max-width:640px){header nav{flex-wrap:nowrap;overflow-x:auto;gap:16px;width:100%;scrollbar-width:none;padding-bottom:2px}header nav::-webkit-scrollbar{display:none}header nav a{white-space:nowrap}}
 html,body{overflow-x:clip}
 .herostats{font-size:16px;border-top:1px solid rgba(255,255,255,.22);padding-top:12px}.herostats b{color:var(--accent);font-family:var(--display);font-size:26px;font-weight:800;margin-left:10px}.herostats b:first-child{margin-left:0}
-header.top{border-bottom:0;box-shadow:inset 0 -6px 0 0 transparent}header.top::after{content:"";display:block;height:3px;background:repeating-linear-gradient(-45deg,var(--accent) 0 8px,#15191e 8px 16px)}
-footer{border-top:0}footer::before{content:"";display:block;height:3px;background:repeating-linear-gradient(-45deg,var(--accent) 0 8px,#15191e 8px 16px)}
+header.top{border-bottom:0;box-shadow:inset 0 -6px 0 0 transparent}header.top::after{content:"";display:block;height:6px;background:repeating-linear-gradient(-45deg,var(--accent) 0 10px,#15191e 10px 20px)}
+footer{border-top:0}footer::before{content:"";display:block;height:6px;background:repeating-linear-gradient(-45deg,var(--accent) 0 10px,#15191e 10px 20px)}
 :root{--road:#22282e}.hero{background:linear-gradient(135deg,#2a3138 0%,#1b2025 60%,#15191e 100%);box-shadow:0 0 0 100vmax #1b2025}
 .hero{background:#1f252b;box-shadow:0 0 0 100vmax #1f252b}
 .installapp{display:flex;flex-direction:column;gap:6px;background:var(--surface);color:var(--ink);padding:14px 16px;border-left:6px solid var(--accent);box-shadow:var(--shadow)}.installapp[hidden]{display:none}.installapp button{align-self:flex-start;font:700 16px/1 var(--body);background:var(--accent);color:#15191e;border:0;padding:12px 16px;cursor:pointer}
