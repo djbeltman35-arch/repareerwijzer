@@ -12046,4 +12046,45 @@ Object.assign(SRC,{ indesitNlFaq: ["Indesit Nederland – problemen en oplossing
       N("Geen piep aan het einde van de kooktijd", 1, "Niet alle ovens hebben een eindsignaal.", ["Kijk in de gebruiksaanwijzing van jouw model."])
     ]});
 }
+{ const SVC = "Komt de code terug? Neem contact op met de Indesit-consumentenservice.", ONLY = "Indesit geeft hiervoor geen oplossing die je zelf kunt doen: neem contact op met de Indesit-consumentenservice.";
+  const R10 = ["Haal de stekker eruit, wacht 10 seconden en steek hem er weer in.", SVC];
+  const FOOD = "Controleer het eten: ontdooid eten niet opnieuw invriezen maar snel (gekookt) gebruiken.";
+  MODELS.push({ id: "indesit-koelkast", brand: "Indesit", name: "Koelkast en koel-vriescombinatie", cat: "koelkasten", years: "Indesit-koelkasten en koel-vriescombinaties met display", unit: null, also: "Indesit koelkast LF, Indesit koelkast SA, Indesit koelkast E13, Indesit koelvriescombinatie dEon",
+    intro: "Indesit-koelkasten tonen codes zoals LF, LC, SA, LOPO, AL01 of E1 tot E24. Veel meldingen komen na een stroomstoring of als de deur te lang open stond; dat los je meestal zelf op.",
+    weak: [], parts: [], tasks: [],
+    src: ["indesitNlFaq"], faults: [
+      F("SA", "Onverwachte gebeurtenis, bijvoorbeeld een stroomonderbreking", 1, "De elektronica heeft iets onverwachts gemeten, vaak een korte stroomstoring.", ["Haal de stroom een paar minuten van de koelkast en sluit weer aan; de code verdwijnt dan."]),
+      F("LOPO", "Te lage netspanning", 1, "Geen defect: de netspanning was te laag (onder 70 V).", ["Haal de stekker een paar minuten eruit en sluit weer aan."]),
+      F("LF", "Vriesvak niet koud genoeg", 1, "Vaak na een lange stroomstoring.", ["Houd AAN/UIT een paar seconden ingedrukt; haal zo nodig de stekker eruit en sluit weer aan.", FOOD, "Gebruik Super Freeze om snel op temperatuur te komen.", "Leg geen nieuw eten erbij tot je zeker weet dat er geen echte storing is."]),
+      F("LC", "Koelvak niet koud genoeg", 1, "Vaak na een lange stroomstoring.", ["Houd AAN/UIT een paar seconden ingedrukt en haal de stekker eruit en weer erin.", "Controleer het eten.", "Gebruik Super Cool om snel op temperatuur te komen."]),
+      F("HC", "Koelvak te koud", 1, "Het eten in het koelvak kan gaan bevriezen.", ["Zet Super Cool uit als die nog aan staat, of zet de temperatuur iets hoger."]),
+      F("SF", "Super Freeze ontdooit eerst", 1, "Geen storing: bij Super Freeze ontdooit de koelkast eerst ongeveer een uur de verdamper; daarna start de compressor.", ["Wacht; de functie loopt minstens 24 uur."]),
+      F("A1", "Na een stroomonderbreking", 1, "Er was een stroomonderbreking.", ["Zet de koelkast met de knoppen of AAN/UIT op OFF en weer aan."]),
+      F("E9", "Storing", 1, "Indesit adviseert eerst een reset.", ["Haal de stekker eruit, wacht een minuut en sluit weer aan.", SVC]),
+      F("E13", "Melding bij een nieuwe koelkast", 1, "Geen defect: bij het eerste aanzetten kan E13 verschijnen.", ["Wacht 20 minuten; de melding verdwijnt vanzelf."]),
+      F("E0 / E3 / E4 / E5 / E6 / E7 / E8", "Storing", 1, "Indesit adviseert eerst een reset.", R10),
+      F("EA / EB / EE", "Storing", 1, "Indesit adviseert eerst een reset.", R10),
+      F("C / D", "Storing", 1, "Indesit adviseert eerst een reset.", R10),
+      F("CF / F", "Storing", 1, "Indesit adviseert eerst een reset.", ["Druk op AAN/UIT als die er is; anders stekker eruit, 10 seconden wachten en weer erin.", SVC]),
+      F("AL01 / AL02 / AL03 / AL04", "Storing", 1, "Kan een tijdelijke situatie zijn.", ["Houd AAN/UIT 3 seconden ingedrukt.", SVC]),
+      F("E / Fb / SR", "Storing", 1, "Kan een tijdelijke situatie zijn.", ["Houd AAN/UIT 3 seconden ingedrukt.", SVC]),
+      F("E1 / E2 / A2", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+      F("E10 / E11 / E12 / E14 / E15 / E16", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+      F("E17 / E18 / E19 / E20 / E22 / E23 / E24", "Storing", 3, "Storing in het apparaat.", [ONLY]),
+      F("dEon / DEMO", "Demostand staat aan", 1, "De koelkast staat in de demostand en koelt niet.", ["Houd I CARE en HOLIDAY 3 seconden tegelijk ingedrukt tot dEoF verschijnt en je een piep hoort.", "Andere modellen: stekker eruit en weer erin, en dan AAN/UIT en ALARM 10 seconden tegelijk ingedrukt houden.", "Of houd de twee knoppen links van het display enkele seconden ingedrukt."]),
+      F("PS", "Demostand: koelkast reageert niet", 1, "De demofunctie staat mogelijk aan.", ["Houd de temperatuurknoppen van koelkast en vriezer tegelijk 3 seconden ingedrukt."]),
+      F("--", "Vriezer nog niet op temperatuur (twee streepjes en piepen)", 1, "Geen storing: na het eerste aansluiten of een lange pauze is de vriezer nog niet koud genoeg.", ["Druk op RESET om het piepen te stoppen. Het alarmlampje gaat vanzelf uit na 3 à 4 uur."]),
+      N("Black-out / SAFE en piepen", 1, "De vriezer is nog niet op temperatuur of er was een stroomstoring.", ["Druk op RESET ALARM om het piepen te stoppen.", "Het lampje gaat vanzelf uit na 3 à 4 uur, als de vriezer koud genoeg is.", FOOD]),
+      N("Alarmlampje (driehoek) brandt en piept", 1, "De vriezer is te warm. Knippert ook het binnenlampje van de koelkast, dan is het eten waarschijnlijk ontdooid.", ["Druk op ALARM RESET (driehoek) om het piepen te stoppen; druk twee keer om de hoogste gemeten temperatuur te zien.", FOOD, "Haal de stekker eruit en weer erin en wacht tot de temperatuur weer daalt."]),
+      N("Temperatuuralarm: vriezer piept", 1, "De vriezer is niet koud genoeg: na het eerste gebruik, na ontdooien of schoonmaken, na veel nieuw eten, of als de deur niet goed dicht is.", ["Zet het geluid uit met de alarmknop (zie de gebruiksaanwijzing).", "Controleer of de deur goed sluit.", "Duurt het alarm langer dan 6 uur? Boek een servicebezoek."]),
+      N("Alarm na een lange stroomstoring", 1, "Na een lange stroomstoring is de vriezer ongeveer 0 °C en blijft het alarm terugkomen.", ["Indesit: druk op een willekeurige knop om het alarm uit te zetten.", FOOD]),
+      N("Temperatuur knippert en piept", 1, "Er was een stroomstoring; de koelkast waarschuwt dat je het eten moet controleren.", ["Druk op RESET.", FOOD]),
+      N("Lampje knippert en piept (deur)", 1, "De deur stond te lang open.", ["Sluit de deur een paar minuten en laat hem niet te lang openstaan."]),
+      N("Waterfilter-alarm", 1, "Het waterfilter moet na 60 dagen worden vervangen.", ["Vervang het waterfilter en druk daarna op reset; de teller begint opnieuw bij 60 dagen."]),
+      N("Display uit terwijl de koelkast aan staat", 1, "Geen storing: na 5 minuten gaat het display in de energiebesparende stand.", ["Druk op een willekeurige knop."]),
+      N("OK-lampje gaat niet aan", 1, "De temperatuur is niet laag genoeg voor de hoeveelheid eten.", ["Zet de temperatuur lager en wacht 10 uur tot die stabiel is."]),
+      N("Rare temperaturen op het display (bijvoorbeeld 33 en 12)", 1, "De temperatuur staat in Fahrenheit.", ["Houd de knop voor de vakantiefunctie en de knop voor de koelvaktemperatuur samen 3 seconden ingedrukt."]),
+      N("Koelkast of vriezer voelt warm", 1, "Soms moet de elektronica opnieuw opstarten.", ["Haal de stekker eruit, wacht 60 seconden en sluit weer aan."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
