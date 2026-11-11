@@ -130,7 +130,7 @@
       if (window.SEARCH) { idxReady(); return; }
       if (window.fczIdxLoading) return;
       window.fczIdxLoading = true;
-      var sc = document.createElement("script"); sc.src = "search.js?v=" + VER; sc.onload = idxReady; document.head.appendChild(sc);
+      var sc = document.createElement("script"); sc.src = "search.js"; sc.onload = idxReady; document.head.appendChild(sc);
     };
     if (q) ["focus", "pointerdown", "keydown"].forEach(function (ev) { q.addEventListener(ev, loadIdx); });
     if (pm) {
