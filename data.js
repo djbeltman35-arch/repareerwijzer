@@ -9166,4 +9166,16 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("iF0 / iFo / iF1", "Probleem met het waterniveau", 2, "Er staat te veel of te weinig water in de vaatwasser.", ["Maak het filter onderin schoon.", OFF, MON])
   ]});
 })();
+(() => {
+  SRC.nwThermomix = ["Netzwelt – de 6 meest voorkomende Thermomix-foutcodes (Duits)", "https://www.netzwelt.de/news/243547-thermomix-probleme-ade-so-behebt-6-gaengigsten-fehlercodes.html"];
+  const KS = "Blijft de fout terugkomen, neem contact op met de klantenservice van Vorwerk.";
+  MODELS.push({ id: "thermomix", brand: "Vorwerk", name: "Thermomix (TM31, TM5, TM6)", dev: "Thermomix", cat: "kleine-apparaten", years: "TM31, TM5, TM6", unit: null, also: "Thermomix foutcode, Thermomix TM6 storing, Thermomix deksel vergrendelt niet, Thermomix wifi werkt niet, Thermomix Fehlercode", intro: "De Thermomix toont bij een storing een melding met een foutnummer. De meeste meldingen los je op met een herstart of door het deksel en de contactpunten te controleren.", weak: ["Vocht of vuil op de contactpinnen onder de mengbeker."], parts: [], tasks: [], src: ["nwThermomix"], faults: [
+    F("32", "Thermomix schakelt zichzelf uit of herstart", 1, "Een tijdelijk softwareprobleem.", ["TM31: haal de stekker een paar seconden eruit en start opnieuw.", "TM5: start het apparaat opnieuw.", "TM6: wacht tot het herstel ('wird wiederhergestellt') klaar is.", KS]),
+    F("52", "Slecht contact tussen mengbeker en apparaat", 1, "Vocht of vuil op de contactpinnen onder de mengbeker.", ["Haal de mengbeker eruit en droog de contactpunten goed af.", "Bij ijskoude of bevroren ingrediënten: spoel de beker vooraf met warm water.", "Blijft de fout, dan moet de beker misschien vervangen worden of het apparaat gerepareerd."]),
+    F("142", "Deksel kan niet vergrendelen", 1, "Het deksel zit niet goed op de mengbeker of het slot sluit niet.", ["Zet het deksel opnieuw goed op de beker.", "TM6: controleer of beker en deksel goed geplaatst zijn.", KS]),
+    F("208", "Overbelasting of mechanisch probleem", 2, "Het apparaat is mogelijk overbelast of er is een mechanisch probleem.", ["Start het apparaat opnieuw.", "TM6: duurt het openen of sluiten van de beker vaak lang, neem dan contact op met de klantenservice."]),
+    F("705", "Geen wifi-verbinding", 1, "Het apparaat kan geen verbinding maken met de router.", ["Probeer het opnieuw.", "Herstart de router en controleer het wifi-wachtwoord.", "TM6: zet wifi op het apparaat uit, herstart en maak opnieuw verbinding.", "Helpt het niet, zet het apparaat terug naar fabrieksinstellingen of neem contact op met Vorwerk."]),
+    F("1003", "Fout in het accu-element (Cookidoo offline beperkt)", 2, "Het accu-element meldt een fout; offline toegang tot Cookidoo is beperkt.", ["Start het apparaat opnieuw.", "Komt de fout terug, dan is het accu-element waarschijnlijk defect: neem contact op met de klantenservice."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
