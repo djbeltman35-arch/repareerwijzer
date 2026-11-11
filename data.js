@@ -40,6 +40,7 @@ const SRC = {
   sonosUpd: ["Sonos – error 1002 bij updaten (Engels)", "https://support.sonos.com/s/article/4886"],
   philipsErrCa: ["Philips – foutcode op mijn Philips-espressomachine (Engels)", "https://www.philips.ca/c-t/XC000004106"],
   igXtendIv: ["Intergas – installatievoorschrift Xtend, hoofdstuk 12 storingen en notificaties", "https://www.intergas-verwarming.nl/app/uploads/2022/09/880084-Installatievoorschrift-Xtend-NL.pdf"],
+  zehnderQIm: ["Zehnder – ComfoAir Q installateurshandleiding, foutmeldingen (Engels)", "https://cdn.shopify.com/s/files/1/0061/1945/6856/files/comfoair_q_installer_manual.pdf"],
   mieleDroog: ["Coolblue – storingen Miele droger", "https://www.coolblue.nl/advies/hoe-verhelp-je-een-miele-wasdroger-storing.html"],
   boschDroog: ["Coolblue – storingen Bosch droger", "https://www.coolblue.be/nl/advies/hoe-verhelp-je-zelf-een-bosch-droogkast-storing.html"],
   delonghi: ["Coolblue – foutmeldingen De'Longhi Dinamica en Magnifica", "https://www.coolblue.be/nl/advies/hoe-los-je-foutmeldingen-bij-de-delonghi-dinamica-en-magnifica-op.html"],
@@ -2011,8 +2012,21 @@ MODELS.push({ id: "zehnder-comfoair-q", brand: "Zehnder", name: "ComfoAir Q WTW 
   faults: [
     N("Display: FILTERS NU WISSELEN", 1, "De filters zijn aan vervanging toe (minstens elk half jaar).", ["Open de klep en kies NU bij de waarschuwing; de ventilatie stopt even.", "Volg het display: filterkappen eraf, oude filters eruit, nieuwe toevoer- en retourfilter erin, kappen terug.", "Kies BEVESTIGEN en sluit de klep.", "Kies NEGEREN als je een dag later wilt vervangen."]),
     N("Led knippert snel met een storingscode", 2, "Er is een storing.", ["Ga naar RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Blijft de fout? Noteer de codes via STATUS > HUIDIGE FOUTEN en het toesteltype via STATUS > TOESTEL.", "Neem contact op met je installateur."]),
-    N("Led knippert langzaam: SERVICE MODUS", 1, "Het toestel staat in de servicestand.", ["Dit is geen storing; de installateur zet hem terug."])],
-  src: ["zehnderQ"] });
+    N("Led knippert langzaam: SERVICE MODUS", 1, "Het toestel staat in de servicestand.", ["Dit is geen storing; de installateur zet hem terug."]),
+    F("AIRFLOW_EHA ERROR / AIRFLOW_SUP ERROR", "Luchtstroom haalt de ingestelde waarde niet", 1, "De afvoer- of toevoerluchtstroom is te laag, vaak door dichte ventielen of roosters, vuile filters of een verstopt kanaal.", ["Controleer of de ventielen en roosters in huis open en schoon zijn.", "Controleer de filters en vervang ze als ze vuil zijn.", "Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Komt de fout terug, laat de installateur het toestel nakijken."]),
+    F("FAN_EHA ERROR / FAN_SUP ERROR", "Storing afvoer- of toevoerventilator", 3, "Een ventilator werkt niet goed.", ["Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Komt de fout terug, dan moet de installateur de ventilator of de besturing controleren of vervangen."]),
+    F("CHANGE FILTERS NOW", "Filters nu vervangen", 1, "De interne filters moeten direct vervangen worden.", ["Vervang de filters meteen."]),
+    F("EXPECT FILTER CHANGE SOON", "Filters binnenkort vervangen", 1, "De filters zijn bijna aan vervanging toe.", ["Bestel nieuwe filters en vervang ze als ze binnen zijn."]),
+    F("EXTERNAL FILTER ALARM", "Extern filter vervangen of schoonmaken", 1, "Het externe filter (bijvoorbeeld in een filterkast) moet vervangen of schoongemaakt worden.", ["Vervang of reinig het externe filter.", "Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten."]),
+    F("FROST ERROR", "Toevoerlucht te koud (vorst)", 1, "De toevoerlucht is te koud door strenge vorst.", ["Wacht tot de buitentemperatuur weer minstens -7 °C is; de fout verdwijnt dan."]),
+    F("DANGER! OVERHEATING!", "Ventilatie gestopt: temperatuurfout", 2, "Twee of meer sensoren meten een onjuiste temperatuur; de ventilatie is gestopt.", ["Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Laat dit snel nakijken door de installateur, zodat er geen vocht en CO2 in huis ophopen."]),
+    F("INIT ERROR", "Toestel is niet in bedrijf gesteld", 2, "De ingebruiknameprocedure is niet doorlopen.", ["Laat de installateur de ingebruikname-wizard doorlopen."]),
+    F("PREHEAT ERROR", "Storing voorverwarmer", 2, "De voorverwarmer werkt niet goed.", ["Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Komt de fout terug, laat de installateur het toestel nakijken."]),
+    F("TEMPCONTROL_SUP ERROR", "Storing bypass-klep", 2, "De motor van de modulerende bypass werkt niet goed.", ["Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Komt de fout terug, laat de installateur het toestel nakijken."]),
+    F("HUMID_EHA ERROR / HUMID_SUP ERROR / HUMID_ETA ERROR / HUMID_ODA ERROR", "Vochtsensor meet onjuist", 2, "Een van de vochtsensoren geeft een onjuiste waarde.", ["Zet de vochtbescherming aan als die uit staat.", "Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Komt de fout terug, zet de ventilatie op maximaal en reset opnieuw.", "Komt de fout terug, laat de installateur het toestel nakijken."]),
+    F("SENSOR_ETA ERROR / SENSOR_ODA ERROR / SENSOR_EHA ERROR / SENSOR_SUP ERROR", "Storing luchtsensor", 3, "Een sensor in het toestel of de aansluiting ervan werkt niet goed.", ["Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Komt de fout terug, laat de installateur de sensor controleren of vervangen."]),
+    F("TEMP_SENSOR_ETA ERROR / TEMP_SENSOR_ODA ERROR / TEMP_SENSOR_EHA ERROR / TEMP_SENSOR_SUP ERROR", "Temperatuursensor meet onjuist", 2, "Een temperatuursensor geeft een onjuiste waarde, soms door extreme temperaturen.", ["Ga naar MENU > RESET FOUT, kies BEVESTIGEN en wacht 5 minuten.", "Komt de fout terug, laat de installateur het toestel nakijken."])],
+  src: ["zehnderQ", "zehnderQIm"] });
 { const I = installer;
 MODELS.push({ id: "itho-wpu", brand: "Itho Daalderop", name: "WPU 5G bodemwarmtepomp", cat: "warmtepompen", years: "Alle bouwjaren", unit: null, also: "WPU 25C t/m 75C",
   intro: "Druk op SERVICE op de thermostaat om de storing te zien. De code verschijnt als A1 of A0 met een nummer, afwisselend in beeld. Alleen bij een te lage cv-druk en een communicatiestoring kun je zelf iets doen.", weak: [], parts: [],
