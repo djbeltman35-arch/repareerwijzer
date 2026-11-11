@@ -402,3 +402,5 @@ footer .wrap{padding-bottom:88px}
 .hero2 h1 .h1-sub{display:block;font-size:.44em;line-height:1.2;font-weight:700;letter-spacing:0;margin-top:.4em;max-width:20ch;color:var(--muted)}
 .hero2 h1 mark.hl{background:linear-gradient(transparent 82%,var(--accent,#f6b800) 82%,var(--accent,#f6b800) 91%,transparent 91%);color:inherit;padding:0 .04em}
 .hero2 h1 .h1-sub{font-size:.42em;font-weight:600;color:var(--ink);opacity:.82;max-width:22ch;margin-top:.55em;line-height:1.25}
+.eyebrow{background:transparent;color:var(--muted);font-weight:700;font-size:12px;letter-spacing:.08em;padding:2px 0 2px 9px;border-left:3px solid var(--accent,#f2b705)}.eyebrow::after{display:none}
+.picker .eyebrow{border-left:0;padding-left:0}
