@@ -11553,4 +11553,36 @@ Object.assign(SRC,{ aegNlRobot: ["AEG Support – foutmeldingen robotstofzuiger 
       F("E4", "Sensorprobleem", 3, "Een sensor geeft een fout.", [SVC])
     ]});
 }
+Object.assign(SRC,{ aegNlKoffie: ["AEG Support – meldingen inbouw-koffiemachine", "https://support.aeg.nl/support-articles/koken/inbouwkoffiemachines"], aegNlAfzuig: ["AEG Support – afzuigkap: knipperende lampjes en storingen", "https://support.aeg.nl/support-articles/koken/afzuigkappen"] });
+{ const SVC = "Lost dit het niet op? Neem contact op met de AEG-servicedienst.";
+  MODELS.push({ id: "aeg-inbouw-koffiemachine", brand: "AEG", name: "Inbouw-koffiemachine (volautomaat)", dev: "inbouw-koffiemachine", cat: "koffiemachines", years: "Inbouw-volautomaten met display", unit: null, also: "AEG koffiemachine vul watertank, AEG koffiemachine algemeen alarm, AEG koffiemachine maalt te fijn",
+    intro: "De AEG inbouw-volautomaat geeft meldingen in tekst op het display. Bijna allemaal los je zelf op.",
+    weak: ["Een vlotter die vastzit door kalk geeft vaak een onterechte melding 'vul de watertank'."], parts: [],
+    tasks: [{ w: "Bij de melding", t: "Ontkalken met een ontkalker voor volautomaten" }, { m: 0.25, t: "Koffiedikreservoir en lekbak legen en schoonmaken" }],
+    src: ["aegNlKoffie"], faults: [
+      F("Vul de watertank", "Melding 'vul de watertank' terwijl de tank vol is", 1, "De vlotter in de watertank zit vast, bijvoorbeeld door kalk.", ["Controleer of de vlotter in de watertank vrij beweegt en maak hem zo nodig los en schoon.", SVC]),
+      F("Vul koffiebonen", "Melding 'vul koffiebonenreservoir' terwijl het vol is", 1, "Er zit iets in het bonenreservoir dat de toevoer blokkeert, zoals het ventieltje van een koffieverpakking.", ["Haal vreemde voorwerpen uit het bonenreservoir.", "Vul het reservoir met koffiebonen.", SVC]),
+      F("Plaats het stoompijpje", "Melding 'plaats het stoompijpje' of de machine spoelt niet", 1, "Bij het eerste gebruik moet het water-/stoompijpje op het mondstuk zitten.", ["Zet het pijpje op het mondstuk tot je een klik hoort.", "Duw het daarna nog verder aan tot je een tweede klik voelt of hoort; dan gaat de machine verder."]),
+      F("Maalt te fijn", "Melding 'maalt te fijn, maalgraad instellen'", 1, "De maalgraad staat te fijn.", ["Draai de maalgraadknop één klik naar rechts, richting 7. Dat kan alleen terwijl de maalmotor draait.", "Het effect zie je pas na twee kopjes."]),
+      F("Algemeen alarm", "Melding 'algemeen alarm'", 1, "Er heeft zich vuil opgehoopt in de machine.", ["Maak de binnenkant grondig schoon zoals de handleiding beschrijft (een zaklamp helpt).", "Zet de machine daarna uit met de hoofdschakelaar aan de rechterkant en weer aan.", SVC]),
+      F("Leeg koffiedikreservoir", "Melding 'leeg koffiedikreservoir'", 1, "Het koffiedikreservoir moet geleegd worden.", ["Haal het reservoir eruit en leeg het. Laat het minstens 30 seconden uit de machine, anders telt het niet als geleegd.", "Blijft de melding: zet de machine uit met de hoofdschakelaar aan de rechterkant en weer aan.", SVC]),
+      N("Machine valt na een tijdje uit", 1, "Geen storing: de machine schakelt standaard 30 minuten na het laatste gebruik uit.", ["Pas de uitschakeltijd aan in de instellingen (tot maximaal 120 minuten).", "Bij het eerste gebruik: zet de schakelaar achter aan en druk daarna op de stand-byknop."]),
+      N("Persunit zit vast", 1, "De persunit (zetgroep) kan alleen los als de machine met de aan/uit-toets is uitgezet.", ["Zet de machine uit met de aan/uit-toets aan de voorkant; de persunit zakt dan naar beneden en kan eruit.", SVC]),
+      N("Koffie is niet heet genoeg", 1, "Koude kopjes, een afgekoelde machine, een lage temperatuurstand of kalk.", ["Verwarm de kopjes voor.", "Zet de temperatuur op de hoogste stand.", "Ontkalk de machine met een ontkalker voor volautomaten."]),
+      N("Melk schuimt niet goed", 1, "Kalk, melkresten of de verkeerde melk.", ["Ontkalk de machine.", "Stel het schuifje op de deksel van de melkkan bij.", "Gebruik koude halfvolle melk uit de koelkast.", "Spoel vaste melkresten weg, bijvoorbeeld door de functie 'hete melk' te starten en na 15 seconden te stoppen."])
+    ]});
+  MODELS.push({ id: "aeg-afzuigkap", brand: "AEG", name: "Afzuigkap", dev: "afzuigkap", cat: "kookplaten", years: "AEG-afzuigkappen", unit: null, also: "AEG afzuigkap lampje knippert, AEG afzuigkap filter resetten, AEG afzuigkap F",
+    intro: "Knipperende lampjes op een AEG-afzuigkap betekenen meestal dat de filters aan de beurt zijn. Hier staat wat de meldingen betekenen en wat je doet als de kap slecht zuigt of niet werkt.",
+    weak: [], parts: [], tasks: [{ m: 1, t: "Metalen vetfilters reinigen", v: 1 }],
+    src: ["aegNlAfzuig"], faults: [
+      F("F / filterlampje", "Filteralarm: F, knipperende LED's of filterpictogram", 1, "De filters moeten gereinigd of vervangen worden.", ["Zet de afzuigkap uit en haal alle filters eruit.", "Reinig de vetfilters of vervang de koolstoffilters zoals de handleiding beschrijft.", "Plaats ze terug en reset het filteralarm volgens de handleiding.", SVC]),
+      F("Timer/klok knippert", "Timer- of kloklampje knippert", 1, "Bij onder meer de DBE5970- en DBS5971-modellen betekent dit dat de filters gereinigd of vervangen moeten worden.", ["Reinig of vervang de filters.", "Reset daarna de filterindicatie volgens de handleiding (eerst motor en verlichting uit)."]),
+      F("8.8", "Display toont 8.8", 1, "Geen storing: zo ziet de digitale weergave eruit.", ["Werkt de kap verder niet, laat hem dan nakijken."]),
+      N("Afzuigkap gaat vanzelf aan en alle lampjes knipperen", 1, "De elektronica is in de war.", ["Haal de stekker een minuut uit het stopcontact en steek hem er weer in.", SVC]),
+      N("Afzuigkap werkt niet of start niet", 1, "Geen stroom op het stopcontact of de groep is uitgeschakeld.", ["Test het stopcontact met een ander apparaat.", "Controleer de groep in de meterkast.", "Haal de stekker 30 seconden uit het stopcontact en steek hem er weer in.", SVC]),
+      N("Afzuigkap stopt tijdens het koken", 1, "Te veel stoom, vuile filters of te weinig luchtafvoer.", ["Zet kookplaat en kap uit, wacht 5 minuten en zet ze weer aan.", "Kook met minder pannen tegelijk: een kap is gemaakt voor geur, niet voor grote hoeveelheden stoom.", "Maak de filters schoon of vervang ze.", "Controleer of de lucht buiten vrij naar buiten kan.", SVC]),
+      N("Rammelend of hard geluid op de hoogste stand", 2, "Te veel tegendruk in de afvoer: de slang is te lang, te smal of heeft te veel bochten. Met koolstoffilters is een kap van zichzelf luider.", ["Laat de afvoer controleren en gebruik waar mogelijk gladde, korte leidingen."]),
+      N("Geur blijft hangen in de keuken", 1, "De kap staat te kort aan, de filters zijn vuil of de kap hangt te hoog.", ["Zet de kap 10 minuten voor het koken aan en laat hem 10 minuten na het koken doorlopen.", "Reinig de vetfilters en reinig of vervang de koolstoffilters.", "Controleer de afstand tot de kookplaat en de diameter van de afvoer."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
