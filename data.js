@@ -11348,4 +11348,13 @@ Object.assign(SRC,{ aegWdSup: ["AEG Support – foutmeldingen was-droogcombinati
   F("E90", "Storing in de elektronica", 3, "AEG geeft geen nadere uitleg; het gaat om een interne storing.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem er weer in.", "Blijft de code? " + OFF + " " + SVC]),
   F("dEn", "Demonstratiestand", 1, "De machine staat in de winkelstand.", ["Haal de stekker ongeveer 30 seconden uit het stopcontact.", "Lukt het niet? " + SVC]));
   m.src.push("aegWdSup"); })(MODELS.find(m => m.id === "aeg-was-droogcombinatie"));
+Object.assign(SRC,{ zanNlWas: ["Zanussi Support – foutmeldingen wasmachine (CLE, E70, E82, C6, dEn, EA0)", "https://support.zanussi.nl/support-articles/wassen-en-drogen/wasmachines"] });
+(m => { const SVC = "Maak een afspraak met de Zanussi-servicedienst."; m.faults.push(
+  F("CLE", "Herinnering: trommel reinigen", 1, "Geen storing. Na ongeveer 60 wasbeurten vraagt de machine om een reinigingswas tegen schimmel en geurtjes.", ["Haal alle was uit de trommel.", "Doe een klein beetje wasmiddel in het wasmiddelbakje.", "Start een katoenprogramma op 95 °C. Daarna verdwijnt de melding tot de volgende 60 wasbeurten.", "Tot die tijd kun je gewoon blijven wassen; de melding komt alleen steeds terug."]),
+  F("E70", "Temperatuursensor van het verwarmingselement", 3, "De sensor die de watertemperatuur meet, geeft een fout.", [SVC]),
+  F("C6", "Storing in de waterniveauregeling", 3, "Het onderdeel dat het waterniveau in de trommel bewaakt, werkt niet goed.", [SVC]),
+  F("E82", "Programmaknop tussen twee standen", 1, "De programmaschakelaar stond tussen twee programma's toen je op start drukte.", ["Zet de machine uit.", "Kies opnieuw een programma, zodat de knop goed op een stand staat, en druk op start.", "Blijft de code? " + SVC]),
+  F("dEn", "Demostand staat aan", 1, "Waarschijnlijk zijn bij het aanzetten meerdere knoppen tegelijk ingedrukt.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem er weer in.", "Blijft dEn staan? " + SVC]),
+  F("EA0 / EAO", "Trommel staat niet goed (bovenlader)", 3, "Bij een bovenlader komt de trommel niet in de juiste stand te staan.", [SVC]));
+  m.src.push("zanNlWas"); })(MODELS.find(m => m.id === "zanussi-wasmachine"));
 module.exports = { CATS, MODELS, SRC, COST };
