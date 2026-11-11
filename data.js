@@ -324,8 +324,7 @@ const MODELS = [
     N("Blokkering geregistreerd of 0:00", 1, "Wasgoed zit ongelijk verdeeld.", ["Maak het wasgoed los en haal wat eruit als de trommel erg vol is.", "Zet de droger uit en aan en start een programma."]),
     F("F32", "Deurslot werkt niet", 3, "De deur kan niet goed vergrendelen, door een defect scharnier of deurslot.", ["Controleer of er niets tussen deur en rubber zit en sluit de deur stevig.", "Blijft de code, laat het deurslot vervangen door een monteur."]),
     F("F39", "Storing besturingsprint", 3, "Fout in de elektronische besturing.", ["Zet de droger uit, wacht een minuut en zet hem weer aan.", "Komt de code terug, neem contact op met Miele."]),
-    F("F50", "Algemene computerfout", 3, "Elektronicafout, verschijnt vaak bij het openen van de deur.", ["Zet de droger uit, haal de stekker 30 minuten eruit en start opnieuw.", "Blijft de code, neem contact op met Miele."]),
-    F("F55", "Maximale droogtijd overschreden", 2, "Het programma duurt te lang; vaak door vuile filters, een vol reservoir of te nat wasgoed.", ["Maak het pluizenfilter en het sokkelfilter schoon.", "Centrifugeer het wasgoed opnieuw in de wasmachine en droog opnieuw.", "Blijft de code, neem contact op met Miele."])],
+    F("F50", "Algemene computerfout", 3, "Elektronicafout, verschijnt vaak bij het openen van de deur.", ["Zet de droger uit, haal de stekker 30 minuten eruit en start opnieuw.", "Blijft de code, neem contact op met Miele."])],
   src: ["mieleDroog", "domexMiele"] },
 
 // ───────── Stofzuigers
