@@ -20,6 +20,22 @@ const pages = [];
 const codeUrl = (m, f) => `foutcode-${m.id}-${slug(f.code.split("/")[0])}.html`;
 const lc1 = (t, m) => { const w = t.split(/[ :,]/)[0]; if (!/^[A-Z][a-zà-ÿ]*$/.test(w)) return t; if (m && `${m.brand} ${m.name} ${m.also || ""}`.split(/[^A-Za-zÀ-ÿ]+/).includes(w)) return t; return t[0].toLowerCase() + t.slice(1); };
 const textUrl = (m, f) => `storing-${m.id}-${slug(f.t)}.html`;
+
+// ───────── Controle: dubbele modellen, codepagina's of ontbrekende bronnen laten de build mislukken
+{
+  const errs = [], ids = new Set(), urls = new Map();
+  for (const m of MODELS) {
+    if (ids.has(m.id)) errs.push(`Dubbel model-id: ${m.id}`);
+    ids.add(m.id);
+    for (const k of m.src || []) if (!SRC[k]) errs.push(`Onbekende bron "${k}" bij ${m.id}`);
+    for (const f of m.faults) if (f.code) {
+      const u = codeUrl(m, f);
+      if (urls.has(u)) errs.push(`Dubbele codepagina ${u}: "${urls.get(u)}" en "${f.code}"`);
+      urls.set(u, f.code);
+    }
+  }
+  if (errs.length) { console.error("Build gestopt:\n- " + errs.join("\n- ")); process.exit(1); }
+}
 const codeShort = f => f.code.split("/")[0].trim();
 const fullName = m => m.brand === "Alle merken" ? m.name : `${m.brand} ${m.name}`;
 function brandLinks(m) { return m.brand.split("/").map(b => b.trim()).filter(b => b !== "Alle merken" && b !== "E61-groep").map(b => `<a href="merk-${slug(b)}.html">Alle ${esc(b)}-storingen</a>`).join(" · "); }
