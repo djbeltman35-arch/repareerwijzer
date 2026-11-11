@@ -22,7 +22,7 @@ const VER = (() => { const h = require("crypto").createHash("sha1"); for (const 
 const LASTMOD_FILE = path.join(__dirname, "lastmod.json");
 const LASTMOD = (() => { try { return JSON.parse(fs.readFileSync(LASTMOD_FILE, "utf8")); } catch (e) { return {}; } })();
 const TODAY = new Date().toISOString().slice(0, 10), modOf = {};
-const pageHash = html => { const m = html.match(/<main[\s\S]*<\/main>/); return require("crypto").createHash("sha1").update((m ? m[0] : html).replace(/<aside class="adbox">[\s\S]*?<\/aside>/g, "")).digest("hex").slice(0, 12); };
+const pageHash = html => { const m = html.match(/<main[\s\S]*<\/main>/); return require("crypto").createHash("sha1").update((m ? m[0] : html).replace(/<!--UPD-->/g, "").replace(/<aside class="adbox">[\s\S]*?<\/aside>/g, "")).digest("hex").slice(0, 12); };
 
 const codeUrl = (m, f) => `foutcode-${m.id}-${slug(f.code.split("/")[0])}.html`;
 const lc1 = (t, m) => { const w = t.split(/[ :,]/)[0]; if (!/^[A-Z][a-zà-ÿ]*$/.test(w)) return t; if (m && `${m.brand} ${m.name} ${m.also || ""}`.split(/[^A-Za-zÀ-ÿ]+/).includes(w)) return t; return t[0].toLowerCase() + t.slice(1); };
@@ -65,7 +65,7 @@ function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts 
   const backTo = crumbs.length > 1 ? crumbs[crumbs.length - 2].file : "index.html";
   const pageNav = file === "index.html" ? "" : `<div class="pagenav"><a class="back" href="${backTo}" data-back>← Terug</a><a class="home" href="index.html">⌂ Home</a></div>`;
   const crumbHtml = crumbs.length ? `<nav class="crumbs" aria-label="Kruimelpad"><a href="index.html">Home</a>${crumbs.map((c, i) => i === crumbs.length - 1 ? ` / <span>${esc(c.name)}</span>` : ` / <a href="${c.file}">${esc(c.name)}</a>`).join("")}</nav>` : "";
-  const html = `<!doctype html>
+  let html = `<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
@@ -106,6 +106,7 @@ ${pageNav ? `<div class="pagenav-bar"><div class="wrap">${pageNav}</div></div>` 
 <main class="wrap">
 ${crumbHtml}
 ${body}
+<!--UPD-->
 </main>
 <footer><div class="wrap">
   <details class="foot-fold"><summary>Alle categorieën (${CATS.length})</summary><nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav></details>
@@ -117,9 +118,12 @@ ${body}
 ${scripts}
 </body>
 </html>`;
+  { const h = pageHash(html), old = LASTMOD[file]; modOf[file] = old && old[0] === h ? old : [h, TODAY]; }
+  // Zichtbare en machineleesbare datum van de laatste inhoudelijke wijziging (helpt Google en AI-zoekmachines)
+  { const d = modOf[file][1], [y, mo, da] = d.split("-").map(Number), M = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
+    html = html.replace("<!--UPD-->", file === "index.html" || file === "404.html" ? "" : `<p class="upd muted"><small>Laatst bijgewerkt: <time datetime="${d}">${da} ${M[mo - 1]} ${y}</time></small></p>`).replace(/"__DMOD__"/g, JSON.stringify(d)); }
   fs.writeFileSync(path.join(OUT, file), html);
   pages.push(file);
-  { const h = pageHash(html), old = LASTMOD[file]; modOf[file] = old && old[0] === h ? old : [h, TODAY]; }
 }
 
 const pill = d => `<span class="pill ${D[d][1]}">${D[d][0]}</span>`;
@@ -384,7 +388,7 @@ for (const { m, f } of allCodes) {
   const dev = deviceName(m);
   layout({
     file: codeUrl(m, f),
-    title: (() => { const br = m.brand.split("/").map(x => x.trim()); const d = br.length > 1 ? dev.replace(m.brand, br[0]) : dev; return `${d} foutcode ${codeShort(f)} – ${lc1(f.t, m)}: oorzaak + oplossing${br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""}`; })(),
+    title: (() => { const br = m.brand.split("/").map(x => x.trim()); const d = br.length > 1 ? dev.replace(m.brand, br[0]) : dev; const base = `${d} foutcode ${codeShort(f)} – ${lc1(f.t, m)}`, ook = br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""; return base.length + ook.length <= 52 ? `${base}: oorzaak + oplossing${ook}` : `${base}${ook}`; })(),
     desc: `Foutcode ${f.code} op je ${dev}: ${f.t.toLowerCase()}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
     extraHead: faqLd([[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${f.code}?`, f.steps.join(" ")], [`Moet er een monteur komen bij foutcode ${f.code}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: `Foutcode ${codeShort(f)}`, file: codeUrl(m, f) }],
@@ -424,7 +428,7 @@ for (const m of MODELS) for (const f of m.faults.filter(x => !x.code)) {
   const others = m.faults.filter(x => !x.code && x !== f);
   layout({
     file: textUrl(m, f),
-    title: am ? `${f.t}${f.t.toLowerCase().includes(c.one.toLowerCase()) ? "" : ` (${c.one})`}: oorzaak + oplossing, alle merken` : `${dev}: ${lc1(f.t, m)} (oorzaak + oplossing)`,
+    title: am ? `${f.t}${f.t.toLowerCase().includes(c.one.toLowerCase()) ? "" : ` (${c.one})`}: oorzaak + oplossing, alle merken` : (`${dev}: ${lc1(f.t, m)}`.length <= 50 ? `${dev}: ${lc1(f.t, m)} (oorzaak + oplossing)` : `${dev}: ${lc1(f.t, m)}`),
     desc: `${am ? "" : dev + ": "}${lc1(f.t, m)}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
     extraHead: faqLd([[`${f.t}${am ? "" : ` (${dev})`}: wat is er aan de hand?`, f.cause], [`${f.t}: wat kun je zelf doen?`, f.steps.join(" ")], [`Moet er een monteur komen?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]) + howtoLd(f.t, f.steps),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: f.t, file: textUrl(m, f) }],
@@ -690,7 +694,7 @@ layout({ file: "404.html", title: "Pagina niet gevonden | Foutcodezoeker", desc:
 const kbCat = a => a.cat ? CATS.find(c => c.id === a.cat) : null;
 for (const a of KB) {
   const file = `kennisbank-${a.id}.html`, url = `${SITE}/kennisbank-${a.id}`;
-  const art = `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.desc, inLanguage: "nl-NL", mainEntityOfPage: url, author: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, publisher: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, citation: a.src.map(([n, u]) => ({ "@type": "CreativeWork", name: n, url: u })) }).replace(/</g, "\\u003c")}</script>`;
+  const art = `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: a.title, dateModified: "__DMOD__", description: a.desc, inLanguage: "nl-NL", mainEntityOfPage: url, author: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, publisher: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, citation: a.src.map(([n, u]) => ({ "@type": "CreativeWork", name: n, url: u })) }).replace(/</g, "\\u003c")}</script>`;
   const c = kbCat(a);
   layout({
     file, title: `${a.title} | Foutcodezoeker`, desc: a.desc,
