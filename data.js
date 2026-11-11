@@ -11856,4 +11856,21 @@ Object.assign(SRC,{ remTzerraIs: ["Remeha – installatie- en servicehandleiding
     F("Rood 6x", "Storing: overige (6 keer rood)", 3, "Diverse oorzaken; de precieze code is alleen met servicesoftware uit te lezen.", [RESET, INST]));
   m.also = (m.also ? m.also + ", " : "") + "Remeha Tzerra lampje knippert 3 keer rood, Tzerra knippert groen, Tzerra M CW3 CW4 CW5";
   m.src.push("remTzerraIs"); })(MODELS.find(m => m.id === "remeha-tzerra"));
+Object.assign(SRC,{ whirlpoolNlFaq: ["Whirlpool Nederland – veelgestelde vragen over foutcodes", "https://www.whirlpool.nl/faq"] });
+{ const RST = "Druk na de controle vijf seconden op de startknop.", SVC = "Blijft de code terugkomen? Maak een serviceafspraak bij Whirlpool.";
+  (m => { m.faults.push(
+    F("F4", "Probleem met de waterafvoer (modellen met display)", 1, "De vaatwasser pompt het water niet goed weg.", ["Maak de filters schoon.", "Controleer de afvoerslang: niet geknikt en niet te diep in de afvoer.", RST, SVC]),
+    F("F6", "Probleem met de watertoevoer (modellen met display)", 1, "Er komt geen water binnen.", ["Controleer of de kraan open staat en of de toevoerslang niet geknikt is.", RST, SVC]),
+    F("F7", "Slechte watertoevoer (modellen met display)", 1, "Er komt te weinig water binnen.", ["Controleer de waterstroom en of de kraan helemaal open staat.", RST, SVC]),
+    F("F8", "Probleem met het waterniveau in de kuip (modellen met display)", 1, "Het waterniveau in de kuip klopt niet, vaak door vuile filters.", ["Maak de filters en de bodem van de kuip schoon.", RST, SVC])); m.src.push("whirlpoolNlFaq"); })(MODELS.find(m => m.id === "whirlpool-vaatwasser"));
+  (m => { m.faults.push(
+    N("Droger start niet en toont F5 of F6, of de lampjes knipperen (koude of warme ruimte)", 1, "Volgens Whirlpool werkt de droger niet goed als de ruimte kouder is dan 5 °C of warmer dan 35 °C, bijvoorbeeld in een onverwarmde garage in de winter.", ["Zet de droger in een warmere ruimte, of verwarm de ruimte voordat je hem aanzet.", "Is het boven 5 °C, dan werkt de droger weer normaal.", SVC])); m.src.push("whirlpoolNlFaq"); })(MODELS.find(m => m.id === "whirlpool-droger"));
+  MODELS.push({ id: "whirlpool-oven", brand: "Whirlpool", name: "Oven (inbouw)", dev: "oven", cat: "ovens", years: "Whirlpool-inbouwovens met display", unit: null, also: "Whirlpool oven F02, Whirlpool oven F05 hangslot, Whirlpool oven STOP 00:00",
+    intro: "Een Whirlpool-oven toont een paar korte foutcodes. Een knipperende 00:00 is geen storing; F02 wijst vaak op een inbouwprobleem.", weak: [], parts: [], tasks: [], src: ["whirlpoolNlFaq"], faults: [
+      F("F02", "Binnenkant van de oven oververhit", 2, "Dit gebeurt vaak als de oven niet goed is ingebouwd of de inbouwmaten niet kloppen, waardoor hij te weinig ventilatie krijgt.", ["Controleer de hele installatie: inbouwmaten en ventilatieruimte volgens de installatiehandleiding.", SVC]),
+      F("F03", "Afwijking van het draaiplateau", 3, "Het draaiplateau werkt niet goed.", ["Neem contact op met de Whirlpool-consumentendienst."]),
+      F("F05", "Probleem met de deurvergrendeling (ook het hangslot-symbool)", 1, "De vergrendeling van de ovendeur werkt niet goed.", ["Haal de stekker eruit of zet de groep uit en wacht een paar minuten.", SVC]),
+      N("STOP in het display of 00:00 knippert", 1, "Geen storing: de klok moet opnieuw worden ingesteld, na een stroomstoring of bij het eerste gebruik.", ["Stel de klok in volgens de gebruiksaanwijzing van je oven.", "Lukt het niet, schakel dan de Whirlpool-consumentendienst in."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
