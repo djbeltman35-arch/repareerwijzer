@@ -12358,4 +12358,36 @@ Object.assign(SRC,{ grundigNlWas: ["Grundig Nederland – helpcentrum wasmachine
       N("Brommend of fluitend geluid tijdens het afpompen", 1, "De motor kan zoemen tijdens het draaien. Hoor je het alleen bij het afpompen, dan is de afvoerslang mogelijk geknikt of verstopt.", ["Controleer de afvoerslang, haal knikken eruit en verwijder een verstopping.", SVC])
     ]});
 }
+Object.assign(SRC,{ grundigNlDroog: ["Grundig Nederland – helpcentrum wasdroger: problemen oplossen", "https://www.grundig.com/nl-nl/ondersteuning/helpcentrum/wasdroger--troubleshooting"], grundigNlKoel: ["Grundig Nederland – helpcentrum koel-vriescombinatie: problemen oplossen", "https://www.grundig.com/nl-nl/ondersteuning/helpcentrum/koelvriescombinatie--troubleshooting"], grundigNlOven: ["Grundig Nederland – helpcentrum oven: problemen oplossen", "https://www.grundig.com/nl-nl/ondersteuning/helpcentrum/oven--troubleshooting"] });
+{ const SVC = "Werkt het apparaat ook niet goed? Neem contact op met een erkend servicebedrijf.";
+  MODELS.push({ id: "grundig-droger", brand: "Grundig", name: "Wasdroger", dev: "droger", cat: "drogers", years: "Grundig-condens- en warmtepompdrogers", unit: null, also: "Grundig droger lekt, Grundig droger maakt lawaai",
+    intro: "Lekt je Grundig-droger bij de deur of maakt hij een vreemd geluid? Veel geluiden zijn normaal; dit zegt Grundig zelf.", weak: [], parts: [], tasks: [],
+    src: ["grundigNlDroog"], faults: [
+      N("Water lekt bij de deur", 1, "De deur sluit niet goed af door pluis op de afdichting.", ["Veeg de binnenrand van de deur en de afdichting schoon met een zachte, vochtige doek."]),
+      N("Metaalachtig geluid", 1, "Normaal bij warmtepompdrogers: de compressor maakt dit geluid. Hoor je eerder schrapen, dan zit er misschien iets in de trommel.", ["Controleer de trommel op voorwerpen en haal ze eruit.", SVC]),
+      N("Rammelend geluid", 1, "Normaal bij een nieuwe of lang niet gebruikte droger. Luid en aanhoudend kan op versleten trommelrollen wijzen.", [SVC]),
+      N("Piepend of bonkend geluid", 1, "Losse of ongelijke poten of wielen, of versleten trommelsteunrollen.", ["Zet de droger stevig en waterpas.", "Blijft het luid en aanhoudend? Laat de rollen controleren door een servicebedrijf."])
+    ]});
+  MODELS.push({ id: "grundig-koelkast", brand: "Grundig", name: "Koel-vriescombinatie", dev: "koelkast", cat: "koelkasten", years: "Grundig-koelkasten en koel-vriescombinaties", unit: null, also: "Grundig koelkast maakt geluid, Grundig koelkast lampje",
+    intro: "Veel geluiden van een Grundig-koelkast zijn normaal. Hier staat wanneer wel en wanneer niet, en wat je zelf kunt doen.", weak: [], parts: [], tasks: [],
+    src: ["grundigNlKoel"], faults: [
+      N("Klikkend geluid", 1, "Normaal bij de ontdooitimer (NoFrost) of de ijsmaker. Wordt het ook warmer binnen, dan schakelt de compressor misschien uit door oververhitting, vaak door vuile condensorspoelen.", ["Haal de stekker eruit en maak de spoelen achterop droog schoon met een zachte borstel of stofzuigerborstel (lage stand).", SVC]),
+      N("Borrelend, gorgelend of zoemend geluid", 1, "Normaal: koelmiddel stroomt door het systeem, of het komt van de watertoevoer van de ijsmaker of het automatisch ontdooien.", [SVC]),
+      N("Krakend geluid", 1, "Normaal: onderdelen zetten uit en krimpen, of ijsblokjes vallen in de ijsmaker.", [SVC]),
+      N("Koelkast maakt meer geluid dan vroeger", 1, "Normaal bij een hoge omgevingstemperatuur: de koelkast moet dan harder werken.", ["Zet de koelkast niet bij een warmtebron."]),
+      N("Koelkastlampje brandt steeds door", 1, "De deur sluit niet goed, waardoor het lampje aan blijft.", ["Controleer de deurrubber op spleten en trek hem voorzichtig in model; vervang een kapotte rubber."]),
+      N("Koelkastlampje werkt niet", 1, "Het lampje is waarschijnlijk doorgebrand.", ["Vervang het lampje door een met hetzelfde vermogen en voltage (zie de handleiding)."]),
+      N("Eten droogt uit", 1, "Eten is niet goed verpakt, de ventilatie van de groentelade staat verkeerd of de temperatuur klopt niet.", ["Verpak eten goed en stel de ventilatie van de groentelade bij.", "Controleer met een thermometer of de temperatuur klopt; zo niet, neem contact op met een servicebedrijf."])
+    ]});
+  MODELS.push({ id: "grundig-oven", brand: "Grundig", name: "Oven", dev: "oven", cat: "ovens", years: "Grundig-ovens (elektrisch en gas)", unit: null, also: "Grundig oven AUTO, Grundig oven klok knippert",
+    intro: "Grundig-ovens tonen weinig foutcodes. AUTO of een knipperende klok zijn instellingen, geen storing.", weak: [], parts: [], tasks: [],
+    src: ["grundigNlOven"], faults: [
+      F("AUTO / A", "Timer staat op automatisch uitschakelen", 1, "Geen storing: AUTO, A of een pijl tussen twee streepjes betekent dat de oven op een ingesteld tijdstip vanzelf uitgaat.", ["Annuleer de timerfunctie als je de oven met de hand wilt gebruiken (zie de handleiding)."]),
+      N("Kloksymbool brandt of knippert", 1, "Geen storing: na een stroomstoring is de tijd gereset.", ["Stel de klok in; het symbool verdwijnt dan."]),
+      N("Ventilator blijft draaien na uitzetten", 1, "Normaal: de koelventilator koelt de oven en de elektronica af en stopt vanzelf.", ["Je hoeft niets te doen."]),
+      N("Gasoven blijft klikken", 1, "De ontsteker klikt tot de brander brandt. Blijft hij klikken, dan is hij vochtig of zit de schakelaar vast.", ["Laat een vochtige ontsteker drogen.", "Blijft het klikken? Neem contact op met een servicebedrijf."]),
+      N("Glas van de gasoven beslaat", 1, "Normaal: bij het verbranden van gas ontstaat waterdamp. Op temperatuur verdwijnt de condens.", ["Je hoeft niets te doen."]),
+      N("Ovenlampje vervangen", 1, "Het lampje is doorgebrand.", ["Zet de oven uit en laat afkoelen.", "Draai de kap en het lampje linksom los en zet een hittebestendig lampje van hetzelfde type terug (zie de handleiding)."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
