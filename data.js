@@ -11328,4 +11328,14 @@ Object.assign(SRC,{ aegVaatI24: ["AEG Support – vaatwasser foutmelding i24", "
   F("i24", "Afvoerpomp geblokkeerd", 1, "Er zit iets in de afvoerpomp, waardoor het water niet wordt weggepompt.", ["Zet de vaatwasser uit en haal de stekker eruit.", "Haal de filters eruit en neem het water op met een spons.", "Wip het plastic dekseltje van de afvoerpomp schuin los en haal glas, plastic, botjes of tandenstokers weg.", "Zet het dekseltje stevig terug, plaats de filters en sluit de vaatwasser weer aan.", "Komt de code terug? Neem contact op met AEG-service."]),
   F("i60", "Probleem met de verwarming", 2, "Het water wordt niet goed verwarmd.", ["Controleer of het toevoerwater niet warmer is dan 60 °C (bijvoorbeeld bij aansluiting op warm water).", "Zet de vaatwasser uit en weer aan.", "Blijft de code? Plan een afspraak met de AEG-servicedienst."]));
   m.src.push("aegVaatI24", "aegVaatI60"); })(MODELS.find(m => m.id === "aeg-vaatwasser"));
+
+Object.assign(SRC,{ aegCombo: ["AEG Support – ComboHob foutmeldingen E7, E9 en U400", "https://support.aeg.nl/support-articles/koken/kookplaten"] });
+{ const SVC = "Plan een afspraak met de AEG-servicedienst.";
+  MODELS.push({ id: "aeg-combohob", brand: "AEG", name: "ComboHob (inductiekookplaat met afzuiging)", dev: "ComboHob", cat: "kookplaten", years: "AEG ComboHob", unit: null, also: "AEG kookplaat met ingebouwde afzuigkap, ComboHob E7 E9 U400",
+    intro: "De AEG ComboHob is een inductiekookplaat met ingebouwde afzuiging. Een paar codes betekenen hier iets anders dan bij een gewone AEG-kookplaat.", weak: [], parts: [], tasks: [{ m: 1, t: "Vetfilter van de afzuiging uitnemen en reinigen", v: 1 }],
+    faults: [
+      F("E7", "Probleem met de inductie- of bedieningsmodule", 3, "Een van de elektronicamodules van de ComboHob geeft een fout.", ["Haal de stroom een minuut van de kookplaat (groep uit) en zet hem weer aan.", "Blijft de code? " + SVC]),
+      F("E9", "Sensor of bedieningspaneel", 3, "Begint het productnummer (PNC op het typeplaatje) met 942, dan werkt een temperatuursensor niet goed. Begint het met 949, dan heeft het bedieningspaneel een communicatieprobleem.", ["Noteer het PNC-nummer van het typeplaatje.", SVC]),
+      F("U400", "Netspanning te hoog", 3, "Er staat een te hoge spanning op de kookplaat, vaak door een verkeerde aansluiting.", ["Laat de aansluiting controleren door een installateur of elektricien.", SVC])], src: ["aegCombo"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
