@@ -285,6 +285,11 @@
     document.addEventListener("click", function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") menu.open = false; });
   }
+  /* Link naar #counter (herinnering) opent de onderhoudsteller */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#counter"]'); if (!a) return;
+    var t = document.getElementById("counter"), d = t && t.closest("details"); if (d) d.open = true;
+  });
   /* Open een uitklapblok als de link ernaartoe verwijst */
   if (location.hash) { var t = document.querySelector(location.hash.replace(/[^#\w-]/g, "")); var d = t && t.closest && t.closest("details"); if (d) d.open = true; }
 })();

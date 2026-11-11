@@ -92,7 +92,7 @@ ${bc}${extraHead}
 <header class="top"><div class="wrap">
   <a class="logo" href="index.html" aria-label="Foutcodezoeker, naar home"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>Foutcodezoeker</a>
   <details class="menu"><summary aria-label="Menu openen"><span class="burger" aria-hidden="true"></span>Menu</summary><div class="menu-panel">
-    <nav aria-label="Hoofdmenu"><a href="index.html">⌂ Home</a><a href="foutcodes.html">Foutcodes</a><a href="knipperende-lampjes.html">Lampjes</a><a href="merken.html">Merken</a><a href="eerste-hulp-bij-storingen.html">Eerste hulp</a><a href="kennisbank.html">Kennisbank</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
+    <nav aria-label="Hoofdmenu"><a href="index.html">⌂ Home</a><a href="foutcodes.html">Foutcodes</a><a href="knipperende-lampjes.html">Lampjes</a><a href="merken.html">Merken</a><a href="eerste-hulp-bij-storingen.html">Eerste hulp</a><a href="kennisbank.html">Kennisbank</a><a href="repareren-of-vervangen.html">Repareren of vervangen?</a><a href="onderhoud-herinnering.html">🔔 Onderhoudsherinnering</a><a href="recht-op-reparatie.html">Recht op reparatie</a></nav>
     <p class="menu-h">Categorieën</p><nav class="menu-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav>
   </div></details>
 </div></header>
@@ -105,7 +105,7 @@ ${body}
   <details class="foot-fold"><summary>Alle categorieën (${CATS.length})</summary><nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav></details>
   <span>Foutcodezoeker · Gemaakt door Erik · info@foutcodezoeker.nl</span>
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
-  <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="over-foutcodezoeker.html">Over Foutcodezoeker</a> · <a href="disclaimer.html">Disclaimer</a></span>
+  <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="over-foutcodezoeker.html">Over Foutcodezoeker</a> · <a href="onderhoud-herinnering.html">Onderhoudsherinnering</a> · <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
 <script src="app.js" defer></script>
 ${scripts}
@@ -195,8 +195,8 @@ layout({
   <div class="row">${["Bosch", "Samsung", "Miele", "AEG", "LG", "Siemens", "Philips", "Dyson", "Remeha", "Intergas", "Whirlpool", "Beko"].map(b => `<a href="merk-${slug(b)}.html">${b}</a>`).join("")}<a href="merken.html">Alle merken</a></div>
 </section>
 <section class="stack">
-  <h2>Onderhoud bijhouden</h2>
-  <p>Bij elk model staat een onderhoudsteller. Vul je kilometers of printuren in, of tik op Gedaan na een klus, en je ziet wat er nu aan de beurt is. Alles blijft op je eigen telefoon of computer.</p>
+  <h2>🔔 Onderhoud bijhouden, met herinnering</h2>
+  <p>Bij elk model staat een onderhoudsteller. Tik op Gedaan na een klus en je ziet wat er nu aan de beurt is. Met <b>📅 Zet in mijn agenda</b> komen de klussen als terugkerende afspraak in je agenda (iPhone, Android, Google, Outlook), dus je krijgt vanzelf een herinnering als het tijd is. Alles blijft op je eigen telefoon of computer. <a href="onderhoud-herinnering.html">Zo stel je een onderhoudsherinnering in →</a></p>
   <div class="models">${["la-marzocco-linea-mini", "bosch-ebike", "prusa-mk4", "husqvarna-automower"].map(id => modelCard(MODELS.find(m => m.id === id))).join("")}</div>
 </section>`
 });
@@ -278,7 +278,8 @@ ${plain.map(f => { const h = costHit(m, f); return `<article class="fault" id="$
 ${COST[m.cat] ? modelCost(m) : ""}
 ${adBlock(m)}
 ${rvCta(m)}
-<section class="stack"><details class="fold"><summary><h2>Onderhoudsteller</h2>${m.tasks.length ? `<span class="cnt">${m.tasks.length}</span>` : ""}</summary><div class="fold-body">
+${remCta(m, true)}
+<section class="stack"><details class="fold"><summary><h2>Onderhoudsteller en herinnering</h2>${m.tasks.length ? `<span class="cnt">${m.tasks.length}</span>` : ""}</summary><div class="fold-body">
   <div class="counter" id="counter">
     ${m.unit ? `<div class="counter-top"><label for="cnt">Huidige stand (${UNIT[m.unit]})<input id="cnt" type="number" min="0" inputmode="numeric"></label><p class="muted">Vul je stand in en tik op Gedaan na elke klus. Alles blijft op dit apparaat.</p></div>` : `<p class="muted">Tik op Gedaan na een klus; de datum blijft bewaard op dit apparaat.</p>`}
     <div class="tasks" id="tasks">${m.tasks.map(t => `<div class="task"><span class="dot" aria-hidden="true"></span><div class="what"><b>${esc(t.t)}</b><small>${esc(intervalLabel(t, m))}${t.s ? " · " + esc(t.s) : ""}${t.v ? " · vuistregel" : ""}</small></div></div>`).join("")}</div>
@@ -394,6 +395,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 ${adBlock(m)}
 ${costBlock(m, f)}
 ${rvCta(m)}
+${remCta(m)}
 <section class="stack">
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Komt de code na deze stappen terug, bel dan je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
@@ -433,6 +435,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 ${adBlock(m)}
 ${costBlock(m, f)}
 ${rvCta(m)}
+${remCta(m)}
 <section class="stack">
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Bel je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Laat het apparaat nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
@@ -489,6 +492,7 @@ ${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id && m.faults.some(
 });
 
 // ───────── Repareren of vervangen
+function remCta(m, here) { if (!m.tasks.some(t => t.m && !t.w)) return ""; const n = m.tasks.find(t => t.m && !t.w); return `<a class="rvcta remcta" href="${here ? "" : m.id + ".html"}#counter"><span aria-hidden="true">🔔</span><span><b>Nooit meer onderhoud vergeten</b><small>Zet ${esc(n.t.toLowerCase())}${m.tasks.filter(t => t.m && !t.w).length > 1 ? " en de andere klussen" : ""} met één tik in je agenda. Je krijgt vanzelf een herinnering als het tijd is.</small></span><span class="rvbtn">Herinnering instellen →</span></a>`; }
 function rvCta(m) { const c = catOf(m.cat); return `<a class="rvcta" href="repareren-of-vervangen.html"><span aria-hidden="true">💶</span><span><b>Twijfel je over de kosten?</b><small>Bereken in een minuut of ${esc(c ? c.one : "je apparaat")} repareren nog loont, of dat vervangen slimmer is.</small></span><span class="rvbtn">Repareren of vervangen →</span></a>`; }
 const RV_FAQ = [["Wanneer is repareren nog rendabel?", "Als de reparatie goedkoper is dan de restwaarde van je apparaat. De restwaarde is de nieuwprijs keer de resterende levensduur gedeeld door de totale levensduur. Een apparaat van 6 jaar met een levensduur van 12 jaar en een nieuwprijs van 600 euro is nog ongeveer 300 euro waard; een reparatie onder dat bedrag loont dus."], ["Wat is de 50%-regel bij kapotte apparaten?", "Een veelgebruikte vuistregel: kost de reparatie meer dan de helft van een nieuw vergelijkbaar apparaat, dan is vervangen vaak verstandiger. Bij een jong apparaat kan repareren ook boven die grens nog lonen; de rekenhulp hierboven houdt rekening met de leeftijd."], ["Hoe lang gaat een wasmachine, vaatwasser of cv-ketel mee?", "Als vuistregel rekent de rekenhulp met ongeveer 12 jaar voor een wasmachine, droger en vaatwasser en 15 jaar voor een cv-ketel. Goed onderhoud, zoals filters schoonmaken en ontkalken, verlengt de levensduur."], ["Kan ik de storing eerst zelf oplossen?", "Vaak wel. Zoek je foutcode op Foutcodezoeker op: bij elke code staat of je het zelf kunt oplossen (groen), voorzichtig zelf kunt proberen (geel) of beter een monteur belt (rood). Een Repair Café in de buurt helpt gratis."], ["Wat kost een monteur voor witgoed?", "Dat verschilt per bedrijf en storing. Bij veel foutcodes op Foutcodezoeker staat wat het onderdeel en de reparatie gemiddeld kosten. Vraag altijd vooraf naar voorrijkosten en uurtarief."]];
 const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], "cv-ketels": [15, 2000], "kleine-apparaten": [6, 100], ventilatie: [15, 1500], warmtepompen: [15, 8000], airco: [12, 1500], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800], laadpalen: [10, 1200], printers: [5, 200], laptops: [5, 900], smartphones: [4, 600], televisies: [8, 700], internet: [5, 150], spelcomputers: [7, 500], zonnepanelen: [12, 1200], "camper-caravan": [12, 1500], spa: [4, 500], garagedeuren: [15, 600], auto: [12, 15000], trapliften: [15, 5000], scooters: [8, 3000], kachels: [15, 3000], waterontharders: [12, 1500], boten: [10, 1500] };
@@ -544,6 +548,31 @@ layout({
 <p>Klopt er iets niet, of mis je een code? Mail naar <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a>. We passen het zo snel mogelijk aan.</p></section>
 <section class="stack"><h2>Onafhankelijk en eerlijk over advertenties</h2>
 <p>Foutcodezoeker is niet verbonden aan een fabrikant. Op sommige pagina's staan links naar winkels; die zijn altijd gemarkeerd als <b>Advertentie</b>. Koop je via zo'n link, dan krijgt Foutcodezoeker een kleine vergoeding. Dat heeft geen invloed op de uitleg en jij betaalt niets extra.</p></section>`
+}); }
+// ───────── Onderhoudsherinnering (landingspagina voor de agenda-herinnering)
+{ const REM_STEPS = ["Open de pagina van je apparaat op Foutcodezoeker, bijvoorbeeld je wasmachine, cv-ketel of e-bike.", "Klap de Onderhoudsteller open en tik op Gedaan bij de klus die je net hebt gedaan.", "Tik op 📅 Zet in mijn agenda en open het bestand. De klussen komen als terugkerende afspraak in je agenda, met een melding op de dag dat het weer tijd is."];
+  const REM_FAQ = [["Is de onderhoudsherinnering gratis?", "Ja. Je hebt geen account nodig en je betaalt niets."],
+    ["Werkt het op iPhone en Android?", "Ja. Het agendabestand (.ics) werkt met de agenda op iPhone en Android, Google Agenda en Outlook. Op een iPhone tik je na het downloaden op Voeg alles toe."],
+    ["Krijg ik ook een melding als ik de site niet open?", "Ja, als je de klussen in je agenda zet. Je agenda geeft dan zelf een melding op de dag dat het onderhoud weer nodig is, en de afspraak herhaalt zich vanzelf."],
+    ["Wordt er iets over mij opgeslagen?", "Nee. Wat je bijhoudt blijft op je eigen telefoon of computer. Foutcodezoeker slaat geen gegevens van je op en vraagt geen e-mailadres."],
+    ["Hoe vaak moet ik onderhoud doen?", "Dat verschilt per apparaat. Bij elk model staat per klus hoe vaak die nodig is, volgens de handleiding van de fabrikant of een vuistregel als de fabrikant niets noemt."]];
+  const remModels = CATS.map(c => [c, MODELS.filter(m => m.cat === c.id && m.brand !== "Alle merken" && m.tasks.some(t => t.m && !t.w)).slice(0, 8)]).filter(([, ms]) => ms.length);
+layout({
+  file: "onderhoud-herinnering.html",
+  title: "Onderhoudsherinnering instellen: nooit meer onderhoud vergeten (gratis) | Foutcodezoeker",
+  desc: "Zet het onderhoud van je wasmachine, vaatwasser, cv-ketel, e-bike of koffiemachine met één tik in je agenda. Gratis, zonder account, met een melding als het tijd is.",
+  crumbs: [{ name: "Onderhoudsherinnering", file: "onderhoud-herinnering.html" }],
+  extraHead: howtoLd("Onderhoudsherinnering instellen in je agenda", REM_STEPS) + faqLd(REM_FAQ),
+  body: `
+<section class="stack"><span class="eyebrow">Gratis hulpmiddel</span><h1>🔔 Onderhoudsherinnering instellen</h1>
+<p class="answer"><b>Kort antwoord:</b> open de pagina van je apparaat, klap de Onderhoudsteller open en tik op <b>📅 Zet in mijn agenda</b>. De klussen komen als terugkerende afspraak in je agenda en je krijgt vanzelf een melding als het weer tijd is.</p>
+<p class="lead">Filters, ontkalken, de cv-ketel bijvullen of de ketting van je e-bike smeren: klein onderhoud voorkomt de meeste storingen, maar je vergeet het snel. Met de onderhoudsherinnering van Foutcodezoeker hoef je er niet meer aan te denken.</p></section>
+<section class="stack"><h2>Zo werkt het</h2><ol>${REM_STEPS.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
+<p>Open je de site later weer, dan zie je bovenaan een gele balk als er iets aan de beurt is. Wil je ook een melding van je browser, tik dan op <b>🔔 Melding bij bezoek</b>.</p></section>
+<section class="stack"><h2>Kies je apparaat</h2>
+${remModels.map(([c, ms]) => `<h3>${esc(c.name)}</h3><ul>${ms.map(m => { const t = m.tasks.find(x => x.m && !x.w); return `<li><a href="${m.id}.html#counter">${esc(fullName(m))}</a> <small class="muted">· ${esc(t.t.toLowerCase())}: ${esc(intervalLabel(t, m).toLowerCase())}</small></li>`; }).join("")}</ul>`).join("\n")}
+<p>Staat je apparaat er niet bij? <a href="merken.html">Zoek je merk</a> of gebruik de zoekbalk bovenaan.</p></section>
+<section class="stack"><h2>Veelgestelde vragen</h2>${REM_FAQ.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("")}</section>`
 }); }
 // ───────── Recht op reparatie
 layout({
@@ -702,6 +731,7 @@ Taal: Nederlands. Contact: info@foutcodezoeker.nl. Gemaakt door Erik.
 ${KB.map(a => `  - [${a.q}](${SITE}/kennisbank-${a.id})`).join("\n")}
 - [Alle merken](${SITE}/merken)
 - [Repareren of vervangen?](${SITE}/repareren-of-vervangen)
+- [Onderhoudsherinnering](${SITE}/onderhoud-herinnering): gratis herinnering voor onderhoud van je apparaten via je eigen agenda
 - [Over Foutcodezoeker](${SITE}/over-foutcodezoeker): waar de informatie vandaan komt en hoe de pagina's werken
 - [Recht op reparatie](${SITE}/recht-op-reparatie)
 

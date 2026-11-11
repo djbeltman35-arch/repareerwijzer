@@ -371,3 +371,4 @@ header.top{position:relative;z-index:58}
   .printcard .pc-foot{margin-top:8px;font-size:9pt}
 }
 .remind{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}.remind p{margin:0}.remind small{color:var(--muted)}.remind-btns{display:flex;flex-wrap:wrap;gap:8px}.btn-main{background:var(--ink);color:var(--bg);border-color:var(--ink)}.duebar{background:#fff4d6;color:#4a3800;border:1px solid #e8c766;border-radius:4px;padding:10px 14px;margin:12px 0;font-weight:600}.duebar a{color:inherit}
+.remcta{border-color:#e0a800}.remcta .rvbtn{background:#b07d00}
