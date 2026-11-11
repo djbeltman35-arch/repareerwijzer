@@ -12287,4 +12287,39 @@ Object.assign(SRC,{ bekoNlWas: ["Beko Nederland – helpcentrum wasmachine: prob
     N("Droger trilt of schudt", 1, "De droger staat niet waterpas of de lading is niet goed verdeeld.", ["Stel de poten bij tot de droger waterpas en stevig staat.", "Droog altijd minstens twee stukken van vergelijkbaar gewicht."])
   ); m.src.push("bekoNlDroog"); })(MODELS.find(m => m.id === "beko-droger"));
 }
+Object.assign(SRC,{ bekoNlOven: ["Beko Nederland – helpcentrum oven: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/oven--problemen-oplossen"], bekoNlKook: ["Beko Nederland – helpcentrum kookplaat: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/kookplaat--problemen-oplossen"], bekoNlAfz: ["Beko Nederland – helpcentrum afzuigkap: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/afzuigkap--problemen-oplossen"], bekoNlAirco: ["Beko Nederland – helpcentrum airconditioner: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/airconditioner--problemen-oplossen"] });
+{ const SVC = "Lost dit het niet op? Neem contact op met een erkend servicebedrijf.";
+  MODELS.push({ id: "beko-oven", brand: "Beko", name: "Oven", dev: "oven", cat: "ovens", years: "Beko-ovens (elektrisch en gas)", unit: null, also: "Beko oven AUTO, Beko oven kloksymbool knippert, Beko oven wordt niet warm",
+    intro: "Beko-ovens tonen weinig foutcodes. Meestal gaat het om de timer (AUTO of A), een knipperende klok na een stroomstoring, of een oven die niet opwarmt.", weak: [], parts: [], tasks: [],
+    src: ["bekoNlOven"], faults: [
+      F("AUTO / A", "Timer staat op automatisch uitschakelen", 1, "Geen storing: AUTO, A of een pijl tussen twee streepjes betekent dat de oven op een ingesteld tijdstip vanzelf uitgaat.", ["Annuleer de timerfunctie als je de oven met de hand wilt gebruiken (zie de handleiding)."]),
+      N("Kloksymbool brandt of knippert", 1, "Geen storing: na een stroomstoring is de tijd gereset.", ["Stel de klok in; het symbool verdwijnt dan."]),
+      N("Oven wordt niet warm", 1, "Er is geen functie, temperatuur of (bij timermodellen) geen tijd ingesteld.", ["Controleer of de stekker in een werkend stopcontact zit.", "Kies een functie en temperatuur en zet de oven opnieuw aan.", "Heeft de oven een timer? Stel ook een bereidingstijd in. Bij combimodellen regelt de timer alleen de magnetrontijd.", SVC]),
+      N("Oven rookt tijdens gebruik", 1, "Meestal normaal: bij het eerste gebruik verbranden productieresten, en later verbranden vet- of schoonmaakmiddelresten.", ["Maak de oven regelmatig schoon en spoel resten van schoonmaakmiddel goed weg.", "Gebruik de pyrolysereiniging als je oven die heeft."]),
+      N("Glas van de gasoven beslaat", 1, "Normaal: bij het verbranden van gas ontstaat waterdamp. Als de oven op temperatuur is, verdwijnt de condens. Vochtig eten zoals kalkoen of vis geeft meer condens.", ["Je hoeft niets te doen."])
+    ]});
+  MODELS.push({ id: "beko-kookplaat", brand: "Beko", name: "Kookplaat (gas en inductie)", dev: "kookplaat", cat: "kookplaten", years: "Beko-gas- en inductiekookplaten", unit: null, also: "Beko gaspit gaat uit, Beko gaskookplaat ontsteekt niet, Beko inductie bromt",
+    intro: "De meeste problemen met een Beko-kookplaat gaan over gaspitten die flakkeren of niet ontsteken. Een brommende inductiekookplaat is meestal normaal.", weak: [], parts: [], tasks: [],
+    src: ["bekoNlKook"], faults: [
+      N("Gasvlam flakkert of gaat uit", 1, "De branderkelk of het deksel ligt niet goed, of de gaatjes zijn nat of verstopt.", ["Controleer of elke pit de juiste branderkelk en het juiste deksel heeft en dat niets scheef ligt.", "Zet het gas uit, laat afkoelen en maak de gaatjes van de brander schoon en droog.", SVC]),
+      N("Gaskookplaat ontsteekt niet", 1, "Geen stroom (je hoort geen klik), een probleem met de gastoevoer (wel klik, geen vlam) of natte/verstopte ontstekers.", ["Hoor je geen klik: controleer stroom en groep.", "Wel klik maar geen vlam: controleer de gasaansluiting. Vermoed je een probleem met het gas, stop dan en bel een erkende installateur.", "Maak de ontstekers schoon en droog."]),
+      N("Inductiekookplaat bromt", 1, "Normaal: hoe hoger het vermogen, hoe luider. Ook de pan kan brommen.", ["Probeer een andere pan.", "Werkt de kookplaat ook niet goed? Neem contact op met een erkend servicebedrijf."])
+    ]});
+  MODELS.push({ id: "beko-afzuigkap", brand: "Beko", name: "Afzuigkap", dev: "afzuigkap", cat: "kookplaten", years: "Beko-afzuigkappen", unit: null, also: "Beko afzuigkap zuigt niet, Beko afzuigkap lampje kapot",
+    intro: "Zuigt je Beko-afzuigkap slecht of doet het lampje het niet? Meestal is het filter vuil of het lampje doorgebrand.", weak: [], parts: [],
+    tasks: [{ m: 1, t: "Vetfilter schoonmaken" }, { w: "Volgens de handleiding", t: "Koolstoffilter vervangen (recirculatie)" }],
+    src: ["bekoNlAfz"], faults: [
+      N("Afzuigkap heeft geen zuigkracht meer", 1, "Een vuil vetfilter of een verzadigd koolstoffilter (bij recirculatie).", ["Week het metalen vetfilter in heet water met afwasmiddel en schrob het schoon; doe dit maandelijks. Sommige filters mogen in de vaatwasser.", "Laat het filter goed drogen voor je het terugplaatst.", "Recirculatiekap: vervang het koolstoffilter op tijd.", SVC]),
+      N("Afzuigkap zuigt de lucht niet goed af", 1, "Het vermogen past niet bij de keuken of de kap hangt te hoog.", ["Controleer of de afzuigcapaciteit (m³/uur) past bij je keuken en kookplaat.", "Hang de kap op de aanbevolen hoogte, meestal 65 cm boven de kookplaat.", SVC]),
+      N("Lampje van de afzuigkap werkt niet", 1, "Geen stroom of het lampje is doorgebrand (donker glas).", ["Controleer of er stroom is.", "Haal de stekker eruit, laat het lampje afkoelen en vervang het door hetzelfde type (zie de handleiding)."])
+    ]});
+  MODELS.push({ id: "beko-airco", brand: "Beko", name: "Airconditioner", dev: "airco", cat: "airco", years: "Beko-splitairco's", unit: null, also: "Beko airco koelt niet, Beko airco lekt",
+    intro: "Koelt je Beko-airco niet goed of lekt hij water? Dit zijn de controles die Beko zelf noemt.", weak: [], parts: [],
+    tasks: [{ m: 3, t: "Luchtfilters controleren en schoonmaken" }],
+    src: ["bekoNlAirco"], faults: [
+      N("Airco koelt niet", 1, "Verkeerde installatie of plek (bij een warmtebron), te weinig vermogen (BTU) voor de ruimte, of een verkeerde instelling.", ["Laat de airco alleen door een erkend bedrijf installeren en controleren.", "Zet hem niet vlak bij een oven of kookplaat.", "Controleer of het vermogen past bij de grootte van de ruimte.", "Controleer de temperatuurinstelling en de stand.", SVC]),
+      N("Binnenunit lekt water", 1, "Vuile filters, losse afvoeraansluitingen of een geknikte afvoerslang.", ["Zet de airco uit.", "Maak de luchtfilters schoon (elke drie maanden).", "Controleer of de afvoerslang goed vastzit, naar beneden loopt en niet geknikt is.", SVC]),
+      N("Water bij de buitenunit", 1, "Een beetje water is normaal: de airco voert vocht uit de lucht af. Blijft er een plas staan, dan is de afvoer misschien niet goed.", ["Zet de airco uit en controleer de afvoerleidingen en aansluitingen.", "Laat de condensor en de spoelen schoonmaken door een erkend bedrijf.", SVC])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
