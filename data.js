@@ -11338,4 +11338,14 @@ Object.assign(SRC,{ aegCombo: ["AEG Support – ComboHob foutmeldingen E7, E9 en
       F("E9", "Sensor of bedieningspaneel", 3, "Begint het productnummer (PNC op het typeplaatje) met 942, dan werkt een temperatuursensor niet goed. Begint het met 949, dan heeft het bedieningspaneel een communicatieprobleem.", ["Noteer het PNC-nummer van het typeplaatje.", SVC]),
       F("U400", "Netspanning te hoog", 3, "Er staat een te hoge spanning op de kookplaat, vaak door een verkeerde aansluiting.", ["Laat de aansluiting controleren door een installateur of elektricien.", SVC])], src: ["aegCombo"] });
 }
+
+Object.assign(SRC,{ aegWdSup: ["AEG Support – foutmeldingen was-droogcombinatie (E60, E82, E90, C3/F3, dEn)", "https://support.aeg.nl/support-articles/wassen-en-drogen/was-droogcombinaties"] });
+(m => { const SVC = "Plan een afspraak met de AEG-servicedienst.", OFF = "Gebruik de machine niet meer: stekker eruit en kraan dicht.";
+  m.faults.push(
+  F("C3 / F3", "Lekkage in het apparaat", 3, "De was-droogcombinatie heeft een lek gedetecteerd.", [OFF, SVC]),
+  F("E60", "Storing verwarmingselement", 3, "Het verwarmingselement werkt niet goed.", [OFF, SVC]),
+  F("E82", "Programmaknop tussen twee standen", 1, "De programmaknop stond tussen twee programma's toen je op start drukte.", ["Zet de machine uit, kies opnieuw een programma en druk op start.", "Blijft het? " + SVC]),
+  F("E90", "Storing in de elektronica", 3, "AEG geeft geen nadere uitleg; het gaat om een interne storing.", ["Haal de stekker 30 seconden uit het stopcontact en steek hem er weer in.", "Blijft de code? " + OFF + " " + SVC]),
+  F("dEn", "Demonstratiestand", 1, "De machine staat in de winkelstand.", ["Haal de stekker ongeveer 30 seconden uit het stopcontact.", "Lukt het niet? " + SVC]));
+  m.src.push("aegWdSup"); })(MODELS.find(m => m.id === "aeg-was-droogcombinatie"));
 module.exports = { CATS, MODELS, SRC, COST };
