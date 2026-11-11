@@ -274,6 +274,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 ${plain.map(f => { const h = costHit(m, f); return `<article class="fault" id="${slug(f.t)}"><div class="fault-head"><h3><a href="${textUrl(m, f)}">${esc(f.t)}</a></h3></div><div class="verdict v${f.d}"><strong>${D[f.d][0]}</strong><span>${VERDICT[f.d]}</span></div><h4>❓ Wat is er aan de hand?</h4><p>${esc(f.cause)}</p><h4>💡 Wat kun je nu zelf doen?</h4><ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>${h ? `<p class="cost-hit">💰 <strong>Lukt het niet?</strong> Mogelijk onderdeel: ${esc(h[0].toLowerCase())}, gemiddeld <strong>${esc(h[1])}</strong>.</p>` : ""}${blockLink(m, f)}</article>`; }).join("")}</section>` : ""}
 ${COST[m.cat] ? modelCost(m) : ""}
 ${adBlock(m)}
+${rvCta(m)}
 <section class="stack"><details class="fold"><summary><h2>Onderhoudsteller</h2>${m.tasks.length ? `<span class="cnt">${m.tasks.length}</span>` : ""}</summary><div class="fold-body">
   <div class="counter" id="counter">
     ${m.unit ? `<div class="counter-top"><label for="cnt">Huidige stand (${UNIT[m.unit]})<input id="cnt" type="number" min="0" inputmode="numeric"></label><p class="muted">Vul je stand in en tik op Gedaan na elke klus. Alles blijft op dit apparaat.</p></div>` : `<p class="muted">Tik op Gedaan na een klus; de datum blijft bewaard op dit apparaat.</p>`}
@@ -373,6 +374,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 </article>
 ${adBlock(m)}
 ${costBlock(m, f)}
+${rvCta(m)}
 <section class="stack">
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Komt de code na deze stappen terug, bel dan je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
@@ -409,6 +411,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 </article>
 ${adBlock(m)}
 ${costBlock(m, f)}
+${rvCta(m)}
 <section class="stack">
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Bel je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Laat het apparaat nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
@@ -465,15 +468,17 @@ ${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id && m.faults.some(
 });
 
 // ───────── Repareren of vervangen
+function rvCta(m) { const c = catOf(m.cat); return `<a class="rvcta" href="repareren-of-vervangen.html"><span aria-hidden="true">💶</span><span><b>Twijfel je over de kosten?</b><small>Bereken in een minuut of ${esc(c ? c.one : "je apparaat")} repareren nog loont, of dat vervangen slimmer is.</small></span><span class="rvbtn">Repareren of vervangen →</span></a>`; }
+const RV_FAQ = [["Wanneer is repareren nog rendabel?", "Als de reparatie goedkoper is dan de restwaarde van je apparaat. De restwaarde is de nieuwprijs keer de resterende levensduur gedeeld door de totale levensduur. Een apparaat van 6 jaar met een levensduur van 12 jaar en een nieuwprijs van 600 euro is nog ongeveer 300 euro waard; een reparatie onder dat bedrag loont dus."], ["Wat is de 50%-regel bij kapotte apparaten?", "Een veelgebruikte vuistregel: kost de reparatie meer dan de helft van een nieuw vergelijkbaar apparaat, dan is vervangen vaak verstandiger. Bij een jong apparaat kan repareren ook boven die grens nog lonen; de rekenhulp hierboven houdt rekening met de leeftijd."], ["Hoe lang gaat een wasmachine, vaatwasser of cv-ketel mee?", "Als vuistregel rekent de rekenhulp met ongeveer 12 jaar voor een wasmachine, droger en vaatwasser en 15 jaar voor een cv-ketel. Goed onderhoud, zoals filters schoonmaken en ontkalken, verlengt de levensduur."], ["Kan ik de storing eerst zelf oplossen?", "Vaak wel. Zoek je foutcode op Foutcodezoeker op: bij elke code staat of je het zelf kunt oplossen (groen), voorzichtig zelf kunt proberen (geel) of beter een monteur belt (rood). Een Repair Café in de buurt helpt gratis."], ["Wat kost een monteur voor witgoed?", "Dat verschilt per bedrijf en storing. Bij veel foutcodes op Foutcodezoeker staat wat het onderdeel en de reparatie gemiddeld kosten. Vraag altijd vooraf naar voorrijkosten en uurtarief."]];
 const LIFE = { koffiemachines: [8, 500], wasmachines: [12, 600], vaatwassers: [12, 550], drogers: [12, 700], "cv-ketels": [15, 2000], "kleine-apparaten": [6, 100], ventilatie: [15, 1500], warmtepompen: [15, 8000], airco: [12, 1500], koelkasten: [12, 700], ovens: [12, 600], kookplaten: [12, 600], stofzuigers: [7, 400], "e-bikes": [8, 2800], "3d-printers": [6, 700], tuin: [10, 1500], audio: [30, 800], laadpalen: [10, 1200], printers: [5, 200], laptops: [5, 900], smartphones: [4, 600], televisies: [8, 700], internet: [5, 150], spelcomputers: [7, 500], zonnepanelen: [12, 1200], "camper-caravan": [12, 1500], spa: [4, 500], garagedeuren: [15, 600], auto: [12, 15000], trapliften: [15, 5000], scooters: [8, 3000], kachels: [15, 3000], waterontharders: [12, 1500], boten: [10, 1500] };
 layout({
   file: "repareren-of-vervangen.html",
-  title: "Repareren of vervangen? Rekenhulp | Foutcodezoeker",
-  desc: "Bereken in een paar seconden of repareren nog loont, op basis van leeftijd, levensduur, nieuwprijs en reparatiekosten.",
+  title: "Repareren of vervangen? Bereken of reparatie nog loont | Foutcodezoeker",
+  desc: "Wasmachine, vaatwasser of cv-ketel kapot? Bereken in een minuut of repareren nog rendabel is, op basis van leeftijd, levensduur, nieuwprijs en reparatiekosten.",
   crumbs: [{ name: "Repareren of vervangen?", file: "repareren-of-vervangen.html" }],
-  extraHead: `<script id="life-data" type="application/json">${JSON.stringify(LIFE)}</script>`,
+  extraHead: `<script id="life-data" type="application/json">${JSON.stringify(LIFE)}</script>` + faqLd(RV_FAQ),
   body: `
-<section class="stack"><span class="eyebrow">Rekenhulp</span><h1>Repareren of vervangen?</h1><p class="lead">Vergelijk de reparatiekosten met de waarde die je apparaat nog heeft. De standaardwaarden zijn vuistregels; vul je eigen bedragen in.</p></section>
+<section class="stack"><span class="eyebrow">Rekenhulp</span><h1>Repareren of vervangen? Bereken of reparatie nog loont</h1><p class="lead">Vergelijk de reparatiekosten met de waarde die je apparaat nog heeft. De standaardwaarden zijn vuistregels; vul je eigen bedragen in.</p></section>
 <form class="form" id="calc" novalidate>
   <label for="cat">Soort apparaat<select id="cat">${CATS.filter(c => LIFE[c.id]).map(c => `<option value="${c.id}">${c.name}</option>`).join("")}</select></label>
   <label for="age">Leeftijd (jaar)<input id="age" type="number" min="0" max="60" value="5" inputmode="numeric"></label>
@@ -482,7 +487,17 @@ layout({
   <label for="rep">Reparatiekosten (€)<input id="rep" type="number" min="0" value="120" inputmode="numeric"></label>
 </form>
 <div class="verdict" id="out"></div>
-<p class="muted">Rekenregel: restwaarde = nieuwprijs × resterende levensduur ÷ totale levensduur. Is de reparatie goedkoper dan die restwaarde, dan loont repareren. Repareren bespaart bovendien de grondstoffen van een nieuw apparaat.</p>`
+<p class="muted">Rekenregel: restwaarde = nieuwprijs × resterende levensduur ÷ totale levensduur. Is de reparatie goedkoper dan die restwaarde, dan loont repareren. Repareren bespaart bovendien de grondstoffen van een nieuw apparaat.</p>
+<section class="stack"><h2>Wanneer is een reparatie nog rendabel?</h2>
+<p>Een kapotte wasmachine, vaatwasser of cv-ketel komt altijd ongelegen. Of repareren loont, hangt vooral af van drie dingen: hoe oud het apparaat is, hoe lang zo'n apparaat gemiddeld meegaat en wat de reparatie kost. Vul ze hierboven in en je ziet direct of repareren of nieuw kopen slimmer is.</p>
+<ul><li><b>Jong apparaat:</b> bijna altijd repareren. Kijk ook of het nog onder garantie valt.</li><li><b>Halverwege de levensduur:</b> repareren loont zolang de kosten onder de restwaarde blijven.</li><li><b>Aan het eind van de levensduur:</b> een dure reparatie, zoals een printplaat of compressor, loont vaak niet meer. Een goedkoop onderdeel (filter, rubber, pomp) meestal nog wel.</li></ul>
+<p>Eerst zelf proberen? <a href="foutcodes.html">Zoek je foutcode op</a>: bij elke code staat of je het zelf kunt oplossen.</p></section>
+<section class="stack"><h2>De 50%-regel bij kapot witgoed</h2>
+<p>Een veelgebruikte vuistregel: kost de reparatie meer dan de helft van een nieuw vergelijkbaar apparaat, dan is vervangen vaak verstandiger. Die regel houdt geen rekening met de leeftijd. De rekenhulp hierboven doet dat wel, en is daarom preciezer.</p></section>
+<section class="stack"><h2>Gemiddelde levensduur per apparaat</h2>
+<p class="muted">Vuistregels waarmee de rekenhulp start. Pas ze aan als je beter weet.</p>
+<div class="tbl"><table><thead><tr><th>Apparaat</th><th>Levensduur (jaar)</th></tr></thead><tbody>${CATS.filter(c => LIFE[c.id]).map(c => `<tr><td><a href="${c.id}.html">${esc(c.name)}</a></td><td>${LIFE[c.id][0]}</td></tr>`).join("")}</tbody></table></div></section>
+<section class="stack"><h2>Veelgestelde vragen</h2>${RV_FAQ.map(([q, a]) => `<details class="fold"><summary><h3>${esc(q)}</h3></summary><div class="fold-body"><p>${esc(a)}</p></div></details>`).join("")}</section>`
 });
 
 // ───────── Recht op reparatie
