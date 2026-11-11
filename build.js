@@ -318,7 +318,10 @@ function BOLCAT_() { return {
   tuin: ["robotmaaier mesjes", "🌱 Mesjes voor je robotmaaier", "Vervangende mesjes en onderdelen bij bol."],
   spa: ["spa filter", "🛁 Filters voor je spa of zwembad", "Vervangende filters bij bol."],
   garagedeuren: ["afstandsbediening garagedeur", "🔑 Afstandsbediening garagedeur", "Losse en universele handzenders bij bol."],
-  televisies: ["hdmi kabel", "📺 HDMI-kabels", "Kabel kapot of te kort? HDMI-kabels bij bol."]
+  televisies: ["hdmi kabel", "📺 HDMI-kabels", "Kabel kapot of te kort? HDMI-kabels bij bol."],
+  waterontharders: ["regeneratiezout waterontharder", "🧂 Regeneratiezout", "Zouttabletten voor je waterontharder bij bol."],
+  kachels: ["kachelruit reiniger", "🔥 Kachelruitreiniger", "Roet en aanslag van het kachelglas verwijderen; reinigers bij bol."],
+  "kleine-apparaten": ["ontkalker", "🧴 Ontkalker", "Ontkalkers voor waterkokers en kokendwaterkranen bij bol."]
 }; }
 function ADS() { return {
   laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
