@@ -10907,4 +10907,26 @@ Object.assign(SRC,{ sommerGiga: ["SOMMER – montage- en gebruikershandleiding G
       F("Geblokkeerd", "Bewegen niet mogelijk", 1, "De aandrijving kan niet bewegen. Op het display staat een extra melding met de reden.", ["Lees de extra melding op het display en zoek die hier op.", "Bel je installateur als het niet duidelijk is."]),
       F("Zekering 24V", "Zekering F5 doorgebrand", 2, "De 24V-zekering F5 in de besturing is doorgebrand.", ["Laat zekering F5 (40 mA F) vervangen door een vakman, met de stroom eraf."])], src: ["sommerGiga"] });
 }
+
+Object.assign(SRC,{ cameZlx24: ["CAME – installatiehandleiding besturing ZLX24SA / ZLX24SR (FA01961-EN, Engels, pdf)", "https://manuals.easygates.co.uk/PDF/misc/came-zlx24sa-zlx24sr-24v-control-board-manual.pdf"] });
+{ const INST = "Bel je installateur; dit vraagt meestal om opnieuw inleren of een controle van de bedrading.";
+  MODELS.push({ id: "came-zlx24", brand: "CAME", name: "ZLX24SA / ZLX24SR besturing draaipoort", dev: "draaipoort", cat: "garagedeuren", years: "Besturingen ZLX24SA en ZLX24SR (24V)", unit: null, also: "CAME draaipoortopener, AXO, FROG, E1, E3, E4, E7, E9, E10, E11, E15",
+    intro: "CAME-besturingen tonen een foutcode (E plus een getal) op het display. De codes hieronder komen uit de officiële handleiding van de ZLX24SA en ZLX24SR. Andere CAME-besturingen gebruiken vaak dezelfde codes, maar check je eigen handleiding.", weak: [], parts: [], tasks: [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 6, t: "Fotocellen en veiligheidslijsten controleren", v: 1 }, { m: 12, t: "Onderhoudsbeurt door een vakman", v: 1 }],
+    faults: [
+      F("E1", "Kalibratiefout motor 1", 2, "Het inleren van de slag van motor 1 is mislukt, bijvoorbeeld door een obstakel of stroeve loop.", ["Kijk of de poortvleugel vrij en soepel draait.", INST]),
+      F("E2", "Kalibratiefout motor 2", 2, "Het inleren van de slag van motor 2 is mislukt (bij een EM4024-motor: motor 1 of 2).", ["Kijk of de poortvleugel vrij en soepel draait.", INST]),
+      F("E3", "Geen encodersignaal", 3, "De besturing krijgt geen signaal van de encoder in de motor.", [INST]),
+      F("E4", "Servicetest mislukt", 2, "De automatische test van de veiligheden (fotocellen, lijsten) is mislukt.", ["Maak de fotocellen schoon, controleer of ze uitgelijnd zijn en of er niets tussen staat.", INST]),
+      F("E7", "Looptijdfout", 2, "De poort doet er langer over dan de ingestelde looptijd.", ["Kijk of de poort ergens zwaar loopt of blijft haken.", INST]),
+      F("E9", "Herhaald obstakel bij sluiten", 1, "De poort heeft bij het sluiten meerdere keren achter elkaar een obstakel gedetecteerd.", ["Haal obstakels weg en kijk of de poort met de hand soepel sluit.", "Blijft het? " + INST]),
+      F("E10", "Herhaald obstakel bij openen", 1, "De poort heeft bij het openen meerdere keren achter elkaar een obstakel gedetecteerd.", ["Haal obstakels weg (ook sneeuw, grind of takken) en kijk of de poort met de hand soepel opent.", "Blijft het? " + INST]),
+      F("E11", "Maximum aantal obstakels bereikt", 2, "De poort heeft te vaak een obstakel gedetecteerd en blokkeert.", ["Haal de oorzaak weg en controleer of de poort soepel loopt.", INST]),
+      F("E12", "Te weinig of geen motorspanning", 3, "De voedingsspanning voor de motor ontbreekt of is te laag.", ["Controleer of de stroom er is.", INST]),
+      F("E13", "Fout eindschakelaars", 3, "Er is een fout op de ingang van de eindschakelaars, of beide eindschakelaars zijn open.", [INST]),
+      F("E15", "Afstandsbediening niet compatibel", 1, "De zender die je wilt aanleren, past niet bij deze ontvanger.", ["Gebruik een afstandsbediening die geschikt is voor deze CAME-besturing."]),
+      F("E17", "Communicatiefout draadloos systeem", 2, "De draadloze veiligheden communiceren niet met de besturing, bijvoorbeeld door een lege batterij in een draadloze fotocel of lijst.", ["Vervang de batterijen van draadloze accessoires.", INST]),
+      F("E18", "Draadloos systeem niet ingesteld", 3, "Het draadloze systeem is niet geconfigureerd.", [INST]),
+      F("E24", "Fout BUS-beveiliging", 2, "Communicatiefout of storing van een beveiliging die via de BUS is aangesloten (bijvoorbeeld een fotocel).", ["Controleer de fotocellen op schade en vuil.", INST]),
+      F("E25", "Adresfout BUS-apparaten", 3, "De adressen van de BUS-apparaten zijn niet goed ingesteld.", [INST])], src: ["cameZlx24"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
