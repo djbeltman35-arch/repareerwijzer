@@ -142,12 +142,12 @@ layout({
   file: "index.html",
   title: "Foutcodezoeker – foutcodes en storingen zelf oplossen, per merk en model",
   extraHead: `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE}/#website`, url: `${SITE}/`, name: "Foutcodezoeker", inLanguage: "nl-NL", potentialAction: { "@type": "SearchAction", target: `${SITE}/?q={search_term_string}`, "query-input": "required name=search_term_string" } }, { "@type": "Organization", "@id": `${SITE}/#org`, name: "Foutcodezoeker", url: `${SITE}/`, logo: `${SITE}/icon-512.png`, email: "info@foutcodezoeker.nl" }] })}</script>`,
-  desc: `Foutcodes en onderhoud per merk en model: koffiemachines, wasmachines, vaatwassers, e-bikes, 3D-printers en meer. ${stats.codes} foutcodes uitgelegd in gewoon Nederlands.`,
+  desc: `Foutcode opzoeken? ${stats.codes} foutcodes van Bosch, Samsung, Miele, AEG, Intergas, Vaillant en meer uitgelegd: oorzaak, wat je zelf doet en wanneer je een monteur belt. Gratis, met bron.`,
   body: `
 <section class="stack hero hero2">
   <span class="eyebrow">Gratis · zonder account</span>
   <div class="hero-grid">
-    <h1>Wat betekent die foutcode?</h1>
+    <h1>Foutcode opzoeken? Vind direct de betekenis en oplossing</h1>
     <svg class="hero-art" viewBox="0 0 240 220" role="img" aria-label="Wasmachine met foutcode E18 op het display en een vergrootglas">
       <rect x="34" y="14" width="150" height="190" rx="14" fill="#fff" stroke="#15191e" stroke-width="4"/>
       <rect x="34" y="14" width="150" height="44" rx="14" fill="#e9ecef" stroke="#15191e" stroke-width="4"/>
@@ -164,6 +164,7 @@ layout({
     </svg>
   </div>
   <p class="lead">Typ merk en code. Je ziet meteen wat er mis is en wat je zelf kunt doen.</p>
+  <p class="hero-sub">Foutcodes van Bosch, Siemens, Samsung, Miele, AEG, Intergas, Vaillant en honderden andere merken: wasmachines, cv-ketels, warmtepompen, auto's, e-bikes, laadpalen, zonnepanelen en meer. Met de oorzaak, wat je zelf kunt doen, wanneer je een monteur belt en de bron.</p>
   <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
   <div class="chips"><span>Probeer:</span>${[["Bosch E18","Bosch E18"],["Samsung 4C","Samsung 4C"],["Intergas storing","Intergas"],["Miele F55","Miele F55"]].map(([l, q]) => `<a href="?q=${encodeURIComponent(q)}" data-q="${esc(q)}">${l}</a>`).join("")}</div>
@@ -464,6 +465,8 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
 <article class="fault">
   <h2>❓ Wat is er aan de hand?</h2>
   <p><strong>${esc(f.t)}.</strong>${f.cause === f.t + "." ? "" : " " + esc(f.cause)}</p>
+  <h2>📋 Voor welke apparaten geldt dit?</h2>
+  <p>${esc(fullName(m))}: ${esc(m.years)}.${m.also ? ` Ook bekend als: ${esc(m.also)}.` : ""} Dezelfde code kan per model, serie of bouwjaar iets anders betekenen. Twijfel je, vergelijk dan met de handleiding van je eigen apparaat; het typenummer staat op het typeplaatje.</p>
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
@@ -622,7 +625,7 @@ layout({
 <ul><li>gebruiks-, installatie- en servicehandleidingen van fabrikanten;</li><li>supportpagina's van fabrikanten, zoals foutcodelijsten en self-service-artikelen;</li><li>uitleg van Nederlandse vakwinkels en reparateurs.</li></ul>
 <p>In totaal verwijst de site naar ${srcCount} bronnen. Staat er bij een code alleen een Engelstalige of oudere bron, dan zeggen we dat erbij. De stappen zijn herschreven in begrijpelijke taal; de betekenis van de code blijft die van de bron.</p></section>
 <section class="stack"><h2>Zo werken we</h2>
-<ol><li><b>Bron eerst.</b> We zoeken eerst de handleiding of supportpagina van de fabrikant. Pas als die er niet is, gebruiken we uitleg van een Nederlandse vakwinkel of reparateur, en dat staat er dan bij.</li><li><b>Betekenis overnemen, uitleg herschrijven.</b> De betekenis van een code nemen we over zoals de bron hem geeft. De stappen herschrijven we in gewone taal, zonder iets toe te voegen wat niet in de bron staat. De teksten worden opgesteld met hulp van AI en daarna tegen de genoemde bron gecontroleerd.</li><li><b>Risico inschatten.</b> Elke storing krijgt een label: zelf op te lossen, voorzichtig zelf proberen of bel een monteur. Bij gas, koudemiddel, hoogspanning en accu's van e-bikes en scooters adviseren we altijd een vakman.</li><li><b>Bron vermelden.</b> Onderaan elke pagina staat de bron met een link, zodat je alles zelf kunt nakijken.</li><li><b>Automatische controle.</b> Bij elke update controleert de site zelf of elke pagina een bron heeft, of er geen dubbele codes zijn en of alle links werken. Faalt een controle, dan gaat de update niet online.</li><li><b>Fouten herstellen.</b> Meldingen via <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a> en de knop "Heeft dit geholpen?" gebruiken we om pagina's te verbeteren. Onder elke pagina staat wanneer hij voor het laatst is bijgewerkt.</li></ol></section>
+<ol><li><b>Bron eerst.</b> We zoeken eerst de handleiding of supportpagina van de fabrikant. Pas als die er niet is, gebruiken we uitleg van een Nederlandse vakwinkel of reparateur, en dat staat er dan bij.</li><li><b>Betekenis overnemen, uitleg herschrijven.</b> De betekenis van een code nemen we over zoals de bron hem geeft. De stappen herschrijven we in gewone taal, zonder iets toe te voegen wat niet in de bron staat. De teksten worden opgesteld met hulp van AI en daarna tegen de genoemde bron gecontroleerd.</li><li><b>Risico inschatten.</b> Elke storing krijgt een label: zelf op te lossen, voorzichtig zelf proberen of bel een monteur. Bij gas, koudemiddel, hoogspanning en accu's van e-bikes en scooters adviseren we altijd een vakman.</li><li><b>Bron vermelden.</b> Onderaan elke pagina staat de bron met een link, zodat je alles zelf kunt nakijken.</li><li><b>Automatische controle.</b> Bij elke update controleert de site zelf of elke pagina een bron heeft, of er geen dubbele codes zijn en of alle links werken. Faalt een controle, dan gaat de update niet online.</li><li><b>Bijwerken.</b> Er komen regelmatig codes en verbeteringen bij. Onderaan elke pagina staat wanneer die pagina voor het laatst inhoudelijk is gewijzigd.</li><li><b>Fouten herstellen.</b> Meldingen via <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a> en de knop "Heeft dit geholpen?" gebruiken we om pagina's te verbeteren. Meld een fout via het <a href="foutcode-melden.html">meldformulier</a>.</li></ol><p>We doen ons best om alles juist te houden, maar kunnen niet garanderen dat elke uitleg foutloos is of voor elk model geldt. Codes verschillen soms per serie of bouwjaar. Volg bij twijfel de handleiding van je eigen apparaat en schakel bij gas, elektriciteit of koudemiddel altijd een vakman in.</p></section>
 <section class="stack"><h2>Hoe lees je een pagina?</h2>
 <ul><li><b>🟢 Zelf op te lossen:</b> veilige stappen die iedereen kan doen, zoals een filter schoonmaken.</li><li><b>🟡 Voorzichtig zelf proberen:</b> stroom eraf en kraan dicht, en stop als je twijfelt.</li><li><b>🔴 Bel een monteur:</b> werk aan gas, koudemiddel, hoogspanning of elektronica laat je over aan een vakman.</li></ul></section>
 <section class="stack"><h2>Wie maakt Foutcodezoeker?</h2>
