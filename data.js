@@ -11174,4 +11174,18 @@ MODELS.push(
     N("Kookplaat werkt niet, display blijft leeg", 1, "Geen stroom of een verkeerde aansluiting.", ["Controleer de groep in de meterkast.", "Slaat de groep door bij inschakelen? Laat de aansluiting controleren."]),
     N("Oven wordt niet warm of schakelt niet in", 1, "De oven staat niet op handbediening, de dagtijd is niet ingesteld of er is geen temperatuur gekozen.", ["Stel eerst de dagtijd in en zet de oven op handbediening.", "Kies een temperatuur met de thermostaatknop."])],
   src: ["pelgIf960"] });
+
+Object.assign(SRC,{ etnaVw339: ["ETNA – gebruiksaanwijzing vaatwasser VW339M (842247, nl, pdf)", "https://www.deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing_ETNA_vaatwasser_inbouw_VW339M.pdf"] });
+(m => { const SVC = "Neem contact op met de ETNA-servicedienst.";
+  m.faults.push(
+  F("F1", "Wateroverlast-alarm", 3, "De beveiliging tegen lekkage heeft water in de bodem gedetecteerd.", ["Zet de vaatwasser uit en draai de kraan dicht.", SVC]),
+  F("F3", "Beveiliging tegen wateroverlast actief", 3, "De vaatwasser blijft water innemen of de overloopbeveiliging is aangesproken.", ["Draai de kraan dicht.", SVC]),
+  F("F5", "Storing in het druksysteem", 3, "Een fout in het systeem dat het waterniveau meet.", [SVC]),
+  F("F6", "Storing in de verwarmingssensor", 3, "De temperatuursensor geeft een fout.", [SVC]),
+  F("F7", "Temperatuur te hoog", 3, "De temperatuur in de machine is te hoog.", ["Zet de vaatwasser uit.", SVC]),
+  F("F8", "Verwarmingsfout", 3, "Het water wordt niet goed opgewarmd.", [SVC]),
+  F("F9", "Storing in de positie van het verdeelelement", 3, "Het onderdeel dat het water over de sproeiarmen verdeelt, staat niet goed.", [SVC]),
+  F("FE", "Storing in de elektronica", 3, "Een fout in de besturing.", ["Haal de stekker 1 minuut eruit en start opnieuw.", "Blijft het? " + SVC]),
+  F("HI / LO", "Netspanning te hoog of te laag", 2, "De spanning op het stopcontact is te hoog (HI) of te laag (LO).", ["Probeer een ander stopcontact op een andere groep.", "Blijft het? " + SVC]));
+  m.src.push("etnaVw339"); })(MODELS.find(m => m.id === "etna-vaatwasser"));
 module.exports = { CATS, MODELS, SRC, COST };
