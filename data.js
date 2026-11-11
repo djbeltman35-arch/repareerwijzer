@@ -12271,4 +12271,20 @@ Object.assign(SRC,{ bekoNlKoel: ["Beko Nederland – helpcentrum koel-vriescombi
       N("Koelkast trilt tijdens het draaien", 1, "De koelkast staat niet waterpas.", ["Zet de koelkast uit en draai de twee voorste stelpoten tot ze stevig op de vloer staan; controleer met een waterpas."])
     ]});
 }
+Object.assign(SRC,{ bekoNlWas: ["Beko Nederland – helpcentrum wasmachine: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/wasmachine--problemen-oplossen"], bekoNlDroog: ["Beko Nederland – helpcentrum wasdroger: problemen oplossen", "https://www.beko.com/nl-nl/ondersteuning/helpcentrum/wasdroger--problemen-oplossen"] });
+{ const SVC = "Lost dit het niet op? Neem contact op met een erkend servicebedrijf.";
+  const DOOR = "Sluit de deur goed: haal wat ertussen zit weg en duw tot je een klik hoort.";
+  (m => { m.faults.push(
+    N("Wasmachine pompt het water niet weg", 1, "Meestal is het pompfilter verstopt. Beko adviseert het pompfilter elke drie maanden schoon te maken.", ["Leg een teiltje of handdoeken klaar en open het klepje rechtsonder.", "Laat het water weglopen via het slangetje, of draai het filter linksom los.", "Haal vuil, haar en voorwerpen eruit, spoel het filter af en maak de filterruimte schoon.", "Draai het filter rechtsom goed vast.", SVC]),
+    N("Wasmachine krijgt geen water", 1, "De toevoerslang is geknikt, de inlaatfilters zijn vuil of de deur is niet goed dicht.", ["Controleer of de kraan open is en haal knikken uit de toevoerslang.", "Draai de kraan dicht, haal de slang los en maak beide inlaatfilters schoon (bij de kraan en bij de machine).", DOOR, SVC]),
+    N("Wasmachine spoelt niet goed (witte vlekken, zeepresten)", 1, "Te veel was, te veel of verkeerd wasmiddel, of middel in het verkeerde vak.", ["Doe niet meer was in de trommel dan het programma toestaat.", "Gebruik de aanbevolen dosis van een geschikt wasmiddel.", "Vak I is voorwas, vak II hoofdwas, het middelste vak wasverzachter."]),
+    N("Trommel draait niet", 1, "De deur is niet dicht, de was is niet goed verdeeld (bijvoorbeeld één deken of kleed), of er is te veel schuim.", [DOOR, "Was een groot stuk samen met een ander zwaar stuk, zoals een grote handdoek.", "Gebruik minder wasmiddel.", SVC]),
+    N("Wasmachine stopt halverwege", 1, "Onbalans, water blijft staan omdat de afvoer verstopt is, te veel schuim, of een kapotte aandrijfriem.", ["Stop de machine, laat hem leeglopen en verdeel de was opnieuw.", "Controleer de afvoerslang en maak het pompfilter schoon.", "Gebruik minder wasmiddel.", "Draai de trommel met de hand: voel je geen weerstand, dan is de riem mogelijk kapot.", SVC]),
+    N("Wasbeurt duurt veel langer dan normaal", 1, "Lage waterdruk (nodig: 1 tot 10 bar), te lage netspanning, extra functies of te veel wasmiddel.", ["Controleer de waterdruk; is die te laag, bel een loodgieter.", "Extra spoelen of voorwas maken het programma langer.", "Gebruik niet meer wasmiddel dan aanbevolen."]),
+    N("Wasmachine gaat aan maar start geen programma", 1, "Het kinderslot staat aan of de deur is niet goed dicht.", ["Kinderslot uit: houd tijdens een programma de eerste en tweede extra functieknop 3 seconden samen ingedrukt (kan per model verschillen; zie de handleiding).", DOOR, SVC])
+  ); m.src.push("bekoNlWas"); })(MODELS.find(m => m.id === "beko-wasmachine"));
+  (m => { m.faults.push(
+    N("Droger trilt of schudt", 1, "De droger staat niet waterpas of de lading is niet goed verdeeld.", ["Stel de poten bij tot de droger waterpas en stevig staat.", "Droog altijd minstens twee stukken van vergelijkbaar gewicht."])
+  ); m.src.push("bekoNlDroog"); })(MODELS.find(m => m.id === "beko-droger"));
+}
 module.exports = { CATS, MODELS, SRC, COST };
