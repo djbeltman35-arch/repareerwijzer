@@ -11439,4 +11439,27 @@ Object.assign(SRC,{ elxNlDroog: ["Electrolux Support – foutmeldingen droger", 
       F("Machine Care", "Herinnering: reinigingsprogramma", 1, "Geen storing. Na ongeveer 60 afwasbeurten vraagt de vaatwasser om een reinigingsprogramma.", ["Haal de vaat eruit en gebruik een machinereiniger.", "Start het Machine Care-programma (bij veel modellen Extra Power en AUTO 3 seconden tegelijk indrukken; zie de handleiding).", "Na afloop gaat de melding uit."])
     ]});
 }
+Object.assign(SRC,{ zanNlOven: ["Zanussi Support – foutmeldingen oven en stoomoven", "https://support.zanussi.nl/support-articles/koken/ovens"] });
+(m => { const SVC = "Maak een afspraak met de Zanussi-servicedienst; dit lost een monteur op.", RE = "Lost dit het niet op? Maak een afspraak met de Zanussi-servicedienst.";
+  m.faults.push(
+    F("C1", "Reinigen kan niet: telescopische geleiders zitten nog in de oven", 1, "Je kiest de schoonmaakfunctie (pyrolyse) terwijl de uitschuifrails nog in de oven zitten.", ["Haal de telescopische geleiders uit de ovenruimte en start de schoonmaakfunctie opnieuw.", RE]),
+    F("C2", "Reinigen kan niet: vleesthermometer zit nog in de oven", 1, "De vleesthermometer zit nog in de oven terwijl je de schoonmaakfunctie kiest.", ["Haal de vleesthermometer eruit en start de schoonmaakfunctie opnieuw.", RE]),
+    F("C3", "Reinigen kan niet: deur niet dicht", 1, "De deur is niet gesloten bij de schoonmaakfunctie.", ["Sluit de ovendeur goed en start de schoonmaakfunctie opnieuw.", RE]),
+    F("C4", "Reinigen kan niet: Steam Plus staat aan", 1, "De Steam Plus-knop staat aan terwijl je de schoonmaakfunctie kiest.", ["Zet de Steam Plus-knop uit en start de schoonmaakfunctie opnieuw.", RE]),
+    F("F11 / F111 / F129", "Probleem met de vleesthermometer", 1, "De oven verwacht de vleesthermometer, maar die is niet (goed) aangesloten.", ["Steek de vleesthermometer goed in de aansluiting in de oven.", RE]),
+    F("F21", "Storing in de bediening", 2, "Het bedieningspaneel geeft een fout.", ["Zet het bedieningspaneel uit en weer aan.", RE]),
+    F("F81", "Technische storing", 3, "Zanussi geeft voor deze code geen oplossing die je zelf kunt doen.", [SVC]),
+    F("F109", "Communicatiefout in de elektronica", 3, "De besturingselektronica en de bedieningselektronica praten niet goed met elkaar.", [SVC]),
+    F("F131", "Sensor van het stoomgedeelte", 3, "Een sensor van de stoomfunctie werkt niet goed.", [SVC]),
+    F("F134", "Elektronisch probleem (magnetronfunctie)", 2, "Bij combi-ovens met magnetron: de magnetronstand is gebruikt met een lege ovenruimte, wat de elektronica kan verstoren.", ["Zet nooit de magnetronstand aan als de oven leeg is.", RE]),
+    F("F136 / F137", "Probleem met de vleesthermometer", 3, "De vleesthermometer of de aansluiting ervan geeft een fout.", [SVC]),
+    F("F142", "Waterniveausensor van de stoomoven", 1, "De stoomoven meet het waterniveau niet goed, vaak doordat het reservoir niet vol genoeg is.", ["Vul het waterreservoir helemaal aan het begin van het programma.", "Vul bij lange programma's elke 30 minuten bij, nog voordat de melding 'bijvullen' verschijnt.", RE]),
+    F("F143", "Vochtigheidssensor van de stoomoven", 3, "De sensor die de vochtigheid meet, werkt niet goed.", [SVC]),
+    F("F192", "Probleem met de voedselthermometer", 3, "De temperatuurmeter voor het eten geeft een fout.", [SVC]),
+    F("F215", "Configuratieprobleem", 3, "De instellingen van de elektronica kloppen niet.", [SVC]),
+    F("F239", "Communicatiefout bedieningsmodule", 3, "De bedieningsmodule communiceert niet goed.", [SVC]),
+    F("F241", "Probleem met de functieschakelaar", 3, "De knop waarmee je de ovenfunctie kiest, geeft een fout.", [SVC]),
+    F("E2020", "Elektronisch probleem", 3, "De elektronica van de oven geeft een fout.", [SVC]),
+    F("Reservoir vullen", "Melding 'reservoir vullen' terwijl het reservoir vol is", 1, "De stoomoven ziet het reservoir als leeg, bijvoorbeeld omdat de lade niet goed is gesloten.", ["Controleer of de lade gevuld is en open en sluit hem opnieuw.", SVC]));
+  m.src.push("zanNlOven"); })(MODELS.find(m => m.id === "zanussi-oven"));
 module.exports = { CATS, MODELS, SRC, COST };
