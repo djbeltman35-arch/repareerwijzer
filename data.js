@@ -2440,19 +2440,35 @@ Object.assign(SRC,{ lgWasUS: ["LG – foutcodes voorlader wasmachine (Help Libra
   F("F31 / F35", "Droogventilator of droogtemperatuur", 2, "Bij modellen met Dynamic Heat Dry werkt de droogventilator of -verwarming niet.", ["Vraag service aan."]),
   F("F37", "Automatische deuropening", 1, "Auto Open Door werkt niet.", ["Zorg dat niets de deur blokkeert.", "Blijft het? Vraag service aan."]));
   m.src.push("lgVaatUS"); })(MODELS.find(m => m.id === "lg-vaatwasser"));
-Object.assign(SRC,{ lgKoelUS: ["LG – foutcodes koelkast (Help Library, Engels)", "https://www.lg.com/us/support/help-library/how-to-troubleshoot-the-error-codes-on-your-lg-refrigerator-co-od-sd-if-cf-iu-dh-d1-d2-d-h1-h2-fs-rs-f1-f2-us-ls-e1-e2-r-ds-is-id-gs-and-gf-CT00023125-20155399831331"] });
+Object.assign(SRC,{ lgKoelCodes: ["LG – Refrigerator Error Codes (Help Library, Engels)", "https://www.lg.com/us/support/help-library/lg-refrigerator-digital-and-analog-error-codes-CT10000021-20154835849096"], lgKoelUS: ["LG – foutcodes koelkast (Help Library, Engels)", "https://www.lg.com/us/support/help-library/how-to-troubleshoot-the-error-codes-on-your-lg-refrigerator-co-od-sd-if-cf-iu-dh-d1-d2-d-h1-h2-fs-rs-f1-f2-us-ls-e1-e2-r-ds-is-id-gs-and-gf-CT00023125-20155399831331"] });
 { const RS = ["Haal de stekker eruit en wacht ongeveer 5 minuten.", "Steek de stekker terug en kijk of de code weg is.", "Blijft de code? Gebruik de koelkast niet meer en neem contact op met LG. Haal hem niet zelf uit elkaar."];
 const ICE = ["Tijdelijke oplossing: haal al het eten eruit, leg droge handdoeken voor de deuren, haal de stekker eruit en laat de deuren minstens 12 uur open.", "Komt de fout vaak terug? Neem contact op met LG."];
 MODELS.push({ id: "lg-koelkast", brand: "LG", name: "Koelkast en Amerikaanse koelkast", cat: "koelkasten", years: "Alle bouwjaren", unit: null, also: "Codes verschijnen als 'Er' met een code, bijvoorbeeld Er dH",
   intro: "LG-koelkasten tonen 'Er' gevolgd door een code als een onderdeel, de besturing of een draad een probleem heeft. Begin altijd met 5 minuten stroomloos maken.", weak: ["IJs op de koelplaat (codes dH, d1, d2, H1, H2)."], parts: [], tasks: [],
   faults: [
-    F("Er dH / Er d1 / Er d2 / Er H1 / Er H2", "Storing, vaak door ijs op de koelplaat", 2, "LG koppelt deze codes aan ijs op de koelplaat.", ICE),
-    F("Er CO", "Storing in een intern onderdeel", 2, "LG geeft per code geen aparte uitleg: een onderdeel, de besturing of een losse draad heeft een probleem.", RS),
-    F("Er IF / Er IS / Er Id / Er IU", "Storing in een intern onderdeel", 2, "LG geeft per code geen aparte uitleg: een onderdeel, de besturing of een losse draad heeft een probleem.", RS),
-    F("Er FF / Er CF / Er F1 / Er F2 / Er CI", "Storing in een intern onderdeel", 2, "LG geeft per code geen aparte uitleg: een onderdeel, de besturing of een losse draad heeft een probleem.", RS),
-    F("Er rS / Er FS / Er dS / Er US / Er LS / Er r / Er d", "Storing in een intern onderdeel", 2, "LG geeft per code geen aparte uitleg: een onderdeel, de besturing of een losse draad heeft een probleem.", RS),
-    F("Er E1 / Er E2 / Er gS / Er gF / Er Od / Er Sd", "Storing in een intern onderdeel", 2, "LG geeft per code geen aparte uitleg: een onderdeel, de besturing of een losse draad heeft een probleem.", RS)],
-  src: ["lgKoelUS"] }); }
+    F("Er dH / Er FdH / Er dHF / Er d1 / Er d2 / Er H1 / Er H2", "Ontdooien werkt niet: ijs op de koelplaat", 2, "De ontdooiverwarming warmt niet genoeg op (minder dan 5 °C stijging binnen 80 minuten). Daardoor kan de verdamper dichtvriezen en koelt de kast slechter. Oorzaak kan de verwarming, de thermische zekering, een relais of een verstopte afvoer zijn.", ICE),
+    F("Er CO", "Communicatiefout tussen hoofdprint en display", 3, "De hoofdprintplaat en het display praten niet meer met elkaar.", RS),
+    F("Er IF", "Ventilator van de ijsmaker werkt niet", 2, "De ventilator van de ijsmaker draait niet, vaak omdat ijs hem blokkeert.", RS),
+    F("Er IS / Er Id / Er IU", "Temperatuursensor van de ijsmaker", 3, "De temperatuursensor van de ijsmaker geeft een fout. Er Id en Er IU hebben bij LG geen aparte uitleg.", RS),
+    F("Er It", "Motor van de ijsmaker", 3, "De motor van de ijsmaker werkt niet goed.", RS),
+    F("Er FF", "Ventilator van het vriesvak", 2, "De ventilator in het vriesvak geeft geen signaal, vaak door ijs of een defecte motor.", ICE),
+    F("Er CF", "Condensorventilator", 3, "De ventilator bij de compressor (achterkant/onderkant) geeft geen signaal.", ["Kijk of er niets tegen de ventilator achter of onder de koelkast aan zit en of hij vrij kan draaien.", ...RS]),
+    F("Er rF", "Ventilator van het koelvak", 3, "De ventilator in het koelvak werkt niet.", RS),
+    F("Er E1 / Er E2 / Er F1 / Er F2 / Er CI / Er US / Er LS / Er r / Er d / Er gS / Er Od / Er Sd", "Storing in een intern onderdeel", 2, "LG geeft voor deze codes geen aparte uitleg: een onderdeel, de besturing of een losse draad heeft een probleem.", RS),
+    F("Er rS", "Temperatuursensor koelvak (boven)", 3, "De bovenste temperatuursensor van het koelvak (R1) is defect of los.", RS),
+    F("Er r2", "Temperatuursensor koelvak (onder)", 3, "De onderste temperatuursensor van het koelvak (R2) is defect of los.", RS),
+    F("Er FS", "Temperatuursensor vriesvak", 3, "De temperatuursensor van het vriesvak is defect of los. De koelkast koelt dan minder goed.", RS),
+    F("Er dS", "Ontdooisensor", 3, "De ontdooisensor is defect of los. De verdamper kan daardoor dichtvriezen.", RS),
+    F("Er rT", "Sensor buitentemperatuur", 3, "De sensor die de temperatuur van de ruimte meet, is defect of los.", RS),
+    F("Er SS", "Temperatuursensor watertank", 3, "De temperatuursensor van de watertank is defect.", RS),
+    F("Er tt", "Watertank ontbreekt of zit niet goed", 1, "De watertank zit er niet in, zit niet goed vast of de sensor ziet hem niet.", ["Haal de watertank eruit en zet hem terug tot hij goed vastzit.", "Blijft de code? Neem contact op met LG."]),
+    F("Er C1", "Communicatiefout tussen dispenser en display", 3, "De waterdispenser en het display praten niet meer met elkaar.", RS),
+    F("Er gF", "Waterflowsensor: geen of te weinig water", 1, "De sensor meet geen goede waterstroom naar de dispenser of ijsmaker.", ["Haal de stekker eruit, wacht 60 seconden en steek hem in een stopcontact in de muur (geen verdeeldoos).", "Wacht tot 5 minuten tot hij helemaal is opgestart.", "Controleer of de waterkraan helemaal open staat en de slang niet geknikt is.", "Controleer de waterdruk.", "Blijft de code? Neem contact op met LG."]),
+    F("Er FU", "Vriesvak wordt niet koud genoeg", 1, "Het vriesvak komt kort na het starten niet onder de 3,5 °C, of wordt tijdens gebruik weer warmer.", ["Haal de stekker eruit, wacht 60 seconden en steek hem in een stopcontact in de muur.", "Controleer of de compressor draait en zet het vriesvak op -18 °C.", "Open de deuren minder vaak en minder lang.", "Haal etenswaren weg die de luchtroosters blokkeren.", "Controleer of de deur goed sluit: klem een vel papier tussen de deur; dat moet weerstand geven bij het eruit trekken.", "Blijft het? Neem contact op met LG."]),
+    F("Er CH / Er CL", "Lek in het koelmiddel", 3, "LG meldt een lek in het koelcircuit, aan de hoge (CH) of lage (CL) drukzijde.", ["Haal de stekker eruit en neem contact op met LG. Werk aan het koelmiddel mag alleen een gecertificeerde monteur doen."]),
+    F("Lo / HI", "Ruimte te koud of te warm", 1, "Geen storing: de temperatuur in de ruimte is lager dan -10 °C (Lo) of hoger dan 50 °C (HI). De koelkast werkt dan niet goed.", ["Zet de koelkast in een ruimte met een normale temperatuur, niet in een onverwarmde schuur of in de zon."]),
+    N("Koelt helemaal niet, maar het display werkt: demostand", 1, "De koelkast staat in de demo- of winkelstand. Dan koelen koelvak en vriesvak niet, terwijl de verlichting en het display gewoon werken.", ["Open de deur van het koelvak.", "Houd de knop FRIDGE ingedrukt en druk 3 keer op Express FRZ (bij sommige modellen beide knoppen 3 seconden vasthouden).", "Een geluidssignaal bevestigt dat de demostand uit staat."])],
+  src: ["lgKoelUS", "lgKoelCodes"] }); }
 Object.assign(SRC,{ mieleWasGA: ["Miele – gebruiksaanwijzing wasautomaat (nl-NL, pdf)", "https://media.miele.com/downloads/9a/34/00_96106EC61D0B1EDDA3B48DEB56E39A34.pdf"] });
 (m => { m.faults.push(
   N("Melding 'Fout waterafvoer'", 1, "De afvoer is (deels) verstopt of de afvoerslang hangt te hoog.", ["Maak het pluizenfilter en de afvoerpomp schoon.", "Controleer de afvoerslang; die mag maximaal 1 meter omhoog."]),
