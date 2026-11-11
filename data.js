@@ -9318,4 +9318,9 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("F99", "Piekstroom gedetecteerd buitenunit", 3, "Kortstondige te hoge stroom in de buitenunit.", ["Noteer de code en geef hem door aan je installateur.", "Laat inspectie en reparatie over aan een erkende monteur."])
   ]});
 })();
+(m => { m.faults.push(
+  F("101", "Verbindingsprobleem in de aandrijfeenheid", 2, "De verbinding met de motor geeft een fout.", ["Controleer het display en de zichtbare kabels en stekkers.", "Herstart het systeem.", "Blijft de code, laat de fiets nakijken door een Bosch-dealer."]),
+  F("490", "Interne fout boordcomputer", 3, "De boordcomputer heeft een interne storing.", ["Laat de boordcomputer controleren door een Bosch-dealer."]),
+  F("531 / 593", "Configuratiefout", 2, "De configuratie van het systeem klopt niet.", ["Herstart het systeem.", "Blijft de code, neem contact op met je Bosch-dealer."])
+); })(MODELS.find(m => m.id === "bosch-ebike"));
 module.exports = { CATS, MODELS, SRC, COST };
