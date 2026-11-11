@@ -11130,4 +11130,17 @@ MODELS.push({ id: "karcher-rcv3", brand: "Kärcher", name: "RCV 3 robotstofzuige
     N("Gaat niet verder met schoonmaken", 1, "De modus Niet storen staat aan, of de robot is met de hand op het station gezet en laadt eerst op.", ["Zet Niet storen uit in de app of wacht tot hij vol is."]),
     N("Geen wifi-verbinding of offline", 1, "Geen of te zwak signaal, verkeerd wachtwoord, of een 5 GHz-netwerk.", ["Gebruik een 2,4 GHz-netwerk en controleer het wachtwoord.", "Reset de wifi: houd de aan/uit-knop en 'terug naar station' 7 seconden ingedrukt en verbind opnieuw."])],
   src: ["karRcv3"] });
+
+Object.assign(SRC,{ karSc4: ["Kärcher – gebruiksaanwijzing SC 4 EasyFix stoomreiniger (59685580, pdf)", "https://s1.kaercher-media.com/documents/manuals/raw/000/BTA-5609198-000-02.pdf"] });
+MODELS.push({ id: "karcher-sc4-easyfix", brand: "Kärcher", name: "SC 4 EasyFix stoomreiniger", dev: "stoomreiniger", cat: "kleine-apparaten", years: "SC 4 EasyFix", unit: null, also: "Kärcher stoomreiniger rood lampje knippert, piept, geen stoom, ontkalken",
+  intro: "Een rood lampje op de Kärcher SC 4 EasyFix betekent bijna altijd: te weinig water. Lange opwarmtijd of veel water in plaats van stoom wijst op kalk.", weak: ["Kalk in de stoomketel bij hard water."], parts: [["Ontkalker", "Kärcher-ontkalker, 1 doseereenheid per 0,5 liter water"]],
+  tasks: [{ m: 3, t: "Stoomketel ontkalken (in Nederland met hard water na ongeveer 50 tot 75 tankvullingen)", v: 1 }],
+  faults: [
+    N("Rood lampje knippert en hij piept", 1, "Er zit geen water meer in het reservoir.", ["Vul het waterreservoir tot de MAX-markering."]),
+    N("Rood lampje brandt continu", 1, "Er zit geen water in de ketel en de oververhittingsbeveiliging van de pomp is aangesproken.", ["Zet het apparaat uit.", "Vul water bij en zet hem weer aan."]),
+    N("Duurt lang voordat hij warm is", 1, "De stoomketel is verkalkt.", ["Ontkalk de stoomketel met Kärcher-ontkalker."]),
+    N("Geeft veel water in plaats van stoom", 1, "De stoomketel is verkalkt.", ["Ontkalk de stoomketel."]),
+    N("Waterreservoir werkt niet goed", 1, "Het reservoir zit niet goed vast of is verkalkt.", ["Haal het reservoir eruit, spoel het om, zet het terug en druk het aan tot het vastklikt."]),
+    N("Stoomhendel laat zich niet indrukken", 1, "Het kinderslot staat aan.", ["Schuif de keuzeschakelaar voor de stoomhoeveelheid naar voren."])],
+  src: ["karSc4"] });
 module.exports = { CATS, MODELS, SRC, COST };
