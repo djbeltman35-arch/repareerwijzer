@@ -249,7 +249,7 @@ const MODELS = [
   weak: ["De afvoerslang hangt te hoog of is geknikt."], parts: [],
   tasks: [{ m: 2, t: "Pompfilter schoonmaken", v: 1 }],
   faults: [
-    F("E18 / E6 / E25 / E26 / E30 / E36 / E80", "Probleem met de afvoer", 1, "Pomp of afvoerslang.", ["Maak het filter voor de afvoerpomp schoon.", "De afvoerslang mag maximaal 1 meter boven de machine hangen.", "Maak verstoppingen en knikken vrij en spoel de slang door."]),
+    F("E18 / F18 / E6 / E30 / E36 / E80", "Probleem met de afvoer", 1, "Pomp of afvoerslang.", ["Maak het filter voor de afvoerpomp schoon.", "De afvoerslang mag maximaal 1 meter boven de machine hangen.", "Maak verstoppingen en knikken vrij en spoel de slang door."]),
     F("E17 / F17 / E11 / E12 / E29 / F29", "Probleem met de watertoevoer", 1, "Kraan, waterdruk of filterzeefje.", ["Draai de kraan open en kijk of een emmer binnen een minuut vol is.", "Kraan dicht, een programma 40 seconden laten lopen en de stekker eruit.", "Schroef de toevoerslang los en borstel het filterzeefje schoon."]),
     F("E21 / F21", "Storing in de motor", 2, "Motorfout.", ["Zet de machine uit, wacht 3 minuten en zet hem weer aan.", "Blijft de code, laat een monteur kijken."]),
     F("E16 / F16", "Wasgoed zit tussen de deur", 1, "Klem in de deur.", ["Open de deur zo mogelijk en haal het wasgoed voorzichtig weg.", "Duw de deur stevig dicht en start opnieuw."]),
@@ -11592,4 +11592,11 @@ Object.assign(SRC,{ elxNlMagn: ["Electrolux Support – foutmeldingen combi-magn
   m.src.push("elxNlMagn"); })(MODELS.find(m => m.id === "zanussi-combi-magnetron"));
 (m => { m.brand = "AEG / Electrolux"; m.src.push("elxNlAirco"); })(MODELS.find(m => m.id === "aeg-mobiele-airco"));
 (m => { m.brand = "AEG / Electrolux"; m.src.push("elxNlKoffie"); })(MODELS.find(m => m.id === "aeg-inbouw-koffiemachine"));
+Object.assign(SRC,{ boschNlWas: ["Bosch – foutcodes en storingen oplossen wasmachines", "https://www.bosch-home.nl/service/ondersteuning/wasmachine/foutcodes"] });
+(m => { const SVC = "Dit kun je niet zelf oplossen: maak een afspraak met de Bosch-servicedienst.";
+  m.faults.push(
+    F("E25 / F25", "Storing in de troebelheidssensor", 3, "De sensor die meet hoe troebel het water is, werkt niet goed. (Bij sommige oudere lijsten staat E25 bij afvoerproblemen; Bosch zelf noemt de troebelheidssensor.)", [SVC]),
+    F("E26 / F26", "Storing in de druksensor", 3, "De druksensor die het waterniveau meet, werkt niet goed.", [SVC]),
+    F("E28 / F28", "Doorstroomsensor defect", 3, "De sensor die meet hoeveel water er binnenkomt, is defect.", [SVC]));
+  m.src.push("boschNlWas"); })(MODELS.find(m => m.id === "bosch-siemens-wasmachine"));
 module.exports = { CATS, MODELS, SRC, COST };
