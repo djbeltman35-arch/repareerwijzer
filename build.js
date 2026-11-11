@@ -307,7 +307,14 @@ function BOLCAT_() { return {
   printers: ["printer inkt cartridge", "🖨️ Inkt en toner", "Cartridges en toners bij bol."],
   laptops: ["laptop oplader", "🔌 Laptopoplader", "Universele en merkladers bij bol."],
   smartphones: ["telefoon oplader usb-c", "🔌 Oplader en kabel voor je telefoon", "Snelladers en kabels bij bol."],
-  "3d-printers": ["pla filament", "🧵 Filament voor je 3D-printer", "PLA, PETG en meer bij bol."]
+  "3d-printers": ["pla filament", "🧵 Filament voor je 3D-printer", "PLA, PETG en meer bij bol."],
+  ventilatie: ["wtw filter", "💨 WTW-filters", "Vervangende filters voor je WTW-unit bij bol."],
+  koelkasten: ["koelkastthermometer", "🌡️ Koelkastthermometer", "Controleer of je koelkast koud genoeg is; thermometers bij bol."],
+  auto: ["obd2 uitleesapparaat", "🚗 OBD2-uitleesapparaat", "Lees zelf de foutcode van je auto uit; uitleesapparaten bij bol."],
+  tuin: ["robotmaaier mesjes", "🌱 Mesjes voor je robotmaaier", "Vervangende mesjes en onderdelen bij bol."],
+  spa: ["spa filter", "🛁 Filters voor je spa of zwembad", "Vervangende filters bij bol."],
+  garagedeuren: ["afstandsbediening garagedeur", "🔑 Afstandsbediening garagedeur", "Losse en universele handzenders bij bol."],
+  televisies: ["hdmi kabel", "📺 HDMI-kabels", "Kabel kapot of te kort? HDMI-kabels bij bol."]
 }; }
 function ADS() { return {
   laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
