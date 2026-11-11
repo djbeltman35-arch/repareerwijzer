@@ -10798,6 +10798,7 @@ Object.assign(SRC,{ pcJump: ["Portacon – handleiding BYOU JUMP garagedeuropene
   pcFreedom: ["Portacon – handleiding BYOU FREEDOM schuifpoortopener (pdf)", "https://portacon.nl/media/productattachment/p/d/pdf_freedom_schuifpoortopener_nl_handleiding_logonieuw1.pdf"],
   pcBison: ["Portacon – handleiding Benincà BISON 20 OM / 25 OTI schuifpoortopener (pdf)", "https://portacon.nl/media/productattachment/p/d/pdf_bison20om_bison25oti_schuifpoortopener_nl_handleiding2.pdf"],
   pcJ4esa: ["Portacon – handleiding Benincà CP.J4 ESA motorsturing (pdf)", "https://portacon.nl/media/productattachment/p/d/pdf_jim4esa_motorsturing_nl_handleiding_1.pdf"],
+  pcPretty: ["Portacon – handleiding BYOU PRETTY draaipoortopener (pdf)", "https://portacon.nl/files/index/download/id/1424783670"],
   pcJm: ["Portacon – handleiding Benincà JM.3 / JM.4 garagedeuraandrijving (pdf)", "https://portacon.nl/media/productattachment/p/d/pdf_jim3_jim4_garagedeuraandrijving_nl_handleiding.pdf"] });
 { const PC = "Lukt het niet? Neem contact op met je installateur of met Portacon.";
   const POORT_TASKS = [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 6, t: "Fotocellen en andere beveiligingen controleren", v: 1 }, { m: 12, t: "Onderhoudsbeurt door een vakman", v: 1 }];
@@ -10819,6 +10820,9 @@ Object.assign(SRC,{ pcJump: ["Portacon – handleiding BYOU JUMP garagedeuropene
   { id: "byou-freedom", brand: "BYOU", name: "FREEDOM schuifpoortopener", dev: "schuifpoort", cat: "garagedeuren", years: "FREEDOM met besturing CP.FDM", unit: null, also: "Portacon, Benincà, schuifpoort, hekopener, ERR1, ERR2, PHOT, STOP",
     intro: "De BYOU FREEDOM is een schuifpoortopener die in Nederland via Portacon wordt verkocht. Het display van de besturing toont meldingen zoals ERR1, ERR2, STOP en PHOT.", weak: [], parts: [], tasks: POORT_TASKS,
     faults: [...BYOU("poort"), N("Knipperlicht werkt niet", 1, "Het lampje van het knipperlicht is doorgebrand.", ["Vervang het lampje en controleer de aansluitingen."])], src: ["pcFreedom"] },
+  { id: "byou-pretty", brand: "BYOU", name: "PRETTY draaipoortopener", dev: "draaipoort", cat: "garagedeuren", years: "PRETTY bouwpakket voor draaipoorten", unit: null, also: "Portacon, Benincà, draaipoort, hekopener, ERR1, ERR2, PHOT, STOP",
+    intro: "De BYOU PRETTY is een bouwpakket voor draaipoorten dat in Nederland via Portacon wordt verkocht. Het display van de besturing toont meldingen zoals ERR1, ERR2, STOP en PHOT.", weak: [], parts: [], tasks: POORT_TASKS,
+    faults: [...BYOU("poort"), F("PHOTC", "Fotocel PHOT C ziet een obstakel", 1, "Er staat iets tussen de fotocellen die het sluiten bewaken.", ["Haal het obstakel weg en maak de lensjes schoon.", "Blijft het? Mogelijk is een fotocel kapot. " + PC])], src: ["pcPretty"] },
   { id: "beninca-bison", brand: "Benincà", name: "BISON 20 OM / 25 OTI schuifpoortopener", dev: "schuifpoort", cat: "garagedeuren", years: "BISON 20 OM (CP.BISON OM) en BISON 25 OTI (CP.BISON OTI)", unit: null, also: "Portacon, zware schuifpoort, Err1, Err4, Err5, ENC, ECOM, AMP",
     intro: "De Benincà BISON is een aandrijving voor zware schuifpoorten (tot 2000 of 2500 kg). De besturing toont foutcodes op een display. Werk niet zelf aan de 230 V-besturing.", weak: [], parts: [["Vet tandwielkast", "AGIP BLASIA 32"]],
     tasks: [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 12, t: "Onderhoudsbeurt door een vakman", v: 1 }],
@@ -10865,5 +10869,19 @@ Object.assign(SRC,{ pcBull: ["Portacon – handleiding Benincà BULL 10M / 15M /
       F("THRM", "Thermische beveiliging aangesproken", 1, "De motor is te warm geworden, meestal na veel bewegingen achter elkaar.", ["Laat de motor afkoelen en probeer het later opnieuw.", "Gebeurt het vaak? " + PC]),
       N("Rood lampje op de accukaart brandt", 1, "De stroom is uitgevallen en de poort werkt op de accu's.", ["Controleer of er stroom is en of de groep niet is uitgeschakeld."]),
       N("Beide lampjes op de accukaart zijn uit", 2, "Er is geen netstroom en de accu's zijn leeg.", ["Herstel de stroom; de accu's laden daarna weer op (groen lampje).", "Ontgrendel de poort als je er nu doorheen moet."])], src: ["pcBen24"] });
+}
+
+Object.assign(SRC,{ pcA24: ["Portacon – handleiding A24 motorsturing voor 24V-poortopeners (pdf)", "https://portacon.nl/files/index/download/id/1491486569"] });
+{ const PC = "Lukt het niet? Neem contact op met je installateur of met Portacon.";
+  MODELS.push({ id: "portacon-a24", brand: "Portacon", name: "A24 besturing voor 24V-poortopeners", dev: "poort", cat: "garagedeuren", years: "A24 motorsturing (onder meer bij HERMES-draaipoortopeners)", unit: null, also: "HERMES 200, HERMES 250, draaipoort, PHO, PHA, BAR, STO, FULL",
+    intro: "De Portacon A24 is een besturing voor 24V-poortopeners. Het display laat zien welke ingang actief is. Zo zie je snel waarom de poort niet beweegt.", weak: [], parts: [], tasks: [{ m: 1, t: "Noodontgrendeling testen (poort met de hand openen)" }, { m: 6, t: "Fotocellen en veiligheidslijst controleren", v: 1 }],
+    faults: [
+      F("PHO", "Fotocel ziet iets tijdens het sluiten", 1, "De fotocel die het sluiten bewaakt, is onderbroken.", ["Haal het obstakel tussen de fotocellen weg en maak de lensjes schoon.", "Blijft het staan zonder obstakel? Mogelijk is een fotocel verschoven of kapot. " + PC]),
+      F("PHA", "Fotocel ziet iets tijdens openen en sluiten", 1, "De fotocel die beide richtingen bewaakt, is onderbroken.", ["Haal het obstakel tussen de fotocellen weg en maak de lensjes schoon.", PC]),
+      F("BAR", "Veiligheidslijst geraakt", 1, "De rubberen veiligheidslijst aan de poort is ingedrukt of geeft een signaal.", ["Kijk of iets tegen de lijst drukt en haal het weg.", "Is de lijst beschadigd? " + PC]),
+      F("STO", "Stopcommando actief", 2, "De stopschakelaar staat aan of de stopingang is onderbroken.", ["Zet een ingedrukte stop- of noodstopschakelaar terug.", PC]),
+      F("AM 1", "Motor 1 loopt zwaar of raakt een obstakel", 2, "De stroomsensor van motor 1 reageert: er zit iets in de weg of de poort loopt zwaar.", ["Haal obstakels weg en kijk of de poort met de hand soepel draait.", PC]),
+      F("FULL", "Geheugen ontvanger vol", 1, "Er passen geen afstandsbedieningen meer bij.", ["Laat ongebruikte afstandsbedieningen uit het geheugen verwijderen.", PC]),
+      F("ERR", "Handeling mislukt", 1, "Een programmeerstap of het aanleren van een afstandsbediening is niet gelukt.", ["Probeer het opnieuw volgens de handleiding.", PC])], src: ["pcA24"] });
 }
 module.exports = { CATS, MODELS, SRC, COST };
