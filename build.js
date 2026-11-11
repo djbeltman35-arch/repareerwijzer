@@ -274,7 +274,28 @@ ${KB.some(a => a.cat === m.cat) ? fold("Uitleg in de kennisbank", `<ul class="kb
 
 // ───────── Advertentie (affiliate) bij laad-gerelateerde pagina's
 function isEvCharge(m) { return m.cat === "laadpalen" || (m.cat === "auto" && /laad|laden/.test(m.id)); }
-function adBlock(m) { return isEvCharge(m) ? `<aside class="ad"><span class="ad-label">Advertentie</span><a href="https://lt45.net/c/?si=12933&amp;li=1570912&amp;wi=446984&amp;ws=" rel="sponsored noopener" target="_blank">🔌 Laadkabel voor uw elektrische auto</a><small>Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner.</small></aside>` : ""; }
+function AFF(si, li) { return `https://lt45.net/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=`; }
+function ADS() { return {
+  laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
+  acculader: [AFF(12933, 1570313), "🔋 Acculader of starthulp", "Accu leeg of zwak? Bekijk acculaders en jumpstarters bij Acculaders.nl."],
+  autoverkopen: [AFF(10614, 1468698), "🚗 Reparatie te duur? Verkoop je auto", "Vraag gratis een bod aan bij AutoVendi, ook voor auto's met schade of motorproblemen."],
+  ebike: [AFF(12168, 1536530), "🚲 E-bike-onderdelen en accessoires", "Display, accu-lader of banden nodig? Bekijk het aanbod bij Fietsparadijs."],
+  fietstas: [AFF(12934, 1570314), "🎒 Fietstassen", "Nieuwe tas voor je (e-)bike? Bekijk fietstassen bij Fietstas.com."],
+  gereedschap: [AFF(13231, 1580636), "🔧 Gereedschap en accu's", "Nieuw gereedschap of een vervangende accu? Bekijk het aanbod bij Gereedschapspecialist."],
+  refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie bij Remarkt."]
+}; }
+function adsFor(m) {
+  if (isEvCharge(m)) return ["laadkabel"];
+  switch (m.cat) {
+    case "auto": return ["acculader", "autoverkopen"];
+    case "camper-caravan": case "boten": return ["acculader"];
+    case "e-bikes": return ["ebike", "fietstas"];
+    case "gereedschap": case "tuin": return ["gereedschap"];
+    case "laptops": case "smartphones": case "spelcomputers": return ["refurbished"];
+    default: return [];
+  }
+}
+function adBlock(m) { return adsFor(m).map(k => { const [u, t, d] = ADS()[k]; return `<aside class="ad"><span class="ad-label">Advertentie</span><a href="${u}" rel="sponsored noopener" target="_blank">${t}</a><small>${d}</small></aside>`; }).join(""); }
 function warnGas() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Zelf mag je bijvullen en één keer resetten. Al het andere werk aan een gasketel laat je over aan een erkend installateur. Ruik je gas? Ramen open, gaskraan dicht en bel 0800-9009.</p></div>`; }
 function warnEbike() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Open nooit zelf een e-bike-accu. Bij een beschadigde, warme of opgezwollen accu: niet laden en naar een specialist.</p></div>`; }
 
