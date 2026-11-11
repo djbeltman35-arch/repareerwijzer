@@ -11188,4 +11188,12 @@ Object.assign(SRC,{ etnaVw339: ["ETNA – gebruiksaanwijzing vaatwasser VW339M (
   F("FE", "Storing in de elektronica", 3, "Een fout in de besturing.", ["Haal de stekker 1 minuut eruit en start opnieuw.", "Blijft het? " + SVC]),
   F("HI / LO", "Netspanning te hoog of te laag", 2, "De spanning op het stopcontact is te hoog (HI) of te laag (LO).", ["Probeer een ander stopcontact op een andere groep.", "Blijft het? " + SVC]));
   m.src.push("etnaVw339"); })(MODELS.find(m => m.id === "etna-vaatwasser"));
+
+(m => { const INST = "Laat dit controleren door je installateur.";
+  m.faults.push(
+  F("Onjuiste fasevolgorde", "Fasevolgorde voeding klopt niet", 3, "De drie fasen van de stroomvoeding zijn in de verkeerde volgorde aangesloten (alarm 5).", ["Laat de aansluiting controleren door een installateur."]),
+  F("Ext KB", "Extern bronalarm", 2, "De externe flowschakelaar van het bronsysteem meldt een storing (alarm 8).", ["Controleer of de bronpomp draait en de waterdruk aan de bronkant in orde is.", INST]),
+  F("High VBF1", "Aanvoertemperatuur te hoog", 2, "De aanvoertemperatuur van verwarmingssysteem 1 is te hoog (alarm 9).", ["Controleer of de circulatiepomp draait en de radiator- of vloerkranen open staan.", INST]),
+  F("High VVM VVG", "Boilertemperatuur te hoog", 2, "De temperatuur in de boiler is te hoog (alarm 13).", [INST]),
+  F("High KF", "Condensor-uittemperatuur te hoog", 2, "De temperatuur na de condensor is te hoog, vaak door te weinig doorstroming aan de afgiftezijde (alarm 22).", ["Controleer waterdruk en vuilfilter van de cv-kant.", INST])); })(MODELS.find(m => m.id === "nibe-1x40"));
 module.exports = { CATS, MODELS, SRC, COST };
