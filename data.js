@@ -11056,4 +11056,21 @@ Object.assign(SRC,{ vicMultiHs: ["Victron Energy – Multi HS19 Solar, probleemo
       F("180", "Voorladen mislukt", 3, "Er ging iets mis in de opstartvolgorde.", [RST, RET]),
       F("201", "Interne DC-spanningsmeting", 3, "De interne spanningsmeting klopt niet.", ["Werk eerst de firmware bij.", RST, RET])], src: ["vicMultiHs"] });
 }
+
+Object.assign(SRC,{ vicGx: ["Victron Energy – Venus GX / Cerbo GX handleiding, problemen oplossen (nl)", "https://victronenergy.com/media/pg/Venus_GX/nl/troubleshooting.html"] });
+MODELS.push({ id: "victron-cerbo-gx", brand: "Victron Energy", name: "Cerbo GX en Venus GX", dev: "GX-apparaat", cat: "camper-caravan", years: "Cerbo GX, Cerbo-S GX, Venus GX en andere GX-apparaten", unit: null, also: "Victron GX foutcode #42 #47 #48 #49 #51 #60, VRM, DVCC, Multi gaat niet aan of uit",
+  intro: "Een GX-apparaat van Victron (zoals de Cerbo GX) is het brein van het systeem en de verbinding met VRM. Hieronder de eigen foutcodes van het GX-apparaat en de meest voorkomende problemen. Codes van de Multi of MPPT zelf staan bij die apparaten.", weak: [], parts: [], tasks: [{ m: 6, t: "Firmware van het GX-apparaat en de aangesloten apparaten bijwerken", v: 1 }],
+  faults: [
+    F("#42", "Interne opslag beschadigd", 3, "Het interne flashgeheugen met instellingen en wifi-gegevens is beschadigd. Na een herstart staan de instellingen weer op standaard.", ["Dit is niet met een update op te lossen: laat het apparaat repareren of vervangen via je leverancier."]),
+    F("#47", "Probleem met de datapartitie", 3, "De interne opslag is waarschijnlijk beschadigd, waardoor instellingen verloren gaan.", ["Neem contact op met je leverancier, installateur of Victron."]),
+    F("#48", "DVCC aan met niet-compatibele firmware", 2, "DVCC staat aan, maar niet alle onderdelen van het systeem hebben geschikte firmware.", ["Laat de installateur de firmware van alle apparaten bijwerken.", "Bij sommige accumerken (zoals Pylontech, BMZ, BYD) kan een automatische update dit veroorzaken; zet automatisch bijwerken uit en vraag je installateur om hulp."]),
+    F("#49", "Netmeter niet gevonden", 2, "ESS is ingesteld op een externe netmeter, maar die wordt niet gevonden.", ["Controleer de bekabeling en de instellingen van de energiemeter."]),
+    F("#51", "Update MK3 nodig", 1, "De MK3-chip in het GX-apparaat heeft een update nodig voor nieuwere functies.", ["Ga naar Instellingen → Apparaten → je MultiPlus/Quattro en accepteer de update. De omvormer kan heel kort herstarten."]),
+    F("#60", "Kan niet verbinden met het GX-apparaat", 1, "De app op een scheepsdisplay (MFD) kan het GX-apparaat niet bereiken.", ["Herstart het GX-apparaat en/of het display."]),
+    N("MultiPlus of Quattro gaat niet aan of uit via het GX-apparaat", 1, "Oude firmware, een Digital Multi Control of VE.Bus BMS die de bediening overneemt, of het GX-apparaat onthoudt nog een oud accessoire.", ["Werk het GX-apparaat bij.", "Kies in het Multi-menu (geavanceerd) 'Systeem opnieuw detecteren'.", "Heb je een Digital Multi Control? Zet de schakelaar daarop op aan."]),
+    N("Multi start niet als het GX-apparaat op de AC-uitgang zit", 1, "Na een uitschakeling kunnen ze op elkaar wachten.", ["Trek de VE.Bus-kabel even los.", "Voorkomen: voed het GX-apparaat rechtstreeks uit de accu."]),
+    N("Multi herstart elke 10 seconden", 2, "De draadbrug voor de afstandsschakelaar op de Multi ontbreekt.", ["Laat de installateur de brug tussen de linker en middelste aansluiting op de Multi Control-print controleren."]),
+    N("GX-apparaat herstart vanzelf", 1, "'Herstart bij geen contact met VRM' staat aan en de internetverbinding valt weg, of het apparaat is overbelast.", ["Gebruik bij voorkeur een kabelverbinding (Ethernet); hotspots zijn onbetrouwbaar.", "Kijk in VRM naar de D-Bus-RTT: blijft die boven 100 ms, koppel apparaten af of gebruik een krachtiger GX-apparaat."]),
+    N("Geen internet of geen verbinding met VRM", 1, "Het GX-apparaat heeft geen eigen modem, of poorten zijn geblokkeerd.", ["Gebruik een router (eventueel een 4G-router met Ethernetpoort).", "VRM werkt via HTTPS-poort 443; DNS (53) en NTP (UDP 123) moeten bereikbaar zijn. Port forwarding is niet nodig."])],
+  src: ["vicGx"] });
 module.exports = { CATS, MODELS, SRC, COST };
