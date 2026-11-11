@@ -9122,4 +9122,27 @@ MODELS.push({ id: "renault-megane-storingen", brand: "Renault", name: "Megane: b
     F("F15", "Fout in de droogfunctie (was-droogcombinatie)", 2, "Luchtuitlaat of droogfilter verstopt, of de droogventilator of verwarming is defect.", ["Controleer of de ventilatieopeningen vrij zijn en maak het droogfilter schoon.", MON])
   ]});
 })();
+(() => {
+  SRC.cbVeripartWas = ["Coolblue – storingen Veripart wasmachine", "https://www.coolblue.nl/advies/hoe-los-je-een-veripart-wasmachine-storing-op.html"];
+  SRC.cbVeripartDroog = ["Coolblue – storingen Veripart wasdroger", "https://www.coolblue.nl/advies/hoe-los-je-een-veripart-wasdroger-storing-op.html"];
+  const R5 = "Haal de stekker 5 minuten uit het stopcontact, steek hem terug en start opnieuw.";
+  const MON = "Komt de code terug, schakel dan een monteur in.";
+  MODELS.push({ id: "veripart-wasmachine", brand: "Veripart", name: "Wasmachine (alle modellen)", cat: "wasmachines", years: "Alle bouwjaren met display", unit: null, also: "Veripart wasmachine storing, Veripart E01, Veripart E03, Veripart kinderslot", intro: "Veripart-wasmachines tonen een korte E-code. Deur, watertoevoer en pompfilter los je bijna altijd zelf op. Zet de machine uit en draai de kraan dicht voordat je aan slangen of filters werkt.", weak: [], parts: [], tasks: [{ m: 2, t: "Pompfilter schoonmaken", v: 1 }], src: ["cbVeripartWas"], faults: [
+    F("CL", "Kinderslot staat aan", 1, "Het bedieningspaneel reageert niet omdat het kinderslot actief is.", ["Houd de knoppen met het hangslotje 3 seconden tegelijk ingedrukt.", "Staat het slotje bij één knop, houd die 3 seconden ingedrukt."]),
+    F("E01", "Deur niet goed dicht", 1, "De deur sluit niet goed, vaak doordat er was tussen zit.", ["Open de deur en haal klemmende was weg.", "Duw de deur stevig dicht tot je een klik hoort.", R5, MON]),
+    F("E02", "Te weinig water", 1, "Kraan niet helemaal open, geknikte toevoerslang of verstopte toevoerfilters.", ["Draai de kraan helemaal open en leg de slang recht.", "Draai de kraan dicht, maak de slang los en maak het filter in de slang en in de machine schoon met een oude tandenborstel.", "Komt er uit de kraan zelf weinig water, schakel dan een monteur of loodgieter in."]),
+    F("E03", "Probleem met het pompfilter", 1, "Het pompfilter is verstopt of de pomp werkt niet goed.", ["Open het klepje rechtsonder en zet een teiltje onder de pomp.", "Draai het filter linksom los, laat het water weglopen en verwijder het vuil.", "Draai het filter rechtsom vast.", "Blijft de melding, dan is de pomp waarschijnlijk defect: schakel een monteur in."]),
+    F("E04", "Te veel water in de trommel", 2, "Er zit meer water in de trommel dan zou moeten.", ["Druk op start/pauze en laat het programma doorlopen, zodat de machine het water wegpompt.", MON])
+  ]});
+  MODELS.push({ id: "veripart-droger", brand: "Veripart", name: "Droger (alle modellen)", cat: "drogers", years: "Alle bouwjaren met display", unit: null, also: "Veripart wasdroger storing, Veripart warmtepompdroger, Veripart E03, Veripart E32", intro: "Veripart-drogers tonen een E-code bij een storing. Bij de meeste codes helpt het om de stekker 5 minuten uit het stopcontact te halen. Trek altijd eerst de stekker eruit voordat je iets controleert.", weak: ["Pluis op de vochtsensor geeft een foutmelding of verkeerde droogtijden."], parts: [], tasks: [{ w: "Na elke droogbeurt", t: "Pluizenfilter legen" }], src: ["cbVeripartDroog"], faults: [
+    F("E03", "Probleem met waterafvoer, vlotter of pomp", 1, "De waterafvoer, de vlotter (aquaswitch) of de pomp werkt niet goed.", ["Leeg het waterreservoir helemaal en plaats het goed terug.", "Maak het pluizenfilter schoon.", "Heeft je model een uitneembare condensor, maak die ook schoon.", MON]),
+    F("E32", "Storing vochtsensor", 1, "De vochtsensor meet niet goed, vaak door pluis of aanslag.", ["Maak het pluizenfilter schoon.", "Veeg de metalen strips van de vochtsensor, onder de deuropening, voorzichtig schoon met een vochtige doek.", R5, MON]),
+    F("E33", "Storing temperatuursensor", 2, "Probleem met een temperatuursensor.", [R5, MON]),
+    F("E05 / E06", "Storing temperatuursensor", 2, "Een temperatuursensor werkt niet goed.", ["Controleer of de deur goed sluit.", R5, "Komt de code terug, dan moet de sensor mogelijk vervangen worden: schakel een monteur in."]),
+    F("E08", "Spanningsprobleem", 1, "De droger krijgt geen goede spanning.", ["Haal de stekker 5 minuten uit het stopcontact.", "Sluit de droger aan op een ander stopcontact (niet via een verlengsnoer) en start een nieuw programma.", MON]),
+    F("E07 / E34", "Storing motor of motorsturing", 3, "Probleem met de motor of de communicatie met de motor.", [R5, MON]),
+    F("E04", "Storing compressor", 3, "Mogelijk is de compressor van de warmtepomp kapot.", [R5, "Komt de code terug, dan kan alleen een specialist de compressor vervangen."]),
+    F("E00", "Fout in het bedieningspaneel", 3, "De elektronica van het bedieningspaneel werkt mogelijk niet goed.", [R5, MON])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
