@@ -11654,4 +11654,28 @@ Object.assign(SRC,{ mieleNlDroog: ["Miele – eerste hulp bij storingen drogers"
     F("F242", "Storing in de elektronica (touchscreen)", 3, "Storing in de elektronica (touchscreen).", [SVC]),
     F("F252", "Deurcontacten vuil", 1, "De deurcontacten bij het scharnier zijn vuil.", ["Maak de deurcontacten bij het deurscharnier schoon.", "Blijft de storing? Neem contact op met Miele Service."]));
   m.src.push("mieleNlDroog"); })(MODELS.find(m => m.id === "miele-droger"));
+Object.assign(SRC,{ mieleNlVaat: ["Miele – eerste hulp bij storingen vaatwassers", "https://www.miele.nl/support/customer-assistance/vaatwassen-833/alle"] });
+(m => { const SVC = "Dit kun je niet zelf verhelpen: maak een reparatie-afspraak bij Miele Service.", RE = "Blijft de storing? Neem contact op met Miele Service.";
+  m.faults.push(
+    F("F1", "Kortsluiting in de temperatuurvoeler water/verwarming", 3, "Kortsluiting in de temperatuurvoeler water/verwarming.", [SVC]),
+    F("F2", "Storing in de temperatuurvoeler water/verwarming", 3, "Storing in de temperatuurvoeler water/verwarming.", [SVC]),
+    F("F19", "Flowsensor (flowmeter) defect", 3, "Flowsensor (flowmeter) defect.", [SVC]),
+    F("F26", "Kookbeveiliging aangesproken", 3, "Kookbeveiliging aangesproken.", [SVC]),
+    F("F36", "Schakelaar van het deurslot defect", 3, "Schakelaar van het deurslot defect.", [SVC]),
+    F("F38 / F47 / F179 / F594 / F595", "Storing in de elektronica", 3, "Storing in de elektronica.", [SVC]),
+    F("F42", "Netfrequentie wordt niet herkend", 3, "Netfrequentie wordt niet herkend.", [SVC]),
+    F("F53", "Storing in de toerentalsensor", 3, "Storing in de toerentalsensor.", [SVC]),
+    F("F67 / F68 / F79", "Storing in de circulatiepomp", 3, "Storing in de circulatiepomp.", [SVC]),
+    F("F85 / F87 / F172", "Technische storing", 3, "Technische storing.", [SVC]),
+    F("F88", "Storing in de troebelheidssensor", 3, "Storing in de troebelheidssensor.", [SVC]),
+    F("F91", "Beladingsregistratie werkt niet", 3, "Beladingsregistratie werkt niet.", [SVC]),
+    F("F52", "Te veel schuim: te veel vaatwasmiddel of glansspoelmiddel", 1, "Een sensor zag te veel schuim en heeft het programma afgebroken.", ["Zet de programmaknop op Stop/Einde, of houd bij tiptoetsen Start/Stop ongeveer 5 seconden ingedrukt.", "Zet de vaatwasser uit en weer aan.", "Gebruik je tabletten met glansspoelmiddel, kies dan de functie Combi-tab (als je die hebt).", "Gebruik geen tabletten in het programma Snel 40 °C.", RE]),
+    F("F69", "Circulatiepomp zit vast", 1, "Na een lange stilstand (weken of maanden) of bij het eerste gebruik kan de pomp zijn vastgeplakt.", ["Haal de zeven uit de vaatwasser.", "Giet 1 liter warm water (maximaal 75 °C) met 3 tot 5 druppels glansspoelmiddel in de machine en laat het 5 minuten inwerken. Pas op voor brandwonden.", "Start het programma opnieuw; herhaal dit 2 tot 3 keer.", "Helpt het niet, zet de vaatwasser dan uit en weer aan; blijft de code, neem contact op met Miele Service."]),
+    F("F170", "Glansspoelmiddel bijvullen", 1, "Het glansspoelmiddel is (bijna) op.", ["Vul glansspoelmiddel bij en bevestig met OK."]),
+    F("F171", "Zout bijvullen", 1, "Het zoutreservoir moet bijgevuld worden.", ["Vul na afloop van een programma zout bij en bevestig met OK."]),
+    F("F173", "Watertoevoer geblokkeerd", 1, "De kraan is dicht of de zeef in de watertoevoer is vuil.", ["Draai de kraan open.", "Is de zeef vuil: zet de vaatwasser uit, stekker eruit, kraan dicht, schroef de toevoer los en maak het zeefje schoon. Dompel het kunststof huis niet onder: er zit een elektrisch ventiel in.", RE]),
+    F("F177", "Herinnering: zeven reinigen", 1, "Geen storing: na een aantal programma's vraagt de vaatwasser om de zeven schoon te maken.", ["Maak de zeven schoon zoals de gebruiksaanwijzing beschrijft.", "Bevestig met OK; anders blijft de melding voor en na elk programma verschijnen."]),
+    F("F600", "AutoDos: storing bij de uitlaat van het doseersysteem", 2, "Het programma wordt afgebroken en de pomp pompt af; je hoort vier keer een signaal. Bij het weer aanzetten controleert de vaatwasser of de storing er nog is.", ["Zet de vaatwasser uit en weer aan.", RE]),
+    F("F607", "Onderste sproeiarm geblokkeerd of verstopt", 1, "De onderste sproeiarm draait niet vrij of de gaatjes zitten dicht; AutoDos schakelt daarom tijdelijk uit.", ["Zet de vaatwasser uit en weer aan.", "Controleer of de onderste sproeiarm vrij draait en zet servies anders neer als het de arm blokkeert.", "Haal de sproeiarm eruit en maak de gaatjes schoon.", RE]));
+  m.src.push("mieleNlVaat"); })(MODELS.find(m => m.id === "miele-vaatwasser"));
 module.exports = { CATS, MODELS, SRC, COST };
