@@ -11073,4 +11073,31 @@ MODELS.push({ id: "victron-cerbo-gx", brand: "Victron Energy", name: "Cerbo GX e
     N("GX-apparaat herstart vanzelf", 1, "'Herstart bij geen contact met VRM' staat aan en de internetverbinding valt weg, of het apparaat is overbelast.", ["Gebruik bij voorkeur een kabelverbinding (Ethernet); hotspots zijn onbetrouwbaar.", "Kijk in VRM naar de D-Bus-RTT: blijft die boven 100 ms, koppel apparaten af of gebruik een krachtiger GX-apparaat."]),
     N("Geen internet of geen verbinding met VRM", 1, "Het GX-apparaat heeft geen eigen modem, of poorten zijn geblokkeerd.", ["Gebruik een router (eventueel een 4G-router met Ethernetpoort).", "VRM werkt via HTTPS-poort 443; DNS (53) en NTP (UDP 123) moeten bereikbaar zijn. Port forwarding is niet nodig."])],
   src: ["vicGx"] });
+
+Object.assign(SRC,{ vicEvcs: ["Victron Energy – EV Charging Station, problemen oplossen (nl)", "https://www.victronenergy.com/media/pg/EV_Charging_Station/nl/troubleshooting.html"] });
+{ const INST = "Neem contact op met je installateur.";
+  MODELS.push({ id: "victron-ev-charging-station", brand: "Victron Energy", name: "EV Charging Station (laadpaal)", dev: "laadpaal", cat: "laadpalen", years: "Victron EV Charging Station (EVCS)", unit: null, also: "Victron laadpaal E-01 E-02 E-04 E-05 W-104 W-105 N-303, auto-modus, zonneladen",
+    intro: "De Victron EV Charging Station toont fouten (E), waarschuwingen (W) en meldingen (N) in VictronConnect, op het GX-apparaat en in de webinterface. Bij een E-fout laadt hij niet en is meestal de installateur nodig.", weak: [], parts: [], tasks: [{ m: 6, t: "Laadkabel en stekker controleren op schade", v: 1 }],
+    faults: [
+      F("E-01", "Geen aarde aanwezig", 3, "De beschermingsaarde (PE) ontbreekt.", ["Stop met laden. " + INST]),
+      F("E-02", "Vastgesmolten contacten", 3, "De contacten van de schakelaar in de laadpaal zijn vastgelast.", ["Stop met laden. " + INST]),
+      F("E-03", "Kortsluiting CP-ingang", 3, "Kortsluiting op de CP-lijn (de communicatie met de auto).", ["Controleer de laadkabel op schade.", INST]),
+      F("E-04", "Reststroom (lekstroom)", 3, "De laadpaal detecteert lekstroom.", ["Stop met laden en controleer de kabel en auto op schade.", INST]),
+      F("E-05", "Te hoge temperatuur", 1, "De laadpaal is oververhit.", ["Zorg dat de laadpaal niet in de volle zon hangt of geef hem schaduw.", "Blijft het? " + INST]),
+      F("E-06 / E-07", "Storing lichtsensor of reflector gedetecteerd (UK)", 3, "Een fout in de lichtsensor; alleen bij de Britse uitvoering.", [INST]),
+      F("W-101", "Eerste installatie niet afgerond", 1, "De eerste installatie is nog niet voltooid.", ["Doorloop de eerste installatie in VictronConnect of de webinterface."]),
+      F("W-102", "Geblokkeerd door de netbeheerder", 1, "De netbeheerder heeft laden extern geblokkeerd.", ["Neem contact op met je netbeheerder."]),
+      F("W-103", "Hoge temperatuur", 1, "De behuizing is warm, maar nog niet zo warm dat laden stopt.", ["Geef de laadpaal schaduw of hang hem uit de directe zon."]),
+      F("W-104", "Geen communicatie met het GX-apparaat", 1, "GX-communicatie staat aan, maar het GX-apparaat is niet bereikbaar.", ["Controleer het IP-adres en VRM Portal ID van het GX-apparaat.", "Zorg dat beide op hetzelfde netwerk zitten en koppel opnieuw."]),
+      F("W-105 / W-106", "Overbelasting", 1, "De belasting is te hoog; de laadpaal begrenst het laadvermogen.", ["Zet grote verbruikers tijdelijk uit of laad later."]),
+      F("W-107", "Tijdsynchronisatie mislukt", 1, "De datum en tijd konden niet worden gesynchroniseerd; de laadpaal is naar de geplande modus gegaan.", ["Controleer de internetverbinding en de tijdinstelling."]),
+      F("W-108 / W-109", "Laden begrensd", 1, "Laden is begrensd door een externe schakelaar of Modbus TCP (108), of door een te hoge omvormertemperatuur (109).", ["Controleer de externe schakelaar of wacht tot de omvormer is afgekoeld."]),
+      F("W-110 / W-111 / W-112", "Display-update bezig of mislukt", 1, "De firmware-update van het display is bezig (laden is dan geblokkeerd) of mislukt.", ["Wacht tot de update klaar is.", "Mislukt hij steeds? " + INST]),
+      F("N-301", "Auto-modus niet beschikbaar", 1, "Auto-modus is gekozen terwijl GX-communicatie uit staat.", ["Zet GX-communicatie aan."]),
+      F("N-302", "Geplande modus zonder schema", 1, "Er is geen laadschema ingesteld.", ["Voeg een laadschema toe."]),
+      F("N-303", "Geen auto aangesloten", 1, "Je drukte op start zonder dat er een auto is aangesloten.", ["Sluit de auto aan."]),
+      F("N-304 / N-305 / N-306 / N-307 / N-308", "Laden kan niet starten", 1, "Er is een actieve fout (304), de eerste installatie is niet af (305), de geplande modus staat aan (306), er is overbelasting (307) of het display wordt bijgewerkt (308).", ["Los de genoemde oorzaak op, of zet de laadpaal op handmatig als je zelf wilt starten."]),
+      N("Auto wordt niet herkend of laden stopt en start steeds", 1, "Afwijking in het CP-signaal tussen laadpaal en auto.", ["Doe een CP-kalibratie via de webinterface (instellingen → algemeen → lader) of VictronConnect. Vanaf firmware 2.02 gebeurt dit automatisch bij elke aansluiting."]),
+      N("Laadt in auto-modus niet bij weinig zonnestroom", 1, "De laadpaal heeft minimaal 6 A (ongeveer 1,3 kW) nodig.", ["Zet de optie aan om bij weinig overschot aan zonnestroom aan te vullen met stroom van het net."])], src: ["vicEvcs"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
