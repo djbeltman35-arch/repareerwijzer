@@ -387,3 +387,7 @@ header.top{position:relative;z-index:58}
 footer .wrap{padding-bottom:88px}
 .crumbs a{padding-block:8px}
 .upd{margin-top:1.5rem}
+.helped-step:not([hidden]){display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px}
+.helped-step button{min-width:44px}
+.kblink{margin-top:14px}
+.faq h3{font-size:1rem;margin:14px 0 4px}

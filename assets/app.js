@@ -398,10 +398,15 @@
       var finish = function () { Array.prototype.forEach.call(box.querySelectorAll("button"), function (b) { b.hidden = true; }); box.querySelector(".helped-thx").hidden = false; };
       if (done) finish();
       box.addEventListener("click", function (e) {
+        var st = e.target.closest && e.target.closest("button[data-s]");
+        if (st) { gcEvent("opgelost-stap-" + st.getAttribute("data-s") + "/" + page, "Opgelost met stap " + st.getAttribute("data-s") + ": " + document.title); finish(); return; }
         var b = e.target.closest && e.target.closest("button[data-v]"); if (!b) return;
         var v = b.getAttribute("data-v");
         gcEvent("feedback-" + v + "/" + page, (v === "ja" ? "Geholpen: " : "Niet geholpen: ") + document.title);
-        store.set("fb-" + page, v); finish();
+        store.set("fb-" + page, v);
+        var stepBox = box.querySelector(".helped-step");
+        if (v === "ja" && stepBox) { Array.prototype.forEach.call(box.querySelectorAll("button[data-v]"), function (x) { x.hidden = true; }); stepBox.hidden = false; return; }
+        finish();
       });
     });
   })();

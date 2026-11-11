@@ -122,6 +122,8 @@ ${scripts}
   // Zichtbare en machineleesbare datum van de laatste inhoudelijke wijziging (helpt Google en AI-zoekmachines)
   { const d = modOf[file][1], [y, mo, da] = d.split("-").map(Number), M = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
     html = html.replace("<!--UPD-->", file === "index.html" || file === "404.html" ? "" : `<p class="upd muted"><small>Laatst bijgewerkt: <time datetime="${d}">${da} ${M[mo - 1]} ${y}</time></small></p>`).replace(/"__DMOD__"/g, JSON.stringify(d)); }
+  // Spatie tussen aangrenzende inline-elementen, zodat zoekmachines geen woorden aan elkaar plakken ("VeiligWater")
+  { const i = html.indexOf("<body>"); html = html.slice(0, i) + html.slice(i).replace(/(<\/(?:a|b|span|strong|small|em|i)>)(?=<(?:a|b|span|strong|small|em|i)[\s>])/g, "$1 "); }
   // Interne links direct naar de canonieke URL zonder .html (geen dubbele URL's voor Google)
   html = html.replace(/href="(?!https?:|\/\/|mailto:|#|\/)([a-z0-9][a-z0-9-]*)\.html(#[^"]*)?"/g, (x, p, h) => `href="/${p === "index" ? "" : p}${h || ""}"`);
   fs.writeFileSync(path.join(OUT, file), html);
@@ -388,7 +390,7 @@ function adsFor(m) {
 }
 function adBlock(m) { const list = adsFor(m).map(k => ADS()[k]); const b = BOLCAT_()[m.cat]; if (b) list.push([BOL(b[0], m.cat), b[1], b[2]]); if (!list.length) return ""; return `<aside class="adbox" aria-label="Advertenties"><div class="adbox-head"><h2>🛒 Handig bij deze storing</h2><span class="ad-label">Advertentie</span></div><div class="adgrid">${list.map(([u, t, d]) => { const ic = (t.match(/^\S+/) || [""])[0]; const tt = t.replace(/^\S+\s/, ""); return `<a class="adcard" href="${u}" rel="sponsored noopener" target="_blank"><span class="adic" aria-hidden="true">${ic}</span><span class="adtx"><b>${tt}</b><small>${d}</small></span><span class="adbtn">Bekijk →</span></a>`; }).join("")}</div><p class="adnote">Koop je via deze links, dan krijgt Foutcodezoeker een kleine vergoeding. Jij betaalt niets extra.</p></aside>`; }
 
-function helpedBox() { return `<div class="helped" role="group" aria-label="Feedback"><span>Heeft dit geholpen?</span><button type="button" data-v="ja">👍 Ja</button><button type="button" data-v="nee">👎 Nee</button><span class="helped-thx" hidden>Bedankt voor je reactie!</span></div>`; }
+function helpedBox(n = 0) { return `<div class="helped" role="group" aria-label="Feedback"><span>Heeft dit geholpen?</span><button type="button" data-v="ja">👍 Ja</button><button type="button" data-v="nee">👎 Nee</button>${n > 1 ? `<span class="helped-step" hidden>Met welke stap? ${Array.from({ length: Math.min(n, 6) }, (_, i) => `<button type="button" data-s="${i + 1}">${i + 1}</button>`).join(" ")}</span>` : ""}<span class="helped-thx" hidden>Bedankt voor je reactie!</span></div>`; }
 function printCard(m) {
   const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
   const rows = (codes.length ? codes : plain).map(f => `<tr><td class="pc-code">${esc(f.code || "")}</td><td>${esc(f.t)}</td><td>${D[f.d][0]}</td></tr>`).join("");
@@ -397,6 +399,39 @@ function printCard(m) {
 function warnGas() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Zelf mag je bijvullen en één keer resetten. Al het andere werk aan een gasketel laat je over aan een erkend installateur. Ruik je gas? Ramen open, gaskraan dicht en bel 0800-9009.</p></div>`; }
 function warnEbike() { return `<div class="safety"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22z" fill="var(--accent)"/><path d="M12 9v5m0 3v.5" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/></svg><p>Open nooit zelf een e-bike-accu. Bij een beschadigde, warme of opgezwollen accu: niet laden en naar een specialist.</p></div>`; }
 
+// ───────── Klachten (kennisbank) koppelen aan foutcodes en andersom
+const KBLINK = {
+  "wasmachine-geen-water": ["wasmachines", /toevoer|geen water|te weinig water|inlaat|waterkraan/i],
+  "vaatwasser-pompt-niet-af": ["vaatwassers", /afvoer|pompt niet|wegpomp|afpomp/i],
+  "wasmachine-centrifugeert-niet": ["wasmachines", /onbalans|centrifug|afvoer|pompt|wegpomp/i],
+  "wasmachine-lekt": ["wasmachines", /lek|aquastop|overloop/i],
+  "wasmachine-trommel-draait-niet": ["wasmachines", /motor|aandrijf|tacho/i],
+  "wasmachine-start-programma-niet": ["wasmachines", /deur|kinderslot|vergrendel/i],
+  "wasmachine-spoelt-niet-goed": ["wasmachines", /schuim/i],
+  "droger-droogt-niet-goed": ["drogers", /condensor|pluis|filter|vocht/i],
+  "droger-stopt-halverwege": ["drogers", /reservoir|waterbak|condenswater|tank/i],
+  "cv-ketel-druk-zakt": ["cv-ketels", /druk/i],
+  "radiator-blijft-koud": ["cv-ketels", /circulatie|pomp|doorstroming/i],
+  "koelkast-lekt-of-koelt-niet": ["koelkasten", /temperatuur|koelt|te warm/i],
+  "elektrische-auto-laadt-niet": ["laadpalen", /foutstroom|aard|communicatie|kabel/i]
+};
+const kbCodes = {}, codeKb = new Map();
+for (const [id, [cat, re]] of Object.entries(KBLINK)) {
+  if (!KB.some(a => a.id === id)) continue;
+  const hits = allCodes.filter(({ m, f }) => m.cat === cat && m.brand !== "Alle merken" && re.test(`${f.t} ${f.cause}`));
+  for (const h of hits) { if (!codeKb.has(h.f)) codeKb.set(h.f, []); codeKb.get(h.f).push(id); }
+  const seen = {}, pick = [];
+  for (const h of hits) { const b = h.m.brand; if ((seen[b] = (seen[b] || 0) + 1) <= 2 && pick.length < 24) pick.push(h); }
+  kbCodes[id] = pick;
+}
+const codeFaq = (m, f, dev) => { const k = COST[m.cat], hit = costHit(m, f), c = codeShort(f);
+  const q = [[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${c}?`, f.steps.join(" ")],
+    [`Is foutcode ${c} gevaarlijk?`, f.d === 3 ? `Probeer dit niet zelf te repareren: het gaat om onderdelen waar een vakman aan moet werken. Doe alleen de veilige controles en bel een monteur.` : f.d === 2 ? `Niet direct, maar wees voorzichtig: haal eerst de stekker eruit of zet het apparaat uit voordat je iets controleert. Twijfel je, bel dan een monteur.` : `Meestal niet. Het gaat om iets dat je veilig zelf kunt controleren, zoals een filter, slang of instelling. Haal wel eerst de stekker eruit als je iets losmaakt.`],
+    [`Moet er een monteur komen bij foutcode ${c}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]];
+  if (k) q.push([`Wat kost het om foutcode ${c} te laten repareren?`, `${k.uur ? `Een monteur rekent ${k.uur}. ` : ""}${hit ? `${hit[0]}: gemiddeld ${hit[1]}.` : k.gem ? `Een reparatie kost gemiddeld ${k.gem}.` : ""} Vraag altijd vooraf een prijsopgave.`.replace(/\s+/g, " ").trim()]);
+  return q; };
+const kbForCode = f => { const ids = codeKb.get(f); if (!ids) return ""; return `<p class="kblink">📖 Meer uitleg: ${ids.map(id => { const a = KB.find(x => x.id === id); return `<a href="kennisbank-${id}.html">${esc(a.title.split(":")[0])}</a>`; }).join(" · ")}</p>`; };
+
 // ───────── Foutcodepagina's
 for (const { m, f } of allCodes) {
   const c = catOf(m.cat);
@@ -404,9 +439,9 @@ for (const { m, f } of allCodes) {
   const dev = deviceName(m);
   layout({
     file: codeUrl(m, f),
-    title: (() => { const br = m.brand.split("/").map(x => x.trim()); const d = br.length > 1 ? dev.replace(m.brand, br[0]) : dev; const base = `${d} foutcode ${codeShort(f)} – ${lc1(f.t, m)}`, ook = br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""; return base.length + ook.length <= 52 ? `${base}: oorzaak + oplossing${ook}` : `${base}${ook}`; })(),
+    title: (() => { const br = m.brand.split("/").map(x => x.trim()); const dv = !m.dev && /\(alle modellen\)/.test(m.name) && m.brand !== "Alle merken" ? `${m.brand} ${m.name.replace(/\s*\(alle modellen\)/, "").toLowerCase()}` : dev; const d = br.length > 1 ? dv.replace(m.brand, br[0]) : dv; const ook = br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""; return `${d} foutcode ${codeShort(f)}${ook}: betekenis en ${f.d === 3 ? "wat je doet" : "zelf oplossen"}`; })(),
     desc: `Foutcode ${f.code} op je ${dev}: ${f.t.toLowerCase()}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
-    extraHead: faqLd([[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${f.code}?`, f.steps.join(" ")], [`Moet er een monteur komen bij foutcode ${f.code}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps),
+    extraHead: faqLd(codeFaq(m, f, dev)) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: `Foutcode ${codeShort(f)}`, file: codeUrl(m, f) }],
     body: `
 <section class="stack">
@@ -422,10 +457,12 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
-  ${helpedBox()}
+  ${kbForCode(f)}
+  ${helpedBox(f.steps.length)}
 </article>
 ${adBlock(m)}
 ${costBlock(m, f)}
+<section class="stack faq"><h2>Veelgestelde vragen over foutcode ${esc(codeShort(f))}</h2>${codeFaq(m, f, dev).map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("")}</section>
 ${rvCta(m)}
 ${remCta(m)}
 <section class="stack">
@@ -462,7 +499,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
-  ${helpedBox()}
+  ${helpedBox(f.steps.length)}
 </article>
 ${adBlock(m)}
 ${costBlock(m, f)}
@@ -573,6 +610,8 @@ layout({
 <p>Elke uitleg is gebaseerd op een bron die onderaan de pagina staat. Dat zijn vooral:</p>
 <ul><li>gebruiks-, installatie- en servicehandleidingen van fabrikanten;</li><li>supportpagina's van fabrikanten, zoals foutcodelijsten en self-service-artikelen;</li><li>uitleg van Nederlandse vakwinkels en reparateurs.</li></ul>
 <p>In totaal verwijst de site naar ${srcCount} bronnen. Staat er bij een code alleen een Engelstalige of oudere bron, dan zeggen we dat erbij. De stappen zijn herschreven in begrijpelijke taal; de betekenis van de code blijft die van de bron.</p></section>
+<section class="stack"><h2>Zo werken we</h2>
+<ol><li><b>Bron eerst.</b> We zoeken eerst de handleiding of supportpagina van de fabrikant. Pas als die er niet is, gebruiken we uitleg van een Nederlandse vakwinkel of reparateur, en dat staat er dan bij.</li><li><b>Betekenis overnemen, uitleg herschrijven.</b> De betekenis van een code nemen we over zoals de bron hem geeft. De stappen herschrijven we in gewone taal, zonder iets toe te voegen wat niet in de bron staat. De teksten worden opgesteld met hulp van AI en daarna tegen de genoemde bron gecontroleerd.</li><li><b>Risico inschatten.</b> Elke storing krijgt een label: zelf op te lossen, voorzichtig zelf proberen of bel een monteur. Bij gas, koudemiddel, hoogspanning en accu's van e-bikes en scooters adviseren we altijd een vakman.</li><li><b>Bron vermelden.</b> Onderaan elke pagina staat de bron met een link, zodat je alles zelf kunt nakijken.</li><li><b>Automatische controle.</b> Bij elke update controleert de site zelf of elke pagina een bron heeft, of er geen dubbele codes zijn en of alle links werken. Faalt een controle, dan gaat de update niet online.</li><li><b>Fouten herstellen.</b> Meldingen via <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a> en de knop "Heeft dit geholpen?" gebruiken we om pagina's te verbeteren. Onder elke pagina staat wanneer hij voor het laatst is bijgewerkt.</li></ol></section>
 <section class="stack"><h2>Hoe lees je een pagina?</h2>
 <ul><li><b>🟢 Zelf op te lossen:</b> veilige stappen die iedereen kan doen, zoals een filter schoonmaken.</li><li><b>🟡 Voorzichtig zelf proberen:</b> stroom eraf en kraan dicht, en stop als je twijfelt.</li><li><b>🔴 Bel een monteur:</b> werk aan gas, koudemiddel, hoogspanning of elektronica laat je over aan een vakman.</li></ul></section>
 <section class="stack"><h2>Wie maakt Foutcodezoeker?</h2>
@@ -721,6 +760,7 @@ for (const a of KB) {
 ${a.safety ? `<div class="verdict v3"><strong>🔴 Direct gevaar?</strong><span>${esc(a.safety)}</span></div>` : ""}
 <article class="fault kb">${a.secs.map(([h, html]) => `<h2>${esc(h)}</h2>${html}`).join("\n")}</article>
 <section class="stack"><h2>Veelgestelde vragen</h2>${a.faq.map(([q, an]) => `<h3>${esc(q)}</h3><p>${esc(an)}</p>`).join("")}</section>
+${kbCodes[a.id] && kbCodes[a.id].length ? `<section class="stack"><h2>Foutcodes die hierbij horen</h2><p>Toont je apparaat een code? Bij deze merken hoort de code bij dit probleem:</p><ul class="kb-list">${kbCodes[a.id].map(({ m, f }) => `<li><a href="${codeUrl(m, f)}">${esc(deviceName(m))} ${esc(codeShort(f))}</a>: ${esc(f.t)}</li>`).join("")}</ul></section>` : ""}
 ${c ? adBlock({ id: a.id, cat: c.id }) : ""}
 <section class="stack"><h2>Lees ook</h2><ul class="kb-list">${a.rel.map(([u, t]) => `<li><a href="${u}">${esc(t)}</a></li>`).join("")}</ul></section>
 <section class="stack"><h2>Bron</h2><ul class="sources">${a.src.map(([n, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(n)}</a></li>`).join("")}</ul></section>`
@@ -748,6 +788,10 @@ const index = [
   ...brandNames.map(b => ({ t: `${b} storingen en foutcodes`, s: "Merk", u: brandUrl(b), k: `${b} merk storing foutcode` }))
 ];
 fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(index.map(e => e.u ? { ...e, u: "/" + e.u.replace(/\.html(?=#|$)/, "").replace(/^index$/, "") } : e))};`);
+// Controle: alle interne links moeten naar een bestaande pagina wijzen, anders stopt de build
+{ const have = new Set(pages.map(p => p.replace(/\.html$/, ""))), bad = new Set();
+  for (const p of pages) for (const [, h] of fs.readFileSync(path.join(OUT, p), "utf8").matchAll(/href="\/([a-z0-9-]*)(?:#[^"]*)?"/g)) if (h && !have.has(h) && !fs.existsSync(path.join(OUT, h))) bad.add(`${h} (op ${p})`);
+  if (bad.size) { console.error("Build gestopt, kapotte interne links:\n- " + [...bad].slice(0, 30).join("\n- ")); process.exit(1); } }
 fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
