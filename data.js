@@ -10974,4 +10974,21 @@ Object.assign(SRC,{ haierHW80: ["Haier – gebruikershandleiding wasmachine HW80
   N("Pompt af tijdens het vullen", 1, "De afvoerslang hangt lager dan 80 cm of het uiteinde hangt in het water, waardoor de machine leeghevelt.", ["Hang de afvoerslang hoger (tussen 80 en 100 cm) en zorg dat het uiteinde niet in water hangt."]));
   m.tasks = (m.tasks || []).concat(m.tasks && m.tasks.some(t => /pompfilter/i.test(t.t)) ? [] : [{ m: 1, t: "Pompfilter schoonmaken" }]);
   m.src.push("haierHW80"); })(MODELS.find(m => m.id === "haier-wasmachine"));
+
+Object.assign(SRC,{ atagHi86: ["ATAG – gebruiksaanwijzing inductiekookplaat HI86471FV t/m HI89571FV (941136, nl, pdf)", "https://www.deschouwwitgoed.nl/media/files/g/e/Gebruiksaanwijzing-ATAG-kookplaat-inductie-inbouw-HI86471FV.pdf"] });
+{ const RST = ["Haal de stroom eraf (groep uit), wacht 10 seconden en zet de stroom weer aan.", "Komt de code terug? Neem contact op met je installateur of de ATAG-servicedienst."];
+  MODELS.push({ id: "atag-inductiekookplaat", brand: "ATAG", name: "Inductiekookplaat (HI8-serie)", dev: "inductiekookplaat", cat: "kookplaten", years: "HI86471FV t/m HI89571FV (en vergelijkbare ATAG-inductiekookplaten)", unit: null, also: "ATAG kookplaat F0 F1 F2 F3 F4 F5 F6 F7 FC Fc FJ F9 E7",
+    intro: "ATAG-inductiekookplaten tonen een F-code als de elektronica, de spanning of de koeling een probleem heeft. Bij de meeste codes helpt eerst de stroom 10 seconden van de kookplaat halen. Let op: de codes kunnen per model iets verschillen, check je eigen gebruiksaanwijzing.", weak: [], parts: [], tasks: [],
+    faults: [
+      F("F0 / F1 / F2 / F3 / F4 / F5 / F6 / F7", "Generator defect", 2, "De generator (vermogenselektronica) onder de kookzone geeft een fout.", RST),
+      F("Fc", "Kookplaat oververhit", 1, "De kookplaat is te warm geworden.", ["Laat de kookplaat afkoelen en ga daarna verder met koken.", "Zorg dat de ventilatieopeningen onder de kookplaat vrij zijn."]),
+      F("FC02", "Spanning te hoog of verkeerd aangesloten", 3, "De netspanning is te hoog of de kookplaat is verkeerd aangesloten.", ["Laat de aansluiting controleren en aanpassen door een installateur."]),
+      F("FC01 / FC04 / FC08 / FC10 / FH", "Fout in het bedieningspaneel", 2, "De bediening van de kookplaat geeft een fout.", RST),
+      F("FJ", "Netspanning te laag", 2, "De spanning op het stroomnet is te laag.", ["Neem contact op met je energieleverancier of netbeheerder."]),
+      F("F9", "Te weinig luchtcirculatie", 1, "De kookplaat krijgt onvoldoende koellucht.", ["Zorg dat de ventilatieopeningen aan de onderkant van de kookplaat open zijn; zet er niets tegenaan in de la of kast eronder."]),
+      F("E7", "Wifi-verbinding mislukt", 1, "De kookplaat kan geen verbinding maken met je wifi-netwerk.", ["Probeer opnieuw te verbinden.", "Gebruik een 2,4 GHz-netwerk en zet MAC-adresfiltering in de router uit.", "Zet de router dichterbij als het signaal zwak is."]),
+      N("Kookzone stopt en restwarmte-indicatie brandt", 1, "De kookzone is oververhit.", ["Wacht tot de kookplaat is afgekoeld en kook daarna verder."]),
+      N("Licht tikkend geluid of zoemen tijdens het koken", 1, "Bij hoge standen is wat geluid van de pan normaal. Tikken kan ook komen door een vuile panbodem.", ["Maak de kookplaat schoon met een keramische-plaatreiniger en maak de panbodem vet- en vuilvrij.", "Gebruik een geschikte inductiepan van minstens 12 cm doorsnede."]),
+      N("Display blijft donker, kookplaat doet niets", 1, "Geen stroom, een defecte voeding of een verkeerde aansluiting.", ["Controleer de groep in de meterkast.", "Springt de groep bij het aansluiten? Laat de aansluiting controleren door een installateur."])], src: ["atagHi86"] });
+}
 module.exports = { CATS, MODELS, SRC, COST };
