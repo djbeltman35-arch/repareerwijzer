@@ -12344,4 +12344,18 @@ Object.assign(SRC,{ bekoNlStof: ["Beko Nederland – helpcentrum stofzuiger: pro
       N("Snoer rolt niet helemaal op", 1, "Het snoer is maar deels ingetrokken.", ["Trek het snoer helemaal uit en laat los, of druk op de oprolknop.", "Rolt alleen een deel op: trek even aan het snoer en laat weer los.", SVC])
     ]});
 }
+Object.assign(SRC,{ grundigNlWas: ["Grundig Nederland – helpcentrum wasmachine: problemen oplossen", "https://www.grundig.com/nl-nl/ondersteuning/helpcentrum/wasmachine--troubleshooting"] });
+{ const SVC = "Werkt de machine niet goed en bromt hij ook? Neem contact op met een erkend servicebedrijf.";
+  const BAL = ["Stop de machine en laat het water weglopen.", "Haal vreemde voorwerpen uit de trommel of voeg bijvoorbeeld handdoeken toe om de lading te verdelen (niet te vol).", "Kijk of de machine niet tegen de slangen, een muur of kast stoot.", "Zet de machine waterpas: draai de voorste poten tot ze stevig op de vloer staan.", SVC];
+  MODELS.push({ id: "grundig-wasmachine", brand: "Grundig", name: "Wasmachine", dev: "wasmachine", cat: "wasmachines", years: "Grundig-wasmachines", unit: null, also: "Grundig wasmachine kinderslot, Grundig wasmachine maakt lawaai, Grundig wasmachine lampjes knipperen",
+    intro: "Bij Grundig-wasmachines gaan de meeste vragen over knipperende lampjes (kinderslot) en geluiden. Veel geluiden zijn normaal; dit zegt Grundig zelf.", weak: [], parts: [], tasks: [],
+    src: ["grundigNlWas"], faults: [
+      N("Lampjes knipperen en de machine start niet (kinderslot)", 1, "Knipperen de eerste en tweede extra functieknop drie keer als je aan de programmaknop draait, dan staat het kinderslot aan.", ["Houd tijdens een programma de eerste en tweede extra functieknop 3 seconden samen ingedrukt.", "Of zet de programmaknop op Aan/Uit als het programma nog niet is gestart.", "Werkt dit niet, kijk dan in de handleiding van jouw model."]),
+      N("Ratelend of kloppend geluid", 1, "Een ritmisch geluid komt meestal door een ongelijke lading of een voorwerp in de trommel, of doordat de machine ergens tegenaan stoot of niet waterpas staat.", BAL),
+      N("Rammelend geluid", 1, "Normaal bij de overgang tussen wasfasen. Is het ritmisch, dan zit er misschien een zwaar of vreemd voorwerp in de trommel.", ["Stop de machine, laat het water weglopen en haal het voorwerp eruit.", SVC]),
+      N("Gorgelend, slurpend of zuigend geluid", 1, "Normaal tijdens het afpompen; het stopt als al het water weg is.", [SVC]),
+      N("Spuitend of klotsend geluid", 1, "Normaal tijdens het vullen met water.", [SVC]),
+      N("Brommend of fluitend geluid tijdens het afpompen", 1, "De motor kan zoemen tijdens het draaien. Hoor je het alleen bij het afpompen, dan is de afvoerslang mogelijk geknikt of verstopt.", ["Controleer de afvoerslang, haal knikken eruit en verwijder een verstopping.", SVC])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
