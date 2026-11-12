@@ -12563,4 +12563,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("AL 1880 CV: ventilator draait niet", 1, "De ventilator is mogelijk defect, of de accu is kouder dan 0 °C. Laden duurt dan langer.", ["Laat een koude accu eerst binnen opwarmen.", "Draait de ventilator nooit, laat de lader nakijken."])
   ]});
 })();
+(() => {
+  SRC.gardenaQc40 = ["GARDENA – Gebruiksaanwijzing snellader QC40 (art. 9845), PDF van Husqvarna Group", "https://content.tdr.dss.husqvarnagroup.net/pub000067090/doc000115570"];
+  MODELS.push({ id: "gardena-qc40-lader", brand: "GARDENA", name: "Snellader QC40 (40V): wat betekent het lampje?", dev: "snellader QC40", cat: "tuin", years: "GARDENA QC40 (art. 9845) voor 40V-accu's", unit: null, also: "Gardena lader knippert snel, Gardena lader rood lampje, Gardena 40V accu laadt niet, Gardena QC40 fout-LED, Gardena lader brandt niet", intro: "De GARDENA QC40 heeft een groen laadlampje en een fout-LED. Groen één keer per seconde knipperen is laden, snel knipperen betekent een te warme of koude accu.", weak: ["Laden in de kou of in de zon."], parts: [], tasks: [], src: ["gardenaQc40"], faults: [
+    N("Groen lampje knippert 1x per seconde", 1, "De accu wordt geladen.", ["Je hoeft niets te doen."]),
+    N("Groen lampje brandt continu", 1, "De accu is vol.", ["Haal de accu uit de lader."]),
+    N("Groen lampje knippert snel (4x per seconde)", 1, "De temperatuur van de accu ligt buiten het toegestane bereik.", ["Laat de accu op temperatuur komen; gebruik hem bij temperaturen tussen -10 en 40 °C."]),
+    N("Laadlampje brandt niet", 1, "De lader of laadkabel is niet goed aangesloten.", ["Sluit de lader en de laadkabel goed aan en controleer het stopcontact."]),
+    N("Fout-LED knippert", 2, "Fout in de accu.", ["Haal de accu eruit en controleer of het een originele GARDENA-accu is.", "Blijft het, laat de accu nakijken door de GARDENA-service."]),
+    N("Fout-LED brandt continu", 2, "De lader zelf is te warm.", ["Laat de lader afkoelen op een koele plek.", "Blijft de fout-LED branden, neem contact op met de GARDENA-service."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
