@@ -13608,4 +13608,26 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Lampje knippert tijdens het zetten", 1, "Normaal: de machine leest de capsule en bevochtigt de koffie voor; loopt alleen water, dan draait hij een reinigings-, ontkalkings- of leegmaakprogramma.", ["Wacht even."])
   ]});
 })();
+(() => {
+  SRC.nespressoLattOne = ["Nespresso – Machine assistance Lattissima One (nespresso.com, Engels)", "https://www.nespresso.com/ci/en/machine-assistance/lattissima-one-machine-assistance"];
+  SRC.nespressoEssenzaMini = ["Nespresso – Machine assistance Essenza Mini (nespresso.com, Engels)", "https://www.nespresso.com/za/en/machine-assistance/essenza-mini-d-machine-assistance-1"];
+  MODELS.push({ id: "nespresso-lattissima-one", brand: "Nespresso", name: "Lattissima One: knipperende knoppen en oranje lampjes", dev: "Lattissima One", cat: "koffiemachines", years: "Nespresso Lattissima One (De'Longhi)", unit: null, also: "Lattissima One knoppen knipperen, Lattissima One schakelt uit, Lattissima One oranje lampje, Lattissima One ontkalken, Lattissima One clean, Lattissima One oververhit", intro: "De Nespresso Lattissima One praat met knipperende knoppen. Drie keer snel knipperen is een leeg waterreservoir; alle knoppen 10 seconden knipperen en dan uit is een foutalarm. Oranje lampjes gaan over ontkalken en schoonmaken.", weak: ["Leeg waterreservoir.", "Melksysteem niet schoongemaakt."], parts: [], tasks: [], src: ["nespressoLattOne"], faults: [
+    N("Alle knoppen knipperen 10 seconden, daarna gaat de machine uit", 3, "Foutalarm: de machine moet gerepareerd worden.", ["Stuur de machine op voor reparatie of neem contact op met Nespresso."]),
+    N("Alle 3 de knoppen knipperen 3 keer snel", 1, "Het waterreservoir is leeg.", ["Vul het waterreservoir."]),
+    N("Koffie- en melkknoppen knipperen om en om", 1, "De machine is oververhit.", ["Laat de machine afkoelen; hij blijft na leeglopen ongeveer 10 minuten geblokkeerd."]),
+    N("Ontkalkingslampje brandt oranje", 1, "Het is tijd om te ontkalken.", ["Ontkalk de machine."]),
+    N("Ontkalkingslampje knippert oranje en melkknop brandt", 1, "De machine staat in de ontkalkingsstand.", ["Druk op de melkknop om het ontkalken te starten."]),
+    N("Ontkalkings- en reinigingslampje knipperen", 1, "De machine staat in het menu.", ["Houd de melkknop 3 seconden ingedrukt, of wacht 30 seconden."]),
+    N("Reinigingslampje brandt oranje", 1, "Het melksysteem (Rapid Cappuccino System) moet schoongemaakt worden.", ["Haal het uit elkaar en was de onderdelen in het bovenste rek van de vaatwasser of met de hand."]),
+    N("Onregelmatig knipperen", 2, "Waarschijnlijk een interne storing.", ["Stuur de machine op voor reparatie of neem contact op met Nespresso."]),
+    N("Geen lampje", 1, "De machine krijgt geen stroom.", ["Controleer stopcontact, stekker en zekering.", "Blijft het, neem contact op met Nespresso."])
+  ]});
+  MODELS.push({ id: "nespresso-essenza-mini", brand: "Nespresso", name: "Essenza Mini: lampjes en storingen", dev: "Essenza Mini", cat: "koffiemachines", years: "Nespresso Essenza Mini (Krups en De'Longhi)", unit: null, also: "Essenza Mini knippert, Essenza Mini geen lampje, Essenza Mini geen koffie, Essenza Mini alleen water, Essenza Mini lekt", intro: "Bij de Nespresso Essenza Mini knipperen de lampjes ongeveer 25 seconden tijdens het opwarmen; branden ze continu, dan is hij klaar. Onregelmatig knipperen is een storing.", weak: ["Kalk.", "Capsule niet goed geplaatst."], parts: [], tasks: [], src: ["nespressoEssenzaMini"], faults: [
+    N("Lampjes knipperen onregelmatig", 2, "Een storing die de handleiding niet behandelt.", ["Neem contact op met Nespresso."]),
+    N("Geen lampje", 1, "De machine krijgt geen stroom.", ["Controleer stopcontact, stekker en zekering.", "Blijft het, neem contact op met Nespresso."]),
+    N("Geen koffie en geen water", 1, "Het reservoir is leeg, de machine moet bij eerste gebruik doorgespoeld worden of ontkalkt worden.", ["Vul het reservoir.", "Spoel bij eerste gebruik met warm water (niet heter dan 55 °C).", "Ontkalk zo nodig."]),
+    N("Er komt alleen water uit, ook met een capsule", 3, "Storing in de machine.", ["Neem contact op met Nespresso."]),
+    N("Koffie loopt traag of is niet warm genoeg", 1, "Kalk, of een koud kopje.", ["Warm het kopje voor en ontkalk de machine."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
