@@ -13921,4 +13921,20 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Geurafzuiging werkt slecht", 1, "Het keramische honingraatfilter is vuil.", ["Vervang het honingraatfilter."])
   ]});
 })();
+(() => {
+  SRC.geberitTumaClassic = ["Geberit – Gebruiksaanwijzing AquaClean Tuma Classic, status-LED en storingen (PDF)", "https://cdn.data.geberit.com/documents/967.215.00.0_05.pdf"];
+  SRC.geberitTumaComfort = ["Geberit – Gebruiksaanwijzing AquaClean Tuma Comfort, status-LED en storingen (PDF)", "https://cdn.data.geberit.com/documents/967.261.00.0_08_20250624125039.pdf"];
+  SRC.geberitSela = ["Geberit – Gebruiksaanwijzing AquaClean Sela, status-LED en storingen (PDF)", "https://cdn.data.geberit.com/documents/968.684.00.0_08.pdf"];
+  MODELS.push({ id: "geberit-aquaclean-tuma-sela", brand: "Geberit", name: "AquaClean Tuma en Sela douche-wc: status-LED", dev: "AquaClean Tuma en Sela douche-wc", cat: "kleine-apparaten", years: "Geberit AquaClean Tuma Classic, Tuma Comfort en Sela", unit: null, also: "Geberit Tuma led knippert rood, AquaClean Tuma blauw rood oranje, AquaClean Sela led knippert rood, AquaClean geblokkeerd ontkalken, Tuma rood en oranje knipperen, Geberit douchewc storing", intro: "De status-LED van de Geberit AquaClean Tuma (aan de zijkant) en Sela (bij het oriëntatielicht en op de afstandsbediening) vertelt wat er aan de hand is. Rood knipperen is een storing, blauw-rood betekent ontkalken, en blauw-rood met oranje dat de douche geblokkeerd is tot je ontkalkt.", weak: ["Ontkalken te lang uitgesteld, waardoor de douchefunctie blokkeert.", "Vuil keramisch honingraatfilter (Tuma Comfort)."], parts: [], tasks: [{ m: 12, t: "Ontkalken (minstens 1x per jaar)", v: 1 }], src: ["geberitTumaClassic", "geberitTumaComfort", "geberitSela"], faults: [
+    N("Status-LED knippert rood", 3, "Er staat een storingsmelding open.", ["Zet het apparaat uit, wacht 30 seconden en zet het weer aan.", "Sela: druk op een toets achter op de afstandsbediening; het display of de app toont dan de foutmelding. Volg die aanwijzing.", "Blijft de LED rood knipperen, neem dan contact op met de Geberit-servicedienst. Het toilet kun je intussen als gewoon toilet gebruiken."]),
+    N("Status-LED knippert blauw-rood", 1, "Het apparaat moet ontkalkt worden.", ["Ontkalk het apparaat volgens de gebruiksaanwijzing."]),
+    N("Knippert blauw-rood en brandt oranje", 2, "Het apparaat is geblokkeerd en moet dringend ontkalkt worden; douchen werkt niet meer.", ["Ontkalk het apparaat.", "Wil je nog één keer douchen: houd de toets <Douche> 5 seconden ingedrukt om de blokkering voor 1 douchebeurt op te heffen."]),
+    N("Knippert tegelijk rood en oranje", 1, "Het apparaat staat in de ontkalkingsmodus en wacht op een handeling van jou.", ["Volg de volgende stap van het ontkalken in de gebruiksaanwijzing."]),
+    N("Status-LED brandt oranje", 1, "Het apparaat is aan het ontkalken; de douchewc is zolang niet te gebruiken.", ["Wacht tot het ontkalken klaar is."]),
+    N("Status-LED knippert oranje", 1, "Automatische wateruitwisseling is bezig. Bij de Sela kan het ook betekenen dat de afstandsbediening het apparaat niet bereikt (uitgeschakeld of meer dan 1 meter weg).", ["Even wachten.", "Sela: zet de douchewc aan of kom met de afstandsbediening dichterbij."]),
+    N("Status-LED brandt groen (Tuma Comfort)", 1, "Het keramische honingraatfilter moet vervangen worden.", ["Vervang het honingraatfilter (zie gebruiksaanwijzing)."]),
+    N("Status-LED knippert blauw", 1, "Het apparaat start op en spoelt het systeem, of (Sela) de afstandsbediening wordt gekoppeld.", ["Even wachten."]),
+    N("Status-LED brandt niet", 1, "Energiespaarmodus is actief of het apparaat staat uit; bij de Tuma Comfort kan ook de warmwaterbereiding in de basisinstellingen uit staan.", ["Controleer of het apparaat aan staat en kijk in de basisinstellingen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
