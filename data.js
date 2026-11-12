@@ -13436,4 +13436,20 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melding: dag en tijd opnieuw instellen", 1, "De klok is gereset.", ["Stel dag en tijd opnieuw in en druk op OK."])
   ]});
 })();
+(() => {
+  SRC.sageBambinoPlus = ["Sage (Breville) – Gebruiksaanwijzing the Bambino Plus SES500, Troubleshooting (PDF, assets.breville.com, Engels)", "https://assets.breville.com/BES500/SES500_EU_UG8_G22_LR.pdf"];
+  MODELS.push({ id: "sage-bambino-plus", brand: "Sage", name: "the Bambino Plus: knipperende lampjes en storingen", dev: "the Bambino Plus (SES500)", cat: "koffiemachines", years: "Sage the Bambino Plus SES500", unit: null, also: "Sage Bambino Plus lampjes knipperen, Bambino Plus 1 cup 2 cup knipperen, Bambino Plus ontkalken lampjes, Bambino Plus milk temp knippert, Bambino Plus geen stoom, Bambino Plus stopt", intro: "De Sage Bambino Plus heeft geen display; knipperende knoplampjes vertellen wat er nodig is. 1 CUP en 2 CUP om en om is schoonmaken, samen met STEAM is ontkalken, en knipperende melklampjes gaan over de stoompijp of een leeg reservoir.", weak: ["Kalk door te weinig ontkalken.", "Verstopte stoompijp.", "Te fijne maalgraad."], parts: [], tasks: [], src: ["sageBambinoPlus"], faults: [
+    N("1 CUP en 2 CUP knipperen om en om", 1, "Tijd voor een reinigingscyclus (na 200 keer zetten).", ["Draai de reinigingscyclus met de reinigingsschijf en een reinigingstablet."]),
+    N("1 CUP, STEAM en 2 CUP knipperen om en om (15 seconden)", 1, "De machine moet ontkalkt worden.", ["Ontkalk de machine. Een druk op een van deze knoppen zet de melding even uit."]),
+    N("MILK TEMP- en MILK FOAM-lampjes lopen af", 1, "De stoompijp staat nog omhoog.", ["Zet de stoompijp helemaal omlaag zodat hij kan doorspoelen."]),
+    N("MILK TEMP en MILK FOAM branden en knipperen, STEAM uit", 1, "De stoompijp is verstopt en de machine is gestopt.", ["Spoel de stoompijp handmatig door, of maak het tuitje schoon als hij nog verstopt is."]),
+    N("MILK TEMP en MILK FOAM knipperen samen", 1, "Fout in de stoomfunctie, of het waterreservoir is leeg.", ["Vul het reservoir en houd STEAM 3 seconden ingedrukt om door te spoelen."]),
+    N("1 CUP, 2 CUP en STEAM zijn uit", 1, "Het waterniveau is te laag.", ["Vul water bij tot alle knoppen weer branden."]),
+    N("Machine staat aan maar stopt ermee", 2, "De thermische beveiliging is aangesproken doordat de pomp te warm werd.", ["Houd 1 CUP en STEAM 5 seconden samen ingedrukt om uit te zetten, haal de stekker eruit en laat hem 30-60 minuten afkoelen.", "Blijft het, neem contact op met de Sage-klantenservice."]),
+    N("Geen water uit de zetgroep of espresso druppelt", 1, "Leeg of los reservoir, kalk, te fijne maalgraad, te veel of te hard aangedrukte koffie, of een verstopt mandje.", ["Vul het reservoir en druk het vast.", "Kies een grovere maalstand, minder koffie en druk aan met 15-20 kg.", "Prik de gaatjes van het mandje door en ontkalk de machine."]),
+    N("Pomp maakt hard lawaai en er komt geen water", 1, "Het reservoir is leeg of onder MIN, of het waterfilter is niet eerst geweekt.", ["Vul het reservoir.", "Week een nieuw waterfilter 5 minuten voor je het plaatst."]),
+    N("Geen stoom", 1, "Nog niet op temperatuur, reservoir leeg of los, kalk of een verstopte stoompijp.", ["Wacht tot hij warm is, vul het reservoir, ontkalk en maak de stoompijp schoon."]),
+    N("Melk wordt te heet", 1, "De melkkan staat niet goed op de temperatuursensor.", ["Zet de kan goed op de sensor en pas eventueel de melktemperatuur aan."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
