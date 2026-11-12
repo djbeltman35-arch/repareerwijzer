@@ -16517,7 +16517,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E55","RADIO JOY ACTIVE: joystick actief bij start",1,"Een joystick van de radiobesturing is actief bij het starten (de joystick die onjuiste signalen geeft wordt geblokkeerd). Geen storing.",["Zet de bedieningshendel in de neutrale stand en herstart de bedieningskast."]),
     F("E56","RADIO JOY BROKEN: joystick defect",2,"Een joystick van de radiobesturing is defect.",["Vervang de joystick. De defecte hendel staat op het display van de radio-ontvanger als 13.nn."]),
     F("E57","RADIO POWER: verkeerde voedingsspanning",1,"Verkeerde spanning bij de radiobesturing (onder 9 V of boven 36 V).",["Controleer of de voeding 12–36 V is.", "Herstart het systeem."]),
-    F("E58","RADIO UNDEFINED: systeemfout radio",2,"Systeemfout in de radiobesturing.",["Herstart het systeem.", "Blijft de fout, neem contact op met Brokk AB."]),
+    F("E58","Onbekende systeemfout radio (melding RADIO UNDEF…)",2,"Systeemfout in de radiobesturing.",["Herstart het systeem.", "Blijft de fout, neem contact op met Brokk AB."]),
     F("E09 t/m E34, E39 t/m E41","Onderbreking of kortsluiting op een ventielspoel",2,"De code geeft een onderbreking of kortsluiting aan op een ventiel (cilinders, gereedschap, zwenken, stempels, rupsen, dumpventiel, extra hydrauliek, drukregeling of waterventiel); de displaytekst noemt welk ventiel.",["Controleer stekker en kabel op onderbreking of kortsluiting.", "Vervang zo nodig."]),
   ]});
 })();
