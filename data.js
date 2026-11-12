@@ -15001,4 +15001,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Lcd-verlichting is uit",1,"De oven gaat na 10 minuten zonder gebruik in stand-by.",["Druk op Start/Cancel of draai aan een knop; het scherm licht weer op."]),
   ]});
 })();
+(() => {
+  SRC.saecoGranaroma=["Saeco – online gebruikershandleiding GranAroma, foutcodes (Engels)","https://saeco.com/care/user-manual/granaroma/error-codes/"];
+  MODELS.push({ id:"saeco-granaroma", brand:"Saeco", name:"GranAroma volautomaat: foutcode 01, 03, 04, 05, 11, 14, 19", dev:"volautomaat", cat:"koffiemachines", years:"GranAroma", unit:null,
+  intro:"Saeco noemt deze foutcodes van de GranAroma codes die je zelf kunt oplossen. Verschijnt er een andere code, neem dan contact op met het Consumer Care Center in je land.",
+  weak:[], parts:[], tasks:[], src:["saecoGranaroma"],
+  faults:[
+    F("01","Koffietrechter verstopt",1,"De trechter voor gemalen koffie is verstopt.",["Schakel de machine uit en haal de stekker uit het stopcontact.","Verwijder de zetgroep.","Maak de trechter vrij met de steel van de maatlepel via het vak voor voorgemalen koffie."]),
+    F("03","Zetgroep vuil of niet goed gesmeerd",1,"De zetgroep is vuil of onvoldoende gesmeerd.",["Spoel de zetgroep met schoon water en laat hem aan de lucht drogen.","Smeer de zetgroep.","Start de machine opnieuw."]),
+    F("04","Zetgroep niet goed geplaatst",1,"De zetgroep zit niet in de juiste positie.",["Schakel de machine uit.","Verwijder de zetgroep en plaats hem opnieuw in de juiste positie.","Start de machine opnieuw."]),
+    F("05","Lucht in het watercircuit of AquaClean-filter",1,"Er zit lucht in het watercircuit, of het AquaClean-filter is niet goed voorbereid of verstopt.",["Start de machine opnieuw en laat 2 à 3 kopjes heet water uitlopen.","Ontkalk de machine als dat lang niet is gebeurd.","Verwijder het filter en probeer koffie te zetten. Lukt dat, bereid het filter dan goed voor en plaats het terug; zo niet, vervang het filter."]),
+    F("11","Machine moet op kamertemperatuur komen",1,"De machine moet aan de omgevingstemperatuur wennen.",["Laat de machine op kamertemperatuur komen.","Schakel hem 30 minuten uit en daarna weer in.","Blijft het probleem: neem contact op met het Consumer Care Center."]),
+    F("14","Machine oververhit",1,"De machine is te warm geworden.",["Schakel de machine uit en start hem na 30 minuten opnieuw."]),
+    F("19","Netsnoer niet goed aangesloten",1,"De kleine stekker van het netsnoer zit niet goed in de aansluiting achter op de machine.",["Duw de kleine stekker van het netsnoer volledig in de aansluiting achter op de machine."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
