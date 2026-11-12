@@ -13118,4 +13118,27 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("F68", "Afvoerpomp (BLDC)", 3, "Fout in de afvoerpomp.", ["Bel de Gorenje-service."])
   ]});
 })();
+(() => {
+  SRC.askoWm76 = ["ASKO – Gebruiksaanwijzing wasmachine WM76 / WM86 (W1084, partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/949453en.html"];
+  MODELS.push({ id: "asko-wasmachine", brand: "ASKO", name: "Wasmachine (WM76/WM86-serie): foutcode E0 t/m E40", dev: "wasmachine", cat: "wasmachines", years: "ASKO-wasmachines uit de WM76/WM86-serie, o.a. W1084", unit: null, also: "Asko wasmachine E3, Asko wasmachine E7, Asko E7.1, Asko E2 deur, Asko wasmachine E13, Asko wasmachine foutcode, Asko E9 lekkage", intro: "Een ASKO-wasmachine toont een E-code bij een storing. E3 en E7 gaan over water in en uit, E2, E22 en E23 over de deur; E7.1 en E7.2 zijn waarschuwingen over het pompfilter en te veel wasmiddel.", weak: ["Verstopt pompfilter.", "Te veel wasmiddel.", "Scheef verdeeld wasgoed."], parts: [], tasks: [], src: ["askoWm76"], faults: [
+    F("E0", "Onjuiste instellingen", 1, "De instellingen kloppen niet.", ["Start het programma opnieuw.", "Komt de code terug, bel de ASKO-service."]),
+    F("E1", "Temperatuursensor of te koud water", 1, "Fout in de temperatuursensor, of het toegevoerde water is te koud.", ["Herhaal het wasprogramma.", "Komt de code terug, bel de ASKO-service."]),
+    F("E2", "Deurvergrendeling", 1, "De deur vergrendelt niet.", ["Controleer of de deur goed dicht is, zet de machine uit en weer aan en wacht ongeveer 10 seconden.", "Komt de code terug, bel de ASKO-service."]),
+    F("E3", "Water vullen", 1, "Er komt niet genoeg water binnen.", ["Controleer of de kraan open staat, het filtertje schoon is en de slang niet geknikt of verstopt is.", "Controleer de waterdruk (1-10 bar) en de hoogte van de afvoerslang.", "Druk op OK om verder te gaan.", "Komt de code terug, bel de ASKO-service."]),
+    F("E6", "Water verwarmen", 2, "Het water wordt niet verwarmd.", ["Start het programma opnieuw.", "Komt de code terug, bel de ASKO-service."]),
+    F("E7", "Water afvoeren", 1, "Het water wordt niet afgepompt.", ["Maak het pompfilter schoon en haal vuil uit het filterhuis en het pompwaaiertje.", "Controleer de afvoerslang, de afvoer en de slanghoogte, en gebruik minder wasmiddel.", "Druk op Exit.", "Komt de code terug, bel de ASKO-service."]),
+    F("E7.1", "Afvoer gaat traag", 1, "Waarschuwing: de pomp voert minder water af.", ["Maak het pompfilter schoon."]),
+    F("E7.2", "Te veel wasmiddel", 1, "Waarschuwing: te veel schuim door te veel wasmiddel.", ["Gebruik minder wasmiddel."]),
+    F("E9", "Waterlekkage", 2, "Er is water gelekt bij de machine (ook E9.1).", ["Zet de machine uit en weer aan en kijk aan de buitenkant of er water lekt.", "Lekt hij, draai de kraan dicht en controleer de aansluiting van de afvoerslang, of bel de service."]),
+    F("E10", "Waterniveausensor", 2, "Fout in de waterniveausensor (ook E10.1).", ["Haal de stekker eruit, steek hem er weer in en zet de machine aan.", "Laat het water af via het pompfilter en maak filter en sifon schoon.", "Komt de code terug, bel de ASKO-service."]),
+    F("E11", "Water loopt over", 2, "Er komt te veel water in de machine.", ["Start het programma opnieuw.", "Blijft hij water innemen, draai de kraan dicht en bel de service."]),
+    F("E12", "Motor", 2, "Fout in de motor of de motorbesturing.", ["Start het programma opnieuw.", "Komt de code terug, bel de ASKO-service."]),
+    F("E13", "Wasgoed uit balans", 1, "Het wasgoed is ongelijk verdeeld.", ["Verdeel het wasgoed met de hand en herhaal het programma."]),
+    F("E22", "Deur vergrendelt niet", 2, "De deur is dicht maar vergrendelt niet (ook E22.1).", ["Zet de machine uit en weer aan en start het programma opnieuw.", "Komt de code terug, bel de ASKO-service."]),
+    F("E23 / E24", "Deur ontgrendelt niet", 2, "De deur is dicht maar gaat niet van het slot (ook E23.1).", ["Zet de machine uit en weer aan.", "Moet je er nu bij, gebruik de noodontgrendeling uit de handleiding.", "Komt de code terug, bel de ASKO-service."]),
+    F("E26", "Deurslot: te hoge stroom", 2, "Bij het vergrendelen van de deur was de stroom te hoog.", ["Herstart de machine.", "Komt de code terug, bel de ASKO-service."]),
+    F("E36 / E37", "Elektronica", 3, "Communicatiefout tussen bedieningspaneel en vermogensprint (E36) of de softwareversies passen niet bij elkaar (E37).", ["Zet de machine uit en weer aan.", "Bel de ASKO-service."]),
+    F("E40", "Netspanning", 1, "De netspanning was langere tijd lager dan 180 V of hoger dan 260 V.", ["Controleer de stroomvoorziening."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
