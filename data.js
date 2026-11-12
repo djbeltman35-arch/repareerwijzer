@@ -15300,7 +15300,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.krupsIntuitionExp=["Krups – gebruiksaanwijzing Intuition Experience (EA877), NL-deel 'Antwoorden op uw vragen'","https://dam.groupeseb.com/m/ad7a3aaa726bf881/original/8020006479-IFU.pdf"];
-  MODELS.push({ id:"krups-intuition-experience", brand:"Krups", name:"Intuition Experience volautomaat: storingen en meldingen", dev:"volautomaat", cat:"koffiemachines", years:"EA876, EA877", unit:null,
+  MODELS.push({ id:"krups-intuition-experience", brand:"Krups", name:"Intuition Experience volautomaat: storingen en meldingen", dev:"volautomaat", cat:"koffiemachines", years:"EA877", unit:null,
   intro:"De Krups Intuition Experience toont geen foutcodes, maar meldingen en een intuïtieve lichtindicator. Dit zijn de problemen die Krups zelf in de handleiding behandelt.",
   weak:[], parts:[], tasks:[], src:["krupsIntuitionExp"],
   faults:[
