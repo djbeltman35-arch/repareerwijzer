@@ -16081,4 +16081,9 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("PP","Defect druksensor",2,"De druksensor is open of kortgesloten.",["Neem contact op met uw installateur of zwembadspecialist."]),
   ]});
 })();
+(() => {
+  SRC.haywardSline=["Hayward – installatie- en gebruikshandleiding S.Line Pro (ISHPSLINEINV), bijlage foutcodes (NL-deel)","https://cdn.hayward.fr/production/media/6/5/9/8/600dd3.pdf"];
+  const m=MODELS.find(x=>x.id==="hayward-energyline-pro-inverter"); m.src.push("haywardSline"); m.also=(m.also?m.also+", ":"")+"Hayward S.Line Pro (zelfde foutcodes)";
+  m.faults.push(F("OFF","Warmtepomp start niet meer",1,"Het contact Remote On/Off (5-6) is open.",["Sluit het contact Remote On/Off (5-6), zie het elektrisch schema."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
