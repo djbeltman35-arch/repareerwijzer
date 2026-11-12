@@ -15260,4 +15260,20 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("31703","Onbekend bestandssysteem",1,"De USB-stick heeft een bestandssysteem dat de printer niet ondersteunt.",["Gebruik een andere USB-stick of formatteer deze als FAT32."]),
   ]});
 })();
+(() => {
+  SRC.zehnderCA350i=["Zehnder – ComfoAir 350 installer manual (Engels), storingsmeldingen en troubleshooting","https://zehnder-systems-si.zendesk.com/hc/en-us/article_attachments/4417546873361"];
+  const m=MODELS.find(x=>x.id==="zehnder-comfoair"); m.src.push("zehnderCA350i");
+  m.faults.push(F("A0","Storing A0",2,"Storing (in de lijst zonder omschrijving).",["Laat de installateur parameter P60 op 0 zetten en de unit resetten (P74 op 1)."]));
+  m.faults.push(F("A1","Temperatuursensor T1 (buitenlucht) defect",2,"De NTC-sensor T1 voor de buitenluchttemperatuur is defect.",["Bel de installateur; de sensor moet worden gecontroleerd of vervangen."]));
+  m.faults.push(F("A2","Temperatuursensor T2 (toevoerlucht) defect",2,"De NTC-sensor T2 voor de toevoerluchttemperatuur is defect.",["Bel de installateur; de sensor moet worden gecontroleerd of vervangen."]));
+  m.faults.push(F("A3","Temperatuursensor T3 (retourlucht) defect",2,"De NTC-sensor T3 voor de retourluchttemperatuur is defect.",["Bel de installateur; de sensor moet worden gecontroleerd of vervangen."]));
+  m.faults.push(F("A4","Temperatuursensor T4 (afvoerlucht) defect",2,"De NTC-sensor T4 voor de afvoerluchttemperatuur is defect.",["Bel de installateur; de sensor moet worden gecontroleerd of vervangen."]));
+  m.faults.push(F("A5","Storing bypassmotor",2,"Er is een storing aan de motor van de bypass.",["Bel de installateur."]));
+  m.faults.push(F("A6","Storing motor voorverwarmer",2,"Er is een storing aan de motor van de voorverwarmer.",["Bel de installateur."]));
+  m.faults.push(F("A7","Voorverwarmer warmt onvoldoende op",2,"Na 3 minuten voorverwarmen is de temperatuur bij T1 minder dan 4 °C gestegen. Dit kan ook gebeuren als er te veel koude lucht langs de voorverwarmer gaat.",["Verlaag de luchthoeveelheid en reset de unit (P74 op 1).", "Komt de code terug: bel de installateur."]));
+  m.faults.push(F("A8","Voorverwarmer wordt te heet",2,"De voorverwarmer wordt te heet (T1 boven 40 °C).",["Laat de installateur de ventilatorinstellingen, de toevoerventielen, de toevoerkanalen en de versie-instelling (P57) controleren."]));
+  m.faults.push(F("E1","Afvoerventilator draait niet",2,"De ventilator voor de afvoerlucht draait niet.",["Bel de installateur."]));
+  m.faults.push(F("E2","Toevoerventilator draait niet",2,"De ventilator voor de toevoerlucht draait niet.",["Bel de installateur."]));
+  m.faults.push(F("EA2","Geen communicatie met enthalpiesensor",2,"De ComfoAir communiceert niet met de enthalpiesensor.",["Laat de installateur parameter P59 instellen (2 met enthalpiewisselaar, 0 zonder) en de unit resetten (P74 op 1)."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
