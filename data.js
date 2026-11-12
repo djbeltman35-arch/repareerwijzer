@@ -15611,4 +15611,42 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("Err","Communicatiefout bedieningsveld en elektronica",2,"De functie van de ontstoringstoets blijft actief.",["Neem contact op met uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.bulexGeniaSet=["Bulex – installatie- en onderhoudshandleiding GeniaSet (0020223273_04), bijlage B foutcodes","https://www.bulex.be/geniaset/0020223273-04-2026898.pdf"];
+  MODELS.push({ id:"bulex-geniaset", brand:"Bulex", name:"GeniaSet warmtepomp: foutcodes F.22 t/m F.1288", dev:"warmtepomp", cat:"warmtepompen", years:"GeniaSet", unit:null,
+  intro:"Bij een fout toont de Bulex GeniaSet een foutcode F.xx. Foutcodes hebben voorrang op alle andere meldingen; bij meerdere storingen wisselen de codes elke 2 seconden. Na het verhelpen neemt u het product weer in gebruik met de ontstoringstoets. Komt de fout na meerdere resetpogingen terug, neem dan contact op met de installateur of klantendienst.",
+  weak:[], parts:[], tasks:[], src:["bulexGeniaSet"],
+  faults:[
+    F("F.22","Waterdruk warmtepompcircuit te laag",2,"De waterdruk in het warmtepompcircuit is te laag, bijvoorbeeld door een lekkage; bijvullen door de installateur.",["Neem contact op met uw installateur."]),
+    F("F.37","Ventilatortoerental te laag",2,"Obstakel in de luchtbuis, ventilatormotor defect of niet aangesloten, of voeding van de ventilatorprintplaat defect.",["Neem contact op met uw installateur."]),
+    F("F.42","Fout codeerweerstand",3,"De codeerweerstand ontbreekt, is defect of heeft een waarde buiten het toegestane bereik.",["Neem contact op met uw installateur."]),
+    F("F.70","Ongeldige productcode",3,"Productcode ongeldig of printplaat van de gebruikersinterface niet compatibel.",["Neem contact op met uw installateur."]),
+    F("F.73","Sensorfout waterdruksensor",2,"De waterdruksensor van het warmtepompcircuit is defect, niet goed aangesloten of de kabel is onderbroken.",["Neem contact op met uw installateur."]),
+    F("F.86","Maximaalthermostaat vloerverwarming uitgevallen",2,"Vloertemperatuur te hoog, doorstroming in het cv-circuit te laag of vloerverwarmingscircuit gesloten.",["Verhelp de oorzaak en druk op de ontstoringstoets.", "Neem contact op met uw installateur."]),
+    F("F.103","Fout herkenning reserveonderdeel",3,"De ingebouwde hoofdprintplaat of transformator past niet bij het product.",["Neem contact op met uw installateur."]),
+    F("F.514","Voelerfout temperatuur compressorinlaat",2,"Sensor defect of niet goed op de hoofdprintplaat aangesloten.",["Neem contact op met uw installateur."]),
+    F("F.517","Voelerfout temperatuur compressoruitlaat",2,"Sensor defect of niet goed op de hoofdprintplaat aangesloten.",["Neem contact op met uw installateur."]),
+    F("F.519","Sensorfout retourtemperatuur",2,"Sensor defect of niet goed op de hoofdprintplaat aangesloten.",["Neem contact op met uw installateur."]),
+    F("F.520","Sensorfout aanvoertemperatuur",2,"Sensor defect of niet goed op de hoofdprintplaat aangesloten.",["Neem contact op met uw installateur."]),
+    F("F.523","Sensorfout aanvoertemperatuur tower",2,"Sensor defect, niet goed aangesloten of kabel onderbroken.",["Neem contact op met uw installateur."]),
+    F("F.526","Sensorfout temperatuur warmtewisselaar",2,"Sensor defect of niet goed op de hoofdprintplaat aangesloten.",["Neem contact op met uw installateur."]),
+    F("F.532","Doorstroming afgiftecircuit te laag",2,"Onder meer: pomp defect, watergebrek, vuilfilter in de retour ontbreekt of is verstopt, cv-circuit niet goed ontlucht of te hoog drukverlies.",["Neem contact op met uw installateur."]),
+    F("F.536","Compressoruitlaattemperatuur te hoog",3,"Onder meer: te weinig koudemiddel, defecte sensor of expansieklep, of verstopte warmtewisselaar.",["Neem contact op met uw installateur."]),
+    F("F.537","Uitlaatdruk compressor te hoog",3,"Onder meer: verkeerde hoeveelheid koudemiddel, defecte drukschakelaar of expansieklep, of onvoldoende warmteoverdracht.",["Neem contact op met uw installateur."]),
+    F("F.539","Druk koudemiddel te laag",3,"Onder meer: te weinig koudemiddel, te weinig luchtstroom, geen ontdooiing, of defecte verwarming condensopvang, 4-wegventiel of expansieklep.",["Neem contact op met uw installateur."]),
+    F("F.546","Sensorfout druksensor koudemiddelcircuit",3,"Bekabeling of sensor defect.",["Neem contact op met uw installateur."]),
+    F("F.554","Koudemiddeldruk buiten bedrijfsbereik",3,"Onder meer: verkeerde hoeveelheid koudemiddel, defecte expansieklep, 4-wegventiel of temperatuursensor.",["Neem contact op met uw installateur."]),
+    F("F.582","Fout elektronische expansieklep (EEV)",3,"Kabelisolatie defect of verbinding onderbroken.",["Neem contact op met uw installateur."]),
+    F("F.585","Sensorfout temperatuur EEV afgiftecircuit",2,"Sensor defect of niet goed op de hoofdprintplaat aangesloten.",["Neem contact op met uw installateur."]),
+    F("F.685","Communicatiefout eBus",2,"Product niet aangesloten op de thermostaat of polariteit verwisseld.",["Neem contact op met uw installateur."]),
+    F("F.750","Compressor uitgeschakeld",3,"Kabelisolatie defect of verbinding onderbroken.",["Neem contact op met uw installateur."]),
+    F("F.751","Compressor overstroom",3,"Fout in de compressor, te lage voedingsspanning of vervuilde warmtewisselaar.",["Neem contact op met uw installateur."]),
+    F("F.752","Fout omvormer",3,"Omvormerbox beschadigd, koeler vervuild of verkeerde voeding.",["Neem contact op met uw installateur."]),
+    F("F.753","Omvormer niet herkend",3,"Verbinding tussen hoofdprintplaat en omvormerbox beschadigd of onderbroken, of de omvormerbox wordt niet ingeschakeld.",["Neem contact op met uw installateur."]),
+    F("F.754","Fout printplaat ventilator",3,"Verbinding met de ventilatorprintplaat onderbroken, ventilator of printplaat defect, of de warmtepomp werd vóór de systeembesturing ingeschakeld.",["Neem contact op met uw installateur."]),
+    F("F.755","Positiefout 4-wegklep",3,"Mechanisch of elektrisch probleem met het vierwegventiel.",["Neem contact op met uw installateur."]),
+    F("F.774","Sensorfout luchtinlaattemperatuur",2,"Sensor defect of niet goed op de hoofdprintplaat aangesloten.",["Neem contact op met uw installateur."]),
+    F("F.1288","Sensorfout boilertemperatuur",2,"Sensor defect, niet goed aangesloten of kabel onderbroken.",["Neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
