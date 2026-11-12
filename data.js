@@ -14926,7 +14926,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.nefit9700=["Nefit – installatie- en onderhoudsinstructie Nefit 9700i HR(C)","https://www.nefit-bosch.nl/media/country_pool/professioneel/documenten/hr-ketels/6721875843.pdf"];
   const I="Bel uw installateur of de Nefit servicedienst.";
-  MODELS.push({ id:"nefit-9700i", brand:"Nefit", name:"9700i HR(C)", dev:"cv-ketel", cat:"cv-ketels", years:"Alle bouwjaren", unit:null,
+  MODELS.push({ id:"nefit-9700i", brand:"Nefit", name:"9700i HR(C)", dev:"9700i HR(C) cv-ketel", cat:"cv-ketels", years:"Alle bouwjaren", unit:null,
   intro:"De Nefit 9700i toont bedrijfs- en storingscodes van drie of vier cijfers. Nefit deelt ze in vier klassen in: O (bedrijfsmelding), W (waarschuwing), B (blokkerende storing, de ketel start vanzelf weer als de oorzaak weg is) en V (vergrendelende storing, alleen te verhelpen met een reset).",
   weak:[], parts:[], tasks:[], src:["nefit9700"],
   faults:[
@@ -14978,7 +14978,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.vaillantAtmomag=["Vaillant – gebruiksaanwijzing atmoMAG (MAG ...4/1 Z, MAG mini ...4/1 Z)","https://www.vaillant.be/api/download/product/nl/_atmomag_1175721.pdf"];
-  MODELS.push({ id:"vaillant-atmomag", brand:"Vaillant", name:"atmoMAG geiser: geen warm water", dev:"geiser", cat:"cv-ketels", years:"MAG ...4/1 Z, MAG mini ...4/1 Z", unit:null,
+  MODELS.push({ id:"vaillant-atmomag", brand:"Vaillant", name:"atmoMAG geiser: geen warm water", dev:"atmoMAG geiser", cat:"cv-ketels", years:"MAG ...4/1 Z, MAG mini ...4/1 Z", unit:null,
   intro:"De Vaillant atmoMAG is een geiser met een waakvlam en heeft geen display met foutcodes. Volgens Vaillant is er een storing als de geiser geen warm water levert.",
   weak:[], parts:[], tasks:[], src:["vaillantAtmomag"],
   faults:[
@@ -14989,7 +14989,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.sageSov860=["Sage – the Smart Oven Air Fryer (SOV860) gebruikershandleiding, EU (NL-deel)","https://assets.sageappliances.com/BOV860/SOV860_EU_UG8_N21_LR.pdf"];
   const K="Haal onmiddellijk de stekker uit het stopcontact en bel de klantenservice van Sage.";
-  MODELS.push({ id:"sage-smart-oven-air-fryer", brand:"Sage", name:"the Smart Oven Air Fryer (SOV860): E01, E02, E03, E05", dev:"heteluchtoven", cat:"kleine-apparaten", years:"SOV860 / BOV860", unit:null,
+  MODELS.push({ id:"sage-smart-oven-air-fryer", brand:"Sage", name:"the Smart Oven Air Fryer (SOV860): E01, E02, E03, E05", dev:"Smart Oven Air Fryer", cat:"kleine-apparaten", years:"SOV860 / BOV860", unit:null,
   intro:"De Sage Smart Oven Air Fryer toont een foutcode op het lcd-scherm. E01, E02 en E05 zijn problemen die niet met een reset te verhelpen zijn; E03 betekent dat de oven te heet is geworden.",
   weak:[], parts:[], tasks:[], src:["sageSov860"],
   faults:[
@@ -15033,7 +15033,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.atagESerie=["ATAG – installatievoorschrift E-Serie (storingsmelding, hoofdstuk 13)","https://atag.compano.com/Data/Environments/000001/Attachment/Bijlage/Documents/InstallationManual/8A515508%20INST%20VRSCHR%20E%20SERIE%20V1116.pdf"];
-  MODELS.push({ id:"atag-e-serie", brand:"ATAG", name:"E-Serie cv-ketel: storingscodes C 10 t/m C1 81", dev:"cv-ketel", cat:"cv-ketels", years:"E223C, E264C, E325C, E325EC, E320S", unit:null,
+  MODELS.push({ id:"atag-e-serie", brand:"ATAG", name:"E-Serie cv-ketel: storingscodes C 10 t/m C1 81", dev:"E-Serie cv-ketel", cat:"cv-ketels", years:"E223C, E264C, E325C, E325EC, E320S", unit:null,
   intro:"De ATAG E-Serie toont een storing als code Cx xx. Met een sleutelsymbool is het een blokkering: tijdelijk, die heft zichzelf op of vergrendelt de ketel na enkele pogingen. Met een belsymbool is het een error: de ketel is vergrendeld en alleen een reset of een servicemonteur verhelpt dat.",
   weak:[], parts:[], tasks:[], src:["atagESerie"],
   faults:[
@@ -15061,7 +15061,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.atagXL=["ATAG – installatie- en servicemanual XL70, XL105, XL140 (hoofdstuk 14 storingsmelding)","https://atag.compano.com/Data/Environments/000001/Attachment/Bijlage/Documents/InstallationManual/8A511907%20Installatievoorschrift%20XL%20V1216.pdf"];
-  MODELS.push({ id:"atag-xl", brand:"ATAG", name:"XL-serie (XL70, XL105, XL140): storingscodes B, E en M", dev:"cv-ketel", cat:"cv-ketels", years:"XL70, XL105, XL140", unit:null,
+  MODELS.push({ id:"atag-xl", brand:"ATAG", name:"XL-serie (XL70, XL105, XL140): storingscodes B, E en M", dev:"XL cv-ketel", cat:"cv-ketels", years:"XL70, XL105, XL140", unit:null,
   intro:"De ATAG XL toont een hoofdcode en een subcode, bijvoorbeeld Ex02sc01. B is een blokkering (tijdelijk, heft zichzelf op of wordt na enkele pogingen een error), E een error (de ketel is vergrendeld; alleen een reset of een servicemonteur verhelpt dat) en M een melding (de ketel blijft in bedrijf, maar er is op korte termijn actie nodig). Het teken na de letter geeft aan waar de fout zit: 0 = ketel, 1 = brander A, 2 = brander B.",
   weak:[], parts:[], tasks:[], src:["atagXL"],
   faults:[
@@ -15145,7 +15145,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("13703","Onbekend bestandssysteem",1,"De USB-stick heeft een bestandssysteem dat de printer niet ondersteunt.",["Gebruik een andere USB-stick of formatteer deze als FAT32."]));
 })();
 (() => {
-  MODELS.push({ id:"prusa-mini", brand:"Prusa", name:"Original Prusa MINI en MINI+: foutcodes 12xxx", dev:"3D-printer", cat:"3d-printers", years:"MINI, MINI+", unit:null,
+  MODELS.push({ id:"prusa-mini", brand:"Prusa", name:"Original Prusa MINI en MINI+: foutcodes 12xxx", dev:"MINI 3D-printer", cat:"3d-printers", years:"MINI, MINI+", unit:null,
   intro:"De Prusa MINI toont een foutcode van vijf cijfers die begint met 12 (het printernummer). Het derde cijfer is de categorie: 1 mechanisch, 2 temperatuur, 3 elektronica, 6 bootloader/firmware-update, 7 waarschuwing.",
   weak:[], parts:[], tasks:[], src:["prusaErrGh"],
   faults:[
@@ -15184,7 +15184,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   ]});
 })();
 (() => {
-  MODELS.push({ id:"prusa-core-one", brand:"Prusa", name:"Prusa CORE One: foutcodes 31xxx", dev:"3D-printer", cat:"3d-printers", years:"CORE One", unit:null,
+  MODELS.push({ id:"prusa-core-one", brand:"Prusa", name:"Prusa CORE One: foutcodes 31xxx", dev:"CORE One 3D-printer", cat:"3d-printers", years:"CORE One", unit:null,
   intro:"De Prusa CORE One toont een foutcode van vijf cijfers die begint met 31 (het printernummer). Het derde cijfer is de categorie: 1 mechanisch, 2 temperatuur, 3 elektronica, 5 systeem, 6 bootloader/firmware-update, 7 waarschuwing.",
   weak:[], parts:[], tasks:[], src:["prusaErrGh"],
   faults:[
@@ -15300,7 +15300,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.krupsIntuitionExp=["Krups – gebruiksaanwijzing Intuition Experience (EA877), NL-deel 'Antwoorden op uw vragen'","https://dam.groupeseb.com/m/ad7a3aaa726bf881/original/8020006479-IFU.pdf"];
-  MODELS.push({ id:"krups-intuition-experience", brand:"Krups", name:"Intuition Experience volautomaat: storingen en meldingen", dev:"volautomaat", cat:"koffiemachines", years:"EA877", unit:null,
+  MODELS.push({ id:"krups-intuition-experience", brand:"Krups", name:"Intuition Experience volautomaat: storingen en meldingen", dev:"Intuition Experience volautomaat", cat:"koffiemachines", years:"EA877", unit:null,
   intro:"De Krups Intuition Experience toont geen foutcodes, maar meldingen en een intuïtieve lichtindicator. Dit zijn de problemen die Krups zelf in de handleiding behandelt.",
   weak:[], parts:[], tasks:[], src:["krupsIntuitionExp"],
   faults:[
@@ -15402,7 +15402,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.intergasXource=["Intergas – installatiehandleiding Intergas Xource (88000301), hoofdstuk 11 storingen","https://www.intergas-verwarming.nl/app/uploads/2021/06/88000301-Installatiehandleiding-Intergas-Xource.pdf"];
-  MODELS.push({ id:"intergas-xource", brand:"Intergas", name:"Xource warmtepomp: storingscodes F en notificaties N", dev:"warmtepomp", cat:"warmtepompen", years:"Xource", unit:null,
+  MODELS.push({ id:"intergas-xource", brand:"Intergas", name:"Xource warmtepomp: storingscodes F en notificaties N", dev:"Xource warmtepomp", cat:"warmtepompen", years:"Xource", unit:null,
   intro:"De Intergas Xource toont bij een storing een knipperend servicesymbool en 30 seconden lang de code F--- op het linker display. Tik op het knipperende symbool om de code opnieuw te zien. Resetten: houd de knipperende servicetoets 2 seconden vast. Intergas raadt aan eerst de oorzaak op te lossen. Notificaties (N) beïnvloeden de werking niet en verdwijnen vanzelf als het systeem zich herstelt; komt een notificatie steeds terug, raadpleeg dan Intergas.",
   weak:[], parts:[], tasks:[], src:["intergasXource"],
   faults:[
@@ -15436,7 +15436,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.intergasDaikinHyb=["Intergas – installatiehandleiding Intergas Daikin Hybride (88510808), § 8.2 storingscodes","https://www.intergas-verwarming.nl/app/uploads/2021/01/88510808-Installatiehandleiding-Intergas-Daikin-Hybride.pdf"];
-  MODELS.push({ id:"intergas-daikin-hybride", brand:"Intergas", name:"Intergas Daikin Hybride: storingscodes gasketel", dev:"hybride warmtepomp", cat:"warmtepompen", years:"Intergas Daikin Hybride", unit:null,
+  MODELS.push({ id:"intergas-daikin-hybride", brand:"Intergas", name:"Intergas Daikin Hybride: storingscodes gasketel", dev:"Daikin Hybride", cat:"warmtepompen", years:"Intergas Daikin Hybride", unit:null,
   intro:"Bij de Intergas Daikin Hybride knippert de rode storings-led als de branderautomaat een fout ziet; de code staat dan op het temperatuurdisplay. Na het verhelpen start u de ketel opnieuw met de reset-toets.",
   weak:[], parts:[], tasks:[], src:["intergasDaikinHyb"],
   faults:[
@@ -15465,7 +15465,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(N("Lichtbalk pulseert blauw",1,"Klaar om een bluetooth-apparaat te verbinden.",["Verbind je apparaat via bluetooth."]));
 })();
 (() => {
-  MODELS.push({ id:"prusa-mmu3", brand:"Prusa", name:"MMU3 (Multi Material Unit): foutcodes 04xxx", dev:"3D-printer-accessoire", cat:"3d-printers", years:"MMU3", unit:null,
+  MODELS.push({ id:"prusa-mmu3", brand:"Prusa", name:"MMU3 (Multi Material Unit): foutcodes 04xxx", dev:"MMU3", cat:"3d-printers", years:"MMU3", unit:null,
   intro:"De Prusa MMU toont foutcodes die beginnen met 04. Het derde cijfer is de categorie: 1 mechanisch, 2 temperatuur, 3 elektronica, 4 verbinding, 5 systeem.",
   weak:[], parts:[], tasks:[], src:["prusaErrGh"],
   faults:[
@@ -15502,7 +15502,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   ]});
 })();
 (() => {
-  MODELS.push({ id:"prusa-xl", brand:"Prusa", name:"Original Prusa XL: foutcodes 17xxx", dev:"3D-printer", cat:"3d-printers", years:"XL", unit:null,
+  MODELS.push({ id:"prusa-xl", brand:"Prusa", name:"Original Prusa XL: foutcodes 17xxx", dev:"XL 3D-printer", cat:"3d-printers", years:"XL", unit:null,
   intro:"De Prusa XL toont een foutcode van vijf cijfers die begint met 17 (het printernummer). Het derde cijfer is de categorie: 1 mechanisch, 2 temperatuur, 3 elektronica, 5 systeem, 6 bootloader/firmware-update, 7 waarschuwing.",
   weak:[], parts:[], tasks:[], src:["prusaErrGh"],
   faults:[
@@ -15572,7 +15572,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.vaillantEcocraft=["Vaillant – installatie- en onderhoudshandleiding ecoCRAFT exclusiv VKK 806/3 t/m 2806/3 (NL, 2025), bijlage E foutcodes","https://www.vaillant.be/api/download/product/nl/_ecocraft-exclusiv_1430259.pdf"];
-  MODELS.push({ id:"vaillant-ecocraft-exclusiv", brand:"Vaillant", name:"ecoCRAFT exclusiv: foutcodes F.00 t/m F.74", dev:"cv-ketel", cat:"cv-ketels", years:"VKK 806/3 t/m VKK 2806/3", unit:null,
+  MODELS.push({ id:"vaillant-ecocraft-exclusiv", brand:"Vaillant", name:"ecoCRAFT exclusiv: foutcodes F.00 t/m F.74", dev:"ecoCRAFT exclusiv cv-ketel", cat:"cv-ketels", years:"VKK 806/3 t/m VKK 2806/3", unit:null,
   intro:"Bij de Vaillant ecoCRAFT exclusiv (VKK 806/3 t/m 2806/3) begint een foutcode met F. en vraagt om een installateur.",
   weak:[], parts:[], tasks:[], src:["vaillantEcocraft"],
   faults:[
@@ -15613,7 +15613,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.bulexGeniaSet=["Bulex – installatie- en onderhoudshandleiding GeniaSet (0020223273_04), bijlage B foutcodes","https://www.bulex.be/geniaset/0020223273-04-2026898.pdf"];
-  MODELS.push({ id:"bulex-geniaset", brand:"Bulex", name:"GeniaSet warmtepomp: foutcodes F.22 t/m F.1288", dev:"warmtepomp", cat:"warmtepompen", years:"GeniaSet", unit:null,
+  MODELS.push({ id:"bulex-geniaset", brand:"Bulex", name:"GeniaSet warmtepomp: foutcodes F.22 t/m F.1288", dev:"GeniaSet warmtepomp", cat:"warmtepompen", years:"GeniaSet", unit:null,
   intro:"Bij een fout toont de Bulex GeniaSet een foutcode F.xx. Foutcodes hebben voorrang op alle andere meldingen; bij meerdere storingen wisselen de codes elke 2 seconden. Na het verhelpen neemt u het product weer in gebruik met de ontstoringstoets. Komt de fout na meerdere resetpogingen terug, neem dan contact op met de klantenservice.",
   weak:[], parts:[], tasks:[], src:["bulexGeniaSet"],
   faults:[
@@ -15651,7 +15651,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.bulexGeniaAir=["Bulex – gebruiksaanwijzing Genia Air (0020218081_01), hoofdstuk 6 storingen","https://www.bulex.be/geniaair/0020218081-01-1745060.pdf"];
-  MODELS.push({ id:"bulex-genia-air", brand:"Bulex", name:"Genia Air warmtepomp: storingen die je zelf kunt verhelpen", dev:"warmtepomp", cat:"warmtepompen", years:"Genia Air", unit:null,
+  MODELS.push({ id:"bulex-genia-air", brand:"Bulex", name:"Genia Air warmtepomp: storingen die je zelf kunt verhelpen", dev:"Genia Air warmtepomp", cat:"warmtepompen", years:"Genia Air", unit:null,
   intro:"Bulex noemt in de gebruiksaanwijzing van de Genia Air alleen de storingen die je zonder installateur kunt verhelpen. Alle andere foutmeldingen moeten door een erkend installateur worden gecontroleerd.",
   weak:[], parts:[], tasks:[], src:["bulexGeniaAir"],
   faults:[
@@ -15663,7 +15663,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.remehaEhp=["Remeha – installatie- en gebruikershandleiding E-HP BW/WW (7733442), § 10.2 storingen","https://documentation.remeha.nl/wp-content/uploads/sites/68/2026/04/Installatie-en-gebruikershandleiding-E-HP-WW-BW.pdf"];
-  MODELS.push({ id:"remeha-e-hp-bw-ww", brand:"Remeha", name:"E-HP BW/WW water/water- en brine/water-warmtepomp: storingen", dev:"warmtepomp", cat:"warmtepompen", years:"E-HP 024 BWi, 139 BW, 173 BW, 032 WWi, 191 WW, 238 WW", unit:null,
+  MODELS.push({ id:"remeha-e-hp-bw-ww", brand:"Remeha", name:"E-HP BW/WW water/water- en brine/water-warmtepomp: storingen", dev:"E-HP warmtepomp", cat:"warmtepompen", years:"E-HP 024 BWi, 139 BW, 173 BW, 032 WWi, 191 WW, 238 WW", unit:null,
   intro:"Bij een storing toont de Remeha E-HP een storingscode op de controller; de uitleg staat in de handleiding van de controller. Storingen die niet op de controller verschijnen, staan hieronder.",
   weak:[], parts:[], tasks:[], src:["remehaEhp"],
   faults:[
@@ -15675,7 +15675,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.remehaQuintaAce=["Remeha – installatie- en gebruikershandleiding Quinta Ace 45-115 (7684353 v.14), hoofdstuk 10 storingscodes","https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Quinta-Ace-45-115-Installatie-en-gebruikershandleiding-NL-V14.pdf"];
-  MODELS.push({ id:"remeha-quinta-ace", brand:"Remeha", name:"Quinta Ace 45-115: storingscodes A, H en E", dev:"cv-ketel", cat:"cv-ketels", years:"Quinta Ace 45 t/m 115", unit:null,
+  MODELS.push({ id:"remeha-quinta-ace", brand:"Remeha", name:"Quinta Ace 45-115: storingscodes A, H en E", dev:"Quinta Ace cv-ketel", cat:"cv-ketels", years:"Quinta Ace 45 t/m 115", unit:null,
   intro:"De Remeha Quinta Ace toont storingscodes op drie niveaus. A is een waarschuwing (de ketel blijft werken), H een blokkering (de ketel stopt en start weer als de oorzaak weg is; bij sommige codes pas na 10 minuten) en E een vergrendeling (de oorzaak moet worden verholpen en de ketel handmatig gereset). Houd de resetknop ingedrukt om te resetten; komt de code terug, noteer hem dan en neem contact op met uw installateur.",
   weak:[], parts:[], tasks:[], src:["remehaQuintaAce"],
   faults:[
@@ -15719,7 +15719,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.mennekesHcc3=["MENNEKES – storingsoplossing AMTRON Xtra, Trend en Premium met HCC3 (NL, 2022)","https://nl.v13.mennekes.de/fileadmin/MEN-Deutschland/emobility/01_documents/04_installer/Storingsoplossing_AMTRON_HCC3_v01_2022-12-13_nl.pdf"];
-  MODELS.push({ id:"mennekes-amtron-hcc3", brand:"MENNEKES", name:"AMTRON Xtra, Trend en Premium (HCC3): foutcodes", dev:"laadpaal", cat:"laadpalen", years:"AMTRON Xtra, Trend, Premium met HCC3-regelaar", unit:null,
+  MODELS.push({ id:"mennekes-amtron-hcc3", brand:"MENNEKES", name:"AMTRON Xtra, Trend en Premium (HCC3): foutcodes", dev:"AMTRON Xtra/Trend/Premium laadpaal", cat:"laadpalen", years:"AMTRON Xtra, Trend, Premium met HCC3-regelaar", unit:null,
   intro:"Bij de MENNEKES AMTRON Xtra, Trend en Premium (met HCC3-regelaar) brandt de rode led 'Storing' bij een fout. De foutcode lees je uit via de MENNEKES Charge APP of de service-interface. Bevestig een storing met de multifunctionele knop; blijft de melding staan, kijk dan hieronder.",
   weak:[], parts:[], tasks:[], src:["mennekesHcc3"],
   faults:[
