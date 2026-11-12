@@ -278,7 +278,7 @@ for (const m of MODELS) {
   layout({
     file: `${m.id}.html`,
     title: m.brand === "Alle merken" ? `${m.name}: oorzaken en oplossingen | Foutcodezoeker` : (() => { const nc = m.faults.filter(f => f.code).length, nm = deviceName(m).replace(/ \(alle modellen\)/i, ""); return nc >= 3 ? `${nm}: ${pl(nc, "foutcode", "foutcodes")} en storingen uitgelegd | Foutcodezoeker` : `${nm}: storingen, foutcodes en onderhoud | Foutcodezoeker`; })(),
-    desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${pl(codes.length, "foutcode", "foutcodes")} uitgelegd` : `${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"} uitgelegd`}, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}.`,
+    desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${pl(codes.length, "foutcode", "foutcodes")} uitgelegd` : `${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"} uitgelegd`}${m.tasks.length ? `, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}` : m.parts.length ? ", met onderdelen" : ""}.`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }],
     extraHead: `<script id="tasks-data" type="application/json">${tasksJson}</script>`,
     body: `
@@ -571,7 +571,7 @@ for (const b of brandNames) {
   layout({
     file: brandUrl(b),
     title: `${b} storingen en foutcodes: ${cats.slice(0, 3).join(", ")} | Foutcodezoeker`,
-    desc: `Alle ${b}-storingen op een rij: ${codes.length ? pl(codes.length, "foutcode", "foutcodes") : pl(ms.reduce((n, m) => n + m.faults.length, 0), "storing", "storingen")} voor ${cats.join(", ")}. Met oplossing en onderhoudsschema.`,
+    desc: `Alle ${b}-storingen op een rij: ${codes.length ? pl(codes.length, "foutcode", "foutcodes") : pl(ms.reduce((n, m) => n + m.faults.length, 0), "storing", "storingen")} voor ${cats.join(", ")}. Met oplossing${ms.some(m => m.tasks.length) ? " en onderhoudsschema" : ""}.`,
     crumbs: [{ name: "Merken", file: "merken.html" }, { name: b, file: brandUrl(b) }],
     body: `
 <section class="stack"><span class="eyebrow">Merk</span><h1>${esc(b)} storingen en foutcodes</h1><p class="lead">Alle apparaten van ${esc(b)} op Foutcodezoeker: ${cats.join(", ")}. Kies je apparaat of zoek direct je foutcode.</p></section>
