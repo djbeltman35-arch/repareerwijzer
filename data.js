@@ -16380,4 +16380,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("EPB-fout: P kan niet worden gelost of bediend",2,"Melding: fout in de elektronische parkeerrem.",["Noteer de foutcode en neem contact op met een erkende Silence-servicewerkplaats."]),
   ]});
 })();
+(() => {
+  SRC.silenceS01my25=["Silence – Manual de usuario S01 MY25 (Spaans, PDF), Resolución de incidencias","https://www.silence.eco/es/manuales/UM-S01-MY25-ESP-V1-1---Manual-de-usuario-S01.pdf"];
+  const m=MODELS.find(x=>x.id==="silence-s01"); m.src.push("silenceS01my25"); m.years="S01 (MY22 en MY25)";
+  m.faults.push(
+    N("Verlichting (koplamp, achterlicht of knipperlichten) werkt niet",1,"Zekeringen kapot, onderdeel defect of connectoren beschadigd.",["Controleer zekeringen en connectoren.", "Blijft het probleem, ga naar de dichtstbijzijnde officiële dealer."]),
+    N("Scooter accelereert niet",2,"Gashendel ontregeld.",["Controleer de verbinding tussen gashendel en elektrische installatie.", "Ga naar de dichtstbijzijnde officiële dealer."]),
+    N("Scooter gaat niet aan",1,"Sleutel niet ingestoken, scooter staat te laden, accu leeg of zekeringen kapot.",["Controleer of de sleutel in het slot zit.", "Wacht tot het laden klaar is en koppel de lader los.", "Laad de accu volledig op.", "Vervang kapotte zekeringen; blijft het probleem, ga naar de dichtstbijzijnde officiële dealer."]),
+    N("Accu laadt niet: percentage stijgt niet",1,"Probleem met accu of lader, of er komt geen stroom bij de lader.",["Laden in de scooter: controleer de verbinding accu-scooter en scooter-stopcontact.", "Laden buiten de scooter: controleer de verbinding accu-stopcontact."]),
+    N("Remmen niet goed (remblokken in orde)",2,"Verkeerde bandenspanning, versleten banden, te zware of slecht verdeelde lading, of lucht in het remsysteem.",["Controleer de bandenspanning en breng die op het voorgeschreven niveau.", "Vervang versleten banden.", "Verminder of verdeel de lading.", "Lucht in het remsysteem: ga naar de dichtstbijzijnde officiële dealer."]),
+  );
+})();
 module.exports = { CATS, MODELS, SRC, COST };
