@@ -15905,4 +15905,14 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("89","Interne circulatiepomp",2,"Geen verwarming en geen warm water: storing aan de interne circulatiepomp.",["Neem contact op met uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.nefitTb64=["Nefit Bosch – Technisch Bulletin 64 (februari 2024): warmtepompfoutcode H01-5266 toegelicht","https://www.nefit-bosch.nl/media/country_pool/products/warmtepompen/6721880129.pdf"];
+  MODELS.push({ id:"nefit-enviline", brand:"Nefit", name:"EnviLine warmtepomp: foutcode H01-5266 en 5265", dev:"EnviLine warmtepomp", cat:"warmtepompen", years:"Nefit Bosch EnviLine", unit:null,
+  intro:"Nefit Bosch licht in Technisch Bulletin 64 de EnviLine-foutcode H01-5266 toe. Die is meestal het gevolg van slechte communicatie tussen binnen- en buitenunit.",
+  weak:[], parts:[], tasks:[], src:["nefitTb64"],
+  faults:[
+    F("H01-5266","Herhaalde communicatiestoring binnen- en buitenunit",2,"Binnen 3 uur is 3 keer melding 5265 geregistreerd. Oorzaken: een losse connector in de CAN-bus-aansluitingen, het installatieboard of de I/O-module, een breuk in de CAN-buskabel, een verkeerd type CAN-buskabel, de CAN-buskabel samen met de voedingskabel aangelegd, of een verkeerde aarding van de CAN-buskabel.",["Neem contact op met uw installateur; die moet de CAN-busbekabeling en aansluitingen controleren."]),
+    F("5265","Slechte verbinding CAN-bus binnen- en buitenunit",2,"Slechte verbinding of storing in de CAN-busbekabeling tussen binnen- en buitenunit. Na 3 keer binnen 3 uur volgt H01-5266.",["Komt de melding vaker terug: neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
