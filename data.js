@@ -12714,4 +12714,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Display toont LO of HI", 1, "Geen storing: de kamertemperatuur valt buiten het weergavebereik (LO onder -9 °C, HI boven 50 °C).", ["Je hoeft niets te doen."])
   ]});
 })();
+(() => {
+  SRC.philipsXc3000 = ["Philips Support – My Philips 3000/2000 Series Cordless Vacuum shows an error code (Engels)", "https://www.philips.sa/c-t/XC000021519/my-philips-3000-2000-series-cordless-vacuum-shows-and-error-code"];
+  MODELS.push({ id: "philips-3000-2000-steelstofzuiger", brand: "Philips", name: "3000/2000-serie steelstofzuiger: knipperende lampjes", dev: "3000/2000-serie steelstofzuiger", cat: "stofzuigers", years: "Philips draadloze stofzuiger 3000- en 2000-serie, o.a. XC3031, XC2011", unit: null, also: "Philips steelstofzuiger lampjes knipperen, Philips 3000 serie drie lampjes knipperen, Philips stofzuiger linker lampje knippert, Philips 2000 serie stofzuiger stopt, Philips stofzuiger mondstuk verstopt", intro: "De Philips 3000- en 2000-serie steelstofzuiger heeft geen display, maar drie lampjes. Welke lampjes knipperen en hoe snel, vertelt wat er mis is.", weak: ["Voorwerp in het mondstuk.", "Laden in een koude of warme ruimte.", "Vocht in het mondstuk."], parts: [], tasks: [], src: ["philipsXc3000"], faults: [
+    N("Drie lampjes knipperen 2x per seconde (10 keer)", 1, "De omgevingstemperatuur is te hoog of te laag.", ["Gebruik en bewaar de stofzuiger tussen 0 en 35 °C.", "Laad hem op tussen 10 en 35 °C."]),
+    N("Buitenste twee lampjes knipperen 3x per seconde (15 keer)", 2, "De motor zit vast of is beschadigd.", ["Haal de accu eruit, wacht 10 seconden en plaats hem terug.", "Helpt dat niet, breng hem naar een Philips-servicecentrum of neem contact op met Philips."]),
+    N("Middelste lampje knippert 2x per seconde (10 keer)", 1, "Er zit een voorwerp vast in het mondstuk.", ["Zet de stofzuiger uit.", "Haal het mondstuk los en maak het schoon; verwijder wat erin vastzit."]),
+    N("Linker twee lampjes knipperen 3x per seconde (15 keer)", 2, "Kortsluiting in het mondstuk, bijvoorbeeld door vocht.", ["Haal het mondstuk eraf en laat het goed drogen.", "Zet het terug.", "Helpt dat niet, breng hem naar een Philips-servicecentrum of neem contact op met Philips."]),
+    N("Rechter lampje knippert 2x per seconde (10 keer)", 1, "Er wordt een verkeerde adapter gebruikt.", ["Laad alleen met de originele adapter."]),
+    N("Linker lampje knippert 4x per seconde (20 keer)", 1, "De accu is leeg.", ["Laad de stofzuiger op en start hem opnieuw.", "Helpt dat niet, breng hem naar een Philips-servicecentrum of neem contact op met Philips."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
