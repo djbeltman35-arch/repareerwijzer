@@ -13416,4 +13416,24 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melding: cloud niet bereikbaar", 1, "Verbindingsprobleem met de app.", ["Zet de verbinding uit en weer aan in het menu.", "Controleer de router en herstart eventueel machine en router."])
   ]});
 })();
+(() => {
+  SRC.delonghiPdAromatic = ["De'Longhi – Gebruiksaanwijzing PrimaDonna Aromatic ECAM630, hoofdstuk 7 Frequente berichten en alarmmeldingen (PDF, dls.delonghigroup.com)", "https://dls.delonghigroup.com/files/docs/5/NL-57132C9075.pdf"];
+  MODELS.push({ id: "delonghi-primadonna-aromatic", brand: "De'Longhi", name: "PrimaDonna Aromatic volautomaat: meldingen en alarmen", dev: "PrimaDonna Aromatic volautomaat (ECAM630)", cat: "koffiemachines", years: "De'Longhi PrimaDonna Aromatic ECAM630.35, ECAM630.55 en ECAM630.75", unit: null, also: "PrimaDonna Aromatic algemene storing, PrimaDonna Aromatic koelventilator, PrimaDonna Aromatic maalgraad te fijn, PrimaDonna Aromatic Bean Adapt fout, PrimaDonna Aromatic LatteCrema, PrimaDonna Aromatic circuit leeg", intro: "De De'Longhi PrimaDonna Aromatic geeft meldingen op het touchscreen. 'Algemene storing' en 'Storing koelventilator' zijn voor de service; de meeste andere meldingen gaan over water, bonen, de melkkannen (LatteCrema Hot of Cool) of onderhoud.", weak: ["Te fijne maalgraad.", "Verkeerde melkkan of schuimknop op Clean.", "Bakjes niet op tijd geleegd."], parts: [], tasks: [], src: ["delonghiPdAromatic"], faults: [
+    N("Melding: Algemene storing", 3, "Technisch probleem.", ["Neem contact op met de De'Longhi-klantenservice of een erkend servicecentrum."]),
+    N("Melding: Storing koelventilator", 3, "Technisch probleem met de koelventilator.", ["Neem contact op met de De'Longhi-klantenservice of een erkend servicecentrum."]),
+    N("Melding: Machine moet afkoelen", 1, "Normaal na het maken van melkdranken.", ["Wacht tot de machine klaar is."]),
+    N("Melding: maalgraad te fijn", 1, "De koffie loopt te langzaam of niet door.", ["Kies Ja: de machine zet de maalgraad zelf een stand grover (met Bean Adapt bij de volgende bereiding).", "Of druk op OK en kies een lagere sterkte."]),
+    N("Melding: fout bij espresso met Bean Adapt", 1, "De instelling past niet bij de bonen.", ["Druk op OK en kies een lagere sterkte, of verfijn het bonenprofiel via Bean Adapt."]),
+    N("Melding: te veel koffie waargenomen of te veel voorgemalen koffie", 1, "Het koffiedikbakje of de lekbak is te vol, of er is meer dan één schepje voorgemalen koffie gebruikt.", ["Leeg de lekbak en het koffiedikbakje en probeer opnieuw met hooguit één schepje."]),
+    N("Melding: koffiedikbakje vol of 72 uur niet geleegd", 1, "Het koffiedikbakje is vol of al meer dan 72 uur niet geleegd.", ["Leeg en reinig het koffiedikbakje en de lekbak, ook als ze niet vol zijn."]),
+    N("Melding: waterreservoir niet geplaatst of leeg", 1, "Het reservoir zit niet goed of er is te weinig water.", ["Vul het reservoir tot MAX en duw het tot de aanslag terug."]),
+    N("Melding: hydraulisch circuit leeg", 1, "Er zit geen water in het circuit.", ["Kies Ja om te vullen en controleer of het reservoir goed is aangedrukt."]),
+    N("Melding: verkeerde melkkan of schuimknop op Clean", 1, "De verkeerde LatteCrema-kan (Hot of Cool) zit erop, of de schuimknop staat op Clean.", ["Plaats de juiste kan: Hot voor warme dranken, Cool voor koude.", "Draai de schuimknop naar de gewenste schuimstand."]),
+    N("Melding: zetgroep niet teruggeplaatst", 1, "De zetgroep zit niet op zijn plaats.", ["Plaats de zetgroep zoals in de handleiding staat."]),
+    N("Melding: binnenkant van de machine vuil", 2, "Er zitten koffieresten in de machine.", ["Wacht tot de reiniging klaar is, leeg de bakjes en probeer opnieuw.", "Blijft het, neem contact op met een servicecentrum."]),
+    N("Melding: ontkalken nodig of ontkalking onderbroken", 1, "Het is tijd om te ontkalken (ongeveer 25 minuten), of het ontkalken is niet afgemaakt.", ["Kies Ja en volg de wizard tot het einde."]),
+    N("Melding: ontkalkingsoplossing onvoldoende", 1, "Er zit te weinig ontkalker in het reservoir.", ["Vul ontkalker tot niveau A en water tot niveau B."]),
+    N("Melding: dag en tijd opnieuw instellen", 1, "De klok is gereset, bijvoorbeeld na een stroomonderbreking.", ["Stel dag en tijd opnieuw in en druk op OK."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
