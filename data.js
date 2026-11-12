@@ -13173,4 +13173,21 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("F18", "Interne datafout", 2, "Sommige lampjes of functies werken niet.", ["Haal de stekker minstens 2 minuten uit het stopcontact, steek hem er weer in, wacht 30 seconden en probeer opnieuw.", "Laat de machine nakijken door een monteur."])
   ]});
 })();
+(() => {
+  SRC.novyPanorama = ["Novy – Gebruiksaanwijzing Panorama Pro 1821 / Panorama Power 1831 en 1841, hoofdstuk 10 (PDF, novy.com)", "https://novy.com/Media/Novy Collection/User Manuals/Hob and Hood/Integrated/1821_1831_1841_110119_GA3_LR.pdf"];
+  MODELS.push({ id: "novy-panorama", brand: "Novy", name: "Panorama inductiekookplaat met afzuigtoren: foutcode E, E2, E8, Er03, Er47 en LED-meldingen", dev: "Panorama kookplaat met afzuiging", cat: "kookplaten", years: "Novy Panorama Pro 1821 en Panorama Power 1831 en 1841", unit: null, also: "Novy Panorama E8, Novy kookplaat E2, Novy Er03, Novy Er47, Novy afzuigtoren LEDs knipperen, Novy Panorama toren komt niet omhoog, Novy U400", intro: "De Novy Panorama is een inductiekookplaat met een afzuigtoren die omhoog komt. De kookplaat toont codes als E2 of Er03; de afzuiging meldt problemen met knipperende LEDs (2, 3 of 4).", weak: ["Afgesloten luchttoevoer van de ventilator.", "Voorste glas van de toren niet goed geplaatst.", "Voorwerpen op de bedieningstoetsen."], parts: [], tasks: [], src: ["novyPanorama"], faults: [
+    F("E", "Elektronica ontregeld", 2, "Het elektronische systeem is ontregeld.", ["Haal de kookplaat van de stroom (groep uit) en zet hem weer aan.", "Blijft de melding, neem contact op met de Novy-servicedienst (088-0119110)."]),
+    F("E2", "Kookplaat oververhit", 1, "De kookplaat is te warm geworden.", ["Laat hem afkoelen en zet hem daarna weer aan."]),
+    F("E8", "Luchttoevoer ventilator dicht", 1, "De luchttoevoer van de ventilator is afgesloten.", ["Maak de luchttoevoer onder of in het keukenmeubel vrij."]),
+    F("Er03", "Toetsen bedekt (1821)", 1, "Er ligt een voorwerp of vloeistof op de bedieningstoetsen.", ["Haal het weg of maak de toetsen schoon; de melding verdwijnt dan."]),
+    F("Er47", "Interne BUS", 2, "Probleem in de interne communicatie.", ["Blijft de melding, neem contact op met de Novy-servicedienst."]),
+    F("U400", "Verkeerd aangesloten (1821)", 2, "De kookplaat is niet goed op het stroomnet aangesloten.", ["Laat de aansluiting controleren door een installateur."]),
+    N("Pansymbool knippert", 1, "Er staat geen pan op de zone, de pan is niet geschikt voor inductie of de bodem is te klein.", ["Zet een geschikte inductiepan met een passende bodem op de zone."]),
+    N("Display toont U of I I", 1, "Geen storing: U is de warmhoudfunctie, I I is Stop & Go (1821).", ["Je hoeft niets te doen."]),
+    N("Afzuiging: 2 LEDs knipperen", 2, "De toren wordt niet op de gevraagde positie gedetecteerd.", ["Kijk of niets de beweging van de toren hindert en druk op de toets.", "Blijft het, neem contact op met Novy."]),
+    N("Afzuiging: 3 LEDs knipperen", 2, "De veiligheidsschakelaar in de toren blijft geactiveerd.", ["Druk op de toets.", "Blijft het, neem contact op met Novy."]),
+    N("Afzuiging: 4 LEDs knipperen", 1, "Het voorste glas ontbreekt of zit niet goed, of de detectieschakelaar is defect.", ["Plaats het voorste glas goed en druk op de toets.", "Blijft het, neem contact op met Novy."]),
+    N("Afzuiging: 1e LED knippert", 1, "Geen storing: de naloopfunctie is actief.", ["Je hoeft niets te doen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
