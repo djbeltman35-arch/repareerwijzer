@@ -15862,4 +15862,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Storing ODU com. / IDU com.",2,"Bij de HPX30A een verkeerde fasevolgorde, de verbinding tussen bediening en klemmenstrook is onderbroken, of klemmen a en b zijn omgedraaid.",["Neem contact op met uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.vaillantThermocompact=["Vaillant – gebruiksaanwijzing thermoCOMPACT VCW (0020214279_03), bijlage B verhelpen van storingen","https://support.vaillant.nl/producten-3/thermocompact-1/gebruiksaanwijzing-thermocompact-vcw-0020214279-03-2649219.pdf"];
+  MODELS.push({ id:"vaillant-thermocompact", brand:"Vaillant", name:"thermoCOMPACT VCW: F.22, F.23, F.24, F.28, F.36 en storingen", dev:"thermoCOMPACT cv-ketel", cat:"cv-ketels", years:"thermoCOMPACT VCW", unit:null,
+  intro:"Dit zijn de storingen die Vaillant in de gebruiksaanwijzing van de thermoCOMPACT VCW zelf behandelt.",
+  weak:[], parts:[], tasks:[], src:["vaillantThermocompact"],
+  faults:[
+    F("F.22","Watertekort in de cv-installatie",1,"De installatiedruk is te laag; de brander wordt geblokkeerd.",["Vul de cv-installatie bij volgens de gebruiksaanwijzing.","Zit er lucht in de installatie: laat de installateur ontluchten."]),
+    F("F.23","Watertekort in de cv-installatie",1,"Watertekort in de cv-installatie.",["Vul de cv-installatie bij.","Zit er lucht in de installatie: laat de installateur ontluchten."]),
+    F("F.24","Watertekort in de cv-installatie",1,"Watertekort in de cv-installatie.",["Vul de cv-installatie bij.","Zit er lucht in de installatie: laat de installateur ontluchten."]),
+    F("F.28","Ontsteking mislukt",1,"Na drie mislukte ontstekingspogingen schakelt de ketel op storing.",["Druk een seconde op de toets Reset; de ketel probeert opnieuw te ontsteken.","Lukt het na drie pogingen niet, vraag dan uw installateur om advies."]),
+    F("F.36","Storing in het verbrandingsgastraject",3,"Er is een storing in de rookgasafvoer.",["Laat de storing verhelpen door uw installateur."]),
+    N("Ketel werkt niet: geen warm water of verwarming blijft koud",1,"Gaskraan dicht, koudwaterstopkraan dicht, stroom onderbroken, ketel uitgeschakeld of temperatuur te laag ingesteld.",["Open de gaskraan in de woning en de gaskraan aan de ketel.","Open de koudwaterstopkraan.","Controleer de zekering; bij terugkeer van de stroom start de ketel vanzelf.","Schakel de ketel in en controleer de ingestelde aanvoer- en warmwatertemperatuur."]),
+    N("Warm water werkt, verwarming niet",1,"De externe thermostaat is niet goed ingesteld.",["Stel de thermostaat goed in volgens de gebruiksaanwijzing van de thermostaat."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
