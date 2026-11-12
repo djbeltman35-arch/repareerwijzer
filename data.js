@@ -15963,4 +15963,21 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("10714","Risico op oververhitting",2,"Een ventilator geeft een onjuist toerental; de print kan doorgaan maar kan oververhit raken.",["Neem contact op met Prusa support."]),
   ]});
 })();
+(() => {
+  SRC.harviaErr=["Harvia support – foutcodes besturingen en stoomgeneratoren (Engels)","https://support.harvia.com/hc/en-gb/articles/22160267267228"];
+  SRC.harviaFcxw=["Harvia support – Circuit board diagnostics for Harvia FC/XW/XE heaters (Engels)","https://support.harvia.com/hc/en-gb/articles/27215287371292"];
+  MODELS.push({ id:"harvia-saunakachel", brand:"Harvia", name:"Saunakachel en besturing (Fenix, C150VKK, C260, FC/XW/XE): foutcodes", dev:"saunakachel", cat:"spa", years:"Fenix, C150VKK, C260, FC/XW/XE-kachels", unit:null,
+  intro:"Harvia-saunakachels en -besturingen tonen bij een storing een foutcode of melding op het bedieningspaneel. Hieronder staan de codes die Harvia zelf op zijn supportsite uitlegt.",
+  weak:[], parts:[], tasks:[], src:["harviaErr","harviaFcxw"],
+  faults:[
+    F("ER1","Onderbreking temperatuursensorcircuit (C150VKK, C260)",2,"Stroomonderbreking in het circuit van de temperatuursensor.",["De melding verdwijnt zodra de fout is verholpen; laat zo nodig een elektricien kijken."]),
+    F("ER2","Temperatuursensor kortgesloten (C150VKK, C260)",2,"De temperatuursensor is kortgesloten.",["De melding verdwijnt zodra de fout is verholpen; laat zo nodig een elektricien kijken."]),
+    F("ER3","Oververhittingsbeveiliging onderbroken (C150VKK, C260)",2,"Het circuit van de oververhittingsbegrenzer is onderbroken.",["De melding verdwijnt zodra de fout is verholpen; laat zo nodig een elektricien kijken."]),
+    F("E9","Communicatiefout vermogensunit (FC/XW/XE)",2,"Kritieke verbindingsfout tussen bedieningspaneel en printplaat. Niet veroorzaakt door wifi-onderbreking, een defecte temperatuursensor of een kapot verwarmingselement.",["Laat de datakabel tussen bedieningspaneel en printplaat los- en weer vastmaken, of vervangen als hij los of kapot is.","Houd de kabel uit de buurt van relais, sensorkabels en voedingskabels.","Laat printplaat, draden en klemmen controleren; zo nodig het bedieningspaneel vervangen."]),
+    N("Fenix: Power unit communication error",2,"Kritieke verbindingsfout, meestal tussen bedieningspaneel en printplaat.",["Zet de hoofdschakelaar uit en controleer datakabel, sensorkabels en aansluitingen.","Zet de stroom weer aan; raadpleeg zo nodig een elektricien.","Komt de fout terug: laat een elektricien het product zo snel mogelijk controleren."]),
+    N("Fenix: Failed to send control message",1,"Tijdelijke storing in de verbinding met de clouddienst; de kachel kan niet via de MyHarvia-app worden gestart.",["Wacht af; het probleem verdwijnt vanzelf.","Start de kachel intussen handmatig via het bedieningspaneel."]),
+    N("Fenix: sauna warmt langzamer op dan normaal",1,"De opwarmtijd is langer dan verwacht.",["Zorg dat deuren en ramen van de sauna dicht zijn.","Controleer of kieren in de glazen wand niet te groot zijn."]),
+    N("FC/XW/XE: bedieningspaneel heeft geen stroom",2,"Zekering of datakabel.",["Laat zekering SP205 (40 mA) en de aansluitingen van de datakabel controleren."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
