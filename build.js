@@ -17,6 +17,8 @@ const VERDICT = { 1: "Dit kun je zelf oplossen. Volg de stappen hieronder, één
 const UNIT = { km: "km", uur: "printuren" };
 const catOf = id => CATS.find(c => c.id === id);
 const pages = [];
+const NOINDEX = new Set();
+const isThin = f => f.steps && f.steps[0] && f.steps[0].startsWith("Tik op de melding op het printerscherm of in Bambu Handy");
 // Versie van deze build: verandert zodra data, build of assets veranderen, zodat bezoekers altijd de nieuwste bestanden krijgen
 const VER = (() => { const h = require("crypto").createHash("sha1"); for (const f of ["data.js", "build.js", "assets/style.css", "assets/app.js", "static/sw.js"]) { try { h.update(fs.readFileSync(path.join(__dirname, f))); } catch (e) {} } return h.digest("hex").slice(0, 8); })();
 // Laatst gewijzigd per pagina: alleen een nieuwe datum als de inhoud echt verandert (betere lastmod voor Google)
@@ -60,7 +62,8 @@ const fold = (title, inner, open = false, n = 0) => `<section class="stack"><det
 const howtoLd = (name, steps) => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "HowTo", name, step: steps.map((t, i) => ({ "@type": "HowToStep", position: i + 1, text: t })) }).replace(/</g, "\\u003c")}</script>`;
 const faqLd = qs => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }).replace(/</g, "\\u003c")}</script>`;
 const clip = (t, n = 158) => { t = String(t).replace(/\s+/g, " ").trim(); if (t.length <= n) return t; const c = t.slice(0, n); return c.slice(0, c.lastIndexOf(" ")).replace(/[,;:–-]+$/, "") + "…"; };
-function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts = "" }) {
+function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts = "", noindex = false }) {
+  if (noindex) { NOINDEX.add(file); extraHead = '<meta name="robots" content="noindex, follow">' + extraHead; }
   if (title.length > 65 && / \| Foutcodezoeker$/.test(title)) title = title.replace(/ \| Foutcodezoeker$/, "");
   const url = file === "index.html" ? `${SITE}/` : `${SITE}/${file.replace(/\.html$/, "")}`;
   const bc = crumbs.length ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ name: "Home", file: "index.html" }, ...crumbs].map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.file === "index.html" ? `${SITE}/` : `${SITE}/${c.file.replace(/\.html$/, "")}` })) })}</script>` : "";
@@ -443,7 +446,7 @@ for (const m of MODELS) {
   for (let p = 2; p <= n; p++) {
     const part = codes.slice((p - 1) * CODE_PER, p * CODE_PER), a = (p - 1) * CODE_PER + 1, z = a + part.length - 1;
     layout({
-      file: codePageUrl(m, p),
+      file: codePageUrl(m, p), noindex: part.every(isThin),
       title: fitTitle([`${dn}: foutcodes ${a}–${z} van ${codes.length}`, `${dn}: foutcodes ${a}–${z}`]),
       desc: `Foutcodes ${a} tot en met ${z} van de ${dn}, van ${part[0].code} tot ${part[part.length - 1].code}: per code de betekenis en wat je zelf kunt doen.`,
       crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: `Foutcodes ${a}–${z}`, file: codePageUrl(m, p) }],
@@ -497,7 +500,7 @@ for (const { m, f } of allCodes) {
   const others = (() => { const all = m.faults.filter(x => x.code); if (all.length <= 60) return all.filter(x => x !== f); const i = all.indexOf(f); const s = Math.max(0, Math.min(i - 25, all.length - 51)); return all.slice(s, s + 51).filter(x => x !== f); })();
   const dev = deviceName(m);
   layout({
-    file: codeUrl(m, f),
+    file: codeUrl(m, f), noindex: isThin(f),
     title: (() => { const br = m.brand.split("/").map(x => x.trim()); const dv = !m.dev && /\(alle modellen\)/.test(m.name) && m.brand !== "Alle merken" ? `${m.brand} ${m.name.replace(/\s*\(alle modellen\)/, "").toLowerCase()}` : dev; const d = br.length > 1 ? dv.replace(m.brand, br[0]) : dv; const ook = br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""; const cs = codeShort(f); return fitTitle([`${d} foutcode ${cs}${ook}: betekenis en ${f.d === 3 ? "wat je doet" : "zelf oplossen"}`, `${d} foutcode ${cs}${ook}: betekenis`, `${d} foutcode ${cs}: betekenis en oplossing`, `${d} foutcode ${cs}: betekenis`, `${d} foutcode ${cs}`, `${cutWords(d, Math.max(20, 58 - cs.length))} foutcode ${cs}`]); })(),
     desc: `Foutcode ${f.code} op je ${dev}: ${f.t.toLowerCase()}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
     extraHead: faqLd(codeFaq(m, f, dev)) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps) + `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "TechArticle", headline: `Foutcode ${codeShort(f)} op ${dev}: ${f.t}`, description: f.cause, dateModified: "__DMOD__", inLanguage: "nl-NL", mainEntityOfPage: `${SITE}/${codeUrl(m, f).replace(/\.html$/, "")}`, about: { "@type": "Thing", name: dev }, author: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, publisher: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, citation: m.src.filter(k => SRC[k]).map(k => ({ "@type": "CreativeWork", name: SRC[k][0], url: SRC[k][1] })) }).replace(/</g, "\\u003c")}</script>`,
@@ -904,7 +907,7 @@ fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(in
 { const have = new Set(pages.map(p => p.replace(/\.html$/, ""))), bad = new Set();
   for (const p of pages) for (const [, h] of fs.readFileSync(path.join(OUT, p), "utf8").matchAll(/href="\/([a-z0-9-]*)(?:#[^"]*)?"/g)) if (h && !have.has(h) && !fs.existsSync(path.join(OUT, h))) bad.add(`${h} (op ${p})`);
   if (bad.size) { console.error("Build gestopt, kapotte interne links:\n- " + [...bad].slice(0, 30).join("\n- ")); process.exit(1); } }
-fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html" && p !== "bedankt.html").map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html" && p !== "bedankt.html" && !NOINDEX.has(p)).map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, "llms.txt"), `# Foutcodezoeker
