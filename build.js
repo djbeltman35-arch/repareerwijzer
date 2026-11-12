@@ -135,6 +135,8 @@ const pill = d => `<span class="pill ${D[d][1]}">${D[d][0]}</span>`;
 const srcList = m => m.src.length ? `<ul class="sources">${m.src.map(k => `<li><a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a></li>`).join("")}</ul>` : `<p class="muted">Gebaseerd op kennis uit de gebruikersgemeenschap. Controleer met de handleiding van je eigen exemplaar.</p>`;
 const pl = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length ? `${pl(m.tasks.length, "onderhoudstaak", "onderhoudstaken")} · ` : ""}${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${pl(codes, "foutcode", "foutcodes")})` : ""}${m.also ? ` · ook: ${esc(m.also.replace(/^ook:?\s+/i, ""))}` : ""}</span></a>`; };
+const capRows = (rows, per = 25) => { if (rows.length <= 400) return rows; const out = [], cnt = {}, tot = {}; for (const r of rows) tot[r.m.id] = (tot[r.m.id] || 0) + 1; for (const r of rows) { const k = r.m.id; cnt[k] = (cnt[k] || 0) + 1; if (cnt[k] <= per) out.push(r); else if (cnt[k] === per + 1) out.push({ more: r.m, n: tot[k] }); } return out; };
+const moreRow = (r, cols) => `<tr><td colspan="${cols}"><a href="${r.more.id}.html">Alle ${r.n} foutcodes van ${esc(deviceName(r.more))} →</a></td></tr>`;
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
@@ -234,7 +236,7 @@ for (const c of CATS) {
 <section class="stack"><span class="eyebrow">Categorie</span><h1>${c.name}</h1><p class="lead">${esc(c.intro)}</p></section>
 ${KB.some(a => a.cat === c.id) ? `<section class="stack"><h2>Uitleg in de kennisbank</h2><ul class="kb-list">${KB.filter(a => a.cat === c.id).map(a => `<li><a href="kennisbank-${a.id}.html">${esc(a.q)}</a></li>`).join("")}</ul></section>` : ""}
 <section class="stack"><h2>Merken en modellen</h2><div class="models">${ms.map(modelCard).join("")}</div></section>
-${codes.length ? fold("Alle foutcodes", `<div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Merk</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(m.brand)}</td></tr>`).join("")}</tbody></table></div>`, false, codes.length) : ""}`
+${codes.length ? fold("Alle foutcodes", `<div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Merk</th></tr></thead><tbody>${capRows(codes).map(r => r.more ? moreRow(r, 3) : (({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(m.brand)}</td></tr>`)(r)).join("")}</tbody></table></div>`, false, codes.length) : ""}`
   });
 }
 
@@ -584,7 +586,7 @@ for (const b of brandNames) {
 <section class="stack"><span class="eyebrow">Merk</span><h1>${esc(b)} storingen en foutcodes</h1><p class="lead">Alle apparaten van ${esc(b)} op Foutcodezoeker: ${cats.join(", ")}. Kies je apparaat of zoek direct je foutcode.</p></section>
 <section class="stack"><h2>Apparaten</h2><div class="models">${ms.map(modelCard).join("")}</div></section>
 ${brandSummary(b, ms)}
-${codes.length ? fold(`Alle ${esc(b)}-foutcodes`, `<div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Apparaat</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(catOf(m.cat).one)}</td></tr>`).join("")}</tbody></table></div>`, false, codes.length) : ""}
+${codes.length ? fold(`Alle ${esc(b)}-foutcodes`, `<div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Apparaat</th></tr></thead><tbody>${capRows(codes).map(r => r.more ? moreRow(r, 3) : (({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(catOf(m.cat).one)}</td></tr>`)(r)).join("")}</tbody></table></div>`, false, codes.length) : ""}
 ${(() => { const tx = ms.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ m, f }))); return tx.length ? fold(`${esc(b)}-storingen zonder foutcode`, `<div class="results">${tx.map(({ m, f }) => `<a href="${textUrl(m, f)}"><span>${esc(f.t)}</span><span>${esc(catOf(m.cat).one)} · ${D[f.d][0]}</span></a>`).join("")}</div>`, false, tx.length) : ""; })()}`
   });
 }
@@ -608,7 +610,7 @@ layout({
 <section class="stack"><span class="eyebrow">Overzicht</span><h1>Alle foutcodes</h1><p class="lead">Zoek je code op in de tabel, of gebruik het zoekveld. Elke code heeft een eigen pagina met oplossing.</p>
 <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch WAT28400 E18" aria-label="Zoek een foutcode" autocomplete="off"></div><div class="results" id="res" aria-live="polite"></div><div class="searchtip"><p><strong>Zo vind je direct de oplossing:</strong> typ het merk, het typenummer en de foutcode, bijvoorbeeld <span class="mono">Bosch WAT28400 E18</span>, en druk op Enter. Alleen merk en code werkt ook, zoals <span class="mono">Samsung 4C</span>. Een klacht kan ook: <span class="mono">vaatwasser stinkt</span>.</p><p class="muted">Het typenummer staat op het typeplaatje: meestal in de deuropening, aan de zijkant van de deur of achter het klepje onderaan.</p></div></section>
 <p class="muted">Of klap hieronder een categorie open.</p>
-${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id && m.faults.some(f => f.code)).sort((a, b) => a.brand.localeCompare(b.brand)); if (!ms.length) return ""; const n = ms.reduce((k, m) => k + m.faults.filter(f => f.code).length, 0); return fold(esc(c.name), ms.map(m => `<h3>${esc(deviceName(m))}</h3><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Zelf doen?</th></tr></thead><tbody>${m.faults.filter(f => f.code).map(f => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${pill(f.d)}</td></tr>`).join("")}</tbody></table></div>`).join(""), false, n); }).join("")}`
+${CATS.map(c => { const ms = MODELS.filter(m => m.cat === c.id && m.faults.some(f => f.code)).sort((a, b) => a.brand.localeCompare(b.brand)); if (!ms.length) return ""; const n = ms.reduce((k, m) => k + m.faults.filter(f => f.code).length, 0); return fold(esc(c.name), ms.map(m => `<h3>${esc(deviceName(m))}</h3><div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Zelf doen?</th></tr></thead><tbody>${(() => { const cs = m.faults.filter(f => f.code); return cs.slice(0, 12).map(f => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${pill(f.d)}</td></tr>`).join("") + (cs.length > 12 ? `<tr><td colspan="3"><a href="${m.id}.html">Alle ${cs.length} foutcodes van ${esc(deviceName(m))} →</a></td></tr>` : ""); })()}</tbody></table></div>`).join(""), false, n); }).join("")}`
 });
 
 // ───────── Repareren of vervangen
@@ -865,7 +867,7 @@ ${[...CATS.filter(c => KB.some(a => a.cat === c.id)), { id: null, name: "Algemee
 const rangeCodes = code => { const r = /^(\d{4})-(\d{4}) (?:t\/m|tot) \1-(\d{4})$/.exec(code); if (!r) return ""; const out = []; for (let i = +r[2]; i <= +r[3] && out.length < 1000; i++) out.push(`${r[1]}${String(i).padStart(4, "0")}`); return out.join(" "); };
 const index = [
   ...MODELS.map(m => ({ t: fullName(m), s: catOf(m.cat).name, u: `${m.id}.html`, b: brandsOf(m), a: catOf(m.cat).one, k: `${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).name}` })),
-  ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${f.code} ${rangeCodes(f.code)} ${f.t} ${m.brand} ${m.name} ${m.also || ""} ${catOf(m.cat).one} ${catOf(m.cat).name}` })),
+  ...allCodes.map(({ m, f }) => ({ c: f.code, t: f.t, s: deviceName(m), u: codeUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${rangeCodes(f.code)} ${m.brand} ${m.name} ${catOf(m.cat).name}` })),
   ...MODELS.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ t: f.t, s: fullName(m), u: textUrl(m, f), b: brandsOf(m), a: catOf(m.cat).one, k: `${f.t} ${m.brand} ${m.name}` }))),
   ...CATS.map(c => ({ t: c.name, s: "Categorie", u: `${c.id}.html`, k: c.name })),
   ...KB.map(a => ({ t: a.q, s: "Kennisbank", u: `kennisbank-${a.id}.html`, k: `${a.q} ${a.title} ${a.desc} kennisbank uitleg` })),

@@ -43,7 +43,7 @@
       var devTok = null; tokens.forEach(function (t) { if (!devTok && window.__DEV[t]) devTok = t; });
       var pairs = []; for (var k = 0; k + 1 < tokens.length; k++) { pairs.push(tokens[k] + tokens[k + 1]); if (k + 2 < tokens.length) pairs.push(tokens[k] + tokens[k + 1] + tokens[k + 2]); }
       for (var i = 0; i < data.length; i++) {
-        var d = data[i], hay = " " + words(d.k).join(" ") + " ", score = 0, matched = 0, codeHit = false;
+        var d = data[i], hay = " " + words((d.c || "") + " " + (d.t || "") + " " + d.k + " " + (d.a || "")).join(" ") + " ", score = 0, matched = 0, codeHit = false;
         if (devTok && d.a && words(d.a).indexOf(devTok) < 0) continue;
         var parts = d.c ? d.c.split("/").map(norm) : [];
         for (var q2 = 0; q2 < pairs.length; q2++) if (parts.indexOf(pairs[q2]) > -1) { score += 12; matched++; codeHit = true; }
