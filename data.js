@@ -15430,4 +15430,8 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("N041","Geen waarde sensor T08 (onderin boilervat)",2,"Er wordt periodiek een tapcyclus gedaan op basis van sensor T06.",["Neem contact op met uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.intergasPrestige=["Intergas – installatievoorschrift Prestige (88136805), § 8.1 storingscodes","https://www.intergas-verwarming.nl/app/uploads/2018/01/Installatievoorschrift-Prestige-88136805.pdf"];
+  const m=MODELS.find(x=>x.id==="intergas-hre"); m.src.push("intergasPrestige"); m.also=(m.also?m.also+", ":"")+"Intergas Prestige";
+})();
 module.exports = { CATS, MODELS, SRC, COST };
