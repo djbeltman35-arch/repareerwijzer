@@ -13579,4 +13579,21 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melding condensaattank vol", 1, "De condensaattank is vol.", ["Leeg de condensaattank en hervat het programma."])
   ]});
 })();
+(() => {
+  SRC.inventumIki6040 = ["Inventum – Gebruiksaanwijzing inductiekookplaat IKI6040 (PDF, inventum.eu)", "https://www.inventum.eu/files/Webdav/iki6040-gebruiksaanwijzing.pdf"];
+  SRC.inventumIki9045 = ["Inventum – Gebruiksaanwijzing inductiekookplaat met afzuiging IKI9045FLOW (PDF, inventum.eu)", "https://www.inventum.eu/files/Webdav/iki9045flow-gebruiksaanwijzing.pdf"];
+  MODELS.push({ id: "inventum-inductiekookplaat", brand: "Inventum", name: "Inductiekookplaat (ook met afzuiging): foutcode E, E2, E3, E5, E6, E8, Er03, U400", dev: "inductiekookplaat", cat: "kookplaten", years: "Inventum-inductiekookplaten, o.a. IKI6040 en IKI9045FLOW (met ingebouwde afzuiging)", unit: null, also: "Inventum kookplaat E3, Inventum kookplaat Er03, Inventum kookplaat E8, Inventum kookplaat U400, Inventum IKI9045FLOW G, Inventum kookplaat EH, Inventum kookplaat E2", intro: "Een Inventum-inductiekookplaat toont een code op de zone. E3 betekent een ongeschikte pan, Er03 afgedekte toetsen, E2 of EH oververhit en E8 een geblokkeerde ventilator. Bij modellen met afzuiging melden G en S een vuil of versleten filter.", weak: ["Ongeschikte pannen.", "Geblokkeerde ventilatieopening onder de kookplaat.", "Vuil vetfilter (bij afzuiging)."], parts: [], tasks: [], src: ["inventumIki6040", "inventumIki9045"], faults: [
+    F("E", "Storing", 3, "Een storing die je niet zelf kunt verhelpen.", ["Neem contact op met Inventum."]),
+    F("Er03", "Toetsen afgedekt", 1, "De aanraaktoetsen zijn afgedekt.", ["Haal weg wat op de toetsen ligt."]),
+    F("E2 / EH", "Oververhit", 1, "De kookplaat is oververhit.", ["Laat de kookplaat afkoelen."]),
+    F("E3", "Pan niet geschikt", 1, "De pan is niet geschikt voor inductie.", ["Gebruik een pan die geschikt is voor inductie."]),
+    F("E5 / E6", "Netvoeding", 2, "Storing in de spanning (E5) of frequentie (E6) van de netvoeding.", ["Laat de spanning en frequentie van de aansluiting controleren."]),
+    F("E8", "Ventilator geblokkeerd", 1, "De ventilatieopening van de ventilator is geblokkeerd.", ["Haal de blokkade weg."]),
+    F("U400", "Niet goed aangesloten", 2, "De kookplaat is niet goed op de netvoeding aangesloten.", ["Laat de aansluiting controleren."]),
+    N("Afzuiging: G op het display", 1, "Het vetfilter is vuil.", ["Maak het vetfilter schoon.", "Reset het alarm: houd met de afzuiging uit de omhoog-knop 5 seconden ingedrukt."]),
+    N("Afzuiging: S op het display", 1, "Het koolstoffilter is versleten.", ["Vervang het koolstoffilter en reset het alarm (omhoog-knop 5 seconden, met de afzuiging uit)."]),
+    N("Afzuiging: 8 knippert 1 minuut", 1, "Er zit te veel condens of vocht in het apparaat.", ["Tap het vocht af en reset het alarm."]),
+    N("Display toont U, H of L", 1, "Geen storing: U = geen of ongeschikte pan, H = zone nog heet, L = kinderslot aan.", ["Zet een geschikte pan op de zone of zet het kinderslot uit."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
