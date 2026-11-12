@@ -16208,4 +16208,39 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Robot resetten",1,"Je wilt de robot terugzetten.",["Zet de robot uit (knop 3 s ingedrukt).", "Houd de knop 20 s ingedrukt terwijl hij uit staat; een dubbele piep bevestigt de reset."]),
   ]});
 })();
+(() => {
+  SRC.irobotCharge=["iRobot – Roomba charging errors (Engels)","https://homesupport.irobot.com/articles/en_US/Knowledge/19598"];
+  SRC.irobotErr18=["iRobot – Error 18: robot cannot return to its dock (Engels)","https://homesupport.irobot.com/articles/en_US/Knowledge/31099"];
+  MODELS.push({ id:"irobot-roomba-laadfouten", brand:"iRobot", name:"Roomba laadfouten: Charging Error 1 t/m 21 en 101 t/m 121", dev:"Roomba (laden)", cat:"stofzuigers", years:"Roomba 500–900, e, i, j, s, m, Combo en andere series", unit:null,
+  intro:"Roomba meldt laadproblemen als 'Charging Error' met een nummer (1 t/m 21). In de Roomba Home-app verschijnen ze als codes 101 t/m 121.",
+  weak:[], parts:[], tasks:[], src:["irobotCharge"],
+  faults:[
+    F("1","Batterij niet gedetecteerd",1,"Laadfout van de Roomba.",["Plaats de batterij opnieuw."]),
+    F("2","Overstroomfout",2,"Laadfout van de Roomba.",["Gebruik een originele iRobot-batterij en controleer op vloeistofschade."]),
+    F("3","Algemene laadfout",2,"Laadfout van de Roomba.",["Probeer opnieuw te laden en controleer op vloeistofschade."]),
+    F("4 / 5","Te lage laadstroom (dock of robot)",1,"Laadfout van de Roomba.",["Maak de laadcontacten schoon."]),
+    F("6 / 7","Batterij te warm of te koud",1,"Laadfout van de Roomba.",["Laat de robot op kamertemperatuur komen en probeer opnieuw."]),
+    F("8","Robot kan niet communiceren met de batterij",2,"Laadfout van de Roomba.",["Controleer of de batterij origineel is en plaats hem opnieuw."]),
+    F("9 / 11","Batterijstoring",2,"Laadfout van de Roomba.",["Controleer of de batterij origineel is en plaats hem opnieuw; mogelijk moet hij worden vervangen."]),
+    F("17","Batterij mogelijk niet origineel",1,"Laadfout van de Roomba.",["Gebruik een originele iRobot-batterij en plaats hem opnieuw."]),
+    F("19","Laden duurt te lang (time-out)",1,"Laadfout van de Roomba.",["Plaats de batterij opnieuw en maak de laadcontacten schoon."]),
+    F("20","Batterijfout of batterij niet gereed",2,"Laadfout van de Roomba.",["Haal de batterij er 15 minuten uit en plaats hem terug; vervang hem als het blijft."]),
+    F("21","Op het dock maar laadt niet",1,"Laadfout van de Roomba.",["Maak de laadcontacten schoon."]),
+    F("101","Batterij niet gedetecteerd (app)",1,"Laadfout van de Roomba.",["Plaats de batterij opnieuw."]),
+    F("102","Overstroomfout (app)",2,"Laadfout van de Roomba.",["Gebruik een originele iRobot-batterij en controleer op vloeistofschade."]),
+    F("103","Laadfout (app)",2,"Laadfout van de Roomba.",["Probeer opnieuw te laden en controleer op vloeistofschade."]),
+    F("104 / 105","Geen of te weinig laadstroom (app)",1,"Laadfout van de Roomba.",["Maak de laadcontacten schoon."]),
+    F("106 / 107","Batterij te warm of te koud (app)",1,"Laadfout van de Roomba.",["Laat de robot op kamertemperatuur komen en probeer opnieuw."]),
+    F("109 / 111","Batterijstoring of hardwarefout (app)",2,"Laadfout van de Roomba.",["Controleer of de batterij origineel is en plaats hem opnieuw; mogelijk moet hij worden vervangen."]),
+    F("110","Cellen in onbalans (app)",2,"Laadfout van de Roomba.",["De cellen laden niet volledig op; de batterij moet waarschijnlijk worden vervangen."]),
+    F("114","Interne batterijstoring (app)",3,"Laadfout van de Roomba.",["Vervang de batterij."]),
+    F("115","Cel defect tijdens laden (app)",3,"Laadfout van de Roomba.",["De batterij moet waarschijnlijk worden vervangen."]),
+    F("117","Batterij mogelijk niet origineel (app)",1,"Laadfout van de Roomba.",["Gebruik een originele iRobot-batterij en plaats hem opnieuw."]),
+    F("119","Laden duurt te lang (app)",1,"Laadfout van de Roomba.",["Plaats de batterij opnieuw en maak de laadcontacten schoon."]),
+    F("120","Batterijfout of niet gereed (app)",2,"Laadfout van de Roomba.",["Haal de batterij er 15 minuten uit en plaats hem terug; vervang hem als het blijft."]),
+    F("121","Op het dock maar laadt niet (app)",1,"Laadfout van de Roomba.",["Maak de laadcontacten schoon."]),
+  ]});
+  const r=MODELS.find(x=>x.id==="irobot-roomba"); r.src.push("irobotErr18");
+  r.faults.push(F("18","Robot kan niet terug naar het dock of startpunt",1,"De robot vindt het dock of zijn startpunt niet terug, bijvoorbeeld door stroomverlies van het dock, obstakels, vuile contacten of sensoren, versleten wielen of de plaats van het dock.",["Controleer of het lampje van het dock brandt en of het dock stroom krijgt.","Zorg dat het dock niet verplaatst is en dat de weg ernaartoe vrij is; houd andere laadstations of Virtual Walls minstens 2,5 m weg.","Maak laadcontacten en dock-sensoren schoon.","Verwijder vuil bij de wielen en controleer of ze vrij draaien.","Start robot en dock opnieuw op.","Blijft het: verplaats het dock (niet in direct zonlicht) of neem contact op met iRobot."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
