@@ -13331,4 +13331,20 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Piept herhaaldelijk: deur te lang open", 1, "De koelkastdeur staat te lang open.", ["Doe de deur dicht of zet het geluid uit met de alarmknop; na 10 minuten stopt het alarm en gaat hij in een veilige koelstand."])
   ]});
 })();
+(() => {
+  SRC.askoTd75 = ["ASKO – User manual droger TD75.C17X / TDC177XV (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/802239en.html"];
+  MODELS.push({ id: "asko-droger", brand: "ASKO", name: "Droger (TD75-serie): foutcode E0 t/m E11", dev: "droger", cat: "drogers", years: "ASKO-drogers uit de TD75-serie, o.a. TD75.C17X, TDC177XV, TDC1773V", unit: null, also: "Asko droger E1, Asko droger E7 deur, Asko droger E11, Asko droger foutcode, Asko droger stopt halverwege, Asko droger droogt niet", intro: "Een ASKO-droger toont een E-code bij een storing; houd de INFO-knop ingedrukt voor de omschrijving. Alle E-codes zijn voor de service, maar stopt hij halverwege of droogt hij slecht, dan is het filter vaak de oorzaak.", weak: ["Vuil deurfilter.", "Vol condenswaterreservoir.", "Te kleine of koude ruimte."], parts: [], tasks: [], src: ["askoTd75"], faults: [
+    F("E0", "Besturingsprint", 3, "Storing in de besturing.", ["Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    F("E1", "Temperatuursensor", 3, "De temperatuursensor (thermistor) is defect.", ["Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    F("E2", "Communicatiefout", 3, "Communicatiefout in de elektronica.", ["Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    F("E6", "Relais", 3, "Een relais op de besturingsprint werkt niet.", ["Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    F("E7", "Deur", 3, "Fout in de deurdetectie van de besturing.", ["Controleer of de deur goed dicht is.", "Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    F("E8", "Knop", 3, "Een knop van de besturing werkt niet.", ["Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    F("E9", "Softwareversies", 3, "De software van vermogensprint en bedieningspaneel past niet bij elkaar.", ["Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    F("E10 / E11", "Communicatie motor of module", 3, "Communicatiefout met een module (E10) of de motor (E11).", ["Zet de droger uit, wacht 1 minuut, zet hem aan en herhaal het programma. Komt de code terug, bel de ASKO-service."]),
+    N("Droger stopt halverwege het programma", 1, "Het deurfilter is verstopt, waardoor de droger te warm wordt.", ["Maak het filter schoon, laat de droger afkoelen en probeer opnieuw.", "Blijft het, bel de ASKO-service."]),
+    N("Droger werkt niet: deur, condenswater of startuitstel", 1, "De deur is open, het condenswaterreservoir is vol, het programma is niet goed gestart of startuitstel staat aan.", ["Sluit de deur goed, leeg het reservoir, start het programma opnieuw of zet startuitstel uit."]),
+    N("Was droogt niet of traag", 1, "Vuile filters, een te kleine of koude ruimte, slecht gecentrifugeerd wasgoed of een verkeerde belading.", ["Maak de filters schoon en zorg voor verse lucht in de ruimte.", "Kies een programma dat bij de hoeveelheid en het soort wasgoed past."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
