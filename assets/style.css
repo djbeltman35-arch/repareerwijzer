@@ -43,6 +43,7 @@ p{margin:0;max-width:65ch}
 .eyebrow{font:600 13px/1.2 var(--body);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 .muted{color:var(--muted);font-size:14px}
 .strong{font-weight:600}
+[hidden]{display:none!important}
 .stack{display:flex;flex-direction:column;gap:14px}
 .crumbs{font-size:14px;color:var(--muted);margin-bottom:-12px}
 .crumbs a{color:var(--muted)}
