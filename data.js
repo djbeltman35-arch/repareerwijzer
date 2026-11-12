@@ -15453,4 +15453,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("29 / 30","Vlamdetectiefout",3,"De rookgasterugslagklep ontbreekt of de ontsteekunit is defect.",["Bel uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.boseSsbLeds=["Bose – Smart Soundbar: lichtbalk en statusinformatie (Engels)","https://www.bose.co.uk/en_gb/support/articles/HC2472/productCodes/SSB-SOUNDBAR/article.html"];
+  const m=MODELS.find(x=>x.id==="bose-smart-soundbar"); m.src.push("boseSsbLeds");
+  m.faults.push(N("Lichtbalk knippert vier keer amber",1,"Bronfout.",["Bekijk de Bose-app voor meer informatie."]));
+  m.faults.push(N("Lichtbalk brandt continu amber",1,"De soundbar staat in de installatiemodus en is klaar om met wifi te verbinden.",["Rond de installatie af in de Bose-app."]));
+  m.faults.push(N("Lichtbalk knippert vier keer rood",1,"De spraakassistent en/of de internetverbinding is niet beschikbaar.",["Controleer de internetverbinding."]));
+  m.faults.push(N("Lichtbalk pulseert groen",1,"De soundbar is klaar voor installatie of staat in herstelmodus.",["Rond de installatie af in de Bose-app."]));
+  m.faults.push(N("Lichtbalk pulseert wit",1,"Het systeem start opnieuw op.",["Wacht tot het opstarten klaar is."]));
+  m.faults.push(N("Lichtbalk schuift van rechts naar links of van links naar rechts (wit)",1,"Er wordt een systeemupdate gedownload (rechts naar links) of geïnstalleerd (links naar rechts).",["Wacht tot de update klaar is."]));
+  m.faults.push(N("Lichtbalk pulseert blauw",1,"Klaar om een bluetooth-apparaat te verbinden.",["Verbind je apparaat via bluetooth."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
