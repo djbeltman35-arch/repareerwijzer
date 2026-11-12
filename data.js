@@ -13937,4 +13937,39 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Status-LED brandt niet", 1, "Energiespaarmodus is actief of het apparaat staat uit; bij de Tuma Comfort kan ook de warmwaterbereiding in de basisinstellingen uit staan.", ["Controleer of het apparaat aan staat en kijk in de basisinstellingen."])
   ]});
 })();
+(() => {
+  SRC.nesVertuoPlus = ["Nespresso – Machine assistance VertuoPlus (Engels)", "https://www.nespresso.com/sa/en/machine-assistance/vertuoplus-bundle-aeroccino-white-machine-assistance-2"];
+  MODELS.push({ id: "nespresso-vertuoplus", brand: "Nespresso", name: "VertuoPlus: lampjes (oranje, groen-rood) en storingen", dev: "VertuoPlus", cat: "koffiemachines", years: "Nespresso VertuoPlus (ook Deluxe)", unit: null, also: "VertuoPlus knippert oranje, VertuoPlus groen en rood lampje, Vertuo Plus lampje knippert, VertuoPlus ontkalken, VertuoPlus geen koffie, Vertuo Plus fabrieksinstellingen", intro: "De Nespresso VertuoPlus praat met één knop vol lampjes. Groen en rood tegelijk betekent: binnenkort ontkalken. Oranje hoort bij het speciale menu (legen, ontkalken, reset). Onregelmatig knipperen is een storing.", weak: ["Verkalking (groen en rood lampje).", "Capsule die niet goed ligt (lekken)."], parts: [], tasks: [], src: ["nesVertuoPlus"], faults: [
+    N("Groen en rood lampje branden tegelijk", 1, "Nog maar een paar kopjes, daarna is ontkalken verplicht.", ["Ontkalk de machine via het speciale menu (oranje lampje 1x per 2 seconden = ontkalken).", "Stopt het ontkalken bij een sterk verkalkte machine: pauzeer een paar minuten en druk dan weer op de knop."]),
+    N("Oranje lampje brandt continu", 1, "De machine staat in het menu Speciale functies (reset, legen, ontkalken).", ["Kies binnen 2 minuten een functie, anders gaat hij terug naar 'klaar'.", "Verlaten: druk op de knop en duw de hendel 3 seconden omlaag."]),
+    N("Oranje knippert 3x per 2 seconden", 1, "Menu: fabrieksinstellingen herstellen.", ["Druk op de knop om te bevestigen; het lampje knippert 3x en wordt groen."]),
+    N("Oranje knippert 2x per 2 seconden", 1, "Menu: machine legen.", ["Druk op de knop; de machine leegt zich, gaat uit en blijft 10 minuten vergrendeld."]),
+    N("Oranje knippert 1x per 2 seconden", 1, "Menu: ontkalken, of ontkalken is bezig/klaar.", ["Volg de ontkalkprocedure. Laat de machine daarna 2 uur drogen."]),
+    N("Groen lampje knippert", 1, "De machine warmt op; continu groen is klaar.", ["Even wachten."]),
+    N("Geen lampje", 1, "Geen stroom.", ["Controleer stopcontact, stekker, spanning en zekering.", "Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Lampjes knipperen onregelmatig", 3, "Storing in de machine.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Geen koffie en geen water", 1, "Watertank leeg of machine verkalkt.", ["Vul de watertank.", "Ontkalk de machine als dat nodig is."]),
+    N("Alleen water, geen koffie (capsule zit erin)", 3, "Storing in de machine.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Koffie loopt langzaam of is niet heet genoeg", 1, "Hangt af van de koffiesoort, of de machine is verkalkt.", ["Verwarm het kopje voor.", "Ontkalk de machine als dat nodig is."]),
+    N("Lekt bij de capsule (water in capsulebak)", 1, "Capsule zit niet goed.", ["Plaats de capsule goed.", "Blijft het lekken, neem contact op met de Nespresso-klantenservice."]),
+  ]});
+})();
+(() => {
+  SRC.nesCitiz = ["Nespresso – Machine assistance CitiZ (Engels)", "https://www.nespresso.com/za/en/machine-assistance/new-citiz-machine-assistance1"];
+  SRC.nesInissia = ["Nespresso – Machine assistance Inissia (Engels)", "https://www.nespresso.com/za/en/machine-assistance/inissia-machine-assistance-1"];
+  MODELS.push({ id: "nespresso-citiz-inissia", brand: "Nespresso", name: "CitiZ en Inissia: knipperende lampjes", dev: "CitiZ en Inissia", cat: "koffiemachines", years: "Nespresso CitiZ (ook CitiZ&Milk) en Inissia", unit: null, also: "Nespresso CitiZ knippert, Inissia lampjes knipperen, CitiZ beide lampjes knipperen, Inissia knippert snel, CitiZ geen koffie, Aeroccino rode knop knippert", intro: "Bij de Nespresso CitiZ en Inissia knipperen de lampjes eerst 25 seconden tijdens het opwarmen; dat is normaal. Knipperen ze onregelmatig, dan is er een storing en moet de machine naar Nespresso.", weak: ["Verkalking (langzame of lauwe koffie).", "Capsule die niet goed ligt (lekken)."], parts: [], tasks: [], src: ["nesCitiz", "nesInissia"], faults: [
+    N("Lampjes knipperen na aanzetten", 1, "De machine warmt op (ongeveer 25 seconden).", ["Wacht tot de lampjes continu branden."]),
+    N("Beide lampjes knipperen tegelijk", 1, "De machine staat in de ontkalkstand.", ["Volg de ontkalkprocedure. Verlaten: houd beide knoppen 3 seconden ingedrukt."]),
+    N("Beide lampjes knipperen om en om", 1, "De machine staat in de leegmaakstand (voor opslag, vorst of reparatie).", ["Sluit de hendel; de machine gaat vanzelf uit.", "Leeg en reinig de capsulebak en de lekbak."]),
+    N("Lampjes knipperen 3x snel", 1, "De machine is teruggezet naar fabrieksinstellingen (40 ml espresso, 110 ml lungo, na 9 minuten uit).", ["Wacht tot de lampjes continu branden."]),
+    N("Alleen de espressoknop knippert", 1, "Je zit in de instelling voor automatisch uitschakelen.", ["Druk op Espresso om te wisselen tussen 9 en 30 minuten.", "Verlaten: houd Lungo 3 seconden ingedrukt."]),
+    N("Rode knop Aeroccino knippert (CitiZ&Milk)", 1, "Melkopschuimer te heet, garde ontbreekt of te weinig melk.", ["Spoel de kan af onder koud water als hij te heet is.", "Plaats de garde.", "Vul melk tot een van de twee max-streepjes."]),
+    N("Geen lampje", 1, "Geen stroom.", ["Controleer stopcontact, stekker, spanning en zekering.", "Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Lampjes knipperen onregelmatig", 3, "Storing in de machine.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Geen koffie en geen water", 1, "Watertank leeg of machine verkalkt.", ["Vul de watertank.", "Ontkalk de machine als dat nodig is."]),
+    N("Alleen water, geen koffie (capsule zit erin)", 3, "Storing in de machine.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Koffie loopt langzaam of is niet heet genoeg", 1, "Hangt af van de koffiesoort, of de machine is verkalkt.", ["Verwarm het kopje voor.", "Ontkalk de machine als dat nodig is."]),
+    N("Lekt bij de capsule (water in capsulebak)", 1, "Capsule zit niet goed.", ["Plaats de capsule goed.", "Blijft het lekken, neem contact op met de Nespresso-klantenservice."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
