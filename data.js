@@ -16479,6 +16479,12 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("8","Storing 5V-voeding",2,"Overbelasting en/of kortsluiting van de 5V-voeding. Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
   ]});
   const m=MODELS.find(x=>x.id==="askoll-es"); m.src.push("askollXKP"); m.years="Askoll eS2, eS2 EVO, eS3 EVO, XKP 45, XKP 70, XKP 80"; m.name="eS2 / eS3 EVO / XKP elektrische scooter: storingssymbolen en laderlampjes";
-  m.faults.push(N("Storing 12V-display",2,"Het systeem detecteert dat het display kapot is of niet goed werkt (XKP).",["Breng de scooter naar een erkende werkplaats."]));
+  m.faults.push(
+    N("Storing 12V-display (XKP)",2,"Het systeem detecteert dat het display kapot is of niet goed werkt.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
+    N("Storing 12V stuurbediening (XKP)",2,"Het systeem detecteert kortsluiting in de bedieningen op het stuur.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
+    N("Storing 12V AUX- of USB-uitgang (XKP)",2,"Het systeem detecteert kortsluiting in de aansluiting voor apparaten.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
+    N("Elektronica niet compatibel (XKP)",3,"Het systeem detecteert dat elektronische onderdelen niet bij elkaar passen, bijvoorbeeld een niet-compatibele ECU of inverter.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
+    N("Stuurslot ingeschakeld (XKP)",1,"Met het contact op ON detecteert het systeem dat het stuurslot is ingeschakeld.",["Ontgrendel het stuurslot."]),
+    N("Immobilizer ingeschakeld (XKP)",1,"Met het contact op ON detecteert het systeem dat de immobilizer is ingeschakeld.",["Laat dit controleren door een erkende Askoll-werkplaats."]));
 })();
 module.exports = { CATS, MODELS, SRC, COST };
