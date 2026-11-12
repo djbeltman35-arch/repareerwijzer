@@ -13905,4 +13905,20 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Boiler, kraan of M-Box lekt", 2, "Lekkende aansluiting, slang of onderdeel.", ["Lekt een koppeling of slang: draai na of vervang de slang.", "Lekt de boiler, de kraan of de M-Box: haal de stekker eruit, sluit de watertoevoer af en neem contact op met Franke."])
   ]});
 })();
+(() => {
+  SRC.geberitMeraClassic = ["Geberit – User manual AquaClean Mera Classic (968.548.00.0), Troubleshooting (PDF, Engels)", "https://cdn.data.geberit.com/documents/968.548.00.0_02.pdf"];
+  MODELS.push({ id: "geberit-aquaclean-mera", brand: "Geberit", name: "AquaClean Mera douche-wc: statusled en storingen", dev: "AquaClean Mera douche-wc", cat: "kleine-apparaten", years: "Geberit AquaClean Mera Classic", unit: null, also: "Geberit AquaClean led knippert rood, AquaClean Mera blauw rood knipperen, AquaClean ontkalken, AquaClean Mera storing, AquaClean afstandsbediening werkt niet, Geberit douche-wc storing", intro: "De statusled aan de zijkant van de Geberit AquaClean Mera laat zien wat er speelt: rood knipperen is een storing, blauw-rood betekent ontkalken en groen dat het keramische honingraatfilter vervangen moet worden. Bij een storing kun je het toilet gewoon als normaal toilet gebruiken.", weak: ["Kalk in het apparaat en de sproeiers.", "Vuil keramisch honingraatfilter (geur).", "Lege batterij van de afstandsbediening (CR2032)."], parts: [], tasks: [{ m: 12, t: "Ontkalken (minstens 1x per jaar)", v: 1 }], src: ["geberitMeraClassic"], faults: [
+    N("Statusled knippert rood", 3, "Er staat een storingsmelding open.", ["Zet het apparaat uit, wacht 30 seconden en zet het weer aan.", "Staat er [Error message] op de afstandsbediening of blijft het, neem dan contact op met de klantenservice."]),
+    N("Statusled knippert blauw-rood", 1, "Het apparaat moet ontkalkt worden.", ["Ontkalk het apparaat volgens de handleiding. Stel je het te vaak uit, dan wordt de douchefunctie geblokkeerd tot je ontkalkt."]),
+    N("Statusled brandt groen", 1, "Het keramische honingraatfilter moet vervangen worden.", ["Vervang het honingraatfilter (zie handleiding)."]),
+    N("Statusled brandt oranje", 1, "Het apparaat is aan het ontkalken; de douchefunctie werkt even niet.", ["Wacht tot het ontkalken klaar is."]),
+    N("Statusled knippert oranje", 1, "Automatische waterverversing is bezig.", ["Even wachten."]),
+    N("Statusled knippert blauw", 1, "Het apparaat start op na het aanzetten.", ["Even wachten."]),
+    N("Zekering of aardlekschakelaar slaat af", 3, "Eenmalig: storing. Telkens bij gebruik: apparaat defect.", ["Zet de zekering of aardlekschakelaar terug.", "Slaat hij bij gebruik steeds weer af, haal dan de stekker eruit en neem contact op met de klantenservice."]),
+    N("Sproeiarm of föhnarm werkt niet goed", 1, "Er is een storing opgetreden.", ["Zet het apparaat uit, wacht 30 seconden en zet het weer aan."]),
+    N("Douche reinigt minder goed of wordt niet meer warm genoeg", 1, "Sproeiers verstopt of apparaat verkalkt/vuil.", ["Reinig of vervang de sproeiers.", "Ontkalk het apparaat.", "Zet het uit, wacht 30 seconden en zet het weer aan."]),
+    N("Afstandsbediening reageert niet", 1, "Koppeling mislukt of batterij leeg.", ["Koppel de afstandsbediening opnieuw.", "Vervang de batterij (CR2032).", "Werkt het daarna nog niet, neem contact op met de klantenservice. Je kunt intussen het bedieningspaneel aan de zijkant gebruiken."]),
+    N("Geurafzuiging werkt slecht", 1, "Het keramische honingraatfilter is vuil.", ["Vervang het honingraatfilter."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
