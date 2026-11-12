@@ -12583,4 +12583,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Laadstation of RTK-station brandt rood", 2, "Er is een fout in het laadstation of het RTK-referentiestation.", ["Controleer de voeding en kabels van het station en haal de stekker er even uit.", "Komt het terug, neem contact op met de Mammotion-klantenservice."])
   );
 })();
+(() => {
+  SRC.kenwoodCcE = ["Kenwood – FAQ: I have an 'E' and a number on my Kenwood Cooking Chef (KM-modellen), kenwoodworld.com (Engels)", "https://www.kenwoodworld.com/en-gb/faqs/I-have-an-’E’-and-a-number-on-my-Kenwood-Cooking-Models-Starting-with-KM-Chef-display.-What-does-it-mean/a/33489"];
+  MODELS.push({ id: "kenwood-cooking-chef", brand: "Kenwood", name: "Cooking Chef keukenmachine: foutcode E:01 t/m E:10", dev: "Cooking Chef keukenmachine (KM-modellen)", cat: "kleine-apparaten", years: "Kenwood Cooking Chef, modellen die met KM beginnen", unit: null, also: "Kenwood Cooking Chef E01, Kenwood E:02 kom, Kenwood keukenmachine foutcode, Kenwood Cooking Chef E09 temperatuur, Kenwood E10 oververhit", intro: "De Kenwood Cooking Chef toont een E met een nummer als een kap, kom of afdekking niet goed zit of als hij te warm wordt. Zet bij elke code eerst de snelheid op 0 en probeer het dan opnieuw.", weak: ["Kom niet goed vastgedraaid.", "Afdekkapjes van de aandrijvingen vergeten.", "Verstopte ventilatieopeningen."], parts: [], tasks: [], src: ["kenwoodCcE"], faults: [
+    F("E:01", "Kop staat omhoog", 1, "De kop van de machine is omhooggezet.", ["Zet de snelheid op 0 en laat de kop zakken.", "Zet de snelheidsknop op 0 en probeer het opnieuw."]),
+    F("E:02", "Kom zit niet goed", 1, "De kookkom is niet goed geplaatst.", ["Zet de snelheid op 0 en zet de kom opnieuw recht of plaats hem opnieuw."]),
+    F("E:03", "Hitteschild ontbreekt", 1, "Het hitteschild zit er niet op; zonder schild werkt de kookfunctie niet.", ["Plaats het hitteschild en zet het goed vast.", "Zet de snelheidsknop op 0 en probeer het opnieuw."]),
+    F("E:04", "Afdekking aandrijving ontbreekt", 1, "Het afdekkapje van de langzame of snelle aandrijving zit er niet op.", ["Zorg dat alle afdekkapjes op hun plaats zitten.", "Zet de snelheidsknop op 0 en probeer het opnieuw."]),
+    F("E:09", "Te heet of probleem temperatuursensor", 2, "De machine is te heet geworden of er is een probleem met een temperatuursensor.", ["Laat de machine afkoelen.", "Controleer of de sensoren vrij zijn van voedselresten.", "Komt de code terug, laat de machine nakijken door een Kenwood-servicecentrum."]),
+    F("E:10", "Oververhit of snelheidsprobleem", 2, "De motor is oververhit of er is een probleem met de snelheid.", ["Controleer of de ventilatieopeningen vrij en schoon zijn.", "Laat de machine afkoelen en probeer het opnieuw.", "Blijft de code komen, laat de machine nakijken."]),
+    N("Andere E-code op het display", 3, "Volgens Kenwood kan een andere E-code wijzen op een defect onderdeel.", ["Zet de snelheidsknop op 0 en probeer het opnieuw.", "Blijft de code, neem contact op met een Kenwood-servicecentrum."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
