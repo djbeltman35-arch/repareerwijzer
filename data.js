@@ -15379,4 +15379,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("07FF-2000-0002-0002","Extern filament ontbreekt",1,"Er is geen extern filament gedetecteerd.",["Laad filament op de externe spoelhouder."]));
   m.faults.push(F("07FF-2000-0002-0004","Extern filament uit extruder trekken",1,"Het externe filament moet uit de extruder worden getrokken.",["Trek het externe filament uit de extruder."]));
 })();
+(() => {
+  SRC.nespVertuoNextZa=["Nespresso – machine assistance Vertuo Next (Engels)","https://www.nespresso.com/za/en/machine-assistance/vertuo-next-machine-assistance-1"];
+  const m=MODELS.find(x=>x.id==="nespresso-vertuo-next"); m.src.push("nespVertuoNextZa");
+  m.faults.push(N("Lampje knippert (wit)",1,"De machine warmt op. Een continu brandend lampje betekent dat de machine klaar is.",["Wacht tot het lampje continu brandt. Je kunt al op de knop drukken; de koffie komt zodra de machine klaar is."]));
+  m.faults.push(N("Koffie komt niet meteen",1,"Dit is normaal: barcode lezen, voorbevochtigen en infusie kosten tijd.",["Wacht even; de koffie komt vanzelf."]));
+  m.faults.push(N("Koffie loopt over of spat",1,"Het kopje is te klein voor de gekozen kopgrootte of de kopsteun staat te laag.",["Gebruik een kopje dat groot genoeg is.", "Stel de hoogte van de kopsteun in (drie standen)."]));
+  m.faults.push(N("Capsule werkt niet",1,"Er is een verkeerde of gebruikte capsule geplaatst, of de vorige capsule is niet uitgeworpen.",["Gebruik alleen Nespresso Vertuo-capsules, geen Original-capsules.", "Gebruik een nieuwe capsule en zorg dat de vorige is uitgeworpen."]));
+  m.faults.push(N("Reinigen start niet of stopt halverwege",1,"Er zit nog een capsule in of er staat geen bak van minstens 1 liter onder de uitloop.",["Zorg dat er geen capsule in zit en zet een bak van minstens 1 liter onder de uitloop.", "Druk binnen 2 seconden drie keer op de knop om te starten.", "Open de machine nooit tijdens het reinigen."]));
+  m.faults.push(N("Ontkalken onderbroken",1,"De stekker is tijdens het ontkalken uit het stopcontact gehaald.",["Herhaal zowel het ontkalken als het spoelen.", "Gebruik alleen de Nespresso-ontkalkingsset.", "Laat de machine na afloop 10 minuten drogen."]));
+  m.faults.push(N("Terugzetten naar fabrieksinstellingen",1,"Je wilt de instellingen terugzetten.",["Zet de machine aan (lampje brandt continu) en zorg dat de capsule is uitgeworpen.", "Sluit de kop met de hendel ontgrendeld.", "Druk binnen 3 seconden vijf keer op de knop; de knop knippert vijf keer oranje en brandt daarna wit."]));
+  m.faults.push(N("Machine legen voor opslag, vorst of reparatie",1,"De machine moet worden geleegd.",["Leeg het waterreservoir, haal de stekker eruit, werp de capsule uit en leeg capsulebak, lekbak en kopsteun.", "Houd de knop ingedrukt terwijl je de stekker weer insteekt tot het legen begint (ongeveer 30 seconden); daarna gaat de machine vanzelf uit."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
