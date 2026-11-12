@@ -13362,4 +13362,17 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Zuigkracht minder geworden", 1, "De stofbak is vol of de borstels en het filter zijn vuil.", ["Leeg de stofbak, maak het filter schoon of vervang het en maak de borstels schoon."])
   ]});
 })();
+(() => {
+  SRC.vorwerkVr300 = ["Vorwerk – Gebruiksaanwijzing Kobold VR300, hoofdstuk 8 Verhelpen van storingen (PDF, globalsupport.vorwerk.com)", "https://globalsupport.vorwerk.com/hc/article_attachments/9021985880732"];
+  MODELS.push({ id: "vorwerk-kobold-vr300", brand: "Vorwerk", name: "Kobold VR300 robotstofzuiger: wat betekent het lampje?", dev: "Kobold VR300 robotstofzuiger", cat: "stofzuigers", years: "Vorwerk Kobold VR300 met basisstation B-VR300", unit: null, also: "Kobold VR300 oranje knippert, Kobold VR300 rood knippert, Kobold VR300 rood lampje, Kobold VR300 groen knippert, Kobold VR300 stopt, Kobold VR300 laadt niet", intro: "De Vorwerk Kobold VR300 laat met een gekleurd lampje zien wat er is. Oranje gaat over de stofbak, rood knipperen over vastzittende borstels of bumper en continu rood is een storing voor de klantenservice.", weak: ["Haren om de borstels.", "Vuile vloersensoren.", "Stofbak niet goed dicht."], parts: [], tasks: [], src: ["vorwerkVr300"], faults: [
+    N("Lampje knippert groen (ongeveer 5 seconden)", 1, "Je wilt starten, maar de accu is nog niet vol.", ["Druk binnen 30 seconden nog eens op START; de robot laadt dan tussendoor bij. Of laad hem eerst helemaal op."]),
+    N("Lampje knippert oranje", 1, "Het deksel van de stofbak zit niet goed dicht, of de stofbak of het filter ontbreekt.", ["Sluit het deksel tot het klikt.", "Plaats de stofbak met filter."]),
+    N("Lampje brandt oranje", 1, "De stofbak is vol.", ["Leeg de stofbak, maak het filter schoon en plaats alles terug.", "Maak ook de vloersensoren schoon."]),
+    N("Lampje knippert rood", 1, "De ronde borstel of zijborstel zit vast, of de bumper klemt.", ["Haal haren en vuil uit de borstels.", "Beweeg de bumper heen en weer tot hij vrij is."]),
+    N("Lampje brandt rood", 3, "Er is een storing die niet is opgelost.", ["Neem contact op met de Vorwerk-klantenservice."]),
+    N("Robot stopt plotseling", 1, "SPOT-stand gekozen, vuile of afgedekte sensoren, een grote lege ruimte, hoogpolig tapijt, of donkere of glazen vloeren die op een afgrond lijken.", ["Kies de normale stand (Alle ruimtes) in plaats van SPOT.", "Maak de sensoren schoon en vrij.", "Plak hoogpolig tapijt af met de magneetstrip."]),
+    N("Robot keert niet terug naar het basisstation", 1, "Beschermfolie op het station, schoonmaken elders gestart of onderbroken, vuile sensoren of iets blokkeert het signaal.", ["Haal de folie van het infraroodvenster en start vanaf het station.", "Houd 0,5 meter vrij aan beide kanten en 0,3 meter erboven."]),
+    N("Robot laadt niet of reageert niet", 1, "De accu is leeg of de stekker van het station zit niet goed; uitgezet zonder menu loopt de accu na een paar dagen leeg.", ["Controleer de stekker en laad de robot op het station.", "Laad hem regelmatig op."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
