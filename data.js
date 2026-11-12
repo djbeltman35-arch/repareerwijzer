@@ -16312,4 +16312,9 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("KMODE_EXCEPTION_NOT_HANDLED","Onafgehandelde fout in een driver (0x1E)",2,"Een driver of systeemservice veroorzaakte een fout die niet werd afgehandeld.",["Noteer de driver (.sys) uit de foutmelding en schakel hem uit, verwijder hem of zoek een update.", "Maak recente driver-, service- of hardwarewijzigingen ongedaan.", "Voer de hardwaretest van de fabrikant uit, vooral de geheugentest.", "Begon het na installatie: werk het BIOS bij."]));
   m.faults.push(F("DRIVER_IRQL_NOT_LESS_OR_EQUAL","Driver gebruikt ongeldig geheugen (0xD1)",2,"Een driver probeerde ongeldig of uitwisselbaar geheugen te gebruiken op een te hoog interruptniveau.",["Noteer de driver (.sys) uit de foutmelding.", "Werk die driver bij, of schakel hem uit of zet hem terug.", "Controleer of nieuwe hardware geschikt is voor je Windows-versie."]));
 })();
+(() => {
+  const m=MODELS.find(x=>x.id==="windows-blauw-scherm");
+  SRC.msBug139=["Microsoft Learn – Bug check 0x139 KERNEL_SECURITY_CHECK_FAILURE (Engels)","https://learn.microsoft.com/en-sg/WINDOWS-HARDWARE/DRIVERS/debugger/bug-check-0x139--kernel-security-check-failure"]; m.src.push("msBug139");
+  m.faults.push(F("KERNEL_SECURITY_CHECK_FAILURE","Beschadigde kerneldata (0x139)",2,"De Windows-kernel zag beschadiging van een belangrijke datastructuur en stopte de computer om verdere schade te voorkomen.",["Maak recente hardware-, driver- of servicewijzigingen ongedaan.","Bekijk het systeemlogboek op fouten rond het tijdstip.","Werk drivers bij van apparaten met een geel uitroepteken in Apparaatbeheer.","Scan op virussen.","Voer als administrator chkdsk en sfc /scannow uit.","Installeer de nieuwste Windows- en driverupdates."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
