@@ -13630,4 +13630,28 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Koffie loopt traag of is niet warm genoeg", 1, "Kalk, of een koud kopje.", ["Warm het kopje voor en ontkalk de machine."])
   ]});
 })();
+(() => {
+  SRC.nespressoGranLatt = ["Nespresso – Machine assistance Gran Lattissima (nespresso.com, Engels)", "https://www.nespresso.com/za/en/machine-assistance/gran-lattissima-machine-assistance"];
+  SRC.nespressoVertuoCreatista = ["Nespresso – Machine assistance Vertuo Creatista (nespresso.com, Engels)", "https://nespresso.com/sa/en/machine-assistance/vertuo-creatista-machine-assistance"];
+  MODELS.push({ id: "nespresso-gran-lattissima", brand: "Nespresso", name: "Gran Lattissima: knipperende knoppen en oranje lampjes", dev: "Gran Lattissima", cat: "koffiemachines", years: "Nespresso Gran Lattissima (De'Longhi)", unit: null, also: "Gran Lattissima knoppen knipperen, Gran Lattissima schakelt uit, Gran Lattissima oranje lampje, Gran Lattissima ontkalken, Gran Lattissima geen lampje, Gran Lattissima oververhit", intro: "De Nespresso Gran Lattissima laat met knipperende knoppen zien wat er is. Drie keer snel knipperen is een leeg waterreservoir; alle knoppen 10 seconden knipperen en dan uit is een foutalarm.", weak: ["Leeg waterreservoir.", "Melkkan niet goed geplaatst."], parts: [], tasks: [], src: ["nespressoGranLatt"], faults: [
+    N("Alle knoppen knipperen 10 seconden, daarna gaat de machine uit", 3, "Foutalarm: de machine moet gerepareerd worden.", ["Laat de machine repareren of neem contact op met Nespresso."]),
+    N("Koffieknoppen knipperen 3 keer snel", 1, "Het waterreservoir is leeg.", ["Vul het waterreservoir."]),
+    N("Koffie- en melkknoppen knipperen om en om", 1, "De machine is oververhit, of is na het leegmaken ongeveer 10 minuten geblokkeerd.", ["Laat de machine afkoelen."]),
+    N("Ontkalkings- en reinigingslampje knipperen", 1, "De machine staat in het menu, of het ontkalken is niet goed afgerond.", ["Houd Hot milk en Flat white 3 seconden samen ingedrukt of wacht 30 seconden.", "Was het ontkalken niet af, herhaal het."]),
+    N("Ontkalkingslampje brandt oranje", 1, "Het is tijd om te ontkalken.", ["Ontkalk de machine."]),
+    N("Reinigingslampje brandt oranje", 1, "Het melksysteem moet schoongemaakt worden.", ["Haal het melksysteem uit elkaar en was het in de vaatwasser (bovenste rek) of met de hand."]),
+    N("Geen lampje", 1, "De melkkan staat niet goed of de klopper zit niet goed.", ["Zet de melkkan goed op een schone voet en controleer of de klopper goed vastzit."]),
+    N("Onregelmatig knipperen", 2, "Storing.", ["Laat de machine repareren of neem contact op met Nespresso."])
+  ]});
+  MODELS.push({ id: "nespresso-vertuo-creatista", brand: "Nespresso", name: "Vertuo Creatista: rood knipperen en meldingen", dev: "Vertuo Creatista", cat: "koffiemachines", years: "Nespresso Vertuo Creatista (Sage)", unit: null, also: "Vertuo Creatista rood knipperen, Vertuo Creatista knippert twee keer rood, Vertuo Creatista stoom werkt niet, Vertuo Creatista ontkalken, Vertuo Creatista stoompijp reinigen", intro: "Bij de Nespresso Vertuo Creatista vertelt het rode knipperen van de koffieknop wat er is: één keer knipperen en pauze is water bijvullen, twee keer knipperen en pauze betekent dat de capsule, hendel of het reservoir gecontroleerd moet worden.", weak: ["Leeg waterreservoir.", "Verstopte stoompijp.", "Kalk."], parts: [], tasks: [], src: ["nespressoVertuoCreatista"], faults: [
+    N("Koffieknop knippert rood: 1 keer, pauze", 1, "De machine is gestopt omdat er water nodig is.", ["Vul het waterreservoir en druk op de koffie- of stoomknop.", "Ontkalk zo nodig."]),
+    N("Koffieknop knippert rood: 2 keer, pauze", 1, "Probleem met capsule, hendel of reservoir (of tijdens ontkalken, reinigen of leegmaken).", ["Controleer capsule, hendel en reservoir; bij reinigen of ontkalken moet de capsule eruit en de hendel vergrendeld zijn.", "Blijft het: open de kop, vervang de capsule, haal de stekker 10 seconden eruit en probeer opnieuw.", "Lukt het niet, neem contact op met Nespresso."]),
+    N("Ontkalkingslampje knippert of brandt, stoomfunctie werkt niet", 1, "De machine moet ontkalkt worden.", ["Ontkalk de machine."]),
+    N("Lampje 'stoompijp reinigen' brandt", 1, "De stoompijp moet schoongemaakt worden.", ["Maak de stoompijp schoon volgens de reinigingsstappen."]),
+    N("Lampje knippert, alleen water loopt", 1, "De machine draait een reinigings-, ontkalkings- of leegmaakprogramma.", ["Niet bedoeld? Druk op de knop om te stoppen.", "Blijft hij knipperen, houd de knop minstens 7 seconden ingedrukt om de ontkalkingsstand te verlaten."]),
+    N("Melkopschuimen start niet", 1, "Het reservoir zit niet goed, de stoompijp is verstopt of niet omlaag, of er loopt nog koffie.", ["Wacht tot de koffie klaar is, zet het reservoir goed, laat de stoompijp zakken en maak het tuitje vrij.", "Los ontkalk- of reinigingsmeldingen eerst op."]),
+    N("Stoom is erg nat", 1, "Er wordt sterk gefilterd, gedemineraliseerd of gedestilleerd water gebruikt.", ["Gebruik koud drinkbaar kraanwater."]),
+    N("Knoplampje uit", 1, "De machine is automatisch uitgeschakeld (na 2 minuten niet gebruiken).", ["Druk op de koffie- of stoomknop.", "Gaat hij niet aan, controleer stopcontact, stekker en zekering."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
