@@ -16484,7 +16484,11 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Storing 12V stuurbediening (XKP)",2,"Het systeem detecteert kortsluiting in de bedieningen op het stuur.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
     N("Storing 12V AUX- of USB-uitgang (XKP)",2,"Het systeem detecteert kortsluiting in de aansluiting voor apparaten.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
     N("Elektronica niet compatibel (XKP)",3,"Het systeem detecteert dat elektronische onderdelen niet bij elkaar passen, bijvoorbeeld een niet-compatibele ECU of inverter.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
-    N("Stuurslot ingeschakeld (XKP)",1,"Met het contact op ON detecteert het systeem dat het stuurslot is ingeschakeld.",["Ontgrendel het stuurslot."]),
+    N("Stuurslot ingeschakeld (XKP)",1,"Met het contact op ON detecteert het systeem dat het stuurslot is ingeschakeld.",["Laat dit controleren door een erkende Askoll-werkplaats."]),
     N("Immobilizer ingeschakeld (XKP)",1,"Met het contact op ON detecteert het systeem dat de immobilizer is ingeschakeld.",["Laat dit controleren door een erkende Askoll-werkplaats."]));
+})();
+(() => {
+  SRC.askollEspro=["Askoll – Libretto uso e manutenzione eSPRO 45/70/45K/70K/K1 (Italiaans, PDF): Codici di errore","https://www.askollelectric.com/app/uploads/2026/04/askoll_libretto_uso_manutenzione_scooter_espro.pdf"];
+  const m=MODELS.find(x=>x.id==="askoll-es"); m.src.push("askollEspro"); m.years+=", eSPRO 45, eSPRO 70, eSPRO 45K, eSPRO 70K";
 })();
 module.exports = { CATS, MODELS, SRC, COST };
