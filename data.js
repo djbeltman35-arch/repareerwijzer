@@ -16391,4 +16391,25 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Remmen niet goed (remblokken in orde)",2,"Verkeerde bandenspanning, versleten banden, te zware of slecht verdeelde lading, of lucht in het remsysteem.",["Controleer de bandenspanning en breng die op het voorgeschreven niveau.", "Vervang versleten banden.", "Verminder of verdeel de lading.", "Lucht in het remsysteem: ga naar de dichtstbijzijnde officiële dealer."]),
   );
 })();
+(() => {
+  SRC.askollES=["Askoll – User manual and warranty booklet eS2, eS2 EVO, eS3 EVO (Engels, PDF): Error codes en Functions of the charger","https://www.askollelectric.com/app/uploads/2026/05/User-manual-warranty-booklet-ES.pdf"];
+  MODELS.push({ id:"askoll-es", brand:"Askoll", name:"eS2 / eS3 EVO elektrische scooter: storingssymbolen en laderlampjes", dev:"eS2/eS3 elektrische scooter", cat:"scooters", years:"Askoll eS2, eS2 EVO, eS3 EVO", unit:null,
+  intro:"Askoll eS-scooters tonen storingen als symbool op het dashboard. Hieronder staat wat elk symbool volgens de handleiding betekent, plus de betekenis van de lampjes op de acculader.",
+  weak:[], parts:[], tasks:[], src:["askollES"],
+  faults:[
+    N("Storing communicatiesysteem",2,"Er zijn communicatieproblemen tussen de elektronische eenheden van het voertuig.",["Breng de scooter naar een erkende werkplaats."]),
+    N("Storing inverter",3,"Het systeem detecteert een storing in de inverter.",["Breng de scooter naar een erkende werkplaats."]),
+    N("Storing ECU",3,"Het systeem detecteert een storing in de ECU.",["Breng de scooter naar een erkende werkplaats."]),
+    N("Storing vermogenscircuit: scooter levert geen vermogen",3,"Het systeem detecteert een abnormale stroomopname van de motor en levert uit veiligheid geen vermogen.",["Breng de scooter naar een erkende werkplaats."]),
+    N("Storing accu A of accu B",2,"Het systeem detecteert een storing in accupakket A of B.",["Breng de betreffende accu naar een erkende werkplaats."]),
+    N("Accu te warm: geen vermogen",1,"De accutemperatuur is te hoog; het systeem levert geen vermogen.",["Haal de scooter weg uit de warme omgeving en wacht tot de accu's zijn afgekoeld."]),
+    N("Inverter te warm: geen vermogen",1,"De temperatuur van de elektronische eenheid is te hoog; er wordt geen vermogen geleverd tot de temperatuur daalt.",["Zet de scooter weg van warmtebronnen."]),
+    N("Motor te warm: minder vermogen",1,"De motortemperatuur is te hoog; de scooter rijdt met minder vermogen zodat de motor kan afkoelen.",["Laat de motor afkoelen."]),
+    N("Storing koplamp, knipperlichten of achterlicht/kentekenverlichting",1,"Het systeem detecteert een kapotte lamp of een storing in het lampcircuit.",["Controleer de werking en laat het onderdeel vervangen bij een erkende werkplaats."]),
+    N("Storing sensor zijstandaard",2,"Het systeem ziet een abnormaal signaal van de zijstandaardsensor.",["Laat de sensor door een werkplaats controleren en zo nodig vervangen."]),
+    N("Lader: oranje lampje knippert",1,"Accu aangesloten, maar er is een fout; laden werkt niet.",["Blijft het probleem, breng de accu naar een servicecentrum."]),
+    N("Lader: rood lampje knippert",1,"De lader is te warm; laden gaat langzamer door.",["Zet de lader op een koele plek en nooit op een accu.", "Houd de ventilatieroosters vrij en controleer of de ventilatoren werken; anders contact opnemen met een servicecentrum."]),
+    N("Lader: rood lampje brandt",1,"Fout gedetecteerd; laden is niet mogelijk.",["Koppel de lader los van accu en stopcontact en sluit hem opnieuw aan.", "Blijft het probleem, neem contact op met een servicecentrum."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
