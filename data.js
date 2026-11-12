@@ -13206,8 +13206,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Groen continu of één korte groene flits per 10 seconden", 1, "Het laadpunt staat aan en is vrij.", ["Steek de laadkabel in en houd je laadpas voor de lezer."]),
     N("Groen knippert met één piep na de laadpas", 1, "De laadsessie start; de stekker wordt vergrendeld.", ["Wacht even: daarna begint het laden en wordt het lampje blauw."]),
     N("Blauw continu", 1, "Er wordt geladen.", ["Je hoeft niets te doen."]),
-    N("Groen knippert met twee piepjes na de laadpas", 1, "De laadsessie is gestopt.", ["Wacht tot de stekker ontgrendeld is en haal hem er dan uit."]),
-    N("Laden start niet na de laadpas", 1, "De sessie start niet, bijvoorbeeld doordat de kabel niet goed vastzit of de pas niet geaccepteerd wordt.", ["Steek de kabel opnieuw goed in aan beide kanten en houd de pas nog eens voor de lezer.", "Lukt het niet, meld het via het nummer op de paal."])
+    N("Groen knippert met twee piepjes na de laadpas", 1, "De laadsessie is gestopt.", ["Wacht tot de stekker ontgrendeld is en haal hem er dan uit."])
   ]});
 })();
 module.exports = { CATS, MODELS, SRC, COST };
