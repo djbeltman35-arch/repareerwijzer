@@ -14552,4 +14552,21 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("EPrO", "Geheugenprobleem displaykaart", 3, "Displaykaart of aansluitkabel van het display beschadigd. Het toestel valt uit.", ["Laat de displaykaart of de kabel vervangen."]),
   ]});
 })();
+(() => {
+  SRC.baristinaManual = ["Philips (Versuni) – Gebruiksaanwijzing Baristina BAR30X, Betekenis van lampjes en Problemen oplossen (PDF, meertalig)", "https://ot-dam.versuni.com/adaptivemedia/rendition?id=311a7b76bbeb701dddc5a3041adf7399f928702e"];
+  MODELS.push({ id: "philips-baristina", brand: "Philips", name: "Baristina espressomachine: knipperende knoppen", dev: "Baristina espressomachine", cat: "koffiemachines", years: "Philips Baristina BAR30X (o.a. BAR300, BAR302, BAR303)", unit: null, also: "Philips Baristina knippert snel, Baristina knoppen knipperen, Baristina portafilter zit vast, Baristina ontkalken, Baristina zet geen koffie, Baristina lekt", intro: "Bij de Philips Baristina knipperen de knoppen langzaam als alles normaal gaat. Snel knipperen betekent bijna altijd dat het waterreservoir leeg is of niet goed vastzit, of dat de portafilter niet goed geplaatst is. Knipperen espresso- en lungoknop na het koffiezetten, dan moet je ontkalken.", weak: ["Waterreservoir niet goed vastgeklikt.", "Portafilter niet geleegd voor de volgende kop.", "Kalk."], parts: [], tasks: [], src: ["baristinaManual"], faults: [
+    N("Espresso- of lungoknop knippert snel en de machine stopt", 1, "Het waterreservoir is leeg tijdens het koffiezetten.", ["Vul het waterreservoir.", "Duw het waterreservoir in de behuizing tot het vastklikt en druk op de snel knipperende knop om verder te gaan."]),
+    N("Knop knippert snel na bijvullen of terugplaatsen van het reservoir", 1, "Het waterreservoir zit niet goed.", ["Duw het waterreservoir in de behuizing tot het vastklikt en druk op de snel knipperende knop om verder te gaan."]),
+    N("Knop knippert snel tijdens of na het malen", 1, "Het waterreservoir is tijdens het malen weggehaald of zit niet goed.", ["Plaats het reservoir terug en duw het aan tot het vastklikt; de machine gaat vanzelf verder."]),
+    N("Knop knippert snel nadat de portafilter is teruggeschoven", 1, "De portafilter zit niet op zijn plaats.", ["Plaats de portafilter tot hij vastklikt; de machine begint dan met koffiezetten."]),
+    N("Espresso- en lungoknop knipperen na het koffiezetten", 1, "De machine moet ontkalkt worden.", ["Ontkalk de machine volgens de gebruiksaanwijzing."]),
+    N("Alle knoppen knipperen langzaam, portafilter kan er niet uit", 1, "De machine keert terug naar de beginstand.", ["Wacht tot de knoppen niet meer knipperen en haal dan de portafilter eruit.", "Blijft het lang knipperen: haal de stekker 15 seconden uit het stopcontact en steek hem terug. Werkt dat niet, neem contact op met de klantenservice."]),
+    N("Knop extra intensiteit knippert snel", 1, "Spoelen of decaf zetten is gestart zonder portafilter, of het waterreservoir is leeg, weg of zit niet goed.", ["Plaats de portafilter.", "Vul het reservoir, duw het vast en druk op de snel knipperende knop."]),
+    N("Hendel van de portafilter gaat niet naar rechts", 1, "Veiligheid: er zit nog oud koffiedik in de portafilter.", ["Maak de portafilter leeg, spoel hem zo nodig af en plaats hem terug."]),
+    N("Portafilter zit vast in de maalstand", 1, "De stekker is eruit gehaald terwijl de portafilter in de maalstand stond.", ["Zet de portafilter met de hand terug in de beginstand."]),
+    N("Zet geen koffie en lekt rond de portafilter", 1, "De portafilter is niet geleegd voor de volgende kop.", ["Maak de portafilter altijd leeg voordat je opnieuw koffie zet."]),
+    N("Veel koffiedik op de lekbak na het malen", 1, "De portafilter was nog vol, of er zit koffiedik in de houder.", ["Leeg en spoel de portafilter en begin altijd met een lege.", "Veeg de binnenkant van de portafilterhouder regelmatig schoon met een microvezeldoekje."]),
+    N("Koffie te slap", 1, "Extra intensiteit niet gekozen, slappe bonen of het doseersysteem moet zich nog aanpassen.", ["Druk na het kiezen van een recept op de knop extra intensiteit.", "Probeer andere bonen of branding.", "Zet nog 1 of 2 kopjes na een nieuwe bonensoort."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
