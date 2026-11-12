@@ -14407,4 +14407,43 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Lampje laadpoort wit", 1, "Welkomstverlichting.", ["Niets doen."])
   ]});
 })();
+(() => {
+  SRC.siemensEQ300st = ["Siemens Home – Problemen met je EQ300 oplossen: storingen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq3/storingen"];
+  MODELS.push({ id: "siemens-eq300", brand: "Siemens", name: "EQ300 volautomaat: storingen en oplossingen", dev: "EQ300 volautomaat", cat: "koffiemachines", years: "Siemens EQ300 (EQ.3)", unit: null, also: "Siemens EQ300 alleen water, EQ300 koffie druppelt, EQ300 reageert niet, EQ300 maalwerk start niet, EQ300 demomodus, EQ300 zetgroep kan niet worden verwijderd, EQ300 geen melkschuim", intro: "De meeste storingen van de Siemens EQ300 hebben te maken met kalk, een te fijne maling of de zetgroep. Reageert de machine nergens meer op, haal dan 5 seconden de stekker eruit.", weak: ["Kalk.", "Te fijne maalgraad.", "Te vette bonen die niet in het maalwerk vallen."], parts: [], tasks: [], src: ["siemensEQ300st"], faults: [
+    N("Machine reageert niet meer", 1, "Storing in het apparaat.", ["Trek de stekker eruit, wacht 5 seconden en steek hem terug."]),
+    N("Alleen water, geen koffie", 1, "Leeg bonenreservoir niet herkend, koffieschacht op de zetgroep verstopt, of te vette bonen die niet in het maalwerk vallen.", ["Doe koffiebonen in het reservoir.", "Reinig de zetgroep.", "Tik licht tegen het bonenreservoir, gebruik eventueel een andere soort koffie en veeg het lege reservoir droog schoon."]),
+    N("Koffie druppelt of stroomt niet, hoeveelheid wordt niet gehaald", 1, "Maalgraad te fijn, sterk verkalkt of lucht in het waterfilter.", ["Stel de maalgraad grover in.", "Ontkalk met het serviceprogramma Calc'nClean.", "Dompel het waterfilter onder water tot er geen luchtbellen meer ontsnappen en druk het daarna stevig en recht in de tankaansluiting."]),
+    N("Wisselende koffie- of melkschuimkwaliteit", 1, "Het apparaat is verkalkt.", ["Ontkalk met het serviceprogramma Calc'nClean."]),
+    N("Geen melk of melkschuim", 1, "Melkschuimer vuil of komt niet in de melk.", ["Reinig de melkschuimer in de vaatwasser.", "Gebruik meer melk en schuif het uitloopsysteem helemaal omlaag."]),
+    N("Melk te heet of te koud, schuim te grof", 1, "Te weinig of te veel melk in het kopje.", ["Pas de hoeveelheid melk of de schuimduur aan."]),
+    N("Waterfilter blijft niet vastzitten", 1, "Het filter is niet goed bevestigd.", ["Dompel het waterfilter onder water tot er geen luchtbellen meer ontsnappen en druk het daarna stevig en recht in de tankaansluiting."]),
+    N("Water op de bodem bij weggehaalde lekschaal", 1, "Lekschaal te vroeg verwijderd.", ["Haal de lekschaal pas een paar seconden na de laatste drank weg."]),
+    N("Zetgroep kan niet worden verwijderd", 1, "De zetgroep staat niet in de uitneempositie (bijvoorbeeld door vorstbeveiliging).", ["Zet het apparaat weer aan."]),
+    N("Displaymeldingen wisselen, machine niet te bedienen", 1, "De demomodus staat aan.", ["Houd de Start-knop minstens 5 seconden ingedrukt om de demomodus uit te zetten."]),
+    N("Maalwerk start niet", 1, "Het apparaat is te heet.", ["Wacht 1 uur tot het is afgekoeld."])
+  ]});
+})();
+(() => {
+  SRC.siemensEQ6st = ["Siemens Home – Problemen met je EQ6 plus oplossen: storingen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq6/storingen"];
+  const m = MODELS.find(x => x.id === "siemens-eq6-plus"); m.src.push("siemensEQ6st"); m.faults.push(
+    N("Te weinig of geen melkschuim, melksysteem zuigt niet aan", 1, "Melksysteem of aanzuigbuis vuil, ongeschikte melk, systeem verkeerd in elkaar gezet, verkalking of er kan geen lucht worden meegezogen.", ["Reinig het melksysteem.", "Gebruik koude, niet eerder gekookte melk met minstens 1,5% vet.", "Bevochtig boven- en onderdeel en zet het systeem opnieuw in elkaar.", "Ontkalk het apparaat.", "Zorg dat er naast de aanzuigbuis lucht kan worden meegezogen (let op bij adapters of eigen houders)."]),
+    N("Geen theewater", 1, "Melksysteem of aanzuigbuis vuil.", ["Reinig het melksysteem of de houder."]),
+    N("Koffie druppelt of stroomt niet", 1, "Maling te fijn of sterk verkalkt.", ["Stel de maalgraad grover in.", "Ontkalk het apparaat."]),
+    N("Koffiedik nat en niet compact", 1, "Maalgraad niet goed ingesteld of te weinig gemalen koffie.", ["Stel de maalgraad grover of fijner in, of gebruik 2 afgestreken maatschepjes gemalen koffie."]),
+    N("Wisselende koffie- of melkschuimkwaliteit", 1, "Verkalking of het melksysteem kan geen lucht meezuigen.", ["Ontkalk het apparaat.", "Zorg dat de melkschuimer naast melk ook lucht kan meezuigen."]),
+    N("Waterfilter blijft niet vastzitten", 1, "Filter niet goed bevestigd.", ["Druk het waterfilter stevig en recht omlaag in de reservoiraansluiting."])
+  );
+})();
+(() => {
+  SRC.siemensEQ900st = ["Siemens Home – Problemen met je EQ900 oplossen: storingen", "https://www.siemens-home.bsh-group.com/nl/service/ondersteuning/problemen/koffiemachines/eq-900/storingen"];
+  const m = MODELS.find(x => x.id === "siemens-eq-700-900"); m.src.push("siemensEQ900st"); m.faults.push(
+    N("EQ.900 reageert niet meer", 1, "Storing.", ["Haal de stekker eruit, wacht 10 seconden en steek hem terug."]),
+    N("EQ.900 geeft alleen water, geen koffie", 1, "Leeg bonenreservoir niet herkend, koffieschacht verstopt, te vette bonen of zetgroep niet goed geplaatst.", ["Vul het bonenreservoir.", "Reinig de zetgroep.", "Tik tegen het reservoir en gebruik geen oliehoudende bonen; reinig het lege reservoir met een vochtige doek.", "Controleer of de zetgroep goed zit en vergrendeld is: rode hendel omhoog naar links en deksel terugplaatsen."]),
+    N("EQ.900 levert geen dranken", 1, "Lucht in het waterfilter of resten ontkalker blokkeren de watertank.", ["Dompel het filter met de opening naar boven onder water tot er geen bellen meer komen en druk het stevig terug.", "Haal de watertank eruit en maak hem grondig schoon."]),
+    N("EQ.900 zetgroep kan niet worden verwijderd", 1, "De vergrendeling zit vast.", ["Zet het apparaat uit, wacht 3 minuten en zet het weer aan."]),
+    N("EQ.900 maalwerk start niet", 1, "Het apparaat is te warm.", ["Haal de stekker eruit en laat het 1 uur afkoelen."]),
+    N("EQ.900 koffie druppelt of hoeveelheid wordt niet gehaald", 1, "Maalgraad te fijn, kalk, lucht in het waterfilter of vuil apparaat.", ["Stel de maalgraad grover in.", "Ontkalk met geschikte ontkalkingstabletten, niet met citroenzuur of azijn (beschadigt de pakkingen).", "Reinig de zetgroep en het apparaat."]),
+    N("EQ.900 geen melkschuim of melk", 1, "Melksysteem vuil of verkeerd in elkaar, melkbuis niet in de melk of kalk.", ["Reinig het melksysteem in de vaatwasser en zet het goed in elkaar (eerst melksysteem, dan melkhouder).", "Controleer of de melkbuis in de melk hangt.", "Ontkalk het apparaat."])
+  );
+})();
 module.exports = { CATS, MODELS, SRC, COST };
