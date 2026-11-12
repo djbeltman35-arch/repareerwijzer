@@ -15877,4 +15877,30 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Warm water werkt, verwarming niet",1,"De externe thermostaat is niet goed ingesteld.",["Stel de thermostaat goed in volgens de gebruiksaanwijzing van de thermostaat."]),
   ]});
 })();
+(() => {
+  SRC.viessmann100wUk=["Viessmann UK – Vitodens 100-W (heat only) installation and service instructions (Engels), diagnosis: fault codes","https://www.viessmann.co.uk/content/dam/public-brands/gb/pdf/instructions/Vitodens%20100-W%20heat%20only%20installation%20instructions.pdf"];
+  MODELS.push({ id:"viessmann-vitodens-100-w-hbmu", brand:"Viessmann", name:"Vitodens 100-W met HBMU-regeling: storingscodes", dev:"Vitodens 100-W (HBMU)", cat:"cv-ketels", years:"Vitodens 100-W met HBMU-warmtebeheerunit", unit:null,
+  intro:"Deze nummercodes gelden voor de Vitodens 100-W met HBMU-warmtebeheerunit volgens de Engelse installatie- en servicehandleiding van Viessmann. Oudere Vitodens-ketels met Vitotronic-regeling gebruiken andere codes.",
+  weak:[], parts:[], tasks:[], src:["viessmann100wUk"],
+  faults:[
+    F("13","Breuk buitentemperatuursensor",2,"De ketel regelt alsof het buiten 0 °C is. Kabelbreuk of fout in de buitentemperatuursensor.",["Neem contact op met uw installateur."]),
+    F("14","Kortsluiting buitentemperatuursensor",2,"De ketel regelt alsof het buiten 0 °C is. Kortsluiting in de buitentemperatuursensor.",["Neem contact op met uw installateur."]),
+    F("49","Breuk rookgastemperatuursensor",2,"Brander in storing door een kabelbreuk in de rookgastemperatuursensor.",["Neem contact op met uw installateur."]),
+    F("50","Kortsluiting rookgastemperatuursensor",2,"Brander in storing door kortsluiting in de rookgastemperatuursensor.",["Neem contact op met uw installateur."]),
+    F("57","Breuk ruimtetemperatuursensor",1,"Normaal bedrijf zonder ruimtetemperatuurregeling: kabelbreuk in de ruimtetemperatuursensor.",["Neem contact op met uw installateur."]),
+    F("58","Kortsluiting ruimtetemperatuursensor",1,"Normaal bedrijf zonder ruimtetemperatuurregeling: kortsluiting in de ruimtetemperatuursensor.",["Neem contact op met uw installateur."]),
+    F("59","Onderspanning voeding",2,"Brander vergrendeld, geen verwarming en geen warm water: de netspanning is te laag.",["Laat de netspanning controleren.", "Neem contact op met uw installateur."]),
+    F("62","Maximaalthermostaat aangesproken",2,"Brander in storing: de hoogtemperatuurbeveiliging heeft gereageerd, bijvoorbeeld door te weinig water, te lage voordruk van het expansievat of te weinig doorstroming.",["Controleer de waterdruk van de installatie.", "Reset het toestel. Komt de storing terug: neem contact op met uw installateur."]),
+    F("63","Rookgastemperatuurbegrenzer aangesproken",2,"Brander in storing: de rookgastemperatuurbegrenzer heeft gereageerd.",["Controleer de waterdruk van de installatie.", "Reset het toestel nadat het rookgassysteem is afgekoeld. Komt de storing terug: neem contact op met uw installateur."]),
+    F("67","Ionisatiestroom buiten bereik",2,"Brander in storing: de ionisatiestroom ligt buiten het toegestane bereik, bijvoorbeeld door een probleem met de gastoevoer of de ionisatie-elektrode.",["Controleer of de gaskraan open staat.", "Reset het toestel. Komt de storing terug: neem contact op met uw installateur."]),
+    F("68","Vlamsignaal al aanwezig bij branderstart",3,"Brander in storing: er is al een vlamsignaal bij de start.",["Neem contact op met uw installateur."]),
+    F("69","Ionisatiestroom buiten bereik",2,"Brander in storing: de ionisatiestroom ligt buiten het toegestane bereik.",["Neem contact op met uw installateur."]),
+    F("70","Interne fout HBMU",3,"Brander in storing: interne fout in de warmtebeheerunit (HBMU); deze moet worden vervangen.",["Neem contact op met uw installateur."]),
+    F("71","Ventilatortoerental te laag",2,"Brander in storing: het ventilatortoerental is te laag.",["Reset het toestel. Komt de storing terug: neem contact op met uw installateur."]),
+    F("73","Interne communicatiefout",2,"Brander in storing: interne communicatiefout.",["Reset het toestel. Komt de storing terug: neem contact op met uw installateur."]),
+    F("74","Systeemdruk te laag",1,"Brander vergrendeld, circulatiepomp uit, geen verwarming en geen warm water: de waterdruk is te laag.",["Vul water bij en ontlucht de installatie.", "Komt de storing vaker terug: neem contact op met uw installateur."]),
+    F("77","Fout HBMU",2,"Brander in storing: fout in de warmtebeheerunit (HBMU).",["Reset het toestel. Komt de storing terug: neem contact op met uw installateur."]),
+    F("89","Interne circulatiepomp",2,"Geen verwarming en geen warm water: storing aan de interne circulatiepomp.",["Neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
