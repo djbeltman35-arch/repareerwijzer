@@ -14885,4 +14885,42 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("F.905", "Communicatie-interface uitgeschakeld", 2, "Communicatie-interface uitgeschakeld. Mogelijke oorzaken: te hoge stroom op de communicatie-interface.", ["Laat de installateur dit controleren en verhelpen."]),
   ]});
 })();
+(() => {
+  SRC.awbThermoEleganceA = ["AWB – Installatiehandleiding ThermoElegance 3A, 4A, 4 Solo A en 5A, foutcodes (PDF)", "https://www.awb.nl/downloads/handleidingen/installatiehandleidingen-1/installatiehandleiding-thermoelegance-advance-187102.pdf"];
+  MODELS.push({ id: "awb-thermoelegance-advance", brand: "AWB", name: "ThermoElegance Advance (3A, 4A, 5A): foutcodes", dev: "ThermoElegance Advance HR-ketel", cat: "cv-ketels", years: "AWB ThermoElegance 3A, 4A, 4 Solo A en 5A", unit: null, also: "AWB ThermoElegance F22, ThermoElegance F28, AWB ketel F83, ThermoElegance 4A storing, AWB rE SEt, ThermoElegance F20 oververhitting", intro: "De AWB ThermoElegance Advance toont een F-code bij een storing. Controleer eerst stroom, gas, of de kranen open staan en of de druk minimaal 1 bar is. Staat er 'rE SEt', druk dan op de resetknop. De laatste 10 fouten staan in de historiek.", weak: ["Te weinig water (F22).", "Ontsteking (F28, F29).", "Watercirculatie (F23, F24)."], parts: [], tasks: [], src: ["awbThermoEleganceA"], faults: [
+    F("F22", "Watertekort (druk < 0,3 bar)", 1, "Watertekort in de installatie, gesloten watertoevoerkraan of ontkoppelde pomp.", ["Vul de installatie bij tot minimaal 1 bar.", "Laat de installatie ontluchten.", "Komt de code terug, bel de installateur."]),
+    F("F83", "Geen temperatuurstijging terwijl de brander brandt", 2, "Geen water in de installatie, bijvoorbeeld door een lek.", ["Controleer de waterdruk en kijk of er ergens water lekt.", "Laat de installateur dit controleren en verhelpen."]),
+    F("F28", "Ontstekingsfout", 2, "Geen gastoevoer of te weinig gas, gasblok slecht afgesteld, ontstekings-/vlamcontrole-elektrode of ontsteker defect.", ["Controleer of de gaskraan open staat.", "Druk op de resetknop als 'rE SEt' op het scherm staat.", "Komt de code terug, bel de installateur."]),
+    F("F29", "Vlam dooft tijdens de werking", 2, "Geen gastoevoer of te weinig gas, gasblok slecht afgesteld, elektrode of ontsteker defect.", ["Controleer of de gaskraan open staat.", "Komt de code terug, bel de installateur."]),
+    F("F68", "Vlamsignaal schommelt", 2, "Schommelend vlamsignaal, bijvoorbeeld door een gecorrodeerde elektrode of een probleem met luchttoevoer of rookgasafvoer.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F32", "Slechte afzuiging of aanzuiging van lucht", 2, "Verkeerde ventilatorsnelheid.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F20", "Oververhitting", 2, "De oververhittingsbeveiliging (97 \u00b0C) is geactiveerd, bijvoorbeeld door een slecht werkende pomp, dichte afsluitkranen of slechte ontluchting.", ["Controleer of de afsluitkranen in aanvoer en retour van de cv open staan.", "Laat de installateur dit controleren en verhelpen."]),
+    F("F00", "Aanvoervoeler cv defect (los)", 2, "De temperatuurvoeler in de cv-aanvoer is losgekoppeld.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F10", "Aanvoervoeler cv kortgesloten", 2, "De temperatuurvoeler in de cv-aanvoer is kortgesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F01", "Retourvoeler cv defect (los)", 2, "De temperatuurvoeler in de cv-retour is losgekoppeld.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F11", "Retourvoeler cv kortgesloten", 2, "De temperatuurvoeler in de cv-retour is kortgesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F73", "Waterdruksensor kortgesloten of los", 2, "De waterdruksensor van de cv-installatie is kortgesloten of losgekoppeld.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F74", "Waterdruksensor defect", 2, "De waterdruksensor is defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F49", "Storing eBUS-spanning", 2, "Storing of kortsluiting op de eBUS-lijn.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F61", "Storing bediening gasklep", 3, "Fout in de hoofdprint.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F62", "Fout bij sluiten gasklep", 3, "Fout in de hoofdprint.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F63", "Geheugenfout hoofdprint", 3, "Defecte hoofdprint.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F64", "Snelle schommeling temperatuurvoeler", 3, "Snelle schommeling van de aanvoer- of retourvoeler; hoofdprint defect.", ["Doe een reset van het toestel.", "Laat de installateur dit controleren en verhelpen."]),
+    F("F65", "Hoofdprint te warm", 3, "De temperatuur van de hoofdprint is te hoog.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F67", "Geen vlamsignaal op de hoofdprint", 3, "Ontbrekend vlamsignaal op de hoofdprint.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F26", "Motor gasmechanisme defect", 3, "Kortsluiting of losse kabels van de motor van het gasblok, of gasblok defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F77", "Condenspomp defect (optie)", 2, "De optionele condenspomp is defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F27", "Abnormale vlamdetectie", 3, "Er wordt een vlam gedetecteerd die er niet hoort te zijn.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F71", "Aanvoervoeler zit los of is defect", 2, "De voeler in de cv-aanvoer is uit zijn clips gekomen of defect; de temperatuur verandert niet.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F70", "Gebruikersinterface niet compatibel", 2, "Verkeerde productcode.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F24", "Storing watercirculatie", 2, "Slechte werking van de pomp (te snelle temperatuurstijging).", ["Controleer of de afsluitkranen in aanvoer en retour open staan.", "Laat de installateur dit controleren en verhelpen."]),
+    F("F23", "Te groot temperatuurverschil aanvoer-retour", 2, "Probleem met de watercirculatie.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F72", "Blijvende afwijking tussen aanvoer- en retourvoeler", 2, "De temperaturen van aanvoer en retour kloppen niet met elkaar.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F84", "Aanvoer- en retourvoeler verwisseld of los", 2, "De voelers zijn verwisseld, losgekoppeld of defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F76", "Smeltzekering defect", 3, "De smeltzekering is losgekoppeld of defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F85", "Voelers op dezelfde buis", 2, "Aanvoer- en retourvoeler zitten op dezelfde buis.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F86", "Contact vloerverwarming open", 2, "Het contact voor de vloerverwarming is open of de voeler is los of defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    N("'rE SEt' op het scherm", 1, "De ketel vraagt om een reset.", ["Druk op de resetknop om de ketel weer te starten."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
