@@ -15825,4 +15825,41 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   SRC.atagEnergionMPlus=["ATAG – installatiehandleiding Energion M Plus (420011180500), lijst van fouten","https://atag.compano.com/Data/Environments/000001/Attachment/Bijlage/ATAG%20Verwarming%20Nederland%20BV/InstallationManuals/420011180500_ENERGION%20M%20PLUS_NL.pdf"];
   const m=MODELS.find(x=>x.id==="atag-energion"); m.src.push("atagEnergionMPlus"); m.also=(m.also?m.also+", ":"")+"ATAG Energion M Plus";
 })();
+(() => {
+  SRC.winterwarmHpx=["Winterwarm – installatiehandleiding monoblock warmtepomp type HPX (NL v2.2, 2026), hoofdstuk 9 storingen","https://winterwarm.compano.com/Data/Environments/000001/Attachment/Bijlage/PRD/ProductGroupManual/Manual%20HPX.pdf"];
+  MODELS.push({ id:"winterwarm-hpx", brand:"Winterwarm", name:"HPX monoblock warmtepomp: foutcodes", dev:"HPX warmtepomp", cat:"warmtepompen", years:"HPX (o.a. HPX30A)", unit:null,
+  intro:"De Winterwarm HPX toont foutcodes op het segmentdisplay van de besturingskaart; de Smart Controller toont een eigen nummer (dat verschilt per softwareversie). Hieronder staan de codes zoals ze op het segmentdisplay verschijnen.",
+  weak:[], parts:[], tasks:[], src:["winterwarmHpx"],
+  faults:[
+    F("F4","Fout sensor buitentemperatuur",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("d6","Fout ontdooitemperatuursensor",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("F7","Fout uitgaande temperatuursensor",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("F5","Fout aanzuigtemperatuursensor",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("F9","Fout uitgaande temperatuursensor",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("F1","Fout temperatuursensor vloeistofleiding koudemiddel binnen",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("FE","Fout temperatuursensor warmwatertank",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("F3","Fout temperatuursensor gasleiding koudemiddel binnen",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("F0","Fout externe luchttemperatuursensor",2,"De stekker van de temperatuursensor zit niet goed op het moederbord, of de weerstand van de sensor klopt niet. De code verdwijnt vanzelf als de storing is verholpen.",["Neem contact op met uw installateur."]),
+    F("EF","Ventilatorfout",2,"Het moederbord van de buitenunit is beschadigd of de draad naar de bedradingsklemmen is gebroken. Komt de fout 6 keer in een uur voor, dan is een herstart nodig om hem te wissen.",["Neem contact op met uw installateur."]),
+    F("E1","Hogedrukbeveiliging compressor",3,"Hogedrukschakelaar kapot of bedrading los, te weinig water in het systeem, tanksensor niet goed geïnstalleerd, gas- en vloeistofklep niet volledig open of expansieklep werkt niet goed.",["Schakel de warmtepomp uit en start hem opnieuw.", "Komt de code terug: neem contact op met uw installateur."]),
+    F("E3","Lagedrukbeveiliging compressor",3,"Lagedrukschakelaar kapot of bedrading los, lekkage in het systeem, of de ventilator draait niet of achteruit.",["Neem contact op met uw installateur."]),
+    F("E4","Afvoertemperatuurbeveiliging compressor",3,"Sensorweerstand niet correct, expansieklep geblokkeerd, lekkage of defect moederbord. De code verdwijnt als de afvoertemperatuur onder 92 °C zakt.",["Neem contact op met uw installateur."]),
+    F("C5","Fout capaciteitsinstelling",2,"De jumper staat uit.",["Schakel de warmtepomp uit en start hem opnieuw.", "Komt de code terug: neem contact op met uw installateur."]),
+    F("E6","Communicatiestoring buitenunit en bedrade regelaar",2,"De communicatiekabel is niet (goed) aangesloten of defect, mist de magnetische ringen, of de buitenunit heeft geen stroom.",["Neem contact op met uw installateur."]),
+    F("Fc","Fout hogedrukschakelaar",3,"De sensor is beschadigd, de draad zit los of de sensor zit op de verkeerde plek.",["Neem contact op met uw installateur."]),
+    F("Ec","Fout waterstromingsschakelaar",2,"De schakelaar is beschadigd, de draad zit los of de schakelaar zit verkeerd. Herstelt na uitschakelen.",["Neem contact op met uw installateur."]),
+    F("E2","Vorstbeveiliging binnen",2,"De sensorweerstand klopt niet of de elektronische expansieklep werkt niet goed.",["Neem contact op met uw installateur."]),
+    F("Ed","Maximale uitstroomtemperatuur",2,"De sensorweerstand of de stekker op het moederbord klopt niet, of het moederbord van de buitenunit is beschadigd.",["Schakel de warmtepomp uit en start hem opnieuw.", "Komt de code terug: neem contact op met uw installateur."]),
+    F("EH","Storing elektrisch verwarmingselement",2,"Het wisselstroomrelais van een elektrisch element (eerste, tweede of warm water) is defect.",["Schakel de warmtepomp uit en start hem opnieuw.", "Komt de code terug: neem contact op met uw installateur."]),
+    F("Lc","Opstartfout compressor",3,"Inverterstoring: de compressor start niet goed op.",["Neem contact op met uw installateur."]),
+    F("Ld","Fasebescherming",2,"Inverterstoring: fasebescherming geactiveerd.",["Neem contact op met uw installateur."]),
+    F("PA","AC-stroombeveiliging",3,"Inverterstoring: stroombeveiliging aan de ingangszijde.",["Neem contact op met uw installateur."]),
+    F("PH","Overspanningsbeveiliging",2,"Inverterstoring: overspanning.",["Neem contact op met uw installateur."]),
+    F("PL","Onderspanningsbeveiliging",2,"Inverterstoring: onderspanning.",["Neem contact op met uw installateur."]),
+    F("PP","Afwijkende voedingsspanning",2,"Inverterstoring: de voedingsspanning is afwijkend.",["Neem contact op met uw installateur."]),
+    F("H7","Motor desynchroniseert",3,"Inverterstoring: de motor loopt niet synchroon.",["Neem contact op met uw installateur."]),
+    F("P8","Oververhitting koellichaam",2,"Inverterstoring: bescherming tegen oververhitting van de heat sink.",["Neem contact op met uw installateur."]),
+    N("Storing ODU com. / IDU com.",2,"Bij de HPX30A een verkeerde fasevolgorde, de verbinding tussen bediening en klemmenstrook is onderbroken, of klemmen a en b zijn omgedraaid.",["Neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
