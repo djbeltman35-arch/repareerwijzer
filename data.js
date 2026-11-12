@@ -12959,4 +12959,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("301-311", "Hardwarefout", 2, "Een hardwarefout in de omvormer.", ["Gebeurt het af en toe en blijft de omvormer werken, dan hoef je niets te doen.", "Neem contact op met je installateur of de Hoymiles-support."])
   ]});
 })();
+(() => {
+  SRC.solaxBoostG4 = ["SolaX Power – User Manual X1-BOOST G4, hoofdstuk Troubleshooting (PDF, solaxpower.com, Engels)", "https://bg.solaxpower.com/uploads/file/x1-boost-g4-user-manual-en.pdf"];
+  MODELS.push({ id: "solax-x1-boost-g4", brand: "SolaX", name: "Omvormer X1-Boost G4: foutcode IE:00001 t/m IE:00010", dev: "omvormer X1-Boost G4", cat: "zonnepanelen", years: "SolaX X1-Boost G4 (enkelfase string-omvormer)", unit: null, also: "SolaX IE 001, SolaX GridLostFault, SolaX GridVoltFault, SolaX IsoFault, SolaX X1 Boost storing, SolaX omvormer foutcode", intro: "De SolaX X1-Boost G4 toont een IE-code met een foutnaam. Codes over het net (IE:00001 t/m 00003 en 00006) lossen zich meestal vanzelf op; isolatie- en paneelfouten vragen om een installateur.", weak: ["Hoge netspanning.", "Vocht in DC-stekkers (isolatiefout)."], parts: [], tasks: [], src: ["solaxBoostG4"], faults: [
+    F("IE:00001", "GridLostFault: net weggevallen", 1, "De omvormer ziet geen net.", ["Controleer of de AC-kabel en de groep in orde zijn.", "Wacht: de omvormer maakt vanzelf weer verbinding als het net normaal is.", "Neem contact op met je installateur of SolaX-support."]),
+    F("IE:00002", "GridVoltFault: netspanning buiten bereik", 1, "De netspanning valt buiten het toegestane bereik.", ["Controleer de AC-kabel.", "Wacht: de omvormer maakt vanzelf weer verbinding als het net normaal is.", "Komt het vaak terug, laat de netspanning meten en meld het bij je netbeheerder."]),
+    F("IE:00003", "GridFreqFault: netfrequentie buiten bereik", 1, "De netfrequentie valt buiten het toegestane bereik.", ["Wacht: de omvormer maakt vanzelf weer verbinding als het net normaal is.", "Neem contact op met je installateur of SolaX-support."]),
+    F("IE:00004", "PVVoltFault: paneelspanning", 2, "De spanning van de panelen is te hoog.", ["Laat controleren of de paneelspanning binnen het bereik van de omvormer valt.", "Neem contact op met je installateur of SolaX-support."]),
+    F("IE:00005", "BusVoltFault: DC-busspanning", 2, "De interne DC-busspanning valt buiten het normale bereik.", ["Controleer of de paneelspanning binnen het werkbereik valt.", "Laat de DC-aansluiting los- en weer vastmaken (installateur).", "Neem contact op met je installateur of SolaX-support."]),
+    F("IE:00006", "GridVolt10MFault: 10 minuten overspanning", 1, "De netspanning was tien minuten te hoog.", ["Wacht: de omvormer maakt vanzelf weer verbinding als het net normaal is.", "Komt het vaak terug, laat de netspanning meten en meld het bij je netbeheerder."]),
+    F("IE:00007", "DcInjOCP: DC-injectie te hoog", 2, "Beveiliging tegen te veel gelijkstroom op het net.", ["Wacht en kijk of de omvormer weer normaal werkt.", "Neem contact op met je installateur of SolaX-support."]),
+    F("IE:00008", "HardLimitFault", 2, "Harde-limietfout (Australische norm).", ["Wacht en kijk of de omvormer weer normaal werkt.", "Neem contact op met je installateur of SolaX-support."]),
+    F("IE:00009", "ResidualOCP: lekstroombeveiliging", 2, "De lekstroombeveiliging is aangesproken.", ["Laat de aansluitingen van de omvormer controleren.", "Wacht en kijk of hij weer normaal werkt.", "Neem contact op met je installateur of SolaX-support."]),
+    F("IE:00010", "IsoFault: isolatiefout", 2, "Isolatiefout in de bekabeling van de panelen, vaak door vocht.", ["Kijk of het vanzelf verdwijnt als het droog is.", "Laat de aansluitingen controleren; raak de DC-bekabeling niet zelf aan.", "Neem contact op met je installateur of SolaX-support."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
