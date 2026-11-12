@@ -14379,4 +14379,22 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Wit aanslag of oxidatie binnenin", 3, "Vocht in de lader door slechte afdichting of beschadigde onderdelen.", ["Laat de installateur de vier O-ringen op de montagebouten en de afdichtring tussen behuizing en frontkap controleren."])
   ]});
 })();
+(() => {
+  SRC.sessyInstall = ["Sessy – Installatiehandleiding (08-2024), system states (PDF)", "https://sessy.nl/wp-content/uploads/2024/08/Installatiehandleiding-Sessy-082024.pdf"];
+  MODELS.push({ id: "sessy-thuisbatterij", brand: "Sessy", name: "Sessy thuisbatterij: system states en storingen", dev: "thuisbatterij", cat: "zonnepanelen", years: "Sessy thuisbatterij (5 kWh)", unit: null, also: "Sessy standby, Sessy SYSTEM_STATE_ERROR, Sessy laadt niet, Sessy wacht op goed net, Sessy thuisbatterij storing, Sessy schakelt af", intro: "De Sessy thuisbatterij toont in de app of het dashboard een 'system state'. De meeste daarvan zijn normaal. Alleen SYSTEM_STATE_ERROR is een echte storing: een interne communicatiefout.", weak: ["Verkeerde instellingen waardoor Sessy in standby blijft.", "Te warme of krappe plek waardoor het vermogen omlaag gaat."], parts: [], tasks: [], src: ["sessyInstall"], faults: [
+    F("SYSTEM_STATE_INIT", "Initialiseren", 1, "Sessy start op; normaal bij opstarten.", ["Even wachten."]),
+    F("SYSTEM_STATE_WAIT_FOR_PERIPHERALS", "Wacht op randapparatuur", 1, "Sessy wacht bij het opstarten op de aangesloten onderdelen; normaal.", ["Even wachten."]),
+    F("SYSTEM_STATE_STANDBY", "Standby", 1, "Het gevraagde vermogen is lager dan het ingestelde minimum, Sessy heeft het commando gekregen om uit te gaan, of de instellingen kloppen niet waardoor Sessy niet weet hoeveel hij moet laden of leveren.", ["Controleer de instellingen en de aansturing (nul-op-de-meter, API of ROI-modus)."]),
+    F("SYSTEM_STATE_WAITING_FOR_SAFE_SITUATION", "Wacht op een goed net", 1, "Spanning of frequentie van het net ligt buiten de grenzen van de netcode (NEN-EN 50549-1); Sessy mag dan niet actief zijn.", ["Wachten: Sessy wordt weer actief zodra het net binnen de grenzen is."]),
+    F("SYSTEM_STATE_WAITING_IN_SAFE_SITUATION", "Klaar om in te schakelen", 1, "Sessy heeft een setpoint gekregen en wordt na 1 minuut actief.", ["Even wachten."]),
+    F("SYSTEM_STATE_RUNNING_SAFE", "Actief", 1, "Sessy wordt actief aangestuurd (nul-op-de-meter, API of ROI-modus).", ["Niets doen."]),
+    F("SYSTEM_STATE_OVERRIDE_OVERFREQUENCY", "Compenseert overfrequentie", 1, "Sessy helpt het net te stabiliseren bij te hoge netfrequentie.", ["Niets doen."]),
+    F("SYSTEM_STATE_OVERRIDE_UNDERFREQUENCY", "Compenseert onderfrequentie", 1, "Sessy helpt het net te stabiliseren bij te lage netfrequentie.", ["Niets doen."]),
+    F("SYSTEM_STATE_DISCONNECT", "Schakelt af", 1, "Sessy moet volgens de netcode afschakelen.", ["Wachten tot Sessy weer mag inschakelen."]),
+    F("SYSTEM_STATE_RECONNECT", "Schakelt in", 1, "Sessy mag weer inschakelen.", ["Niets doen."]),
+    F("SYSTEM_STATE_ERROR", "Interne communicatiefout", 2, "Er is een communicatiefout tussen interne onderdelen.", ["Neem contact op met je installateur of Sessy-support."]),
+    F("SYSTEM_STATE_BATTERY_EMPTY_OR_FULL", "Batterij vol of leeg", 1, "De regeling wil laden of ontladen, maar de batterij is al vol of leeg.", ["Geen storing; Sessy gaat verder zodra er weer ruimte of lading is."]),
+    N("Levert minder vermogen of schakelt af", 1, "De plek voldoet niet: te warm, te weinig ruimte of ventilatie.", ["Zorg voor 10 tot 15 cm vrije ruimte rondom, geen direct zonlicht en geen verwarming of omvormer er direct onder.", "De ruimte moet geventileerd zijn en minstens 6 m³ per Sessy hebben."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
