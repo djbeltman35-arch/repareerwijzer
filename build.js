@@ -132,12 +132,14 @@ ${scripts}
 
 const pill = d => `<span class="pill ${D[d][1]}">${D[d][0]}</span>`;
 const srcList = m => m.src.length ? `<ul class="sources">${m.src.map(k => `<li><a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a></li>`).join("")}</ul>` : `<p class="muted">Gebaseerd op kennis uit de gebruikersgemeenschap. Controleer met de handleiding van je eigen exemplaar.</p>`;
-const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length ? `${m.tasks.length} onderhoudstaken · ` : ""}${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${codes} foutcodes)` : ""}${m.also ? ` · ook: ${esc(m.also)}` : ""}</span></a>`; };
+const pl = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length ? `${pl(m.tasks.length, "onderhoudstaak", "onderhoudstaken")} · ` : ""}${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${pl(codes, "foutcode", "foutcodes")})` : ""}${m.also ? ` · ook: ${esc(m.also)}` : ""}</span></a>`; };
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
 const CAT_ICON = { koffiemachines: "☕", wasmachines: "🧺", vaatwassers: "🍽️", drogers: "🌀", "cv-ketels": "🔥", ventilatie: "💨", warmtepompen: "♨️", airco: "❄️", koelkasten: "🧊", ovens: "🍕", kookplaten: "🍳", stofzuigers: "🧹", "e-bikes": "🚲", "3d-printers": "🖨️", tuin: "🌱", audio: "🔊", "kleine-apparaten": "🔌", laadpalen: "⚡", printers: "🖨️", laptops: "💻", smartphones: "📱", televisies: "📺", internet: "📶", spelcomputers: "🎮", zonnepanelen: "☀️", "camper-caravan": "🚐", spa: "🛁", garagedeuren: "🚪", auto: "🚗", trapliften: "♿", scooters: "🛴", kachels: "🪵", waterontharders: "💧", boten: "⛵", meterkast: "🔋", vrachtwagens: "🚚", gereedschap: "🛠️", "slim-huis": "🏠", rookmelders: "🚨" };
-const stats = { models: MODELS.length, codes: allCodes.length, faults: MODELS.reduce((n, m) => n + m.faults.length, 0) };
+const nl = n => n.toLocaleString("nl-NL");
+const stats = { models: nl(MODELS.length), codes: nl(allCodes.length), faults: MODELS.reduce((n, m) => n + m.faults.length, 0) };
 layout({
   file: "index.html",
   title: "Foutcodezoeker – foutcodes en storingen zelf oplossen, per merk en model",
@@ -225,7 +227,7 @@ for (const c of CATS) {
   layout({
     file: `${c.id}.html`,
     title: `${c.name}: foutcodes en onderhoud per merk | Foutcodezoeker`,
-    desc: `${c.intro} ${ms.length} merken en modellen, ${codes.length} foutcodes.`,
+    desc: `${c.intro} ${pl(ms.length, "merk", "merken")} en modellen, ${pl(codes.length, "foutcode", "foutcodes")}.`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }],
     body: `
 <section class="stack"><span class="eyebrow">Categorie</span><h1>${c.name}</h1><p class="lead">${esc(c.intro)}</p></section>
@@ -274,8 +276,8 @@ for (const m of MODELS) {
   const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
   layout({
     file: `${m.id}.html`,
-    title: m.brand === "Alle merken" ? `${m.name}: oorzaken en oplossingen | Foutcodezoeker` : (() => { const nc = m.faults.filter(f => f.code).length, nm = deviceName(m).replace(/ \(alle modellen\)/i, ""); return nc >= 3 ? `${nm}: ${nc} foutcodes en storingen uitgelegd | Foutcodezoeker` : `${nm}: storingen, foutcodes en onderhoud | Foutcodezoeker`; })(),
-    desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${codes.length} foutcodes uitgelegd` : `${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"} uitgelegd`}, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}.`,
+    title: m.brand === "Alle merken" ? `${m.name}: oorzaken en oplossingen | Foutcodezoeker` : (() => { const nc = m.faults.filter(f => f.code).length, nm = deviceName(m).replace(/ \(alle modellen\)/i, ""); return nc >= 3 ? `${nm}: ${pl(nc, "foutcode", "foutcodes")} en storingen uitgelegd | Foutcodezoeker` : `${nm}: storingen, foutcodes en onderhoud | Foutcodezoeker`; })(),
+    desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${pl(codes.length, "foutcode", "foutcodes")} uitgelegd` : `${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"} uitgelegd`}, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}.`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }],
     extraHead: `<script id="tasks-data" type="application/json">${tasksJson}</script>`,
     body: `
@@ -551,7 +553,7 @@ for (const b of brandNames) {
   layout({
     file: brandUrl(b),
     title: `${b} storingen en foutcodes: ${cats.slice(0, 3).join(", ")} | Foutcodezoeker`,
-    desc: `Alle ${b}-storingen op een rij: ${codes.length ? codes.length + " foutcodes" : ms.reduce((n, m) => n + m.faults.length, 0) + " storingen"} voor ${cats.join(", ")}. Met oplossing en onderhoudsschema.`,
+    desc: `Alle ${b}-storingen op een rij: ${codes.length ? pl(codes.length, "foutcode", "foutcodes") : pl(ms.reduce((n, m) => n + m.faults.length, 0), "storing", "storingen")} voor ${cats.join(", ")}. Met oplossing en onderhoudsschema.`,
     crumbs: [{ name: "Merken", file: "merken.html" }, { name: b, file: brandUrl(b) }],
     body: `
 <section class="stack"><span class="eyebrow">Merk</span><h1>${esc(b)} storingen en foutcodes</h1><p class="lead">Alle apparaten van ${esc(b)} op Foutcodezoeker: ${cats.join(", ")}. Kies je apparaat of zoek direct je foutcode.</p></section>
@@ -567,14 +569,14 @@ layout({
   crumbs: [{ name: "Merken", file: "merken.html" }],
   body: `
 <section class="stack"><span class="eyebrow">Overzicht</span><h1>Alle merken</h1><p class="lead">Kies het merk van je apparaat.</p></section>
-<div class="grid">${brandNames.map(b => `<a class="tile" href="${brandUrl(b)}"><b>${esc(b)}</b><small>${BRANDS[b].length} ${BRANDS[b].length === 1 ? "apparaat" : "apparaten"} · ${BRANDS[b].reduce((n, m) => n + m.faults.length, 0)} storingen</small></a>`).join("")}</div>`
+<div class="grid">${brandNames.map(b => `<a class="tile" href="${brandUrl(b)}"><b>${esc(b)}</b><small>${BRANDS[b].length} ${BRANDS[b].length === 1 ? "apparaat" : "apparaten"} · ${pl(BRANDS[b].reduce((n, m) => n + m.faults.length, 0), "storing", "storingen")}</small></a>`).join("")}</div>`
 });
 
 // ───────── Overzicht alle foutcodes
 layout({
   file: "foutcodes.html",
   title: `Alle foutcodes per merk: ${allCodes.length} codes uitgelegd | Foutcodezoeker`,
-  desc: `Overzicht van ${allCodes.length} foutcodes van wasmachines, vaatwassers, drogers en e-bikes, per merk. Met betekenis en oplossing.`,
+  desc: `Overzicht van ${nl(allCodes.length)} foutcodes van wasmachines, vaatwassers, drogers en e-bikes, per merk. Met betekenis en oplossing.`,
   crumbs: [{ name: "Foutcodes", file: "foutcodes.html" }],
   body: `
 <section class="stack"><span class="eyebrow">Overzicht</span><h1>Alle foutcodes</h1><p class="lead">Zoek je code op in de tabel, of gebruik het zoekveld. Elke code heeft een eigen pagina met oplossing.</p>
@@ -623,7 +625,7 @@ layout({
 layout({
   file: "over-foutcodezoeker.html",
   title: "Over Foutcodezoeker: waar komt de informatie vandaan? | Foutcodezoeker",
-  desc: `Foutcodezoeker legt ${allCodes.length} foutcodes uit in gewoon Nederlands. Elke pagina noemt zijn bron: handleidingen en supportpagina's van fabrikanten en vakwinkels.`,
+  desc: `Foutcodezoeker legt ${nl(allCodes.length)} foutcodes uit in gewoon Nederlands. Elke pagina noemt zijn bron: handleidingen en supportpagina's van fabrikanten en vakwinkels.`,
   crumbs: [{ name: "Over Foutcodezoeker", file: "over-foutcodezoeker.html" }],
   extraHead: `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Foutcodezoeker", url: `${SITE}/`, email: "info@foutcodezoeker.nl", founder: { "@type": "Person", name: "Erik" } })}</script>`,
   body: `
@@ -880,4 +882,4 @@ if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSyn
 fs.writeFileSync(path.join(OUT, "sw.js"), fs.readFileSync(path.join(OUT, "sw.js"), "utf8").replace(/const V = "[^"]*";/, `const V = "fcz-${VER}";`));
 for (const f of ["style.css", "app.js", "qrcode.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
 
-console.log(`${pages.length} pagina's gebouwd (${allCodes.length} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);
+console.log(`${pages.length} pagina's gebouwd (${nl(allCodes.length)} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);
