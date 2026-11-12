@@ -13295,4 +13295,17 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E172", "Naverwarmer (E2801-E2803)", 2, "Verbinding, sensor of element van de naverwarmer werkt niet; de naverwarmer staat uit.", ["Laat voeding, zekering en bedrading van de naverwarmer controleren en zo nodig de naverwarmer vervangen."])
   ]});
 })();
+(() => {
+  SRC.gorenjeOvenBio21 = ["Gorenje – Instructions for use of a built-in oven (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/853774en.html"];
+  SRC.gorenjeOvenSteam = ["Gorenje – Instructions for use, inbouwoven met stoom (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/901238en.html"];
+  MODELS.push({ id: "gorenje-oven", brand: "Gorenje", name: "Inbouwoven: Err-codes, SEnS en meldingen bij stoom (FILL, UnFiL, dEcL)", dev: "inbouwoven", cat: "ovens", years: "Gorenje-inbouwovens met display, ook met stoomfunctie", unit: null, also: "Gorenje oven Err, Gorenje oven Er12, Gorenje oven SEnS, Gorenje oven FILL, Gorenje oven UnFiL, Gorenje oven dEcL, Gorenje oven door", intro: "Een Gorenje-oven toont Err of Er met een getal bij een fout in de elektronica. SEnS gaat over de vleesthermometer; FILL, UnFiL en dEcL zijn meldingen van de stoomfunctie.", weak: ["Kalk bij stoomovens.", "Vuile aansluiting van de vleesthermometer."], parts: [], tasks: [], src: ["gorenjeOvenBio21", "gorenjeOvenSteam"], faults: [
+    F("Err / Er", "Fout in de elektronica", 2, "ErX (één cijfer) of ErXX (twee cijfers): een fout in de elektronische module.", ["Haal de oven een paar minuten van de stroom (groep uit) en zet hem weer aan.", "Staat de code er nog, bel de Gorenje-service."]),
+    F("SEnS", "Vleesthermometer", 1, "De vleesthermometer wordt niet goed herkend.", ["Maak de aansluiting schoon en steek de thermometer een paar keer achter elkaar in en uit."]),
+    F("FILL", "Watertank vullen", 1, "Je start de stoomfunctie maar de watertank is leeg.", ["Vul de watertank en tik opnieuw op start."]),
+    F("UnFiL", "Watertank legen", 1, "Na het stomen is de oven afgekoeld en moet de watertank geleegd worden.", ["Leeg de watertank; de melding komt terug bij het aanzetten tot je dat gedaan hebt."]),
+    F("dEcL", "Ontkalken", 1, "Na een aantal stoombeurten is ontkalken aan te raden.", ["Start het ontkalken (kan ook handmatig via de algemene instellingen)."]),
+    F("door", "Snel voorverwarmen klaar", 1, "Geen storing: de oven is op temperatuur na snel voorverwarmen.", ["Open de deur en zet het gerecht erin; de oven gaat verder."]),
+    N("Bediening reageert niet of scherm bevroren", 1, "De bediening is vastgelopen.", ["Haal de oven een paar minuten van de stroom (groep uit) en zet hem weer aan."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
