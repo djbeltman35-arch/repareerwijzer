@@ -13147,7 +13147,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E:00", "Besturingsprint", 3, "Storing in de besturing.", ["Bel de Gorenje-service."]),
     F("E:01", "Temperatuursensor", 3, "Een temperatuursensor is defect.", ["Bel de Gorenje-service."]),
     F("E:02", "Communicatiefout", 3, "Communicatiefout in de elektronica.", ["Bel de Gorenje-service."]),
-    F("E:03", "Pomp", 2, "Fout in de condenswaterpomp.", ["Kijk of het condenswaterreservoir leeg is en goed op zijn plek zit.", "Bel de Gorenje-service."]),
+    F("E:03", "Pomp", 3, "Fout in de pomp.", ["Bel de Gorenje-service."]),
     F("E:04", "Oververhit", 1, "Het systeem is te warm geworden, meestal door vuile filters.", ["Maak het pluizenfilter in de deur en het filter voor de warmtewisselaar schoon.", "Komt de code terug, bel de Gorenje-service."]),
     F("E:06 / E:07", "Besturingsprint", 3, "Storing in de besturing.", ["Haal de stekker uit het stopcontact.", "Bel de Gorenje-service."]),
     F("E:11", "Motor", 3, "Geen verbinding tussen motor en besturing.", ["Bel de Gorenje-service."]),
