@@ -15400,4 +15400,34 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(N("Onregelmatig knipperen",2,"Een storing die Nespresso zelf moet bekijken.",["Neem contact op met de Nespresso Club."]));
   m.faults.push(N("Alleen water, geen koffie (met capsule erin)",2,"Een storing die Nespresso zelf moet bekijken.",["Neem contact op met de Nespresso Club."]));
 })();
+(() => {
+  SRC.intergasXource=["Intergas – installatiehandleiding Intergas Xource (88000301), hoofdstuk 11 storingen","https://www.intergas-verwarming.nl/app/uploads/2021/06/88000301-Installatiehandleiding-Intergas-Xource.pdf"];
+  MODELS.push({ id:"intergas-xource", brand:"Intergas", name:"Xource warmtepomp: storingscodes F en notificaties N", dev:"warmtepomp", cat:"warmtepompen", years:"Xource", unit:null,
+  intro:"De Intergas Xource toont bij een storing een knipperend servicesymbool en 30 seconden lang de code F--- op het linker display. Tik op het knipperende symbool om de code opnieuw te zien. Resetten: houd de knipperende servicetoets 2 seconden vast. Intergas raadt aan eerst de oorzaak op te lossen. Notificaties (N) beïnvloeden de werking niet en verdwijnen vanzelf als het systeem zich herstelt; komt een notificatie steeds terug, raadpleeg dan Intergas.",
+  weak:[], parts:[], tasks:[], src:["intergasXource"],
+  faults:[
+    F("F000","Geen waterdruk",2,"Er is geen waterdruk in het systeem.",["Controleer het systeem op lekkages.", "Controleer de hoofdwateraansluiting.", "Neem contact op met uw installateur."]),
+    F("F001","Geen doorstroming in het cv-circuit",2,"Er is minstens 30 minuten geen doorstroming in het cv-circuit.",["Controleer het systeem op lekkages en de waterdruk.", "Laat de installateur de cv-pomp controleren."]),
+    F("F002","Geen doorstroming in het tapwatercircuit",2,"Er is minstens 30 minuten geen doorstroming in het tapwatercircuit.",["Controleer het systeem op lekkages en de waterdruk.", "Laat de installateur de pomp van het boilervatcircuit controleren."]),
+    F("F003","Sensor T02 te hoog (boven 80 °C)",2,"De waarde van sensor T02 is te hoog.",["Laat de installateur de doorstroming in de back-up heater en het systeem controleren."]),
+    F("F009","Geheugenfout storingscodes",2,"Er is een geheugenfout.",["Reset de regelunit (houd de knipperende servicetoets 2 seconden vast).", "Komt de code terug: de regelunit moet worden vervangen. Neem contact op met uw installateur."]),
+    F("F010","Watertemperatuur te laag tijdens ontdooien",2,"De cv-doorstroming is te laag.",["Laat de installateur de doorstroming in het systeem controleren."]),
+    F("F043","Sensorfout T01",2,"De warmwatersensor T01 is defect, niet goed aangesloten of de bedrading is beschadigd.",["Neem contact op met uw installateur."]),
+    F("F045","Sensorfout T02",2,"De warmwatersensor T02 is defect, niet goed aangesloten of de bedrading is beschadigd.",["Neem contact op met uw installateur."]),
+    F("F046","Sensorfout T07 (buitensensor)",2,"De buitensensor T07 is defect, niet goed aangesloten of de bedrading is beschadigd.",["Neem contact op met uw installateur."]),
+    F("F047","Sensorfout T06 (systeemwatersensor)",2,"De systeemwatersensor T06 is defect, niet goed aangesloten of de bedrading is beschadigd.",["Neem contact op met uw installateur."]),
+    F("F048","Sensorfout T04 (warmwatersensor cv)",2,"De warmwatersensor cv T04 is defect, niet goed aangesloten of de bedrading is beschadigd.",["Neem contact op met uw installateur."]),
+    F("N009","Parameter P007 niet ingesteld",2,"De parameter voor de aansluiting fase buitenunit moet worden ingesteld.",["Neem contact op met uw installateur."]),
+    F("N010","Buitenunit blijft in standby",2,"De buitenunit kan niet worden ingeschakeld; de draadbrug in de buitenunit is niet geplaatst.",["Neem contact op met uw installateur."]),
+    F("N011","Communicatie met buitenunit weggevallen",2,"De communicatie met de buitenunit is weggevallen of de buitenunit heeft een interne fout.",["Neem contact op met uw installateur."]),
+    F("N012","Temperatuur bovenin boilervat te hoog",1,"Sensor T09 bovenin het boilervat meet een te hoge temperatuur; het verwarmen van tapwater wordt afgebroken.",["Draai een warmwaterkraan open om de temperatuur te verlagen."]),
+    F("N014","Kamerthermostaat niet aangesloten",1,"De Comfort Touch-kamerthermostaat is niet aangesloten.",["Sluit de Comfort Touch-kamerthermostaat aan."]),
+    F("N015","Fail safe run: T08 en T09 niet aangesloten",2,"De sensoren in het boilervat zijn niet aangesloten; het boilervat wordt periodiek tot 60 °C opgewarmd.",["Neem contact op met uw installateur."]),
+    F("N020","Geen doorstroming tapwatercircuit (30 seconden)",1,"Er is minstens 30 seconden geen doorstroming in het tapwatercircuit. Het systeem start een ontluchtingsprogramma van maximaal 15 minuten.",["Wacht het ontluchtingsprogramma af; bij voldoende doorstroming verdwijnt de melding vanzelf.", "Komt de melding vaak terug: neem contact op met uw installateur."]),
+    F("N021","Geen doorstroming cv-circuit (30 seconden)",1,"Er is minstens 30 seconden geen doorstroming in het cv-circuit. Het systeem start een ontluchtingsprogramma van maximaal 15 minuten.",["Wacht het ontluchtingsprogramma af; bij voldoende doorstroming verdwijnt de melding vanzelf.", "Komt de melding vaak terug: neem contact op met uw installateur."]),
+    F("N033","Opwarmen na ontdooien duurt te lang",2,"Het weer op temperatuur brengen van het water na een ontdooicyclus duurt langer dan een uur; het systeem kan ondergedimensioneerd zijn.",["Neem contact op met Intergas Verwarming."]),
+    F("N040","Geen waarde sensor T09 (bovenin boilervat)",1,"De waarde van sensor T08 wordt overgenomen.",["Komt de melding vaak terug: neem contact op met uw installateur."]),
+    F("N041","Geen waarde sensor T08 (onderin boilervat)",2,"Er wordt periodiek een tapcyclus gedaan op basis van sensor T06.",["Neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
