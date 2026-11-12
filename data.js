@@ -15570,4 +15570,45 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("17536","Extrudermotor draait niet",2,"De extrudermotor van een tool draait niet.",["Neem contact op met Prusa support."]),
   ]});
 })();
+(() => {
+  SRC.vaillantEcocraft=["Vaillant – installatie- en onderhoudshandleiding ecoCRAFT exclusiv VKK 806/3 t/m 2806/3 (NL, 2025), bijlage E foutcodes","https://www.vaillant.be/api/download/product/nl/_ecocraft-exclusiv_1430259.pdf"];
+  MODELS.push({ id:"vaillant-ecocraft-exclusiv", brand:"Vaillant", name:"ecoCRAFT exclusiv: foutcodes F.00 t/m F.74", dev:"cv-ketel", cat:"cv-ketels", years:"VKK 806/3 t/m VKK 2806/3", unit:null,
+  intro:"De Vaillant ecoCRAFT exclusiv is een grote condensatieketel voor bijvoorbeeld appartementencomplexen en bedrijfspanden. Een foutcode begint met F. en vraagt om een installateur.",
+  weak:[], parts:[], tasks:[], src:["vaillantEcocraft"],
+  faults:[
+    F("F.00","Onderbreking aanvoertemperatuurvoeler",2,"Kabel onderbroken, kabel niet aangesloten of voeler defect.",["Neem contact op met uw installateur."]),
+    F("F.01","Onderbreking retourtemperatuurvoeler",2,"Kabel onderbroken, kabel niet aangesloten of voeler defect.",["Neem contact op met uw installateur."]),
+    F("F.10","Kortsluiting aanvoertemperatuurvoeler",2,"Kabel tegen massa kortgesloten of voeler defect.",["Neem contact op met uw installateur."]),
+    F("F.13","Kortsluiting boilertemperatuurvoeler",2,"Kabel tegen massa kortgesloten of voeler defect.",["Neem contact op met uw installateur."]),
+    F("F.20","Veiligheidsuitschakeling: temperatuurbegrenzer",2,"Lucht in de warmtewisselaar, of in combinatie met F.00 een defecte aanvoertemperatuurvoeler.",["Neem contact op met uw installateur."]),
+    F("F.22","Veiligheidsuitschakeling: watergebrek",2,"De waterdruk is lager dan 0,3 bar.",["Neem contact op met uw installateur."]),
+    F("F.23","Temperatuurspreiding in ketelblok te hoog",2,"Te weinig circulatiewater: pomp verstopt, defect of te weinig vermogen, of installatie zonder open verdeler gesmoord.",["Neem contact op met uw installateur."]),
+    F("F.24","Temperatuur stijgt te snel",2,"Pomp verstopt, defect of te weinig vermogen, of installatie zonder open verdeler gesmoord.",["Neem contact op met uw installateur."]),
+    F("F.27","Vreemd licht",3,"Er wordt een vlam herkend bij gesloten gasklep, of een elektronicafout.",["Neem contact op met uw installateur."]),
+    F("F.28","Ontsteking mislukt bij aanloop",2,"Gastoevoer ontbreekt, elektroden gebogen, defect of vervuild, of gasblok defect.",["Neem contact op met uw installateur."]),
+    F("F.29","Opnieuw ontsteken tijdens werking mislukt",2,"Fout in gastoevoer, gasblok defect, of rookgasrecirculatie door verkeerd gemonteerde lucht-/rookgasafvoer.",["Neem contact op met uw installateur."]),
+    F("F.30","Onderbreking keteltemperatuurvoeler",2,"Kabel onderbroken, kabel niet aangesloten of voeler defect.",["Neem contact op met uw installateur."]),
+    F("F.31","Kortsluiting keteltemperatuurvoeler",2,"Kabel tegen massa kortgesloten of voeler defect.",["Neem contact op met uw installateur."]),
+    F("F.32","Ventilatortoerental buiten tolerantie",2,"Kabelboomfout of ventilatorfout.",["Neem contact op met uw installateur."]),
+    F("F.33","Drukdoos schakelt niet in",2,"Brander of luchttoevoerfilter sterk vervuild.",["Neem contact op met uw installateur."]),
+    F("F.34","Drukdoos schakelt niet uit",2,"Drukdoos defect of condens in de meetslang.",["Neem contact op met uw installateur."]),
+    F("F.37","Toerentalafwijking in bedrijf",2,"Ventilator defect of elektronicafout.",["Neem contact op met uw installateur."]),
+    F("F.42","Kortsluiting codeerweerstand",2,"Kortsluiting codeerweerstand of kabelboomfout.",["Neem contact op met uw installateur."]),
+    F("F.43","Codeerweerstand onderbroken",2,"Codeerweerstand onderbroken of kabelboom defect.",["Neem contact op met uw installateur."]),
+    F("F.49","Fout eBUS",2,"Kortsluiting of overbelasting op de eBus, of twee voedingen met verschillende polariteit.",["Neem contact op met uw installateur."]),
+    F("F.50","Fout rookgasdrukdoos",2,"Rookgasafvoer verstopt, sifon of condensafvoer geblokkeerd of stijgend geplaatst.",["Neem contact op met uw installateur."]),
+    F("F.60","Fout gasblokaansturing +",3,"Elektronica defect.",["Neem contact op met uw installateur."]),
+    F("F.61","Fout gasblokaansturing -",3,"Elektronica defect.",["Neem contact op met uw installateur."]),
+    F("F.62","Fout uitschakelvertraging gasblok",3,"Vertraagd uitschakelen gasblok of doven vlamsignaal, gasblok lek of elektronica defect.",["Neem contact op met uw installateur."]),
+    F("F.63","Fout EEPROM",3,"Elektronica defect.",["Neem contact op met uw installateur."]),
+    F("F.64","Fout ADC",3,"Elektronica defect of kortsluiting in aanvoertemperatuurvoeler.",["Neem contact op met uw installateur."]),
+    F("F.65","Elektronicatemperatuur te hoog",2,"Elektronica door externe invloed te heet, of elektronica defect.",["Neem contact op met uw installateur."]),
+    F("F.66","Elektronicafout",3,"Elektronica defect.",["Neem contact op met uw installateur."]),
+    F("F.67","Storing elektronica/vlam",3,"Ongeldig vlamsignaal of elektronica defect.",["Neem contact op met uw installateur."]),
+    F("F.70","Ongeldige toestel-ID (DSN)",2,"ID van elektronica en display komen niet overeen.",["Neem contact op met uw installateur."]),
+    F("F.73","Waterdruksensor-signaal te laag",2,"Druksensor niet aangesloten of kortgesloten.",["Neem contact op met uw installateur."]),
+    F("F.74","Waterdruksensor-signaal te hoog",2,"Druksensor defect of kabelonderbreking.",["Neem contact op met uw installateur."]),
+    F("Err","Communicatiefout bedieningsveld en elektronica",2,"De functie van de ontstoringstoets blijft actief.",["Neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
