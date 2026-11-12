@@ -373,6 +373,7 @@ function ADS() { return {
   camperverkopen: ["https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=&amp;dl=camper-verkopen%2F", "🚐 Camper verkopen?", "Vraag een bod aan bij onze partner."],
   refurbnl: ["https://www.awin1.com/cread.php?awinmid=112024&amp;awinaffid=3152283", "♻️ Refurbished.nl: gebruikt en als nieuw", "Reparatie te duur? Bekijk refurbished laptops, telefoons en tablets met garantie."],
   joybuy: ["https://glp8.net/c/?si=20823&amp;li=1881811&amp;wi=446984&amp;ws=", "🛍️ Joybuy: elektronica en huishoudapparaten", "Toch een nieuw apparaat nodig? Vergelijk het aanbod bij Joybuy."],
+  banden: ["https://glp8.net/c/?si=21242&amp;li=1905280&amp;wi=446984&amp;ws=", "🛞 Nieuwe banden nodig?", "Zomer-, winter- en all-seasonbanden bij Banden.nl, ook met montage."],
   vevor: ["https://www.awin1.com/cread.php?awinmid=118435&amp;awinaffid=3152283", "🛠️ VEVOR: gereedschap, aggregaten en kachels", "Vervangend apparaat of werkplaatsspullen nodig? Bekijk het aanbod bij VEVOR."],
   tplink: ["https://www.awin1.com/cread.php?awinmid=120541&amp;awinaffid=3152283", "📶 TP-Link Store: wifi, mesh en slimme apparaten", "Nieuwe router, mesh-systeem, camera of slimme stekker nodig? Bekijk het aanbod in de officiële TP-Link Store."],
   eufy: ["https://bdt9.net/c/?si=18489&amp;li=1849129&amp;wi=446984&amp;ws=", "🤖 Eufy robotstofzuigers, camera's en deurbellen", "Nieuw apparaat of onderdelen nodig? Bekijk het aanbod bij Eufy."],
@@ -382,7 +383,7 @@ function adsFor(m) {
   if (isEvCharge(m)) return ["laadkabel"];
   if (/^TP-Link/.test(m.brand)) return ["tplink"];
   switch (m.cat) {
-    case "auto": return ["acculader", "autoverkopen"];
+    case "auto": return ["acculader", "banden", "autoverkopen"];
     case "camper-caravan": return ["acculader", "camperverkopen", "vevor"];
     case "boten": return ["acculader"];
     case "aggregaten": case "compressoren": return ["vevor", "gereedschap", "bricoinn"];
