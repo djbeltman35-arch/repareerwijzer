@@ -16317,4 +16317,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   SRC.msBug139=["Microsoft Learn – Bug check 0x139 KERNEL_SECURITY_CHECK_FAILURE (Engels)","https://learn.microsoft.com/en-sg/WINDOWS-HARDWARE/DRIVERS/debugger/bug-check-0x139--kernel-security-check-failure"]; m.src.push("msBug139");
   m.faults.push(F("KERNEL_SECURITY_CHECK_FAILURE","Beschadigde kerneldata (0x139)",2,"De Windows-kernel zag beschadiging van een belangrijke datastructuur en stopte de computer om verdere schade te voorkomen.",["Maak recente hardware-, driver- of servicewijzigingen ongedaan.","Bekijk het systeemlogboek op fouten rond het tijdstip.","Werk drivers bij van apparaten met een geel uitroepteken in Apparaatbeheer.","Scan op virussen.","Voer als administrator chkdsk en sfc /scannow uit.","Installeer de nieuwste Windows- en driverupdates."]));
 })();
+(() => {
+  SRC.faberEmatrix=["Faber – handleiding e-MatriX 800/500 RD/ST (LL), hoofdstuk 12 storingszoeker","https://www.faberfires.com/sites/g/files/emiian311/files/2022-06/40011692-1845%20Manual%20e-MatriX%20800x500%20RD%2CST%20%28LL%29%20NL_0.pdf"];
+  MODELS.push({ id:"faber-e-matrix", brand:"Faber", name:"e-MatriX elektrische haard (waterdamp): knipperende lampjes en storingen", dev:"e-MatriX elektrische haard", cat:"kachels", years:"e-MatriX 800/500 RD en ST (LL)", unit:null,
+  intro:"De Faber e-MatriX is een elektrische haard met vlammen van waterdamp. Bij storingen knipperen de lampjes in een vast ritme; de storingszoeker uit de handleiding staat hieronder.",
+  weak:[], parts:[], tasks:[], src:["faberEmatrix"],
+  faults:[
+    N("Geen vlammen",1,"Geen netspanning, laag waterniveau of de transducers zijn niet goed aangesloten.",["Controleer of het netsnoer goed is aangesloten en de hoofdschakelaar aan staat.", "Controleer het waterniveau volgens de handleiding.", "Sluit de transducers correct aan."]),
+    N("Start niet of stopt; lampjes knipperen steeds 2 keer",1,"Laag waterniveau, of de overloopbeveiliging is geactiveerd.",["Zet de hoofdschakelaar op de control box uit en controleer alle wateraansluitingen op lekkage.", "Controleer of alle afsluiters en de waterkraan open staan."]),
+    N("Start niet; lampjes knipperen 1 keer per 8 seconden",2,"Het waterniveau is te hoog.",["Laat de werking van de elektromechanische klep in de control box controleren."]),
+    N("Werkt niet; lampjes knipperen steeds 4 keer",1,"Het vullen met water duurt te lang.",["Zet de hoofdschakelaar op de control box uit en controleer de wateraansluitingen op lekkage.", "Draai de afsluiters dicht, controleer het groffilter en maak het zo nodig schoon."]),
+    N("Vlammen te laag op de hoogste stand",2,"De transducers en/of het luchtfilter zijn vervuild.",["Laat een onderhoudsbeurt uitvoeren."]),
+    N("Vlammen te hoog en veel condens",2,"De afvoerventilator werkt niet.",["Laat de werking van de ventilator bovenin het toestel controleren."]),
+    N("Afstandsbediening werkt niet",1,"Lege batterijen, niet gekoppeld of te ver van de haard.",["Plaats nieuwe batterijen.", "Koppel de afstandsbediening opnieuw volgens de handleiding.", "Ga dichter bij de haard staan."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
