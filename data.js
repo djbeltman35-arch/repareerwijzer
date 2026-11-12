@@ -13452,4 +13452,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melk wordt te heet", 1, "De melkkan staat niet goed op de temperatuursensor.", ["Zet de kan goed op de sensor en pas eventueel de melktemperatuur aan."])
   ]});
 })();
+(() => {
+  SRC.sageBambino = ["Sage – Snelstartgids the Bambino SES450, Troubleshooting (PDF, assets.sageappliances.com, Engels)", "https://assets.sageappliances.com/SES450/SES450_EU_UG6_E21_FA_WEB.pdf"];
+  MODELS.push({ id: "sage-bambino", brand: "Sage", name: "the Bambino: knipperende lampjes en storingen", dev: "the Bambino (SES450)", cat: "koffiemachines", years: "Sage the Bambino SES450", unit: null, also: "Sage Bambino lampjes knipperen, Bambino 2 cup knippert, Bambino stopt, Bambino geen water, Bambino weinig stoom", intro: "De Sage Bambino (zonder Plus) laat met knipperende lampjes zien wat er is: zes keer knipperen betekent geen water, een knipperende 2 CUP-knop dat schoonmaken en ontkalken nodig is.", weak: ["Leeg of los reservoir.", "Te weinig ontkalken."], parts: [], tasks: [], src: ["sageBambino"], faults: [
+    N("Lampjes knipperen 6 keer in 3 seconden", 1, "Er wordt geen water in het reservoir gedetecteerd.", ["Vul het reservoir tot MAX en druk het omlaag tot het vastzit."]),
+    N("2 CUP-knop knippert steeds", 1, "Schoonmaken en ontkalken is nodig.", ["Draai de Clean & Descale-cyclus. Een druk op een knop zet de melding uit, maar negeer hem niet."]),
+    N("Machine staat aan maar stopt ermee", 2, "De thermische beveiliging is aangesproken doordat de pomp te warm werd.", ["Druk 1 CUP en HOT WATER een halve seconde samen in en haal de stekker eruit.", "Laat de machine 30-60 minuten afkoelen.", "Blijft het, neem contact op met de Sage-klantenservice."]),
+    N("Pomp maakt hard lawaai en er komt geen water", 1, "Het reservoir is leeg of onder het minimum, of het waterfilter is niet eerst geweekt.", ["Vul het reservoir.", "Week een nieuw waterfilter 5 minuten voor je het plaatst."]),
+    N("Geen water uit de zetgroep of geen heet water", 1, "Leeg of los reservoir, kalk, te fijne maalgraad, te veel of te hard aangedrukte koffie, of een verstopt mandje.", ["Vul het reservoir en zet het vast.", "Draai de Clean & Descale-cyclus.", "Controleer maalgraad, hoeveelheid en aandrukken."]),
+    N("Weinig stoom", 1, "Nog niet op temperatuur, leeg reservoir, kalk of een verstopte stoompijp.", ["Wacht tot hij warm is, vul het reservoir, ontkalk of maak de stoompijp schoon."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
