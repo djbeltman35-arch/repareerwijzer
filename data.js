@@ -13144,8 +13144,9 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   ]});
 })();
 (() => {
+  SRC.gorenjeDroger2 = ["Gorenje – Gebruiksaanwijzing warmtepompdroger 7-9 kg (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/864436en.html"];
   SRC.gorenjeDrogerSp22 = ["Gorenje – Gebruiksaanwijzing warmtepompdroger met ConnectLife (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/914433en.html"];
-  MODELS.push({ id: "gorenje-droger", brand: "Gorenje", name: "Warmtepompdroger: foutcode E:00 t/m E:17", dev: "warmtepompdroger", cat: "drogers", years: "Gorenje-warmtepompdrogers met E:-codes (SP22-platform, met en zonder ConnectLife)", unit: null, also: "Gorenje droger E:04, Gorenje droger E:03 pomp, Gorenje droger E:01, Gorenje warmtepompdroger foutcode, Gorenje droger E:17 wifi", intro: "Een Gorenje-warmtepompdroger toont E: met een getal bij een storing. Alleen E:04 (oververhit) los je vaak zelf op door de filters schoon te maken; de andere codes zijn voor de service.", weak: ["Vuil pluizenfilter in de deur.", "Vuil filter voor de warmtewisselaar."], parts: [], tasks: [], src: ["gorenjeDrogerSp22"], faults: [
+  MODELS.push({ id: "gorenje-droger", brand: "Gorenje", name: "Warmtepompdroger: foutcode E:00 t/m E:17", dev: "warmtepompdroger", cat: "drogers", years: "Gorenje-warmtepompdrogers met E:-codes (SP22-platform, met en zonder ConnectLife)", unit: null, also: "Gorenje droger E:04, Gorenje droger E:03 pomp, Gorenje droger E:01, Gorenje warmtepompdroger foutcode, Gorenje droger E:17 wifi", intro: "Een Gorenje-warmtepompdroger toont E: met een getal bij een storing. Alleen E:04 (oververhit) los je vaak zelf op door de filters schoon te maken; de andere codes zijn voor de service.", weak: ["Vuil pluizenfilter in de deur.", "Vuil filter voor de warmtewisselaar."], parts: [], tasks: [], src: ["gorenjeDrogerSp22", "gorenjeDroger2"], faults: [
     F("E:00", "Besturingsprint", 3, "Storing in de besturing.", ["Bel de Gorenje-service."]),
     F("E:01", "Temperatuursensor", 3, "Een temperatuursensor is defect.", ["Bel de Gorenje-service."]),
     F("E:02", "Communicatiefout", 3, "Communicatiefout in de elektronica.", ["Bel de Gorenje-service."]),
@@ -13153,6 +13154,8 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E:04", "Oververhit", 1, "Het systeem is te warm geworden, meestal door vuile filters.", ["Maak het pluizenfilter in de deur en het filter voor de warmtewisselaar schoon.", "Komt de code terug, bel de Gorenje-service."]),
     F("E:06 / E:07", "Besturingsprint", 3, "Storing in de besturing.", ["Haal de stekker uit het stopcontact.", "Bel de Gorenje-service."]),
     F("E:11", "Motor", 3, "Geen verbinding tussen motor en besturing.", ["Bel de Gorenje-service."]),
+    F("E_FULL", "Condenswaterreservoir vol", 1, "Het condenswaterreservoir is vol.", ["Leeg het reservoir en ga verder met drogen."]),
+    F("E_PF", "Stroomstoring", 1, "De stroom is uitgevallen tijdens het programma.", ["Druk op Start/Pauze om verder te gaan."]),
     F("E:17", "Geen wifi-verbinding", 1, "De droger kan geen verbinding maken met wifi. Drogen werkt gewoon, alleen bediening op afstand niet.", ["Controleer of je router 2,4 GHz-wifi heeft en het signaal bij de droger sterk genoeg is.", "Blijft het, bel de Gorenje-service."])
   ]});
 })();
