@@ -16088,11 +16088,12 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.pgSdrive=["Curtiss-Wright PG Drives Technology – S-Drive flash codes (Engels)","https://industrial.curtisswright.com/en-gb/pgdt/Online-Diagnostics/Flash-Code-List/S-Drive-Flash-Codes"];
+  SRC.pgEgis=["Curtiss-Wright PG Drives Technology – Egis flash codes (Engels)","https://industrial.curtisswright.com/en-gb/pgdt/Online-Diagnostics/Flash-Code-List/Egis-Flash-Codes"];
   SRC.driveSdrive=["Drive Medical – S-Drive flash codes (Engels), nummering knipperingen","https://www.drivemedical.com/hubfs/Drive%20Medical/Brochures%20and%20Catalogs/Flash%20S%20Drive.pdf?hsLang=en"];
-  MODELS.push({ id:"pg-drives-s-drive", brand:"PG Drives", name:"S-Drive besturing (scootmobiel): knippercodes accumeter", dev:"S-Drive scootmobielbesturing", cat:"trapliften", years:"Scootmobielen met PG Drives S-Drive-besturing", unit:null,
-  also:"Curtiss-Wright, scootmobiel knippert, accumeter knippert",
+  MODELS.push({ id:"pg-drives-s-drive", brand:"PG Drives", name:"S-Drive en Egis besturing (scootmobiel): knippercodes accumeter", dev:"S-Drive scootmobielbesturing", cat:"trapliften", years:"Scootmobielen met PG Drives S-Drive-besturing", unit:null,
+  also:"Curtiss-Wright, PG Drives Egis (zelfde foutbetekenissen), scootmobiel knippert, accumeter knippert",
   intro:"Veel scootmobielen gebruiken de S-Drive-besturing van PG Drives Technology (Curtiss-Wright). Bij een storing knipperen de lampjes van de accumeter een aantal keer; het aantal knipperingen is de code.",
-  weak:[], parts:[], tasks:[], src:["pgSdrive","driveSdrive"],
+  weak:[], parts:[], tasks:[], src:["pgSdrive","driveSdrive","pgEgis"],
   faults:[
     F("1","Accuspanning laag",1,"De accu is bijna leeg of slecht aangesloten.",["Controleer de accuaansluitingen.", "Zijn die goed: laad de accu op.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
     F("2","Motor losgekoppeld",2,"De motor is slecht aangesloten.",["Controleer de kabels en aansluitingen tussen motor en besturing.", "Controleer de stand van de vrijloopschakelaar.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
