@@ -13544,4 +13544,26 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Scherm van Anna werkt niet", 1, "Meestal een probleem met de bedrading tussen de Smile en Anna.", ["Controleer of de draden tussen Smile en Anna elkaar niet raken.", "Controleer of de draden goed vastzitten bij het Anna-icoon op de Smile.", "Werkt het daarna nog niet, neem contact op met Plugwise."])
   ]});
 })();
+(() => {
+  SRC.inventumVwm9001 = ["Inventum – Gebruiksaanwijzing wasmachine VWM9001B, hoofdstuk 6 (PDF, inventum.eu)", "https://www.inventum.eu/files/Webdav/vwm9001b-gebruiksaanwijzing.pdf"];
+  MODELS.push({ id: "inventum-wasmachine", brand: "Inventum", name: "Wasmachine: foutcode E0 t/m E37, cln, PF", dev: "wasmachine", cat: "wasmachines", years: "Inventum-wasmachines met E-codes, o.a. VWM9001B", unit: null, also: "Inventum wasmachine E3, Inventum wasmachine E7, Inventum E2 deur, Inventum wasmachine E9 aquastop, Inventum wasmachine cln, Inventum wasmachine PF", intro: "Een Inventum-wasmachine toont een E-code bij een storing. E3 en E7 gaan over water in en uit en los je vaak zelf op; E2, E22 en E23 gaan over de deur, E9 over water in de bodem (Aqua Stop).", weak: ["Verstopt pompfilter.", "Filtertje in de toevoerslang vuil."], parts: [], tasks: [], src: ["inventumVwm9001"], faults: [
+    F("E0", "Onjuiste instellingen", 1, "De instellingen kloppen niet.", ["Start het programma opnieuw.", "Blijft de fout, bel een servicemonteur."]),
+    F("E1", "Temperatuursensor of te koud water", 1, "Fout in de temperatuursensor, of het inlaatwater is te koud.", ["Herhaal het programma.", "Blijft de fout, bel een servicemonteur."]),
+    F("E2", "Deurvergrendeling", 1, "De deur vergrendelt niet.", ["Controleer of de deur goed dicht is.", "Haal de stekker eruit, steek hem er weer in en zet de machine aan.", "Blijft de fout, bel een servicemonteur."]),
+    F("E3", "Water vullen", 1, "Er komt niet genoeg water binnen.", ["Controleer of de kraan open staat, het toevoerfilter schoon is en de slang niet geknikt of afgeklemd is.", "Controleer de waterdruk (0,05-0,8 MPa) en druk op Start/Pauze.", "Blijft de fout, bel een servicemonteur."]),
+    F("E4 / E5", "Motorstoring", 2, "Storing in de motor.", ["Start het programma opnieuw.", "Blijft de fout, bel een servicemonteur."]),
+    F("E6", "Waterverwarming", 2, "Het water wordt niet verwarmd.", ["Start het programma opnieuw.", "Blijft de fout, bel een servicemonteur."]),
+    F("E7", "Waterafvoer", 1, "Het water wordt niet afgevoerd.", ["Maak het pompfilter schoon en controleer of afvoerslang en afvoer niet verstopt zijn.", "Hang de afvoerslang tussen 60 en 100 cm hoog en druk op Start/Pauze.", "Blijft de fout, bel een servicemonteur."]),
+    F("E9", "Water in de bodem (Aqua Stop)", 2, "Het Aqua Stop-systeem ziet water aan de onderkant.", ["Zet de machine uit en weer aan.", "Blijft de fout, bel een servicemonteur."]),
+    F("E10", "Waterniveausensor", 2, "Fout in de waterniveausensor.", ["Haal de stekker eruit, steek hem er weer in en zet de machine aan.", "Blijft de fout, bel een servicemonteur."]),
+    F("E11", "Water loopt over", 2, "De overloopbeveiliging is aangesproken; het programma stopt en het water wordt weggepompt.", ["Start het programma opnieuw.", "Blijft hij water innemen, draai de kraan dicht en bel een servicemonteur."]),
+    F("E12", "Motorbesturing", 2, "Storing in de motorbesturing.", ["Start het programma opnieuw.", "Blijft de fout, bel een servicemonteur."]),
+    F("E22", "Deur vergrendelt niet", 2, "De deur is dicht maar vergrendelt niet.", ["Zet de machine uit en weer aan en herhaal het programma.", "Blijft de fout, bel een servicemonteur."]),
+    F("E23", "Deur ontgrendelt niet", 2, "De deur gaat niet van het slot.", ["Zet de machine uit en weer aan.", "Moet je er nu bij, gebruik de handmatige ontgrendeling uit de handleiding.", "Blijft de fout, bel een servicemonteur."]),
+    F("E36 / E37", "Elektronische communicatie", 3, "Communicatiestoring in de elektronica.", ["Haal de stekker eruit, steek hem er weer in en zet de machine aan.", "Blijft de fout, bel een servicemonteur."]),
+    F("cln", "Trommelreiniging", 1, "cln en Eind knipperen om en om: tijd voor een trommelreiniging.", ["Draai het programma Trommelreiniging."]),
+    F("PF", "Stroomstoring", 1, "De stroom is uitgevallen tijdens het wassen.", ["Druk op Start/Pauze om verder te gaan."]),
+    N("Display en knoppen reageren niet", 1, "De besturing is vastgelopen.", ["Houd Aan/Uit/reset ruim 3 seconden ingedrukt.", "Haal daarna de stekker eruit en steek hem er weer in.", "Blijft de fout, bel een servicemonteur."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
