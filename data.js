@@ -12528,4 +12528,24 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Bij insteken lichten beide lampjes kort op en draait de ventilator", 1, "De lader doet een zelftest van ongeveer 1 seconde; de ventilator draait zo'n 5 seconden.", ["Normaal; je hoeft niets te doen."])
   ]});
 })();
+(() => {
+  SRC.einhellBoost6 = ["Einhell – Originele handleiding Power X-Boostcharger 6A (PDF, assets.einhell.com)", "https://assets.einhell.com/manuals-pdf/900_541188/Manual-4512064-power-x-boostcharger-6a.pdf"];
+  SRC.stihlAp = ["STIHL – Safety Instructions AP-accu (SI_001_2017, PDF, Engels)", "https://www.stihl.com/content/dam/stihl/media/globalvu/battery-documents/en/si-001-2017-01-01.pdf"];
+  MODELS.push({ id: "einhell-power-x-change-lader", brand: "Einhell", name: "Power X-Change-lader: rood en groen lampje", dev: "Power X-Change-lader (Boostcharger / Fastcharger)", cat: "gereedschap", years: "Power X-Boostcharger 6A en andere PXC-laders met rode en groene LED", unit: null, also: "Einhell lader knippert rood, Einhell lader rood en groen knipperen, Einhell lader rood en groen branden, Einhell accu laadt niet, Power X-Change lader knippert", intro: "De Einhell Power X-Change-lader toont met een rode en een groene LED wat hij doet. Rood is laden, groen is vol; beide knipperend betekent een defecte accu, beide brandend een temperatuurprobleem.", weak: ["Accu lang niet geladen.", "Laden in de kou of in de zon."], parts: [], tasks: [], src: ["einhellBoost6"], faults: [
+    N("Groen lampje knippert (geen accu)", 1, "Stand-by: de lader zit in het stopcontact en is klaar om te laden.", ["Plaats de accu."]),
+    N("Rood lampje brandt", 1, "De accu wordt snel geladen.", ["Je hoeft niets te doen."]),
+    N("Groen lampje brandt: vol", 1, "De accu is vol en de lader gaat over op druppelladen.", ["Laat de accu eventueel nog zo'n 15 minuten staan, haal hem eruit en trek de stekker uit het stopcontact."]),
+    N("Rood lampje knippert: aanpassingslading", 1, "De lader laadt veiligheidshalve langzamer, bijvoorbeeld omdat de accu lang niet geladen is of niet op de ideale temperatuur is.", ["Wacht tot het laden klaar is; het duurt langer dan normaal."]),
+    N("Rood en groen knipperen samen: accu defect", 2, "De accu is defect.", ["Haal de accu uit de lader en laad hem niet meer op.", "Lever de accu in als klein chemisch afval en vervang hem."]),
+    N("Rood en groen branden samen: temperatuurfout", 1, "De accu is te warm (bijvoorbeeld door de zon) of te koud (onder 0 °C).", ["Haal de accu eruit en bewaar hem een dag op kamertemperatuur (ongeveer 20 °C); laad daarna opnieuw."])
+  ]});
+  MODELS.push({ id: "stihl-ap-accu", brand: "STIHL", name: "AP-accu: wat betekenen de rode lampjes?", dev: "AP-accu (AP 100 / AP 200 / AP 300 / AP 500)", cat: "tuin", years: "AP-accu's voor STIHL-accugereedschap", unit: null, also: "Stihl accu knippert rood, Stihl accu 3 rode lampjes, Stihl accu 4 lampjes knipperen rood, Stihl accu 1 rood lampje, Stihl AP accu werkt niet", intro: "Op een STIHL AP-accu zitten vier lampjes. Groen toont de lading; rood betekent een temperatuurprobleem of een storing. Hoeveel rode lampjes er branden of knipperen vertelt wat er aan de hand is.", weak: ["Vuile contacten in het accuvak.", "Accu te warm na zwaar werk."], parts: [], tasks: [], src: ["stihlAp"], faults: [
+    N("1 lampje knippert groen", 1, "De accu is bijna leeg.", ["Laad de accu op met de AL-lader."]),
+    N("1 lampje brandt rood", 1, "De accu is te warm of te koud.", ["Haal de accu uit het apparaat en laat hem afkoelen of opwarmen."]),
+    N("3 lampjes knipperen rood", 2, "Er is een storing in de accu, vaak door een slecht contact in het accuvak.", ["Haal de accu eruit, maak de contacten in het accuvak schoon, plaats hem terug en zet het apparaat aan.", "Knipperen ze nog steeds, gebruik het apparaat niet en ga naar een STIHL-dealer."]),
+    N("3 lampjes branden rood", 1, "Het apparaat is te warm.", ["Haal de accu eruit en laat het apparaat afkoelen."]),
+    N("4 lampjes knipperen rood", 2, "Fout in de accu.", ["Haal de accu eruit, plaats hem terug en zet het apparaat aan.", "Knipperen ze nog steeds, gebruik de accu niet meer en laat hem nakijken door een STIHL-dealer."]),
+    N("Geen lampje bij indrukken van de knop", 3, "De accu heeft een fout.", ["Gebruik de accu niet meer en neem contact op met een STIHL-dealer."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
