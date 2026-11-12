@@ -13084,4 +13084,38 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("ULo / UHi", "Netspanning te laag of te hoog", 1, "De netspanning is lager dan 180 V (ULo) of hoger dan 260 V (UHi).", ["Controleer de stroomvoorziening (220-240 V); gebruik geen lange verlengsnoeren."])
   ]});
 })();
+(() => {
+  SRC.gorenjeWmPs22 = ["Gorenje – Gebruiksaanwijzing wasmachine PS22 (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/856419en.html"];
+  SRC.gorenjeDw50 = ["Gorenje – Gebruiksaanwijzing vaatwasser GV693C60UVAD / DW50 (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/875524en.html"];
+  MODELS.push({ id: "gorenje-wasmachine", brand: "Gorenje", name: "Wasmachine: foutcode E:02 t/m E:40, U:Lo, E_Fd", dev: "wasmachine", cat: "wasmachines", years: "Gorenje-wasmachines met E:-codes (o.a. WaveActive, WNEI, WNHEI; platform PS22)", unit: null, also: "Gorenje wasmachine E:03, Gorenje E:07 pompt niet af, Gorenje wasmachine E:02 deur, Gorenje E:12, Gorenje wasmachine E_CLF, Gorenje E_Fd schuim, Gorenje wasmachine U:Lo", intro: "Een Gorenje-wasmachine toont E: met een getal bij een storing. E:03 en E:07 gaan over water in en uit, E:02, E:22 en E:23 over de deur, en meldingen met een liggend streepje (E_Fd, E_CLF) zijn waarschuwingen.", weak: ["Verstopt pompfilter.", "Afvoerslang niet tussen 60 en 100 cm hoog.", "Te veel wasmiddel."], parts: [], tasks: [], src: ["gorenjeWmPs22"], faults: [
+    F("E:02", "Deurvergrendeling", 1, "De deur is niet goed dicht (je hoort een signaal na Start/Pauze).", ["Doe de deur goed dicht.", "Haal de stekker eruit, steek hem er weer in en zet de machine aan.", "Komt de code terug, bel de Gorenje-service."]),
+    F("E:03", "Water vullen", 1, "De kraan is dicht, het filtertje in de toevoer is vuil, de slang is geknikt of verstopt, of de waterdruk valt buiten 0,5-8 bar.", ["Controleer kraan, filtertje, slang en waterdruk.", "Druk op Start/Pauze om verder te gaan.", "Komt de code terug, bel de Gorenje-service."]),
+    F("E:07", "Water afvoeren", 1, "Het pompfilter is vuil, de afvoerslang of afvoer is verstopt, of de afvoerslang hangt niet tussen 60 en 100 cm hoog.", ["Maak het pompfilter schoon, haal verstoppingen weg en zet de slang op de goede hoogte.", "Druk op Start/Pauze.", "Komt de code terug, bel de Gorenje-service."]),
+    F("E:09", "Waterlekkage", 2, "Mogelijk een lekkage in of bij de machine.", ["Zet de machine uit en weer aan.", "Kijk aan de buitenkant of er water lekt; vind je niets, dan kun je hem weer gebruiken."]),
+    F("E:10", "Waterniveausensor", 2, "Fout in de waterniveausensor.", ["Haal de stekker eruit en steek hem er weer in.", "Laat het water af via het pompfilter, maak het filter en de sifon in de muur schoon en zet hem aan.", "Komt de code terug, bel de Gorenje-service."]),
+    F("E:11", "Water loopt over", 2, "Er staat meer water in de trommel dan ingesteld; vaak door te veel wasmiddel.", ["Het programma stopt en pompt het water weg; start opnieuw.", "Blijft hij water innemen, draai de kraan dicht en bel de service."]),
+    F("E:12", "Motorbesturing", 1, "Het wasgoed zit vast of in de knoop.", ["Verdeel het wasgoed met de hand en herhaal het programma."]),
+    F("E:22", "Deur vergrendelt niet", 2, "De deur is dicht maar vergrendelt niet.", ["Zet de machine uit en weer aan en start het programma opnieuw.", "Komt de code terug, bel de Gorenje-service."]),
+    F("E:23 / E:24", "Deur ontgrendelt niet", 2, "De deur is dicht maar gaat niet van het slot.", ["Zet de machine uit en weer aan.", "Komt de code terug, bel de Gorenje-service."]),
+    F("E:40", "Netspanning", 1, "De netspanning was langere tijd lager dan 180 V of hoger dan 260 V.", ["Controleer de stroomvoorziening en gebruik geen lange verlengsnoeren."]),
+    F("E_Fd", "Te veel schuim", 1, "Te veel wasmiddel zorgt voor schuim.", ["Spoel na met Spoelen & Verzachten zonder wasmiddel.", "Gebruik de volgende keer minder wasmiddel."]),
+    F("E_CLF", "Afvoer gaat traag", 1, "Het water wordt trager afgepompt.", ["Controleer pompfilter, afvoerslang, afvoer en slanghoogte."]),
+    F("E_CLn", "Schoonmaken aanbevolen", 1, "Het is tijd om de machine schoon te maken.", ["Maak de wasmiddellade, toevoerslang, het deurrubber en pompfilter schoon en draai Drum clean."]),
+    F("E_PF", "Stroomstoring", 1, "Er was een stroomstoring tijdens het programma (E_PF/End: het programma is daarna toch afgemaakt).", ["Controleer de stroomvoorziening."]),
+    F("U:Lo / U:Hi", "Netspanning te laag of te hoog", 1, "De netspanning is lager dan 180 V (U:Lo) of hoger dan 260 V (U:Hi).", ["Controleer de stroomvoorziening."]),
+    F("E_AC", "Anti-kreukfunctie", 1, "Geen storing: de anti-kreukfunctie draait.", ["Druk op Aan/Uit om te stoppen."])
+  ]});
+  MODELS.push({ id: "gorenje-vaatwasser", brand: "Gorenje", name: "Vaatwasser: foutcode F10 t/m F68", dev: "vaatwasser", cat: "vaatwassers", years: "Gorenje-vaatwassers met F-codes (o.a. GV693C60UVAD, DW50-serie)", unit: null, also: "Gorenje vaatwasser F12, Gorenje vaatwasser F11 pompt niet af, Gorenje vaatwasser F54 water, Gorenje vaatwasser F40, Gorenje F52, Gorenje vaatwasser foutcode", intro: "Een Gorenje-vaatwasser toont een F-code bij een storing. F11, F12, F52 en F67 los je vaak zelf op (afvoer, kraan, filters); bij F40 en F54 draai je eerst de kraan dicht.", weak: ["Vuile filters.", "Verstopt filtertje in de toevoerslang.", "Afvoerpomp geblokkeerd."], parts: [], tasks: [], src: ["gorenjeDw50"], faults: [
+    F("F10", "Te veel water", 2, "Er komt te veel water in de machine.", ["Maak de afvoerpomp vrij (zie Onderhoud in de handleiding).", "Komt de code terug, bel de Gorenje-service."]),
+    F("F11", "Afvoer", 1, "Het water wordt niet afgevoerd.", ["Maak de filters schoon en controleer of de afvoerslang niet geknikt of verstopt is.", "Komt de code terug, bel de Gorenje-service."]),
+    F("F12 / F67", "Watertoevoer", 1, "Er komt geen of te weinig water binnen.", ["Controleer of de kraan open staat.", "Maak het filtertje in de toevoerslang schoon.", "Komt de code terug, bel de Gorenje-service."]),
+    F("F40", "Toevoerklep lekt", 3, "De watertoevoerklep lekt.", ["Draai de kraan dicht en bel de Gorenje-service."]),
+    F("F41", "Verwarmingselement", 3, "Fout in het verwarmingselement.", ["Draai de kraan dicht, haal de stekker eruit en bel de Gorenje-service."]),
+    F("F45", "Omschakelklep", 3, "Fout in de omschakelklep (diverter) tussen de sproeiarmen.", ["Bel de Gorenje-service."]),
+    F("F52", "Waterniveau", 1, "Fout in het waterniveau.", ["Maak de grove en fijne filters schoon.", "Maak het filtertje in de toevoerslang schoon.", "Komt de code terug, bel de Gorenje-service."]),
+    F("F54", "Overloopbeveiliging", 3, "Er staat water in de bodem of de machine loopt over.", ["Draai eerst de kraan dicht en haal pas daarna de stekker eruit.", "Bel de Gorenje-service."]),
+    F("F56", "Circulatiepomp", 3, "Fout in de circulatiepomp.", ["Bel de Gorenje-service."]),
+    F("F68", "Afvoerpomp (BLDC)", 3, "Fout in de afvoerpomp.", ["Bel de Gorenje-service."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
