@@ -15872,7 +15872,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("F.23","Watertekort in de cv-installatie",1,"Watertekort in de cv-installatie.",["Vul de cv-installatie bij.","Zit er lucht in de installatie: laat de installateur ontluchten."]),
     F("F.24","Watertekort in de cv-installatie",1,"Watertekort in de cv-installatie.",["Vul de cv-installatie bij.","Zit er lucht in de installatie: laat de installateur ontluchten."]),
     F("F.28","Ontsteking mislukt",1,"Na drie mislukte ontstekingspogingen schakelt de ketel op storing.",["Druk een seconde op de toets Reset; de ketel probeert opnieuw te ontsteken.","Lukt het na drie pogingen niet, vraag dan uw installateur om advies."]),
-    F("F.36","Storing in het verbrandingsgastraject",3,"Er is een storing in de rookgasafvoer.",["Laat de storing verhelpen door uw installateur."]),
+    F("F.36","Storing in het verbrandingsgastraject",3,"Er is een storing in het verbrandingsgastraject.",["Laat de storing verhelpen door uw installateur."]),
     N("Ketel werkt niet: geen warm water of verwarming blijft koud",1,"Gaskraan dicht, koudwaterstopkraan dicht, stroom onderbroken, ketel uitgeschakeld of temperatuur te laag ingesteld.",["Open de gaskraan in de woning en de gaskraan aan de ketel.","Open de koudwaterstopkraan.","Controleer de zekering; bij terugkeer van de stroom start de ketel vanzelf.","Schakel de ketel in en controleer de ingestelde aanvoer- en warmwatertemperatuur."]),
     N("Warm water werkt, verwarming niet",1,"De externe thermostaat is niet goed ingesteld.",["Stel de thermostaat goed in volgens de gebruiksaanwijzing van de thermostaat."]),
   ]});
