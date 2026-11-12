@@ -14757,4 +14757,43 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("F.905", "Communicatie-interface uitgeschakeld", 2, "Communicatie-interface uitgeschakeld. Mogelijke oorzaken: te hoge stroom op de communicatie-interface.", ["Laat de installateur dit controleren en verhelpen."]),
   ]});
 })();
+(() => {
+  SRC.vaillantEcotecClassic = ["Vaillant – Installatie- en onderhoudshandleiding ecoTEC classic VHR, bijlage G Overzicht foutcodes (PDF, NL)", "https://www.vaillant.nl/api/download/product/nl/_ecotec-classic_1452305.pdf"];
+  MODELS.push({ id: "vaillant-ecotec-classic", brand: "Vaillant", name: "ecoTEC classic: foutcodes F.00 t/m F.85", dev: "ecoTEC classic HR-combiketel", cat: "cv-ketels", years: "Vaillant ecoTEC classic VHR", unit: null, also: "Vaillant ecoTEC classic F.28, ecoTEC classic F.22, ecoTEC classic F.75, ecoTEC classic F.29, Vaillant classic storing, ecoTEC classic F.74 waterdruk te hoog", intro: "De Vaillant ecoTEC classic toont F-codes met twee cijfers. F.22 (te weinig water) en F.74 (waterdruk te hoog) los je meestal zelf op; bij F.28 controleer je eerst de gaskraan. De andere codes zijn voor de installateur.", weak: ["Te weinig water of lucht in de installatie (F.22, F.75).", "Ontsteking (F.28, F.29)."], parts: [], tasks: [], src: ["vaillantEcotecClassic"], faults: [
+    F("F.00", "Onderbreking aanvoertemperatuursensor", 2, "Aanvoertemperatuursensor defect of niet aangesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.01", "Onderbreking retourtemperatuursensor", 2, "Retourtemperatuursensor defect of niet aangesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.10", "Kortsluiting aanvoertemperatuursensor", 2, "Aanvoertemperatuursensor defect of kortgesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.11", "Kortsluiting retourtemperatuursensor", 2, "Retourtemperatuursensor defect of kortgesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.20", "Veiligheidsuitschakeling temperatuurbegrenzer", 2, "Maximumtemperatuur aan de aanvoer-/retourtemperatuursensor te hoog bij veiligheidstemperatuurbegrenzerfunctie via NTC.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.22", "Veiligheidsuitschakeling watertekort", 1, "Geen of te weinig water in het product of waterdruk te laag.", ["Vul de cv-installatie bij (zie de gebruiksaanwijzing).", "Komt de code terug, bel de installateur."]),
+    F("F.23", "Temperatuurspreiding te groot", 2, "Temperatuurspreiding te groot. Watercirculatie te gering.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.24", "Temperatuurstijging te snel", 2, "Temperatuurstijging te snel.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.25", "Rookgastemperatuur te hoog", 2, "Verbrandingsgastemperatuur te hoog.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.26", "Gasklep zonder functie", 2, "Gasblokstappenmotor defect of niet aangesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.27", "Vlamsimulatie", 2, "Bewakingselektrode meldt foute vlam.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.28", "Geen ontsteking bij opstarten", 2, "Uitval tijdens de startfase of ontsteking mislukt. Gasdrukregelaar of thermisch aansprekende afsluitinrichting is geactiveerd.", ["Controleer of de gaskraan open staat.", "Reset de ketel en kijk of hij weer start.", "Komt de code terug, bel de installateur."]),
+    F("F.29", "Vlam uit tijdens bedrijf", 2, "Gastoevoer tijdelijk onderbroken. Nieuwe ontsteking zonder succes.", ["Controleer of de gastoevoer niet onderbroken is.", "Komt de code terug, bel de installateur."]),
+    F("F.32", "Fout ventilator", 2, "Ventilator defect of niet aangesloten.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.49", "Fout eBUS", 2, "Onderspanning aan de eBUS.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.61", "Fout aansturing gasklep", 2, "Gasblok kan niet aangestuurd worden.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.62", "Gasklep schakelt vertraagd uit", 2, "Vertraagde uitschakeling van de gasklep na het doven van de vlam.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.63", "Fout EEPROM", 3, "EEPROM defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.64", "Fout elektronica/sensor", 3, "Elektronica, veiligheidsrelevante sensor of kabel defect.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.65", "Elektronica te warm", 2, "Elektronica defect of door externe inwerking te heet.", ["Zorg zo mogelijk voor een lagere omgevingstemperatuur.", "Laat de installateur dit controleren en verhelpen."]),
+    F("F.67", "Fout elektronica/vlam", 2, "Niet plausibel vlamsignaal.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.68", "Fout vlamsignaal instabiel", 2, "Vlambeveiliging meldt instabiel vlamsignaal.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.70", "Ongeldige toestelcode", 2, "Verkeerde/ontbrekende toestelherkenning of verkeerde/ontbrekende codeerweerstand.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.71", "Fout aanvoertemperatuursensor", 2, "Aanvoertemperatuursensor levert niet plausibele waarde.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.72", "Fout aanvoer-/retourtemperatuursensor", 2, "Temperatuurverschil aanvoer- /retourtemperatuursensor is te groot.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.73", "Fout waterdruksensor (signaal te laag)", 2, "Waterdruksensor meldt te lage waterdruk.", ["Controleer de waterdruk en vul zo nodig bij.", "Laat de installateur dit controleren en verhelpen."]),
+    F("F.74", "Fout waterdruksensor (signaal te hoog)", 1, "Waterdruk te hoog.", ["De waterdruk is te hoog: tap wat water af via een radiator (zie handleiding).", "Laat anders de waterdruksensor controleren."]),
+    F("F.75", "Pomp / watertekort", 2, "Bij de start van de pomp wordt onvoldoende druksprong herkend.", ["Controleer de waterdruk en vul zo nodig bij.", "Laat de installateur dit controleren en verhelpen."]),
+    F("F.77", "Rookgasklep of condenspomp", 2, "Ontbrekende terugmelding van de verbrandingsgasklep; overloop van de condenspomp.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.78", "Onderbreking warmwatersensor aan externe thermostaat", 2, "UK link box is aangesloten zonder dat de warmwatertemperatuursensor is gebrugd.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.83", "Temperatuurverandering NTC te klein", 2, "Temperatuurverschil aanvoer- /retourtemperatuursensor is te klein.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.84", "NTC-temperatuur niet plausibel", 2, "Temperatuurverschil is niet plausibel.", ["Laat de installateur dit controleren en verhelpen."]),
+    F("F.85", "NTC-sensoren verkeerd gemonteerd", 2, "Aanvoer-/retourtemperatuursensoren leveren verkeerde/niet plausibele waarden.", ["Laat de installateur dit controleren en verhelpen."]),
+    N("Communicatiefout display en printplaat", 2, "Communicatiefout tussen display en printplaat in de schakelkast.", ["Laat de kabel en stekker tussen display en printplaat controleren."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
