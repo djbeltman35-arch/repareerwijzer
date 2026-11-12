@@ -12843,4 +12843,39 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Pulserend of pompend geluid tijdens zetten of stomen", 1, "Normaal geluid van de pomp, of het reservoir is leeg of los.", ["Controleer het reservoir; verder is dit normaal."])
   ]});
 })();
+(() => {
+  SRC.sharkPowerDetect = ["Shark – Gebruikershandleiding PowerDetect NeverTouch robotstofzuiger RV2800 (PDF, support.sharkclean.nl)", "https://support.sharkclean.nl/hc/nl-nl/article_attachments/17469215073052"];
+  SRC.sharkMatrixPlus = ["Shark – Gebruikershandleiding Matrix Plus 2-in-1 robot RV2620 (PDF, support.sharkclean.nl)", "https://support.sharkclean.nl/hc/article_attachments/20070045257756"];
+  MODELS.push({ id: "shark-powerdetect-robot", brand: "Shark", name: "PowerDetect NeverTouch robotstofzuiger: foutcode 2 t/m 36", dev: "PowerDetect NeverTouch robotstofzuiger", cat: "stofzuigers", years: "Shark PowerDetect NeverTouch (Pro), RV2800YE, RV2800ZE, AV2800ZE", unit: null, also: "Shark robot fout 2, Shark robot fout 9 stofbak, Shark robot fout 23, Shark robot fout 26, Shark PowerDetect lampjes rood, Shark robot fout 36 station, Shark robot fout 33 ActiveLift", intro: "De Shark PowerDetect-robot geeft een foutnummer in de app en een combinatie van rode en gele lampjes op de robot. Meestal zit er iets vast (borstel, wiel, bumper) of zit de stofbak niet goed.", weak: ["Haren om borstelrol en zijborstel.", "Volle stofbak of verstopte afvoerpoort.", "Obstakels rond het basisstation."], parts: [], tasks: [], src: ["sharkPowerDetect"], faults: [
+    F("2", "Zijborstel zit vast", 1, "De zijborstel zit vast (accu- en wifi-lampje rood).", ["Verwijder vuil en haren van de zijborstel."]),
+    F("3", "Storing zuigmotor", 2, "De zuigmotor geeft een storing.", ["Leeg de stofbak en maak de filters schoon.", "Controleer borstelrol en klepje en haal verstoppingen weg."]),
+    F("4", "Borstelrol geblokkeerd", 1, "De borstelrol zit vast.", ["Verwijder vuil rond en in de borstelrol."]),
+    F("5", "Aandrijfwiel vast", 1, "Een aandrijfwiel is vastgelopen.", ["Maak de wielen schoon en haal vuil rond de assen weg."]),
+    F("6", "Voorbumper vast", 1, "De voorbumper zit mogelijk vast.", ["Maak de bumper schoon en controleer of hij vrij beweegt."]),
+    F("7", "Afgrondsensor", 1, "Fout in de afgrondsensoren.", ["Zet de robot op een andere plek en maak de afgrondsensoren schoon."]),
+    F("9", "Stofbak niet goed geplaatst", 1, "De stofbak zit niet goed.", ["Plaats de stofbak opnieuw tot hij vastklikt."]),
+    F("10", "Obstakel", 1, "De robot wordt gehinderd door een obstakel.", ["Zet hem op een vlakke ondergrond."]),
+    F("16", "Robot vastgelopen", 1, "De robot zit vast.", ["Zet hem op een andere plek en controleer of de bumper vrij beweegt."]),
+    F("23", "Basisstation niet gevonden", 1, "De robot vindt het basisstation niet.", ["Controleer of het station stroom heeft en of er niets voor staat."]),
+    F("24", "Accu bijna leeg", 1, "De accu is bijna leeg (linker lampje knippert rood).", ["Zet de robot op het station en controleer of het lampje van het station blauw brandt."]),
+    F("26", "Stofbak verstopt", 1, "Er is een verstopping bij het legen van de stofbak.", ["Controleer de afvoerpoort van het station en van de stofbak.", "Leeg de stofbak en zet hem goed terug."]),
+    F("33", "ActiveLift geblokkeerd", 1, "De ActiveLift (wielophanging) zit mogelijk vast.", ["Zet de robot uit en controleer of de wielophanging vrij op en neer kan."]),
+    F("36", "Verstopping bij het basisstation", 1, "Mogelijk een verstopping bij het basisstation (alle lampjes knipperen).", ["Haal de stekker van het station eruit en haal obstakels rond het station weg."])
+  ]});
+  MODELS.push({ id: "shark-matrix-plus-2in1", brand: "Shark", name: "Matrix Plus 2-in-1 robot: wat betekenen de lampjes?", dev: "Matrix Plus 2-in-1 robotstofzuiger", cat: "stofzuigers", years: "Shark Matrix Plus 2-in-1 (RV2620WA)", unit: null, also: "Shark Matrix lampjes knipperen rood, Shark Matrix CLEAN knippert rood, Shark Matrix DOCK knippert, Shark Matrix uitroepteken rood, Shark Matrix CLEAN geel", intro: "De Shark Matrix Plus 2-in-1 toont storingen met de lampjes CLEAN, DOCK en het uitroepteken. Welke rood, wit of geel zijn en of ze knipperen, vertelt wat er mis is.", weak: ["Haren om borstels en wielen.", "Leeg dweilreservoir."], parts: [], tasks: [], src: ["sharkMatrixPlus"], faults: [
+    N("CLEAN en ! knipperen rood", 2, "Storing van de zuigmotor.", ["Leeg de stofbak, maak de filters schoon en haal verstoppingen weg."]),
+    N("CLEAN knippert rood", 1, "De robot wordt gehinderd door een obstakel.", ["Zet hem op een nieuwe plek op een vlakke ondergrond."]),
+    N("DOCK knippert rood", 1, "De voorbumper zit mogelijk vast.", ["Maak de bumper schoon en controleer of hij vrij beweegt."]),
+    N("CLEAN rood en DOCK knippert rood", 1, "De stofbak is verwijderd.", ["Plaats de stofbak terug."]),
+    N("DOCK en ! knipperen rood", 1, "De zijborstel zit vast.", ["Verwijder vuil uit de zijborstel."]),
+    N("CLEAN en DOCK rood, ! knippert rood", 1, "Een aandrijfwiel is vastgelopen.", ["Maak de wielen schoon en haal vuil rond de assen weg."]),
+    N("CLEAN wit, DOCK rood, ! knippert rood", 2, "Encoderfout van de wielmotor.", ["Zet de robot uit en weer aan."]),
+    N("CLEAN wit en ! knippert rood", 1, "De borstelrol is geblokkeerd.", ["Verwijder vuil van de borstelrol."]),
+    N("CLEAN rood, DOCK wit, ! knippert rood", 2, "Probleem bij het opstarten.", ["Zet de robot uit en weer aan."]),
+    N("CLEAN wit en DOCK knippert rood", 1, "De robot vindt het laadstation niet.", ["Zet de robot met de hand op het station."]),
+    N("Accu-icoon knippert rood", 1, "De accu is bijna leeg.", ["Laad de robot op; zet hem zo nodig met de hand op het station."]),
+    N("CLEAN rood en DOCK wit knipperen om en om", 1, "De robot zit vast.", ["Zet hem op een vlakke ondergrond."]),
+    N("CLEAN brandt geel", 1, "Het waterreservoir van de 2-in-1-stofbak is leeg.", ["Vul het reservoir voor je gaat dweilen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
