@@ -13347,4 +13347,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Was droogt niet of traag", 1, "Vuile filters, een te kleine of koude ruimte, slecht gecentrifugeerd wasgoed of een verkeerde belading.", ["Maak de filters schoon en zorg voor verse lucht in de ruimte.", "Kies een programma dat bij de hoeveelheid en het soort wasgoed past."])
   ]});
 })();
+(() => {
+  SRC.vorwerkVr7 = ["Vorwerk – Gebruiksaanwijzing Kobold VR7 met CB7 / RB7, hoofdstuk Storingen (PDF, support.vorwerk.com, Engels)", "https://support.vorwerk.com/hc/article_attachments/13999143791004"];
+  MODELS.push({ id: "vorwerk-kobold-vr7", brand: "Vorwerk", name: "Kobold VR7 robotstofzuiger: storingen en lampjes", dev: "Kobold VR7 robotstofzuiger", cat: "stofzuigers", years: "Vorwerk Kobold VR7 met laadstation CB7 of afzuig- en laadstation RB7", unit: null, also: "Kobold VR7 laadt niet, Kobold VR7 stopt, Kobold VR7 info knop rood, Kobold VR7 info knop geel, Kobold RB7 rood lampje, Kobold VR7 batterij rood knippert, Kobold VR7 vindt station niet", intro: "De Vorwerk Kobold VR7 meldt problemen met de info-knop (geel of rood) en het accu-lampje. Knippert het accu-lampje rood, dan is er een ernstige fout; de meeste andere storingen gaan over sensoren, borstels of het laadstation.", weak: ["Vuile sensoren.", "Volle stofzak in het RB7-station.", "Lange vloerkleden en franjes."], parts: [], tasks: [], src: ["vorwerkVr7"], faults: [
+    N("Accu-lampje knippert rood", 3, "Ernstige fout.", ["Neem contact op met de Vorwerk-klantenservice."]),
+    N("Info-knop brandt geel", 1, "De stofzak in het RB7-station is waarschijnlijk vol (ook gesproken melding).", ["Vervang de premium-filterzak."]),
+    N("Info-knop brandt rood", 1, "De filterzak is kritisch vol, het filterdeksel zit niet goed dicht of de robot staat niet goed in het station.", ["Vervang de filterzak, sluit het filterdeksel goed en zet de robot goed in het station."]),
+    N("Lampje op het uitblaasrooster van het station brandt rood", 2, "Mogelijke storing in het station.", ["Haal de stekker eruit, wacht ongeveer 60 seconden en steek hem er weer in.", "Blijft het rood, neem contact op met de Vorwerk-klantenservice."]),
+    N("Robot laadt niet op", 1, "Slecht contact: stekkers los, laadcontacten vuil of geblokkeerd, of het borstelklepje zit niet goed.", ["Controleer de stekkers en of de robot goed staat (Home-lampje brandt groen).", "Maak de laadcontacten schoon en vrij en zet het borstelklepje goed vast."]),
+    N("Robot reageert niet of gaat niet aan", 1, "De accu is leeg, het station heeft geen stroom, of de robot staat in transportmodus.", ["Zet de robot op het station en controleer of het station stroom heeft.", "Home-lampje groen is goed; geel betekent: zet de robot iets verder terug.", "Gaat hij niet aan, houd START een paar seconden ingedrukt."]),
+    N("Robot stopt plotseling met zuigen", 1, "Sensoren zijn vuil of afgedekt, de robot vindt te weinig herkenningspunten in een grote lege ruimte, de wielen slippen op hoogpolig tapijt of een donkere of glazen vloer lijkt een afgrond.", ["Maak de sensoren schoon en vrij.", "Stel verboden zones in de app in."]),
+    N("Robot keert niet terug naar het station", 1, "De beschermfolie zit nog op het station, de robot is elders gestart, de sensoren zijn vuil of er staat iets voor het station.", ["Haal de folie van het infraroodvenster, start schoonmaken vanaf het station en houd 0,5 meter vrij aan beide kanten."]),
+    N("Borstelrol zit vast", 1, "Hoogpolig tapijt, haren of draden, of franjes van een kleed.", ["Maak de borstelrol schoon en haal vastzittende franjes los.", "Stel verboden zones in voor kleden met franjes."]),
+    N("Zuigkracht minder geworden", 1, "De stofbak is vol of de borstels en het filter zijn vuil.", ["Leeg de stofbak, maak het filter schoon of vervang het en maak de borstels schoon."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
