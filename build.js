@@ -959,5 +959,9 @@ fs.writeFileSync(path.join(OUT, "favicon.svg"), `<svg xmlns="http://www.w3.org/2
 if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSync(path.join(__dirname, "static"))) fs.copyFileSync(path.join(__dirname, "static", f), path.join(OUT, f));
 fs.writeFileSync(path.join(OUT, "sw.js"), fs.readFileSync(path.join(OUT, "sw.js"), "utf8").replace(/const V = "[^"]*";/, `const V = "fcz-${VER}";`).replace('"/style.css", "/app.js"', `"/style.css?v=${ASSETV}", "/app.js?v=${ASSETV}"`));
 for (const f of ["style.css", "app.js", "qrcode.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
+// Verkleinde app.js gebruiken als die bij de huidige bron hoort (maak opnieuw met terser na elke wijziging aan app.js)
+{ const src = fs.readFileSync(path.join(__dirname, "assets", "app.js")), minP = path.join(__dirname, "assets", "app.min.js");
+  if (fs.existsSync(minP)) { const min = fs.readFileSync(minP, "utf8"), h = require("crypto").createHash("sha1").update(src).digest("hex").slice(0, 12);
+    if (min.startsWith(`/*src:${h}*/`)) fs.writeFileSync(path.join(OUT, "app.js"), min); else console.log("Let op: app.min.js hoort niet bij app.js, onverkleinde versie gebruikt"); } }
 
 console.log(`${pages.length} pagina's gebouwd (${nl(allCodes.length)} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);
