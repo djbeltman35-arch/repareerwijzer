@@ -13776,4 +13776,25 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Diagnoselampje: geen enkele led brandt", 3, "Er ontbreken fasen van de netspanning of de elektronica is defect.", ["Controleer de zekeringen in de meterkast.", "Anders moet een installateur de functionele module vervangen."])
   ]});
 })();
+(() => {
+  SRC.stiebelWWK = ["STIEBEL ELTRON – Bediening en installatie WWK 220/300 electronic (SOL), Problemen verhelpen en foutcodes (PDF, NL)", "https://assets.stiebel-eltron.com/Celum/Docs/Dokument-PDF/DOC-00060773.pdf"];
+  MODELS.push({ id: "stiebel-eltron-wwk-electronic", brand: "STIEBEL ELTRON", name: "WWK 220/300 electronic warmtepompboiler: foutcodes", dev: "WWK electronic warmtepompboiler", cat: "warmtepompen", years: "STIEBEL ELTRON WWK 220 electronic, WWK 300 electronic en WWK 300 electronic SOL", unit: null, also: "Stiebel Eltron WWK foutcode 8, WWK 300 storing, WWK Service/Fout knippert, warmtepompboiler Stiebel foutcode 32, WWK noodopwarming, WWK E 16", intro: "Brandt of knippert het symbool Service/Fout op de STIEBEL ELTRON WWK, druk dan een paar keer op Menu tot de foutcode verschijnt. Meerdere fouten worden bij elkaar opgeteld: 6 betekent bijvoorbeeld fout 2 plus fout 4.", weak: ["Boiler niet helemaal gevuld (32).", "Te koude aanzuiglucht, waardoor de compressor niet werkt (64).", "Opwarmen duurt te lang (8)."], parts: [], tasks: [], src: ["stiebelWWK"], faults: [
+    F("2", "Koepelsensor defect", 2, "De koepelsensor is defect. Het toestel schakelt over op de integraalsensor en verwarmt gewoon door; het mengwatervolume toont '- -'.", ["Waarschuw een installateur."]),
+    F("4", "Integraalsensor defect", 2, "De integraalsensor is defect. Het toestel rekent met de koepelsensor en verwarmt door met een kleinere schakelmarge.", ["Waarschuw een installateur."]),
+    F("6", "Koepel- en integraalsensor defect", 3, "Beide sensoren zijn defect (2 + 4). Het toestel warmt niet meer op.", ["Waarschuw een installateur."]),
+    F("8", "Boiler niet op tijd warm", 2, "Ondanks een warmtevraag is de boiler binnen de maximale opwarmtijd niet warm geworden.", ["Je kunt het toestel tijdelijk blijven gebruiken door met de toets 'Snelopwarming' de noodopwarming aan te zetten.", "Waarschuw een installateur."]),
+    F("16", "Anode kortgesloten of defect", 3, "Kortsluiting van de gelijkspanningsanode of de veiligheidsanode is defect; de boiler is dan niet beschermd tegen corrosie.", ["Neem direct contact op met een installateur."]),
+    F("32", "Boiler niet helemaal gevuld of anodestroom onderbroken", 1, "Het toestel staat aan met een niet volledig gevulde boiler, of de anodestroom is onderbroken. Het verwarmt niet.", ["Vul de boiler; de code verdwijnt en het toestel werkt weer.", "Blijft de code, dan is de anodestroom onderbroken: waarschuw een installateur."]),
+    F("64", "Ontdooien niet gelukt of lucht te koud", 1, "Na de maximale ontdooitijd is de verdamper niet warm genoeg, of de aangezogen lucht is kouder dan de onderste werkingsgrens. De compressor werkt niet.", ["Wacht: zodra de verdamper warm genoeg is, herstelt de fout zich vanzelf.", "Wacht op een hogere omgevingstemperatuur en controleer of de ruimte niet te koud wordt."]),
+    F("128", "Geen communicatie regelaar-bediening", 2, "Er is geen communicatie tussen de regelaar en de bedieningseenheid. De laatst ingestelde waarden blijven actief en het toestel warmt door.", ["Waarschuw een installateur."]),
+    F("256", "Noodopwarming aan", 1, "De noodopwarming is handmatig ingeschakeld: alleen de elektrische nood-/bijverwarming werkt. Tijdens de noodopwarming wordt 256 opgeteld bij de foutcode.", ["Zie de handleiding, 'Toestelbeschrijving / noodopwarmingswerking'."]),
+    F("E 2", "Verdampersensor defect", 2, "De temperatuursensor op de verdamper is defect.", ["Waarschuw een installateur."]),
+    F("E 16", "Hogedrukbeveiliging", 1, "De hogedrukschakelaar is aangesproken; verwarmen met de compressor is tijdelijk geblokkeerd.", ["Wacht tot de druk weer normaal is; daarna gaat de compressor vanzelf verder."]),
+    F("E 32", "Elektrische storing", 2, "Er is een elektrische storing.", ["Waarschuw een installateur."]),
+    F("E 64", "Verdamper te koud", 2, "De verdampertemperatuur is lager dan de minimale verdampertemperatuur.", ["Waarschuw een installateur."]),
+    F("E 128", "Drukbewaking: blijvende fout", 3, "Er is binnen de bewakingstijd meerdere keren een drukstoring opgetreden.", ["Waarschuw een installateur."]),
+    N("Veiligheidsventiel druppelt tijdens opwarmen", 1, "Bij het opwarmen zet het water uit; dat expansiewater kan uit het veiligheidsventiel druppelen.", ["Normaal. Druppelt het na het opwarmen nog door, waarschuw dan een installateur."]),
+    N("Ruimte wordt kouder", 1, "Het toestel haalt warmte uit de lucht; 1 tot 3 °C kouder is normaal.", ["Daalt de temperatuur meer dan 5 °C, controleer dan of de ruimte groot genoeg is.", "Zet eventueel een deur naar een andere ruimte open."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
