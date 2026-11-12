@@ -17194,4 +17194,38 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Brander bromt of fluit",2,"Branderoppervlak vervuild of beschadigd, of het weefsel zit los.",["Controleer het branderoppervlak en reinig of vervang het zo nodig."]),
   ]});
 })();
+(() => {
+  SRC.anycubicK3MaxV2=["Anycubic Wiki – Error codes Kobra 3 Max V2 Combo","https://wiki.anycubic.com/en/error-codes"];
+  MODELS.push({ id:"anycubic-kobra-3-max-v2", brand:"Anycubic", name:"Kobra 3 Max V2 Combo 3D-printer: foutcodes (CODE 10124 t/m 11535)", dev:"Kobra 3 Max V2 3D-printer", cat:"3d-printers", years:"Anycubic Kobra 3 Max V2 Combo", unit:null,
+  intro:"De Anycubic Kobra 3 Max V2 Combo toont 'CODE' met vijf cijfers op het scherm. Codes vanaf 11500 gaan meestal over de ACE Pro (kleurenunit). Hieronder staan oorzaak en eerste stappen volgens de Anycubic Wiki.",
+  weak:[], parts:[], tasks:[], src:["anycubicK3MaxV2"],
+  faults:[
+    F("10124","Temperatuursensor (NTC) extruder afwijkend",2,"Losse NTC- of printkopkabel, defecte NTC-sensor of afwijkende voeding vanaf het moederbord.",["Zet de printer uit en verwijder de printkopbehuizing.", "Controleer de NTC-kabel en de verbindingskabel van de printkop, ook op het moederbord.", "Meet de NTC-weerstand en de spanning op het moederbord."]),
+    F("10130","Homing Z-as mislukt: Z-sensor",2,"Probleem met de kabel van de Z-sensor.",["Laat de printkop eerst afkoelen tot onder 30 °C.", "Verwijder de printkopbehuizing en steek de kabel opnieuw in.", "Laat de Z-as opnieuw homen."]),
+    F("10237","Automatisch nivelleren mislukt: sensor",2,"Probleem met de nivelleersensor (rekstrookje) of het bed.",["Controleer de status van de nivelleersensor.", "Demonteer de printkopbehuizing en controleer de nivelleersensor en de montage ervan.", "Monteer de printkopbehuizing terug."]),
+    F("10402","Filament gebroken",1,"Het filament is gebroken.",["Laad nieuw filament (maak het eerst recht).", "Kies op het scherm de juiste tray en kleur."]),
+    F("11503","Verbinding met de kleurenunit (ACE Pro) mislukt",1,"De multicolor-unit is losgekoppeld.",["Steek de 4-pins signaalkabel en het netsnoer van de ACE Pro opnieuw in.", "Controleer of de ACE Pro stroom krijgt en de schakelaar aan staat.", "Controleer de ACE Pro zelf."]),
+    F("11504","Onbekende invoerpositie",1,"Bij een printer met ACE Pro is niet bekend vanuit welke positie gevoerd wordt.",["Stel de traygegevens in.", "Controleer de filamentbreukdetectie."]),
+    F("11509","Time-out kleurenunit (ACE Pro)",1,"De ACE Pro reageert niet op tijd.",["Steek de 4-pins signaalkabel en het netsnoer van de ACE Pro opnieuw in.", "Controleer of de ACE Pro stroom krijgt en de schakelaar aan staat.", "Controleer de ACE Pro zelf."]),
+    F("11511","Extrusie afwijkend",1,"Het filament wordt niet goed doorgevoerd; ook te dun filament kan dit veroorzaken.",["Controleer de filamentbreukdetectie."]),
+    F("11512","Terugtrekken afwijkend",1,"Het filament wordt niet goed teruggetrokken; ook te dun filament kan dit veroorzaken.",["Controleer de filamentbreukdetectie.", "Controleer de hotend."]),
+    F("11518","Filamentverstopping",1,"Het buffermechanisme voert afwijkend aan, waardoor het filament vastloopt.",["Druk het filament met de hand door.", "Maak de hotend schoon, eventueel met een naald.", "Controleer de breukdetectie van de extruder en of er filament achterblijft in de hub.", "Controleer het buffermechanisme van de ACE Pro en of het goed gemonteerd is."]),
+    F("11519","Filament in de knoop",1,"Het filament zit in de knoop.",["Haal de knoop uit het filament.", "Print het model opnieuw.", "Draai zo nodig het tandwiel met de hand."]),
+    F("11530","PTC-verwarming ACE afwijkend: drogen gestopt",2,"Probleem met het PTC-verwarmingselement van de ACE Pro.",["Zet printer en ACE Pro uit en koppel ze los.", "Demonteer de ACE Pro en vervang het PTC-verwarmingselement.", "Monteer alles terug en sluit de ACE Pro weer aan."]),
+    F("11535","Filamentstatus onbekend in sensor- of hubpad",1,"Filament kan niet terug naar de ACE Pro, zit vast in het achterste pad of de koppeling, of loopt niet soepel door de extruder.",["Ontlaad het filament via het printerscherm.", "Haal het filament er met de hand uit.", "Controleer de aanvoer door de printkop.", "Controleer het sensorpad en de invoer van de filamenthub."]),
+  ]});
+})();
+(() => {
+  const m=MODELS.find(x=>x.id==="anycubic-kobra-s1-max");
+  m.faults.push(
+    F("10118","Homing X-as mislukt",2,"De printer krijgt de X-as niet naar de thuispositie. Mogelijke oorzaken: printkopkap niet goed dicht, losse of kapotte kabel van de eindschakelaar, eindschakelaar veert niet terug, of losse motorkabel.",["Controleer de motorkabel van de X-as.", "Controleer de aansluitingen op het moederbord.", "Controleer de X-asmotor."]),
+    F("10119","Homing Y-as mislukt",2,"Afwijking in de XY-eindschakelaar of de motorkabel van de XY-as.",["Activeer de eindschakelaar met de hand.", "Controleer de hoek van het lipje van de eindschakelaar.", "Controleer de eindschakelaar.", "Controleer de motorkabel van de XY-as."]),
+    F("10120","Homing Z-as mislukt: motor en driver",2,"Motorkabel van de Z-as los of kapot, Z-motor defect, of kabel van de rekstrookje los.",["Zet de printer uit en haal de achterkap en de bevestigingsplaat van de ventilator eraf.", "Steek de Z-motorkabel opnieuw in en meet de doorgang van de kabel.", "Controleer de Z-motor.", "Controleer het rekstrookje (strain gauge)."]),
+    F("11509","ACE Pro niet gevonden",1,"Probleem met voeding of signaalkabel van de ACE Pro.",["Controleer of het netsnoer vastzit en de schakelaar aan staat.", "Controleer of het ACE Pro-icoon op de printer staat en de signaalkabel vastzit.", "Controleer de aansluiting op de achterkant van de printer."]),
+    F("11529","Temperatuursensor (NTC) ACE Pro afwijkend",2,"Afwijkende temperatuurmeting in de ACE Pro.",["Zet de printer en de ACE Pro uit en koppel ze los.", "Verwijder de binnenbehuizing van de ACE Pro.", "Controleer de NTC-kabel van de ACE Pro."]),
+    F("11530","Droogfunctie (PTC) ACE Pro afwijkend",2,"Het PTC-verwarmingselement van de ACE Pro werkt niet goed of is beschadigd.",["Let op ongewone geluiden tijdens het drogen.", "Demonteer de ACE Pro en controleer het PTC-onderdeel."]),
+    F("11536","Storing filamenttracker",2,"Probleem met de filamenttrackermodule.",["Zet de printer uit.", "Steek de kabel van de filamenttracker opnieuw in.", "Verwijder en controleer de filamenttrackermodule."]),
+  );
+  m.name="Kobra S1 Max 3D-printer: foutcodes (CODE 10116 t/m 11802)";
+})();
 module.exports = { CATS, MODELS, SRC, COST };
