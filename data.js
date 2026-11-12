@@ -13199,4 +13199,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Geen rode lampjes, föhn blaast koud", 1, "Geen storing: de koude stand (ongeveer 28 °C) staat aan.", ["Kies met de temperatuurknop een warmere stand (1 tot 3 rode lampjes)."])
   ]});
 })();
+(() => {
+  SRC.ecotapDuoWide = ["Ecotap – Handleiding laadzuil DUO Wide (PDF, gehost door ElaadNL)", "https://elaad.nl/wp-content/uploads/2026/02/Handleiding-Duo-Wide-NL.pdf"];
+  MODELS.push({ id: "ecotap-duo-wide", brand: "Ecotap", name: "Laadzuil DUO Wide (openbare laadpaal): wat betekent het lampje?", dev: "laadzuil DUO Wide", cat: "laadpalen", years: "Ecotap DUO Wide (twee laadpunten, veel gebruikt als openbare laadpaal)", unit: null, also: "Ecotap laadpaal lampje uit, openbare laadpaal groen knipperen, laadpaal blauw lampje, Ecotap laadpaal piept twee keer, laadpaal straat werkt niet, Ecotap storing", intro: "De Ecotap DUO Wide is een veelvoorkomende openbare laadpaal met twee laadpunten. Groen betekent beschikbaar, blauw betekent dat er geladen wordt; brandt er niets, dan werkt het laadpunt niet.", weak: [], parts: [], tasks: [], src: ["ecotapDuoWide"], faults: [
+    N("Lampje brandt niet", 2, "Het laadpunt werkt niet.", ["Probeer het andere laadpunt van de paal.", "Meld de storing bij het telefoonnummer op de laadpaal of bij de Ecotap-helpdesk (24/7: 0411-745020). Werk niet zelf aan de paal."]),
+    N("Groen continu of één korte groene flits per 10 seconden", 1, "Het laadpunt staat aan en is vrij.", ["Steek de laadkabel in en houd je laadpas voor de lezer."]),
+    N("Groen knippert met één piep na de laadpas", 1, "De laadsessie start; de stekker wordt vergrendeld.", ["Wacht even: daarna begint het laden en wordt het lampje blauw."]),
+    N("Blauw continu", 1, "Er wordt geladen.", ["Je hoeft niets te doen."]),
+    N("Groen knippert met twee piepjes na de laadpas", 1, "De laadsessie is gestopt.", ["Wacht tot de stekker ontgrendeld is en haal hem er dan uit."]),
+    N("Laden start niet na de laadpas", 1, "De sessie start niet, bijvoorbeeld doordat de kabel niet goed vastzit of de pas niet geaccepteerd wordt.", ["Steek de kabel opnieuw goed in aan beide kanten en houd de pas nog eens voor de lezer.", "Lukt het niet, meld het via het nummer op de paal."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
