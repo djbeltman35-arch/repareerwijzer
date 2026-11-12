@@ -14474,4 +14474,34 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Gaat niet aan, standby-lampje uit", 1, "Er komt geen stroom bij de tv, of het lampje is uitgezet in de instellingen.", ["Controleer of de stekker goed in de tv en het stopcontact zit.", "Test het stopcontact met een ander apparaat; werkt dat ook niet, controleer dan de groepenkast.", "Gebruik geen geschakeld of energiebesparend stopcontact.", "Heeft de tv wel stroom maar geen lampje, zet dan in het menu de stroomindicator (Power Indicator) aan.", "Lukt het niet, neem contact op met de LG-klantenservice."])
   ]});
 })();
+(() => {
+  SRC.bulexThermomaster = ["Bulex – Gebruiksaanwijzing en installatiehandleiding Thermomaster F 25 E, F 29 E en F AS 29 E (PDF, NL/FR)", "https://www.bulex.be/downloads/documentatie/documenten/handleidingen-thermomaster-25e-29e-631668.pdf"];
+  MODELS.push({ id: "bulex-thermomaster", brand: "Bulex", name: "Thermomaster F 25 E / F 29 E: storingscodes F1 t/m F30", dev: "Thermomaster condensatieketel", cat: "cv-ketels", years: "Bulex Thermomaster F 25 E, F 29 E en F AS 29 E", unit: null, also: "Bulex Thermomaster F1, Thermomaster F28, Thermomaster F21 waterdruk, Bulex ketel F4 ontsteking, Thermomaster storing rood lampje, Saunier Duval Thermomaster", intro: "De Bulex Thermomaster toont een F met een cijfer en het lampje knippert rood. Bij F1, F2 en F4 mag je de ketel één keer uit- en weer aanzetten. F21 betekent te weinig water: vul bij tot 1 à 2 bar. De andere codes zijn voor de installateur.", weak: ["Te lage waterdruk (F21).", "Ontstekingsproblemen (F1, F4).", "Lucht in de installatie (F24, F26)."], parts: [], tasks: [], src: ["bulexThermomaster"], faults: [
+    F("F1", "Ontstekingsfout", 2, "Geen of te weinig gas, vlam dooft tijdens het branden, gasblok slecht afgesteld, of ontstekings-/vlamcontrole-elektrode of ontsteker defect.", ["Zet de ketel uit, wacht 5 seconden en zet hem weer aan.", "Blijft de storing, neem contact op met een vakman."]),
+    F("F4", "Ontstekingsfout", 2, "Geen of te weinig gas, vlam dooft tijdens het branden, gasblok slecht afgesteld, of ontstekings-/vlamcontrole-elektrode of ontsteker defect.", ["Zet de ketel uit, wacht 5 seconden en zet hem weer aan.", "Blijft de storing, neem contact op met een vakman."]),
+    F("F2", "Slechte afvoer of aanvoer van lucht", 2, "Het veiligheidssysteem onderbreekt de werking; de afzuigventilator draait niet op de juiste snelheid.", ["Zet de ketel uit, wacht 5 seconden en zet hem weer aan.", "Blijft de storing, neem contact op met een vakman."]),
+    F("F5", "Oververhittingsbeveiliging", 3, "De oververhittingsbeveiliging is aangesproken.", ["Neem contact op met een erkend installateur."]),
+    F("F14", "Maximumtemperatuur overschreden", 3, "De toegestane maximumtemperatuur is overschreden of er zit lucht in de installatie.", ["Neem contact op met een erkend installateur."]),
+    F("F6", "Aanvoervoeler cv defect", 2, "Voeler van de cv-aanvoer los of kortgesloten.", ["Neem contact op met een erkend installateur."]),
+    F("F7", "Tapwatervoeler defect", 2, "Voeler van het tapwater los of kortgesloten.", ["Neem contact op met een erkend installateur."]),
+    F("F9", "Drukvoeler cv defect", 2, "Drukvoeler van de cv-kring los of kortgesloten.", ["Neem contact op met een erkend installateur."]),
+    F("F10", "Retourvoeler cv defect", 2, "Voeler van de cv-retour los of kortgesloten.", ["Neem contact op met een erkend installateur."]),
+    F("F11", "Communicatiefout bedieningspaneel", 2, "Slechte verbinding tussen hoofdprint en bedieningspaneel.", ["Neem contact op met een erkend installateur."]),
+    F("F12", "Communicatiefout kamerthermostaat", 2, "De communicatie tussen hoofdprint en kamerthermostaat is te zwak. Na het verhelpen moet de ketel opnieuw gestart worden.", ["Neem contact op met een erkend installateur."]),
+    F("F13", "Storing hoofdprint", 3, "Verkeerde netfrequentie, storing of sluitfout van de gasklep, geheugenfout, te warme hoofdprint of ontbrekend vlamsignaal.", ["Neem contact op met een erkend installateur."]),
+    F("F16", "Storing vlamdetectie", 3, "Abnormale vlamdetectie: ionisatie-elektrode los of verkeerd afgesteld, of slechte CO2-afstelling.", ["Neem contact op met een erkend installateur."]),
+    F("F18", "Bedieningspaneel defect", 3, "De interfaceprint is defect.", ["Neem contact op met een erkend installateur."]),
+    F("F19", "Fout debietdetector", 2, "De debietdetector is los, defect of slecht aangesloten.", ["Neem contact op met een erkend installateur."]),
+    F("F20", "Communicatiefout paneel en hoofdprint", 2, "Paneel slecht geplaatst, onverenigbare gegevens, verkeerde productcode of defecte print.", ["Neem contact op met een erkend installateur."]),
+    F("F21", "Te weinig water in de installatie", 1, "Te weinig water of lucht in de cv-kring.", ["Vul de installatie bij tot de druk tussen 1 en 2 bar staat.", "Ontlucht de radiatoren.", "Blijft het terugkomen, neem contact op met een vakman."]),
+    F("F22", "Te veel water in de installatie", 2, "De waterdruk is te hoog.", ["Neem contact op met een erkend installateur."]),
+    F("F23", "Slechte watercirculatie", 2, "De pomp werkt niet goed (temperatuur stijgt te snel).", ["Neem contact op met een erkend installateur."]),
+    F("F24", "Retourtemperatuur cv te hoog", 2, "Probleem met de watercirculatie, te weinig water of lucht in de kring.", ["Controleer de waterdruk en vul zo nodig bij tot 1 tot 2 bar.", "Ontlucht de radiatoren.", "Neem contact op met een erkend installateur."]),
+    F("F26", "Te groot temperatuurverschil aanvoer-retour", 2, "Probleem met de watercirculatie, te weinig water of lucht in de kring.", ["Controleer de waterdruk en vul zo nodig bij tot 1 tot 2 bar.", "Ontlucht de radiatoren.", "Neem contact op met een erkend installateur."]),
+    F("F28", "Blijvend verschil tussen aanvoer- en retourvoeler", 2, "De temperaturen van aanvoer en retour kloppen niet met elkaar.", ["Neem contact op met een erkend installateur."]),
+    F("F30", "Waterdrukvoeler defect", 2, "Waterdrukvoeler los of defect.", ["Neem contact op met een erkend installateur."]),
+    N("Display is uit", 1, "Stroomonderbreking.", ["Controleer of de stroom niet is uitgevallen en of de ketel goed is aangesloten; hij gaat vanzelf weer aan zodra er stroom is.", "Blijft het, neem contact op met een vakman."]),
+    N("Druk onder 0,5 bar", 1, "Te weinig water in de installatie.", ["Vul de installatie bij tot de druk tussen 1 en 2 bar ligt."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
