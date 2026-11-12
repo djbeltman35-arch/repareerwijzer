@@ -15880,7 +15880,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.viessmann100wUk=["Viessmann UK – Vitodens 100-W (heat only) installation and service instructions (Engels), diagnosis: fault codes","https://www.viessmann.co.uk/content/dam/public-brands/gb/pdf/instructions/Vitodens%20100-W%20heat%20only%20installation%20instructions.pdf"];
   MODELS.push({ id:"viessmann-vitodens-100-w-hbmu", brand:"Viessmann", name:"Vitodens 100-W met HBMU-regeling: storingscodes", dev:"Vitodens 100-W (HBMU)", cat:"cv-ketels", years:"Vitodens 100-W met HBMU-warmtebeheerunit", unit:null,
-  intro:"Deze nummercodes gelden voor de Vitodens 100-W met HBMU-warmtebeheerunit volgens de Engelse installatie- en servicehandleiding van Viessmann. Oudere Vitodens-ketels met Vitotronic-regeling gebruiken andere codes.",
+  intro:"Deze nummercodes gelden voor de Vitodens 100-W met HBMU-warmtebeheerunit volgens de Engelse installatie- en servicehandleiding van Viessmann.",
   weak:[], parts:[], tasks:[], src:["viessmann100wUk"],
   faults:[
     F("13","Breuk buitentemperatuursensor",2,"De ketel regelt alsof het buiten 0 °C is. Kabelbreuk of fout in de buitentemperatuursensor.",["Neem contact op met uw installateur."]),
