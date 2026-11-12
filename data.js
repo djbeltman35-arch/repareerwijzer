@@ -13818,4 +13818,17 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("T°PV ECO", "Ontdooi- en watersensor verwisseld", 3, "De ontdooisensor en de watertemperatuursensor zijn op de printplaat verwisseld. De warmtepomp valt uit.", ["Laat de sensoren correct aansluiten."])
   ]});
 })();
+(() => {
+  SRC.mbLaadLED = ["Mercedes-Benz – Digitale handleiding EQC: indicatielampjes op de laadaansluiting (Engels)", "https://moba.i.mercedes-benz.com/baix/cars/293.EV_mbux_2020_b/en_GB/page/ID_e91df6b53db812ad354ae3655efd9d0c-7a5b7efe3220b533ac190d2b34eade09-en-GB.html"];
+  SRC.mbLaadLEDphev = ["Mercedes-Benz – Digitale handleiding plug-in hybride (CLA/A-klasse 118.3): zelfde pagina laadaansluiting (Engels)", "https://moba.i.mercedes-benz.com/baix/cars/118.3_mbux-high_2021_b/en_GB/page/ID_e91df6b53db812ad354ae3655efd9d0c-7a5b7efe3220b533ac190d2b34eade09-en-GB.html"];
+  MODELS.push({ id: "mercedes-laadaansluiting", brand: "Mercedes-Benz", name: "Laadaansluiting lampje: wit, oranje, groen of rood knipperen", dev: "laadaansluiting EQC en plug-in hybrides", cat: "auto", years: "Mercedes-Benz EQC en plug-in hybrides met MBUX (o.a. CLA- en S-Klasse); uitvoering verschilt per land", unit: null, also: "Mercedes laadlampje rood knippert, Mercedes EQC laadt niet, Mercedes plug-in hybride laadpoort knippert wit, Mercedes laadklep lampje oranje, Mercedes EQ laden onderbroken", intro: "Het lampje bij de laadaansluiting van een Mercedes-Benz EQC of plug-in hybride laat zien wat er gebeurt: wit gaat over de vergrendeling, oranje en groen over het laden, en rood knipperen betekent een storing aan de auto.", weak: ["Kabel die niet goed vergrendelt (wit knipperen).", "Laden dat onderbroken wordt (oranje)."], parts: [], tasks: [], src: ["mbLaadLED", "mbLaadLEDphev"], faults: [
+    N("Lampje brandt wit", 1, "De laadaansluiting is ontgrendeld.", ["Je kunt de laadkabel nu insteken of eruit halen."]),
+    N("Lampje knippert wit", 2, "Storing bij het vergrendelen of ontgrendelen van de laadkabel.", ["Haal de kabel eruit en steek hem opnieuw stevig in.", "Blijft het knipperen, neem dan contact op met een Mercedes-Benz-servicepunt."]),
+    N("Lampje knippert oranje", 1, "De verbinding met het laadpunt wordt opgebouwd.", ["Even wachten."]),
+    N("Lampje knippert groen", 1, "De auto laadt (er loopt stroom).", ["Niets doen."]),
+    N("Lampje brandt oranje", 2, "Het laden is onderbroken.", ["Controleer het laadpunt en de laadkabel en start het laden opnieuw."]),
+    N("Lampje brandt groen", 1, "Het laden is klaar.", ["Je kunt de kabel ontgrendelen en loskoppelen."]),
+    N("Lampje knippert rood (ongeveer 90 seconden)", 3, "Storing aan de auto: laden is niet mogelijk.", ["Neem contact op met een Mercedes-Benz-servicepunt."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
