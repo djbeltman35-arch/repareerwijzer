@@ -14446,4 +14446,25 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("EQ.900 geen melkschuim of melk", 1, "Melksysteem vuil of verkeerd in elkaar, melkbuis niet in de melk of kalk.", ["Reinig het melksysteem in de vaatwasser en zet het goed in elkaar (eerst melksysteem, dan melkhouder).", "Controleer of de melkbuis in de melk hangt.", "Ontkalk het apparaat."])
   );
 })();
+(() => {
+  SRC.lgStylerCodes = ["LG – Help library: LG Styler list of error codes (Engels)", "https://www.lg.com/us/support/help-library/lg-styler-list-of-error-codes--20154629827640"];
+  SRC.lgStylerCL = ["LG – Help library: LG Styler CL error code (Engels)", "https://lg.com/us/support/help-library/lg-styler-troubleshooting-a-cl-error-code--20153819297294"];
+  SRC.lgStylerIF = ["LG – Help library: LG Styler IF error code (Engels)", "https://www.lg.com/us/support/help-library/lg-styler-what-does-the-if-error-code-mean--20153081341597"];
+  MODELS.push({ id: "lg-styler", brand: "LG", name: "Styler kledingverzorgingskast: foutcodes", dev: "Styler stoomkast", cat: "drogers", years: "LG Styler", unit: null, also: "LG Styler E4, LG Styler tE1, LG Styler CL, LG Styler IF, LG Styler LE, LG Styler foutcode, LG Styler PS", intro: "De LG Styler toont een korte code bij een storing. CL (kinderslot) en IF (pluizenfilter) los je zelf op. De andere codes, zoals tE1 tot tE5, E1, E2, E4, LE en AE, betekenen dat een onderdeel defect is en de Styler gerepareerd moet worden.", weak: ["Stoomverwarming (E4).", "Pluizenfilter niet goed geplaatst (IF)."], parts: [], tasks: [], src: ["lgStylerCodes", "lgStylerCL", "lgStylerIF"], faults: [
+    F("tE1", "Thermistor kanaaluitlaat defect", 3, "Thermistor kanaaluitlaat defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("tE2", "Thermistor compressor defect", 3, "Thermistor compressor defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("tE3", "Thermistor kanaalinlaat defect", 3, "Thermistor kanaalinlaat defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("tE4", "Thermistor stoom defect", 3, "Thermistor stoom defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("tE5", "Thermistor verdamperinlaat defect", 3, "Thermistor verdamperinlaat defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("E1", "Sensor stoomverwarming defect", 3, "Sensor stoomverwarming defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("E2", "Waterniveausensor stoom defect", 3, "Waterniveausensor stoom defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("E4", "Stoomverwarming defect", 3, "Stoomverwarming defect.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("PS", "Verkeerde netspanning", 3, "Verkeerde netspanning.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("AE", "Probleem met uitlijning compressor", 3, "Probleem met uitlijning compressor.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("LE", "Hoofdventilatormotor loopt vast", 3, "Hoofdventilatormotor loopt vast.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("LE2", "Compressor loopt vast", 3, "Compressor loopt vast.", ["Neem contact op met de LG-klantenservice; de Styler moet gerepareerd worden."]),
+    F("CL", "Kinderslot aan", 1, "Het kinderslot (Control Lock) staat aan; alleen de aan/uit-knop werkt.", ["Houd de twee knoppen met het slotje 3 seconden ingedrukt (vaak Gentle Dry en Delay Start), of de knop Control Lock.", "Werken de knoppen slecht, maak het paneel schoon en droog en druk met droge vingers in het midden van de knop."]),
+    F("IF", "Pluizenfilter ontbreekt", 1, "De Styler draait zonder pluizenfilter of het filter zit niet goed.", ["Plaats het pluizenfilter goed in de groef (zie het plaatje op de filterklep).", "Blijft IF staan, vraag dan een reparatie aan."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
