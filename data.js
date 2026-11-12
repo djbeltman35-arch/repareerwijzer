@@ -16836,4 +16836,39 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E0123","Fout bedtemperatuur",2,"De FFC-kabel van het platform zit niet goed of is beschadigd, of de bedthermistor is onderbroken of kortgesloten.",["Steek de FFC-kabel opnieuw in of vervang hem.", "Vervang zo nodig het verwarmde bed."]),
   ]});
 })();
+(() => {
+  SRC.minnkotaQuest=["Minn Kota Help Center – QUEST Error Codes: Viewing Error Codes and What They Mean","https://minnkota-help.johnsonoutdoors.com/hc/en-us/articles/17874612404759-QUEST-Error-Codes-Viewing-Error-Codes-and-What-They-Mean"];
+  MODELS.push({ id:"minn-kota-quest", brand:"Minn Kota", name:"QUEST elektrische trolling motor: foutcodes 1.1 t/m 4.8", dev:"QUEST trolling motor", cat:"boten", years:"Minn Kota Ultrex QUEST, Terrova QUEST, Riptide Terrova QUEST, Ulterra QUEST, RT Instinct QUEST", unit:null,
+  intro:"Minn Kota QUEST-motoren tonen foutcodes zoals 1.2 of 3.5. Je ziet ze in de Minn Kota Fishing-app (Motor – menu – Error Codes) of op de Advanced GPS Navigation-afstandsbediening (Menu – System – Diagnostic – Error Codes).",
+  weak:[], parts:[], tasks:[], src:["minnkotaQuest"],
+  faults:[
+    F("1.1","Accuspanning te hoog",1,"De accuspanning is te hoog.",["Controleer de accuspanning.", "Controleer de lader en of er niet te veel accu's in serie zijn geschakeld.", "Zet de motor uit en weer aan."]),
+    F("1.2","Accuspanning te laag",1,"De accuspanning is te laag.",["Controleer de accuaansluitingen en laad de accu's op.", "Zet de motor uit en weer aan."]),
+    F("1.3","Storing stuurcircuit",2,"Storing in het stuurcircuit.",["Zet de motor uit en weer aan (power cycle)."]),
+    F("1.4","Onderwaterdeel oververhit",1,"Het onderwaterdeel (lower unit) is te warm.",["Laat het onderwaterdeel afkoelen.", "Zet de motor uit en weer aan."]),
+    F("1.5","Te hoge stroom naar onderwaterdeel",2,"Te veel stroom naar het onderwaterdeel.",["Zet de motor uit en weer aan (power cycle)."]),
+    F("1.6","Te hoge stroom naar onderwaterdeel met schroef uit",2,"Te veel stroom naar het onderwaterdeel terwijl de schroef uit staat.",["Zet de motor uit en weer aan (power cycle)."]),
+    F("1.7","Storing voorlaadcircuit",2,"Storing in het pre-charge-circuit.",["Zet de motor uit en weer aan (power cycle)."]),
+    F("1.8","Sensoren opbergen/uitklappen en horizontaal tegelijk actief",3,"De sensoren voor opbergen/uitklappen en horizontaal zijn tegelijk actief.",["Service nodig: neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("2.1","Overstroom onderwaterdeel/inverter",1,"Overstroombeveiliging van het onderwaterdeel of de inverter is aangesproken.",["Zet de schroef uit en weer aan nadat de fout is verdwenen."]),
+    F("2.2","Synchronisatiefout onderwaterdeel/inverter",1,"Synchronisatiefout tussen onderwaterdeel en inverter.",["Zet de schroef uit en weer aan nadat de fout is verdwenen."]),
+    F("2.3","Geen communicatie met de inverter",2,"De communicatie met de inverter is verbroken.",["Zet de motor zo nodig uit en weer aan.", "Komt de communicatie niet terug, neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.1","Communicatiefout stuurpositiesensor",2,"Communicatiefout van de sensor voor de stuurpositie.",["Zet de motor uit en weer aan.", "Blijft de fout, neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.2","Communicatiefout trimpositiesensor",2,"Communicatiefout van de sensor voor de trimpositie.",["Zet de motor uit en weer aan.", "Blijft de fout, neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.3","Magneet stuurpositiesensor kwijt",2,"De magneet van de stuurpositiesensor wordt niet meer gezien.",["Zet de motor uit en weer aan.", "Blijft de fout, neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.4","Magneet trimpositiesensor kwijt",2,"De magneet van de trimpositiesensor wordt niet meer gezien.",["Zet de motor uit en weer aan.", "Blijft de fout, neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.5","Fout sensor opbergen/uitklappen",2,"Fout in de sensor voor opbergen of uitklappen.",["RT Instinct QUEST / Ulterra QUEST: kijk of de actuator vastzit of de magneet eruit is gevallen.", "Terrova QUEST: zijn de klemmen omhoog geklapt terwijl de motor uitgeklapt is, klap ze terug.", "Zijn sensoren beschadigd, neem contact op met een erkende servicedealer."]),
+    F("3.6","Uitklap- en horizontaalsensor tegelijk actief",3,"De sensoren voor uitklappen en horizontaal zijn tegelijk actief.",["De sensor is beschadigd: neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.7","Sensor noodontgrendelingspen inactief",3,"De sensor van de noodontgrendelingspen werkt niet.",["De sensor is beschadigd: neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.8","Eindstand- en voetpedaalsensor tegelijk actief",3,"De sensoren voor eindstand en voetpedaal zijn tegelijk actief.",["De sensor is beschadigd: neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.9","Storing druksensor voetpedaal",3,"De druksensor van het voetpedaal is defect.",["De sensor is beschadigd: neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.10","Opberg- en hendelsensor tegelijk actief",3,"De sensoren voor opbergen en de hendel zijn tegelijk actief.",["De sensor is beschadigd: neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.11","Opberg-, uitklap- of hendelsensor blijft actief",3,"Een sensor voor opbergen, uitklappen of de hendel meldt zich steeds als actief.",["De sensor is beschadigd: neem contact op met een erkende Minn Kota-servicedealer."]),
+    F("3.12","Kalibratiewaarden sturing buiten bereik",2,"De kalibratiewaarden van de sturing liggen buiten het bereik.",["Neem contact op met de Minn Kota-klantenservice of een erkende servicedealer om de sturing te laten kalibreren."]),
+    F("3.13","Geen verandering in trimpositiesensor",2,"De waarden van de trimpositiesensor veranderen niet.",["Zet de motor uit en weer aan.", "Komt de fout terug zonder zichtbare blokkade, breng de motor naar een erkende servicedealer."]),
+    F("4.1","Stuurmotor boven stroomlimiet",1,"De stuurmotor trekt te veel stroom.",["Start het sturen opnieuw door naar links of rechts te sturen."]),
+    F("4.6","Trimmotor boven stroomlimiet",1,"De trimmotor trekt te veel stroom.",["Start het trimmen opnieuw door de andere kant op te trimmen."]),
+    F("4.8","Kantelmotor boven stroomlimiet",1,"De kantelmotor trekt te veel stroom; de fout verdwijnt vanzelf.",["Start het opbergen of uitklappen opnieuw."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
