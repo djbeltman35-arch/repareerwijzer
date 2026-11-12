@@ -12,6 +12,7 @@ fs.mkdirSync(OUT, { recursive: true });
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const slug = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const D = { 1: ["🟢 Zelf op te lossen", "d1"], 2: ["🟡 Voorzichtig zelf proberen", "d2"], 3: ["🔴 Bel een monteur", "d3"] };
+const VERDICT_FAQ = { 1: "Nee, meestal niet. Dit kun je zelf oplossen met de stappen op deze pagina. Komt de storing terug, laat het dan nakijken.", 2: "Probeer eerst zelf de stappen op deze pagina, voorzichtig en met de stekker eruit of het apparaat uit. Twijfel je of lukt het niet, bel dan een monteur.", 3: "Ja. Dit is complex of gevaarlijk om zelf te repareren. Doe alleen de veilige controles op deze pagina en bel een monteur." };
 const VERDICT = { 1: "Dit kun je zelf oplossen. Volg de stappen hieronder, één voor één.", 2: "Je kunt dit zelf proberen, maar wees voorzichtig. Haal eerst de stekker eruit of zet het apparaat uit. Twijfel je? Bel een monteur.", 3: "Complex of gevaarlijk: probeer dit niet zelf te repareren. Doe alleen de veilige controles hieronder en bel een monteur." };
 const UNIT = { km: "km", uur: "printuren" };
 const catOf = id => CATS.find(c => c.id === id);
@@ -133,7 +134,7 @@ ${scripts}
 const pill = d => `<span class="pill ${D[d][1]}">${D[d][0]}</span>`;
 const srcList = m => m.src.length ? `<ul class="sources">${m.src.map(k => `<li><a href="${SRC[k][1]}" target="_blank" rel="noopener">${esc(SRC[k][0])}</a></li>`).join("")}</ul>` : `<p class="muted">Gebaseerd op kennis uit de gebruikersgemeenschap. Controleer met de handleiding van je eigen exemplaar.</p>`;
 const pl = (n, one, many) => `${n} ${n === 1 ? one : many}`;
-const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length ? `${pl(m.tasks.length, "onderhoudstaak", "onderhoudstaken")} · ` : ""}${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${pl(codes, "foutcode", "foutcodes")})` : ""}${m.also ? ` · ook: ${esc(m.also)}` : ""}</span></a>`; };
+const modelCard = m => { const codes = m.faults.filter(f => f.code).length; return `<a class="model" href="${m.id}.html"><b>${esc(fullName(m))}</b><span class="eyebrow">${esc(catOf(m.cat).name)}</span><span class="meta">${esc(m.years)} · ${m.tasks.length ? `${pl(m.tasks.length, "onderhoudstaak", "onderhoudstaken")} · ` : ""}${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"}${codes ? ` (${pl(codes, "foutcode", "foutcodes")})` : ""}${m.also ? ` · ook: ${esc(m.also.replace(/^ook:?\s+/i, ""))}` : ""}</span></a>`; };
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
@@ -447,7 +448,7 @@ const codeFaq = (m, f, dev) => { const k = COST[m.cat], hit = costHit(m, f), c =
   const q = [[`Wat betekent foutcode ${f.code} op een ${dev}?`, `${f.t}. ${f.cause}`], [`Wat kun je zelf doen bij foutcode ${c}?`, f.steps.join(" ")],
     [`Is foutcode ${c} gevaarlijk?`, f.d === 3 ? `Probeer dit niet zelf te repareren: het gaat om onderdelen waar een vakman aan moet werken. Doe alleen de veilige controles en bel een monteur.` : f.d === 2 ? `Niet direct, maar wees voorzichtig: haal eerst de stekker eruit of zet het apparaat uit voordat je iets controleert. Twijfel je, bel dan een monteur.` : `Meestal niet. Het gaat om iets dat je veilig zelf kunt controleren, zoals een filter, slang of instelling. Haal wel eerst de stekker eruit als je iets losmaakt.`],
     [`Kun je het apparaat blijven gebruiken bij foutcode ${c}?`, f.d === 3 ? `Liever niet. Zet het apparaat uit en gebruik het pas weer als een monteur ernaar heeft gekeken, zeker als er water lekt, het apparaat heet wordt of je iets brandends ruikt.` : f.d === 2 ? `Alleen als de code na de controles hierboven verdwijnt. Komt hij terug, zet het apparaat dan uit en laat het nakijken.` : `Meestal wel, zodra je de oorzaak hebt weggenomen en de code verdwenen is. Komt de code steeds terug, laat het dan nakijken.`],
-    [`Moet er een monteur komen bij foutcode ${c}?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]];
+    [`Moet er een monteur komen bij foutcode ${c}?`, VERDICT_FAQ[f.d]]];
   if (k) q.push([`Wat kost het om foutcode ${c} te laten repareren?`, `${k.uur ? `Een monteur rekent ${k.uur}. ` : ""}${hit ? `${hit[0]}: gemiddeld ${hit[1]}.` : k.gem ? `Een reparatie kost gemiddeld ${k.gem}.` : ""} Vraag altijd vooraf een prijsopgave.`.replace(/\s+/g, " ").trim()]);
   return q; };
 const kbForCode = f => { const ids = codeKb.get(f); if (!ids) return ""; return `<p class="kblink">📖 Meer uitleg: ${ids.map(id => { const a = KB.find(x => x.id === id); return `<a href="kennisbank-${id}.html">${esc(a.title.split(":")[0])}</a>`; }).join(" · ")}</p>`; };
@@ -506,7 +507,7 @@ for (const m of MODELS) for (const f of m.faults.filter(x => !x.code)) {
     file: textUrl(m, f),
     title: am ? `${f.t}${f.t.toLowerCase().includes(c.one.toLowerCase()) ? "" : ` (${c.one})`}: oorzaak + oplossing, alle merken` : (`${dev}: ${lc1(f.t, m)}`.length <= 50 ? `${dev}: ${lc1(f.t, m)} (oorzaak + oplossing)` : `${dev}: ${lc1(f.t, m)}`),
     desc: `${am ? "" : dev + ": "}${lc1(f.t, m)}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
-    extraHead: faqLd([[`${f.t}${am ? "" : ` (${dev})`}: wat is er aan de hand?`, f.cause], [`${f.t}: wat kun je zelf doen?`, f.steps.join(" ")], [`Moet er een monteur komen?`, `${D[f.d][0].replace(/^\S+\s/, "")}: ${VERDICT[f.d]}`]]) + howtoLd(f.t, f.steps),
+    extraHead: faqLd([[`${f.t}${am ? "" : ` (${dev})`}: wat is er aan de hand?`, f.cause], [`${f.t}: wat kun je zelf doen?`, f.steps.join(" ")], [`Moet er een monteur komen?`, VERDICT_FAQ[f.d]]]) + howtoLd(f.t, f.steps),
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: f.t, file: textUrl(m, f) }],
     body: `
 <section class="stack">
@@ -541,6 +542,19 @@ ${others.length ? fold(`Andere storingen: ${esc(fullName(m))}`, `<div class="res
 const SKIP = new Set(["Alle merken", "E61-groep"]);
 // Eén merkpagina per merk, ook als de schrijfwijze verschilt (MINI/Mini, GARDENA/Gardena): de meest gebruikte schrijfwijze wint
 const BRAND_CANON = (() => { const n = {}; for (const m of MODELS) for (const b of m.brand.split("/").map(x => x.trim())) { const k = b.toLowerCase(); (n[k] = n[k] || {})[b] = (n[k][b] || 0) + 1; } const c = {}; for (const [k, v] of Object.entries(n)) c[k] = Object.entries(v).sort((x, y) => y[1] - x[1])[0][0]; return c; })();
+const TYPEPLAAT = { wasmachines: "wasmachine: meestal aan de binnenkant van de deuropening of achter het klepje van het pompfilter", drogers: "droger: meestal aan de binnenkant van de deur of de deuropening, en ook achterop", vaatwassers: "vaatwasser: meestal op de zijkant van de deur", koelkasten: "koelkast: meestal binnenin op een zijwand, vaak bij de groentelade", ovens: "oven: meestal op de rand van de ovendeur of de ovenrand", kookplaten: "kookplaat: meestal op de onderkant, en vaak ook op een sticker in de handleiding of garantiekaart", "cv-ketels": "cv-ketel: meestal op een sticker onder of achter het voorpaneel", airco: "airco: meestal op een sticker aan de zijkant van de binnen- en buitenunit", warmtepompen: "warmtepomp: meestal op een sticker aan de zijkant of achterkant van de buitenunit" };
+function brandSummary(b, ms) {
+  const all = ms.flatMap(m => m.faults.map(f => ({ m, f }))), by = d => all.filter(x => x.f.d === d);
+  const link = ({ m, f }) => `<a href="${f.code ? codeUrl(m, f) : textUrl(m, f)}"><span>${f.code ? `<b class="code">${esc(f.code.split(" / ")[0])}</b> ` : ""}${esc(f.t)}</span><span>${esc(catOf(m.cat).one)}</span></a>`;
+  const pick = arr => { const seen = new Set(), out = []; for (const x of arr) { const k = x.m.cat; if (out.length >= 6) break; if (seen.has(k) && arr.length > 6) continue; seen.add(k); out.push(x); } for (const x of arr) { if (out.length >= 6) break; if (!out.includes(x)) out.push(x); } return out; };
+  const d1 = by(1), d3 = by(3);
+  const tp = [...new Set(ms.map(m => m.cat))].filter(c => TYPEPLAAT[c]).map(c => `<li>${esc(TYPEPLAAT[c])}</li>`);
+  return `<section class="stack"><h2>${esc(b)}-storingen in het kort</h2><p>Op Foutcodezoeker staan ${pl(all.length, "storing", "storingen")} van ${esc(b)}. Daarvan kun je er ${d1.length} meestal zelf oplossen, ${by(2).length} kun je voorzichtig zelf proberen en voor ${d3.length} heb je een monteur nodig.</p>
+${d1.length ? `<h3>Zelf op te lossen, bijvoorbeeld</h3><div class="results">${pick(d1).map(link).join("")}</div>` : ""}
+${d3.length ? `<h3>Hier bel je een monteur, bijvoorbeeld</h3><div class="results">${pick(d3).map(link).join("")}</div>` : ""}
+<p class="small">Dezelfde code kan per model, serie of bouwjaar iets anders betekenen. Kies daarom je eigen apparaat hierboven.</p>
+${tp.length ? `<h3>Waar vind je het typenummer?</h3><p>Het typenummer staat op het typeplaatje. Bij een ${esc(b)}:</p><ul>${tp.join("")}</ul><p class="small">Twijfel je, kijk dan in de handleiding van je apparaat.</p>` : ""}</section>`;
+}
 const brandsOf = m => [...new Set(m.brand.split("/").map(b => b.trim()).filter(b => !SKIP.has(b)).map(b => BRAND_CANON[b.toLowerCase()] || b))];
 const BRANDS = {};
 for (const m of MODELS) for (const b of brandsOf(m)) (BRANDS[b] = BRANDS[b] || []).push(m);
@@ -558,6 +572,7 @@ for (const b of brandNames) {
     body: `
 <section class="stack"><span class="eyebrow">Merk</span><h1>${esc(b)} storingen en foutcodes</h1><p class="lead">Alle apparaten van ${esc(b)} op Foutcodezoeker: ${cats.join(", ")}. Kies je apparaat of zoek direct je foutcode.</p></section>
 <section class="stack"><h2>Apparaten</h2><div class="models">${ms.map(modelCard).join("")}</div></section>
+${brandSummary(b, ms)}
 ${codes.length ? fold(`Alle ${esc(b)}-foutcodes`, `<div class="tbl"><table><thead><tr><th>Code</th><th>Betekenis</th><th>Apparaat</th></tr></thead><tbody>${codes.map(({ m, f }) => `<tr><td><a class="code" href="${codeUrl(m, f)}">${esc(f.code)}</a></td><td>${esc(f.t)}</td><td>${esc(catOf(m.cat).one)}</td></tr>`).join("")}</tbody></table></div>`, false, codes.length) : ""}
 ${(() => { const tx = ms.flatMap(m => m.faults.filter(f => !f.code).map(f => ({ m, f }))); return tx.length ? fold(`${esc(b)}-storingen zonder foutcode`, `<div class="results">${tx.map(({ m, f }) => `<a href="${textUrl(m, f)}"><span>${esc(f.t)}</span><span>${esc(catOf(m.cat).one)} · ${D[f.d][0]}</span></a>`).join("")}</div>`, false, tx.length) : ""; })()}`
   });
