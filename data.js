@@ -13683,4 +13683,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Bluetooth-lampje uit of geen verbinding", 1, "Buiten bereik, al gekoppeld aan een ander apparaat, of de aardlekbeveiliging is aangesproken (lampje uit).", ["Zet Bluetooth aan en blijf dicht bij de barbecue.", "Knippert het lampje, dan kun je koppelen; brandt het continu, zet dan Bluetooth uit op andere telefoons.", "Is het lampje uit: rode knop op OFF, 30 seconden wachten, weer op ON."])
   ]});
 })();
+(() => {
+  SRC.delonghiPinguino = ["De'Longhi – Gebruiksaanwijzing Pinguino mobiele airco, Problemen oplossen (PDF, dls.delonghigroup.com)", "https://dls.delonghigroup.com/files/docs/5/NL-5715117756.pdf"];
+  SRC.delonghiPinguinoE1faq = ["De'Longhi – FAQ: What does the error E1 mean on my Pinguino Wifi? (Engels)", "https://delonghi.com/en-us/faqs/What-does-the-error-\"E1\"-mean-on-my-Pinguino-Wifi/a/82338"];
+  MODELS.push({ id: "delonghi-pinguino", brand: "De'Longhi", name: "Pinguino mobiele airco: Lt, Lh, PF, HL, E1", dev: "Pinguino mobiele airco", cat: "airco", years: "De'Longhi Pinguino mobiele airco's met display (o.a. Real Feel- en wifi-modellen)", unit: null, also: "DeLonghi Pinguino HL, Pinguino E1, Pinguino PF, Pinguino Lt, Pinguino Lh, Pinguino tank vol, mobiele airco DeLonghi foutcode", intro: "Een De'Longhi Pinguino toont een korte code op het display. HL betekent dat de interne veiligheidstank vol is, Lt dat hij even ontdooit; PF en E1 zijn voor de service.", weak: ["Volle veiligheidstank (HL).", "IJsvorming bij koelen in een koude ruimte."], parts: [], tasks: [], src: ["delonghiPinguino", "delonghiPinguinoE1faq"], faults: [
+    F("HL", "Veiligheidstank vol", 1, "De interne veiligheidstank voor condenswater is vol.", ["Leeg de tank zoals beschreven onder 'Handelingen aan het einde van het seizoen' in de handleiding."]),
+    F("Lt", "Vorstbeveiliging (ontdooien)", 1, "De vorstbeveiliging grijpt in om te veel ijsvorming te voorkomen.", ["Je hoeft niets te doen: na het ontdooien start de airco vanzelf weer."]),
+    F("Lh", "Luchtvochtigheid laag (Real Feel)", 1, "De luchtvochtigheid in de ruimte is erg laag; verschijnt alleen in de stand Real Feel.", ["Kies een andere stand dan Real Feel."]),
+    F("PF", "Sensor defect", 3, "Een sensor (sonde) is defect of beschadigd.", ["Neem contact op met een erkend De'Longhi-servicecentrum."]),
+    F("E1", "Interne communicatie / wifi-module", 3, "Interne communicatiefout (bij wifi-modellen: in de draadloze module).", ["Neem contact op met een erkend De'Longhi-servicecentrum of de klantenservice."]),
+    N("Compressor start pas na een paar minuten", 1, "Geen storing: na aan- of uitzetten wacht de compressor een paar minuten ter beveiliging.", ["Wacht even."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
