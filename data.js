@@ -13596,4 +13596,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Display toont U, H of L", 1, "Geen storing: U = geen of ongeschikte pan, H = zone nog heet, L = kinderslot aan.", ["Zet een geschikte pan op de zone of zet het kinderslot uit."])
   ]});
 })();
+(() => {
+  SRC.nespressoVertuoLatt = ["Nespresso – Machine assistance Vertuo Lattissima (nespresso.com, Engels)", "https://www.nespresso.com/za/en/machine-assistance/vertuo-lattissima-machine-assistance"];
+  MODELS.push({ id: "nespresso-vertuo-lattissima", brand: "Nespresso", name: "Vertuo Lattissima: knipperende lampjes en meldingen", dev: "Vertuo Lattissima", cat: "koffiemachines", years: "Nespresso Vertuo Lattissima (De'Longhi)", unit: null, also: "Vertuo Lattissima knippert, Vertuo Lattissima oranje lampje, Vertuo Lattissima knoppen knipperen om en om, Vertuo Lattissima rinse, Vertuo Lattissima ontkalken, Vertuo Lattissima start niet", intro: "De Nespresso Vertuo Lattissima laat met lampjes zien wat er is. Knipperen de melkknoppen om en om, dan is hij te warm of is het water op. Een oranje lampje betekent ontkalken of de melkkan spoelen.", weak: ["Leeg waterreservoir.", "Hendel niet vergrendeld.", "Melkkan niet gespoeld."], parts: [], tasks: [], src: ["nespressoVertuoLatt"], faults: [
+    N("Melkknoppen (Hot foam, Latte Macchiato, Cappuccino) knipperen om en om", 1, "De machine is oververhit, of het waterreservoir is leeg.", ["Laat de machine afkoelen.", "Vul het waterreservoir."]),
+    N("Ontkalkingslampje knippert of brandt oranje", 1, "Het is tijd om te ontkalken.", ["Ontkalk de machine volgens de handleiding."]),
+    N("Spoellampje (rinse) knippert oranje", 1, "De melkkan moet gespoeld worden.", ["Voer de spoelcyclus voor de melkkan uit."]),
+    N("Lampje knippert onregelmatig en de machine doet niets", 1, "De capsule zit niet goed of is beschadigd, de hendel is niet vergrendeld of het reservoir is leeg.", ["Controleer de capsule, vergrendel de hendel en vul het reservoir.", "Helpt dat niet: open de kop, vervang zo nodig de capsule, haal de stekker 10 seconden eruit en zet de machine weer aan.", "Na veel gebruik: laat hem ongeveer 20 minuten afkoelen.", "Blijft het, neem contact op met Nespresso."]),
+    N("Lampje brandt continu maar machine start niet", 1, "De hendel is niet vergrendeld.", ["Zet een capsule goed in, vergrendel de hendel en druk op de knop."]),
+    N("Geen lampje op de knop", 1, "De machine is automatisch uitgeschakeld of heeft geen stroom.", ["Druk op de knop of ontgrendel de hendel.", "Gaat hij niet aan, controleer stekker, stopcontact en zekering."]),
+    N("Lampje knippert tijdens het zetten", 1, "Normaal: de machine leest de capsule en bevochtigt de koffie voor; loopt alleen water, dan draait hij een reinigings-, ontkalkings- of leegmaakprogramma.", ["Wacht even."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
