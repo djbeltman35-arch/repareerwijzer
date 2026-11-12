@@ -15016,4 +15016,20 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("19","Netsnoer niet goed aangesloten",1,"De kleine stekker van het netsnoer zit niet goed in de aansluiting achter op de machine.",["Duw de kleine stekker van het netsnoer volledig in de aansluiting achter op de machine."]),
   ]});
 })();
+(() => {
+  SRC.saecoFaqErr=["Saeco – FAQ: My Saeco espresso machine is showing an error code (Engels)","https://saeco.com/care/faq/My-Saeco-Espresso-Machine-is-showing-an-error-code/"];
+  MODELS.push({ id:"saeco-volautomaat-foutcodes", brand:"Saeco", name:"Volautomaat: foutcode E01, E03, E04, E05, E11, E14, E19", dev:"volautomaat", cat:"koffiemachines", years:"Saeco volautomaten met foutcode op het display", unit:null,
+  also:"Saeco Xelsis, PicoBaristo, GranAroma, Incanto, Lirika",
+  intro:"Saeco legt deze foutcodes uit voor zijn volautomaten. Staat er een andere code op het display, of helpen de stappen niet, neem dan contact op met Saeco; de machine heeft dan mogelijk service nodig.",
+  weak:[], parts:[], tasks:[], src:["saecoFaqErr"],
+  faults:[
+    F("E01","Molen kan niet goed werken",1,"Gemalen koffie heeft de koffietrechter verstopt.",["Schakel de machine uit en wacht 15 à 20 seconden tot hij helemaal stilstaat.","Verwijder de zetgroep en maak de trechter los met de steel van een lepel.","Zuig de losgemaakte koffie en de trechter schoon.","Plaats de zetgroep terug, zet de machine aan en zet een espresso. Herhaal als er nog koffie achterblijft.","Voorkom het: mors geen water in het bonenreservoir en maak de trechter wekelijks schoon."]),
+    F("E03","Zetgroep vuil",1,"Er zit te veel aanslag op de zetgroep.",["Schakel de machine uit en wacht tot hij stilstaat.","Open het servicedeurtje, druk op de PUSH-knop en trek de zetgroep eruit.","Spoel hem met lauw water, smeer hem in, laat hem aan de lucht drogen en plaats hem terug."]),
+    F("E04","Zetgroep niet goed geplaatst",1,"De zetgroep zit niet goed op zijn plek.",["Open het servicedeurtje en duw de zetgroep helemaal op zijn plaats tot hij klikt."]),
+    F("E05","Lucht in het watercircuit",1,"Er zit lucht in het watercircuit.",["Schakel de machine uit, leeg het waterreservoir en verwijder een eventueel (AquaClean-)filter.","Vul het reservoir, plaats het terug, zet de machine aan en laat 2 à 3 kopjes heet water uitlopen.","Met AquaClean-filter: schud het filter, houd het ondersteboven onder water tot er geen belletjes meer opstijgen, plaats het terug en laat opnieuw 2 à 3 kopjes heet water uitlopen."]),
+    F("E11","Machine moet op kamertemperatuur komen",1,"De machine heeft in de kou gestaan, bijvoorbeeld tijdens transport.",["Schakel de machine 30 minuten uit en start hem opnieuw.","Blijft de fout: controleer of het netsnoer goed in de achterkant van de machine en in het stopcontact zit."]),
+    F("E14","Machine oververhit",1,"De machine is te warm geworden.",["Schakel de machine uit en laat hem 30 minuten afkoelen."]),
+    F("E19","Machine moet op kamertemperatuur komen",1,"De machine heeft in de kou gestaan, bijvoorbeeld tijdens transport.",["Schakel de machine 30 minuten uit en start hem opnieuw.","Blijft de fout: controleer of het netsnoer goed in de achterkant van de machine en in het stopcontact zit."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
