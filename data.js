@@ -15992,4 +15992,13 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Trolley terugzetten naar fabrieksinstellingen",1,"Bij een probleem kun je de trolley resetten.",["Kies op het startscherm Settings en dan Reset all Settings, bevestig met Yes en kies Close."]),
   ]});
 })();
+(() => {
+  SRC.dlOntvNl=["De'Longhi – gebruiksaanwijzing luchtontvochtiger met display en pomp (NL-5714810371)","https://dls.delonghigroup.com/files/docs/5/NL-5714810371.pdf"];
+  const m=MODELS.find(x=>x.id==="delonghi-luchtontvochtiger"); m.src.push("dlOntvNl");
+  m.faults.push(F("E2 / E3","Sensorfout of vochtigheid buiten meetbereik",2,"Een sensor is defect, of de vochtigheid in de ruimte is te hoog of te laag om goed te meten.",["Zet het apparaat in een ruimte met een vochtigheid binnen de werkingsgrenzen en kijk of het dan werkt.","Blijft het probleem: neem contact op met het servicecentrum."]));
+  m.faults.push(N("PUMP knippert",1,"De pomp is ingeschakeld maar de afvoerslang ontbreekt of zit niet goed.",["Plaats de slang op de juiste manier.","Haal de stekker uit het stopcontact en steek hem er weer in."]));
+  m.faults.push(N("Reservoirsymbool knippert",1,"Het reservoir is vol, ontbreekt of zit verkeerd.",["Leeg het reservoir of plaats het correct."]));
+  m.faults.push(N("Ontdooisymbool brandt",1,"Bij een omgevingstemperatuur onder 15 °C ontdooit het apparaat vaak; het symbool brandt ook tijdens de pauze van circa 3 minuten na een herstart.",["Geen actie nodig; het symbool gaat uit als het ontdooien klaar is."]));
+  m.faults.push(N("Ontvochtigt wel, maar vochtigheid daalt niet",1,"Filter verstopt, temperatuur of vochtigheid te laag, ruimte te groot, te veel vochtbronnen of vochtigheid te hoog ingesteld.",["Reinig het filter.","Verlaag de ingestelde vochtigheid.","In een koude ruimte kan het helpen de ruimte te verwarmen."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
