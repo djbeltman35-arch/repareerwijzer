@@ -13831,4 +13831,31 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Lampje knippert rood (ongeveer 90 seconden)", 3, "Storing aan de auto: laden is niet mogelijk.", ["Neem contact op met een Mercedes-Benz-servicepunt."])
   ]});
 })();
+(() => {
+  SRC.vascoD350 = ["Vasco – Gebruikershandleiding ventilatie-unit D350/D425, hoofdstuk Storing (PDF)", "https://vasco.eu/files/downloads/d350-d425-manuel-dinstallation/Instal-en-gebr-handleiding-DIII-Boost.pdf"];
+  MODELS.push({ id: "vasco-d350-d425", brand: "Vasco", name: "D350/D425 WTW-unit: ledjes schakelaar en storingen", dev: "D350/D425 WTW-ventilatie-unit", cat: "ventilatie", years: "Vasco ventilatie-unit D350 en D425 (systeem D met warmteterugwinning)", unit: null, also: "Vasco WTW 2x oranje, Vasco D350 rood rood oranje, Vasco RF schakelaar rood, Vasco filtermelding resetten, Vasco WTW storing, Vasco D425 led oranje", intro: "De Vasco D350 en D425 melden storingen met het ledje op de RF-schakelaar. 2 keer oranje na bedienen betekent: filters vervangen. Rood-rood is een probleem met de unit zelf.", weak: ["Filters na 6 maanden aan vervanging toe.", "Droge sifon (geur of borrelen).", "Unit valt uit bij te koude toevoerlucht."], parts: [], tasks: [{ m: 3, t: "Filters reinigen (stofzuigen)", v: 1 }, { m: 6, t: "Filters vervangen (F7 aan IN, G4 aan OUT) en filtermelding resetten", v: 1 }], src: ["vascoD350"], faults: [
+    N("Ledje knippert 2x oranje na bedienen", 1, "De filters zijn aan vervanging toe (levensduur 6 maanden).", ["Haal het deurpaneel eraf en trek beide filterlades uit de unit.", "Plaats nieuwe filters: F7 aan IN en G4 aan OUT.", "Schuif de lades terug en monteer het paneel.", "Reset de melding: druk minstens 4 seconden tegelijk op 'stand 1' en 'timer' tot het ledje groen wordt."]),
+    N("Ledje rood-rood", 2, "Er is een probleem met de ventilatie-unit.", ["Controleer de unit en neem bij twijfel contact op met je installateur."]),
+    N("Unit uit, ledje printplaat rood-rood-oranje", 2, "De unit is uitgeschakeld omdat de lucht naar de woning kouder is dan 5 °C.", ["Haal de stekker uit het stopcontact en steek hem terug.", "Zorg dat de woning minstens 16 °C verwarmd wordt en dat de kanalen goed zijn aangesloten.", "Schakelt de unit weer uit, neem dan contact op met je installateur."]),
+    N("Ledje 1x rood bij bedienen, unit reageert niet", 1, "De RF-schakelaar is niet (meer) gekoppeld aan de unit, of er is een communicatieprobleem.", ["Koppel de schakelaar opnieuw aan de unit (zie handleiding)."]),
+    N("Ledje 1x oranje bij bedienen", 1, "De batterij van de RF-schakelaar is leeg.", ["Vervang de batterij (CR2450)."]),
+    N("Ledje 3x oranje", 1, "Toegang tot de instellingen is geweigerd.", ["Dit is geen storing; instellingen zijn voor de installateur."]),
+    N("Draait harder dan vroeger", 1, "De filters zijn vuil.", ["Reinig de filters met de stofzuiger (alleen de bovenzijde van de filterlades)."]),
+    N("Haalt het debiet niet, draait op hoog toerental", 2, "De luchtstroom wordt ergens gehinderd.", ["Controleer of alle kanalen goed aangesloten zijn.", "Kijk of er geen bouwresten in de unit zitten.", "Laat scherpe bochten of geplette kanalen verhelpen."]),
+    N("Periodiek alleen afvoer, geen toevoer", 1, "De vorstbeveiliging ontdooit de unit; dat is normaal.", ["Niets doen."]),
+    N("Geur of borrelgeluid bij de unit", 1, "De sifon staat droog.", ["Vul de sifon met water."]),
+    N("Water uit de unit", 2, "Kanalen verwisseld, condensafvoer niet goed aangesloten of unit niet waterpas.", ["Controleer of toe- en afvoer niet verwisseld zijn.", "Sluit de condensafvoer goed aan.", "Hang de unit waterpas."])
+  ]});
+})();
+(() => {
+  SRC.rensonHB3 = ["Renson – Handleiding Healthbox 3.0, Storingen en LED feedback (PDF, NL/FR)", "https://dam.renson.net/m/61a2a27ad4dcc63f/original/Manual-Healthbox-3-0-NL-FR.pdf"];
+  MODELS.push({ id: "renson-healthbox-3", brand: "Renson", name: "Healthbox 3.0: kleur van de Main LED", dev: "Healthbox 3.0 vraaggestuurde ventilatie", cat: "ventilatie", years: "Renson Healthbox 3.0", unit: null, also: "Renson Healthbox led rood knippert, Healthbox 3.0 led geel, Healthbox wit lampje, Healthbox storing, Renson ventilatie storing, Healthbox error warning", intro: "De Renson Healthbox 3.0 laat met de Main LED op de hoofdprint zien hoe hij werkt: groen is normaal, rood knipperen is een zware storing (error) en geel een lichte storing (warning). De precieze melding en oplossing staan in de app onder Support > Device failure.", weak: ["Geen wifiverbinding (witte LED).", "Kleppen of regelmodules die niet gedetecteerd worden."], parts: [], tasks: [], src: ["rensonHB3"], faults: [
+    N("Main LED knippert rood (error)", 3, "Zware storing: de Healthbox zet zichzelf buiten werking.", ["Open de Healthbox 3.0-app en kijk onder Support > 'Device failure' welke storing het is en wat je moet doen.", "Let op: stroomloos maken wist alle storingsmeldingen; kijk dus eerst in de app.", "Neem contact op met je installateur als je het niet zelf kunt oplossen."]),
+    N("Main LED brandt geel (warning)", 2, "Lichte storing: de Healthbox werkt wel door.", ["Kijk in de app onder Support > 'Device failure' wat er aan de hand is en volg de instructie."]),
+    N("Main LED brandt wit", 1, "De Healthbox kan geen verbinding maken met het netwerk (of is net opgestart).", ["Controleer je wifi en verbind de Healthbox opnieuw via de app."]),
+    N("Main LED knippert groen", 1, "De Healthbox vraagt om kalibratie of is aan het kalibreren.", ["Laat de installateur de kalibratie afronden."]),
+    N("Main LED brandt groen", 1, "Normale werking.", ["Niets doen."]),
+    N("LED van een regelmodule knippert oranje", 2, "Er is een storing bij deze regelmodule.", ["Kijk in de app welke storing het is.", "Controleer jaarlijks of het klepblad van de regelmodule beweegt."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
