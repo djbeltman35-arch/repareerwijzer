@@ -405,3 +405,5 @@ footer .wrap{padding-bottom:88px}
 .hero2 h1 .h1-sub{font-size:.42em;font-weight:600;color:var(--ink);opacity:.82;max-width:22ch;margin-top:.55em;line-height:1.25}
 .eyebrow{background:transparent;color:var(--muted);font-weight:700;font-size:12px;letter-spacing:.08em;padding:2px 0 2px 9px;border-left:3px solid var(--accent,#f2b705)}.eyebrow::after{display:none}
 .picker .eyebrow{border-left:0;padding-left:0}
+.hero2 h1{text-shadow:0 2px 0 rgba(0,0,0,.10),0 6px 18px rgba(0,0,0,.22)}
+.hero2 h1 .h1-sub{text-shadow:none}
