@@ -13877,4 +13877,17 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Bedrade standenschakelaar staat op andere stand dan de unit", 1, "De schakelaar reageert alleen op een verandering van positie.", ["Zet de schakelaar op een andere stand en daarna terug op de gewenste stand."])
   ]});
 })();
+(() => {
+  SRC.ise4n1 = ["InSinkErator – Installation, care & use guide 4N1 Touch (F-4N1U/J/L), probleemoplossing (PDF, Engels)", "https://d1-auth.insinkerator.emerson.com/documents/4n1-installation-guide-en-gb-5220328.pdf"];
+  MODELS.push({ id: "insinkerator-4n1-touch", brand: "InSinkErator", name: "4N1 Touch kokendwaterkraan: display knippert 2 of 3 keer", dev: "4N1 Touch kokendwaterkraan", cat: "kleine-apparaten", years: "InSinkErator 4N1 Touch (F-4N1U, F-4N1J, F-4N1L)", unit: null, also: "InSinkErator kraan knippert, 4N1 lampje knippert 3 keer, 4N1 Touch geen heet water, InSinkErator kokendwaterkraan storing, 4N1 sputtert", intro: "Knippert het display van de InSinkErator 4N1 Touch twee keer, dan staat het reservoir zonder water aan. Drie keer knipperen betekent dat er service nodig is.", weak: ["Opgestart zonder water in het reservoir (2x knipperen).", "Vuil in het uitloopstuk (sproeit, druppelt of gedeelde straal)."], parts: [], tasks: [], src: ["ise4n1"], faults: [
+    N("Display knippert 2 keer", 2, "Het apparaat is aangezet zonder water in het reservoir.", ["Haal de stekker van het reservoir uit het stopcontact.", "Herhaal de vulstappen uit de handleiding en zet het daarna weer aan."]),
+    N("Display knippert 3 keer", 3, "Het apparaat heeft service nodig.", ["Neem contact op met een erkende InSinkErator-servicemonteur."]),
+    N("Display licht niet op / water wordt niet heet", 1, "Stekker niet aangesloten, geen stroom op het stopcontact of aan-knop uit.", ["Controleer of de stekker in een geaard stopcontact zit en of dat stopcontact aan staat.", "Controleer de zekering of aardlekschakelaar.", "Controleer of de aan-knop aan staat."]),
+    N("Water te heet of niet heet genoeg", 1, "De thermostaat staat niet goed ingesteld.", ["Stel de temperatuur in met de pijltjes op het display.", "Laat de heetwaterkraan ongeveer 20 seconden lopen en wacht 5 tot 7 minuten tot de temperatuur stabiel is."]),
+    N("Kraan sputtert water of stoom zonder dat hij open is", 1, "Het water kookt; bij de eerste ingebruikname kan dat normaal zijn.", ["Tap wat heet water af om water uit het reservoir te laten."]),
+    N("Water komt uit de ontluchting in plaats van de uitloop", 2, "De uitlaatslang is geblokkeerd.", ["Controleer of de uitlaatslang niet geknikt, gedraaid of afgekneld is."]),
+    N("Druppelt af en toe of gedeelde straal", 1, "Vuil in het uitloopstuk of de klepzitting.", ["Schroef het uitloopstuk los en verwijder het vuil."]),
+    N("Bruin of roestig water", 3, "Vuil in het uitloopstuk of corrosie in het apparaat.", ["Spoel de kraan door hem 7 tot 10 keer te bedienen en maak het uitloopstuk schoon.", "Blijft het water verkleurd na aftappen en opnieuw vullen, stop dan met gebruik en neem contact op met een erkende servicemonteur."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
