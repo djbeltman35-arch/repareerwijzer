@@ -16491,4 +16491,34 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   SRC.askollEspro=["Askoll – Libretto uso e manutenzione eSPRO 45/70/45K/70K/K1 (Italiaans, PDF): Codici di errore","https://www.askollelectric.com/app/uploads/2026/04/askoll_libretto_uso_manutenzione_scooter_espro.pdf"];
   const m=MODELS.find(x=>x.id==="askoll-es"); m.src.push("askollEspro"); m.years+=", eSPRO 45, eSPRO 70, eSPRO 45K, eSPRO 70K";
 })();
+(() => {
+  SRC.brokkCodes=["Brokk – Display codes and indications / Trouble codes control unit (PDF, 7-TS-004714-A)","https://www.brokk.com/uploads/2018/05/error-codes.pdf"];
+  MODELS.push({ id:"brokk-sloopRobot", brand:"Brokk", name:"Brokk slooprobot: foutcodes E01 t/m E58 op de bedieningskast", dev:"sloop-robot", cat:"gereedschap", years:"Brokk sloop-robots met display in de bedieningskast", unit:null,
+  intro:"Brokk sloop-robots tonen bij een storing een code als E01 of E02 met een korte tekst op het display van de bedieningskast. Hieronder staan betekenis en oplossing per code uit de Brokk-documentatie.",
+  weak:[], parts:[], tasks:[], src:["brokkCodes"],
+  faults:[
+    F("E01","PHASE ERROR: verkeerde fasevolgorde of ontbrekende fase",2,"De fasevolgorde klopt niet of er ontbreekt een fase; er kan ook een fout op de softstarter zijn.",["Draai fasekeuzeschakelaar Q1 3 seconden naar 0 en daarna naar 1 of 2.", "Komt de code terug, controleer of alle fasen aanwezig zijn, vóór en na de faseschakelaar.", "Blijft de code en heeft de machine een softstarter, kijk in de elektrische kast welke code de softstarter toont (RUN/FAULT) en volg de instructies voor de softstarter."]),
+    F("E02","OVERLOAD RELAY: motor overbelast",1,"De motor is overbelast en moet afkoelen.",["De motor kan opnieuw starten en 30 seconden draaien voordat hij weer stopt.", "Controleer of de luchtkoeling niet geblokkeerd is."]),
+    F("E03","HYDR. TEMP HIGH: hydrauliekolie te warm",1,"De hydraulische temperatuur is te hoog, boven 90 °C.",["Controleer of de radiateur niet geblokkeerd of vervuild is.", "Bij hoge omgevingstemperatuur is extra koeling nodig."]),
+    F("E04","PLC ALARM: interne fout",2,"Intern alarm: storing in de elektronische unit of oververhitte elektronica. De machine stopt.",["Herstart de machine.", "Bij oververhitte elektronica: wacht 30 minuten.", "Blijft de fout, neem contact op met Brokk AB."]),
+    F("E05","WATER TEMP HIGH: koelvloeistof te warm (diesel)",1,"Dieselmotor: de koelvloeistoftemperatuur is te hoog. De machine stopt.",["Controleer het koelvloeistofniveau volgens de instructies.", "Controleer of de radiateur niet geblokkeerd of vervuild is.", "Bij hoge omgevingstemperatuur is extra koeling nodig."]),
+    F("E06","OIL PRESSURE LOW: oliedruk te laag (diesel)",2,"Dieselmotor: de oliedruk van de motor is te laag. De machine stopt.",["Controleer en herstel een laag oliepeil en eventuele lekkage."]),
+    F("E07","CHARGING LOW: dynamo laadt niet (diesel)",2,"Dieselmotor: de accuspanning is te laag; de dynamo laadt niet.",["Controleer de V-snaar.", "Zie de handleiding van de motorleverancier."]),
+    F("E08","FUEL LEVEL LOW: brandstof bijna op (diesel)",1,"Dieselmotor: het brandstofniveau is laag.",["Stop en vul brandstof bij."]),
+    F("E37","CAN TOOL: CAN-fout gereedschap",2,"CAN-fout bij het gereedschap.",["Zoek de fout en herstel die."]),
+    F("E42","HYD. TEMP SENSOR: storing temperatuursensor",2,"Fout in de temperatuursensor.",["Controleer de stekker.", "Vervang zo nodig."]),
+    F("E43","DV1: fout in DV1",2,"Fout in DV1.",["Zoek de fout en herstel die."]),
+    F("E44","TRIPPED FUSE D1: zekering besturingsunit",2,"Alarm voor doorgeslagen zekeringen van besturingsunit D1.",["Zoek de fout en herstel die.", "Vervang de zekering."]),
+    F("E45","EM. STOP TOOL: veiligheidsstop gereedschap",2,"De veiligheidsstop van het gereedschap is geactiveerd.",["Zoek de fout en herstel die."]),
+    F("E51","RADIO MEMORY: geheugenfout radio",2,"Geheugenfout in de radiobesturing.",["Herstart het systeem.", "Blijft de fout, neem contact op met Brokk AB."]),
+    F("E52","RADIO DV: veiligheidscircuit radio",2,"Fout in het veiligheidscircuit van de radio.",["Herstart het systeem.", "Blijft de fout, controleer de kabels op kortsluiting.", "Vind je geen kabelfout, neem contact op met Brokk AB."]),
+    F("E53","RADIO CAN: CAN-busfout radio",2,"CAN-busfout in de radiobesturing.",["Herstart het systeem.", "Blijft de fout, controleer de kabels op kortsluiting.", "Vind je geen kabelfout, neem contact op met Brokk AB."]),
+    F("E54","RADIO STOP: fout stopknop",2,"Fout op de stopknop van de radiobesturing.",["Herstart het systeem.", "Blijft de fout, stuur de bedieningskast in en laat de stopknop vervangen."]),
+    F("E55","RADIO JOY ACTIVE: joystick actief bij start",1,"Een joystick van de radiobesturing is actief bij het starten (de joystick die onjuiste signalen geeft wordt geblokkeerd). Geen storing.",["Zet de bedieningshendel in de neutrale stand en herstart de bedieningskast."]),
+    F("E56","RADIO JOY BROKEN: joystick defect",2,"Een joystick van de radiobesturing is defect.",["Vervang de joystick. De defecte hendel staat op het display van de radio-ontvanger als 13.nn."]),
+    F("E57","RADIO POWER: verkeerde voedingsspanning",1,"Verkeerde spanning bij de radiobesturing (onder 9 V of boven 36 V).",["Controleer of de voeding 12–36 V is.", "Herstart het systeem."]),
+    F("E58","RADIO UNDEFINED: systeemfout radio",2,"Systeemfout in de radiobesturing.",["Herstart het systeem.", "Blijft de fout, neem contact op met Brokk AB."]),
+    F("E09 t/m E34, E39 t/m E41","Onderbreking of kortsluiting op een ventielspoel",2,"De code geeft een onderbreking of kortsluiting aan op een ventiel (cilinders, gereedschap, zwenken, stempels, rupsen, dumpventiel, extra hydrauliek, drukregeling of waterventiel); de displaytekst noemt welk ventiel.",["Controleer stekker en kabel op onderbreking of kortsluiting.", "Vervang zo nodig."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
