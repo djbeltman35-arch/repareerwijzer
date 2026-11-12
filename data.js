@@ -15920,4 +15920,47 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   const m=MODELS.find(x=>x.id==="nefit-enviline"); m.src.push("nefitTb65");
   m.faults.push(F("A01 5284","Laatste thermische desinfectie kon niet worden uitgevoerd",1,"Het laatste thermische desinfectieprogramma is niet goed afgerond: het programma duurt te kort, er wordt tijdens het programma te veel warm water getapt, of de ingestelde temperatuur is te hoog. De melding kan ook met een oranje driehoekje op de Bosch EasyControl staan.",["Komt de melding eenmalig voor, dan hoeft u niets te doen; het programma herhaalt zich de volgende dag.","Voorkom bijvoorbeeld douchen terwijl het programma loopt.","Komt de melding steeds terug: laat de installateur de duur en temperatuur van het programma aanpassen."]));
 })();
+(() => {
+  MODELS.push({ id:"prusa-sl1", brand:"Prusa", name:"Original Prusa SL1 en SL1S (harsprinter): foutcodes 10xxx", dev:"SL1/SL1S harsprinter", cat:"3d-printers", years:"SL1, SL1S SPEED", unit:null,
+  intro:"De Prusa SL1 en SL1S (MSLA-harsprinters) tonen foutcodes van vijf cijfers die beginnen met 10. Het derde cijfer is de categorie: 1 mechanisch, 2 temperatuur, 3 elektronica, 5 systeem, 7 waarschuwing.",
+  weak:[], parts:[], tasks:[], src:["prusaErrGh"],
+  faults:[
+    F("10101","Tilt homing mislukt",1,"Het homen van de tilt is mislukt.",["Controleer de omgeving van de tilt en herhaal de handeling."]),
+    F("10102","Tower homing mislukt",1,"Het homen van de toren is mislukt.",["Zorg dat er niets in de weg zit en herhaal de handeling."]),
+    F("10103","Toren bewegen mislukt",1,"De toren kon niet bewegen.",["Zorg dat er niets in de weg zit en herhaal de handeling."]),
+    F("10104","Tilt bewegen mislukt",1,"De tilt kon niet bewegen.",["Zorg dat er niets in de weg zit en herhaal de handeling."]),
+    F("10106","Ventilatorfout",2,"Een ventilator geeft een onjuist toerental door.",["Neem contact op met Prusa support."]),
+    F("10108","Te weinig hars",1,"Het gemeten harsvolume is lager dan nodig voor deze print.",["Vul de tank bij en start de print opnieuw."]),
+    F("10109","Te veel hars",1,"Het gemeten harsvolume is hoger dan nodig.",["Zorg dat het harsniveau het maximum niet overschrijdt."]),
+    F("10113","Printer niet gekalibreerd",1,"De printer is niet gekalibreerd.",["Doorloop eerst de wizard."]),
+    F("10123","Torenpositie onjuist",1,"De toren staat niet op de verwachte positie.",["Controleer of platform en tank goed gemonteerd en vastgezet zijn."]),
+    F("10124","Hars meten mislukt",1,"Het meten van de hars is mislukt.",["Controleer of het platform aanwezig is en hoeveel hars er in de tank zit."]),
+    F("10125","Reinigingsadapter ontbreekt",1,"De reinigingsadapter is niet gedetecteerd op het printplatform.",["Bevestig de adapter goed en probeer het opnieuw."]),
+    F("10205","Temperatuursensor defect",2,"Een temperatuursensor is uitgevallen.",["Neem contact op met Prusa support."]),
+    F("10206","UV-led oververhit",2,"De UV-led raakt oververhit.",["Neem contact op met Prusa support."]),
+    F("10207","A64 oververhit",2,"De temperatuur van het A64-bord is te hoog; de printer schakelt binnen 10 seconden uit.",["Laat de printer afkoelen."]),
+    F("10208","Temperatuur buiten bereik",1,"Een gemeten temperatuur valt buiten het bereik.",["Zet de printer uit direct zonlicht, bij kamertemperatuur."]),
+    F("10209","Fout temperatuur UV-led",2,"De temperatuur van de UV-led kan niet worden gelezen; dit is belangrijk voor levensduur en veiligheid.",["Neem contact op met Prusa support."]),
+    F("10301","Verkeerde revisie Motion Controller",3,"De Motion Controller heeft een verkeerde revisie.",["Neem contact op met Prusa support."]),
+    F("10306","Onverwachte fout Motion Controller",2,"De Motion Controller heeft een onverwachte fout.",["Start de printer opnieuw."]),
+    F("10307","Harssensor niet geactiveerd",1,"De harssensor reageerde niet.",["Controleer of tank en platform goed vastzitten."]),
+    F("10308","Printer niet UV-gekalibreerd",1,"De UV-kalibratie ontbreekt.",["Sluit de UV-kalibrator aan en voer de kalibratie uit."]),
+    F("10309","Spanningsfout UV-led",3,"De spanningen van de UV-led verschillen te veel; de led-module is mogelijk defect.",["Neem contact op met Prusa support."]),
+    F("10321","UV-ledpaneel niet gedetecteerd",3,"Het UV-ledpaneel wordt niet gedetecteerd.",["Neem contact op met Prusa support."]),
+    F("10501","Onverwachte fout",2,"Er is een onverwachte fout opgetreden. Een lopende print wordt nog afgemaakt.",["Schakel de printer daarna uit en weer aan."]),
+    F("10504","Project openen mislukt",1,"Het projectbestand is mogelijk beschadigd.",["Slice of exporteer het project opnieuw en probeer het nog eens."]),
+    F("10505","Configuratiebestand niet leesbaar",2,"Het configuratiebestand kan niet worden gelezen.",["Reset de printer.", "Blijft het probleem: neem contact op met Prusa support."]),
+    F("10510","Kalibratie mislukt",1,"De kalibratie is niet goed afgerond.",["Voer de kalibratie opnieuw uit."]),
+    F("10512","UV-intensiteit niet ingesteld",1,"De UV-intensiteit is niet ingesteld.",["Voer de UV-kalibratie uit voordat je gaat printen."]),
+    F("10516","Intern geheugen vol",1,"Het interne geheugen is vol.",["Verwijder eerst enkele projecten."]),
+    F("10528","Geen USB-stick gedetecteerd",1,"Er is geen USB-opslag aanwezig.",["Steek een USB-stick in."]),
+    F("10534","Firmware-update mislukt",2,"De firmware-update is mislukt.",["Start de printer opnieuw en probeer het nog eens."]),
+    F("10544","Verkeerd printermodel",1,"Het project is voorbereid voor een andere printer.",["Slice het model opnieuw met de juiste instellingen."]),
+    F("10702","Omgevingstemperatuur te hoog",1,"De print kan doorgaan, maar kan mislukken.",["Zorg voor een lagere omgevingstemperatuur."]),
+    F("10703","Omgevingstemperatuur te laag",1,"De print kan doorgaan, maar kan mislukken.",["Zorg voor een hogere omgevingstemperatuur."]),
+    F("10706","Niet genoeg hars",1,"Er zit niet genoeg hars in de tank voor dit project; tijdens het printen moet worden bijgevuld.",["Vul tijdens het printen hars bij."]),
+    F("10712","Hars laag",1,"Het gemeten harsvolume is laag; de print kan doorgaan, maar bijvullen kan nodig zijn.",["Vul hars bij als dat nodig is."]),
+    F("10714","Risico op oververhitting",2,"Een ventilator geeft een onjuist toerental; de print kan doorgaan maar kan oververhit raken.",["Neem contact op met Prusa support."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
