@@ -13719,4 +13719,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("'Demo' op het scherm", 1, "De demostand staat aan.", ["Ga naar Instellingen > Mijn apparaat > Demo-modus, zet deze uit en voer code 5555 in. Het apparaat start opnieuw in de normale stand."])
   ]});
 })();
+(() => {
+  SRC.tefalXforceFlex = ["Tefal – Handleiding en veelgestelde vragen X-Force Flex 14.60 Aqua", "https://www.tefal.com/instructions-for-use/csp/2211400977"];
+  MODELS.push({ id: "tefal-x-force-flex", brand: "Tefal", name: "X-Force Flex steelstofzuiger: lampjes knipperen snel", dev: "X-Force Flex steelstofzuiger", cat: "stofzuigers", years: "Tefal X-Force Flex snoerloze steelstofzuigers (o.a. 14.60)", unit: null, also: "Tefal X-Force Flex knippert, X-Force Flex stopt, X-Force Flex laadt niet, X-Force Flex borstel stopt", intro: "Knipperen de lampjes van een Tefal X-Force Flex heel snel tijdens het zuigen, dan is hij waarschijnlijk oververhit. Knipperen ze snel tijdens het laden, dan klopt de lader niet.", weak: ["Oververhitting door verstopping of vuile filters.", "Borstel die vastloopt door haren of draden."], parts: [], tasks: [], src: ["tefalXforceFlex"], faults: [
+    N("Stopt en lampjes knipperen heel snel tijdens gebruik", 1, "Het apparaat is mogelijk oververhit.", ["Zet de stofzuiger uit en laat hem minstens 1 uur afkoelen.", "Blijft het probleem, neem contact op met de klantenservice."]),
+    N("Lampjes knipperen heel snel tijdens laden", 2, "De lader is niet de juiste of is defect.", ["Gebruik de originele lader.", "Laat een defecte lader vervangen via een erkend servicecentrum."]),
+    N("Laadlampje knipperde, daarna stopte hij", 1, "De accu is leeg.", ["Laad de accu op."]),
+    N("Laadt niet", 1, "Lader zit niet goed vast of is defect.", ["Controleer of de lader goed aangesloten is.", "Is de lader defect, laat hem dan vervangen via een erkend servicecentrum."]),
+    N("Elektroborstel stopt tijdens gebruik", 1, "De thermische beveiliging van de borstel is ingeschakeld.", ["Zet de stofzuiger uit.", "Verwijder wat het draaien van de borstel blokkeert en maak de borstel schoon.", "Zet hem weer aan."]),
+    N("Zuigt zwak of fluit", 1, "Verstopte buis, volle stofbak of vuil filter.", ["Maak een (deels) verstopte buis vrij.", "Leeg en reinig de stofbak en zet hem goed terug.", "Haal de elektroborstel eraf en maak de zuigmond schoon.", "Reinig het schuimfilter dat de motor beschermt."]),
+    N("Gaat steeds korter mee", 1, "Accu niet volledig geladen of versleten.", ["Laad de accu een keer helemaal vol.", "Is de accu defect, laat hem dan vervangen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
