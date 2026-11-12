@@ -20,6 +20,8 @@ const pages = [];
 const NOINDEX = new Set();
 const isThin = f => f.steps && f.steps[0] && f.steps[0].startsWith("Tik op de melding op het printerscherm of in Bambu Handy");
 // Versie van deze build: verandert zodra data, build of assets veranderen, zodat bezoekers altijd de nieuwste bestanden krijgen
+const INDEXNOW_KEY = "9465e16b8376c642c35b9ece91b545a9";
+const ASSETV = (() => { const h = require("crypto").createHash("sha1"); for (const f of ["assets/style.css", "assets/app.js"]) h.update(fs.readFileSync(path.join(__dirname, f))); return h.digest("hex").slice(0, 8); })();
 const VER = (() => { const h = require("crypto").createHash("sha1"); for (const f of ["data.js", "build.js", "assets/style.css", "assets/app.js", "static/sw.js"]) { try { h.update(fs.readFileSync(path.join(__dirname, f))); } catch (e) {} } return h.digest("hex").slice(0, 8); })();
 // Laatst gewijzigd per pagina: alleen een nieuwe datum als de inhoud echt verandert (betere lastmod voor Google)
 const LASTMOD_FILE = path.join(__dirname, "lastmod.json");
@@ -95,7 +97,7 @@ ${file === "index.html" ? '<meta name="e0d5a73bd035a1c" content="277030417ea9ada
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preload" href="/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/overpass-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=${ASSETV}">
 ${bc}${extraHead}
 <script data-goatcounter="https://foutcode.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
@@ -119,7 +121,7 @@ ${body}
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
   <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="over-foutcodezoeker.html">Over Foutcodezoeker</a> · <a href="onderhoud-herinnering.html">Onderhoudsherinnering</a> · <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
-<script src="app.js" defer></script>
+<script src="app.js?v=${ASSETV}" defer></script>
 ${scripts}
 </body>
 </html>`;
@@ -907,7 +909,25 @@ fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(in
 { const have = new Set(pages.map(p => p.replace(/\.html$/, ""))), bad = new Set();
   for (const p of pages) for (const [, h] of fs.readFileSync(path.join(OUT, p), "utf8").matchAll(/href="\/([a-z0-9-]*)(?:#[^"]*)?"/g)) if (h && !have.has(h) && !fs.existsSync(path.join(OUT, h))) bad.add(`${h} (op ${p})`);
   if (bad.size) { console.error("Build gestopt, kapotte interne links:\n- " + [...bad].slice(0, 30).join("\n- ")); process.exit(1); } }
-fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => p !== "404.html" && p !== "bedankt.html" && !NOINDEX.has(p)).map(p => `  <url><loc>${p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "")}</loc><lastmod>${(modOf[p] || [0, TODAY])[1]}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+{ const live = pages.filter(p => p !== "404.html" && p !== "bedankt.html" && !NOINDEX.has(p));
+  const urlOf = p => p === "index.html" ? SITE + "/" : SITE + "/" + p.replace(/\.html$/, "");
+  const lm = p => (modOf[p] || [0, TODAY])[1];
+  const groups = { foutcodes: p => p.startsWith("foutcode-"), storingen: p => p.startsWith("storing-"), kennisbank: p => p.startsWith("kennisbank"), merken: p => p.startsWith("merk"), overig: () => true };
+  const done = new Set(), files = [];
+  for (const [g, test] of Object.entries(groups)) {
+    const list = live.filter(p => !done.has(p) && test(p)); list.forEach(p => done.add(p));
+    if (!list.length) continue;
+    fs.writeFileSync(path.join(OUT, `sitemap-${g}.xml`), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${list.map(p => `  <url><loc>${urlOf(p)}</loc><lastmod>${lm(p)}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+    files.push([g, list.reduce((a, p) => lm(p) > a ? lm(p) : a, "2000-01-01")]);
+  }
+  fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${files.map(([g, d]) => `  <sitemap><loc>${SITE}/sitemap-${g}.xml</loc><lastmod>${d}</lastmod></sitemap>`).join("\n")}\n</sitemapindex>\n`);
+  // IndexNow (Bing, Yandex e.a.; Bing voedt ook ChatGPT-zoeken en Copilot): alleen op Netlify-productie, alleen vandaag gewijzigde pagina's
+  if (process.env.NETLIFY === "true" && process.env.CONTEXT === "production") {
+    const changed = live.filter(p => lm(p) === TODAY).map(urlOf).slice(0, 10000);
+    if (changed.length) fetch("https://api.indexnow.org/indexnow", { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify({ host: new URL(SITE).host, key: INDEXNOW_KEY, keyLocation: `${SITE}/${INDEXNOW_KEY}.txt`, urlList: changed }) })
+      .then(r => console.log(`IndexNow: ${changed.length} URL's gemeld (status ${r.status})`)).catch(e => console.log("IndexNow mislukt:", e.message));
+  }
+}
 try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, "llms.txt"), `# Foutcodezoeker
@@ -936,7 +956,7 @@ Elke foutcode heeft een eigen pagina (${SITE}/foutcode-<model>-<code>) met: een 
 `);
 fs.writeFileSync(path.join(OUT, "favicon.svg"), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="#f2b705"/><path d="M21.5 6.5a5 5 0 0 0-6.2 6.4L7 21.2 10.8 25l8.3-8.3a5 5 0 0 0 6.4-6.2l-3 3-3.2-.8-.8-3.2z" fill="#1c2328"/></svg>`);
 if (fs.existsSync(path.join(__dirname, "static"))) for (const f of fs.readdirSync(path.join(__dirname, "static"))) fs.copyFileSync(path.join(__dirname, "static", f), path.join(OUT, f));
-fs.writeFileSync(path.join(OUT, "sw.js"), fs.readFileSync(path.join(OUT, "sw.js"), "utf8").replace(/const V = "[^"]*";/, `const V = "fcz-${VER}";`));
+fs.writeFileSync(path.join(OUT, "sw.js"), fs.readFileSync(path.join(OUT, "sw.js"), "utf8").replace(/const V = "[^"]*";/, `const V = "fcz-${VER}";`).replace('"/style.css", "/app.js"', `"/style.css?v=${ASSETV}", "/app.js?v=${ASSETV}"`));
 for (const f of ["style.css", "app.js", "qrcode.js"]) fs.copyFileSync(path.join(__dirname, "assets", f), path.join(OUT, f));
 
 console.log(`${pages.length} pagina's gebouwd (${nl(allCodes.length)} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);
