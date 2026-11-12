@@ -15652,7 +15652,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.bulexGeniaAir=["Bulex – gebruiksaanwijzing Genia Air (0020218081_01), hoofdstuk 6 storingen","https://www.bulex.be/geniaair/0020218081-01-1745060.pdf"];
   MODELS.push({ id:"bulex-genia-air", brand:"Bulex", name:"Genia Air warmtepomp: storingen die je zelf kunt verhelpen", dev:"warmtepomp", cat:"warmtepompen", years:"Genia Air", unit:null,
-  intro:"Bulex noemt in de gebruiksaanwijzing van de Genia Air alleen de storingen die je zonder installateur kunt verhelpen. Alle andere foutmeldingen moeten door een erkend installateur worden gecontroleerd. Voor de foutcodes van de binnenunit: zie de Bulex GeniaSet.",
+  intro:"Bulex noemt in de gebruiksaanwijzing van de Genia Air alleen de storingen die je zonder installateur kunt verhelpen. Alle andere foutmeldingen moeten door een erkend installateur worden gecontroleerd.",
   weak:[], parts:[], tasks:[], src:["bulexGeniaAir"],
   faults:[
     N("Warmtepomp werkt niet meer",1,"De stroomvoorziening is onderbroken.",["Controleer of er geen stroomuitval is en of het product goed op de stroom is aangesloten; na herstel start het vanzelf.", "Blijft de fout: neem contact op met uw installateur."]),
