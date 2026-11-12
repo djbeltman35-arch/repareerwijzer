@@ -175,7 +175,7 @@ layout({
       <path d="M163 150l9 9 17-19" fill="none" stroke="#15191e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </div>
-  <p class="lead">Typ merk en code. Je ziet meteen wat er mis is en wat je zelf kunt doen.</p>
+  <p class="lead">Typ merk en code. Je ziet meteen wat er mis is en wat je zelf kunt doen. ${stats.codes} foutcodes van __NBRANDS__ merken, met bij elke code de bron.</p>
   <p class="hero-sub">Onafhankelijke, gratis kennisbank met foutcodes van Bosch, Siemens, Samsung, Miele, AEG, Intergas, Vaillant en honderden andere merken: wasmachines, cv-ketels, warmtepompen, auto's, e-bikes, laadpalen, zonnepanelen en meer. Met de oorzaak, wat je zelf kunt doen, wanneer je een monteur belt en de bron.</p>
   <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
@@ -598,6 +598,7 @@ const BRANDS = {};
 for (const m of MODELS) for (const b of brandsOf(m)) (BRANDS[b] = BRANDS[b] || []).push(m);
 const brandUrl = b => `merk-${slug(b)}.html`;
 const brandNames = Object.keys(BRANDS).sort((a, b) => a.localeCompare(b, "nl"));
+{ const ip = path.join(OUT, "index.html"); fs.writeFileSync(ip, fs.readFileSync(ip, "utf8").replace("__NBRANDS__", brandNames.length)); }
 for (const b of brandNames) {
   const ms = BRANDS[b].sort((x, y) => CATS.findIndex(c => c.id === x.cat) - CATS.findIndex(c => c.id === y.cat));
   const codes = ms.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
