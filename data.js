@@ -14139,4 +14139,33 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("9E39", "Te sterke variatie compressorstroom", 3, "Storing van de buitenunit: te sterke variatie compressorstroom.", ["Alleen de installateur kan deze storing resetten. Laat dit verhelpen door je installateur."]),
   ]});
 })();
+(() => {
+  SRC.atagEnergionHybrid = ["ATAG – Gebruiksaanwijzing Energion M Hybrid (zone/all), Storingslijst interne eenheid (PDF)", "https://atag.compano.com/Data/Environments/000001/Attachment/Bijlage/Documents/UserManual/420010943700_USER%20ENERGION%20HYBR%20all_NL.pdf"];
+  MODELS.push({ id: "atag-energion-m-hybrid", brand: "ATAG", name: "Energion M Hybrid: storingscodes binnenunit", dev: "Energion M Hybrid hybride warmtepomp", cat: "warmtepompen", years: "ATAG Energion M Hybrid zone en Energion M Hybrid all", unit: null, also: "ATAG Energion hybrid storing, Energion M Hybrid 910, Energion hybride foutcode, Energion M Hybrid 420 bus, ATAG hybride warmtepomp 937", intro: "De ATAG Energion M Hybrid toont een storingscode op de systeeminterface. Volg eerst de aanwijzing op het display; blijft de storing, neem dan contact op met de servicedienst. In de handleiding staan de codes als twee cijfers, bijvoorbeeld '9 10' voor 910.", weak: ["Communicatie tussen binnen- en buitenunit (910, 924).", "Doorstroming (933, 936, 937)."], parts: [], tasks: [], src: ["atagEnergionHybrid"], faults: [
+    F("114", "Buitenvoeler defect", 2, "De buitenvoeler is niet aangesloten of beschadigd; de regeling werkt dan zonder buitenvoeler.", ["Laat de buitenvoeler controleren."]),
+    F("420", "Overbelasting voeding bus", 2, "Te veel apparaten (bijv. multizonemodule, zonne-pompgroep) op de BUS-voeding.", ["Laat de installateur microswitch 1 op een van de aangesloten printen (niet de ketel) op OFF zetten."]),
+    F("902", "Aanvoersonde defect", 2, "De aanvoersonde is niet aangesloten of defect.", ["Laat dit verhelpen door je installateur."]),
+    F("910", "Communicatiefout met warmtepomp", 2, "Probleem met de modbus-verbinding.", ["Laat de modbus-kabel controleren. Brandt er een rode led continu, dan moet de TDM-kaart vervangen worden."]),
+    F("924", "BUS-communicatiefout EM - TDM", 2, "Geen goede verbinding tussen Energy Manager en TDM-kaart.", ["Laat de bedrading tussen TDM-kaart en Energy Manager controleren."]),
+    F("933", "Oververhitting hoofdcircuit", 2, "Te weinig doorstroming in het hoofdcircuit.", ["Laat de doorstroming controleren."]),
+    F("934", "Boilersonde defect", 2, "De boilersonde is niet aangesloten of defect.", ["Laat dit verhelpen door je installateur."]),
+    F("935", "Oververhitting boiler", 2, "De driewegklep blijft mogelijk in de tapwaterstand hangen.", ["Laat de driewegklep controleren."]),
+    F("936", "Storing vloerthermostaat", 2, "Te weinig doorstroming in de vloerverwarming.", ["Controleer of de vloerverwarming open staat.", "Laat dit verhelpen door je installateur."]),
+    F("937", "Fout watercirculatie", 2, "Er pompt geen water rond.", ["Laat de hoofdcirculatiepomp en de debietmeter (parameter 12.13.3) controleren."]),
+    F("938", "Storing anode", 2, "Probleem met de anode of geen water in de boiler.", ["Laat de anode en het vullen van de boiler controleren."]),
+    F("940", "Hydraulisch schema niet ingesteld", 2, "Parameter 12.2.0 is niet ingesteld.", ["Laat dit verhelpen door je installateur."]),
+    F("941", "HV IN1 niet bepaald", 2, "Functie niet ingesteld met parameter 12.1.0.", ["Laat dit verhelpen door je installateur."]),
+    F("942", "HV IN2 niet bepaald", 2, "Functie niet ingesteld met parameter 12.1.1.", ["Laat dit verhelpen door je installateur."]),
+    F("944", "Te hoge temperatuur bij koelen", 2, "Te weinig doorstroming in het koelcircuit.", ["Laat dit verhelpen door je installateur."]),
+    F("945", "Doorstroomregelaar zit vast", 2, "De hoofdcirculatiepomp is mogelijk niet actief v\u00f3\u00f3r de warmtevraag.", ["Laat de pomp en de debietmeter (parameter 12.13.3) controleren."]),
+    F("946", "Storing compressor warmtepomp", 2, "Probleem met de compressorfrequentie na het einde van de warmtevraag.", ["Laat dit verhelpen door je installateur."]),
+    F("955", "Doorstroomregelaar water", 2, "De sondes van aanvoer en retour zitten mogelijk niet goed.", ["Laat de positie van de aanvoer- en retoursonde controleren."]),
+    F("958", "Oververhitting buffer", 2, "Vullen van de buffer is geblokkeerd.", ["Laat dit verhelpen door je installateur."]),
+    F("959", "Storing sonde buffer hoog", 2, "Vullen van de buffer is geblokkeerd.", ["Laat dit verhelpen door je installateur."]),
+    F("970", "Hulppomp niet goed geconfigureerd", 2, "De configuratie van de hulppomp klopt niet.", ["Laat dit verhelpen door je installateur."]),
+    F("2P2", "Desinfectiecyclus niet voltooid", 1, "De desinfectietemperatuur is niet binnen 6 uur gehaald.", ["Tap tijdens de desinfectie zo weinig mogelijk warm water.", "Laat anders het elektrische element controleren."]),
+    F("2P7", "Storing voorcirculatie", 2, "Er is 5 minuten lang geen doorstroming gemeten bij het opstarten.", ["Laat dit verhelpen door je installateur."]),
+    F("2P9", "SG Ready niet goed ingesteld", 2, "Slechts \u00e9\u00e9n van de parameters 12.1.0 of 12.1.1 is als SG Ready-ingang ingesteld.", ["Laat dit verhelpen door je installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
