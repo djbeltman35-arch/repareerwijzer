@@ -13154,4 +13154,23 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E:17", "Geen wifi-verbinding", 1, "De droger kan geen verbinding maken met wifi. Drogen werkt gewoon, alleen bediening op afstand niet.", ["Controleer of je router 2,4 GHz-wifi heeft en het signaal bij de droger sterk genoeg is.", "Blijft het, bel de Gorenje-service."])
   ]});
 })();
+(() => {
+  SRC.hotpointWm = ["Hotpoint UK – Washing machine error codes (Engels)", "https://www.hotpoint.co.uk/service/washing-machine-repair/error-codes"];
+  MODELS.push({ id: "hotpoint-wasmachine", brand: "Hotpoint", name: "Wasmachine en was-droogcombinatie: foutcode F01 t/m F18", dev: "wasmachine / was-droogcombinatie", cat: "wasmachines", years: "Hotpoint- en Hotpoint-Ariston-wasmachines en was-droogcombinaties met F-codes", unit: null, also: "Hotpoint wasmachine F05, Hotpoint F06 deur, Hotpoint F01, Hotpoint F08, Hotpoint Ariston foutcode, Hotpoint was-droogcombinatie F13", intro: "Een Hotpoint-wasmachine toont een F-code of een knipperpatroon. F05 (afvoer) en F06 (deurslot) kun je eerst zelf controleren; F01 en F18 helpen soms met een korte stroomonderbreking; de rest is werk voor een monteur.", weak: ["Verstopt pompfilter of afvoer.", "Deurslot."], parts: [], tasks: [], src: ["hotpointWm"], faults: [
+    F("F01", "Printplaat", 2, "Storing in de elektronica: sommige functies werken niet.", ["Haal de stekker minstens 2 minuten uit het stopcontact, steek hem er weer in, wacht 30 seconden en probeer opnieuw.", "Laat de machine nakijken door een monteur."]),
+    F("F02", "Motorcircuit", 3, "De trommel draait niet of met horten en stoten.", ["Laat de machine nakijken door een monteur."]),
+    F("F03", "Temperatuursensor", 3, "De machine verwarmt niet.", ["Laat de machine nakijken door een monteur."]),
+    F("F05", "Afvoer of pomp", 1, "De afvoer is verstopt of de pomp werkt niet; er blijft water staan of de deur gaat niet open.", ["Maak het pompfilter schoon (als je model er een heeft).", "Controleer de afvoerslang en de afvoer onder het aanrecht op verstoppingen.", "Helpt dat niet, dan is de pomp waarschijnlijk defect: laat de machine nakijken door een monteur."]),
+    F("F06", "Deurslot", 2, "De deur gaat niet open of dicht, of de machine start niet met de deur dicht.", ["Kijk of er iets het deurslot blokkeert.", "Blijft het, laat de machine nakijken door een monteur."]),
+    F("F07", "Printplaat of verwarmingscircuit", 3, "Het programma pauzeert, verwarmt niet en de pomp blijft draaien.", ["Laat de machine nakijken door een monteur."]),
+    F("F08", "Verwarmingselement", 3, "Het programma pauzeert halverwege.", ["Laat de machine nakijken door een monteur."]),
+    F("F09", "Software", 3, "Meerdere lampjes knipperen en je kunt geen programma kiezen.", ["Laat de machine nakijken door een monteur."]),
+    F("F11", "Pompcircuit", 3, "Het water wordt niet weggepompt.", ["Laat de machine nakijken door een monteur."]),
+    F("F12", "Besturing", 3, "De machine gaat niet aan.", ["Laat de machine nakijken door een monteur."]),
+    F("F13", "Temperatuursensor drogen", 3, "Was-droogcombinatie: het wasgoed droogt niet.", ["Laat de machine nakijken door een monteur."]),
+    F("F15", "Verwarmingsregeling", 3, "Het water wordt niet warm of het wassen of drogen pauzeert.", ["Laat de machine nakijken door een monteur."]),
+    F("F16", "Trommelvergrendeling (bovenlader)", 3, "Bovenlader: de trommel stopt in de verkeerde stand of vergrendelt niet.", ["Laat de machine nakijken door een monteur."]),
+    F("F18", "Interne datafout", 2, "Sommige lampjes of functies werken niet.", ["Haal de stekker minstens 2 minuten uit het stopcontact, steek hem er weer in, wacht 30 seconden en probeer opnieuw.", "Laat de machine nakijken door een monteur."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
