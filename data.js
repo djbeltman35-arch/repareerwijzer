@@ -15614,7 +15614,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.bulexGeniaSet=["Bulex – installatie- en onderhoudshandleiding GeniaSet (0020223273_04), bijlage B foutcodes","https://www.bulex.be/geniaset/0020223273-04-2026898.pdf"];
   MODELS.push({ id:"bulex-geniaset", brand:"Bulex", name:"GeniaSet warmtepomp: foutcodes F.22 t/m F.1288", dev:"warmtepomp", cat:"warmtepompen", years:"GeniaSet", unit:null,
-  intro:"Bij een fout toont de Bulex GeniaSet een foutcode F.xx. Foutcodes hebben voorrang op alle andere meldingen; bij meerdere storingen wisselen de codes elke 2 seconden. Na het verhelpen neemt u het product weer in gebruik met de ontstoringstoets. Komt de fout na meerdere resetpogingen terug, neem dan contact op met de installateur of klantendienst.",
+  intro:"Bij een fout toont de Bulex GeniaSet een foutcode F.xx. Foutcodes hebben voorrang op alle andere meldingen; bij meerdere storingen wisselen de codes elke 2 seconden. Na het verhelpen neemt u het product weer in gebruik met de ontstoringstoets. Komt de fout na meerdere resetpogingen terug, neem dan contact op met de klantenservice.",
   weak:[], parts:[], tasks:[], src:["bulexGeniaSet"],
   faults:[
     F("F.22","Waterdruk warmtepompcircuit te laag",2,"De waterdruk in het warmtepompcircuit is te laag, bijvoorbeeld door een lekkage; bijvullen door de installateur.",["Neem contact op met uw installateur."]),
