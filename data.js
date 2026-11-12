@@ -15980,4 +15980,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("FC/XW/XE: bedieningspaneel heeft geen stroom",2,"Zekering of datakabel.",["Laat zekering SP205 (40 mA) en de aansluitingen van de datakabel controleren."]),
   ]});
 })();
+(() => {
+  SRC.motocaddyM7=["Motocaddy – M7 GPS REMOTE instruction manual (Engels, 2025)","https://www.motocaddy.us/media/downloads/2025%20M7%20GPS%20REMOTE%20Instruction%20Manual.pdf"];
+  MODELS.push({ id:"motocaddy-golftrolley", brand:"Motocaddy", name:"Elektrische golftrolley met lithium-accu: storingen", dev:"elektrische golftrolley", cat:"scooters", years:"o.a. M7 GPS REMOTE, met Motocaddy 28V lithium-accu", unit:null,
+  intro:"Motocaddy-trolleys tonen geen foutcodes, maar Motocaddy beschrijft in de handleiding wel een aantal storingen rond de lithium-accu, de lader en het rechtuit rijden.",
+  weak:[], parts:[], tasks:[], src:["motocaddyM7"],
+  faults:[
+    N("Lampje van de lader knippert rood en/of groen",3,"Er is waarschijnlijk een fout in de accu of de lader.",["Koppel de lader direct los.","Gebruik accu en lader niet meer: dit kan brandgevaar opleveren.","Neem contact op met de klantenservice van Motocaddy."]),
+    N("Accu geeft geen stroom",1,"Het batterijmanagementsysteem (BMS) heeft de accu uitgeschakeld, bijvoorbeeld bij levering, na diepe ontlading of lange opslag.",["Laad de accu volledig op; daarmee wordt hij weer ingeschakeld."]),
+    N("Trolley rijdt niet rechtuit",1,"Onder meer een losse tassteun, een ongelijk ingepakte tas of de uitlijning van het voorwiel.",["Zet de trolley op een vlakke ondergrond in Remote Mode.","Draai de voorwielen 180° en trek de snelsluithendel omlaag.","Trekt hij naar rechts: draai de linker instelknop met de klok mee en de rechter tegen de klok in (naar links: andersom).","Duw de snelsluithendel terug tot hij vastklikt."]),
+    N("Trolley terugzetten naar fabrieksinstellingen",1,"Bij een probleem kun je de trolley resetten.",["Kies op het startscherm Settings en dan Reset all Settings, bevestig met Yes en kies Close."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
