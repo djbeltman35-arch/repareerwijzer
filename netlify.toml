@@ -43,3 +43,13 @@
   from = "/storing-telefoonscherm-gebarsten-voorkomen"
   to = "/storing-telefoonscherm-gebarsten-gebarsten-scherm-voorkomen"
   status = 301
+
+[[redirects]]
+  from = "/brokk-sloopRobot"
+  to = "/brokk-sloop-robot"
+  status = 301
+
+[[redirects]]
+  from = "/foutcode-brokk-sloopRobot-*"
+  to = "/foutcode-brokk-sloop-robot-:splat"
+  status = 301

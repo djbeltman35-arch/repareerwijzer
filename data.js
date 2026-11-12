@@ -16493,7 +16493,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.brokkCodes=["Brokk – Display codes and indications / Trouble codes control unit (PDF, 7-TS-004714-A)","https://www.brokk.com/uploads/2018/05/error-codes.pdf"];
-  MODELS.push({ id:"brokk-sloopRobot", brand:"Brokk", name:"Brokk sloop-robot: foutcodes E01 t/m E58 op de bedieningskast", dev:"sloop-robot", cat:"gereedschap", years:"Brokk sloop-robots met display in de bedieningskast", unit:null,
+  MODELS.push({ id:"brokk-sloop-robot", brand:"Brokk", name:"Brokk sloop-robot: foutcodes E01 t/m E58 op de bedieningskast", dev:"sloop-robot", cat:"gereedschap", years:"Brokk sloop-robots met display in de bedieningskast", unit:null,
   intro:"Brokk sloop-robots tonen bij een storing een code als E01 of E02 met een korte tekst op het display van de bedieningskast. Hieronder staan betekenis en oplossing per code uit de Brokk-documentatie.",
   weak:[], parts:[], tasks:[], src:["brokkCodes"],
   faults:[
