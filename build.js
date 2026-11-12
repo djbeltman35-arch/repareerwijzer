@@ -45,9 +45,9 @@ const textUrl = (m, f) => `storing-${m.id}-${slug(f.t)}.html`;
   if (errs.length) { console.error("Build gestopt:\n- " + errs.join("\n- ")); process.exit(1); }
 }
 const codeShort = f => f.code.split("/")[0].trim();
-const fullName = m => m.brand === "Alle merken" ? m.name : `${m.brand} ${m.name}`;
+const fullName = m => m.brand === "Alle merken" || m.name.toLowerCase().startsWith(m.brand.toLowerCase() + " ") ? m.name : `${m.brand} ${m.name}`;
 function brandLinks(m) { return m.brand.split("/").map(b => b.trim()).filter(b => b !== "Alle merken" && b !== "E61-groep").map(b => `<a href="merk-${slug(b)}.html">Alle ${esc(b)}-storingen</a>`).join(" · "); }
-const deviceName = m => { if (m.dev) return m.brand === "Alle merken" ? m.dev : `${m.brand} ${m.dev}`; const c = catOf(m.cat); return m.name.includes("(alle modellen)") ? `${m.brand} ${c.one}` : fullName(m); };
+const deviceName = m => { if (m.dev) return m.brand === "Alle merken" || m.dev.toLowerCase().startsWith(m.brand.toLowerCase() + " ") ? m.dev : `${m.brand} ${m.dev}`; const c = catOf(m.cat); return m.name.includes("(alle modellen)") ? `${m.brand} ${c.one}` : fullName(m); };
 
 function intervalLabel(t, m) {
   if (t.n) return `Elke ${t.n} ${UNIT[m.unit]}`;
@@ -433,7 +433,9 @@ const KBLINK = {
   "cv-ketel-druk-zakt": ["cv-ketels", /druk/i],
   "radiator-blijft-koud": ["cv-ketels", /circulatie|pomp|doorstroming/i],
   "koelkast-lekt-of-koelt-niet": ["koelkasten", /temperatuur|koelt|te warm/i],
-  "elektrische-auto-laadt-niet": ["laadpalen", /foutstroom|aard|communicatie|kabel/i]
+  "elektrische-auto-laadt-niet": ["laadpalen", /foutstroom|aard|communicatie|kabel/i],
+  "ebike-ondersteuning-valt-uit": ["e-bikes", /ondersteuning|communicatie|display|contact|kabel|verbinding/i],
+  "warmtepomp-maakt-veel-geluid": ["warmtepompen", /ventilator|geluid|trilling|compressor/i]
 };
 const kbCodes = {}, codeKb = new Map();
 for (const [id, [cat, re]] of Object.entries(KBLINK)) {

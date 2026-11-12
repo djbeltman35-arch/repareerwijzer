@@ -1399,6 +1399,46 @@ const A = [
   ],
   src: [["Beko – Wat moet ik doen als mijn wasmachine het water niet wegpompt?", "https://www.beko.com/nl-nl/ondersteuning/wasmachine--problemen-oplossen--artikel/wat-moet-ik-doen-als-mijn-wasmachine-het-water-niet-wegpompt"]],
   rel: [["kennisbank-wasmachine-centrifugeert-niet.html", "Wasmachine centrifugeert niet"], ["kennisbank-wasmachine-onderhoud.html", "Wasmachine onderhouden"], ["wasmachines.html", "Alle wasmachines en foutcodes"]]
+},
+{
+  id: "warmtepomp-maakt-veel-geluid",
+  cat: "warmtepompen",
+  q: "Waarom maakt mijn warmtepomp zoveel geluid?",
+  title: "Warmtepomp maakt veel geluid: oorzaken en wat je kunt doen",
+  desc: "Maakt de buitenunit van je warmtepomp veel lawaai of hoor je trillingen in huis? Plaatsing, trillingsdemping, nachtstand, omkasting en de geluidsgrens van 40 dB 's nachts. Volgens de Consumentenbond.",
+  lead: "Het meeste geluid komt van de buitenunit: de compressor en de ventilator. Hoe hard je dat hoort, hangt vooral af van waar de unit staat en hoe hij is gemonteerd.",
+  secs: [
+    ["Waar komt het geluid vandaan?", "<ul><li><b>Compressor op vol vermogen:</b> als de warmtepomp hard moet werken, maakt hij meer lawaai.</li><li><b>Ventilator:</b> een grotere buitenunit heeft een grotere ventilator die langzamer kan draaien en daardoor stiller is.</li><li><b>Trillingen:</b> trillingen van de leidingen kunnen in de woning doorklinken, zeker bij een unit op de gevel of een balkon.</li><li><b>Weerkaatsing:</b> een betegelde tuin of een muur of schutting vlak bij de uitblaasopening kaatst het geluid terug.</li></ul>"],
+    ["Wat kun je zelf doen?", "<ol><li>Gebruik de <b>nachtstand of stille stand</b> als je warmtepomp die heeft, zodat hij 's nachts niet op vol vermogen draait.</li><li>Houd de buitenunit <b>schoon en vrij</b>: geen bladeren, overgroeiing of spullen ervoor.</li><li>Zorg voor <b>vrije ruimte bij de uitblaasopening</b> en richt die niet op een gevel.</li></ol>"],
+    ["Wat kan de installateur doen?", "<ul><li>De unit verplaatsen, zo ver mogelijk van de erfgrens en de buren.</li><li>Trillingsdemping aanbrengen, zodat leidingen het geluid niet op de woning overbrengen.</li><li>Een geluiddempende omkasting plaatsen. Volgens de Consumentenbond kost dat ruim boven de € 1.000 en wordt de unit flink groter.</li></ul>"],
+    ["Hoeveel geluid mag een warmtepomp maken?", "<p>Op de erfgrens mag een warmtepomp volgens het Bouwbesluit maximaal <b>40 dB 's nachts</b> en <b>45 dB overdag</b> maken. Dat geldt ook voor bestaande woningen. Twijfel je of jouw warmtepomp daaraan voldoet, laat het dan meten door je installateur.</p>"]
+  ],
+  faq: [
+    ["Hoe hard mag een warmtepomp zijn?", "Op de erfgrens maximaal 40 dB 's nachts en 45 dB overdag, volgens het Bouwbesluit."],
+    ["Wat helpt tegen het geluid van een warmtepomp?", "De nachtstand gebruiken, de buitenunit vrij en schoon houden, en via de installateur trillingsdemping, een betere plek of een geluiddempende omkasting."]
+  ],
+  src: [["Consumentenbond – Geluid van een warmtepomp", "https://www.consumentenbond.nl/warmtepomp/geluid-warmtepomp"]],
+  rel: [["kennisbank-warmtepomp-zuinig-instellen.html", "Warmtepomp zuinig instellen"], ["warmtepompen.html", "Alle warmtepompen en foutcodes"]]
+},
+{
+  id: "ebike-ondersteuning-valt-uit",
+  cat: "e-bikes",
+  q: "Waarom valt de ondersteuning van mijn e-bike steeds uit?",
+  title: "E-bike valt uit of geeft geen ondersteuning: oorzaken en wat je doet",
+  desc: "Valt de trapondersteuning van je e-bike weg of doet het display het niet? Display en contacten, accu goed in de houder, vocht, losse kabels. Stappenplan volgens Gazelle.",
+  lead: "Valt de ondersteuning weg tijdens het fietsen, dan zit het probleem vaak in een slecht contact: bij het display, de accu of een losse stekker. Dat kun je meestal zelf controleren.",
+  secs: [
+    ["1. Display of boordcomputer", "<p>Door vocht of kou kunnen de contacten van het display gaan roesten, waardoor het signaal wegvalt.</p><ol><li>Haal het display uit de houder (bij sommige modellen met een schroefje aan de onderkant).</li><li>Veeg de contacten af met een <b>droge</b> doek, zonder water of schoonmaakmiddel.</li><li>Plaats het display terug en start het opnieuw op.</li></ol>"],
+    ["2. Accu goed vast en droog", "<ul><li>Zit de accu niet stevig in de houder, dan kan het contact wegvallen. Laat de houder repareren door je fietsenmaker.</li><li>Vocht in de accucontacten kan de ondersteuning laten uitvallen. Haal de accu eruit, controleer de contacten en droog ze met een droge doek. Zet de accu er goed weer in.</li></ul>"],
+    ["3. Losse kabels", "<p>Door trillingen kunnen stekkers onder het display of bij het stuur losraken. Kabels aan de buitenkant van het frame kun je zelf controleren en weer goed aandrukken. Lopen de kabels door het frame, laat ze dan nakijken door een specialist.</p>"],
+    ["Helpt het niet?", "<p>Dan kan een printplaat in de accu of een sensor in de motor defect zijn. Dat laat je repareren door je fietsenmaker of de dealer van het merk. Staat er een foutcode op het display, zoek die dan op voor jouw merk.</p>"]
+  ],
+  faq: [
+    ["Waarom valt mijn e-bike-ondersteuning weg bij regen?", "Vaak door vocht in de contacten van de accu of het display. Haal ze los en maak de contacten droog met een droge doek."],
+    ["Kan ik zelf iets doen als mijn e-bike geen ondersteuning geeft?", "Ja: display en accu losnemen, de contacten droog schoonmaken, alles goed terugzetten en losse kabels aan de buitenkant van het frame controleren."]
+  ],
+  src: [["Gazelle – Problemen met de e-bike-motor", "https://www.gazellebikes.com/nl-be/advies/e-bike/motoren/motor-problemen"]],
+  rel: [["kennisbank-ebike-accu-veilig-laden.html", "E-bike-accu veilig laden"], ["e-bikes.html", "Alle e-bikes en foutcodes"]]
 }
 ];
 module.exports = { KB: A };
