@@ -13505,4 +13505,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Molen maakt hard lawaai of geeft geen koffie", 1, "Geen bonen, een verstopping, iets vreemds of vocht in de molen.", ["Vul bonen bij, haal de bonenbak eraf en verwijder wat vastzit.", "Maak maalschijven en uitloop schoon en laat ze helemaal drogen."])
   ]});
 })();
+(() => {
+  SRC.gysBatium = ["GYS – Gebruiksaanwijzing acculader BATIUM 7/12, 7/24, 15/12, 15/24 (PDF, gys-schweissen.com)", "https://www.gys-schweissen.com/pdf/manual/it/024502.pdf"];
+  MODELS.push({ id: "gys-batium", brand: "GYS", name: "Acculader BATIUM 7/12 t/m 15/24: wat betekenen de lampjes?", dev: "acculader BATIUM", cat: "auto", years: "GYS BATIUM 7/12, 7/24, 15/12 en 15/24 (lader voor 6, 12 en 24V-accu's)", unit: null, also: "GYS Batium lampjes knipperen, GYS Batium laadt niet, GYS acculader SOS Recovery, GYS Batium 15-12 storing, GYS Batium zekering, GYS acculader polariteit", intro: "De GYS BATIUM is een acculader voor auto-, bestel- en vrachtwagenaccu's. Knipperende spanningslampjes betekenen een verkeerd gekozen spanning, knipperende capaciteitslampjes een kapotte accu of een verkeerde belasting; brandt het laadlampje niet, controleer dan polariteit, klemmen en zekering.", weak: ["Verkeerde spanning gekozen.", "Diep ontladen of gesulfateerde accu.", "Vuile accupolen."], parts: [], tasks: [], src: ["gysBatium"], faults: [
+    N("Spanningslampjes (A) knipperen om en om na 1 minuut laden", 1, "De gekozen spanning past niet bij de accu.", ["Haal de stekker uit het stopcontact (klemmen blijven op de accu), steek hem er weer in en kies binnen 5 seconden de juiste spanning.", "Blijft het, vervang de accu."]),
+    N("Capaciteitslampjes (B) knipperen om en om", 2, "De accu is kortgesloten of beschadigd, er staat een verbruiker aan (bijvoorbeeld verlichting), de lader wordt als voeding gebruikt, of de accu is groter dan de lader aankan.", ["Zet verbruikers uit en laad opnieuw.", "Gebruik de lader niet als voeding voor grote verbruikers.", "Kies de capaciteit die op de accu staat; is die te groot, gebruik een sterkere lader.", "Stijgt de spanning niet, dan is de accu kapot: vervang hem."]),
+    N("Laadlampje uit, A- en B-lampjes branden", 1, "Klemmen omgedraaid, slecht contact, diep ontladen accu of doorgebrande zekering.", ["Rode klem op +, zwarte klem op -.", "Maak de polen schoon en zet de klemmen opnieuw vast.", "Diep ontladen: gebruik de geforceerde lading (Forced Charge).", "Vervang de zekering in de lader: 15 A (7/12, 7/24) of 30 A (15/12, 15/24)."]),
+    N("SOS Recovery-lampje knippert na 1 minuut (15/12, 15/24)", 1, "De accu is lang en diep ontladen geweest en begint te sulfateren.", ["Het laden gaat door, maar SOS Recovery wordt aangeraden: haal de stekker eruit, maak de klemmen los en start SOS Recovery."]),
+    N("Na 24 uur SOS Recovery branden laadlampjes niet (15/12, 15/24)", 3, "De accu is niet meer te herstellen.", ["Vervang de accu."]),
+    N("Geforceerde lading start, laadlampje blijft uit", 3, "De accuspanning is lager dan ongeveer 0,5 V.", ["Vervang de accu."]),
+    N("Geen enkel lampje bij aansluiten op het stopcontact", 1, "Fout bij het opstarten.", ["Haal de stekker 10 seconden uit het stopcontact en steek hem er weer in."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
