@@ -13566,4 +13566,17 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Display en knoppen reageren niet", 1, "De besturing is vastgelopen.", ["Houd Aan/Uit/reset ruim 3 seconden ingedrukt.", "Haal daarna de stekker eruit en steek hem er weer in.", "Blijft de fout, bel een servicemonteur."])
   ]});
 })();
+(() => {
+  SRC.inventumVdc8001 = ["Inventum – Gebruiksaanwijzing condensdroger VDC8001W (PDF, inventum.eu)", "https://www.inventum.eu/files/Webdav/vdc8001w-gebruiksaanwijzing-nl-en.pdf"];
+  MODELS.push({ id: "inventum-droger", brand: "Inventum", name: "Condensdroger: foutcode E0 t/m E8, PF", dev: "condensdroger", cat: "drogers", years: "Inventum-condensdrogers met E-codes, o.a. VDC8001W", unit: null, also: "Inventum droger E4, Inventum droger E3 pomp, Inventum droger E1, Inventum droger foutcode, Inventum droger PF, Inventum droger condensaattank", intro: "Een Inventum-condensdroger toont E met een cijfer bij een storing. Alleen E4 (oververhit) los je vaak zelf op door het filter schoon te maken; de andere codes zijn voor de klantenservice.", weak: ["Vuil pluizenfilter.", "Volle condensaattank."], parts: [], tasks: [], src: ["inventumVdc8001"], faults: [
+    F("E0", "Bedieningspaneel", 3, "Storing in het bedieningspaneel.", ["Noteer de code, zet de droger uit en bel de Inventum-klantenservice."]),
+    F("E1", "Temperatuursensor", 3, "Fout in de temperatuursensor.", ["Noteer de code, zet de droger uit en bel de Inventum-klantenservice."]),
+    F("E2", "Communicatiefout", 3, "Communicatiefout in de elektronica.", ["Noteer de code, zet de droger uit en bel de Inventum-klantenservice."]),
+    F("E3", "Pomp", 3, "Storing in de pomp.", ["Noteer de code, zet de droger uit en bel de Inventum-klantenservice."]),
+    F("E4", "Oververhit", 1, "Het systeem is te warm geworden.", ["Maak het drogerfilter schoon.", "Komt de code terug, bel een servicemonteur."]),
+    F("E6 / E7 / E8", "Bedieningspaneel", 3, "Storing in de besturing.", ["Haal de stekker uit het stopcontact en bel de Inventum-klantenservice."]),
+    F("PF", "Stroomstoring", 1, "De stroom is uitgevallen tijdens het drogen.", ["Druk op Start/Pauze om het programma te hervatten."]),
+    N("Melding condensaattank vol", 1, "De condensaattank is vol.", ["Leeg de condensaattank en hervat het programma."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
