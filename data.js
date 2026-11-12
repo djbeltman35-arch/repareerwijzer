@@ -14004,4 +14004,50 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Lekt bij de capsule", 1, "Capsule zit niet goed.", ["Plaats de capsule goed.", "Neem contact op met de Nespresso-klantenservice."])
   ]});
 })();
+(() => {
+  SRC.nesLattTouch = ["Nespresso – Machine assistance Lattissima Touch (Engels)", "https://www.nespresso.com/za/en/machine-assistance/lattissima-touch-facelift-machine-assistance-2"];
+  MODELS.push({ id: "nespresso-lattissima-touch", brand: "Nespresso", name: "Lattissima Touch: knipperende knoppen en oranje lampjes", dev: "Lattissima Touch", cat: "koffiemachines", years: "Nespresso Lattissima Touch (ook facelift)", unit: null, also: "Lattissima Touch alle knoppen knipperen, Lattissima Touch ontkalken oranje, Lattissima Touch CLEAN oranje, Lattissima Touch geblokkeerd, Lattissima Touch hendel gaat niet dicht, Lattissima Touch knippert 10 seconden", intro: "Knipperen bij de Nespresso Lattissima Touch alle knoppen 10 seconden en gaat hij daarna uit, dan is dat een foutalarm en moet hij gerepareerd worden. 3x snel knipperen betekent alleen dat de watertank leeg is.", weak: ["Ontkalken uitgesteld (machine blokkeert op niveau 3).", "Melksysteem niet gespoeld (CLEAN oranje).", "Volle capsulebak."], parts: [], tasks: [], src: ["nesLattTouch"], faults: [
+    N("Alle knoppen knipperen 10 seconden, dan gaat hij uit", 3, "Foutalarm: de machine moet gerepareerd worden.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Alle 6 knoppen knipperen 3x snel", 1, "De watertank is leeg.", ["Vul de watertank."]),
+    N("Koffie- en melkknoppen knipperen om en om", 1, "De capsulebak is vol of zit klem.", ["Leeg de capsulebak en kijk of er geen capsule klem zit."]),
+    N("Ontkalklampje brandt oranje, knoppen werken", 1, "Ontkalken is nodig (niveau 1).", ["Ontkalk de machine."]),
+    N("Ontkalklampje knippert oranje, knoppen werken", 1, "De vorige ontkalking is niet goed afgerond (niveau 2).", ["Ontkalk de machine opnieuw."]),
+    N("Ontkalklampje brandt oranje, knoppen werken niet", 2, "Te veel kalk: de machine is geblokkeerd (niveau 3).", ["Ontkalk de machine; daarna werkt hij weer."]),
+    N("CLEAN-lampje brandt oranje", 1, "Het melksysteem moet gespoeld worden.", ["Houd CLEAN ingedrukt tot de pomp stopt (ongeveer 16 seconden)."]),
+    N("Ontkalk- en CLEAN-lampje knipperen", 1, "De machine staat in de menustand.", ["Druk 3 seconden tegelijk op Latte Macchiato en Warm Milk Froth om eruit te gaan, of wacht 30 seconden."]),
+    N("Hendel gaat niet helemaal dicht", 1, "De machine is oververhit (bijvoorbeeld na legen; tot 10 minuten geblokkeerd).", ["Laat de machine afkoelen."]),
+    N("Koffieknoppen knipperen om en om", 1, "De machine wordt geleegd.", ["Wacht tot hij vanzelf uitgaat."]),
+    N("Lampjes knipperen onregelmatig", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Geen lampje", 1, "Geen stroom.", ["Controleer stopcontact, stekker, spanning en zekering."]),
+    N("Alleen water, geen koffie", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."])
+  ]});
+})();
+(() => {
+  SRC.nesLattPro = ["Nespresso – Machine assistance Lattissima Pro (Engels)", "https://www.nespresso.com/za/en/machine-assistance/lattissima-pro-machine-assistance-1"];
+  MODELS.push({ id: "nespresso-lattissima-pro", brand: "Nespresso", name: "Lattissima Pro: meldingen en storingen", dev: "Lattissima Pro", cat: "koffiemachines", years: "Nespresso Lattissima Pro", unit: null, also: "Lattissima Pro reparatie melding, Lattissima Pro display blijft zwart, Lattissima Pro knippert, Lattissima Pro ontkalken, Lattissima Pro hendel gaat niet dicht", intro: "De Nespresso Lattissima Pro meldt zich op het display. Staat er dat de machine gerepareerd moet worden of knippert hij onregelmatig, neem dan contact op met Nespresso.", weak: ["Kalk.", "Volle capsulebak (hendel sluit niet)."], parts: [], tasks: [], src: ["nesLattPro"], faults: [
+    N("Display meldt dat de machine gerepareerd moet worden", 3, "Storing in de machine.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Geen licht op het display", 1, "Geen stroom of machine staat uit.", ["Controleer stopcontact, stekker, spanning en zekering.", "Druk op de AAN-knop achter het display.", "Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Lampjes knipperen onregelmatig", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Machine is heet na legen", 1, "Na het legen van het watersysteem kan het verwarmingselement erg heet worden.", ["Wacht; de machine koelt vanzelf af."]),
+    N("Hendel gaat niet helemaal dicht", 1, "Volle capsulebak of capsule klem.", ["Leeg de capsulebak en kijk of er geen capsule klem zit."]),
+    N("Alleen water, geen koffie", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Slecht melkschuim", 1, "Verkeerde of niet koude melk, of vuil melksysteem.", ["Gebruik koude halfvolle melk (4 tot 6 °C), vers geopend.", "Spoel na elke melkdrank en reinig het melksysteem (R.C.S.) in de vaatwasser."])
+  ]});
+})();
+(() => {
+  SRC.nesAtelier = ["Nespresso – Machine assistance Atelier (Engels)", "https://www.nespresso.com/sa/en/machine-assistance/atelier-machine-assistance"];
+  MODELS.push({ id: "nespresso-atelier", brand: "Nespresso", name: "Atelier: knipperende toetsen en oranje lampjes", dev: "Atelier", cat: "koffiemachines", years: "Nespresso Atelier", unit: null, also: "Nespresso Atelier alle toetsen knipperen, Atelier ontkalken oranje, Atelier vergrendeld, Atelier 3 toetsen knipperen, Atelier melkopschuimer niet herkend, Atelier knippert 10 seconden", intro: "Knipperen bij de Nespresso Atelier alle 9 toetsen 10 seconden en gaat hij uit, dan is dat een storingsalarm. Knipperen alleen 3 toetsen bij het opstarten, dan zit de melkopschuimer niet goed.", weak: ["Ontkalken uitgesteld (na 30 kopjes vergrendeld).", "Melkopschuimer niet goed geplaatst."], parts: [], tasks: [], src: ["nesAtelier"], faults: [
+    N("Alle 9 toetsen knipperen 10 seconden, dan gaat hij uit", 3, "Storingsalarm.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Alle 9 toetsen knipperen onregelmatig", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."]),
+    N("Alle 9 toetsen knipperen snel, zonder te stoppen", 1, "De watertank is leeg.", ["Vul de tank, plaats de melkopschuimer en een opvangbak en druk op een toets om de machine te laten vollopen."]),
+    N("Alleen 3 toetsen knipperen bij opstarten", 1, "De melkopschuimer zit niet helemaal goed.", ["Duw de melkopschuimer er helemaal in."]),
+    N("Melktoetsen lichten niet op", 1, "De melkopschuimer wordt niet herkend.", ["Plaats de opschuimer opnieuw tot alle toetsen oplichten."]),
+    N("Ontkalklampje knippert oranje", 1, "Ontkalken is nodig.", ["Ontkalk de machine (Lungo + Ristretto 3 seconden)."]),
+    N("Ontkalklampje brandt oranje / toets start niet", 2, "Na 30 kopjes heeft de machine zichzelf vergrendeld vanwege kalk.", ["Ontkalk de machine om hem te ontgrendelen."]),
+    N("Clean-lampje brandt oranje", 1, "De melkopschuimer moet gespoeld worden.", ["Haal de opschuimer eruit en spoel of was hem."]),
+    N("Toets knippert snel tijdens bereiding", 1, "De watertank is leeg.", ["Vul de watertank."]),
+    N("Hendel gaat niet helemaal dicht", 1, "Volle capsulebak of capsule klem.", ["Leeg de capsulebak en verwijder vastzittende capsules."]),
+    N("Alleen water, geen koffie", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
