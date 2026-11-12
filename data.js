@@ -16264,4 +16264,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Koffie loopt traag",1,"Het uitloopkopje of de naald is verstopt of kalk.",["Maak het uitloopkopje schoon met een speldje en ontkalk zo nodig."]),
   ]});
 })();
+(() => {
+  SRC.msBugchecks=["Microsoft Learn – Bug checks (blue screens): algemene tips (Engels)","https://learn.microsoft.com/windows-hardware/drivers/debugger/bug-checks--blue-screens-"];
+  SRC.msBugEF=["Microsoft Learn – Bug check 0xEF: CRITICAL_PROCESS_DIED (Engels)","https://learn.microsoft.com/en-sg/WINDOWS-HARDWARE/DRIVERS/debugger/bug-check-0xef--critical-process-died"];
+  MODELS.push({ id:"windows-blauw-scherm", brand:"Microsoft", name:"Windows blauw scherm (stopcode): wat te doen", dev:"Windows-pc of laptop", cat:"laptops", years:"Windows 10 en 11", unit:null,
+  also:"BSOD, blue screen, stopcode, bug check",
+  intro:"Bij een ernstige fout stopt Windows met een blauw scherm en een stopcode (bug check). Microsoft geeft algemene stappen die bij de meeste stopcodes helpen.",
+  weak:[], parts:[], tasks:[], src:["msBugchecks","msBugEF"],
+  faults:[
+    F("CRITICAL_PROCESS_DIED","Kritiek systeemproces onverwacht gestopt (0xEF)",2,"Een kritiek Windows-proces (zoals csrss.exe, wininit.exe, smss.exe, services.exe of winlogon.exe) is onverwacht gestopt, vaak door beschadiging van dat proces of iets waar het van afhangt.",["Maak recente wijzigingen ongedaan: verwijder nieuwe hardware, drivers of services, of zet ze terug.","Kijk in Apparaatbeheer naar apparaten met een geel uitroepteken en werk hun drivers bij.","Werk BIOS en firmware bij en voer de hardwaretest van de fabrikant uit.","Scan op virussen.","Herstel systeembestanden: open de opdrachtprompt als administrator en voer SFC /scannow uit.","Bekijk in Logboeken het Systeemlogboek op fouten rond het tijdstip."]),
+    N("Blauw scherm na een nieuwe driver, service of hardware",1,"Recent toegevoegde drivers, services of hardware veroorzaken vaak een stopcode.",["Verwijder of werk de nieuwe driver of service bij.","Verwijder of vervang nieuwe hardware en controleer of die compatibel is met je Windows-versie."]),
+    N("Blauw scherm: geheugen testen",2,"Geheugenfouten kunnen een stopcode geven.",["Zoek in het Configuratiescherm naar 'Geheugen' en kies 'Geheugenproblemen van de computer vaststellen'.","Bekijk daarna de vermelding MemoryDiagnostics-Results in het systeemlogboek."]),
+    N("Blauw scherm: schijf en systeembestanden controleren",1,"Bestandssysteemfouten, ontbrekende systeembestanden of te weinig vrije ruimte.",["Controleer de schijf: rechtsklik op het station > Eigenschappen > Extra > Controleren.","Voer SFC /scannow uit om systeembestanden te herstellen.","Houd 10 tot 15% van de schijf vrij."]),
+    N("Blauw scherm: opstarten in Veilige modus",1,"In Veilige modus laadt Windows alleen de minimaal nodige drivers, zodat je onderdelen kunt uitschakelen of verwijderen.",["Ga naar Instellingen > Bijwerken en beveiliging > Herstel > Geavanceerde opstartopties > Problemen oplossen > Geavanceerde opties > Opstartinstellingen > Opnieuw opstarten.","Kies optie 4, 5 of 6."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
