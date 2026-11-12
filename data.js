@@ -14467,4 +14467,11 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("IF", "Pluizenfilter ontbreekt", 1, "De Styler draait zonder pluizenfilter of het filter zit niet goed.", ["Plaats het pluizenfilter goed in de groef (zie het plaatje op de filterklep).", "Blijft IF staan, vraag dan een reparatie aan."]),
   ]});
 })();
+(() => {
+  SRC.lgTvPower = ["LG – Help library: LG TV troubleshooting power issues (Engels)", "https://www.lg.com/us/support/help-library/lg-tv-troubleshooting-power-issues-CT10000018-20154720146719"];
+  MODELS.push({ id: "lg-tv-gaat-niet-aan", brand: "LG", name: "LG tv gaat niet aan: standby-lampje aan of uit", dev: "televisie", cat: "televisies", years: "LG-televisies (OLED, QNED, NanoCell, UHD)", unit: null, also: "LG tv gaat niet aan, LG tv standby lampje brandt, LG tv geen stroom, LG tv reageert niet op afstandsbediening, LG OLED gaat niet aan", intro: "Gaat je LG-tv niet aan, kijk dan eerst naar het standby-lampje. Brandt het, dan ligt het vaak aan de afstandsbediening. Brandt het niet, dan komt er geen stroom bij de tv.", weak: ["Lege batterijen in de afstandsbediening.", "Stekker of stopcontact zonder stroom."], parts: [], tasks: [], src: ["lgTvPower"], faults: [
+    N("Gaat niet aan, standby-lampje brandt", 1, "De tv heeft stroom; vaak werkt de afstandsbediening niet.", ["Druk op de aan/uit-knop op de tv zelf (de plek verschilt per model).", "Gaat hij dan aan, controleer de batterijen en de werking van de afstandsbediening."]),
+    N("Gaat niet aan, standby-lampje uit", 1, "Er komt geen stroom bij de tv, of het lampje is uitgezet in de instellingen.", ["Controleer of de stekker goed in de tv en het stopcontact zit.", "Test het stopcontact met een ander apparaat; werkt dat ook niet, controleer dan de groepenkast.", "Gebruik geen geschakeld of energiebesparend stopcontact.", "Heeft de tv wel stroom maar geen lampje, zet dan in het menu de stroomindicator (Power Indicator) aan.", "Lukt het niet, neem contact op met de LG-klantenservice."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
