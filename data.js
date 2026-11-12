@@ -13191,4 +13191,12 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Afzuiging: 1e LED knippert", 1, "Geen storing: de naloopfunctie is actief.", ["Je hoeft niets te doen."])
   ]});
 })();
+(() => {
+  SRC.dysonSupersonicLed = ["Dyson Support – My appliance displays an LED light (Supersonic HD01, Engels)", "https://support.dyson.co.nz/support/hd01/supersonic-iron-fuchsia/my-dyson-appliance-is-not-working/my-appliance-will-not-turn-on/my-appliance-displays-an-led-light/my-appliance-displays-an-led-light-hd01"];
+  MODELS.push({ id: "dyson-supersonic", brand: "Dyson", name: "Supersonic föhn: wit of rood lampje knippert", dev: "Supersonic föhn", cat: "kleine-apparaten", years: "Dyson Supersonic (HD01 en latere HD-modellen met LED-lampjes)", unit: null, also: "Dyson Supersonic knippert wit, Dyson Supersonic rood lampje knippert, Dyson föhn stopt, Dyson föhn filter, Dyson Supersonic wordt niet warm", intro: "De Dyson Supersonic gebruikt witte lampjes voor de luchtstroom en rode voor de temperatuur. Knippert een lampje, dan is er iets: wit betekent filter schoonmaken, rood kan oververhitting, een vuil filter of een verkeerde spanning zijn.", weak: ["Vuil filter aan de onderkant van de handgreep."], parts: [], tasks: [], src: ["dysonSupersonicLed"], faults: [
+    N("Wit lampje knippert", 1, "Het filter moet schoongemaakt worden.", ["Haal de stekker eruit, draai het filterkapje van de handgreep en maak het filter schoon volgens de handleiding."]),
+    N("Rood lampje knippert", 1, "Het filter is vuil, de föhn is oververhit of de netspanning klopt niet.", ["Maak het filter schoon.", "Zet de föhn uit, haal de stekker eruit en laat hem afkoelen; probeer daarna opnieuw.", "Gebruik hem alleen op de juiste netspanning (let op in het buitenland).", "Blijft het, neem contact op met de Dyson-klantenservice."]),
+    N("Geen rode lampjes, föhn blaast koud", 1, "Geen storing: de koude stand (ongeveer 28 °C) staat aan.", ["Kies met de temperatuurknop een warmere stand (1 tot 3 rode lampjes)."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
