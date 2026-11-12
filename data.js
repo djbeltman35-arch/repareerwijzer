@@ -14050,4 +14050,22 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Alleen water, geen koffie", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice of laat de machine repareren."])
   ]});
 })();
+(() => {
+  SRC.nesVertuoUp = ["Nespresso – Machine assistance Vertuo Up (Engels)", "https://www.nespresso.com/sa/en/machine-assistance/vertuo-up-machine-assistance"];
+  MODELS.push({ id: "nespresso-vertuo-up", brand: "Nespresso", name: "Vertuo Up: kleur van het koffieknopje (rood, oranje, paars)", dev: "Vertuo Up", cat: "koffiemachines", years: "Nespresso Vertuo Up", unit: null, also: "Vertuo Up knippert rood, Vertuo Up oranje lampje, Vertuo Up paars, Vertuo Up wifi lampje knippert, Vertuo Up ontkalken, Vertuo Up maakt geen koffie, Vertuo Up alleen water", intro: "De kleur van de koffieknop van de Nespresso Vertuo Up vertelt wat er is. Rood knipperen (2x snel, pauze) is een fout: stekker eruit en opnieuw. Rood pulseren is afkoelen na oververhitting. Paars is servicestand.", weak: ["Watertank leeg of niet goed geplaatst (oranje).", "Kalk (onderhoudsknop oranje).", "Hendel open tijdens zetten (noodstop)."], parts: [], tasks: [], src: ["nesVertuoUp"], faults: [
+    N("Koffieknop knippert rood (2x snel, lange pauze)", 2, "Fout in de machine.", ["Wacht een paar seconden, haal de stekker eruit, wacht en steek hem terug.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Rood knippert snel, andere ledjes wit, dan gaat hij uit", 2, "Uitschakelen na een fout of om af te koelen.", ["Laat de machine afkoelen en probeer het opnieuw."]),
+    N("Koffieknop pulseert rood (ongeveer 2 seconden)", 1, "Afkoelen na oververhitting.", ["Laat de stekker erin en wacht ongeveer 10 minuten."]),
+    N("Koffieknop paars", 3, "Servicestand.", ["Neem contact op met de Nespresso-klantenservice."]),
+    N("Koffieknop oranje, zet geen koffie", 1, "Watertank leeg of niet goed geplaatst.", ["Vul de tank met vers water, zet hem goed vast en druk één keer.", "Brandt ook de onderhoudsknop oranje: ontkalk de machine."]),
+    N("Oranje: 2x snel, pauze, 1x", 1, "Noodstop, meestal doordat de hendel tijdens het zetten openging.", ["Open de hendel niet tijdens het zetten."]),
+    N("Oranje knippert 5x bij starten onderhoud", 1, "Onderhoudsfout: er zit nog een capsule in.", ["Open en sluit de hendel om te controleren dat er geen capsule in zit en druk opnieuw."]),
+    N("Oranje knippert 1x bij starten onderhoud", 1, "Er zit te weinig water in de tank.", ["Vul de tank, zet hem goed vast en druk één keer."]),
+    N("Onderhoudsknop brandt oranje", 1, "Ontkalken is nodig.", ["Ontkalk de machine via de app of de handleiding (ongeveer 15 minuten, niet onderbreken)."]),
+    N("Koffieknop wit, zet geen koffie", 1, "Hendel niet goed dicht, geen of verkeerde capsule, of een software-update loopt.", ["Sluit de hendel goed en plaats een nieuwe Vertuo-capsule.", "Is de machine verbonden, wacht dan ongeveer 5 minuten."]),
+    N("Alleen water, geen koffie", 1, "De barcode van de capsule is niet gelezen.", ["Gebruik een nieuwe, onbeschadigde capsule (niet hergebruiken).", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Wifi-ledje knippert", 1, "Nog niet gekoppeld of verbinding kwijt.", ["Koppel via de QR-code op het lekrooster of in de Nespresso-app."]),
+    N("Veel vocht in de capsulebak", 1, "Een paar ml per kopje is normaal.", ["Leeg de capsulebak en reinig de onderhoudsmodule om de 2 dagen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
