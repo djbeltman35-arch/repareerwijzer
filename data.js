@@ -13233,4 +13233,25 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Sense Guard: app toont 'niet verbonden' na stroomstoring", 1, "Er is geen stroom; de kraan blijft open zodat je water houdt.", ["Je hoeft niets te doen: hij start vanzelf weer als de stroom terug is."])
   ]});
 })();
+(() => {
+  SRC.delonghiRivelia = ["De'Longhi – Gebruiksaanwijzing Rivelia EXAM44X, hoofdstuk Meldingen op het display (PDF, dls.delonghigroup.com, Engels)", "https://dls.delonghigroup.com/files/docs/5/EN-57132C8735.pdf"];
+  MODELS.push({ id: "delonghi-rivelia", brand: "De'Longhi", name: "Rivelia volautomaat: meldingen op het display", dev: "Rivelia volautomaat (EXAM44)", cat: "koffiemachines", years: "De'Longhi Rivelia (EXAM44X.5Y en verwante uitvoeringen)", unit: null, also: "DeLonghi Rivelia melding, Rivelia drink kan niet worden gemaakt, Rivelia ontkalken, Rivelia zijklep, Rivelia koffiedikbak vol, Rivelia water circuit is empty, Rivelia Something is not right", intro: "De De'Longhi Rivelia geeft meldingen in tekst op het touchscreen. De meeste vragen om bijvullen, legen of ontkalken; 'Impossible to complete the drink' betekent dat de maalgraad, de hoeveelheid koffie of de intensiteit aangepast moet worden.", weak: ["Zijklep niet goed dicht.", "Te fijne maalgraad.", "Te veel voorgemalen koffie."], parts: [], tasks: [], src: ["delonghiRivelia"], faults: [
+    N("Melding: waterreservoir vullen of reservoir niet geplaatst", 1, "Er zit te weinig water in het reservoir, of het zit niet goed.", ["Vul het reservoir met vers drinkwater tot MAX en zet het goed terug."]),
+    N("Melding: lekbak en koffiedikbak legen", 1, "De koffiedikbak is vol of moet geleegd worden.", ["Leeg de koffiedikbak en de lekbak, schuif ze helemaal terug en controleer of de zijklep dicht is."]),
+    N("Melding: koffiedikbak of lekbak ontbreekt", 1, "De lekbak met koffiedikbak zit niet (goed) op zijn plek.", ["Zet de lekbak met koffiedikbak terug en duw hem helemaal aan.", "Controleer of de zijklep dicht is."]),
+    N("Melding: zijklep ontbreekt of staat open", 1, "De zijklep zit niet goed of is niet helemaal dicht.", ["Plaats of sluit de zijklep.", "Leeg de koffiedikbak zodat de teller goed reset."]),
+    N("Melding: Can you fit the infuser?", 1, "De zetgroep (infuser) is na het schoonmaken niet teruggeplaatst.", ["Plaats de zetgroep terug zoals in de handleiding staat."]),
+    N("Melding: koffiebonen zijn op", 1, "Het bonenreservoir is leeg.", ["Vul bonen bij en druk op 'Done'."]),
+    N("Melding: Increase the grind setting by 1 (+1)", 1, "De bonen zijn te fijn gemalen; de koffie loopt te langzaam of niet.", ["Druk op OK en Next en zet de molen één stand grover."]),
+    N("Melding: Reduce the intensity and try again", 1, "Er wordt te veel koffie gebruikt.", ["Kies een mildere intensiteit en druk op OK."]),
+    N("Melding: te veel voorgemalen koffie", 1, "Er is meer dan één maatschepje voorgemalen koffie gebruikt; soms blokkeert de koffiedikbak ook.", ["Gebruik maximaal één afgestreken maatschepje.", "Maak de koffiedikbak schoon en probeer opnieuw."]),
+    N("Melding: Cleaning in progress. Back in a moment.", 1, "De machine heeft vuil in de interne leidingen gedetecteerd en spoelt.", ["Wacht tot hij klaar is en kies je drank opnieuw.", "Komt het vaak terug, neem contact op met een erkend De'Longhi-servicecentrum."]),
+    N("Melding: lucht in het circuit (met waterfilter)", 1, "Er zit een luchtbel in het circuit.", ["Druk op OK en tap wat heet water tot het gelijkmatig stroomt.", "Blijft het, haal het waterfilter eruit."]),
+    N("Melding: ontkalken nodig of ontkalken onderbroken", 1, "Het is tijd om te ontkalken, of het ontkalken is niet goed afgemaakt.", ["Start het ontkalken (ongeveer 30 minuten) en volg de stappen op het scherm tot het einde."]),
+    N("Melding: waterfilter vervangen", 1, "Het waterontharderfilter is op.", ["Vervang of verwijder het filter zoals in de handleiding staat."]),
+    N("Melding: The water circuit is empty", 1, "Het watercircuit is leeg.", ["Druk op Yes om het circuit te vullen.", "Komt de melding terug, controleer of het reservoir helemaal is ingeschoven."]),
+    N("Melding: Something is not right", 2, "De binnenkant van de machine is erg vuil.", ["Maak de binnenkant grondig schoon zoals in de handleiding staat.", "Blijft het, neem contact op met de De'Longhi-klantenservice."]),
+    N("Melding: melkkan in de koelkast zetten of schoonmaken", 1, "Geen storing: herinnering na een melkdrank.", ["Zet de melkkan in de koelkast en maak hem schoon zoals aangegeven."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
