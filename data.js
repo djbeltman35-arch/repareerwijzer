@@ -13308,4 +13308,27 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Bediening reageert niet of scherm bevroren", 1, "De bediening is vastgelopen.", ["Haal de oven een paar minuten van de stroom (groep uit) en zet hem weer aan."])
   ]});
 })();
+(() => {
+  SRC.gorenjeHobInd = ["Gorenje – Instructions for use, inductiekookplaat met ConnectLife (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/941323en.html"];
+  SRC.gorenjeFridge = ["Gorenje – Instructions for use, koel-vriescombinatie met display (partners.gorenje.com, Engels)", "https://partners.gorenje.com/fts/htmlNavodila/960474en.html"];
+  MODELS.push({ id: "gorenje-inductiekookplaat", brand: "Gorenje", name: "Inductiekookplaat: foutcode E00 t/m E48, Err, Hot", dev: "inductiekookplaat", cat: "kookplaten", years: "Gorenje-inductiekookplaten met E-codes (ook met ConnectLife)", unit: null, also: "Gorenje kookplaat E01, Gorenje inductie E18, Gorenje kookplaat E19, Gorenje kookplaat E42, Gorenje kookplaat Hot, Gorenje inductie foutcode", intro: "Een Gorenje-inductiekookplaat toont een E-code bij een storing. E00 t/m E05 en E21 gaan over de aansluiting, E18 en E19 over te veel warmte, en E20, E47 en E48 over de elektronica.", weak: ["Te weinig ventilatie onder de kookplaat.", "Lege pan op een hete zone."], parts: [], tasks: [], src: ["gorenjeHobInd"], faults: [
+    F("E00-E05 / E21", "Aansluiting of netspanning", 2, "Probleem met de stroomaansluiting of -voorziening.", ["Laat de aansluiting controleren: zitten alle schroeven in het aansluitblok vast en is de spanning juist?"]),
+    F("E18", "Te weinig koeling", 1, "De kookplaat wordt onvoldoende gekoeld.", ["Controleer of de kookplaat is ingebouwd zoals de handleiding voorschrijft, met genoeg ventilatieruimte."]),
+    F("E19", "Kookzone te heet", 1, "De temperatuur van de kookzone is te hoog.", ["Verhit geen lege pannen.", "Laat de zone afkoelen."]),
+    F("E20 / E47 / E48", "Elektronica", 2, "Interne fout in de elektronica.", ["Haal de kookplaat 1 minuut van de stroom (groep uit) en zet hem weer aan.", "Komt de code terug, bel de Gorenje-service."]),
+    F("E42", "Bedieningspaneel", 1, "Fout in het bedieningspaneel.", ["Maak het bedieningsvlak schoon en droog.", "Haal de kookplaat 1 minuut van de stroom.", "Komt de code terug, bel de Gorenje-service."]),
+    F("Err", "ConnectLife-verbinding", 1, "Verbinden met of ontkoppelen van de ConnectLife-app lukt niet.", ["Zet de verbinding terug naar fabrieksinstellingen en probeer opnieuw."]),
+    F("Hot", "Bedieningspaneel te heet", 1, "Het bedieningspaneel is te heet om te bedienen.", ["Wacht tot het is afgekoeld."])
+  ]});
+  MODELS.push({ id: "gorenje-koelkast", brand: "Gorenje", name: "Koel-vriescombinatie met display: C1-C3, E0-E4, F0-F2, G1", dev: "koel-vriescombinatie", cat: "koelkasten", years: "Gorenje-koel-vriescombinaties met display (ook met wifi)", unit: null, also: "Gorenje koelkast E1, Gorenje koelkast C2 deur, Gorenje koelkast F0 ventilator, Gorenje koelkast G1 alarm, Gorenje vriezer E3, Gorenje koelkast Er, Gorenje koelkast piept", intro: "Een Gorenje-koel-vriescombinatie toont een code op het display. C-codes betekenen dat een deur te lang open staat, E-codes een defecte sensor (de koelkast koelt dan in een noodstand door), F-codes een kapotte ventilator en G1 een te hoge temperatuur.", weak: ["Deur niet goed dicht.", "Te warme inhoud ingeladen."], parts: [], tasks: [], src: ["gorenjeFridge"], faults: [
+    F("C1 / C2 / C3", "Deur te lang open", 1, "De vriezerdeur (C1), koelkastdeur (C2) of beide deuren (C3) staan langer dan 10 minuten open, of de deursensor is defect.", ["Doe de deur(en) goed dicht.", "Blijft de code bij gesloten deuren, bel de Gorenje-service."]),
+    F("E0 / E1 / E2 / E3 / E4", "Temperatuursensor defect", 2, "Een sensor is defect: omgeving (E0), koelruimte (E1), verdamper koelruimte (E2), vriesruimte (E3) of verdamper vriesruimte (E4).", ["Bel de Gorenje-service; tot die tijd draait de koelkast in een veilige noodstand."]),
+    F("Er / Ec", "Aanraaktoetsen reageren niet", 2, "De aanraaktoetsen werken niet.", ["Bel de Gorenje-service; tot die tijd draait de koelkast in een veilige noodstand."]),
+    F("En", "Wifi-module", 1, "De wifi-module werkt niet goed.", ["Bel de Gorenje-service; koelen werkt gewoon door."]),
+    F("F0", "Ventilator condensor", 3, "De ventilator van de condensor werkt niet; het apparaat kan niet normaal koelen.", ["Zet de etenswaren op een koele plek, zet het apparaat uit en bel de Gorenje-service."]),
+    F("F1 / F2", "Ventilator in de koelruimte", 3, "Een ventilator in de koel- of vriesruimte werkt niet; het apparaat kan niet normaal koelen.", ["Zet de etenswaren op een koele plek, zet het apparaat uit en bel de Gorenje-service."]),
+    F("G1", "Temperatuur te hoog", 1, "De temperatuur binnen is te hoog (met onderbroken piepsignaal). Na het aanzetten wordt dit alarm 24 uur uitgesteld.", ["Druk op de alarmknop om het geluid uit te zetten.", "G1 verdwijnt zodra de temperatuur weer goed is; houd de deur dicht en laad geen warme producten in."]),
+    N("Piept herhaaldelijk: deur te lang open", 1, "De koelkastdeur staat te lang open.", ["Doe de deur dicht of zet het geluid uit met de alarmknop; na 10 minuten stopt het alarm en gaat hij in een veilige koelstand."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
