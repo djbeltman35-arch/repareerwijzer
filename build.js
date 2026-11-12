@@ -467,7 +467,7 @@ const kbForCode = f => { const ids = codeKb.get(f); if (!ids) return ""; return 
 // ───────── Foutcodepagina's
 for (const { m, f } of allCodes) {
   const c = catOf(m.cat);
-  const others = m.faults.filter(x => x.code && x !== f);
+  const others = (() => { const all = m.faults.filter(x => x.code); if (all.length <= 60) return all.filter(x => x !== f); const i = all.indexOf(f); const s = Math.max(0, Math.min(i - 25, all.length - 51)); return all.slice(s, s + 51).filter(x => x !== f); })();
   const dev = deviceName(m);
   layout({
     file: codeUrl(m, f),
@@ -504,7 +504,7 @@ ${remCta(m)}
   <h2>📞 Wanneer bel je een specialist?</h2>
   <p>${["cv-ketels", "warmtepompen", "airco", "ventilatie", "laadpalen"].includes(m.cat) ? "Komt de code na deze stappen terug, bel dan je installateur of de servicedienst van de fabrikant. Huur je? Meld het bij je verhuurder." : `Komt de code na deze stappen terug, laat het apparaat dan nakijken. Een <a href="https://www.repaircafe.org/bezoeken/" target="_blank" rel="noopener">Repair Café</a> in de buurt helpt gratis. Twijfel je of repareren nog loont, gebruik dan de <a href="repareren-of-vervangen.html">rekenhulp repareren of vervangen</a>.`}</p>
 </section>
-${others.length ? fold(`Andere foutcodes van ${esc(dev)}`, `<div class="results">${others.map(x => `<a href="${codeUrl(m, x)}"><span><span class="code">${esc(x.code)}</span> ${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div>`, false, others.length) : ""}
+${others.length ? fold(`Andere foutcodes van ${esc(dev)}`, `<div class="results">${others.map(x => `<a href="${codeUrl(m, x)}"><span><span class="code">${esc(x.code)}</span> ${esc(x.t)}</span><span>${D[x.d][0]}</span></a>`).join("")}</div>${m.faults.filter(x => x.code).length > 60 ? `<p><a href="${m.id}.html">Alle ${m.faults.filter(x => x.code).length} foutcodes van ${esc(dev)} →</a></p>` : ""}`, false, others.length) : ""}
 <section class="stack"><p class="row"><a href="${m.id}.html">Alles over ${esc(fullName(m))}: ${m.tasks.length ? "onderhoud en storingen" : "alle storingen"}</a>${brandLinks(m) ? " · " + brandLinks(m) : ""}</p><h2>Bron</h2>${srcList(m)}</section>`
   });
 }
