@@ -12676,4 +12676,23 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Robot laadt niet op het dock", 1, "De aan/uitschakelaar staat op uit terwijl de robot op het dock staat.", ["Zet de aan/uitschakelaar op aan."])
   ]});
 })();
+(() => {
+  SRC.philipsXc7000 = ["Philips Support – My Philips 7000 series cordless vacuum cleaner shows an error code (Engels)", "https://www.philips.ae/c-t/XC000021517/my-philips-7000-series-cordless-vacuum-cleaner-shows-an-error-code"];
+  const sp = MODELS.find(m => m.id === "philips-speedpro-max-8000");
+  sp.src.push("philipsXc7000");
+  sp.years = "Philips 7000- en 8000-serie SpeedPro Max en SpeedPro Max Aqua (Plus), o.a. XC7041, XC8043, XC8347";
+  sp.name = "7000/8000-serie SpeedPro Max (Aqua) steelstofzuiger: foutcode E1, E4, E6, E7, SE";
+  MODELS.push({ id: "philips-7000-aqua", brand: "Philips", name: "7000-serie Aqua steelstofzuiger: foutcode E1-E9 en i4-i8", dev: "7000-serie Aqua steelstofzuiger (XC7055)", cat: "stofzuigers", years: "Philips draadloze stofzuiger 7000-serie Aqua, o.a. XC7055", unit: null, also: "Philips 7000 Aqua E1, Philips stofzuiger i8 filter, Philips stofzuiger i4 verstopt, Philips stofzuiger E9, Philips stofzuiger i6 adapter, Philips stofzuiger E5 accu", intro: "De Philips 7000-serie Aqua toont E-codes bij een storing of verkeerde temperatuur en i-codes als er iets te doen is, zoals een verstopt mondstuk (i4) of een vuil filter (i8).", weak: ["Vuil filter (elk half jaar vervangen).", "Verstopping in mondstuk of buis."], parts: [], tasks: [], src: ["philipsXc7000"], faults: [
+    F("E1", "Storing in het apparaat", 2, "Het apparaat werkt niet goed.", ["Haal de accu eruit, wacht 10 seconden en plaats hem terug.", "Helpt dat niet: neem contact op met de Philips-klantenservice of breng hem naar een Philips-servicecentrum."]),
+    F("E2", "Te koud", 1, "Het apparaat wordt gebruikt onder de werktemperatuur.", ["Neem het mee naar een warmere ruimte.", "Bewaar, laad en gebruik het alleen tussen 5 en 40 °C."]),
+    F("E3", "Te warm", 1, "Het apparaat wordt gebruikt boven de werktemperatuur.", ["Neem het mee naar een koelere ruimte.", "Bewaar, laad en gebruik het alleen tussen 5 en 40 °C."]),
+    F("E5", "Accu beschadigd", 3, "De accu is beschadigd.", ["Neem contact op met de Philips-klantenservice of breng hem naar een Philips-servicecentrum."]),
+    F("E9", "Mondstuk te warm", 1, "Het mondstuk is boven de werktemperatuur gekomen.", ["Zet het apparaat uit en wacht 15 minuten.", "Voel of de bovenkant van het mondstuk nog warm is; wacht dan langer.", "Is het afgekoeld, zet het apparaat weer aan."]),
+    F("i4", "Mondstuk verstopt", 1, "Het mondstuk is verstopt.", ["Zet het apparaat uit.", "Maak het mondstuk schoon volgens de handleiding.", "Haal de buis los en kijk of er iets in zit; verwijder het en start opnieuw."]),
+    F("i5", "Voorwerp in de luchtdoorgang", 1, "Er zit een voorwerp vast in de luchtdoorgang.", ["Zet het apparaat uit.", "Maak het mondstuk schoon en controleer de losgehaalde buis.", "Verwijder het voorwerp en start opnieuw."]),
+    F("i6", "Adapter zit er nog in", 1, "De adapter is niet losgehaald.", ["Haal de adapter los voordat je gaat stofzuigen."]),
+    F("i7", "Verkeerde adapter", 1, "Er wordt een verkeerde adapter gebruikt.", ["Laad alleen met de originele adapter."]),
+    F("i8", "Filter vuil", 1, "Het filter is vervuild.", ["Maak het filter schoon volgens de handleiding.", "Klop de filterbehuizing goed uit boven de vuilnisbak tot er geen stof meer uitkomt; zuig schuimfilter en behuizing eventueel schoon met een andere (kruimel)zuiger.", "Komt i8 terug, vervang het filter. Philips raadt aan het filter elk half jaar te vervangen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
