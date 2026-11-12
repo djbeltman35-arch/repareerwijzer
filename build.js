@@ -963,5 +963,8 @@ for (const f of ["style.css", "app.js", "qrcode.js"]) fs.copyFileSync(path.join(
 { const src = fs.readFileSync(path.join(__dirname, "assets", "app.js")), minP = path.join(__dirname, "assets", "app.min.js");
   if (fs.existsSync(minP)) { const min = fs.readFileSync(minP, "utf8"), h = require("crypto").createHash("sha1").update(src).digest("hex").slice(0, 12);
     if (min.startsWith(`/*src:${h}*/`)) fs.writeFileSync(path.join(OUT, "app.js"), min); else console.log("Let op: app.min.js hoort niet bij app.js, onverkleinde versie gebruikt"); } }
+{ const src = fs.readFileSync(path.join(__dirname, "assets", "style.css")), minP = path.join(__dirname, "assets", "style.min.css");
+  if (fs.existsSync(minP)) { const min = fs.readFileSync(minP, "utf8"), h = require("crypto").createHash("sha1").update(src).digest("hex").slice(0, 12);
+    if (min.startsWith(`/*src:${h}*/`)) fs.writeFileSync(path.join(OUT, "style.css"), min); else console.log("Let op: style.min.css hoort niet bij style.css, onverkleinde versie gebruikt"); } }
 
 console.log(`${pages.length} pagina's gebouwd (${nl(allCodes.length)} foutcodes, ${MODELS.length} modellen) voor ${SITE}`);
