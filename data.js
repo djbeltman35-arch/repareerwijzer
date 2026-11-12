@@ -15673,4 +15673,48 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Weergegeven temperatuur schommelt sterk",2,"Sensorkabels liggen dicht bij 230V-kabels of zijn lang en niet afgeschermd, het apparaat werkt niet goed, of een leidingaansluiting zit los.",["Laat de sensorkabels anders leggen en afschermen.", "Zet een losse leidingaansluiting weer goed vast.", "Helpt dit niet: neem contact op met de installateur."]),
   ]});
 })();
+(() => {
+  SRC.remehaQuintaAce=["Remeha – installatie- en gebruikershandleiding Quinta Ace 45-115 (7684353 v.14), hoofdstuk 10 storingscodes","https://documentation.remeha.nl/wp-content/uploads/sites/68/2025/12/Quinta-Ace-45-115-Installatie-en-gebruikershandleiding-NL-V14.pdf"];
+  MODELS.push({ id:"remeha-quinta-ace", brand:"Remeha", name:"Quinta Ace 45-115: storingscodes A, H en E", dev:"cv-ketel", cat:"cv-ketels", years:"Quinta Ace 45 t/m 115", unit:null,
+  intro:"De Remeha Quinta Ace toont storingscodes op drie niveaus. A is een waarschuwing (de ketel blijft werken), H een blokkering (de ketel stopt en start weer als de oorzaak weg is; bij sommige codes pas na 10 minuten) en E een vergrendeling (de oorzaak moet worden verholpen en de ketel handmatig gereset). Houd de resetknop ingedrukt om te resetten; komt de code terug, noteer hem dan en neem contact op met uw installateur.",
+  weak:[], parts:[], tasks:[], src:["remehaQuintaAce"],
+  faults:[
+    F("A.00.34","Buitentemperatuursensor ontbreekt",1,"Waarschuwing: de buitenvoeler werd verwacht maar niet gedetecteerd (niet of niet goed aangesloten).",["Noteer de code en neem contact op met uw installateur."]),
+    F("A.00.42","Waterdruksensor ontbreekt",2,"Waarschuwing: de waterdruksensor werd verwacht maar niet gedetecteerd (niet of niet goed aangesloten).",["Noteer de code en neem contact op met uw installateur."]),
+    F("A.01.23","Slechte verbranding",2,"Waarschuwing: vlamuitval tijdens bedrijf of geen ionisatiestroom, bijvoorbeeld door lucht in de gasleiding, een niet volledig geopende gaskraan, te lage gasdruk, of verstopte luchttoevoer of rookgasafvoer.",["Noteer de code en neem contact op met uw installateur."]),
+    F("A.02.06","Waarschuwing waterdruk",1,"De waterdruk is te laag.",["Controleer de waterdruk en vul zo nodig bij."]),
+    F("A.02.36","Functioneel apparaat ontkoppeld",2,"Een uitbreidingsprint (SCB) wordt niet gevonden: slechte verbinding of defecte print.",["Noteer de code en neem contact op met uw installateur."]),
+    F("A.02.55","Ongeldig of ontbrekend serienummer",2,"Het serienummer van het apparaat is ongeldig of ontbreekt; neem contact op met uw leverancier.",["Noteer de code en neem contact op met uw installateur."]),
+    F("A.08.02","Douchetijd voorbij",1,"De voor het douchen gereserveerde tijd is verstreken (instelbaar met parameter DP357).",["Geen actie nodig."]),
+    F("H.00.81","Kamertemperatuursensor ontbreekt",1,"Blokkering: de kamertemperatuursensor werd verwacht maar niet gedetecteerd (niet of niet goed aangesloten).",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.01.00","Communicatiefout",2,"Blokkering: communicatiefout met de veiligheidskern. Herstart de ketel; helpt dat niet, dan moet de CU-GH worden vervangen.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.01.05","Verschil aanvoer en retour te groot",2,"Blokkering: geen of te weinig doorstroming (richting, pomp, kleppen), te lage waterdruk, vervuilde warmtewisselaar of een sensorfout.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.01.08","Temperatuurstijging cv te snel",2,"Blokkering: geen of te weinig doorstroming, te lage waterdruk, vervuilde warmtewisselaar, niet goed ontluchte installatie of een sensorfout.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.01.09","Gasdrukschakelaar",2,"Blokkering: de gasdruk is te laag, bijvoorbeeld doordat de gaskraan niet volledig open is.",["Controleer of de gaskraan volledig open is.", "Noteer de code en neem contact op met uw installateur."]),
+    F("H.01.14","Maximale aanvoertemperatuur overschreden",2,"Blokkering: de aanvoertemperatuur is boven de maximale bedrijfswaarde gekomen.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.01.15","Maximale rookgastemperatuur overschreden",2,"Blokkering: de rookgastemperatuur is boven de maximale bedrijfswaarde gekomen.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.02.00","Reset wordt uitgevoerd",1,"De ketel voert een reset uit.",["Geen actie nodig."]),
+    F("H.02.02","Wacht op configuratienummer",2,"Blokkering: de ketel wacht op het configuratienummer (CN1/CN2).",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.02.09","Deelblokkering",1,"Blokkering: er is een gedeeltelijke blokkering van het apparaat gedetecteerd via een externe ingang.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.02.10","Volledige blokkering",1,"Blokkering: er is een volledige blokkering van het apparaat gedetecteerd via een externe ingang.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.03.02","Vlamverlies gedetecteerd",2,"Blokkering: de gemeten ionisatiestroom is te laag.",["Noteer de code en neem contact op met uw installateur."]),
+    F("H.03.17","Veiligheidscontrole",1,"De periodieke veiligheidscontrole wordt uitgevoerd.",["Geen actie nodig."]),
+    F("E.00.04","Retourtemperatuursensor open",2,"Vergrendeling: de retourtemperatuursensor is verwijderd of meet onder het bereik.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.00.05","Retourtemperatuursensor kortgesloten",2,"Vergrendeling: de retourtemperatuursensor is kortgesloten of meet boven het bereik.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.00.16","Sensor warmwatertank open",2,"Vergrendeling: de temperatuursensor van de warmwatertank is verwijderd of meet onder het bereik.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.00.17","Sensor warmwatertank kortgesloten",2,"Vergrendeling: de temperatuursensor van de warmwatertank is kortgesloten of meet boven het bereik.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.01.04","5x vlamverlies",2,"Vergrendeling: vijf keer onbedoeld vlamverlies.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.01.11","Ventilatortoerental buiten bereik",2,"Vergrendeling: het ventilatortoerental valt buiten het normale werkingsbereik.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.01.12","Retour warmer dan aanvoer",2,"Vergrendeling: de retourtemperatuur is hoger dan de aanvoertemperatuur.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.02.39","Te weinig drukstijging na bijvullen",2,"Vergrendeling: de druk stijgt onvoldoende na het automatisch bijvullen.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.01","Aanvoertemperatuursensor kortgesloten",2,"Vergrendeling: de aanvoertemperatuursensor is kortgesloten of meet boven het bereik.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.02","Aanvoertemperatuursensor open",2,"Vergrendeling: de aanvoertemperatuursensor is verwijderd of meet onder het bereik.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.03","Aanvoertemperatuur boven veiligheidslimiet",3,"Vergrendeling: de gemeten temperatuur ligt boven de veiligheidslimiet.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.06","Rookgastemperatuur boven limiet",3,"Vergrendeling: de gemeten rookgastemperatuur ligt boven de limiet.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.08","Veiligheidsingang open",2,"Vergrendeling: de veiligheidsingang is open.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.10","Mislukte start",2,"Vergrendeling: vijf mislukte branderstarts gedetecteerd.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.12","Valse vlam",3,"Vergrendeling: er is een vlam gedetecteerd vóór de branderstart.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+    F("E.04.15","Rookgasleiding verstopt",3,"Vergrendeling: de rookgasleiding zit verstopt.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
