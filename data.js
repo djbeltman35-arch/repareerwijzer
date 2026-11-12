@@ -14569,4 +14569,18 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Koffie te slap", 1, "Extra intensiteit niet gekozen, slappe bonen of het doseersysteem moet zich nog aanpassen.", ["Druk na het kiezen van een recept op de knop extra intensiteit.", "Probeer andere bonen of branding.", "Zet nog 1 of 2 kopjes na een nieuwe bonensoort."])
   ]});
 })();
+(() => {
+  SRC.delonghiDedica = ["De'Longhi – Gebruiksaanwijzing Dedica EC685, EC695 en EC785: betekenis van de lampjes en storingen (PDF, NL)", "https://dls.delonghigroup.com/files/docs/5/NL-57132C8997.pdf"];
+  MODELS.push({ id: "delonghi-dedica", brand: "De'Longhi", name: "Dedica espressomachine: alle lampjes knipperen", dev: "Dedica pistonmachine", cat: "koffiemachines", years: "De'Longhi Dedica EC685, EC695 en EC785", unit: null, also: "DeLonghi Dedica alle lampjes knipperen, Dedica oranje lampje, Dedica geen espresso, Dedica ontkalken, Dedica lampjes knipperen snel, Dedica melk schuimt niet", intro: "Knipperen alle lampjes van de De'Longhi Dedica en geeft hij geen koffie, dan is het waterreservoir meestal leeg of zit het niet goed. Knipperen ze en werkt de machine helemaal niet, haal dan de stekker eruit en bel een servicecentrum. Oranje knipperen betekent ontkalken.", weak: ["Kalk in het circuit.", "Verstopt filter of tuitjes van de filterhouder.", "Waterreservoir niet goed aangedrukt."], parts: [], tasks: [], src: ["delonghiDedica"], faults: [
+    N("Geeft geen koffie en alle lampjes knipperen enkele seconden", 1, "Geen water, reservoir niet goed geplaatst, sproeier of filter verstopt, of kalk.", ["Vul het waterreservoir en druk het licht aan zodat de ventielen in de bodem opengaan.", "Reinig de koffie-uitloop (sproeier) en de filterzeven.", "Ontkalk de machine (zie hoofdstuk Ontkalking in de handleiding)."]),
+    N("Machine werkt niet en alle lampjes knipperen", 3, "Storing in de machine.", ["Haal direct de stekker eruit en neem contact op met een erkend servicecentrum."]),
+    N("Lampjes knipperen snel", 1, "Het waterreservoir is leeg of de machine geeft geen koffie af.", ["Vul het reservoir en volg de stappen van de eerste ingebruikname (pomp laten vollopen)."]),
+    N("Oranje lampje knippert", 1, "De machine moet ontkalkt worden.", ["Ontkalk de machine (zie hoofdstuk Ontkalking in de handleiding).", "Het lampje gaat uit als het ontkalken klaar is."]),
+    N("Lampjes knipperen na stoom", 1, "De stoomknop staat open, of de machine moet afkoelen voor het koffiezetten.", ["Draai de stoomregelknop dicht.", "Voer de koelcyclus uit (zie handleiding)."]),
+    N("Lampjes knipperen afwisselend bij aanzetten", 1, "Zelfdiagnose bij het inschakelen; normaal.", ["Even wachten."]),
+    N("Geen espresso", 1, "Geen water, verstopte filterhouder of filterzeef, reservoir niet goed geplaatst of kalk.", ["Vul het reservoir en druk het aan.", "Maak de gaatjes van de filterhouder en de filterzeef schoon.", "Ontkalk de machine (zie hoofdstuk Ontkalking in de handleiding)."]),
+    N("Koffie loopt over de rand van de filterhouder", 2, "Filterhouder niet goed vast of vuil, of pakking van de ketel versleten.", ["Draai de filterhouder stevig tot de aanslag vast.", "Reinig filterhouder en filterzeef.", "Laat een versleten pakking vervangen door een servicecentrum."]),
+    N("Melk schuimt niet bij cappuccino", 1, "Ring op 'HOT MILK', melk niet koud genoeg, stoompijpje vuil of kalk.", ["Zet de ring op 'CAPPUCCINO'.", "Gebruik melk uit de koelkast.", "Reinig het stoompijpje na elk gebruik.", "Ontkalk de machine (zie hoofdstuk Ontkalking in de handleiding)."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
