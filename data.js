@@ -16171,4 +16171,22 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(N("Begrenzingsdraad breekt steeds",1,"De draad is niet strak genoeg of de haringen staan meer dan 75 cm uit elkaar.",["Span de draad en zet de haringen maximaal 75 cm uit elkaar.", "Herstel onderbrekingen met kabelverbinders."]));
   m.faults.push(N("Slecht maairesultaat",1,"Er wordt niet vaak genoeg gemaaid, de messen zijn bot of er is een verstopping.",["Maai vaker (meer of langere tijdvakken).", "Keer of vervang de messen.", "Controleer de onderkant op blokkades."]));
 })();
+(() => {
+  SRC.easeeAppErr=["Easee support – Error messages in the app (Engels)","https://support.easee.com/hc/en-gb/articles/23310027697169-Error-messages-in-the-app"];
+  const m=MODELS.find(x=>x.id==="easee-laadpaal"); m.src.push("easeeAppErr");
+  m.faults.push(N("App: Charger off",1,"De laadpaal is uitgeschakeld.",["Zet hem weer aan op de pagina Access in de app."]));
+  m.faults.push(N("App: No permission",1,"Je account mag deze laadpaal niet (meer) bekijken of beheren, meestal na een wijziging in de toegangsrechten.",["Vraag de beheerder van de locatie om je toegang te herstellen."]));
+  m.faults.push(N("App: Possible problem with the car",1,"De auto is te vaak gestart en gestopt met laden; de laadpaal stopt om slijtage te voorkomen.",["Haal de kabel eruit en steek hem er opnieuw in.", "Blijft het: probeer een andere kabel. Helpt dat niet, neem dan contact op met je autodealer."]));
+  m.faults.push(N("App: Hardware fault",3,"De laadpaal heeft een hardwarefout en moet worden vervangen.",["Neem contact op met je verkoper voor vervanging."]));
+  m.faults.push(N("App: High temperature",1,"De laadpaal meet een te hoge temperatuur en is tijdelijk uitgeschakeld.",["Wacht tot de laadpaal is afgekoeld."]));
+  m.faults.push(N("App: Overcurrent detected",1,"De auto probeerde meer stroom te trekken dan toegestaan; het laden is gestopt.",["Haal de kabel uit de laadpaal en probeer opnieuw.", "Blijft het: neem contact op met je autodealer."]));
+  m.faults.push(N("App: Incoming supply issue",2,"De netspanning valt buiten het veilige bereik (onder 207 V of boven 253 V).",["De laadpaal herstelt zich vanzelf als de spanning stabiel is.", "Blijft het: neem contact op met je energieleverancier of met Easee."]));
+  m.faults.push(N("App: Ground fault",2,"Er is een aardfout tussen auto en laadpaal gedetecteerd.",["Koppel de kabel los en weer aan.", "Verdwijnt de fout niet: mogelijk moet de kabel worden vervangen of de auto worden nagekeken."]));
+  m.faults.push(N("App: Critical fault",3,"Een kritieke fout heeft de laadpaal blijvend vergrendeld; resetten kan niet.",["Schakel de stroom naar de laadpaal uit, haal voorzichtig de kabel eruit en neem contact op met de klantenservice van Easee."]));
+  m.faults.push(N("App: Invalid grid",2,"De laadpaal herkent geen geldige netconfiguratie.",["Start de laadpaal opnieuw op.", "Blijft het: laat de elektrische aansluitingen controleren."]));
+  m.faults.push(N("App: Insulation fault",2,"Er is een isolatiefout in de kabel, de stekker of de auto.",["Koppel de kabel los en weer aan.", "Wordt het lampje weer rood: probeer een andere kabel of raadpleeg je leverancier."]));
+  m.faults.push(N("App: Power Grid Change",2,"De laadpaal heeft een wijziging in de netconfiguratie gedetecteerd.",["Controleer de installatie, de zekeringen en de hoofdvoeding; laat zo nodig een installateur de aansluitingen controleren."]));
+  m.faults.push(N("App: Backplate tag broken",2,"De laadpaal kan de tag van de achterplaat niet lezen; de laadpaal zelf is niet defect.",["Neem contact op met de klantenservice van Easee."]));
+  m.faults.push(N("App: Oops! Something is wrong!",2,"Er is een onbekende fout opgetreden.",["Neem contact op met de klantenservice van Easee."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
