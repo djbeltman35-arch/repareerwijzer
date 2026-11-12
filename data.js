@@ -16026,4 +16026,33 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("191","Communicatiefout BMS",2,"Het batterijmanagementsysteem (BMS) communiceert niet goed.",["Laat de scooter controleren door een NIU-dealer."]),
   ]});
 })();
+(() => {
+  const m=MODELS.find(x=>x.id==="niu-scooter");
+  SRC.niuE65=["NIU support – Error 65 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000684924-error-65"]; m.src.push("niuE65");
+  SRC.niuE110=["NIU support – Error 110 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000686457-error-110"]; m.src.push("niuE110");
+  SRC.niuE111=["NIU support – Error 111 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000685084-error-111"]; m.src.push("niuE111");
+  SRC.niuE121=["NIU support – Error 121 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000685176-error-121"]; m.src.push("niuE121");
+  SRC.niuE131=["NIU support – Error 131 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000684925-error-131"]; m.src.push("niuE131");
+  SRC.niuE135=["NIU support – Error 135 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000686461-error-135"]; m.src.push("niuE135");
+  SRC.niuE136=["NIU support – Error 136 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000686462-error-136"]; m.src.push("niuE136");
+  SRC.niuE138=["NIU support – Error 138 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000686705-error-138"]; m.src.push("niuE138");
+  SRC.niuE154=["NIU support – Error 154 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000685317-error-154"]; m.src.push("niuE154");
+  SRC.niuE156=["NIU support – Error 156 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000686786-error-code-156"]; m.src.push("niuE156");
+  SRC.niuE158=["NIU support – Error 158 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000686915-error-code-158"]; m.src.push("niuE158");
+  SRC.niuE192=["NIU support – Error 192 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000686916-error-code-192"]; m.src.push("niuE192");
+  SRC.niuE194=["NIU support – Error 194 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000685571-error-194"]; m.src.push("niuE194");
+  m.faults.push(F("65","Storing communicatiemodule",2,"De communicatiemodule heeft een storing.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("110","FOC-storing",2,"Er is een FOC-storing.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("111","FOC-verificatie mislukt",2,"De FOC-verificatie is mislukt.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("121","BCD-MOSFET beschadigd",3,"De BCD-MOSFET is beschadigd.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("131","Ontlaadstroom te hoog",2,"De accu is over de stroomgrens ontladen.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("135","Kortsluitbeveiliging accu",2,"De kortsluitbeveiliging van de accu is actief.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("136","Water in de accu",3,"Er is water in (de omgeving van) de accu binnengedrongen.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("138","MOS beschadigd",3,"Er is MOS-schade gedetecteerd.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("154","Accu 2: open circuit of onbalans",2,"Het circuit van accu 2 is onderbroken of de cellen zijn uit balans.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("156","Water in accu 2",3,"Er is water in accu 2 binnengedrongen.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("158","Accu 2: MOS beschadigd",3,"Er is MOS-schade in accu 2.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("192","Communicatiefout BMS 2",2,"Het batterijmanagementsysteem van accu 2 communiceert niet goed.",["Laat de scooter controleren door een NIU-dealer."]));
+  m.faults.push(F("194","Communicatiefout BCS",2,"Er is een communicatiefout met de BCS.",["Laat de scooter controleren door een NIU-dealer."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
