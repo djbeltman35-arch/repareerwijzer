@@ -15031,4 +15031,32 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E19","Machine moet op kamertemperatuur komen",1,"De machine heeft in de kou gestaan, bijvoorbeeld tijdens transport.",["Schakel de machine 30 minuten uit en start hem opnieuw.","Blijft de fout: controleer of het netsnoer goed in de achterkant van de machine en in het stopcontact zit."]),
   ]});
 })();
+(() => {
+  SRC.atagESerie=["ATAG – installatievoorschrift E-Serie (storingsmelding, hoofdstuk 13)","https://atag.compano.com/Data/Environments/000001/Attachment/Bijlage/Documents/InstallationManual/8A515508%20INST%20VRSCHR%20E%20SERIE%20V1116.pdf"];
+  MODELS.push({ id:"atag-e-serie", brand:"ATAG", name:"E-Serie cv-ketel: storingscodes C 10 t/m C1 81", dev:"cv-ketel", cat:"cv-ketels", years:"E223C, E264C, E325C, E325EC, E320S", unit:null,
+  intro:"De ATAG E-Serie toont een storing als code Cx xx. Met een sleutelsymbool is het een blokkering: tijdelijk, die heft zichzelf op of vergrendelt de ketel na enkele pogingen. Met een belsymbool is het een error: de ketel is vergrendeld en alleen een reset of een servicemonteur verhelpt dat.",
+  weak:[], parts:[], tasks:[], src:["atagESerie"],
+  faults:[
+    F("C 10","Buitenvoeler fout",2,"De buitenvoeler is open, kortgesloten of buiten bereik.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C 20","Aanvoersensor fout",2,"De aanvoersensor is open, kortgesloten of buiten bereik.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C 40","Retoursensor fout",2,"De retoursensor is open, kortgesloten of buiten bereik.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C 50","Warmwatersensor fout",2,"De warmwatersensor is open, kortgesloten of buiten bereik.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C 61","Geen communicatie via Z-bus",2,"Geen communicatie met de thermostaat via de Z-bus. Resetten kan alleen door de spanning te onderbreken.",["Onderbreek kort de spanning van de ketel.", "Komt de code terug, bel dan uw installateur."]),
+    F("C 62","Busthermostaat is geen ATAG Z-busthermostaat",2,"Er is een busthermostaat aangesloten die geen ATAG Z-busthermostaat is.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C 78","Waterdruksensor buiten bereik of pomp defect",2,"De waterdruksensor is buiten bereik of niet aangesloten; is de waterdruk in orde, dan is de pomp defect.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 05","Ontluchtingsprogramma actief",1,"Geen storing: de ketel ontlucht.",["Geen actie nodig."]),
+    F("C1 10","Veiligheidstemperatuur overschreden",3,"De veiligheidstemperatuur is overschreden.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 11","Maximumtemperatuur overschreden",3,"De maximale temperatuur is overschreden.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 17","Waterdruk te hoog",2,"De druk is hoger dan 3 bar, of de drukverhoging door de pomp is te hoog.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 18","Waterdruk te laag",2,"De druk is lager dan 0,7 bar, of de drukverhoging door de pomp is te laag (geen pomp gedetecteerd).",["Controleer de waterdruk en vul zo nodig bij.", "Komt de code terug, bel dan uw installateur; die kan eerst de ketelpomp handmatig deblokkeren."]),
+    F("C1 29","Ventilator start niet op",3,"Ventilatorfout: de ventilator start niet op.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 33","Geen vlam na 5 ontsteekpogingen",3,"De brander ontsteekt niet na vijf pogingen.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 51","Ventilator toerental buiten bereik",3,"Het toerental van de ventilator wordt niet gehaald of ligt buiten bereik, of de stuurautomaat is defect.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 52","Instelling buitenvoeler niet juist",2,"Parameter 555 b0 en/of b1 staat ten onrechte op 'on'.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 54","Aanvoertemperatuur stijgt te snel",3,"De aanvoer stijgt te snel, het temperatuurverschil is te groot of de retour is warmer dan de aanvoer.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 56","Pompfout",3,"Er is een fout met de pomp.",["Druk op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("C1 80","Geen storing: schoorsteenvegerfunctie verlaten",1,"Kortstondig te zien bij het verlaten van de schoorsteenvegerfunctie.",["Geen actie nodig."]),
+    F("C1 81","Geen storing: gaspedaalfunctie verlaten",1,"Kortstondig te zien bij het verlaten van de gaspedaalfunctie.",["Geen actie nodig."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
