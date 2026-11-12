@@ -12551,4 +12551,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Geen lampje bij indrukken van de knop", 3, "De accu heeft een fout.", ["Gebruik de accu niet meer en neem contact op met een STIHL-dealer."])
   ]});
 })();
+(() => {
+  SRC.boschAl18cv = ["Bosch – Gebruiksaanwijzing laders AL 1815 CV / AL 1830 CV / AL 1880 CV (PDF, media3.bosch-home.com, Engels)", "https://media3.bosch-home.com/Documents/8001091694_A.pdf"];
+  MODELS.push({ id: "bosch-al-1830-cv-lader", brand: "Bosch", name: "Lader AL 1830 CV / AL 1815 CV (18V POWER FOR ALL): groen en rood lampje", dev: "acculader AL 1815 CV / AL 1830 CV / AL 1880 CV", cat: "gereedschap", years: "Groene Bosch-laders voor 18V POWER FOR ALL-accu's", unit: null, also: "Bosch groen lader rood lampje, Bosch AL 1830 CV knippert rood, Bosch accu laadt niet, Bosch lader groen knippert, Power for All lader", intro: "De groene Bosch-lader voor 18V-accu's (POWER FOR ALL) toont met een groen en een rood lampje wat hij doet. Groen knipperen is laden, rood brandt bij een te warme of koude accu en rood knipperen betekent dat laden niet lukt.", weak: ["Vuile accucontacten.", "Accu te warm na gebruik."], parts: [], tasks: [], src: ["boschAl18cv"], faults: [
+    N("Groen knippert snel", 1, "De accu wordt snel geladen (AL 1830 CV / AL 1880 CV). Bij de AL 1815 CV betekent knipperen gewoon laden.", ["Je hoeft niets te doen."]),
+    N("Groen knippert langzaam", 1, "De accu is voor ongeveer 80% geladen en kan al gebruikt worden.", ["Haal de accu eruit als je hem nu nodig hebt, of laat hem vol laden."]),
+    N("Groen brandt continu", 1, "De accu is vol. Zonder accu betekent het dat de lader klaar is. Bij de AL 1815 CV kan het ook betekenen dat de accu te warm of te koud is.", ["Haal de accu eruit; bij de AL 1815 CV start het laden vanzelf als de temperatuur weer goed is."]),
+    N("Rood lampje brandt", 1, "De accu is te warm of te koud om te laden.", ["Wacht: zodra de temperatuur goed is, start het snelladen vanzelf."]),
+    N("Rood knippert (groen brandt): laden niet mogelijk", 2, "De accu zit niet goed op de lader, de contacten zijn vuil of de accu is defect.", ["Plaats de accu goed op de lader.", "Maak de contacten schoon, bijvoorbeeld door de accu een paar keer te plaatsen en weer te verwijderen.", "Lukt het nog niet, vervang de accu."]),
+    N("Geen enkel lampje brandt", 2, "De stekker zit niet goed in het stopcontact, of het stopcontact, de kabel of de lader is defect.", ["Steek de stekker er goed in en controleer of het stopcontact stroom geeft.", "Blijft hij donker, laat de lader nakijken door een Bosch-servicecentrum."]),
+    N("AL 1880 CV: ventilator draait niet", 1, "De ventilator is mogelijk defect, of de accu is kouder dan 0 °C. Laden duurt dan langer.", ["Laat een koude accu eerst binnen opwarmen.", "Draait de ventilator nooit, laat de lader nakijken."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
