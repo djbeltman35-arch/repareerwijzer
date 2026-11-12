@@ -15464,4 +15464,41 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(N("Lichtbalk schuift van rechts naar links of van links naar rechts (wit)",1,"Er wordt een systeemupdate gedownload (rechts naar links) of geïnstalleerd (links naar rechts).",["Wacht tot de update klaar is."]));
   m.faults.push(N("Lichtbalk pulseert blauw",1,"Klaar om een bluetooth-apparaat te verbinden.",["Verbind je apparaat via bluetooth."]));
 })();
+(() => {
+  MODELS.push({ id:"prusa-mmu3", brand:"Prusa", name:"MMU3 (Multi Material Unit): foutcodes 04xxx", dev:"3D-printer-accessoire", cat:"3d-printers", years:"MMU3", unit:null,
+  intro:"De Prusa MMU toont foutcodes die beginnen met 04. Het derde cijfer is de categorie: 1 mechanisch, 2 temperatuur, 3 elektronica, 4 verbinding, 5 systeem.",
+  weak:[], parts:[], tasks:[], src:["prusaErrGh"],
+  faults:[
+    F("04101","FINDA reageerde niet bij laden",1,"De FINDA-sensor schakelde niet tijdens het laden van filament.",["Zorg dat het filament vrij kan bewegen en dat FINDA werkt."]),
+    F("04102","Filament vast bij FINDA",1,"FINDA schakelde niet uit tijdens het ontladen.",["Probeer handmatig te ontladen.", "Zorg dat het filament vrij kan bewegen en dat FINDA werkt."]),
+    F("04103","Filamentsensor reageerde niet bij laden",1,"De filamentsensor schakelde niet tijdens het laden.",["Zorg dat de sensor gekalibreerd is en dat het filament de sensor bereikt."]),
+    F("04104","Filament vast bij filamentsensor",1,"De filamentsensor schakelde niet uit tijdens het ontladen.",["Zorg dat het filament vrij kan bewegen en dat de sensor werkt."]),
+    F("04105","Pulley kan niet bewegen",2,"De pulley-motor is vastgelopen.",["Zorg dat de pulley vrij kan bewegen en controleer de bedrading."]),
+    F("04106","Filamentsensor schakelde te vroeg",1,"De filamentsensor schakelde te vroeg tijdens het laden naar de extruder.",["Controleer of er niets vastzit in de PTFE-buis.", "Controleer of de sensor goed meet."]),
+    F("04107","FINDA controleren",1,"De selector kan niet bewegen omdat FINDA filament detecteert.",["Zorg dat er geen filament in de selector zit en dat FINDA goed werkt."]),
+    F("04108","Laden naar extruder mislukt",1,"Het laden naar de extruder is mislukt.",["Controleer de vorm van de filamentpunt.", "Verfijn zo nodig de sensorkalibratie."]),
+    F("04115","Selector kan niet homen",1,"De selector kan niet goed homen.",["Controleer of iets de beweging blokkeert."]),
+    F("04116","Selector kan niet bewegen",2,"De selector kan niet bewegen.",["Controleer of iets de beweging blokkeert.", "Controleer de bedrading."]),
+    F("04125","Idler kan niet homen",1,"De idler kan niet goed homen.",["Controleer of iets de beweging blokkeert."]),
+    F("04126","Idler kan niet bewegen",2,"De idler kan niet goed bewegen.",["Controleer of iets de beweging blokkeert.", "Controleer de bedrading."]),
+    F("04201 / 04211 / 04221","TMC-driver bijna te heet",1,"De TMC-driver van de pulley- (04201), selector- (04211) of idler-motor (04221) raakt bijna oververhit.",["Zorg voor voldoende luchtstroom rond het MMU-bord."]),
+    F("04202 / 04212 / 04222","TMC-driver oververhit",2,"De TMC-driver van de pulley-, selector- of idler-motor is oververhit.",["Laat het MMU-bord afkoelen en reset de MMU."]),
+    F("04301 / 04311 / 04321","TMC-driver reageert niet",2,"De TMC-driver van de pulley-, selector- of idler-motor reageert niet.",["Reset de MMU.", "Neem contact op met Prusa support als het probleem blijft."]),
+    F("04302 / 04312 / 04322","TMC-driver herstart",2,"De TMC-driver is opnieuw gestart; waarschijnlijk is er een probleem met de elektronica.",["Controleer de bedrading en connectoren."]),
+    F("04303 / 04313 / 04323","Te weinig stroom voor TMC-driver",2,"Er is te weinig stroom voor de TMC-driver; waarschijnlijk een probleem met de elektronica.",["Controleer de bedrading en connectoren."]),
+    F("04304 / 04314 / 04324","Kortsluiting TMC-driver",3,"Kortsluiting op de TMC-driver.",["Controleer de bedrading en connectoren.", "Neem contact op met Prusa support als het probleem blijft."]),
+    F("04305 / 04315 / 04325","MMU-zelftest mislukt",2,"De zelftest van de MMU is mislukt op een TMC-driver.",["Controleer de bedrading en connectoren.", "Neem contact op met Prusa support als het probleem blijft."]),
+    F("04306","MMU-voedingsprobleem",2,"De MMU detecteert een probleem met de voeding.",["Controleer de bedrading en connectoren.", "Neem contact op met Prusa support als het probleem blijft."]),
+    F("04307","MMU 5V onderspanning",2,"De MMU-processor meet te lage 5V-spanning.",["Controleer de bedrading en connectoren."]),
+    F("04401","MMU reageert niet",2,"De MMU reageert niet.",["Controleer de bedrading en connectoren."]),
+    F("04402","Communicatiefout MMU",2,"De MMU reageert niet correct.",["Controleer de bedrading en connectoren."]),
+    F("04501","Filament al geladen",1,"De actie kan niet, er is al filament geladen.",["Ontlaad het filament eerst."]),
+    F("04502","Ongeldige tool",1,"De gevraagde filament-tool bestaat niet op deze hardware.",["Controleer de G-code op een toolnummer buiten T0-T4."]),
+    F("04503","Wachtrij vol",1,"Interne firmwarefout van de MMU.",["Reset de MMU."]),
+    F("04504","MMU-firmware-update nodig",1,"De MMU-firmware past niet bij de printerfirmware.",["Werk bij naar een compatibele versie."]),
+    F("04505","Firmware runtime-fout",2,"Interne fout in de firmware.",["Reset de MMU of werk de firmware bij."]),
+    F("04506","Handmatig ontladen",1,"Er wordt onverwacht filament gedetecteerd.",["Zorg dat er geen filament geladen is.", "Controleer de sensoren en bedrading."]),
+    F("04507","Filament uitgeworpen",1,"Filament is uitgeworpen, bijvoorbeeld omdat het einde van de spoel is bereikt.",["Haal het uitgeworpen filament weg aan de voorkant van de MMU."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
