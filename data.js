@@ -14643,4 +14643,29 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Onderhoudsmelding Onderhoud warmtepomp / boiler / ventilatietoestel", 1, "Het toestel moet onderhouden worden.", ["Laat het onderhoud uitvoeren volgens de handleiding van het toestel."])
   ]});
 })();
+(() => {
+  SRC.vaillantAtmotec = ["Vaillant – Gebruiksaanwijzing atmoTEC plus VUW, statuscodes en verhelpen van storingen (PDF, NL)", "https://www.vaillant.be/api/download/product/nl/_atmotec-plus_1330352.pdf"];
+  MODELS.push({ id: "vaillant-atmotec-plus", brand: "Vaillant", name: "atmoTEC plus: statuscodes en storingen F.22 t/m F.36", dev: "atmoTEC plus combiketel", cat: "cv-ketels", years: "Vaillant atmoTEC plus VUW", unit: null, also: "Vaillant atmoTEC F.28, atmoTEC F.22 waterdruk, atmoTEC S.31, atmoTEC plus storing, atmoTEC geen warm water, atmoTEC F.36", intro: "De Vaillant atmoTEC plus toont S-codes voor de normale werking en F-codes bij een storing. F.22 tot F.24 betekenen te weinig water: vul bij. Bij F.28 mag je drie keer op Reset drukken; F.36 is voor de installateur.", weak: ["Te lage waterdruk (F.22).", "Ontsteking (F.28)."], parts: [], tasks: [], src: ["vaillantAtmotec"], faults: [
+    F("F.22", "Watertekort", 1, "De installatiedruk is onder 0,3 bar gezakt; de brander wordt geblokkeerd. Onder 0,6 bar knippert de druk al op het display.", ["Vul de cv-installatie bij (zie handleiding).", "Zit er lucht in de installatie, laat de installateur ontluchten."]),
+    F("F.23", "Watertekort", 1, "Watertekort in de cv-installatie.", ["Vul de cv-installatie bij (zie handleiding).", "Zit er lucht in de installatie, laat de installateur ontluchten."]),
+    F("F.24", "Watertekort", 1, "Watertekort in de cv-installatie.", ["Vul de cv-installatie bij (zie handleiding).", "Zit er lucht in de installatie, laat de installateur ontluchten."]),
+    F("F.28", "Ontsteking mislukt", 2, "Na drie mislukte ontstekingspogingen schakelt de ketel op storing; bijvoorbeeld door een dichte gaskraan.", ["Controleer of de gaskranen open staan.", "Druk \u00e9\u00e9n seconde op Reset; de ketel probeert opnieuw.", "Lukt het na drie keer niet, vraag de installateur om advies."]),
+    F("F.36", "Storing rookgasafvoer", 3, "Er is een storing in het verbrandingsgastraject.", ["Laat de storing verhelpen door de installateur."]),
+    F("S.0", "Verwarming: geen warmtevraag", 1, "Statuscode: verwarming: geen warmtevraag.", ["Geen storing; dit is een statusmelding."]),
+    F("S.2", "Cv-bedrijf: pompvoorloop", 1, "Statuscode: cv-bedrijf: pompvoorloop.", ["Geen storing; dit is een statusmelding."]),
+    F("S.3", "Cv-bedrijf: ontsteking", 1, "Statuscode: cv-bedrijf: ontsteking.", ["Geen storing; dit is een statusmelding."]),
+    F("S.4", "Cv-bedrijf: brander aan", 1, "Statuscode: cv-bedrijf: brander aan.", ["Geen storing; dit is een statusmelding."]),
+    F("S.7", "Cv-bedrijf: pompnaloop", 1, "Statuscode: cv-bedrijf: pompnaloop.", ["Geen storing; dit is een statusmelding."]),
+    F("S.8", "Verwarming: wachttijd", 1, "Statuscode: verwarming: wachttijd.", ["Geen storing; dit is een statusmelding."]),
+    F("S.10", "Warmwatervraag", 1, "Statuscode: warmwatervraag.", ["Geen storing; dit is een statusmelding."]),
+    F("S.14", "Warmwaterbedrijf: brander aan", 1, "Statuscode: warmwaterbedrijf: brander aan.", ["Geen storing; dit is een statusmelding."]),
+    F("S.20", "Warmwatervraag (comfortmodus/boiler)", 1, "Statuscode: warmwatervraag (comfortmodus/boiler).", ["Geen storing; dit is een statusmelding."]),
+    F("S.24", "Warmwaterbedrijf: brander aan (comfortmodus/boiler)", 1, "Statuscode: warmwaterbedrijf: brander aan (comfortmodus/boiler).", ["Geen storing; dit is een statusmelding."]),
+    F("S.31", "Zomermodus actief of eBus-thermostaat blokkeert cv", 1, "Statuscode: zomermodus actief of eBus-thermostaat blokkeert cv.", ["Wil je verwarmen: zet de zomermodus uit of controleer de instelling van de thermostaat."]),
+    F("S.34", "Vorstbeveiliging actief", 1, "Statuscode: vorstbeveiliging actief.", ["Geen storing; dit is een statusmelding."]),
+    F("S.39", "Externe veiligheidsschakelaar uit", 1, "Statuscode: externe veiligheidsschakelaar uit.", ["Laat de installateur controleren waarom de externe veiligheidsschakelaar (bijv. van vloerverwarming) uit staat."]),
+    N("Geen warm water of verwarming blijft koud", 1, "Gaskraan of koudwaterkraan dicht, geen stroom, ketel uit, temperatuur te laag ingesteld of te lage waterdruk.", ["Open de gaskranen en de koudwaterstopkraan.", "Controleer de zekering; de ketel start vanzelf als de stroom terug is.", "Zet de ketel aan en controleer de ingestelde temperaturen.", "Vul bij als de druk te laag is."]),
+    N("Warm water werkt, verwarming niet", 1, "De externe thermostaat is niet goed ingesteld.", ["Stel de thermostaat goed in (zie de handleiding van de thermostaat)."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
