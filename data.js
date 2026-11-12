@@ -13398,4 +13398,22 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Scherm blijft zwart, standby-lampje brandt", 1, "De tv staat nog in standby.", ["Zet de tv aan met de standby-knop op de afstandsbediening."])
   ]});
 })();
+(() => {
+  SRC.delonghiPdSoul = ["De'Longhi – Gebruiksaanwijzing PrimaDonna Soul ECAM61X, hoofdstuk 21 Weergegeven berichten (PDF, dls.delonghigroup.com)", "https://dls.delonghigroup.com/files/docs/5/NL-5713248511.pdf"];
+  MODELS.push({ id: "delonghi-primadonna-soul", brand: "De'Longhi", name: "PrimaDonna Soul volautomaat: meldingen op het display", dev: "PrimaDonna Soul volautomaat (ECAM61X)", cat: "koffiemachines", years: "De'Longhi PrimaDonna Soul ECAM610 en ECAM61X.7Y", unit: null, also: "PrimaDonna Soul algemeen alarm, PrimaDonna Soul te fijn gemalen, PrimaDonna Soul plaats zetgroep, PrimaDonna Soul circuit leeg, PrimaDonna Soul ontkalken, PrimaDonna Soul Coffee Link", intro: "De De'Longhi PrimaDonna Soul geeft meldingen in het Nederlands op het display. 'Algemeen alarm' betekent dat de binnenkant erg vuil is; 'Te fijn gemalen' dat de molen grover moet. De meeste andere meldingen vragen om bijvullen, legen of onderhoud.", weak: ["Te fijne maalgraad.", "Vuile binnenkant.", "Waterfilter niet goed geplaatst."], parts: [], tasks: [], src: ["delonghiPdSoul"], faults: [
+    N("Melding: Algemeen alarm: raadpleeg handleiding of Coffee Link App", 2, "De binnenkant van de machine is erg vuil.", ["Maak de machine grondig schoon volgens de handleiding.", "Blijft de melding, neem contact op met de De'Longhi-klantenservice."]),
+    N("Melding: Te fijn gemalen. Regel maalgraad via menu instellingen", 1, "De koffie is te fijn gemalen en loopt te langzaam of niet.", ["Druk op Ok en zet de molen grover via het menu Instellingen.", "Met waterfilter: kan ook een luchtbel zijn; laat wat water lopen en haal het filter eruit als het blijft."]),
+    N("Melding: Selecteer lichter aroma of verminder hoeveelheid koffie", 1, "Er wordt te veel koffie gebruikt.", ["Kies een lichter aroma of gebruik hooguit één schepje voorgemalen koffie."]),
+    N("Melding: Plaats zetgroep", 1, "De zetgroep is na het schoonmaken niet teruggeplaatst.", ["Plaats de zetgroep zoals in de handleiding staat."]),
+    N("Melding: Ledig koffiedikbakje of plaats koffiedikbakje en lekbakje", 1, "Het koffiedikbakje is vol, of het bakje en de lekbak zitten niet (goed).", ["Leeg en reinig het koffiedikbakje en duw het met de lekbak stevig terug."]),
+    N("Melding: Vul waterreservoir of plaats waterreservoir", 1, "Te weinig water, of het reservoir zit niet goed.", ["Vul het reservoir en duw het goed aan."]),
+    N("Melding: Vul koffiebonenreservoir", 1, "De bonen zijn op.", ["Vul het bonenreservoir."]),
+    N("Melding: Circuit leeg. Druk Ok voor vullen", 1, "Het watercircuit is leeg.", ["Druk op Ok om te vullen en controleer of het reservoir goed zit."]),
+    N("Melding: Reiniging bezig", 1, "De machine ziet vuil binnenin en spoelt.", ["Wacht en kies je drank opnieuw.", "Komt het vaak terug, neem contact op met een servicecentrum."]),
+    N("Melding: Plaats melkreservoir of uitloop ontkalking", 1, "Het melkreservoir of de ontkalkingsuitloop zit niet (goed).", ["Plaats het onderdeel en duw het goed aan."]),
+    N("Melding: Er is een nieuw waterfilter geplaatst", 1, "Het waterfilter is mogelijk niet goed geplaatst.", ["Controleer de plaatsing volgens de handleiding; lukt het niet, haal het filter eruit."]),
+    N("Melding: Ontkalken nodig of Vervang waterfilter", 1, "Onderhoud is nodig: ontkalken (ongeveer 50 minuten) of het waterfilter vervangen.", ["Druk op Ok en volg de stappen, of kies later."]),
+    N("Melding: cloud niet bereikbaar", 1, "Verbindingsprobleem met de app.", ["Zet de verbinding uit en weer aan in het menu.", "Controleer de router en herstart eventueel machine en router."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
