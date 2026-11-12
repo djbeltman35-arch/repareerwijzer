@@ -15573,7 +15573,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.vaillantEcocraft=["Vaillant – installatie- en onderhoudshandleiding ecoCRAFT exclusiv VKK 806/3 t/m 2806/3 (NL, 2025), bijlage E foutcodes","https://www.vaillant.be/api/download/product/nl/_ecocraft-exclusiv_1430259.pdf"];
   MODELS.push({ id:"vaillant-ecocraft-exclusiv", brand:"Vaillant", name:"ecoCRAFT exclusiv: foutcodes F.00 t/m F.74", dev:"cv-ketel", cat:"cv-ketels", years:"VKK 806/3 t/m VKK 2806/3", unit:null,
-  intro:"De Vaillant ecoCRAFT exclusiv is een grote condensatieketel voor bijvoorbeeld appartementencomplexen en bedrijfspanden. Een foutcode begint met F. en vraagt om een installateur.",
+  intro:"Bij de Vaillant ecoCRAFT exclusiv (VKK 806/3 t/m 2806/3) begint een foutcode met F. Een foutcode begint met F. en vraagt om een installateur.",
   weak:[], parts:[], tasks:[], src:["vaillantEcocraft"],
   faults:[
     F("F.00","Onderbreking aanvoertemperatuurvoeler",2,"Kabel onderbroken, kabel niet aangesloten of voeler defect.",["Neem contact op met uw installateur."]),
