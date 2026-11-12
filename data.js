@@ -13761,4 +13761,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Gaat niet aan", 1, "Geen stroom op het stopcontact.", ["Controleer de zekeringen en het stopcontact en of de stekker er helemaal in zit."])
   ]});
 })();
+(() => {
+  SRC.stiebelDHEConnect = ["STIEBEL ELTRON – Bediening en installatie DHE Connect 18/21/24, Problemen en Storingen verhelpen (PDF, NL)", "https://assets.stiebel-eltron.com/celum/Docs/originalFile/DOC-00083025.pdf"];
+  MODELS.push({ id: "stiebel-eltron-dhe-connect", brand: "STIEBEL ELTRON", name: "DHE Connect doorstromer: storingen en diagnoselampje", dev: "DHE Connect elektrische doorstromer", cat: "kleine-apparaten", years: "STIEBEL ELTRON DHE Connect 18/21/24", unit: null, also: "Stiebel Eltron DHE geen warm water, DHE Connect koud water, DHE Connect MAX, DHE Connect afstandsbediening rode led, Stiebel doorstromer storing, DHE diagnoselampje rood", intro: "De STIEBEL ELTRON DHE Connect heeft geen foutcodes op het scherm, maar een diagnoselampje (rood, geel, groen) voor de installateur. Veel klachten, zoals kort koud water of geen temperatuur boven 43 °C, zijn een beveiliging en geen storing.", weak: ["Verkalkte douchekop of straalregelaar.", "Vervuilde zeef in de koudwatertoevoer.", "Lucht in het water na werkzaamheden."], parts: [], tasks: [], src: ["stiebelDHEConnect"], faults: [
+    N("Wordt niet warm terwijl de warmwaterkraan helemaal open staat", 1, "Geen spanning, verkalkte straalregelaar of douchekop, of onderbroken watertoevoer.", ["Controleer de zekeringen in de meterkast.", "Reinig en ontkalk de straalregelaar of douchekop.", "Is de watertoevoer onderbroken geweest, laat het toestel en de koudwaterleiding dan ontluchten."]),
+    N("Tijdens het tappen even koud water", 1, "De luchtdetectie ziet lucht in het water en schakelt de verwarming kort uit.", ["Blijf tappen: na 1 minuut gaat het toestel vanzelf weer verwarmen."]),
+    N("Temperatuur boven 43 °C niet in te stellen", 1, "De dynamische verbrandingsbeveiliging is actief.", ["Wacht: 2 minuten na het einde van het tappen wordt de beveiliging vanzelf opgeheven."]),
+    N("'MAX' in de statusbalk, temperatuur niet hoger", 1, "De maximale temperatuurbegrenzing staat aan.", ["Zet de temperatuurbegrenzing uit."]),
+    N("Te weinig water", 1, "De ECO-functie staat aan.", ["Zet de ECO-functie uit door één keer op het symbool te tikken."]),
+    N("Afstandsbediening werkt niet, rode led brandt", 1, "De draadloze miniafstandsbediening is niet (meer) aangemeld, of de batterij is leeg als de led zwak of niet brandt.", ["Meld de afstandsbediening opnieuw aan op het toestel.", "Brandt de led zwak of niet, vervang dan de batterij."]),
+    N("Aanraakscherm blijft zwart of reageert traag", 1, "Fout in de bedieningseenheid.", ["Maak het toestel 20 seconden spanningsloos (zekering uit) en zet het weer aan."]),
+    N("Diagnoselampje: groen knippert, geel en rood uit, geen warm water", 2, "De inschakelhoeveelheid wordt niet gehaald, bijvoorbeeld door een verkalkte douchekop of een vuile zeef; anders een defect in de doorstroommeting of elektronica.", ["Ontkalk of vervang de douchekop of straalregelaar.", "Laat de zeef in de koudwatertoevoer reinigen.", "Helpt dat niet, laat een installateur de doorstroommeting en elektronica controleren."]),
+    N("Diagnoselampje: groen knippert, rood aan, geen warm water", 2, "Er ontbreken een of meer fasen van de netspanning, of de luchtherkenning is actief.", ["Controleer de zekeringen in de meterkast.", "Blijf langer dan 1 minuut tappen."]),
+    N("Diagnoselampje: geen enkele led brandt", 3, "Er ontbreken fasen van de netspanning of de elektronica is defect.", ["Controleer de zekeringen in de meterkast.", "Anders moet een installateur de functionele module vervangen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
