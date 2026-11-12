@@ -15649,4 +15649,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("F.1288","Sensorfout boilertemperatuur",2,"Sensor defect, niet goed aangesloten of kabel onderbroken.",["Neem contact op met uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.bulexGeniaAir=["Bulex – gebruiksaanwijzing Genia Air (0020218081_01), hoofdstuk 6 storingen","https://www.bulex.be/geniaair/0020218081-01-1745060.pdf"];
+  MODELS.push({ id:"bulex-genia-air", brand:"Bulex", name:"Genia Air warmtepomp: storingen die je zelf kunt verhelpen", dev:"warmtepomp", cat:"warmtepompen", years:"Genia Air", unit:null,
+  intro:"Bulex noemt in de gebruiksaanwijzing van de Genia Air alleen de storingen die je zonder installateur kunt verhelpen. Alle andere foutmeldingen moeten door een erkend installateur worden gecontroleerd. Voor de foutcodes van de binnenunit: zie de Bulex GeniaSet.",
+  weak:[], parts:[], tasks:[], src:["bulexGeniaAir"],
+  faults:[
+    N("Warmtepomp werkt niet meer",1,"De stroomvoorziening is onderbroken.",["Controleer of er geen stroomuitval is en of het product goed op de stroom is aangesloten; na herstel start het vanzelf.", "Blijft de fout: neem contact op met uw installateur."]),
+    N("Geluiden: ruisen, kloppen, zoemen",1,"Normaal: borrelende of fluitende geluiden komen van het koudemiddel als de warmtevraag stopt, knakken van de behuizing die uitzet of krimpt bij starten en stoppen, en zoemen van de compressor in cv-bedrijf.",["Geen actie nodig."]),
+    N("Buitenunit dampt",1,"Normaal: in de winter en bij het ontdooien smelt de warmte van het product het ijs, waardoor damp ontstaat.",["Geen actie nodig."]),
+    N("Andere foutmeldingen",2,"Andere foutmeldingen moeten door een erkend installateur worden gecontroleerd.",["Neem contact op met uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
