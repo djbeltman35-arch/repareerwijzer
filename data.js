@@ -13517,4 +13517,17 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Geen enkel lampje bij aansluiten op het stopcontact", 1, "Fout bij het opstarten.", ["Haal de stekker 10 seconden uit het stopcontact en steek hem er weer in."])
   ]});
 })();
+(() => {
+  SRC.jasicEvoMig = ["Jasic (Wilkinson Star) – Operator's manual EVO MIG EM-200CT / EM-250CT PFC, Troubleshooting Error Codes (PDF, Engels)", "https://cdn.shopify.com/s/files/1/0515/8305/8084/files/evo200man_f27ccb97-9077-4387-a4c2-75697a848f30.pdf"];
+  MODELS.push({ id: "jasic-evo-mig", brand: "Jasic", name: "EVO MIG-lasapparaat (EM-200CT / EM-250CT): foutcode E10 t/m E61", dev: "EVO MIG-lasapparaat", cat: "gereedschap", years: "Jasic EVO MIG EM-200CT PFC en EM-250CT PFC", unit: null, also: "Jasic E10, Jasic E31, Jasic E60 oververhit, Jasic E61, Jasic lasapparaat foutcode, Jasic EVO MIG geel lampje, Jasic FAL", intro: "Een Jasic EVO MIG-lasapparaat toont een E-code bij een beveiliging. E60 en E61 betekenen oververhit (laat hem aan staan om af te koelen), E31 t/m E34 een te lage of hoge netspanning en E10 overstroom.", weak: ["Lange laswerkzaamheden boven de inschakelduur.", "Lange of te dunne verlengkabel."], parts: [], tasks: [], src: ["jasicEvoMig"], faults: [
+    F("E10", "Overstroombeveiliging", 2, "De uitgang zit aan de maximale stroom van het apparaat.", ["Zet het apparaat uit en weer aan.", "Blijft het alarm, laat het nakijken door een erkende technicus."]),
+    F("E31", "Netspanning te laag", 1, "De netspanning is te laag.", ["Zet het lasapparaat uit en weer aan. Blijft het alarm, controleer de netspanning; is die goed, laat het apparaat nakijken door een erkende technicus."]),
+    F("E32", "Netspanning te hoog", 1, "De netspanning is te hoog.", ["Zet het lasapparaat uit en weer aan. Blijft het alarm, controleer de netspanning; is die goed, laat het apparaat nakijken door een erkende technicus."]),
+    F("E34", "Onderspanning omvormer", 2, "Te lage spanning in het omvormercircuit.", ["Zet het lasapparaat uit en weer aan. Blijft het alarm, controleer de netspanning; is die goed, laat het apparaat nakijken door een erkende technicus."]),
+    F("E60", "Oververhit (gelijkrichter)", 1, "De uitgangsgelijkrichter is te warm.", ["Laat het apparaat aan staan zodat de ventilatoren het afkoelen; las verder als de code weg is. Controleer of de ventilatoren draaien en las met kortere tussenpozen (lagere inschakelduur)."]),
+    F("E61", "Oververhit (IGBT)", 1, "Het IGBT-circuit van de omvormer is te warm.", ["Laat het apparaat aan staan zodat de ventilatoren het afkoelen; las verder als de code weg is. Controleer of de ventilatoren draaien en las met kortere tussenpozen (lagere inschakelduur)."]),
+    N("VRD-lampje rood en geen lasstroom", 2, "De spanningsverlaging (VRD) werkt niet goed: de spanning is te hoog of te laag.", ["Zet het apparaat uit en weer aan.", "Blijft het, laat het nakijken door een erkende technicus."]),
+    N("FAL op het display", 1, "Geen storing: de draadloze afstandsbediening is losgekoppeld.", ["Koppel de afstandsbediening opnieuw als je hem wilt gebruiken."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
