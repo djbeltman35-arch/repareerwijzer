@@ -12467,4 +12467,22 @@ Object.assign(SRC,{ atlasGaTrouble: ["Atlas Copco – Air compressor troubleshoo
     ]});
 }
 MODELS.find(m => m.id === "einhell-compressor").cat = "compressoren";
+Object.assign(SRC,{ suzukiDf115b: ["Suzuki Marine – owner's manual DF115B/DF140B, Caution System (Engelstalig)", "https://www.suzukimarine.com/wp-content/uploads/manuals/owner/99011-99L10-03B-DF115B-140B-downloaded.pdf"] });
+{ const DEALER = "Komt de melding terug? Neem contact op met een erkende Suzuki Marine-dealer.";
+  MODELS.push({ id: "suzuki-buitenboordmotor", brand: "Suzuki", name: "Buitenboordmotor (DF115B, DF140B en vergelijkbaar)", dev: "buitenboordmotor", cat: "boten", years: "DF-viertakt met waarschuwingslampjes en zoemer", unit: null, also: "Suzuki buitenboordmotor TEMP lampje, Suzuki OIL lampje, Suzuki REV LIMIT, Suzuki CHECK ENGINE knippert",
+    intro: "Suzuki-buitenboordmotoren waarschuwen met de lampjes REV LIMIT, OIL, TEMP en CHECK ENGINE en een zoemer. Bij een ernstige melding beperkt de motor zelf het toerental. Bij het aanzetten branden alle lampjes kort en piept de zoemer twee seconden; dat is een test.",
+    weak: ["Een verstopte koelwaterinlaat (zeewier, plastic) geeft de TEMP-melding."], parts: [],
+    tasks: [{ w: "Als het OIL-lampje knippert", t: "Motorolie verversen en de herinnering resetten" }],
+    src: ["suzukiDf115b"], faults: [
+      N("TEMP-lampje en zoemer: motor te warm", 1, "Te weinig koeling. Boven 2000 tpm gaat het toerental terug naar ongeveer 2000 tpm; draait de motor door, dan stopt hij na 3 minuten.", ["Ga direct langzamer varen en kijk of er water uit het controlegaatje spuit.", "Geen water: zet de motor uit, kantel hem omhoog en haal zeewier, plastic of zand uit de waterinlaten.", "Laat de motor zakken, start en controleer of er weer water komt en het lampje uitgaat; laat hem in neutraal draaien tot de melding weg is.", "Trim de motor niet te ver uit: dan komen de inlaten boven water.", DEALER]),
+      N("OIL-lampje en zoemer: te lage oliedruk", 2, "De oliedruk is te laag. Boven 1000 tpm gaat het toerental terug; draait de motor door, dan stopt hij na 3 minuten.", ["Zet de motor uit zodra het veilig is.", "Controleer het oliepeil en vul bij als het te laag is.", "Is het peil goed? Neem contact op met de dealer."]),
+      N("REV LIMIT-lampje: te hoog toerental", 1, "Het toerental was langer dan 10 seconden te hoog; de motor gaat terug naar ongeveer 3000 tpm.", ["Zet de gashendel ongeveer een seconde in stationair om te resetten.", "Gebeurt het bij normaal vol gas, met de juiste schroef en zonder te ver uit te trimmen? " + DEALER]),
+      N("REV LIMIT-lampje knippert: water in de brandstof", 1, "Er zit te veel water in het brandstoffilter/de waterafscheider. In neutraal piept de zoemer drie keer.", ["Zet de motor uit zodra het veilig is.", "Controleer het brandstoffilter met waterafscheider en maak het schoon volgens de handleiding.", DEALER]),
+      N("CHECK ENGINE-lampje en zoemer: accuspanning te laag", 1, "De accuspanning is zo laag dat de motor slechter loopt.", ["Gebruik even geen stroomverbruikers zoals de powertrim, trimflaps of jackplate.", "De melding gaat vanzelf uit als de spanning herstelt.", DEALER]),
+      N("CHECK ENGINE-lampje knippert met zoemer: sensorfout", 3, "Een sensor geeft een afwijkend signaal. De motor draait in een noodstand met beperkt toerental.", ["Vaar rustig naar de wal.", "Laat de motor nakijken door een erkende Suzuki Marine-dealer."]),
+      N("CHECK ENGINE knippert bij keyless: sleutel niet herkend of batterij leeg", 1, "De keyless-sleutel wordt niet herkend, de batterij van de sleutel is bijna leeg of de spanning van de besturing is te laag.", ["Houd de sleutel binnen 1 meter van de besturingskast, niet onder metaal, en zet hem op communicatie AAN.", "Vervang de batterij van de sleutel (CR2025).", "Controleer de 12V-accu en de accupolen.", DEALER]),
+      N("OIL-lampje knippert: olie verversen", 1, "Geen storing: het aantal draaiuren voor een olieverversing is bereikt.", ["Ververs de motorolie en reset daarna de herinnering volgens de handleiding."]),
+      N("Zoemer piept drie keer bij afslaan", 1, "De motor is afgeslagen; de zoemer meldt dat.", ["Zoek uit waarom de motor afsloeg (brandstof, koeling, olie) en start opnieuw."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
