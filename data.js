@@ -15391,4 +15391,13 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(N("Terugzetten naar fabrieksinstellingen",1,"Je wilt de instellingen terugzetten.",["Zet de machine aan (lampje brandt continu) en zorg dat de capsule is uitgeworpen.", "Sluit de kop met de hendel ontgrendeld.", "Druk binnen 3 seconden vijf keer op de knop; de knop knippert vijf keer oranje en brandt daarna wit."]));
   m.faults.push(N("Machine legen voor opslag, vorst of reparatie",1,"De machine moet worden geleegd.",["Leeg het waterreservoir, haal de stekker eruit, werp de capsule uit en leeg capsulebak, lekbak en kopsteun.", "Houd de knop ingedrukt terwijl je de stekker weer insteekt tot het legen begint (ongeveer 30 seconden); daarna gaat de machine vanzelf uit."]));
 })();
+(() => {
+  SRC.nespPixieAe=["Nespresso – machine assistance Pixie (Engels)","https://www.nespresso.com/ae/en/machine-assistance/pixie-machine-assistance-1"];
+  const m=MODELS.find(x=>x.id==="nespresso-pixie"); m.src.push("nespPixieAe");
+  m.faults.push(N("Geen lampje",1,"Geen stroom.",["Controleer stroomvoorziening, stekker, spanning en zekering.", "Blijft het probleem: neem contact op met de Nespresso Club."]));
+  m.faults.push(N("Koffie niet heet genoeg",1,"Het kopje is koud of de machine moet worden ontkalkt.",["Verwarm het kopje voor.", "Ontkalk de machine indien nodig."]));
+  m.faults.push(N("Lekkage bij de capsule (water in de capsulebak)",1,"De capsule zit niet goed.",["Plaats de capsule goed.", "Blijft het lekken: neem contact op met de Nespresso Club."]));
+  m.faults.push(N("Onregelmatig knipperen",2,"Een storing die Nespresso zelf moet bekijken.",["Neem contact op met de Nespresso Club."]));
+  m.faults.push(N("Alleen water, geen koffie (met capsule erin)",2,"Een storing die Nespresso zelf moet bekijken.",["Neem contact op met de Nespresso Club."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
