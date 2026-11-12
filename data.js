@@ -14976,4 +14976,14 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("2981","Maximaal aantal vergrendelende storingen bereikt",3,"Veiligheidsblokkering na code 2980. Alleen een vakman of de servicedienst mag die opheffen.",[I]),
   ]});
 })();
+(() => {
+  SRC.vaillantAtmomag=["Vaillant – gebruiksaanwijzing atmoMAG (MAG ...4/1 Z, MAG mini ...4/1 Z)","https://www.vaillant.be/api/download/product/nl/_atmomag_1175721.pdf"];
+  MODELS.push({ id:"vaillant-atmomag", brand:"Vaillant", name:"atmoMAG geiser: geen warm water", dev:"geiser", cat:"cv-ketels", years:"MAG ...4/1 Z, MAG mini ...4/1 Z", unit:null,
+  intro:"De Vaillant atmoMAG is een geiser met een waakvlam en heeft geen display met foutcodes. Volgens Vaillant is er een storing als de geiser geen warm water levert.",
+  weak:[], parts:[], tasks:[], src:["vaillantAtmomag"],
+  faults:[
+    N("Geiser levert geen warm water",1,"De waakvlam (ontstekingsvlam) is uitgegaan.",["Kijk door het kijkglas of de waakvlam nog brandt.","Is de waakvlam uit: schakel de geiser opnieuw in volgens de gebruiksaanwijzing.","Gaat de waakvlam meermaals uit of komt er geen warm water: neem contact op met een installateur."]),
+    N("Geiser geblokkeerd door een veiligheidsinrichting",1,"Een veiligheidsinrichting heeft de geiser uitgeschakeld.",["Wacht ongeveer 10 minuten en neem de geiser dan opnieuw in gebruik.","Gebeurt dit meermaals of start de geiser niet: neem contact op met een installateur.","Gebruik de geiser pas weer als de installateur de storing heeft verholpen."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
