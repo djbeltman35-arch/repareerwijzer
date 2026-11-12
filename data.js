@@ -14611,4 +14611,24 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Geen crèmalaag", 1, "Oude koffiebonen.", ["Gebruik versgebrande bonen, 5 tot 20 dagen na de branddatum."])
   ]});
 })();
+(() => {
+  SRC.sageSES985 = ["Sage – Handleiding the Oracle Jet SES985, Problemen oplossen (PDF, meertalig incl. NL)", "https://assets.sageappliances.com/BES985/SES985_EU_UG8_C26.pdf"];
+  MODELS.push({ id: "sage-oracle-jet", brand: "Sage", name: "Oracle Jet: storingen molen, zetgroep en stoom", dev: "Oracle Jet volautomatische espressomachine", cat: "koffiemachines", years: "Sage the Oracle Jet SES985", unit: null, also: "Sage Oracle Jet molen draait continu, Oracle Jet geen water, Oracle Jet motor oververhit, Oracle Jet portafilter te vol, Oracle Jet geen stoom, Oracle Jet wifi verbindt niet", intro: "De meeste storingen van de Sage Oracle Jet zitten in de molen (geen bonen, verstopping, vocht) of in het water (reservoir leeg of niet vergrendeld, pomp oververhit). Noodstop: draai de portafilter naar links of trek de stekker eruit.", weak: ["Verstopte of vochtige maalelementen.", "Aandrukelement niet teruggeplaatst na reinigen.", "Te zacht (gedemineraliseerd) water."], parts: [], tasks: [], src: ["sageSES985"], faults: [
+    N("Motor draait maar er komt geen gemalen koffie", 1, "Geen bonen of molen/bonenhouder geblokkeerd.", ["Vul de bonenhouder met verse bonen.", "Haal de bonenhouder eraf en controleer bonenhouder en maalelementen op verstoppingen."]),
+    N("Motor draait met luid ratelend geluid", 1, "Vreemd voorwerp in de molen, vulklep geblokkeerd of vocht.", ["Haal de bonenhouder eraf, controleer de maalelementen en verwijder vreemde voorwerpen.", "Maak maalelementen en maaluitlaat schoon en laat ze goed drogen (eventueel met een haardroger)."]),
+    N("Motor oververhit", 1, "De molenmotor is te warm.", ["Zet het apparaat uit, haal de stekker eruit en laat het 5 minuten rusten."]),
+    N("Molen draait continu", 1, "Geen bonen of aandrukelement verwijderd.", ["Vul bonen bij.", "Draai de portafilter naar links om malen, doseren en aandrukken te stoppen.", "Controleer of het aandrukelement goed op de aandrijfas zit."]),
+    N("Portafilter raakt te vol", 1, "Het aandrukelement is na reiniging niet teruggeplaatst.", ["Controleer of het aandrukelement goed gemonteerd is en op de aandrijfas zit."]),
+    N("Bonenhouder gaat niet op slot", 1, "Bonen blokkeren het vergrendelmechanisme.", ["Haal de bonencontainer eraf, verwijder bonen van de maalelementen en vergrendel opnieuw."]),
+    N("Koffie heel grof, ook op lage maalstand", 1, "Bovenste maalelement niet goed uitgelijnd.", ["Zet de maalknop op een grove stand (bijv. 45) en haal het bovenste maalelement eruit.", "Maak beide maalelementen schoon, lijn de stippen uit en draai het element met de klok mee terug.", "Zet de maalknop terug op de oude stand."]),
+    N("Geen water uit de zetgroep", 1, "Reservoir leeg of niet vergrendeld, pomp oververhit of diffusorplaat verkeerd.", ["Vul het reservoir en spoel 30 seconden via de zetgroep en 30 seconden via heet water.", "Duw het reservoir volledig vast.", "Bij veel kopjes achter elkaar: zet uit, stekker eruit en laat afkoelen.", "Controleer of de waterdiffusorplaat goed om zit."]),
+    N("Pompen blijven werken, stoom erg nat of heetwateruitloop lekt", 1, "Gebruik van sterk gefilterd, gedemineraliseerd of gedestilleerd water.", ["Gebruik koud, gefilterd water met normaal mineraalgehalte.", "Blijft het probleem, neem contact op met de Sage-klantenservice."]),
+    N("Apparaat staat aan maar werkt niet", 2, "De machine hangt.", ["Zet hem uit, haal de stekker eruit, sluit weer aan en zet hem aan.", "Blijft het probleem, neem contact op met de Sage-klantenservice."]),
+    N("Geen stoom of heet water en geen foutmelding", 2, "Mogelijk probleem met een ventiel.", ["Laat afkoelen, stekker eruit, portafilter eruit; sluit weer aan en test.", "Blijft het probleem, neem contact op met de Sage-klantenservice."]),
+    N("Espresso loopt langs de rand van de portafilter", 1, "Portafilter niet goed vast.", ["Draai de portafilter naar rechts tot de hendel voorbij het midden staat.", "Blijft het probleem, neem contact op met de Sage-klantenservice."]),
+    N("Espresso druppelt alleen", 1, "Te fijn gemalen of kalk.", ["Stel de maalgraad grover in.", "Voer het ontkalkingsprogramma uit."]),
+    N("Kan niet verbinden met wifi", 1, "Verkeerd wachtwoord of zwak signaal.", ["Haal de stekker eruit en sluit weer aan.", "Voer de wifi-gegevens opnieuw in en zet de router dichterbij."]),
+    N("Water in de lekbak", 1, "Normaal: automatische doorspoeling bij opstarten en na stomen.", ["Niets doen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
