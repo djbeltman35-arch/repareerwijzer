@@ -16189,4 +16189,23 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(N("App: Backplate tag broken",2,"De laadpaal kan de tag van de achterplaat niet lezen; de laadpaal zelf is niet defect.",["Neem contact op met de klantenservice van Easee."]));
   m.faults.push(N("App: Oops! Something is wrong!",2,"Er is een onbekende fout opgetreden.",["Neem contact op met de klantenservice van Easee."]));
 })();
+(() => {
+  SRC.tefalXp45=["Tefal/Rowenta – User manual and FAQ X-Plorer Serie 45 RG8275 (Engels)","https://www.tefal.com/instructions-for-use/csp/2211401165"];
+  SRC.tefalXp75=["Tefal/Rowenta – User manual and FAQ X-PLORER Serie 75 S RG8575 (Engels)","https://www.tefal.com/instructions-for-use/csp/2211401091"];
+  MODELS.push({ id:"rowenta-x-plorer", brand:"Rowenta", name:"X-plorer robotstofzuiger (Serie 45, 75): storingen en lampjes", dev:"X-plorer robotstofzuiger", cat:"stofzuigers", years:"X-plorer Serie 45 en Serie 75 (ook als Tefal)", unit:null,
+  also:"Tefal X-plorer",
+  intro:"De X-plorer-robotstofzuigers van Rowenta en Tefal geven een fout aan met een knipperend lampje en piepjes; de betekenis van de codes staat in de handleiding. Dit zijn de storingen die de fabrikant in de FAQ behandelt.",
+  weak:[], parts:[], tasks:[], src:["tefalXp45","tefalXp75"],
+  faults:[
+    N("Robot start niet",1,"De schakelaar aan de onderkant staat niet op ON, of de accu is leeg.",["Zet de schakelaar aan de onderkant op ON.", "Is het display uit: laad de robot op in het basisstation."]),
+    N("Lampje knippert en robot piept",2,"De robot meldt een fout.",["Zoek de foutcode op in de gebruiksaanwijzing van je model."]),
+    N("Robot vindt het laadstation niet",1,"Het station staat op een kleed, in de zon, bij een warmtebron of er staat iets in de weg, of het station heeft geen stroom.",["Zet het station tegen een muur op een vlakke vloer, niet op een kleed of bij de trap.", "Houd 0,5 m vrij aan de zijkanten en 1,5 m aan de voorkant.", "Controleer of stekker en voeding aangesloten zijn en of het lampje van het station groen is."]),
+    N("Automatisch opladen werkt niet goed",1,"Slecht contact of vuile sensoren.",["Zet de hoofdschakelaar uit en weer aan en steek de kabel van het station opnieuw in.", "Maak de laadcontacten en sensorvensters schoon met een droge doek (eerst uitschakelen).", "Haal reflecterende voorwerpen en stoelen bij het station weg."]),
+    N("Robot keert niet terug naar het station",1,"Hij startte niet vanaf het station, maaide in Spot-modus, of is opgetild en kon zich niet herlokaliseren; dan gaat hij terug naar zijn startpunt.",["Start de robot vanaf het station."]),
+    N("Wifi-lampje rood",1,"De robot heeft geen verbinding met je internetmodem.",["Controleer je modem.", "Zet de robot uit en aan (knop 3 s ingedrukt houden) en wacht twee minuten.", "Lukt het niet: reset de robot en verwijder hem in de app om opnieuw te koppelen."]),
+    N("Hoofdborstel stopt",1,"De beveiliging is actief; de robot probeert de borstel vrij te maken. Op dik tapijt kan de borstel ook stoppen terwijl de robot doorzuigt.",["Lukt het vrijmaken niet, dan schakelt de robot uit: maak de borstel handmatig vrij."]),
+    N("Robot heeft vloeistof opgezogen",2,"Er is per ongeluk vloeistof opgezogen.",["Zet de robot direct uit.", "Haal stofbak, filter en hoofdborstel eruit en laat alles volledig drogen voordat je ze terugplaatst."]),
+    N("Robot resetten",1,"Je wilt de robot terugzetten.",["Zet de robot uit (knop 3 s ingedrukt).", "Houd de knop 20 s ingedrukt terwijl hij uit staat; een dubbele piep bevestigt de reset."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
