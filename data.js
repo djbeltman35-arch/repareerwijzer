@@ -14504,4 +14504,32 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Druk onder 0,5 bar", 1, "Te weinig water in de installatie.", ["Vul de installatie bij tot de druk tussen 1 en 2 bar ligt."]),
   ]});
 })();
+(() => {
+  SRC.bulexOpaliaF = ["Bulex – Installatie- en onderhoudshandleiding Opalia F, overzicht foutcodes en verhelpen van storingen (PDF, meertalig)", "https://www.bulex.be/opalia/0020262150-01-1745909.pdf"];
+  MODELS.push({ id: "bulex-opalia-f", brand: "Bulex", name: "Opalia F geiser: foutcodes F.00 t/m F.85", dev: "Opalia F gasgeiser", cat: "cv-ketels", years: "Bulex Opalia F (gesloten geiser met ventilator)", unit: null, also: "Bulex Opalia F.28, Opalia geiser storing, Opalia F.29 vlam uit, Opalia F.20, Bulex geiser geen warm water, Opalia ontstoringstoets", intro: "De Bulex Opalia F-geiser toont een F met twee cijfers. Probeer eerst de warmwaterkraan een paar keer open en dicht te doen, de geiser uit en aan te zetten en op de ontstoringstoets te drukken. Bij F.20 wacht je 10 minuten.", weak: ["Ontsteking mislukt (F.28).", "Lucht in de gasleiding na werkzaamheden.", "Te weinig doorstroming aan de kraan."], parts: [], tasks: [], src: ["bulexOpaliaF"], faults: [
+    F("F.00", "Onderbreking uitloopsensor", 2, "Onderbreking in de kabelboom of de sensor.", ["Probeer eerst: open en sluit een paar keer de warmwaterkraan, zet de geiser uit en weer aan en druk op de ontstoringstoets.", "Laat een installateur dit controleren en verhelpen."]),
+    F("F.10", "Kortsluiting uitloopsensor", 2, "Temperatuurvoeler defect of kortsluiting in de kabelboom.", ["Probeer eerst: open en sluit een paar keer de warmwaterkraan, zet de geiser uit en weer aan en druk op de ontstoringstoets.", "Laat een installateur dit controleren en verhelpen."]),
+    F("F.20", "Temperatuurbegrenzer: veiligheidsuitschakeling", 2, "Een veiligheidsinrichting heeft de geiser uitgeschakeld, of er is een onderbreking in de kabelboom.", ["Wacht 10 minuten en neem de geiser dan opnieuw in gebruik.", "Blijft de storing, laat een installateur hem verhelpen."]),
+    F("F.26", "Onderbreking modulatiespoel gasdrukregelaar", 3, "Onderbreking of kortsluiting in de kabelboom, losse kabels, gasblok of printplaat defect.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.27", "Veiligheidsuitschakeling vlamsimulatie", 3, "Gasmagneetventiel lekt, vocht op de printplaat of bewakingselektrode defect.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.28", "Ontsteking mislukt", 2, "Gastoevoer onderbroken, te lage gasdruk, gasblok of ontsteking defect, ionisatiestroom onderbroken, foute aarding, te weinig verbrandingslucht of afvoer geblokkeerd.", ["Controleer of de gaskraan open staat.", "Probeer eerst: open en sluit een paar keer de warmwaterkraan, zet de geiser uit en weer aan en druk op de ontstoringstoets.", "Laat een installateur dit controleren en verhelpen."]),
+    F("F.29", "Vlam gaat uit tijdens bedrijf", 2, "Gastoevoer onderbroken, te lage gasdruk, gasblok of ontsteking defect, foute aarding of printplaat defect.", ["Controleer of de gaskraan open staat.", "Probeer eerst: open en sluit een paar keer de warmwaterkraan, zet de geiser uit en weer aan en druk op de ontstoringstoets.", "Laat een installateur dit controleren en verhelpen."]),
+    F("F.33", "Storing drukschakelaar", 3, "Ventilator defect, verschildrukschakelaar defect, kabelboom onderbroken, printplaat defect of afvoer geblokkeerd.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.42", "Fout codeerweerstand", 3, "De codeerweerstand voor het vermogen ontbreekt of is verkeerd.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.45", "Onderbreking koudwatersensor", 2, "Koudwatersensor defect of onderbreking in de kabelboom.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.46", "Kortsluiting koudwatersensor", 2, "Koudwatersensor defect of kortsluiting in de kabelboom.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.49", "Fout eBUS", 2, "Overbelasting, kortsluiting of verkeerde polariteit op de eBUS-aansluiting.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.61", "Aansturingsfout gasveiligheidsklep", 3, "Kortsluiting in de kabelboom naar het gasblok, gasblok of printplaat defect.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.62", "Verbindingsfout gasveiligheidsklep", 3, "Gasblok, printplaat of ontstekingselektrode defect.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.63", "Fout EEPROM", 3, "De printplaat is defect.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.64", "Fout elektronica/NTC", 3, "Kortsluiting van de aanvoer- of retourvoeler, of printplaat defect.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.67", "Storing elektronica/vlam", 3, "Vlamsignaal niet aannemelijk, printplaat defect of storing in het rookgastraject.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.70", "Ongeldige toestel-ID", 3, "De toestelidentificatie (DSN) is niet of verkeerd ingesteld.", ["Laat een installateur dit controleren en verhelpen."]),
+    F("F.85", "Temperatuurvoelers verkeerd gemonteerd", 3, "Aanvoer- en retourvoeler zitten op dezelfde of verkeerde buis (verwisseld).", ["Laat een installateur dit controleren en verhelpen."]),
+    N("Geen warm water", 1, "Lucht in de gasleiding, te weinig doorstroming (onder 2,5 l/min), geen stroom, of het koude water is al warmer dan ingesteld of de beveiliging tegen verbranding (boven 70 °C) is actief.", ["Open en sluit een paar keer de warmwaterkraan.", "Zet de kraan verder open.", "Controleer of de stekker in het stopcontact zit en de geiser aan staat.", "Wacht tot de watertemperatuur gedaald is."]),
+    N("Fluitend geluid tijdens gebruik", 2, "Ongelijkmatige gasstroom of te lage gasdruk.", ["Laat de gasdruk door een vakman controleren."]),
+    N("Water te heet of wisselt tussen koud en warm", 1, "Te weinig doorstroming; geen storing.", ["Zet de warmwaterkraan verder open."]),
+    N("Damp uit de afvoer, wit water of ventilator draait na", 1, "Normaal: condens in koude lucht, opgeloste lucht in het water, of de ventilator voert nog rookgas af.", ["Niets doen."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
