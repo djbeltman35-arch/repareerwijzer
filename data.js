@@ -12662,4 +12662,18 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("PerfectCare 9000: lampje wisselt tussen blauw en wit", 1, "Geen storing: het lampje geeft de stand aan. Blauw is de optimale stand voor bijvoorbeeld zijde en polyester, wit betekent meer temperatuur en stoom voor dikkere stoffen.", ["Je hoeft niets te doen; het strijkijzer past zich automatisch aan de stof aan."])
   ]});
 })();
+(() => {
+  SRC.philipsSmartPro = ["Philips Support – My Philips SmartPro Compact robot's error light flashes (Engels)", "https://www.philips.com.au/c-t/XC000002545/my-philips-smartpro-compact-robot-s-error-light-flashes"];
+  MODELS.push({ id: "philips-smartpro-compact", brand: "Philips", name: "SmartPro Compact robotstofzuiger: foutlampje knippert", dev: "SmartPro Compact robotstofzuiger", cat: "stofzuigers", years: "Philips SmartPro Compact (o.a. FC8700, FC8710, FC8776)", unit: null, also: "Philips robot foutlampje knippert, Philips SmartPro Compact rood lampje, Philips robotstofzuiger rijdt raar, Philips robot laadt niet op dock, Philips SmartPro bumper", intro: "Knippert het waarschuwingslampje van de Philips SmartPro Compact, dan zit er meestal iets vast (wiel, zijborstel, bumper), ontbreekt de bovenklep of werd hij opgetild. Ook een donkere of glimmende vloer kan de robot in de war brengen.", weak: ["Haren en draden om de wielen.", "Donkere vloeren en fel zonlicht."], parts: [], tasks: [], src: ["philipsSmartPro"], faults: [
+    N("Foutlampje knippert: wiel zit vast", 1, "Een of beide wielen zitten vast.", ["Zet de aan/uitschakelaar op uit.", "Verwijder pluizen, haren, draden of snoeren rond de wielophanging."]),
+    N("Foutlampje knippert: zijborstel zit vast", 1, "Een of beide zijborstels zitten vast.", ["Maak de zijborstels schoon."]),
+    N("Foutlampje knippert: bovenklep ontbreekt", 1, "De bovenklep ontbreekt of is niet goed gesloten; zonder klep werkt de robot niet.", ["Zet de bovenklep er goed op."]),
+    N("Foutlampje knippert: bumper zit vast", 1, "De bumper is blijven hangen.", ["Druk op de aan/uitknop om de robot te stoppen en til hem op zodat de bumper loskomt."]),
+    N("Foutlampje knippert na optillen", 1, "De robot is tijdens het schoonmaken opgetild.", ["Druk op de aan/uitknop om te stoppen en druk nog een keer om weer te beginnen."]),
+    N("Robot rijdt vreemd op een donkere vloer", 1, "Op een donkere of zwarte vloer slaan de valsensoren aan.", ["Stop de robot en zet hem op een lichter stuk vloer.", "Gebeurt het ook op lichte vloeren, maak de sensoren aan de onderkant schoon en neem anders contact op met Philips."]),
+    N("Robot rijdt vreemd in fel zonlicht", 1, "Zonlicht dat sterk op de vloer weerkaatst, verstoort de sensoren.", ["Doe de gordijnen dicht tijdens het schoonmaken."]),
+    N("Robot doet niets: accu niet goed geplaatst", 1, "De oplaadbare accu zit niet goed.", ["Plaats de accu opnieuw volgens de handleiding."]),
+    N("Robot laadt niet op het dock", 1, "De aan/uitschakelaar staat op uit terwijl de robot op het dock staat.", ["Zet de aan/uitschakelaar op aan."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
