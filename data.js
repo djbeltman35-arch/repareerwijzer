@@ -12574,4 +12574,13 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Fout-LED brandt continu", 2, "De lader zelf is te warm.", ["Laat de lader afkoelen op een koele plek.", "Blijft de fout-LED branden, neem contact op met de GARDENA-service."])
   ]});
 })();
+(() => {
+  MODELS.find(m => m.id === "mammotion-luba-2").faults.push(
+    N("Zijlampje knippert snel rood", 1, "Accu bijna leeg, bumper geraakt, de maaier zit vast, RTK-plaatsbepaling mislukt of de maaier is opgetild, gekanteld of omgevallen.", ["Kijk in de app welke melding erbij staat en los die op (maaier vrijmaken, rechtzetten of laten laden)."]),
+    N("Zijlampje knippert heel snel rood", 2, "De update is mislukt of er is een systeemfout.", ["Herstart de LUBA en probeer de update opnieuw via de app.", "Komt het terug, neem contact op met de Mammotion-klantenservice."]),
+    N("Zijlampje knippert langzaam rood", 1, "De noodstop is ingedrukt, of de LUBA staat te laden.", ["Staat hij niet op het laadstation, ontgrendel de noodstop via het bedieningspaneel en de app."]),
+    N("Visiemodule brandt rood", 2, "Zowel de RTK- als de camera-plaatsbepaling werkt niet.", ["Zet de LUBA op een open plek met goed zicht op de lucht en het RTK-station.", "Maak de camera schoon.", "Komt het terug, neem contact op met de Mammotion-klantenservice."]),
+    N("Laadstation of RTK-station brandt rood", 2, "Er is een fout in het laadstation of het RTK-referentiestation.", ["Controleer de voeding en kabels van het station en haal de stekker er even uit.", "Komt het terug, neem contact op met de Mammotion-klantenservice."])
+  );
+})();
 module.exports = { CATS, MODELS, SRC, COST };
