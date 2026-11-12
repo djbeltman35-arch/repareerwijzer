@@ -16581,4 +16581,31 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Rookgaslucht",3,"Te weinig water in de sifon.",["Vul de sifon."]),
   ]});
 })();
+(() => {
+  SRC.crealityK1=["Creality Wiki – K1 Series Error Code Summary","https://wiki.creality.com/en/k1-flagship-series/k1-series-general-documents/error-code-summary"];
+  MODELS.push({ id:"creality-k1", brand:"Creality", name:"K1-serie 3D-printer: foutcodes (Key 101 t/m 2565)", dev:"K1 3D-printer", cat:"3d-printers", years:"Creality K1, K1C, K1 Max", unit:null,
+  intro:"De Creality K1-serie toont op het scherm 'Key' met een nummer. Staat jouw code er niet bij, dan adviseert Creality het logbestand te exporteren en naar de klantenservice te sturen.",
+  weak:[], parts:[], tasks:[], src:["crealityK1"],
+  faults:[
+    F("101","AI ziet 'spaghetti' en pauzeert de print",1,"Tijdens het printen ziet de AI een spaghetti-effect. Mogelijke oorzaken: gekleurd filament dat de detectie ten onrechte activeert, of een mislukte print.",["Is het een valse melding of zie je zelf dat het goed gaat: ga verder met printen via het scherm, de slicer of Creality Cloud.", "Mislukt de print: maak de printer schoon en start opnieuw.", "Je kunt de functie uitzetten via Systeeminstellingen – Camera – AI-functie."]),
+    F("103","AI ziet een probleem in de eerste laag en pauzeert",1,"De controle van de eerste laag is afwijkend. Mogelijke oorzaken: de eerste laag is mislukt, of een valse melding.",["Is het een valse melding of zie je zelf dat het goed gaat: ga verder met printen via het scherm, de slicer of Creality Cloud.", "Mislukt de print: maak de printer schoon en start opnieuw.", "Je kunt de functie uitzetten via Systeeminstellingen – Camera – AI-functie."]),
+    F("501","Storing hotend-koelventilator (heat break fan)",2,"De ventilator van de hotend werkt niet goed: losse kabelaansluiting, ventilator geblokkeerd bij montage, of ventilator kapot.",["Haal de hotendkap en de sproeierplaat eraf en kijk of schroeven van het koelblok in de ventilator zijn gevallen; draai de schroeven van de ventilator vast.", "Steek de stekker van de ventilator opnieuw in.", "Vervang de ventilator."]),
+    F("505","AI-lidar afwijking",2,"De lidar wordt niet gevonden (alleen een melding).",["Controleer de kabelverbindingen naar de lidar.", "Vervang de lidar."]),
+    F("2000","Onbekende fout: MCU gesloten",2,"De MCU-configuratie kan niet worden bijgewerkt omdat de MCU gesloten is.",["Herstart eerst.", "Controleer de verbinding."]),
+    F("2001","Onbekende fout: communicatie met hotend",2,"Het driver-IC van de E-as kan niet worden uitgelezen (time-out), of de verbindingskabel tussen moederbord en hotend maakt slecht contact of heeft storing.",["Laat de hotendprint vervangen.", "Laat de hotendkabel vervangen."]),
+    F("2014","Beweging buiten bereik in het printbestand",1,"De afstand in het printbestand is negatief of groter dan de hele bewegingslengte. Oorzaak: probleem met het printbestand (geen officiële slicer of verkeerd model gekozen) of een systeemfout.",["Controleer of je de officiële slicer gebruikt, of het profiel van de andere slicer officieel is en of het juiste printermodel is gekozen.", "Herstart de printer en print opnieuw."]),
+    F("2060","Storing hotendverbinding",2,"Storing in de verbinding met de hotend.",["Haal de stekker van de hotend los en sluit hem weer aan.", "Vervang de verbindingskabel van de hotend.", "Herstart."]),
+    F("2065","Fout ADXL345-register (versnellingssensor)",2,"Het register van de ADXL345 kan niet worden ingesteld; meestal een verbindingsprobleem of een defecte ADXL345-chip.",["Vervang de hotendprint."]),
+    F("2069","'M107 P3' in het printbestand",1,"Het slicebestand bevat de code M107 P3.",["Controleer of je de nieuwste versie van de slicer hebt en slice opnieuw."]),
+    F("2111","Extrusietemperatuur te laag",1,"De extrusietemperatuur is lager dan het minimum van de printer; in CrealityOS is dat 170 graden.",["Ligt het aan de slicer: gebruik de officiële slicer of het officiële profiel voor een andere slicer.", "Gaat het om fout 2507: stop de print en warm de sproeier op; volg bij melding 2507 de oplossing voor 2507."]),
+    F("2294","Time-out bij antwoord",2,"Er komt geen antwoord binnen de tijd.",["Exporteer het logbestand en neem contact op met Creality (cs@creality.com)."]),
+    F("2520","Time-out druksensor (HX711)",2,"Het uitlezen van de druksensor duurt te lang; mogelijke oorzaak: de sensorchip van de Z-as is afwijkend.",["Komt het vaak voor, neem contact op met Creality (cs@creality.com)."]),
+    F("2560","Communicatiefout met de hoofd-MCU",2,"De communicatie met de hoofd-MCU is verbroken.",["Controleer de bekabeling en herstart."]),
+    F("2561","Communicatiefout tussen hotend en MCU",2,"De communicatie tussen hotend en MCU is afwijkend.",["Controleer de bekabeling en herstart."]),
+    F("2562","Communicatiefout tussen verwarmd bed en MCU",2,"De communicatie tussen het verwarmde bed en de MCU is afwijkend.",["Controleer de bekabeling en herstart."]),
+    F("2563","Communicatiefout tussen rpi en MCU",2,"De communicatie tussen de rpi en de MCU is afwijkend.",["Controleer de bekabeling en herstart."]),
+    F("2564","Sproeier warmt niet op zoals verwacht",2,"De hotendverwarming staat aan, maar de temperatuur stijgt niet.",["Controleer het keramische verwarmingsblok en de bedrading en steek de stekkers opnieuw in.", "Is er iets beschadigd, neem contact op met Creality (cs@creality.com)."]),
+    F("2565","Verwarmd bed warmt niet op zoals verwacht",2,"De bedverwarming staat aan, maar de temperatuur stijgt niet.",["Steek de bedrading van het bed opnieuw in en controleer of de soldeerverbinding van de bedvoeding is losgeraakt.", "Is dat zo, neem contact op met Creality (cs@creality.com)."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
