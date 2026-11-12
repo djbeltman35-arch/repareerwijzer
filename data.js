@@ -14397,4 +14397,14 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Levert minder vermogen of schakelt af", 1, "De plek voldoet niet: te warm, te weinig ruimte of ventilatie.", ["Zorg voor 10 tot 15 cm vrije ruimte rondom, geen direct zonlicht en geen verwarming of omvormer er direct onder.", "De ruimte moet geventileerd zijn en minstens 6 m³ per Sessy hebben."]),
   ]});
 })();
+(() => {
+  SRC.volvoXC60phev = ["Volvo Cars – Support XC60 Plug-in Hybrid: charging status in the charging port (Engels)", "https://www.volvocars.com/us/support/car/xc60-plug-in-hybrid/article/a3d4c324d33d417cc0a8cc37744d76ea-ec8b59f1d33539aec0a8cc374c819eab-059c61879f5b4d80c0a8b0c163d5e0f7"];
+  MODELS.push({ id: "volvo-xc60-plug-in-hybride-laden", brand: "Volvo", name: "XC60 plug-in hybride: lampje bij de laadpoort", dev: "XC60 plug-in hybride", cat: "auto", years: "Volvo XC60 Plug-in Hybrid (nieuwere modeljaren met Google-systeem)", unit: null, also: "Volvo XC60 recharge laadlampje rood, XC60 plug-in hybride laadt niet, XC60 T6 T8 laadpoort geel, Volvo XC60 laadlampje groen knippert", intro: "Het lampje bij de laadpoort van een Volvo XC60 plug-in hybride vertelt wat er gebeurt. Geel betekent dat de kabel vastzit en het laden nog moet beginnen, groen pulserend dat hij laadt. Rood is een laadfout.", weak: ["Kabel niet goed vast.", "Laadpunt of stopcontact zonder stroom."], parts: [], tasks: [], src: ["volvoXC60phev"], faults: [
+    N("Lampje laadpoort rood", 2, "Laadfout.", ["Kijk op de displays voor meer informatie.", "Controleer of de kabel goed vastzit aan de auto en of het laadpunt of stopcontact stroom geeft.", "Haal de kabel los, sluit hem opnieuw aan en start het laden opnieuw.", "Blijft het, ga naar een erkende Volvo-werkplaats."]),
+    N("Lampje laadpoort geel", 1, "De kabel is aangesloten en het laden wacht om te beginnen (bijvoorbeeld door een ingesteld laadtijdstip).", ["Wachten, of controleer de laadinstellingen in de auto of app."]),
+    N("Lampje laadpoort groen pulserend", 1, "De auto laadt.", ["Niets doen."]),
+    N("Lampje laadpoort groen continu", 1, "Het laden is klaar.", ["Je kunt de kabel loskoppelen."]),
+    N("Lampje laadpoort wit", 1, "Welkomstverlichting.", ["Niets doen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
