@@ -138,7 +138,7 @@ const modelCard = m => { const codes = m.faults.filter(f => f.code).length; retu
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
-const CAT_ICON = { koffiemachines: "☕", wasmachines: "🧺", vaatwassers: "🍽️", drogers: "🌀", "cv-ketels": "🔥", ventilatie: "💨", warmtepompen: "♨️", airco: "❄️", koelkasten: "🧊", ovens: "🍕", kookplaten: "🍳", stofzuigers: "🧹", "e-bikes": "🚲", "3d-printers": "🖨️", tuin: "🌱", audio: "🔊", "kleine-apparaten": "🔌", laadpalen: "⚡", printers: "🖨️", laptops: "💻", smartphones: "📱", televisies: "📺", internet: "📶", spelcomputers: "🎮", zonnepanelen: "☀️", "camper-caravan": "🚐", aggregaten: "⚡", spa: "🛁", garagedeuren: "🚪", auto: "🚗", trapliften: "♿", scooters: "🛴", kachels: "🪵", waterontharders: "💧", boten: "⛵", meterkast: "🔋", vrachtwagens: "🚚", gereedschap: "🛠️", "slim-huis": "🏠", rookmelders: "🚨" };
+const CAT_ICON = { koffiemachines: "☕", wasmachines: "🧺", vaatwassers: "🍽️", drogers: "🌀", "cv-ketels": "🔥", ventilatie: "💨", warmtepompen: "♨️", airco: "❄️", koelkasten: "🧊", ovens: "🍕", kookplaten: "🍳", stofzuigers: "🧹", "e-bikes": "🚲", "3d-printers": "🖨️", tuin: "🌱", audio: "🔊", "kleine-apparaten": "🔌", laadpalen: "⚡", printers: "🖨️", laptops: "💻", smartphones: "📱", televisies: "📺", internet: "📶", spelcomputers: "🎮", zonnepanelen: "☀️", "camper-caravan": "🚐", aggregaten: "⚡", compressoren: "🛠️", spa: "🛁", garagedeuren: "🚪", auto: "🚗", trapliften: "♿", scooters: "🛴", kachels: "🪵", waterontharders: "💧", boten: "⛵", meterkast: "🔋", vrachtwagens: "🚚", gereedschap: "🛠️", "slim-huis": "🏠", rookmelders: "🚨" };
 const nl = n => n.toLocaleString("nl-NL");
 const stats = { models: nl(MODELS.length), codes: nl(allCodes.length), faults: MODELS.reduce((n, m) => n + m.faults.length, 0) };
 layout({
@@ -382,7 +382,7 @@ function adsFor(m) {
     case "auto": return ["acculader", "autoverkopen"];
     case "camper-caravan": return ["acculader", "camperverkopen"];
     case "boten": return ["acculader"];
-    case "aggregaten": return ["gereedschap", "bricoinn"];
+    case "aggregaten": case "compressoren": return ["gereedschap", "bricoinn"];
     case "e-bikes": return ["ebike", "bikeinn"];
     case "gereedschap": case "tuin": return ["gereedschap", "bricoinn"];
     case "scooters": return ["motardinn"];
