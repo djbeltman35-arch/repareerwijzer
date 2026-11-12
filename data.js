@@ -16055,4 +16055,30 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("192","Communicatiefout BMS 2",2,"Het batterijmanagementsysteem van accu 2 communiceert niet goed.",["Laat de scooter controleren door een NIU-dealer."]));
   m.faults.push(F("194","Communicatiefout BCS",2,"Er is een communicatiefout met de BCS.",["Laat de scooter controleren door een NIU-dealer."]));
 })();
+(() => {
+  SRC.haywardElpInv=["Hayward – installatie- en gebruikshandleiding EnergyLine Pro Inverter (ISENPINVR32 Rev B), § 6.4 probleemoplossing (NL-deel)","https://cdn.hayward.fr/production/media/8/1/1/9/daeb07.pdf"];
+  MODELS.push({ id:"hayward-energyline-pro-inverter", brand:"Hayward", name:"EnergyLine Pro Inverter zwembadwarmtepomp: foutcodes", dev:"EnergyLine Pro Inverter zwembadwarmtepomp", cat:"spa", years:"EnergyLine Pro Inverter", unit:null,
+  intro:"De Hayward EnergyLine Pro Inverter toont bij een storing een foutcode op het bedieningspaneel. P-codes zijn sensorfouten, E-codes beveiligingen en F-codes ventilatorfouten.",
+  weak:[], parts:[], tasks:[], src:["haywardElpInv"],
+  faults:[
+    F("P01","Sensorfout inlaatwatertemperatuur",2,"De sensor is open of kortgesloten.",["Laat de connector CN21/RES1 op de printplaat controleren en de sensor zo nodig verlengen of vervangen."]),
+    F("P02","Sensorfout uitlaatwatertemperatuur",2,"De sensor is open of kortgesloten.",["Laat de connector N22/RES2 op de printplaat controleren en de sensor zo nodig verlengen of vervangen."]),
+    F("P04","Sensorfout omgevingstemperatuur",2,"De sensor is open of kortgesloten.",["Laat de connector CN12/PH op de printplaat controleren en de sensor zo nodig verlengen of vervangen."]),
+    F("P05","Sensorfout ontdooiing",2,"De sensor is open of kortgesloten.",["Laat de connector CN8/OPT op de printplaat controleren en de sensor zo nodig verlengen of vervangen."]),
+    F("P07","Sensorfout compressor (aspiratie)",2,"De sensor is open of kortgesloten.",["Laat de connector CN7/OAT op de printplaat controleren en de sensor zo nodig verlengen of vervangen."]),
+    F("P081","Sensorfout compressor (aanzuig)",2,"De sensor is open of kortgesloten.",["Laat de connector CN9/OHT op de printplaat controleren en de sensor zo nodig verlengen of vervangen."]),
+    F("E01","Overdrukbeveiliging",2,"Hogedrukbeveiliging: onder meer te weinig waterdebiet, dichte kleppen, verkeerde bypass, vervuilde verdamper of te hoge watertemperatuur.",["Controleer het waterdebiet, of de kleppen open staan en de stand van de bypass.", "Komt de code terug: neem contact op met uw installateur of zwembadspecialist."]),
+    F("E02","Onderdrukbeveiliging",2,"Lagedrukbeveiliging: onder meer een lek in het koelcircuit, te weinig luchtdebiet of een vervuilde verdamper.",["Controleer of de ventilator vrij kan draaien en de verdamper schoon is.", "Neem contact op met uw installateur of zwembadspecialist."]),
+    F("E03","Fout debietmeter",1,"Te weinig water door de warmtepomp.",["Controleer de werking van de filterpomp.", "Controleer of de afsluitkleppen open staan en de stand van de bypass."]),
+    F("E06","Temperatuurverschil aanvoer/afvoer groter dan 13 °C",1,"Alleen in koelmodus: te weinig water door de warmtepomp.",["Controleer de filterpomp, de afsluitkleppen en de bypass."]),
+    F("E07","Vorstbeveiliging koelmodus",2,"De temperatuur van het afvoerwater is lager dan 4 °C; risico op bevriezing.",["Stop de warmtepomp en laat de condensor leeglopen."]),
+    F("E08","Communicatiefout",2,"Geen communicatie tussen de elektronische kaart en de gebruikersinterface.",["Laat de aansluitingen en connectoren controleren."]),
+    F("E19","Vorstbeveiliging niveau 1",1,"Watertemperatuur tussen 2 en 4 °C en luchttemperatuur onder 0 °C; de filterpomp start om bevriezing te voorkomen.",["Schakel de warmtepomp uit en laat de condensor leeglopen om bevriezing te voorkomen."]),
+    F("E29","Vorstbeveiliging niveau 2",1,"Watertemperatuur onder 2 °C en luchttemperatuur onder 0 °C; filterpomp en warmtepomp starten om bevriezing te voorkomen.",["Schakel de warmtepomp uit en laat de condensor leeglopen om bevriezing te voorkomen."]),
+    F("F031","Fout ventilatormotor",2,"De motor is geblokkeerd of de verbinding is mislukt.",["Controleer of de ventilator vrij kan draaien.", "Neem contact op met uw installateur of zwembadspecialist."]),
+    F("F051","Fout ventilatormotor (verbinding)",2,"Verbindingsfout van de ventilatormotor.",["Neem contact op met uw installateur of zwembadspecialist."]),
+    F("TP","Buitentemperatuur te laag",1,"De bedrijfsgrens is bereikt.",["Schakel de warmtepomp uit."]),
+    F("PP","Defect druksensor",2,"De druksensor is open of kortgesloten.",["Neem contact op met uw installateur of zwembadspecialist."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
