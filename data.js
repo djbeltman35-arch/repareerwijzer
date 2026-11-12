@@ -15434,4 +15434,23 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   SRC.intergasPrestige=["Intergas – installatievoorschrift Prestige (88136805), § 8.1 storingscodes","https://www.intergas-verwarming.nl/app/uploads/2018/01/Installatievoorschrift-Prestige-88136805.pdf"];
   const m=MODELS.find(x=>x.id==="intergas-hre"); m.src.push("intergasPrestige"); m.also=(m.also?m.also+", ":"")+"Intergas Prestige";
 })();
+(() => {
+  SRC.intergasDaikinHyb=["Intergas – installatiehandleiding Intergas Daikin Hybride (88510808), § 8.2 storingscodes","https://www.intergas-verwarming.nl/app/uploads/2021/01/88510808-Installatiehandleiding-Intergas-Daikin-Hybride.pdf"];
+  MODELS.push({ id:"intergas-daikin-hybride", brand:"Intergas", name:"Intergas Daikin Hybride: storingscodes gasketel", dev:"hybride warmtepomp", cat:"warmtepompen", years:"Intergas Daikin Hybride", unit:null,
+  intro:"Bij de Intergas Daikin Hybride knippert de rode storings-led als de branderautomaat een fout ziet; de code staat dan op het temperatuurdisplay. Na het verhelpen start u de ketel opnieuw met de reset-toets.",
+  weak:[], parts:[], tasks:[], src:["intergasDaikinHyb"],
+  faults:[
+    F("10 / 11 / 12 / 13 / 14","Sensorfout S1",2,"De aanvoersensor S1 geeft een fout, bijvoorbeeld door lucht in de installatie, een losse ntc-klem op de warmwaterbuis of een kabelbreuk.",["Ontlucht ketel en cv-installatie.", "Druk na het verhelpen op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("20 / 21 / 22 / 23 / 24","Sensorfout S2",2,"De sensor S2 geeft een fout, bijvoorbeeld door een kabelbreuk.",["Druk na het verhelpen op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("0","Sensorfout na zelfcontrole",3,"S1 en/of S2 moet worden vervangen.",["Bel uw installateur."]),
+    F("1","Temperatuur te hoog",2,"Lucht in de installatie, de pomp in de binnenunit draait niet, of de terugslagklep onder de pomp werkt niet.",["Ontlucht ketel en cv-installatie.", "Druk na het verhelpen op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("2","S1 en S2 verwisseld",3,"De sensoren zijn verwisseld of een sensor is defect.",["Bel uw installateur."]),
+    F("4","Geen vlamsignaal",2,"Onder meer: gaskraan dicht, gasvoordruk te laag (onder 20 mbar), condensafvoer verstopt of een probleem met de ontsteking.",["Controleer of de gaskraan open staat.", "Druk na het verhelpen op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("5","Slecht vlamsignaal",2,"Onder meer: condensafvoer verstopt, gasvoordruk te laag, probleem met ontsteking, gasblok of rookgasafvoer.",["Druk na het verhelpen op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("6","Vlamdetectiefout",3,"Ontsteekkabel, bougiedop, ontsteekunit of branderautomaat is defect.",["Bel uw installateur."]),
+    F("8","Ventilatortoerental niet juist",2,"De ventilator loopt aan, de bedrading maakt slecht contact of de ventilator is defect.",["Druk na het verhelpen op de reset-toets. Komt de code terug, bel dan uw installateur."]),
+    F("27","Kortsluiting buitenvoelercircuit",2,"Er is kortsluiting in het circuit van de buitenvoeler.",["Bel uw installateur."]),
+    F("29 / 30","Vlamdetectiefout",3,"De rookgasterugslagklep ontbreekt of de ontsteekunit is defect.",["Bel uw installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
