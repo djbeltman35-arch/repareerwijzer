@@ -13268,7 +13268,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melding: Please select a lighter intensity or reduce pre-ground coffee", 1, "Er is te veel koffie gebruikt.", ["Kies een lichtere sterkte of gebruik hooguit één schepje voorgemalen koffie."]),
     N("Melding: Please insert the Hot / Cold milk carafe", 1, "Je kiest een warme of koude melkdrank, maar de juiste melkkan (LatteCrema Hot of Cool) zit er niet op.", ["Plaats de juiste melkkan: Hot voor warme dranken, Cool voor koude dranken."]),
     N("Melding: Turn the milk froth adjustment dial", 1, "De schuimknop van de melkkan staat niet in een schuimstand.", ["Draai de knop naar de schuimstand voor de gekozen drank."]),
-    N("Melding: General alarm (Please refer to user manual / Coffee Link App)", 3, "Algemene storing.", ["Zet de machine uit en weer aan.", "Komt het terug, kijk in de Coffee Link-app of neem contact op met de De'Longhi-klantenservice."]),
+    N("Melding: General alarm (Please refer to user manual / Coffee Link App)", 3, "Algemene storing.", ["Kijk in de handleiding of in de Coffee Link-app wat er aan de hand is.", "Blijft het, neem contact op met de De'Longhi-klantenservice."]),
     N("Melding: The machine is too hot", 1, "Na meerdere dranken achter elkaar is de machine te warm.", ["Wacht tot de machine weer klaar is voor gebruik."]),
     N("Melding: The water circuit is empty", 1, "Het watercircuit is leeg.", ["Druk op OK om te vullen; wat water in de lekbak is normaal.", "Controleer of het reservoir goed zit."]),
     N("Melding: lucht in het circuit (met waterfilter)", 1, "Een luchtbel blokkeert de afgifte.", ["Druk op OK en tap water tot het gelijkmatig stroomt.", "Blijft het, haal het waterfilter eruit."]),
