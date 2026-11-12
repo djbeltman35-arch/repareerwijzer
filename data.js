@@ -13858,4 +13858,23 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("LED van een regelmodule knippert oranje", 2, "Er is een storing bij deze regelmodule.", ["Kijk in de app welke storing het is.", "Controleer jaarlijks of het klepblad van de regelmodule beweegt."])
   ]});
 })();
+(() => {
+  SRC.vascoD275 = ["Vasco – Installatie- en gebruikershandleiding ventilatie-unit D275(EP) II, hoofdstuk Storing (PDF)", "https://vasco.eu/files/downloads/installatie-en-gebruikershandleiding-systeem-d275ep-ii/90.dr013035.d_vasco_handleiding_systeem_d275_ii_nl_lr_2022-08-12-143702_grhh.pdf"];
+  MODELS.push({ id: "vasco-d275-ii", brand: "Vasco", name: "D275(EP) II WTW-unit: ledcodes printplaat en schakelaar", dev: "D275(EP) II WTW-ventilatie-unit", cat: "ventilatie", years: "Vasco ventilatie-unit D275 II en D275EP II", unit: null, also: "Vasco D275 rood oranje, Vasco D275 storing, Vasco WTW printplaat led, Vasco D275 2x oranje filter, Vasco toevoerventilator storing, Vasco temperatuursensor storing", intro: "Bij de Vasco D275(EP) II laat het ledje op de printplaat een reeks rood en oranje zien bij een storing; het aantal knipperingen zegt welk onderdeel het is. Op de RF-schakelaar betekent 2x oranje na bedienen: filters vervangen.", weak: ["Filters na 12 maanden aan vervanging toe.", "Unit valt uit bij te koude toevoerlucht (rood-rood-oranje)."], parts: [], tasks: [{ m: 12, t: "Filters vervangen en filtermelding resetten", v: 1 }], src: ["vascoD275"], faults: [
+    N("Printplaat: rood-oranje", 3, "Probleem met de afvoerventilator.", ["Laat dit nakijken door je installateur."]),
+    N("Printplaat: rood-oranje-oranje", 3, "Probleem met de toevoerventilator.", ["Laat dit nakijken door je installateur."]),
+    N("Printplaat: rood-rood-oranje", 2, "Te lage toevoertemperatuur (lucht naar de woning kouder dan 5 °C); de unit stopt.", ["Haal de stekker eruit en steek hem terug.", "Zorg dat de woning minstens 16 °C verwarmd wordt en de kanalen goed zijn aangesloten.", "Schakelt hij weer uit, neem dan contact op met je installateur."]),
+    N("Printplaat: rood-rood-oranje-oranje", 2, "Probleem met de temperatuursensor 'van woning'.", ["Laat dit nakijken door je installateur."]),
+    N("Printplaat: rood-rood + 3x oranje", 2, "Probleem met de temperatuursensor 'naar buiten'.", ["Laat dit nakijken door je installateur."]),
+    N("Printplaat: rood-rood + 4x oranje", 2, "Probleem met de temperatuursensor 'van buiten'.", ["Laat dit nakijken door je installateur."]),
+    N("Printplaat: rood-rood + 5x oranje", 2, "Probleem met de temperatuursensor 'naar woning'.", ["Laat dit nakijken door je installateur."]),
+    N("Printplaat: rood-rood-rood-oranje", 3, "Probleem met de constante debietcontrole van de toevoer.", ["Laat dit nakijken door je installateur."]),
+    N("Printplaat: rood-rood-rood-oranje-oranje", 3, "Probleem met de constante debietcontrole van de afvoer.", ["Laat dit nakijken door je installateur."]),
+    N("Schakelaar: 2x oranje na bedienen", 1, "De filters zijn aan vervanging toe (levensduur 12 maanden).", ["Neem de filterdoppen en filtercassettes uit het toestel.", "Plaats nieuwe filters in de cassettes (bij de D275EP II het vlies aan de onderzijde).", "Schuif de cassettes terug en druk de doppen stevig aan.", "Reset de melding: houd minstens 4 seconden tegelijk 'stand 1' en 'timer' ingedrukt tot het ledje groen wordt."]),
+    N("Schakelaar: rood-rood", 2, "Probleem met de ventilatie-unit; kijk naar het ledje op de printplaat.", ["Laat dit nakijken door je installateur."]),
+    N("Schakelaar: 1x rood, unit reageert niet", 1, "De schakelaar is niet gekoppeld of er is een communicatieprobleem.", ["Koppel de schakelaar opnieuw aan de unit (zie handleiding)."]),
+    N("Schakelaar: 1x oranje", 1, "De batterij van de RF-schakelaar is leeg.", ["Vervang de batterij in de schakelaar."]),
+    N("Bedrade standenschakelaar staat op andere stand dan de unit", 1, "De schakelaar reageert alleen op een verandering van positie.", ["Zet de schakelaar op een andere stand en daarna terug op de gewenste stand."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
