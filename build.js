@@ -181,17 +181,14 @@ layout({
     </svg>
   </div>
   <p class="lead">Typ merk en code. Je ziet meteen wat er mis is en wat je zelf kunt doen. ${stats.codes} foutcodes van __NBRANDS__ merken, met bij elke code de bron.</p>
-  <p class="hero-sub">Onafhankelijke, gratis kennisbank met foutcodes van Bosch, Siemens, Samsung, Miele, AEG, Intergas, Vaillant en honderden andere merken: wasmachines, cv-ketels, warmtepompen, auto's, e-bikes, laadpalen, zonnepanelen en meer. Met de oorzaak, wat je zelf kunt doen, wanneer je een monteur belt en de bron.</p>
   <div class="search"><input id="q" type="search" placeholder="Bijv. Bosch E18" aria-label="Zoek op merk, model of foutcode" autocomplete="off"></div>
   <div class="results" id="res" aria-live="polite"></div>
   <div class="chips"><span>Probeer:</span>${[["Bosch E18","Bosch E18"],["Samsung 4C","Samsung 4C"],["Intergas storing","Intergas"],["Miele F55","Miele F55"]].map(([l, q]) => `<a href="?q=${encodeURIComponent(q)}" data-q="${esc(q)}">${l}</a>`).join("")}</div>
-  <div class="installapp" id="installapp" hidden><strong>📱 Foutcodezoeker als app</strong><span id="installtxt">Zet Foutcodezoeker op je beginscherm: altijd binnen handbereik, ook in de schuur of kelder.</span><button type="button" id="installbtn" hidden>Installeer de app</button></div>
-  <p class="herostats"><span><b>${stats.codes}</b> foutcodes</span><span><b>${stats.models}</b> apparaten</span></p>
 </section>
 ${seasonBlock()}
 <section class="stack">
   <h2>Kies je apparaat</h2>
-  <div class="cat-grid">${(TOPC => TOPC.map(id => CATS.find(c => c.id === id)).concat(CATS.filter(c => !TOPC.includes(c.id))))(["wasmachines", "vaatwassers", "cv-ketels", "koffiemachines", "drogers", "koelkasten", "warmtepompen", "ovens", "stofzuigers", "e-bikes", "auto", "airco"]).map((c, i) => `<a class="cat${i >= 12 ? " more" : ""}" href="${c.id}.html"><span class="cat-ico" aria-hidden="true">${CAT_ICON[c.id] || "🔧"}</span><b>${c.name.split(":")[0]}</b></a>`).join("")}</div>
+  <div class="cat-grid">${(TOPC => TOPC.map(id => CATS.find(c => c.id === id)).concat(CATS.filter(c => !TOPC.includes(c.id))))(["wasmachines", "vaatwassers", "cv-ketels", "koffiemachines", "drogers", "koelkasten", "warmtepompen", "ovens", "stofzuigers", "e-bikes", "auto", "airco"]).map((c, i) => `<a class="cat${i >= 6 ? " more" : ""}" href="${c.id}.html"><span class="cat-ico" aria-hidden="true">${CAT_ICON[c.id] || "🔧"}</span><b>${c.name.split(":")[0]}</b></a>`).join("")}</div>
   <button type="button" class="showall" id="showcats">Alle ${CATS.length} soorten apparaten tonen</button>
 </section>
 <section class="stack">
@@ -212,26 +209,30 @@ ${seasonBlock()}
 </section>
 <section class="stack">
   <h2>Veelgezochte foutcodes</h2>
-  <div class="results">${["intergas-hre", "vaillant-ecotec", "bosch-siemens-vaatwasser", "samsung-wasmachine", "lg-wasmachine", "aeg-wasmachine", "bosch-ebike", "shimano-steps", "miele-vaatwasser", "bosch-siemens-wasmachine", "remeha-calenta", "alfen-eve"].map(id => { const m = MODELS.find(x => x.id === id); const f = m.faults.find(x => x.code); return `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(codeShort(f))}</span> ${esc(f.t)}</span><span>${esc(deviceName(m))}</span></a>`; }).join("")}</div>
+  <div class="results">${["intergas-hre", "bosch-siemens-vaatwasser", "samsung-wasmachine", "remeha-calenta"].map(id => { const m = MODELS.find(x => x.id === id); const f = m.faults.find(x => x.code); return `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(codeShort(f))}</span> ${esc(f.t)}</span><span>${esc(deviceName(m))}</span></a>`; }).join("")}</div>
   <p><a href="foutcodes.html">Alle ${stats.codes} foutcodes bekijken</a></p>
 </section>
 <section class="stack">
-  <h2>Veelvoorkomende problemen</h2>
-  ${(() => { const blocks = CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.slice(0, 4).map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}${ms.length > 4 ? `<li><a href="${c.id}.html"><b>Meer over ${esc(c.name.toLowerCase())} (${ms.length - 4}) →</b></a></li>` : ""}</ul></div>` : ""; }).filter(Boolean); return `<div class="probs">${blocks.slice(0, 8).join("")}</div>${blocks.length > 8 ? `<details class="pickfold"><summary>Meer problemen per apparaat (${blocks.length - 8})</summary><div class="probs">${blocks.slice(8).join("")}</div></details>` : ""}`; })()}
+  <h2>Storing zonder code?</h2>
+  ${(() => { const blocks = CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.slice(0, 4).map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}${ms.length > 4 ? `<li><a href="${c.id}.html"><b>Meer over ${esc(c.name.toLowerCase())} (${ms.length - 4}) →</b></a></li>` : ""}</ul></div>` : ""; }).filter(Boolean); return `<details class="pickfold"><summary>Bekijk problemen per apparaat (${blocks.length})</summary><div class="probs">${blocks.join("")}</div></details>`; })()}
 </section>
 <section class="stack">
   <h2>Kennisbank</h2>
-  <ul class="kb-list">${KB.slice(0, 6).map(a => `<li><a href="kennisbank-${a.id}.html">${esc(a.q)}</a></li>`).join("")}</ul>
+  <ul class="kb-list">${KB.slice(0, 3).map(a => `<li><a href="kennisbank-${a.id}.html">${esc(a.q)}</a></li>`).join("")}</ul>
   <p><a href="kennisbank.html">Alle artikelen in de kennisbank →</a></p>
 </section>
 <section class="stack">
   <h2>Populaire merken</h2>
-  <div class="row">${["Bosch", "Samsung", "Miele", "AEG", "LG", "Siemens", "Philips", "Dyson", "Remeha", "Intergas", "Whirlpool", "Beko"].map(b => `<a href="merk-${slug(b)}.html">${b}</a>`).join("")}<a href="merken.html">Alle merken</a></div>
+  <div class="row">${["Bosch", "Samsung", "Miele", "AEG", "Siemens", "Remeha", "Intergas", "Canon"].map(b => `<a href="merk-${slug(b)}.html">${b}</a>`).join("")}<a href="merken.html">Alle merken</a></div>
 </section>
 <section class="stack">
-  <h2>🔔 Onderhoud bijhouden, met herinnering</h2>
-  <p>Bij elk model staat een onderhoudsteller. Tik op Gedaan na een klus en je ziet wat er nu aan de beurt is. Met <b>📅 Zet in mijn agenda</b> komen de klussen als terugkerende afspraak in je agenda (iPhone, Android, Google, Outlook), dus je krijgt vanzelf een herinnering als het tijd is. Alles blijft op je eigen telefoon of computer. <a href="onderhoud-herinnering.html">Zo stel je een onderhoudsherinnering in →</a></p>
-  <div class="models">${["bosch-siemens-wasmachine", "intergas-hre", "bosch-siemens-vaatwasser", "bosch-ebike"].map(id => modelCard(MODELS.find(m => m.id === id))).join("")}</div>
+  <details class="pickfold"><summary><span aria-hidden="true">🔔</span> Onderhoudsherinnering en app</summary>
+  <p>Bij elk apparaat staat een onderhoudsteller. Met <b>📅 Zet in mijn agenda</b> krijg je vanzelf een herinnering als een klus aan de beurt is; alles blijft op je eigen telefoon. <a href="onderhoud-herinnering.html">Zo stel je het in →</a></p>
+  <div class="installapp" id="installapp" hidden><strong>📱 Foutcodezoeker als app</strong><span id="installtxt">Zet Foutcodezoeker op je beginscherm: altijd binnen handbereik, ook in de schuur of kelder.</span><button type="button" id="installbtn" hidden>Installeer de app</button></div>
+</details>
+</section>
+<section class="stack">
+  <p class="muted small">Foutcodezoeker is een onafhankelijke, gratis kennisbank: per code de oorzaak, wat je zelf kunt doen, wanneer je een monteur belt en de bron van de fabrikant. <a href="over-foutcodezoeker.html">Meer over de bronnen →</a></p>
 </section>`
 });
 
