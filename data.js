@@ -15298,4 +15298,24 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("E1","Storing printplaat hoofdbediening (geheugen)",3,"De hoofdbediening kan zijn geheugen niet lezen.",["De printplaat van de hoofdbediening moet worden vervangen. Bel uw installateur."]));
   m.faults.push(F("E2","Storing printplaat hoofdbediening (klok)",3,"Er is een fout in de interne klok van de hoofdbediening.",["De printplaat van de hoofdbediening moet worden vervangen. Bel uw installateur."]));
 })();
+(() => {
+  SRC.krupsIntuitionExp=["Krups – gebruiksaanwijzing Intuition Experience (EA877), NL-deel 'Antwoorden op uw vragen'","https://dam.groupeseb.com/m/ad7a3aaa726bf881/original/8020006479-IFU.pdf"];
+  MODELS.push({ id:"krups-intuition-experience", brand:"Krups", name:"Intuition Experience volautomaat: storingen en meldingen", dev:"volautomaat", cat:"koffiemachines", years:"EA876, EA877", unit:null,
+  intro:"De Krups Intuition Experience toont geen foutcodes, maar meldingen en een intuïtieve lichtindicator. Dit zijn de problemen die Krups zelf in de handleiding behandelt.",
+  weak:[], parts:[], tasks:[], src:["krupsIntuitionExp"],
+  faults:[
+    N("Machine heeft een storing of de software is vastgelopen",1,"Storing, vastgelopen software of een defect.",["Schakel het apparaat uit en haal de stekker uit het stopcontact.", "Verwijder het filter en wacht één minuut.", "Schakel weer in door de aan/uit-knop minstens drie seconden ingedrukt te houden."]),
+    N("Apparaat gaat niet aan",1,"Geen stroom.",["Controleer de zekeringen en het stopcontact.", "Controleer of de stekker goed in het stopcontact zit.", "Houd de aan/uit-knop minstens drie seconden ingedrukt."]),
+    N("Molen is bijna leeg, terwijl er nog bonen in zitten",1,"De koffie is mogelijk te vettig en zakt niet goed in de molen.",["Laat de bonen in de molen vallen en kijk of het weer werkt.", "Krups raadt aan een andere koffie te gebruiken.", "Werkte deze koffie tot nu toe wel goed: neem contact op met de klantenservice van KRUPS."]),
+    N("Molen maakt een ongewoon geluid",2,"Er zitten waarschijnlijk vreemde voorwerpen in de molen.",["Probeer ze te verwijderen met een stofzuiger.", "Neem contact op met de klantenservice van KRUPS als het probleem blijft."]),
+    N("Water onder het apparaat",1,"De lekbak is te vroeg verwijderd, zit niet goed of is vol.",["Wacht 15 seconden na het zetten voordat je de lekbak verwijdert.", "Controleer of de lekbak goed geplaatst is; hij moet altijd op zijn plaats zitten.", "Controleer of de lekbak niet vol is."]),
+    N("Geen koffie gezet",1,"Er is tijdens de bereiding een incident gedetecteerd.",["Het apparaat stelt zichzelf automatisch opnieuw in en is klaar voor een nieuwe cyclus."]),
+    N("Melkuitloop geblokkeerd (waarschuwing op het scherm)",1,"De melkstroom is gedeeltelijk of helemaal geblokkeerd.",["Maak het OneTouch Cappuccino-blok schoon volgens de grondige handmatige reiniging van het melksysteem."]),
+    N("Er komt geen stoom uit",2,"De stoomproductie is geblokkeerd, of de stoom komt bij eerste gebruik nog niet goed op gang.",["Maak het melksysteem schoon.", "Bij eerste gebruik (eenmalig): leeg het reservoir, haal het Claris-filter tijdelijk weg, vul met mineraalwater met veel calcium (meer dan 100 mg/L) en doe 5 tot 10 stoomcycli tot er een continue straal komt. Plaats het filter terug.", "Neem contact op met de klantenservice van KRUPS als het probleem blijft."]),
+    N("Stoom onder het deksel van het bonenreservoir",1,"De klep voor het reinigingstablet is niet goed gesloten.",["Sluit de klep van het reinigingstablet onder het deksel goed."]),
+    N("Lichtindicator blijft branden na legen koffiedikbak",1,"De koffiedikbak is niet teruggeplaatst.",["Plaats de koffiedikbak terug."]),
+    N("Lichtindicator blijft branden na vullen waterreservoir",1,"Het reservoir zit niet goed of de indicators onderin zitten vast.",["Controleer of het reservoir goed geplaatst is.", "Controleer of de indicators onderin vrij bewegen."]),
+    N("Koffie stroomt te langzaam",1,"De maling is te fijn of het filter is verzadigd.",["Draai de maalgraadknop naar rechts voor een grovere maling (alleen terwijl de molen draait).", "Doe een of meer spoelcycli.", "Vervang het Claris-filter."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
