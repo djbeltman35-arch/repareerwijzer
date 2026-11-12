@@ -14986,4 +14986,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Geiser geblokkeerd door een veiligheidsinrichting",1,"Een veiligheidsinrichting heeft de geiser uitgeschakeld.",["Wacht ongeveer 10 minuten en neem de geiser dan opnieuw in gebruik.","Gebeurt dit meermaals of start de geiser niet: neem contact op met een installateur.","Gebruik de geiser pas weer als de installateur de storing heeft verholpen."]),
   ]});
 })();
+(() => {
+  SRC.sageSov860=["Sage – the Smart Oven Air Fryer (SOV860) gebruikershandleiding, EU (NL-deel)","https://assets.sageappliances.com/BOV860/SOV860_EU_UG8_N21_LR.pdf"];
+  const K="Haal onmiddellijk de stekker uit het stopcontact en bel de klantenservice van Sage.";
+  MODELS.push({ id:"sage-smart-oven-air-fryer", brand:"Sage", name:"the Smart Oven Air Fryer (SOV860): E01, E02, E03, E05", dev:"heteluchtoven", cat:"kleine-apparaten", years:"SOV860 / BOV860", unit:null,
+  intro:"De Sage Smart Oven Air Fryer toont een foutcode op het lcd-scherm. E01, E02 en E05 zijn problemen die niet met een reset te verhelpen zijn; E03 betekent dat de oven te heet is geworden.",
+  weak:[], parts:[], tasks:[], src:["sageSov860"],
+  faults:[
+    F("E01","Probleem dat niet met resetten te verhelpen is",3,"Er is een probleem met het apparaat dat niet verdwijnt door te resetten.",[K]),
+    F("E02","Probleem dat niet met resetten te verhelpen is",3,"Er is een probleem met het apparaat dat niet verdwijnt door te resetten.",[K]),
+    F("E03","Oventemperatuur te hoog",1,"De oventemperatuur is hoger dan de ingestelde maximumlimiet.",["Haal de stekker uit het stopcontact.","Laat de oven 15 minuten afkoelen en sluit hem weer aan.","Blijft E03 staan: bel de klantenservice van Sage."]),
+    F("E05","Probleem dat niet met resetten te verhelpen is",3,"Er is een probleem met het apparaat dat niet verdwijnt door te resetten.",[K]),
+    N("Oven gaat niet aan",1,"Geen stroom op het stopcontact.",["Controleer of de stekker goed in het stopcontact zit.","Gebruik een apart of ander stopcontact.","Stel de stroomonderbreker indien nodig opnieuw in."]),
+    N("Lcd-verlichting is uit",1,"De oven gaat na 10 minuten zonder gebruik in stand-by.",["Druk op Start/Cancel of draai aan een knop; het scherm licht weer op."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
