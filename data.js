@@ -15821,4 +15821,8 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("23703","Onbekend bestandssysteem",1,"De USB-stick heeft een bestandssysteem dat de printer niet ondersteunt.",["Gebruik een andere USB-stick of formatteer deze als FAT32."]),
   ]});
 })();
+(() => {
+  SRC.atagEnergionMPlus=["ATAG – installatiehandleiding Energion M Plus (420011180500), lijst van fouten","https://atag.compano.com/Data/Environments/000001/Attachment/Bijlage/ATAG%20Verwarming%20Nederland%20BV/InstallationManuals/420011180500_ENERGION%20M%20PLUS_NL.pdf"];
+  const m=MODELS.find(x=>x.id==="atag-energion"); m.src.push("atagEnergionMPlus"); m.also=(m.also?m.also+", ":"")+"ATAG Energion M Plus";
+})();
 module.exports = { CATS, MODELS, SRC, COST };
