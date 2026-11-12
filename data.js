@@ -15717,4 +15717,30 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E.04.15","Rookgasleiding verstopt",3,"Vergrendeling: de rookgasleiding zit verstopt.",["Houd de resetknop ingedrukt om de ketel te resetten.", "Komt de code terug: noteer de code en neem contact op met uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.mennekesHcc3=["MENNEKES – storingsoplossing AMTRON Xtra, Trend en Premium met HCC3 (NL, 2022)","https://nl.v13.mennekes.de/fileadmin/MEN-Deutschland/emobility/01_documents/04_installer/Storingsoplossing_AMTRON_HCC3_v01_2022-12-13_nl.pdf"];
+  MODELS.push({ id:"mennekes-amtron-hcc3", brand:"MENNEKES", name:"AMTRON Xtra, Trend en Premium (HCC3): foutcodes", dev:"laadpaal", cat:"laadpalen", years:"AMTRON Xtra, Trend, Premium met HCC3-regelaar", unit:null,
+  intro:"Bij de MENNEKES AMTRON Xtra, Trend en Premium (met HCC3-regelaar) brandt de rode led 'Storing' bij een fout. De foutcode lees je uit via de MENNEKES Charge APP of de service-interface. Bevestig een storing met de multifunctionele knop; blijft de melding staan, kijk dan hieronder.",
+  weak:[], parts:[], tasks:[], src:["mennekesHcc3"],
+  faults:[
+    F("10","Installatiefout",3,"Onder meer: verkeerde fasevolgorde, geen spanning, onderspanning of fase-uitval, losse aansluitingen, aardlekschakelaar of automaat gesprongen, of een defecte ingang van de regelaar.",["Controleer of de aardlekschakelaar of automaat in de meterkast gesprongen is.", "Laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("11","Controllerfout",2,"De regelaar is defect.",["Maak het laadstation 3 minuten spanningsloos en start het opnieuw.", "Komt de code terug: laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("12","Foutieve configuratie",2,"Een voertuig met status D wordt niet geaccepteerd, ongeldig CP-signaal, of een externe temperatuursensor is defect of ontbreekt.",["Raadpleeg zo nodig de garage over het voertuig.", "Laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("13","Te hoge temperatuur",1,"De behuizing is warmer dan 60 °C, of de temperatuursensor is defect.",["Laat het laadstation afkoelen."]),
+    F("14","Spiegelcontactfout",3,"Losse aansluitingen aan het relais, leidingbreuk, plakkend relais of defect spiegelcontact.",["Start het laadstation opnieuw.", "Laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("15","Apparaattijd ongeldig",1,"De systeemtijd is niet gesynchroniseerd, bijvoorbeeld na een stroomuitval van meer dan 4 uur.",["Synchroniseer de tijd via de MENNEKES Charge APP (gebeurt automatisch zodra de app verbonden is) of via de service-interface."]),
+    F("16","Verbindingsfout energiemanager",2,"Laadstation en energiemanager zitten niet in hetzelfde netwerk.",["Controleer de configuratie en de netwerkopbouw."]),
+    F("30","Starten mislukt",2,"Het laadstation start niet of blijft in de storingsstand.",["Maak het laadstation 3 minuten spanningsloos en start het opnieuw."]),
+    F("31","Interne test mislukt",2,"De actuator is geblokkeerd of defect, een connector zit los of de kabel is verkeerd ingestoken.",["Controleer of de laadkabel goed is ingestoken.", "Laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("32","HMI niet verbonden",3,"Geen verbinding tussen het bedieningspaneel (HMI) en de regelaar.",["Laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("50","Kabel verkeerd ingestoken",1,"De laadstekker kan niet vergrendelen.",["Steek de kabel volledig in en controleer of er niets de vergrendeling blokkeert."]),
+    F("51","Verkeerde kabel",1,"De kabeldoorsnede past niet bij de zekering van het laadstation.",["Gebruik een passende laadkabel."]),
+    F("52","Kabel defect",2,"Defecte laadkabel, verkeerde bedrading van CP en PP, kortsluiting op CP of PP-weerstand niet herkend.",["Probeer een andere laadkabel.", "Laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("100","ACU-communicatiefout",2,"Alleen in SCU-modus: geen verbinding tussen ACU en HCC3.",["Laat een elektromonteur dit controleren; werkzaamheden in het laadstation zijn alleen voor een elektromonteur."]),
+    F("103","Gedeactiveerd",1,"Alleen in SCU-modus: het laadpunt is uitgeschakeld in de webinterface van de ACU.",["Zet 'SCU Unavailable' uit in de ACU-instellingen."]),
+    F("255","Onbekende fout",2,"Onbekende oorzaak.",["Maak het laadstation 3 minuten spanningsloos en start het opnieuw."]),
+    N("Rode led Storing brandt continu",2,"Er is een storing met een foutcode.",["Lees de foutcode uit via de MENNEKES Charge APP of de service-interface.","Bevestig de storing met de multifunctionele knop."]),
+    N("Rode led Storing knippert",3,"Een storing waarvoor MENNEKES support nodig is.",["Noteer het artikel- en serienummer en neem contact op met MENNEKES support."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
