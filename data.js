@@ -16140,4 +16140,21 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Startlampje knippert niet",1,"Er is nog geen programma gekozen of de pan staat niet goed.",["Druk op Menu tot je bij het gewenste programma bent en druk op Start.","Controleer of de onderkant van de pan schoon is, er niets tussen pan en verwarmingselement zit en de pan goed staat."]),
   ]});
 })();
+(() => {
+  SRC.tefalCy851=["Tefal – User manual and FAQ Cook4me + Multicooker CY851130 (Engels)","https://www.tefal.com/instructions-for-use/csp/7211004847"];
+  const m=MODELS.find(x=>x.id==="tefal-cook4me-cy701"); m.src.push("tefalCy851"); m.also+=", Tefal Cook4me+ (CY851130)";
+  m.faults.push(N("Bouwt geen druk op",1,"Onderdelen van het metalen binnendeksel ontbreken, zijn vuil of zitten los, de vergrendelstang zit ondersteboven, of er zit te weinig water in de pan.",["Controleer of alle onderdelen van het binnendeksel aanwezig, schoon en goed vastgezet zijn.","Controleer of de vergrendelstang niet ondersteboven zit en of er genoeg water in de pan zit."]));
+  SRC.tefalCy755=["Tefal – User manual and FAQ Turbo Cuisine 5L CY7551 (Engels)","https://www.tefal.com/instructions-for-use/csp/7211004736"];
+  MODELS.push({ id:"tefal-turbo-cuisine", brand:"Tefal", name:"Turbo Cuisine multicooker: E2, deksel en druk", dev:"Turbo Cuisine multicooker", cat:"kleine-apparaten", years:"o.a. CY7551", unit:null,
+  intro:"Tefal noemt in de FAQ van de Turbo Cuisine de foutcode E2 en een aantal veelvoorkomende storingen. De betekenis van andere codes staat in de handleiding.",
+  weak:[], parts:[], tasks:[], src:["tefalCy755"],
+  faults:[
+    F("E2","Deksel in verkeerde stand",1,"Het deksel staat niet in de stand die het programma vraagt: helemaal vergrendeld, gesloten maar niet vergrendeld, of helemaal open.",["Zet het deksel in de stand die de handleiding voor dit programma aangeeft."]),
+    N("Deksel sluit niet",1,"De siliconen afdichting zit niet goed, het pijltje staat niet gelijk of er zit vuil tussen pan en verwarmingsplaat.",["Controleer de afdichting en lijn het pijltje van het deksel uit; vergrendel met de klok mee.","Verwijder vuil tussen pan en verwarmingsplaat en controleer of het middelste element vrij beweegt.","Is de pan vervormd: laat hem vervangen bij een erkend servicecentrum."]),
+    N("Gaat niet open",1,"Er loopt nog een programma of er staat nog druk op.",["Laat de druk volledig ontsnappen met de drukontlastknop.","Gaat hij nog niet open: haal de stekker eruit en laat het apparaat helemaal afkoelen."]),
+    N("Continu stoom uit het deksel",2,"De siliconen afdichting of de ventielen zitten niet goed of zijn vuil.",["Laat afkoelen en controleer of de afdichting goed zit; vervang hem zo nodig.","Controleer of veiligheids- en drukontlastventiel schoon zijn en goed zitten.","Blijft het probleem: neem contact op met een erkend servicecentrum."]),
+    N("Bouwt geen druk op",1,"Afdichting of ventielen zitten niet goed.",["Controleer of de siliconen afdichting, het veiligheidsventiel en het drukontlastventiel goed vastzitten."]),
+    N("Scherm gaat niet aan",1,"Het netsnoer is niet goed aangesloten.",["Controleer het netsnoer.","Haal de stekker 10 tot 15 seconden uit het stopcontact en steek hem er weer in.","Blijft het probleem: neem contact op met de klantenservice of een erkend servicecentrum."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
