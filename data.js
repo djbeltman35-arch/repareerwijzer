@@ -16001,4 +16001,29 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(N("Ontdooisymbool brandt",1,"Bij een omgevingstemperatuur onder 15 °C ontdooit het apparaat vaak; het symbool brandt ook tijdens de pauze van circa 3 minuten na een herstart.",["Geen actie nodig; het symbool gaat uit als het ontdooien klaar is."]));
   m.faults.push(N("Ontvochtigt wel, maar vochtigheid daalt niet",1,"Filter verstopt, temperatuur of vochtigheid te laag, ruimte te groot, te veel vochtbronnen of vochtigheid te hoog ingesteld.",["Reinig het filter.","Verlaag de ingestelde vochtigheid.","In een koude ruimte kan het helpen de ruimte te verwarmen."]));
 })();
+(() => {
+  SRC.niuErr0=["NIU support – Error 30 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000577533-error-code-30-and-50"];
+  SRC.niuErr1=["NIU support – Error 67 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000547364-error-code-67"];
+  SRC.niuErr2=["NIU support – Error 99 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000577530-error-code-99"];
+  SRC.niuErr3=["NIU support – Error 134 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000684134-error-134"];
+  SRC.niuErr4=["NIU support – Error 139 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000684184-error-139"];
+  SRC.niuErr5=["NIU support – Error 155 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000684254-error-155"];
+  SRC.niuErr6=["NIU support – Error 161 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000684392-error-161"];
+  SRC.niuErr7=["NIU support – Error 165 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000683882-error-165"];
+  SRC.niuErr8=["NIU support – Error 191 (Engels)","https://niumobility.freshdesk.com/en/support/solutions/articles/43000577532-error-code-191"];
+  MODELS.push({ id:"niu-scooter", brand:"NIU", name:"Elektrische scooter: foutcodes op het dashboard", dev:"elektrische scooter", cat:"scooters", years:"NIU elektrische scooters", unit:null,
+  intro:"Verschijnt er een foutcode op het dashboard van je NIU-scooter, dan kun je de betekenis hieronder opzoeken. NIU noemt bij de meeste codes geen modellen en verwijst voor controle naar een NIU-dealer.",
+  weak:[], parts:[], tasks:[], src:["niuErr0","niuErr1","niuErr2","niuErr3","niuErr4","niuErr5","niuErr6","niuErr7","niuErr8"],
+  faults:[
+    F("30 / 50","Overlaadbeveiliging accu",1,"De overlaadbeveiliging van de accu is actief.",["Zet de koplamp aan om de accu wat te ontladen.", "Laat de scooter controleren door een NIU-dealer."]),
+    F("67","Probleem met de simkaart",1,"De simkaart van de scooter is niet betaald of niet geactiveerd, of het signaal is te zwak.",["Parkeer de scooter op een plek met goed GSM- en GPS-bereik.", "Mail questions@niu.com met het serienummer (SN) en VIN van de scooter.", "Laat zo nodig de ECU controleren door een NIU-dealer."]),
+    F("99","Communicatiefout elektronische onderdelen",2,"De interne elektronica communiceert niet goed; waarschijnlijk een probleem met de hoofdkabelboom.",["Laat de scooter controleren door een NIU-dealer."]),
+    F("134","Accu 1: open circuit of onbalans",2,"Het circuit van accu 1 is onderbroken of de cellen zijn uit balans.",["Laat de scooter controleren door een NIU-dealer."]),
+    F("139","Accustoring",2,"De accu heeft een storing.",["Laat de scooter controleren door een NIU-dealer."]),
+    F("155","Accu 2: kortsluitbeveiliging",2,"De beveiliging heeft kortsluiting in de tweede accu gedetecteerd.",["Laat de scooter controleren door een NIU-dealer."]),
+    F("161","Scooter op afstand vergrendeld",1,"De scooter is op afstand vergrendeld.",["Laat de scooter controleren door een NIU-dealer."]),
+    F("165","Twee accu's passen niet bij elkaar",2,"De twee accu's van de scooter passen niet bij elkaar.",["Laat de accu's controleren door een erkende NIU-dealer."]),
+    F("191","Communicatiefout BMS",2,"Het batterijmanagementsysteem (BMS) communiceert niet goed.",["Laat de scooter controleren door een NIU-dealer."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
