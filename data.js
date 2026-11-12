@@ -16108,4 +16108,13 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Gashendel verplaatst bij inschakelen",1,"De gashendel werd bewogen terwijl de scootmobiel werd aangezet.",["Zet de gashendel in neutraal en zet de scootmobiel uit en weer aan."]),
   ]});
 })();
+(() => {
+  SRC.victronSPng=["Victron Energy – Lithium SuperPack NG handleiding: probleemoplossing (NL)","https://www.victronenergy.com/media/pg/Lithium_SuperPack_NG/nl/troubleshooting.html"];
+  const m=MODELS.find(x=>x.id==="victron-superpack"); m.src.push("victronSPng");
+  m.faults.push(F("W-B05","Communicatie met accu kwijt",2,"Waarschuwing (SuperPack NG): de interne communicatie werkt niet.",["Neem contact op met uw dealer."]));
+  m.faults.push(F("W-B11","Cellguard-firmware kan niet worden bijgewerkt",2,"Waarschuwing (SuperPack NG): Cellguard kon niet in bootloader-modus.",["Volg het herstel-document van Victron."]));
+  m.faults.push(F("A-B06","Belasting losgekoppeld",1,"Alarm (SuperPack NG): de belastingen zijn via ATD uitgeschakeld.",["Laad de accu op; anders opent de hoofdschakelaar uiteindelijk."]));
+  m.faults.push(F("A-B07","Lage laadtoestand",1,"Alarm (SuperPack NG): de accu is te leeg.",["Laad de accu op."]));
+  m.faults.push(F("E-B116","Kalibratie verloren",3,"Fout (SuperPack NG): de kalibratiegegevens ontbreken.",["Neem contact op met de leverancier."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
