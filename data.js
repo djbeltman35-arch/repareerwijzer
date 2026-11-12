@@ -16332,4 +16332,25 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Afstandsbediening werkt niet",1,"Lege batterijen, niet gekoppeld of te ver van de haard.",["Plaats nieuwe batterijen.", "Koppel de afstandsbediening opnieuw volgens de handleiding.", "Ga dichter bij de haard staan."]),
   ]});
 })();
+(() => {
+  SRC.ecovacsNet=["ECOVACS helpcentrum – Network error codes and solutions","https://help.ecovacs.com/uk/support/app-wifi-connection/Network-error-codes-and-solutions"];
+  const m=MODELS.find(x=>x.id==="ecovacs-deebot"); m.src.push("ecovacsNet");
+  const w=["Zorg dat zowel je telefoon als je wifi thuis internet hebben."];
+  const v=["Zet de robot op een plek met goed wifibereik, liefst binnen 3 meter van de router.","Zet de robot aan en druk op Reset; het wifilampje moet knipperen.","Controleer of je het juiste wifiwachtwoord hebt ingevoerd.","Gebruik een 2,4 GHz-netwerk.","Zorg dat je telefoon op hetzelfde wifinetwerk zit als de robot."];
+  m.faults.push(
+    F("10016","Netwerkconfiguratie time-out (ook 10017)",1,"De configuratie van het apparaat duurde te lang.",["Zet mobiele data (zoals 4G) op je telefoon uit.","Zorg dat de robot via wifi met je telefoon verbonden is.","Zie je het netwerk ECOVACS_xxxx niet: houd RESET ingedrukt tot het opstartgeluid, herstart de router, sluit de app en probeer opnieuw."]),
+    F("10017","Netwerkconfiguratie time-out",1,"De configuratie van het apparaat duurde te lang.",["Zet mobiele data (zoals 4G) op je telefoon uit.","Zorg dat de robot via wifi met je telefoon verbonden is.","Zie je het netwerk ECOVACS_xxxx niet: houd RESET ingedrukt tot het opstartgeluid, herstart de router, sluit de app en probeer opnieuw."]),
+    F("10002","Programmafout (ook 2 en 10024)",1,"Programmafout tijdens het instellen.",["Open de app opnieuw, herstart de robot en stel het netwerk opnieuw in."]),
+    F("10024","Programmafout",1,"Programmafout tijdens het instellen.",["Open de app opnieuw, herstart de robot en stel het netwerk opnieuw in."]),
+    F("10000","Telefoon niet verbonden (ook 10020 en 10021)",1,"Het mobiele apparaat is losgekoppeld.",w),
+    F("10020","Telefoon niet verbonden",1,"Het mobiele apparaat is losgekoppeld.",w),
+    F("10021","Telefoon niet verbonden",1,"Het mobiele apparaat is losgekoppeld.",w),
+    F("10006","Netwerkinstelling time-out (ook 10011)",1,"Het instellen van het netwerk duurde te lang.",w),
+    F("10011","Netwerkinstelling time-out",1,"Het instellen van het netwerk duurde te lang.",w),
+    F("10010","Robot kan geen verbinding met het netwerk maken (ook 10018 en 10025)",1,"De robot kan niet met het netwerk verbinden.",v),
+    F("10018","Robot kan geen verbinding met het netwerk maken",1,"De robot kan niet met het netwerk verbinden.",v),
+    F("10025","Robot kan geen verbinding met het netwerk maken",1,"De robot kan niet met het netwerk verbinden.",v),
+    F("10503","Ontvangst netwerkgegevens time-out",1,"De robot ontving de netwerkinstellingen niet op tijd.",["Houd je telefoon verbonden met het wifinetwerk ECOVACS_xxxx tot de voortgangsbalk op 50% staat."])
+  );
+})();
 module.exports = { CATS, MODELS, SRC, COST };
