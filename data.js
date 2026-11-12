@@ -15019,7 +15019,6 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.saecoFaqErr=["Saeco – FAQ: My Saeco espresso machine is showing an error code (Engels)","https://saeco.com/care/faq/My-Saeco-Espresso-Machine-is-showing-an-error-code/"];
   MODELS.push({ id:"saeco-volautomaat-foutcodes", brand:"Saeco", name:"Volautomaat: foutcode E01, E03, E04, E05, E11, E14, E19", dev:"volautomaat", cat:"koffiemachines", years:"Saeco volautomaten met foutcode op het display", unit:null,
-  also:"Saeco Xelsis, PicoBaristo, GranAroma, Incanto, Lirika",
   intro:"Saeco legt deze foutcodes uit voor zijn volautomaten. Staat er een andere code op het display, of helpen de stappen niet, neem dan contact op met Saeco; de machine heeft dan mogelijk service nodig.",
   weak:[], parts:[], tasks:[], src:["saecoFaqErr"],
   faults:[
