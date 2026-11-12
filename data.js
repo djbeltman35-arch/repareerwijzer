@@ -13433,7 +13433,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melding: binnenkant van de machine vuil", 2, "Er zitten koffieresten in de machine.", ["Wacht tot de reiniging klaar is, leeg de bakjes en probeer opnieuw.", "Blijft het, neem contact op met een servicecentrum."]),
     N("Melding: ontkalken nodig of ontkalking onderbroken", 1, "Het is tijd om te ontkalken (ongeveer 25 minuten), of het ontkalken is niet afgemaakt.", ["Kies Ja en volg de wizard tot het einde."]),
     N("Melding: ontkalkingsoplossing onvoldoende", 1, "Er zit te weinig ontkalker in het reservoir.", ["Vul ontkalker tot niveau A en water tot niveau B."]),
-    N("Melding: dag en tijd opnieuw instellen", 1, "De klok is gereset, bijvoorbeeld na een stroomonderbreking.", ["Stel dag en tijd opnieuw in en druk op OK."])
+    N("Melding: dag en tijd opnieuw instellen", 1, "De klok is gereset.", ["Stel dag en tijd opnieuw in en druk op OK."])
   ]});
 })();
 module.exports = { CATS, MODELS, SRC, COST };
