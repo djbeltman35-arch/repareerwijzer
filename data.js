@@ -12725,4 +12725,11 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Linker lampje knippert 4x per seconde (20 keer)", 1, "De accu is leeg.", ["Laad de stofzuiger op en start hem opnieuw.", "Helpt dat niet, breng hem naar een Philips-servicecentrum of neem contact op met Philips."])
   ]});
 })();
+(() => {
+  SRC.philipsKettle = ["Philips Support – My Philips double walled kettle shows an error code (Engels)", "https://www.philips.com.au/c-t/XC000022024/my-philips-double-walled-kettle-shows-an-error-code"];
+  MODELS.push({ id: "philips-waterkoker", brand: "Philips", name: "Waterkoker met dubbele wand en display: foutcode E1, E2", dev: "waterkoker met dubbele wand", cat: "kleine-apparaten", years: "Philips waterkokers met dubbele wand en temperatuurdisplay", unit: null, also: "Philips waterkoker E1, Philips waterkoker E2, Philips waterkoker foutcode, Philips waterkoker schakelt uit, Philips waterkoker droogkookbeveiliging", intro: "Een Philips waterkoker met dubbele wand en display toont E1 als hij zonder water aan stond en E2 bij een defecte temperatuursensor.", weak: ["Aanzetten zonder (genoeg) water."], parts: [], tasks: [], src: ["philipsKettle"], faults: [
+    F("E1", "Droogkookbeveiliging", 1, "De droogkookbeveiliging merkte dat er geen water in de waterkoker zit.", ["Laat de waterkoker afkoelen.", "Vul hem met water en zet hem opnieuw aan."]),
+    F("E2", "Temperatuursensor defect", 3, "De temperatuursensor is defect.", ["Neem contact op met Philips of stuur de waterkoker naar een Philips-servicecentrum."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
