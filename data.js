@@ -13256,4 +13256,24 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melding: melkkan in de koelkast zetten of schoonmaken", 1, "Geen storing: herinnering na een melkdrank.", ["Zet de melkkan in de koelkast en maak hem schoon zoals aangegeven."])
   ]});
 })();
+(() => {
+  SRC.delonghiElettaExplore = ["De'Longhi – Gebruiksaanwijzing Eletta Explore ECAM45X.5Y / 6Y / 8Y, hoofdstuk 10 (PDF, dls.delonghigroup.com)", "https://dls.delonghigroup.com/files/docs/5/NL-57132C9442.pdf"];
+  MODELS.push({ id: "delonghi-eletta-explore", brand: "De'Longhi", name: "Eletta Explore volautomaat: meldingen en alarmen op het display", dev: "Eletta Explore volautomaat (ECAM450)", cat: "koffiemachines", years: "De'Longhi Eletta Explore ECAM45X.5Y, ECAM45X.6Y en ECAM45X.8Y (o.a. ECAM450.55, 450.65, 450.76, 450.86)", unit: null, also: "DeLonghi Eletta Explore melding, Eletta Explore general alarm, Eletta Explore insert the brewing unit, Eletta Explore machine too hot, Eletta Explore ground is too fine, Eletta Explore water circuit is empty, Eletta Explore milk carafe", intro: "De De'Longhi Eletta Explore toont Engelstalige meldingen op het touchscreen. De meeste gaan over water, bonen, de koffiedikbak of de melkkannen (Hot of Cool); 'General alarm' is een algemene storing.", weak: ["Te fijne maalgraad.", "Verkeerde melkkan (Hot of Cool) geplaatst.", "Koffiedikbak niet op tijd geleegd."], parts: [], tasks: [], src: ["delonghiElettaExplore"], faults: [
+    N("Melding: Please insert the water tank of te weinig water", 1, "Het waterreservoir zit niet goed of er zit te weinig water in.", ["Vul het reservoir met vers water tot MAX en duw het helemaal aan."]),
+    N("Melding: Please empty the drip tray and grounds container", 1, "De koffiedikbak is vol of al meer dan 72 uur niet geleegd.", ["Leeg en reinig de koffiedikbak en de lekbak, ook als ze niet vol zijn."]),
+    N("Melding: Please insert grounds container and drip tray", 1, "De koffiedikbak en de lekbak zijn verwijderd.", ["Zet ze allebei terug."]),
+    N("Melding: Please insert the brewing unit", 1, "De zetgroep is na het schoonmaken niet teruggeplaatst.", ["Plaats de zetgroep terug zoals in de handleiding staat."]),
+    N("Melding: Please fill the bean container", 1, "De koffiebonen zijn op.", ["Vul het bonenreservoir en druk op OK."]),
+    N("Melding: The ground is too fine of Adjust the coffee grinder", 1, "De koffie is te fijn gemalen en loopt te langzaam of niet.", ["Druk op OK en kies een lagere sterkte, of zet de molen één stand grover."]),
+    N("Melding: Please select a lighter intensity or reduce pre-ground coffee", 1, "Er is te veel koffie gebruikt.", ["Kies een lichtere sterkte of gebruik hooguit één schepje voorgemalen koffie."]),
+    N("Melding: Please insert the Hot / Cold milk carafe", 1, "Je kiest een warme of koude melkdrank, maar de juiste melkkan (LatteCrema Hot of Cool) zit er niet op.", ["Plaats de juiste melkkan: Hot voor warme dranken, Cool voor koude dranken."]),
+    N("Melding: Turn the milk froth adjustment dial", 1, "De schuimknop van de melkkan staat niet in een schuimstand.", ["Draai de knop naar de schuimstand voor de gekozen drank."]),
+    N("Melding: General alarm (Please refer to user manual / Coffee Link App)", 3, "Algemene storing.", ["Zet de machine uit en weer aan.", "Komt het terug, kijk in de Coffee Link-app of neem contact op met de De'Longhi-klantenservice."]),
+    N("Melding: The machine is too hot", 1, "Na meerdere dranken achter elkaar is de machine te warm.", ["Wacht tot de machine weer klaar is voor gebruik."]),
+    N("Melding: The water circuit is empty", 1, "Het watercircuit is leeg.", ["Druk op OK om te vullen; wat water in de lekbak is normaal.", "Controleer of het reservoir goed zit."]),
+    N("Melding: lucht in het circuit (met waterfilter)", 1, "Een luchtbel blokkeert de afgifte.", ["Druk op OK en tap water tot het gelijkmatig stroomt.", "Blijft het, haal het waterfilter eruit."]),
+    N("Melding: The machine detects that its interior is dirty", 2, "De binnenkant van de machine is vuil.", ["Wacht tot de machine klaar is en kies je drank opnieuw.", "Blijft het, neem contact op met het servicecentrum."]),
+    N("Melding: descale, clean of replace the water filter", 1, "Onderhoud is nodig: ontkalken (ongeveer 30 minuten), grondig reinigen (ongeveer 10 minuten) of het waterfilter vervangen.", ["Druk op OK en volg de stappen op het scherm, of kies Annuleren om het later te doen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
