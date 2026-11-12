@@ -13731,4 +13731,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Gaat steeds korter mee", 1, "Accu niet volledig geladen of versleten.", ["Laad de accu een keer helemaal vol.", "Is de accu defect, laat hem dan vervangen."])
   ]});
 })();
+(() => {
+  SRC.tefalActifryGenius = ["Tefal – Gebruiksaanwijzing ActiFry Genius (1,2 en 1,7 kg), foutcodes (PDF, dam.groupeseb.com)", "https://dam.groupeseb.com/m/0b6909b8ed9e1107/original/1520006231-IFU.pdf"];
+  MODELS.push({ id: "tefal-actifry-genius", brand: "Tefal", name: "ActiFry Genius: Er en E.1 t/m E.6", dev: "ActiFry Genius heteluchtfriteuse", cat: "kleine-apparaten", years: "Tefal ActiFry Genius 1,2 kg en 1,7 kg (o.a. Genius XL)", unit: null, also: "ActiFry Er, ActiFry E1, ActiFry Genius E.2 ventilator, ActiFry E3 koud, ActiFry E4, ActiFry E5 spanning, Tefal airfryer foutcode", intro: "Toont een Tefal ActiFry Genius 'Er' op het display, haal dan eerst 10 seconden de stekker eruit. Komt de fout terug, dan geeft het nummer E.1 t/m E.6 de oorzaak.", weak: ["Ventilator draait niet door een verkeerd geplaatst onderdeel (E.1/E.2).", "Te lang koud opgeslagen (E.3)."], parts: [], tasks: [], src: ["tefalActifryGenius"], faults: [
+    F("E.1", "Ventilator werkt niet", 2, "De ventilator draait niet.", ["Haal de stekker eruit, wacht 10 seconden, steek hem terug en druk op de knop.", "Controleer of alle losse onderdelen (uitblaasrooster, filter, pan, deksel) erin zitten en goed geplaatst zijn.", "Kijk of er iets vastzit in de losse onderdelen of de ventilatieopeningen.", "Blijft de fout, bel de Tefal-klantenservice."]),
+    F("E.2", "Ventilator werkt niet", 2, "De ventilator draait niet.", ["Haal de stekker eruit, wacht 10 seconden, steek hem terug en druk op de knop.", "Controleer of alle losse onderdelen (uitblaasrooster, filter, pan, deksel) erin zitten en goed geplaatst zijn.", "Kijk of er iets vastzit in de losse onderdelen of de ventilatieopeningen.", "Blijft de fout, bel de Tefal-klantenservice."]),
+    F("E.3", "Te koud opgeslagen", 1, "Het apparaat heeft lang op een te koude plek gestaan.", ["Laat het een uur op kamertemperatuur (boven 15 °C) staan en start opnieuw.", "Blijft de fout, bel de Tefal-klantenservice."]),
+    F("E.4", "Temperatuursensor defect", 3, "Storing in de temperatuursensor.", ["Bel de Tefal-klantenservice."]),
+    F("E.5", "Netspanning te laag", 2, "De spanning van het stroomnet is te laag; dat kan het bakresultaat beïnvloeden.", ["Neem contact op met je energieleverancier of netbeheerder."]),
+    F("E.6", "Netspanning te hoog", 2, "De spanning van het stroomnet is te hoog; het apparaat beschermt zich tegen oververhitting.", ["Neem contact op met je energieleverancier of netbeheerder."]),
+    F("Er", "Fout op display", 1, "Het apparaat meldt een storing.", ["Haal de stekker eruit, wacht 10 seconden, steek hem terug en druk op de knop.", "Blijft 'Er' staan, zoek dan de oorzaak op via de code E.1 t/m E.6."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
