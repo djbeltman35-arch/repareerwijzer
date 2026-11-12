@@ -13972,4 +13972,36 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Lekt bij de capsule (water in capsulebak)", 1, "Capsule zit niet goed.", ["Plaats de capsule goed.", "Blijft het lekken, neem contact op met de Nespresso-klantenservice."]),
   ]});
 })();
+(() => {
+  SRC.nesCreatistaPlus = ["Nespresso – Machine assistance Creatista Plus (Engels)", "https://www.nespresso.com/za/en/machine-assistance/creatista-plus-machine-assistance-1"];
+  MODELS.push({ id: "nespresso-creatista-plus", brand: "Nespresso", name: "Creatista Plus: meldingen en knipperende knoppen", dev: "Creatista Plus (Sage)", cat: "koffiemachines", years: "Nespresso Creatista Plus (gemaakt door Sage/Breville)", unit: null, also: "Creatista Plus Machine Error, Creatista Plus knoppen knipperen, Creatista Plus Descale Now, Creatista Plus Lower Wand, Creatista Plus Clean Steam Wand, Creatista Plus water tank melding blijft", intro: "De Nespresso Creatista Plus toont meldingen op het scherm. Knipperen de knoppen, dan wil de machine iets van je: water bijvullen, stoompijpje doorprikken of ontkalken. 'Machine Error' is een zware storing.", weak: ["Verstopt stoompijpje.", "Verkalking.", "Watertank niet goed geplaatst."], parts: [], tasks: [], src: ["nesCreatistaPlus"], faults: [
+    F("Machine Error", "Zware storing", 3, "Er is een ernstige fout opgetreden.", ["Neem contact op met de Nespresso-klantenservice."]),
+    F("Descale Now", "Nu ontkalken", 1, "De machine moet ontkalkt worden.", ["Ga naar het menu Maintenance, kies Descale en volg de stappen op het scherm."]),
+    F("Lower Wand", "Stoompijpje omlaag", 1, "Het stoompijpje staat omhoog.", ["Zet het stoompijpje omlaag."]),
+    F("Clean Steam Wand", "Stoompijpje reinigen", 1, "Het stoompijpje moet gereinigd worden.", ["Ga naar Maintenance, kies Clean Steam Wand en volg de stappen."]),
+    N("Knoppen knipperen", 1, "De machine vraagt aandacht.", ["Volg de melding op het scherm.", "Vul de watertank als hij leeg is en zet een kop koffie.", "Prik de gaatjes van het stoompijpje door met het naaldje onder de watertank.", "Ontkalk zo nodig en draai zo nodig een Clean Steam Wand-cyclus."]),
+    N("Melding 'Fill Water Tank' blijft terwijl de tank vol is", 1, "De tank zit niet goed.", ["Plaats de watertank goed.", "Blijft het, neem contact op met de Nespresso-klantenservice."]),
+    N("Machine staat aan maar stopt met werken", 2, "De machine hangt.", ["Houd START/CANCEL ingedrukt om hem uit te zetten.", "Wacht 60 minuten en zet hem weer aan.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Geen koffie, water gaat direct in de capsulebak", 2, "Hendel niet gesloten of capsule klem.", ["Sluit de capsulehendel goed.", "Leeg de capsulebak en kijk of er geen capsule klem zit (niet met je vingers in de machine).", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Geen koffie of water, of rare doorloop", 1, "Watertank niet goed of leeg, of verkalking.", ["Plaats de watertank goed en vul hem.", "Ontkalk zo nodig."]),
+    N("Water onder de machine", 1, "Lekbak vol of niet goed geplaatst.", ["Leeg de lekbak en schuif hem goed terug.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Melk schuimt slecht of wordt niet warm", 1, "Verkeerde melk, vuil of verstopt stoompijpje, of kan staat niet op de sensor.", ["Gebruik koude volle of halfvolle melk (4 tot 6 °C).", "Gebruik de meegeleverde kan en zet hem op de temperatuursensor.", "Reinig kan en stoompijpje na elk gebruik en prik de gaatjes door."]),
+    N("Stoom erg nat", 1, "Verkeerd water.", ["Gebruik koud kraanwater, geen gedemineraliseerd of gedestilleerd water."])
+  ]});
+})();
+(() => {
+  SRC.nesEssenzaPlus = ["Nespresso – Machine assistance Essenza Plus (Engels)", "https://www.nespresso.com/za/en/machine-assistance/essenza-plus-machine-assistance-1"];
+  MODELS.push({ id: "nespresso-essenza-plus", brand: "Nespresso", name: "Essenza Plus: knipperende lampjes", dev: "Essenza Plus", cat: "koffiemachines", years: "Nespresso Essenza Plus", unit: null, also: "Essenza Plus knippert, Essenza Plus beide lampjes knipperen, Essenza Plus ontkalken, Essenza Plus knippert onregelmatig, Essenza Plus geen koffie", intro: "Bij de Nespresso Essenza Plus knipperen de lampjes zo'n 25 seconden tijdens het opwarmen. Knipperen ze onregelmatig, dan is er een storing.", weak: ["Verkalking.", "Capsule die niet goed ligt (lekken)."], parts: [], tasks: [], src: ["nesEssenzaPlus"], faults: [
+    N("Lampjes knipperen na aanzetten", 1, "De machine warmt op (ongeveer 25 seconden).", ["Wacht tot ze continu branden."]),
+    N("Lampjes knipperen onregelmatig", 3, "Storing in de machine.", ["Neem contact op met de Nespresso-klantenservice."]),
+    N("Beide lampjes knipperen", 1, "Ontkalkstand.", ["Volg de ontkalkprocedure. Verlaten: houd Espresso en Lungo 5 seconden ingedrukt."]),
+    N("Beide lampjes knipperen om en om", 1, "De machine wordt geleegd; daarna gaat hij vanzelf uit.", ["Sluit de hendel en reinig capsulebak, lekbak en lekbakvoet."]),
+    N("Lampjes knipperen 3x snel", 1, "Bevestiging: nieuwe waterhoeveelheid opgeslagen of fabrieksinstellingen hersteld.", ["Niets doen."]),
+    N("Alleen de espressoknop knippert", 1, "Instelling automatisch uitschakelen.", ["Druk op Espresso voor 9 of 30 minuten; verlaten met Lungo 5 seconden."]),
+    N("Geen lampje", 1, "Geen stroom.", ["Controleer stopcontact, stekker, spanning en zekering.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Geen koffie en geen water", 1, "Tank leeg, eerste gebruik of verkalking.", ["Vul de tank.", "Bij eerste gebruik: laat warm water (max. 55 °C) door de machine lopen.", "Ontkalk zo nodig."]),
+    N("Alleen water, geen koffie", 3, "Storing.", ["Neem contact op met de Nespresso-klantenservice."]),
+    N("Lekt bij de capsule", 1, "Capsule zit niet goed.", ["Plaats de capsule goed.", "Neem contact op met de Nespresso-klantenservice."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
