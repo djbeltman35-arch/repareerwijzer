@@ -12781,4 +12781,12 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E19", "Vlam-uit-melding", 1, "Melding dat het vuur mogelijk uit is.", ["Houd de grill in de gaten en start zo nodig opnieuw.", "Druk op de draaiknop om de melding weg te halen."])
   ]});
 })();
+(() => {
+  SRC.weberConnectE8 = ["Weber Support – E8 Grill Temperature Probe Error (Engels)", "https://contact-emea.weber.com/hc/en-us/articles/14370833018013-E8-Grill-Temperature-Probe-Error"];
+  SRC.weberConnectE10 = ["Weber Support – E10 Grill Identification Cable Error (Engels)", "https://contact-emea.weber.com/hc/en-us/articles/4406816432787-E10-Grill-Identification-Cable-Error"];
+  MODELS.push({ id: "weber-connect-module", brand: "Weber", name: "Gasbarbecue met Weber Connect-module (Genesis Smart): foutcode E8, E10", dev: "Weber Connect-module", cat: "tuin", years: "Weber gasbarbecues met ingebouwde Weber Connect-module en display, zoals de Genesis Smart", unit: null, also: "Weber Connect E8, Weber Connect E10, Weber Genesis Smart foutcode, Weber Connect display fout, Weber barbecue E8 sensor", intro: "Een Weber-gasbarbecue met ingebouwde Weber Connect-module toont E8 of E10 als een kabel aan de achterkant van de module niet goed zit.", weak: ["Losgeraakte stekkers achter de module."], parts: [], tasks: [], src: ["weberConnectE8", "weberConnectE10"], faults: [
+    F("E8", "Temperatuursensor grill", 1, "De temperatuursensor van de grill is niet aangesloten of defect.", ["Zet de barbecue uit.", "Steek de temperatuursensor aan de achterkant van de Weber Connect-module goed in; de melding verdwijnt dan.", "Blijft E8 staan, neem contact op met de Weber-klantenservice."]),
+    F("E10", "Identificatiekabel grill", 1, "De identificatiekabel (jumper) zit niet goed in de achterkant van de Weber Connect-module.", ["Zet de barbecue uit.", "Steek de jumperkabel opnieuw goed in de achterkant van de module.", "Zet de barbecue weer aan; E10 verdwijnt."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
