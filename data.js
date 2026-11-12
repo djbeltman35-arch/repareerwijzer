@@ -14364,4 +14364,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("3007", "Afvalwater", 2, "Probleem met de afvalwaterafvoer.", ["Maak verstoppingen in de afvalwaterslang vrij en reinig de stationsbak en waterinlaat.", "Blijft het ook met de handmatige tank, neem direct contact op met de klantenservice."]),
   ]});
 })();
+(() => {
+  SRC.caHaloLed = ["Charge Amps – LED-status and indicators for Charge Amps Halo (Engels)", "https://chargeamps.freshdesk.com/en/support/solutions/articles/206000053667-led-status-and-indicators-for-charge-amps-halo"];
+  SRC.caHaloHw = ["Charge Amps – Hardware troubleshooting (Halo) (Engels)", "https://chargeamps.freshdesk.com/en/support/solutions/articles/206000053736-hardware-troubleshooting-halo-"];
+  MODELS.push({ id: "charge-amps-halo", brand: "Charge Amps", name: "Halo laadpaal: rood lampje en storingen", dev: "Halo laadpaal", cat: "laadpalen", years: "Charge Amps Halo", unit: null, also: "Charge Amps Halo rood lampje, Halo laadt niet, Charge Amps Halo groen knippert, Halo herkent auto niet, Charge Amps RFID rood, Halo laadt langzaam", intro: "Een rood middenlampje zonder ring bij de Charge Amps Halo betekent een aardfout of een fout in de auto. Groen knipperen is geen storing: de Halo pauzeert dan het laden, bijvoorbeeld door load balancing.", weak: ["Beschadigde kabel of stekker.", "Losse pilotdraad.", "Vocht in de behuizing bij slechte afdichting."], parts: [], tasks: [], src: ["caHaloLed", "caHaloHw"], faults: [
+    N("Rood middenlampje, geen ring", 2, "Aardfout of fout in de auto.", ["Controleer of de stekker van de laadkabel heel is.", "Zet de stroom uit en start na een paar minuten opnieuw.", "Blijft het, laat de installateur de pilotdraad en de kabel controleren."]),
+    N("Groen middenlampje knippert", 1, "De Halo heeft het laden gepauzeerd; load balancing kan tot 2 minuten duren.", ["Even wachten."]),
+    N("Middenlampje knippert, ring brandt", 1, "De Halo wacht op een RFID-tag.", ["Houd je laadpas voor de lader."]),
+    N("Rood middenlampje knippert één keer", 1, "De RFID-tag is niet goedgekeurd.", ["Gebruik een geregistreerde laadpas of controleer de pas in de app of het portaal."]),
+    N("Wit middenlampje, ring brandt", 1, "Klaar om te laden, of laden is klaar/door de auto gepauzeerd.", ["Niets doen."]),
+    N("Laadt langzaam of beperkt", 1, "Te weinig stroom toegewezen of een externe app of dienst stuurt de lader.", ["Zet load balancing tijdelijk uit om te testen.", "Wordt de lader door een externe app of dienst gestuurd, meld hem daar af (niet alleen de app verwijderen)."]),
+    N("Lader doet helemaal niets", 2, "Geen stroom.", ["Controleer de aardlekschakelaar en of er spanning op de voeding staat."]),
+    N("Lader herkent de auto nooit", 2, "Waarschijnlijk een fout in de pilotdraad.", ["Laat de pilotdraad controleren."]),
+    N("Wit aanslag of oxidatie binnenin", 3, "Vocht in de lader door slechte afdichting of beschadigde onderdelen.", ["Laat de installateur de vier O-ringen op de montagebouten en de afdichtring tussen behuizing en frontkap controleren."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
