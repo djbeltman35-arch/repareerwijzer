@@ -15754,4 +15754,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Noodbedrijf inschakelen",1,"De warmtepomp is in storing en u wilt toch verwarming en warm water.",["Schakel verwarming en warmwaterbereiding over op de tweede warmteopwekker (dit verhoogt de stroomkosten).","Controleer eerst of er een extra warmteopwekker is; bij de compacte brine/water- (23 en 33 kW) en water/water-units (28 en 44 kW) kan dit niet."]),
   ]});
 })();
+(() => {
+  SRC.panaMagnNa=["Panasonic – Troubleshooting: an error code appears in the microwave display window (Engels)","https://help.na.panasonic.com/answers/troubleshooting-an-error-code-appears-in-the-microwave-display-window"];
+  const m=MODELS.find(x=>x.id==="panasonic-magnetron"); m.src.push("panaMagnNa");
+  m.faults.push(F("E01","Storing",3,"Een storing waarvoor service nodig is.",["Gebruik de magnetron niet meer, haal de stekker eruit en neem contact op met een erkend Panasonic-servicecentrum."]));
+  m.faults.push(F("U50","Oven oververhit",1,"De oven is oververhit, of de ruimte is warmer dan de rijstemperatuur (fermenteren).",["Laat de oven afkoelen tot de code verdwijnt en ga dan verder."]));
+  m.faults.push(F("U90","Waterafvoerfunctie drie keer achter elkaar gebruikt",1,"De functie om water af te voeren is drie keer na elkaar gebruikt.",["Volg de procedure in de handleiding van je model."]));
+  m.faults.push(N("Display toont Error",2,"Tijdens het programmeren is een verkeerde of niet beschikbare knop ingedrukt; tijdens het koken wijst het op een storing.",["Bij programmeren: controleer de gebruiksaanwijzing.", "Tijdens het koken: gebruik de magnetron niet meer, haal de stekker eruit en neem contact op met een erkend Panasonic-servicecentrum."]));
+  m.faults.push(N("Display toont D of DEMO MODE",1,"De magnetron staat in demomodus voor winkels en verwarmt niet.",["Zet de demomodus uit volgens de handleiding."]));
+  m.faults.push(N("Display toont HOT of HOT INSIDE WAIT",1,"De binnenruimte is nog te heet van het vorige gebruik; een automatisch programma kan niet worden ingesteld.",["Wacht tot de oven is afgekoeld, of open de deur om sneller af te koelen. Handmatig koken met stand en tijd kan wel."]));
+  m.faults.push(N("Display toont Cooling",1,"Geen fout: de ventilator koelt de elektrische onderdelen.",["Geen actie nodig; de melding verdwijnt als de ventilator stopt."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
