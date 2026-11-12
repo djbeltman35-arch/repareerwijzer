@@ -16117,4 +16117,27 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("A-B07","Lage laadtoestand",1,"Alarm (SuperPack NG): de accu is te leeg.",["Laad de accu op."]));
   m.faults.push(F("E-B116","Kalibratie verloren",3,"Fout (SuperPack NG): de kalibratiegegevens ontbreken.",["Neem contact op met de leverancier."]));
 })();
+(() => {
+  SRC.tefalCy701=["Tefal – User manual and FAQ COOKEO/COOK4ME CY701 (Engels)","https://www.tefal.com/instructions-for-use/csp/7211001686"];
+  SRC.tefalRk302=["Tefal – User manual and FAQ Multicook 8in1 RK302E15 (Engels)","https://www.tefal.co.uk/instructions-for-use/csp/7211000750"];
+  const R="Laat het apparaat nakijken door een erkende reparatieservice.";
+  MODELS.push({ id:"tefal-cook4me-cy701", brand:"Tefal", name:"Cook4me / Moulinex Cookeo (CY701): alarm 20 t/m 28 en Demo", dev:"Cook4me multicooker (CY701)", cat:"kleine-apparaten", years:"CY701 (Cook4me, bij Moulinex Cookeo)", unit:null,
+  also:"Moulinex Cookeo CY701",
+  intro:"Toont de Cook4me of Cookeo (CY701) een foutcode, volg dan eerst de instructies op het scherm. Hieronder de codes die Tefal zelf in de FAQ uitlegt.",
+  weak:[], parts:[], tasks:[], src:["tefalCy701"],
+  faults:[
+    F("21 / 24 / 26","Te weinig water (rood lampje knippert)",1,"Er zit te weinig water in de pan om druk op te bouwen en vast te houden.",["Stop het programma en open het deksel.","Voeg genoeg water toe en start het recept opnieuw of verwarm handmatig.","Bij rijst en andere producten die veel water opnemen: gebruik minstens de hoeveelheid water van de verpakking (tot 200 ml bij de maximale hoeveelheid of lange bereiding)."]),
+    F("26 / 28","Low Water: continu stoom uit het ventiel",2,"De kogelkap van het ventiel zit mogelijk niet goed.",["Laat het apparaat afkoelen en verwijder de metalen kap.","Controleer of de verticale markering op de kogelkap tegenover het gesloten hangslotje staat.",R]),
+    F("20 / 27","Deksel gaat niet open",2,"De kogelkap van het ventiel zit mogelijk niet goed.",["Laat het apparaat afkoelen en controleer of de verticale markering op de kogelkap tegenover het gesloten hangslotje staat.",R]),
+    N("Demo op het scherm",1,"Geen fout: het apparaat staat in demomodus.",["Ga naar Instellingen > Scherm/Geluiden > Scherm > Demomodus, zet de demomodus uit, voer met het scrollwiel code 3424 in en druk op OK. Het apparaat start opnieuw in normale modus."]),
+  ]});
+  MODELS.push({ id:"tefal-multicook-8in1", brand:"Tefal", name:"Multicook 8in1 (RK302E15): foutcode E0 en E1", dev:"Multicook 8in1", cat:"kleine-apparaten", years:"RK302E15", unit:null,
+  intro:"Tefal legt in de FAQ van de Multicook 8in1 twee foutcodes uit.",
+  weak:[], parts:[], tasks:[], src:["tefalRk302"],
+  faults:[
+    F("E0","Bovenste sensor open of kortgesloten",3,"De bovenste sensor heeft een open circuit of kortsluiting.",["Stuur het apparaat naar een erkend servicecentrum."]),
+    F("E1","Kom niet geplaatst",1,"De binnenpan staat niet (goed) in het apparaat.",["Plaats de pan in de basis en steek de stekker in het stopcontact.","Blijft E1 staan met de pan erin: stuur het apparaat naar een erkend servicecentrum."]),
+    N("Startlampje knippert niet",1,"Er is nog geen programma gekozen of de pan staat niet goed.",["Druk op Menu tot je bij het gewenste programma bent en druk op Start.","Controleer of de onderkant van de pan schoon is, er niets tussen pan en verwarmingselement zit en de pan goed staat."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
