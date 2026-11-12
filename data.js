@@ -14583,4 +14583,18 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melk schuimt niet bij cappuccino", 1, "Ring op 'HOT MILK', melk niet koud genoeg, stoompijpje vuil of kalk.", ["Zet de ring op 'CAPPUCCINO'.", "Gebruik melk uit de koelkast.", "Reinig het stoompijpje na elk gebruik.", "Ontkalk de machine (zie hoofdstuk Ontkalking in de handleiding)."])
   ]});
 })();
+(() => {
+  SRC.nesCreatistaPro = ["Nespresso – Machine assistance Creatista Pro (Engels)", "https://www.nespresso.com/za/en/machine-assistance/creatista-pro-machine-assistance"];
+  MODELS.push({ id: "nespresso-creatista-pro", brand: "Nespresso", name: "Creatista Pro: meldingen en storingen", dev: "Creatista Pro (Sage)", cat: "koffiemachines", years: "Nespresso Creatista Pro", unit: null, also: "Creatista Pro Fill Water Tank blijft, Creatista Pro Descale, Creatista Pro Clean Steam Wand, Creatista Pro touchscreen werkt niet, Creatista Pro stopt, Creatista Pro melk schuimt niet", intro: "De Nespresso Creatista Pro meldt zich op het touchscreen. 'Descale' en 'Clean Steam Wand' los je op via het menu. Blijft 'Fill Water Tank' staan terwijl de tank vol is, dan zit de tank niet goed.", weak: ["Verstopt stoompijpje.", "Kalk.", "Watertank niet goed geplaatst."], parts: [], tasks: [], src: ["nesCreatistaPro"], faults: [
+    N("'Fill Water Tank' blijft staan terwijl de tank vol is", 1, "De machine ziet de tank niet.", ["Zet de watertank goed op zijn plaats.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Melding Descale", 1, "De machine moet ontkalkt worden.", ["Ga naar Menu > Descale en volg de stappen op het scherm."]),
+    N("Melding Clean Steam Wand", 1, "Het stoompijpje moet gereinigd worden.", ["Ga naar Menu > Clean Steam Wand en volg de stappen."]),
+    N("Touchscreen staat in winkelmodus of werkt niet", 1, "Demostand of hapering.", ["Zet de machine uit met POWER en weer aan.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Machine staat aan maar stopt met werken", 2, "De machine hangt.", ["Houd START/CANCEL ingedrukt om uit te zetten, wacht 60 minuten en druk op POWER.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Geen koffie, water gaat in de capsulebak", 2, "Hendel niet gesloten of capsule klem.", ["Sluit de capsulehendel goed.", "Leeg de capsulebak en kijk of er geen capsule klem zit (niet met je vingers in de machine).", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Geen koffie of water, of rare doorloop", 1, "Tank niet goed of leeg, of kalk.", ["Plaats de tank goed en vul hem met vers water.", "Ontkalk zo nodig."]),
+    N("Water onder de machine", 1, "Lekbak vol of niet goed geplaatst.", ["Leeg de lekbak en schuif hem goed terug.", "Neem contact op met de Nespresso-klantenservice."]),
+    N("Melk schuimt niet goed of wordt niet warm", 1, "Verkeerde melk, verstopt stoompijpje of kan niet op de sensor.", ["Gebruik koude volle of halfvolle melk (4 tot 6 °C), vers geopend.", "Gebruik de meegeleverde kan op de temperatuursensor in de lekbak en houd de sensor droog en schoon.", "Prik de gaatjes van het stoompijpje door en draai Clean Steam Wand."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
