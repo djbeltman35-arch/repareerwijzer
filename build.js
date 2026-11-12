@@ -21,6 +21,9 @@ const NOINDEX = new Set();
 const isThin = f => f.steps && f.steps[0] && f.steps[0].startsWith("Tik op de melding op het printerscherm of in Bambu Handy");
 // Versie van deze build: verandert zodra data, build of assets veranderen, zodat bezoekers altijd de nieuwste bestanden krijgen
 const INDEXNOW_KEY = "9465e16b8376c642c35b9ece91b545a9";
+const INLINE_CSS = (() => { const src = fs.readFileSync(path.join(__dirname, "assets", "style.css")), minP = path.join(__dirname, "assets", "style.min.css"); const h = require("crypto").createHash("sha1").update(src).digest("hex").slice(0, 12);
+  if (fs.existsSync(minP)) { const min = fs.readFileSync(minP, "utf8"); if (min.startsWith(`/*src:${h}*/`)) return min.replace(/^\/\*src:[0-9a-f]+\*\//, ""); }
+  return src.toString(); })();
 const ASSETV = (() => { const h = require("crypto").createHash("sha1"); for (const f of ["assets/style.css", "assets/app.js"]) h.update(fs.readFileSync(path.join(__dirname, f))); return h.digest("hex").slice(0, 8); })();
 const VER = (() => { const h = require("crypto").createHash("sha1"); for (const f of ["data.js", "build.js", "assets/style.css", "assets/app.js", "static/sw.js"]) { try { h.update(fs.readFileSync(path.join(__dirname, f))); } catch (e) {} } return h.digest("hex").slice(0, 8); })();
 // Laatst gewijzigd per pagina: alleen een nieuwe datum als de inhoud echt verandert (betere lastmod voor Google)
@@ -97,7 +100,7 @@ ${file === "index.html" ? '<meta name="e0d5a73bd035a1c" content="277030417ea9ada
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preload" href="/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/overpass-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=${ASSETV}">
+<style>${INLINE_CSS}</style>
 ${bc}${extraHead}
 <script data-goatcounter="https://foutcode.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
