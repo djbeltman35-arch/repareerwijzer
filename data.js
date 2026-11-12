@@ -16463,4 +16463,22 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("E095","Communicatiefout I/O-expander",2,"Communicatiefout met de I/O-expander.",["Breng het voertuig naar een erkende werkplaats."]),
   ]});
 })();
+(() => {
+  SRC.askollScoo3=["Askoll – User manual & maintenance guide SCOO3 (Engels, PDF): Error code","https://www.askollelectric.com/app/uploads/2026/05/askoll_User-manual_maintenance-guide_scoo3.pdf"];
+  SRC.askollXKP=["Askoll – Manuale uso e manutenzione XKP 45/70/80 (Italiaans, PDF): Codici di errore","https://www.askollelectric.com/app/uploads/2026/04/ManualeUsoManutenzioneXKP.pdf"];
+  MODELS.push({ id:"askoll-scoo3", brand:"Askoll", name:"SCOO3 elektrische step: foutcodes 1 t/m 8", dev:"SCOO3 elektrische step", cat:"scooters", years:"Askoll SCOO3 (TE401)", unit:null,
+  intro:"De Askoll SCOO3 toont een foutcode als cijfer. Bij alle codes adviseert Askoll technische hulp via het verkooppunt of een erkende werkplaats.",
+  weak:[], parts:[], tasks:[], src:["askollScoo3"],
+  faults:[
+    F("1","Communicatiefout inverter",2,"Inverter. Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
+    F("2","Communicatiefout BMS",2,"BMS (accubeheersysteem). Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
+    F("4","Storing gashendel",2,"Signaal van de gashendel buiten bereik en/of kortsluiting. Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
+    F("5","Storing rechterrem",2,"Signaal van de rechterrem buiten bereik en/of kortsluiting. Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
+    F("6","Storing linkerrem",2,"Signaal van de linkerrem buiten bereik en/of kortsluiting. Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
+    F("7","Storing voeding koplamp",2,"Kortsluiting in de voeding van de koplamp. Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
+    F("8","Storing 5V-voeding",2,"Overbelasting en/of kortsluiting van de 5V-voeding. Zijn er meerdere fouten, dan verschijnen ze na elkaar.",["Vraag technische hulp aan het servicecentrum van het verkooppunt of een erkende ASKOLL-werkplaats."]),
+  ]});
+  const m=MODELS.find(x=>x.id==="askoll-es"); m.src.push("askollXKP"); m.years="Askoll eS2, eS2 EVO, eS3 EVO, XKP 45, XKP 70, XKP 80"; m.name="eS2 / eS3 EVO / XKP elektrische scooter: storingssymbolen en laderlampjes";
+  m.faults.push(N("Storing 12V-display",2,"Het systeem detecteert dat het display kapot is of niet goed werkt (XKP).",["Breng de scooter naar een erkende werkplaats."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
