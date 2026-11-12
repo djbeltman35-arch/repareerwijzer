@@ -14631,4 +14631,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Water in de lekbak", 1, "Normaal: automatische doorspoeling bij opstarten en na stomen.", ["Niets doen."])
   ]});
 })();
+(() => {
+  SRC.vaillantVRC700 = ["Vaillant – Gebruiksaanwijzing multiMATIC VRC 700/6, Verhelpen van storingen en onderhoudsmeldingen (PDF, NL)", "https://www.vaillant.be/api/download/product/nl/_multimatic_1477037.pdf"];
+  MODELS.push({ id: "vaillant-multimatic-700", brand: "Vaillant", name: "multiMATIC VRC 700 thermostaat: meldingen en storingen", dev: "multiMATIC VRC 700 systeemthermostaat", cat: "slim-huis", years: "Vaillant multiMATIC VRC 700/6", unit: null, also: "Vaillant multiMATIC storing, VRC 700 Fout boiler, VRC 700 beperkt bedrijf comfortbeveiliging, VRC 700 display donker, VRC 700 toetsenblokkering, VRC 700 watertekort", intro: "De Vaillant multiMATIC VRC 700 toont storingen van de ketel of warmtepomp als 'Fout F.xx' met de betreffende warmteopwekker erbij. Met de keuzetoets Reset kun je de storing ontstoren; komt hij terug, waarschuw dan de installateur.", weak: ["Softwarehapering (display donker of reageert niet).", "Uitgevallen warmtepomp (beperkt bedrijf)."], parts: [], tasks: [], src: ["vaillantVRC700"], faults: [
+    N("Fout F.xx boiler / warmteopwekker op het display", 2, "Er is een storing in de ketel of warmtepomp; achter F. staat de code (bijv. F.33).", ["Druk op de keuzetoets Reset en bevestig 'Ontstoring Boiler?' met OK.", "Blijft de fout, waarschuw de installateur. Je ziet de actuele fouten onder Menu > Informatie > Systeemstatus > Foutstatus."]),
+    N("Beperkt bedrijf / comfortbeveiliging", 2, "De warmtepomp werkt niet; verwarming en warm water warmen onvoldoende op.", ["Informeer de installateur.", "Kies tot dan de instelling voor noodbedrijf (Instelling bij uitval van de warmtepomp)."]),
+    N("Display blijft donker", 1, "Softwarefout.", ["Zet de netschakelaar van alle warmteopwekkers (ketel en/of warmtepomp) ongeveer 1 minuut uit en weer aan.", "Blijft de fout, waarschuw de installateur."]),
+    N("Draaiknop of keuzetoetsen doen niets", 1, "Softwarefout.", ["Zet de netschakelaar van alle warmteopwekkers (ketel en/of warmtepomp) ongeveer 1 minuut uit en weer aan.", "Blijft de fout, waarschuw de installateur."]),
+    N("'Toetsenblokkering actief'", 1, "De toetsenblokkering staat aan.", ["Houd OK 3 seconden ingedrukt om te ontgrendelen."]),
+    N("Onderhoudsmelding Watertekort", 1, "De waterdruk van de cv-installatie is te laag.", ["Vul de installatie bij volgens de handleiding van de ketel of warmtepomp."]),
+    N("Onderhoudsmelding Onderhoud warmtepomp / boiler / ventilatietoestel", 1, "Het toestel moet onderhouden worden.", ["Laat het onderhoud uitvoeren volgens de handleiding van het toestel."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
