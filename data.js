@@ -21201,4 +21201,9 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("B20B","Er is een fout opgetreden waardoor een reparatie is vereist",1,"Er is een fout opgetreden waardoor een reparatie is vereist.",["Schakel de printer uit en trek de stekker uit het stopcontact.", "Neem contact op met het dichtstbijzijnde Canon-servicecentrum om een reparatie aan te vragen."]),
   ]});
 })();
+(() => {
+  // Compressoren samengevoegd met "Compressoren, hogedrukreinigers en gereedschap"
+  for (const m of MODELS) if (m.cat === "compressoren") m.cat = "gereedschap";
+  const k = CATS.findIndex(c => c.id === "compressoren"); if (k >= 0) CATS.splice(k, 1);
+})();
 module.exports = { CATS, MODELS, SRC, COST };

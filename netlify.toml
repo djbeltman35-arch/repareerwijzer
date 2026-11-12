@@ -53,3 +53,8 @@
   from = "/foutcode-brokk-sloopRobot-*"
   to = "/foutcode-brokk-sloop-robot-:splat"
   status = 301
+
+[[redirects]]
+  from = "/compressoren"
+  to = "/gereedschap"
+  status = 301

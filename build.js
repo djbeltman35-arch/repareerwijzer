@@ -203,7 +203,7 @@ ${seasonBlock()}
 </section>
 <section class="stack">
   <h2>Veelvoorkomende problemen</h2>
-  <div class="probs">${CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.slice(0, 4).map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}${ms.length > 4 ? `<li><a href="${c.id}.html"><b>Meer over ${esc(c.name.toLowerCase())} (${ms.length - 4}) →</b></a></li>` : ""}</ul></div>` : ""; }).join("")}</div>
+  ${(() => { const blocks = CATS.map(c => { const ms = MODELS.filter(m => m.brand === "Alle merken" && m.cat === c.id); return ms.length ? `<div><h3>${esc(c.name)}</h3><ul>${ms.slice(0, 4).map(m => `<li><a href="${m.id}.html">${esc(m.name)}</a></li>`).join("")}${ms.length > 4 ? `<li><a href="${c.id}.html"><b>Meer over ${esc(c.name.toLowerCase())} (${ms.length - 4}) →</b></a></li>` : ""}</ul></div>` : ""; }).filter(Boolean); return `<div class="probs">${blocks.slice(0, 8).join("")}</div>${blocks.length > 8 ? `<details class="pickfold"><summary>Meer problemen per apparaat (${blocks.length - 8})</summary><div class="probs">${blocks.slice(8).join("")}</div></details>` : ""}`; })()}
 </section>
 <section class="stack">
   <h2>Kennisbank</h2>
