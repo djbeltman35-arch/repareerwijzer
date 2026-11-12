@@ -16884,4 +16884,19 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Schroef gaat niet uit",1,"De reed-sensor staat te hoog.",["Haal de Momentary-knop eruit door het lipje aan de onderkant van het pedaal in te drukken.", "Duw de reed-schakelaar voorzichtig omlaag tot de bovenkant 1/32 inch onder de bovenkant van de clip zit.", "Plaats de knop terug tot het lipje vastklikt.", "Blijft het probleem, ga naar een erkende servicedealer."]),
   ]});
 })();
+(() => {
+  SRC.ooniVolt=["Ooni – Volt 12 Manual, hoofdstuk 11 Troubleshooting (Engels, PDF)","https://cdn.shopify.com/s/files/1/1333/9755/files/Ooni_Volt_12_Manual.pdf"];
+  MODELS.push({ id:"ooni-volt-12", brand:"Ooni", name:"Volt 12 elektrische pizzaoven: Error 1 t/m 7 (rood lampje)", dev:"Volt 12 elektrische pizzaoven", cat:"tuin", years:"Ooni Volt 12", unit:null,
+  intro:"Bij een storing brandt bij de Ooni Volt 12 één lampje rond de temperatuurknop rood en klinkt een alarm. Welk lampje rood is, vertelt welke fout het is: 150 is Error 1, 200 is Error 2, enzovoort tot 450 voor Error 7.",
+  weak:[], parts:[], tasks:[], src:["ooniVolt"],
+  faults:[
+    F("Error 1","Kortsluiting temperatuursonde ovenruimte",2,"Kortsluiting temperatuursonde ovenruimte. Herken je hem aan: het lampje bij '+n+' op de temperatuurknop brandt rood en er klinkt een alarmtoon.",["Neem contact op met de klantenservice van Ooni (support.ooni.com) en noem de foutcode.", "Ander onderhoud hoort door een erkende servicemonteur te gebeuren."]),
+    F("Error 2","Temperatuursonde ovenruimte onderbroken",2,"Temperatuursonde ovenruimte onderbroken. Herken je hem aan: het lampje bij '+n+' op de temperatuurknop brandt rood en er klinkt een alarmtoon.",["Neem contact op met de klantenservice van Ooni (support.ooni.com) en noem de foutcode.", "Ander onderhoud hoort door een erkende servicemonteur te gebeuren."]),
+    F("Error 3","Oven te heet",2,"Oven te heet. Herken je hem aan: het lampje bij '+n+' op de temperatuurknop brandt rood en er klinkt een alarmtoon.",["Neem contact op met de klantenservice van Ooni (support.ooni.com) en noem de foutcode.", "Ander onderhoud hoort door een erkende servicemonteur te gebeuren."]),
+    F("Error 4","Printplaat (PCB) te heet",2,"Printplaat (PCB) te heet. Herken je hem aan: het lampje bij '+n+' op de temperatuurknop brandt rood en er klinkt een alarmtoon.",["Neem contact op met de klantenservice van Ooni (support.ooni.com) en noem de foutcode.", "Ander onderhoud hoort door een erkende servicemonteur te gebeuren."]),
+    F("Error 5","Kortsluiting temperatuursensor printplaat",2,"Kortsluiting temperatuursensor printplaat. Herken je hem aan: het lampje bij '+n+' op de temperatuurknop brandt rood en er klinkt een alarmtoon.",["Neem contact op met de klantenservice van Ooni (support.ooni.com) en noem de foutcode.", "Ander onderhoud hoort door een erkende servicemonteur te gebeuren."]),
+    F("Error 6","Temperatuursensor printplaat onderbroken",2,"Temperatuursensor printplaat onderbroken. Herken je hem aan: het lampje bij '+n+' op de temperatuurknop brandt rood en er klinkt een alarmtoon.",["Neem contact op met de klantenservice van Ooni (support.ooni.com) en noem de foutcode.", "Ander onderhoud hoort door een erkende servicemonteur te gebeuren."]),
+    F("Error 7","Communicatiefout printplaat",2,"Communicatiefout printplaat. Herken je hem aan: het lampje bij '+n+' op de temperatuurknop brandt rood en er klinkt een alarmtoon.",["Neem contact op met de klantenservice van Ooni (support.ooni.com) en noem de foutcode.", "Ander onderhoud hoort door een erkende servicemonteur te gebeuren."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
