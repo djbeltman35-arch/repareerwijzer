@@ -15661,4 +15661,16 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Andere foutmeldingen",2,"Andere foutmeldingen moeten door een erkend installateur worden gecontroleerd.",["Neem contact op met uw installateur."]),
   ]});
 })();
+(() => {
+  SRC.remehaEhp=["Remeha – installatie- en gebruikershandleiding E-HP BW/WW (7733442), § 10.2 storingen","https://documentation.remeha.nl/wp-content/uploads/sites/68/2026/04/Installatie-en-gebruikershandleiding-E-HP-WW-BW.pdf"];
+  MODELS.push({ id:"remeha-e-hp-bw-ww", brand:"Remeha", name:"E-HP BW/WW water/water- en brine/water-warmtepomp: storingen", dev:"warmtepomp", cat:"warmtepompen", years:"E-HP 024 BWi, 139 BW, 173 BW, 032 WWi, 191 WW, 238 WW", unit:null,
+  intro:"Bij een storing toont de Remeha E-HP een storingscode op de controller; de uitleg staat in de handleiding van de controller. Storingen die niet op de controller verschijnen, staan hieronder.",
+  weak:[], parts:[], tasks:[], src:["remehaEhp"],
+  faults:[
+    N("Storingscode op de controller",2,"Er is een storing opgetreden; de code staat op de controller van het apparaat.",["Zoek de code op in de handleiding van de controller.", "Kunt u het probleem niet oplossen: neem contact op met een erkend installateur of servicetechnicus."]),
+    N("Display werkt niet",1,"Er is geen netspanning, of het apparaat werkt niet goed.",["Schakel de controller in of sluit hem aan.", "Controleer de huiszekering voor de aansluiting.", "Helpt dit niet: neem contact op met de installateur."]),
+    N("Controller werkt niet",1,"De controller staat in de handmatige modus, of er is nog niet voldaan aan de inschakelvoorwaarde.",["Verlaat het menu Handmatig.", "Wacht tot aan de inschakelvoorwaarde is voldaan."]),
+    N("Weergegeven temperatuur schommelt sterk",2,"Sensorkabels liggen dicht bij 230V-kabels of zijn lang en niet afgeschermd, het apparaat werkt niet goed, of een leidingaansluiting zit los.",["Laat de sensorkabels anders leggen en afschermen.", "Zet een losse leidingaansluiting weer goed vast.", "Helpt dit niet: neem contact op met de installateur."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
