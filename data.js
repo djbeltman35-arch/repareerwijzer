@@ -13480,4 +13480,29 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Geen stoom", 1, "Het stoompijpje is verstopt of het reservoir is leeg.", ["Prik het tuitje open met de pin van het schoonmaakgereedschap en vul het reservoir."])
   ]});
 })();
+(() => {
+  SRC.sageDualBoiler = ["Sage – Gebruiksaanwijzing the Dual Boiler SES920, Troubleshooting (PDF, assets.sageappliances.com, Engels)", "https://assets.sageappliances.com/BES920/SES920_EU_UG8_F21_LR.pdf"];
+  SRC.sageOracle = ["Sage – Gebruiksaanwijzing the Oracle SES980, Troubleshooting (PDF, assets.sageappliances.com, Engels)", "https://assets.sageappliances.com/BES980/SES980_EU_UG8_F21_FA_Online.pdf"];
+  MODELS.push({ id: "sage-dual-boiler", brand: "Sage", name: "the Dual Boiler: E1, E2, E3 en meldingen op het display", dev: "the Dual Boiler (SES920)", cat: "koffiemachines", years: "Sage the Dual Boiler SES920", unit: null, also: "Sage Dual Boiler E1, Dual Boiler E2, Dual Boiler E3, Dual Boiler FILL TANK, Dual Boiler CLEAN ME, Dual Boiler Empty Me, Dual Boiler steam lampje knippert", intro: "De Sage Dual Boiler toont meldingen op het lcd-scherm. E1, E2 en E3 zijn fouten die je niet zelf kunt resetten; FILL TANK, CLEAN ME! en Empty Me! vragen om bijvullen, schoonmaken of legen.", weak: ["Gedemineraliseerd of gedestilleerd water.", "Verstopte stoompijp."], parts: [], tasks: [], src: ["sageDualBoiler"], faults: [
+    F("E1 / E2 / E3", "Fout die je niet zelf kunt resetten", 3, "Er is een storing die de gebruiker niet kan resetten.", ["Neem contact op met de Sage-klantenservice."]),
+    F("FILL TANK", "Waterreservoir vullen", 1, "Het waterniveau is te laag.", ["Vul water bij tot de machine weer op STANDBY staat.", "Is het reservoir vol, duw het helemaal aan en sluit de vergrendeling."]),
+    F("CLEAN ME!", "Reinigingscyclus nodig", 1, "Er is ongeveer 200 keer koffie gezet sinds de laatste reiniging.", ["Plaats de reinigingsschijf en een tablet in het 1 CUP-mandje, kies CLEAN CYCLE in het menu en druk op MANUAL."]),
+    F("Empty Me!", "Lekbak vol", 1, "De lekbak is vol.", ["Leeg, reinig en plaats de lekbak terug."]),
+    N("STEAM- of HOT WATER-lampje knippert bij aanzetten", 1, "De stoomhendel of de heetwaterknop staat open, waardoor de machine niet opstart.", ["Zet de stoomhendel of heetwaterknop dicht."]),
+    N("Machine staat aan maar stopt, of stoom uit de zetgroep", 2, "Storing.", ["Zet de machine uit, wacht 60 minuten en zet hem weer aan. Blijft het, neem contact op met de Sage-klantenservice."]),
+    N("Pompen blijven draaien, natte stoom of lekkende heetwateruitloop", 1, "Er wordt een niet-aanbevolen watersoort gebruikt.", ["Gebruik koud gefilterd water, geen gedemineraliseerd of gedestilleerd water."])
+  ]});
+  MODELS.push({ id: "sage-oracle", brand: "Sage", name: "the Oracle: ERR en meldingen op het display", dev: "the Oracle (SES980)", cat: "koffiemachines", years: "Sage the Oracle SES980", unit: null, also: "Sage Oracle ERR, Sage Oracle FILL TANK, Sage Oracle Lock Hopper, Sage Oracle Overheat Please Wait, Sage Oracle Change Filter, Sage Oracle MANUAL knippert, Sage Oracle Clean Me", intro: "De Sage Oracle toont meldingen op het lcd-scherm. ERR is een ernstige storing; de andere meldingen vragen om bijvullen, schoonmaken, het vergrendelen van de bonenbak of even wachten.", weak: ["Bonenbak niet vergrendeld.", "Stoomhendel op MANUAL laten staan."], parts: [], tasks: [], src: ["sageOracle"], faults: [
+    F("ERR", "Ernstige storing", 3, "Er is een ernstige fout en de machine kan niet werken.", ["Neem contact op met de Sage-klantenservice."]),
+    F("FILL TANK", "Waterreservoir vullen", 1, "Het waterniveau is te laag.", ["Vul het reservoir; is het vol, duw het helemaal aan en sluit de vergrendeling."]),
+    F("Clean Me!", "Reinigingscyclus nodig", 1, "Er is ongeveer 200 keer koffie gezet sinds de laatste reiniging.", ["Draai de reinigingscyclus."]),
+    F("Lock Hopper", "Bonenbak vergrendelen", 1, "De bonenbak zit niet goed of is niet vergrendeld.", ["Plaats de bonenbak opnieuw en vergrendel hem."]),
+    F("Overheat Please Wait", "Molen te warm", 1, "De molen is veel gebruikt en moet afkoelen.", ["Wacht tot de molen is afgekoeld."]),
+    F("Change Filter", "Waterfilter vervangen", 1, "Het waterfilter moet vervangen worden.", ["Vervang het waterfilter."]),
+    F("MANUAL", "Stoomhendel op MANUAL", 1, "De stoomhendel staat op MANUAL, waardoor de machine niet op temperatuur komt (knippert op het stoomscherm).", ["Zet de stoomhendel in de middelste stand (OFF)."]),
+    N("Melding: Emergency stop?", 1, "Het automatisch malen, doseren en aandrukken moet gestopt worden.", ["Draai de portafilter naar links; haal zo nodig de stekker eruit."]),
+    N("Machine staat aan maar stopt, of stoom uit de zetgroep", 2, "Onbekende storing.", ["Zet de machine uit, wacht 60 minuten en zet hem weer aan. Blijft het, neem contact op met de Sage-klantenservice."]),
+    N("Molen maakt hard lawaai of geeft geen koffie", 1, "Geen bonen, een verstopping, iets vreemds of vocht in de molen.", ["Vul bonen bij, haal de bonenbak eraf en verwijder wat vastzit.", "Maak maalschijven en uitloop schoon en laat ze helemaal drogen."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
