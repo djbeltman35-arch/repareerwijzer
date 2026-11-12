@@ -15003,7 +15003,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 })();
 (() => {
   SRC.saecoGranaroma=["Saeco – online gebruikershandleiding GranAroma, foutcodes (Engels)","https://saeco.com/care/user-manual/granaroma/error-codes/"];
-  MODELS.push({ id:"saeco-granaroma", brand:"Saeco", name:"GranAroma volautomaat: foutcode 01, 03, 04, 05, 11, 14, 19", dev:"volautomaat", cat:"koffiemachines", years:"GranAroma", unit:null,
+  MODELS.push({ id:"saeco-granaroma", brand:"Saeco", name:"GranAroma volautomaat: foutcode 01, 03, 04, 05, 11, 14, 19", dev:"GranAroma volautomaat", cat:"koffiemachines", years:"GranAroma", unit:null,
   intro:"Saeco noemt deze foutcodes van de GranAroma codes die je zelf kunt oplossen. Verschijnt er een andere code, neem dan contact op met het Consumer Care Center in je land.",
   weak:[], parts:[], tasks:[], src:["saecoGranaroma"],
   faults:[
