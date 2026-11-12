@@ -14786,7 +14786,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("F.71", "Fout aanvoertemperatuursensor", 2, "Aanvoertemperatuursensor levert niet plausibele waarde.", ["Laat de installateur dit controleren en verhelpen."]),
     F("F.72", "Fout aanvoer-/retourtemperatuursensor", 2, "Temperatuurverschil aanvoer- /retourtemperatuursensor is te groot.", ["Laat de installateur dit controleren en verhelpen."]),
     F("F.73", "Fout waterdruksensor (signaal te laag)", 2, "Waterdruksensor meldt te lage waterdruk.", ["Controleer de waterdruk en vul zo nodig bij.", "Laat de installateur dit controleren en verhelpen."]),
-    F("F.74", "Fout waterdruksensor (signaal te hoog)", 1, "Waterdruk te hoog.", ["De waterdruk is te hoog: tap wat water af via een radiator (zie handleiding).", "Laat anders de waterdruksensor controleren."]),
+    F("F.74", "Fout waterdruksensor (signaal te hoog)", 1, "Waterdruk te hoog.", ["De waterdruk is te hoog: tap wat water af (zie handleiding).", "Laat anders de waterdruksensor controleren."]),
     F("F.75", "Pomp / watertekort", 2, "Bij de start van de pomp wordt onvoldoende druksprong herkend.", ["Controleer de waterdruk en vul zo nodig bij.", "Laat de installateur dit controleren en verhelpen."]),
     F("F.77", "Rookgasklep of condenspomp", 2, "Ontbrekende terugmelding van de verbrandingsgasklep; overloop van de condenspomp.", ["Laat de installateur dit controleren en verhelpen."]),
     F("F.78", "Onderbreking warmwatersensor aan externe thermostaat", 2, "UK link box is aangesloten zonder dat de warmwatertemperatuursensor is gebrugd.", ["Laat de installateur dit controleren en verhelpen."]),
