@@ -16086,4 +16086,25 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   const m=MODELS.find(x=>x.id==="hayward-energyline-pro-inverter"); m.src.push("haywardSline"); m.also=(m.also?m.also+", ":"")+"Hayward S.Line Pro (zelfde foutcodes)";
   m.faults.push(F("OFF","Warmtepomp start niet meer",1,"Het contact Remote On/Off (5-6) is open.",["Sluit het contact Remote On/Off (5-6), zie het elektrisch schema."]));
 })();
+(() => {
+  SRC.pgSdrive=["Curtiss-Wright PG Drives Technology – S-Drive flash codes (Engels)","https://industrial.curtisswright.com/en-gb/pgdt/Online-Diagnostics/Flash-Code-List/S-Drive-Flash-Codes"];
+  SRC.driveSdrive=["Drive Medical – S-Drive flash codes (Engels), nummering knipperingen","https://www.drivemedical.com/hubfs/Drive%20Medical/Brochures%20and%20Catalogs/Flash%20S%20Drive.pdf?hsLang=en"];
+  MODELS.push({ id:"pg-drives-s-drive", brand:"PG Drives", name:"S-Drive besturing (scootmobiel): knippercodes accumeter", dev:"S-Drive scootmobielbesturing", cat:"trapliften", years:"Scootmobielen met PG Drives S-Drive-besturing", unit:null,
+  also:"Curtiss-Wright, scootmobiel knippert, accumeter knippert",
+  intro:"Veel scootmobielen gebruiken de S-Drive-besturing van PG Drives Technology (Curtiss-Wright). Bij een storing knipperen de lampjes van de accumeter een aantal keer; het aantal knipperingen is de code.",
+  weak:[], parts:[], tasks:[], src:["pgSdrive","driveSdrive"],
+  faults:[
+    F("1","Accuspanning laag",1,"De accu is bijna leeg of slecht aangesloten.",["Controleer de accuaansluitingen.", "Zijn die goed: laad de accu op.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
+    F("2","Motor losgekoppeld",2,"De motor is slecht aangesloten.",["Controleer de kabels en aansluitingen tussen motor en besturing.", "Controleer de stand van de vrijloopschakelaar.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
+    F("3","Bedradingsfout motor",3,"Een motorkabel heeft kortsluiting naar de accu.",["Controleer de aansluitingen en kabels tussen motor en accu.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
+    F("4","Vrijloopschakelaar actief",1,"De vrijloopschakelaar of handmatige remontgrendeling staat ingeschakeld.",["Controleer de stand van de schakelaar of hendel en de aansluitingen.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
+    F("6","Rijden geblokkeerd (lader aangesloten)",1,"Rijden is geblokkeerd, bijvoorbeeld omdat de lader is aangesloten of de stoel niet in rijstand staat.",["Koppel de lader los en zet de stoel in de rijstand."]),
+    F("7","Gashendel niet in neutraal",1,"De gashendel stond niet in de neutrale stand bij het inschakelen.",["Zorg dat de gashendel in neutraal staat voordat je de scootmobiel aanzet."]),
+    F("8","Mogelijke fout besturing",2,"Mogelijk een fout in het besturingssysteem.",["Controleer of alle aansluitingen goed vastzitten.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
+    F("9","Fout parkeerrem",2,"De parkeerrem is slecht aangesloten.",["Controleer de aansluitingen van parkeerrem en motor en of alle verbindingen vastzitten.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
+    F("10","Accuspanning te hoog",2,"Er komt te veel spanning op de besturing, meestal door een slechte accuaansluiting.",["Controleer de accuaansluitingen.", "Blijft het probleem: neem contact op met uw leverancier of servicedienst."]),
+    N("Besturing in slaapstand",1,"De besturing is in slaapstand gegaan.",["Zet de scootmobiel uit en weer aan."]),
+    N("Gashendel verplaatst bij inschakelen",1,"De gashendel werd bewogen terwijl de scootmobiel werd aangezet.",["Zet de gashendel in neutraal en zet de scootmobiel uit en weer aan."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
