@@ -13375,4 +13375,15 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Robot laadt niet of reageert niet", 1, "De accu is leeg of de stekker van het station zit niet goed; uitgezet zonder menu loopt de accu na een paar dagen leeg.", ["Controleer de stekker en laad de robot op het station.", "Laad hem regelmatig op."])
   ]});
 })();
+(() => {
+  SRC.vorwerkVb100 = ["Vorwerk – Gebruiksaanwijzing Kobold VB100 en EBB100 (PDF, support.vorwerk.com)", "https://support.vorwerk.com/hc/article_attachments/5403134689948/Web_80003-03_VB100_EBB100_NL_1220-merged.pdf"];
+  MODELS.push({ id: "vorwerk-kobold-vb100", brand: "Vorwerk", name: "Kobold VB100 accusteelstofzuiger: geel of rood lampje", dev: "Kobold VB100 accusteelstofzuiger", cat: "stofzuigers", years: "Vorwerk Kobold VB100 met elektrozuigborstel EBB100", unit: null, also: "Kobold VB100 geel lampje, Kobold VB100 rood lampje, Kobold VB100 gaat niet aan, Kobold EBB100 rood knipperen, Kobold VB100 laadt traag, Kobold VB100 zuigt slecht", intro: "De Vorwerk Kobold VB100 laat met een lampje zien wat er is. Geel betekent minder zuigkracht (stofzak vol, verstopping of te dik tapijt), rood een storing. Knipperen beide lampjes rood op de EBB100-borstel, dan zitten de borstels vast.", weak: ["Volle stofzak.", "Draden om de borstels.", "Laden in de zon of direct na intensief gebruik."], parts: [], tasks: [], src: ["vorwerkVb100"], faults: [
+    N("Geen lampje: stofzuiger gaat niet aan", 1, "De transportmodus staat nog aan, de accu is leeg of zit niet goed, of de lader zit er nog aan (dan start hij niet).", ["Haal de lader eraf.", "Plaats de accu goed en laad hem op (dat zet ook de transportmodus uit)."]),
+    N("Lampje brandt geel: minder zuigkracht", 1, "De stofzak is vol, het tapijt is te dik of de zuigweg is verstopt.", ["Plaats een nieuwe Premium-stofzak.", "Controleer de zuigweg op verstoppingen.", "Op dik tapijt: zuig even op een andere vloer of kies een lagere zuigstand."]),
+    N("Lampje brandt rood", 3, "Storing met onbekende oorzaak.", ["Neem contact op met de Vorwerk-servicedienst."]),
+    N("Laden duurt lang of start niet na kort laden", 1, "Een hoge temperatuur (zon of net intensief gebruikt) vertraagt het laden.", ["Laad niet in de zon.", "Haal de accu uit het apparaat en laad hem los op de lader."]),
+    N("EBB100: beide lampjes knipperen rood, borstel stopt", 1, "De borstels zitten vast door een voorwerp of draden, of het tapijt is te dik.", ["Zet de stofzuiger uit, koppel de borstel los en haal het voorwerp of de draden weg (draden doorknippen).", "Bij dik tapijt: zet de borstel even op een harde vloer, zet hem uit of kies zuigstand soft."]),
+    N("EBB100: lampje geel, zuigkanaal verstopt", 1, "Er zit een verstopping in de borstel.", ["Open de inspectieklep, haal de verstopping weg en sluit de klep."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
