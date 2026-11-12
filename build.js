@@ -138,7 +138,7 @@ const modelCard = m => { const codes = m.faults.filter(f => f.code).length; retu
 const allCodes = MODELS.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
 
 // ───────── Home
-const CAT_ICON = { koffiemachines: "☕", wasmachines: "🧺", vaatwassers: "🍽️", drogers: "🌀", "cv-ketels": "🔥", ventilatie: "💨", warmtepompen: "♨️", airco: "❄️", koelkasten: "🧊", ovens: "🍕", kookplaten: "🍳", stofzuigers: "🧹", "e-bikes": "🚲", "3d-printers": "🖨️", tuin: "🌱", audio: "🔊", "kleine-apparaten": "🔌", laadpalen: "⚡", printers: "🖨️", laptops: "💻", smartphones: "📱", televisies: "📺", internet: "📶", spelcomputers: "🎮", zonnepanelen: "☀️", "camper-caravan": "🚐", spa: "🛁", garagedeuren: "🚪", auto: "🚗", trapliften: "♿", scooters: "🛴", kachels: "🪵", waterontharders: "💧", boten: "⛵", meterkast: "🔋", vrachtwagens: "🚚", gereedschap: "🛠️", "slim-huis": "🏠", rookmelders: "🚨" };
+const CAT_ICON = { koffiemachines: "☕", wasmachines: "🧺", vaatwassers: "🍽️", drogers: "🌀", "cv-ketels": "🔥", ventilatie: "💨", warmtepompen: "♨️", airco: "❄️", koelkasten: "🧊", ovens: "🍕", kookplaten: "🍳", stofzuigers: "🧹", "e-bikes": "🚲", "3d-printers": "🖨️", tuin: "🌱", audio: "🔊", "kleine-apparaten": "🔌", laadpalen: "⚡", printers: "🖨️", laptops: "💻", smartphones: "📱", televisies: "📺", internet: "📶", spelcomputers: "🎮", zonnepanelen: "☀️", "camper-caravan": "🚐", aggregaten: "⚡", spa: "🛁", garagedeuren: "🚪", auto: "🚗", trapliften: "♿", scooters: "🛴", kachels: "🪵", waterontharders: "💧", boten: "⛵", meterkast: "🔋", vrachtwagens: "🚚", gereedschap: "🛠️", "slim-huis": "🏠", rookmelders: "🚨" };
 const nl = n => n.toLocaleString("nl-NL");
 const stats = { models: nl(MODELS.length), codes: nl(allCodes.length), faults: MODELS.reduce((n, m) => n + m.faults.length, 0) };
 layout({
@@ -350,6 +350,7 @@ function BOLCAT_() { return {
   internet: ["wifi mesh systeem", "📶 Wifi-versterker of mesh-systeem", "Overal in huis goede wifi; mesh-systemen en versterkers bij bol."],
   spelcomputers: ["controller oplaadstation", "🎮 Controllers en opladers", "Extra controllers en laadstations bij bol."],
   zonnepanelen: ["zonnepanelen reiniger", "☀️ Reiniger voor zonnepanelen", "Borstels en reinigers voor je panelen bij bol."],
+  aggregaten: ["aggregaat olie", "⚡ Olie en onderhoud voor je aggregaat", "Motorolie, bougies en accessoires bij bol."],
   "camper-caravan": ["camper accessoires", "🚐 Camper- en caravanspullen", "Waterpas, kabels, slangen en meer bij bol."],
   trapliften: ["scootmobiel accu", "🔋 Accu voor je scootmobiel", "Vervangende accu's en laders bij bol."],
   scooters: ["binnenband elektrische step", "🛴 Banden en onderdelen voor je step", "Binnenbanden, remmen en laders bij bol."],
@@ -381,6 +382,7 @@ function adsFor(m) {
     case "auto": return ["acculader", "autoverkopen"];
     case "camper-caravan": return ["acculader", "camperverkopen"];
     case "boten": return ["acculader"];
+    case "aggregaten": return ["gereedschap", "bricoinn"];
     case "e-bikes": return ["ebike", "bikeinn"];
     case "gereedschap": case "tuin": return ["gereedschap", "bricoinn"];
     case "scooters": return ["motardinn"];

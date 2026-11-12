@@ -12390,4 +12390,62 @@ Object.assign(SRC,{ grundigNlDroog: ["Grundig Nederland – helpcentrum wasdroge
       N("Ovenlampje vervangen", 1, "Het lampje is doorgebrand.", ["Zet de oven uit en laat afkoelen.", "Draai de kap en het lampje linksom los en zet een hittebestendig lampje van hetzelfde type terug (zie de handleiding)."])
     ]});
 }
+CATS.push({ id: "aggregaten", name: "Aggregaten en generatoren", one: "aggregaat", intro: "Foutcodes, waarschuwingslampjes en knippercodes van aggregaten en stroomgeneratoren, van draagbare invertergeneratoren tot campergeneratoren en noodstroominstallaties. Gebruik een aggregaat nooit binnen of in een afgesloten ruimte: de uitlaatgassen bevatten koolmonoxide." });
+Object.assign(SRC,{ hondaEu2200i: ["Honda Power Equipment – EU2200i owner's manual (Engelstalig)", "https://cdn.powerequipment.honda.com/pe/pdf/manuals/00X31Z446100.pdf"], onanHgjbb: ["Cummins Onan – Operator Manual RV Generator Set HGJBB (A031C171, Engelstalig)", "https://www.cummins.com/sites/default/files/rv-manuals/A031C171.pdf"], generacCodes: ["Generac support – Home standby error codes (Engelstalig)", "https://support.generac.com/s/article/Where-can-I-find-a-list-of-error-codes-for-my-generator"] });
+{ const DEALER = "Neem contact op met een erkende dealer of servicepartner.";
+  MODELS.push({ id: "honda-eu22i", brand: "Honda", name: "EU22i / EU2200i invertergenerator", dev: "aggregaat", cat: "aggregaten", years: "EU2200i en EU22i", unit: null, also: "Honda EU22i overbelasting lampje, Honda aggregaat olie lampje, Honda EU2200i geen stroom",
+    intro: "De Honda EU22i (in de VS EU2200i) heeft drie lampjes: groen voor stroom, rood voor overbelasting en rood voor olie. Hieronder staat wat ze betekenen volgens de Honda-handleiding.",
+    weak: ["Bij te weinig olie stopt de motor vanzelf (Oil Alert)."], parts: [],
+    tasks: [{ w: "Voor elk gebruik", t: "Oliepeil controleren" }],
+    src: ["hondaEu2200i"], faults: [
+      N("Rood overbelastingslampje brandt en er komt geen stroom meer", 1, "Het aggregaat is overbelast (meer dan 2,2 kVA) of een apparaat maakt kortsluiting. Na ongeveer vier seconden schakelt de stroom uit; de motor blijft draaien.", ["Haal apparaten van het aggregaat af tot je onder het vermogen zit.", "Zet de motor uit en start opnieuw.", "Kort oplichten bij het starten van een motor (bijvoorbeeld een compressor) is normaal als het binnen vier seconden uitgaat.", "Blijft het lampje branden? " + DEALER]),
+      N("Rood overbelastingslampje knippert steeds", 3, "Volgens Honda is de inverter mogelijk defect.", [DEALER]),
+      N("Rood olielampje brandt en de motor stopt", 1, "Het oliepeil is te laag; het Oil Alert-systeem zet de motor uit.", ["Zet de motorschakelaar op UIT.", "Vul olie bij tot de bovenste markering, niet te veel.", "Zet de schakelaar op AAN en start opnieuw."]),
+      N("Aggregaat start niet", 1, "Vaak staat het ontluchtingshendeltje van de tankdop dicht, de motorschakelaar uit, is de brandstof op of oud, het oliepeil laag of de bougie vuil.", ["Zet het hendeltje op de tankdop op AAN en de motorschakelaar op AAN.", "Tank verse benzine; tap oude benzine af.", "Controleer het oliepeil.", "Maak de bougie schoon of vervang hem.", "Lukt het niet? " + DEALER]),
+      N("Motor draait maar er komt geen stroom uit de stopcontacten", 1, "Overbelasting, een geblokkeerde luchtinlaat, een uitgeschakelde beveiliging of een defect apparaat.", ["Controleer wat je hebt aangesloten en start de motor opnieuw.", "Maak de koelluchtinlaat vrij.", "Is de beveiligingsschakelaar uitgeslagen? Haal de belasting eraf en zet hem weer aan.", "Probeer een ander apparaat.", "Helpt niets? " + DEALER])
+    ]});
+  const ONAN_STEP = "De code knippert op het statuslampje in de schakelaar. Druk één keer op STOP/PRIME voor een tweecijferige code: eerst de tientallen, na een pauze de eenheden.";
+  MODELS.push({ id: "onan-hgjbb", brand: "Cummins Onan", name: "HGJBB campergeneratoren (2.3, 2.5 en 2.8 kW)", dev: "campergenerator", cat: "aggregaten", years: "HGJBB benzine en lpg", unit: null, also: "Onan knippercode, Onan generator foutcode 4, Onan QG 2800, camper generator storing",
+    intro: "Onan-campergeneratoren tonen een storing door het statuslampje te laten knipperen. Code 3 betekent dat er een tweede code is: druk dan één keer op STOP/PRIME. " + ONAN_STEP,
+    weak: [], parts: [], tasks: [],
+    src: ["onanHgjbb"], faults: [
+      F("2", "Lage oliedruk", 1, "De oliedrukschakelaar heeft niet geschakeld.", ["Controleer het oliepeil met de peilstok.", "Te laag: vul olie bij. Te hoog: tap de overtollige olie af."]),
+      F("3", "Servicecode: er is een tweede code", 1, "Er is een tweecijferige code opgeslagen.", ["Druk één keer op STOP/PRIME en tel de knipperingen (tientallen, pauze, eenheden).", "Volg daarna de stappen bij die code."]),
+      F("4", "Start niet: langer dan 30 seconden gestart", 1, "De motor sloeg niet aan binnen 30 seconden starten.", ["Controleer en vul de brandstof of lpg en ontlucht (prime) het brandstofsysteem.", "Vervang de bougie(s) en een vuil luchtfilter.", "Gebruik olie met de juiste viscositeit voor de temperatuur.", "Draai lekkende brandstofkoppelingen vast en vervang het brandstoffilter."]),
+      F("12", "Overspanning", 3, "De besturing kan de spanning niet regelen.", [DEALER]),
+      F("13", "Onderspanning", 1, "De besturing kan de spanning niet op peil houden.", ["Haal apparaten eraf, vooral de airco en acculaders."]),
+      F("14", "Te hoge frequentie", 3, "De toerenregeling kan de frequentie niet vasthouden.", [DEALER]),
+      F("15", "Te lage frequentie", 1, "De toerenregeling kan de frequentie niet vasthouden.", ["Haal apparaten eraf, vooral de airco en acculaders."]),
+      F("27", "Uitgangsspanning niet gemeten", 3, "De besturing meet de uitgangsspanning niet.", [DEALER]),
+      F("29", "Accuspanning te hoog", 1, "De spanning over de accu's is hoger dan 19 volt.", ["Controleer of de 12V-accu's parallel en niet in serie zijn geschakeld.", "Kies een lagere laadstand (boost) voor de accu."]),
+      F("31", "Te hoog toerental", 3, "Het motortoerental is hoger dan 3400 tpm.", [DEALER]),
+      F("32", "Te laag starttoerental", 1, "Het starttoerental is langer dan 2 seconden lager dan 180 tpm.", ["Maak de accukabels schoon en zet ze vast.", "Laad de accu op of vervang hem.", "Gebruik olie met de juiste viscositeit voor de temperatuur."]),
+      F("35", "Fout in de besturingskaart", 3, "Geheugenfout (EEPROM) bij de zelftest.", [DEALER]),
+      F("36", "Motor onverwacht gestopt", 1, "De motor stopte zonder opdracht van de besturing.", ["Controleer de brandstof of lpg en ontlucht het brandstofsysteem.", "Controleer de bougie(s) en vervang een vuil luchtfilter.", "Kijk of er mechanische schade is."]),
+      F("37", "Verkeerde configuratie", 3, "De verhouding tussen frequentie en toerental klopt niet.", [DEALER]),
+      F("38", "Overstroom (veldoverbelasting)", 1, "Belasting met een lage arbeidsfactor.", ["Haal apparaten eraf.", "Laat de airco en andere apparaten controleren."]),
+      F("41 / 48", "Rotor of veldspanning niet gemeten", 3, "De besturing meet het veld of de uitgangsspanning niet.", [DEALER]),
+      F("42 / 43", "Processorfout", 3, "Geheugenfout (ROM of RAM) bij de zelftest.", [DEALER]),
+      F("45", "Toerental niet gemeten", 3, "De besturing meet de frequentie niet.", [DEALER]),
+      F("47", "Ontsteking niet gemeten", 3, "De besturing ziet geen ontsteking.", [DEALER])
+    ]});
+  MODELS.push({ id: "generac-home-standby", brand: "Generac", name: "Home Standby noodstroomaggregaat", dev: "noodstroomaggregaat", cat: "aggregaten", years: "Home Standby met Evolution- of Nexus-besturing", unit: null, also: "Generac foutcode 1100, Generac 2100 overload, Generac 2750 low battery",
+    intro: "Generac-noodstroomaggregaten tonen een viercijferige code met een rood of geel lampje. Gele codes kun je vaak zelf oplossen; bij rode codes die terugkomen na het wissen is meestal een dealer nodig.",
+    weak: [], parts: [], tasks: [],
+    src: ["generacCodes"], faults: [
+      F("2750", "Accu bijna leeg (rood)", 1, "De lading van de accu is te laag.", ["Controleer de accu en vervang hem zo nodig.", "Komt de code terug? " + DEALER]),
+      F("2770", "Laadwaarschuwing (geel)", 2, "De accu wordt niet goed opgeladen.", ["Vervang de accu, of " + DEALER.toLowerCase()]),
+      F("2780", "Lader krijgt geen netspanning (geel)", 3, "De accu wordt niet goed geladen.", [DEALER]),
+      F("2800", "Noodstop (rood)", 1, "Het aggregaat is gestopt door de noodstopschakelaar.", ["Zet de noodstopschakelaar terug.", "Lukt het niet? " + DEALER]),
+      F("1100 / 1101", "Start niet (overcrank, rood)", 3, "Overcrank-alarm.", [DEALER]),
+      F("1200", "Te hoog toerental (rood)", 3, "Overspeed-alarm.", [DEALER]),
+      F("1500", "Toerental niet gemeten (rood)", 3, "Alarm van de toerentalsensor.", [DEALER]),
+      F("1600", "Te laag toerental (rood)", 3, "Underspeed-alarm.", [DEALER]),
+      F("1900", "Onderspanning (rood)", 3, "Undervoltage-alarm.", [DEALER]),
+      F("2098 / 2099", "Bedradingsfout (rood)", 3, "De meetdraden naar de omschakelaar zijn verkeerd aangesloten.", [DEALER]),
+      F("2100", "Overbelasting (rood)", 3, "Overload-alarm: haal belasting eraf.", ["Schakel zware verbruikers uit.", DEALER]),
+      F("3217", "Lage gasdruk", 3, "Waarschuwing voor te lage brandstofdruk.", [DEALER]),
+      N("Geel onderhoudslampje: Schedule A, B of C of Inspect Battery", 1, "Geen storing: het is tijd voor onderhoud of een accucontrole.", ["Laat het geplande onderhoud doen en wis daarna de melding."])
+    ]});
+}
 module.exports = { CATS, MODELS, SRC, COST };
