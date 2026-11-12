@@ -15276,4 +15276,26 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("E2","Toevoerventilator draait niet",2,"De ventilator voor de toevoerlucht draait niet.",["Bel de installateur."]));
   m.faults.push(F("EA2","Geen communicatie met enthalpiesensor",2,"De ComfoAir communiceert niet met de enthalpiesensor.",["Laat de installateur parameter P59 instellen (2 met enthalpiewisselaar, 0 zonder) en de unit resetten (P74 op 1)."]));
 })();
+(() => {
+  SRC.ecodanFtc6=["Mitsubishi Electric – Ecodan cilinder met FTC6 regeling, installatie- en servicehandleiding (Engels, januari 2025), checkcodes","https://library.mitsubishielectric.co.uk/pdf/download_full/4855"];
+  const m=MODELS.find(x=>x.id==="mitsubishi-ecodan"); m.src.push("ecodanFtc6");
+  m.faults.push(F("L3","Oververhittingsbeveiliging circulatiewater",2,"De aanvoer- of retourvoeler (THW1/THW2) meet 10 seconden lang 80 °C of meer. Mogelijke oorzaken: te weinig opvoerhoogte van de pomp of een verminderde doorstroming in het primaire circuit.",["Bel uw installateur."]));
+  m.faults.push(F("L4","Oververhittingsbeveiliging boilerwater",2,"De boilervoeler (THW5B) meet 10 seconden lang 75 °C of meer. Mogelijke oorzaken: een defecte driewegklep of een fout in het relais van het elektrisch element.",["Bel uw installateur."]));
+  m.faults.push(F("LA","Storing druksensor",2,"De kabel van de druksensor zit los, de druksensor is defect of de FTC-printplaat is defect.",["Bel uw installateur."]));
+  m.faults.push(F("LB","Hogedrukbeveiliging",2,"De doorstroming van het verwarmingscircuit is mogelijk te laag, de platenwarmtewisselaar is mogelijk verstopt of de buitenunit heeft een storing.",["Bel uw installateur."]));
+  m.faults.push(F("LC","Oververhitting circulatiewater cv-ketel",2,"De voeler van de ketelkring (THWB1/THWB2) meet 10 seconden lang 80 °C of meer. De ingestelde ketel-temperatuur is te hoog of de doorstroming vanuit de ketel is te laag.",["Bel uw installateur."]));
+  m.faults.push(F("LD","Storing ketelvoeler (THWB1, THWB2)",2,"Een temperatuurvoeler van de ketelkring is open of kortgesloten.",["Bel uw installateur."]));
+  m.faults.push(F("LE","Storing ketelbedrijf",2,"De ketel draait, maar THW6 meet 60 minuten lang minder dan 30 °C. Mogelijke oorzaken: losgeraakte voeler, verkeerde bedrading tussen FTC en ketel, ketel staat uit of heeft geen brandstof, of een defecte ketel of printplaat.",["Controleer of de ketel aan staat.", "Bel uw installateur."]));
+  m.faults.push(F("LF","Storing debietsensor",2,"De debietsensor is losgekoppeld of zit los.",["Bel uw installateur."]));
+  m.faults.push(F("LH","Vorstbeveiliging circulatiewater cv-ketel",2,"De doorstroming van het verwarmingscircuit vanuit de ketel is mogelijk te laag.",["Bel uw installateur."]));
+  m.faults.push(F("LJ","Storing warm water (externe platenwisselaar)",2,"De boilervoeler (THW5B) is losgeraakt of de doorstroming in het tapwatercircuit is te laag.",["Bel uw installateur."]));
+  m.faults.push(F("LL","Verkeerde instelling DIP-switches FTC",2,"De DIP-switches op de FTC-printplaat staan niet goed voor ketelbedrijf of tweezoneregeling.",["Bel uw installateur."]));
+  m.faults.push(F("P2","Storing temperatuursensor binnenunit (TH2)",2,"De temperatuursensor TH2 van de binnenunit is defect of losgekoppeld.",["Bel uw installateur."]));
+  m.faults.push(F("E0","Communicatiestoring hoofdbediening (ontvangst)",2,"De hoofdbediening ontvangt 3 minuten lang geen signaal van de binnenunit (bij E4 is het andersom). Mogelijke oorzaken: slecht contact in de kabel of de bedrading voldoet niet aan de voorschriften.",["Bel uw installateur."]));
+  m.faults.push(F("E3","Communicatiestoring hoofdbediening (verzenden)",2,"De hoofdbediening kan niet verzenden. Mogelijke oorzaken: meer dan één hoofdbediening aangesloten of een defecte printplaat.",["Schakel de stroom naar binnen- en buitenunit uit en weer in.", "Komt de code terug: bel uw installateur."]));
+  m.faults.push(F("E5","Communicatiestoring hoofdbediening (verzenden)",2,"Zie E3: de communicatie tussen hoofdbediening en binnenunit mislukt.",["Schakel de stroom naar binnen- en buitenunit uit en weer in.", "Komt de code terug: bel uw installateur."]));
+  m.faults.push(F("E7","Communicatiestoring binnen- en buitenunit",2,"De FTC-printplaat ontvangt een verkeerd signaal. Mogelijke oorzaken: defecte zend/ontvangstschakeling of elektrische storing op de voeding of de communicatiekabel.",["Schakel de stroom naar binnen- en buitenunit uit en weer in.", "Komt de code terug: bel uw installateur."]));
+  m.faults.push(F("E1","Storing printplaat hoofdbediening (geheugen)",3,"De hoofdbediening kan zijn geheugen niet lezen.",["De printplaat van de hoofdbediening moet worden vervangen. Bel uw installateur."]));
+  m.faults.push(F("E2","Storing printplaat hoofdbediening (klok)",3,"Er is een fout in de interne klok van de hoofdbediening.",["De printplaat van de hoofdbediening moet worden vervangen. Bel uw installateur."]));
+})();
 module.exports = { CATS, MODELS, SRC, COST };
