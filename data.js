@@ -16243,4 +16243,25 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   const r=MODELS.find(x=>x.id==="irobot-roomba"); r.src.push("irobotErr18");
   r.faults.push(F("18","Robot kan niet terug naar het dock of startpunt",1,"De robot vindt het dock of zijn startpunt niet terug, bijvoorbeeld door stroomverlies van het dock, obstakels, vuile contacten of sensoren, versleten wielen of de plaats van het dock.",["Controleer of het lampje van het dock brandt en of het dock stroom krijgt.","Zorg dat het dock niet verplaatst is en dat de weg ernaartoe vrij is; houd andere laadstations of Virtual Walls minstens 2,5 m weg.","Maak laadcontacten en dock-sensoren schoon.","Verwijder vuil bij de wielen en controleer of ze vrij draaien.","Start robot en dock opnieuw op.","Blijft het: verplaats het dock (niet in direct zonlicht) of neem contact op met iRobot."]));
 })();
+(() => {
+  SRC.krupsGenio2=["Krups – User manual and FAQ Nescafé Dolce Gusto Genio 2 KP160T (Engels)","https://www.krups.co.uk/instructions-for-use/csp/8000035043"];
+  SRC.krupsLumio=["Krups – User manual and FAQ Nescafé Dolce Gusto Lumio KP1301 (Engels)","https://www.krups.co.uk/instructions-for-use/csp/8010000383"];
+  MODELS.push({ id:"krups-dolce-gusto-genio2-lumio", brand:"Krups", name:"Dolce Gusto Genio 2 en Lumio: lampjes en storingen", dev:"Dolce Gusto Genio 2 / Lumio", cat:"koffiemachines", years:"Genio 2 (KP160), Lumio (KP130)", unit:null,
+  also:"Nescafé Dolce Gusto Genio 2, Nescafé Dolce Gusto Lumio",
+  intro:"Krups legt in de FAQ van de Dolce Gusto Genio 2 en Lumio uit wat de kleuren van de aan/uit-knop betekenen en wat je bij storingen kunt doen.",
+  weak:[], parts:[], tasks:[], src:["krupsGenio2","krupsLumio"],
+  faults:[
+    N("Knop knippert rood bij het aanzetten",1,"De machine warmt het water op (ongeveer 30 seconden).",["Wacht tot de knop groen brandt; dan is de machine klaar."]),
+    N("Knop knippert rood na het zetten",1,"De machine rondt de bereiding af (ongeveer 5 seconden).",["Haal de capsulehouder er pas uit als het lampje niet meer knippert."]),
+    N("Knop knippert rood en groen",1,"De machine merkt te weinig water op.",["Controleer of de capsule niet verstopt is en of er genoeg water in het reservoir zit."]),
+    N("Knop brandt oranje of geel",1,"Ontkalken is nodig (elke 300 bereidingen). De machine werkt nog wel.",["Zet de machine uit en houd de aan/uit-knop 5 seconden ingedrukt tot hij knippert; ontkalk dan.", "Zet je hem uit zonder te ontkalken, dan springt het lampje terug naar groen en begint de teller opnieuw."]),
+    N("Machine gaat in foutmodus na een paar kopjes",1,"Oververhitting na 5 à 6 bereidingen achter elkaar.",["Wacht 1 à 2 minuten voordat je verdergaat."]),
+    N("Geen water, pomp stil",3,"De machine moet worden gerepareerd.",["Laat de machine repareren."]),
+    N("Geen water, pomp hoorbaar",2,"De naald is waarschijnlijk verstopt of het reservoir zit niet goed.",["Verwijder de capsule en controleer of het reservoir vol is en goed zit.", "Til het reservoir een paar keer op en zet het terug, met de koude stand gekozen.", "Maak de naald schoon met het meegeleverde gereedschap en ontkalk.", "Komt er nog niets: laat de machine repareren."]),
+    N("Geen water na lange tijd niet gebruikt",1,"De pomp moet worden ontlucht.",["Verwijder de capsule, vul het reservoir met heet water (60 °C) en kies een grote kop.", "Beweeg het reservoir elke 3 seconden op en neer tot er luchtbellen ontsnappen.", "Lukt het niet: breng de machine naar een erkend servicecentrum."]),
+    N("Capsulehouder gaat er niet uit",1,"De hendel staat niet in het midden of er staat nog druk op.",["Zet de keuzeschakelaar in het midden en til de vergrendelhendel op.", "Gaat de hendel niet omhoog: forceer niets en wacht 20 minuten tot de druk weg is."]),
+    N("Druppelt na het stoppen",1,"Normaal zolang de gebruikte capsule nog in de houder zit.",["Haal de capsule eruit als het lampje niet meer knippert."]),
+    N("Koffie loopt traag",1,"Het uitloopkopje of de naald is verstopt of kalk.",["Maak het uitloopkopje schoon met een speldje en ontkalk zo nodig."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
