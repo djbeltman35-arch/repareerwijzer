@@ -464,7 +464,7 @@ for (const { m, f } of allCodes) {
     file: codeUrl(m, f),
     title: (() => { const br = m.brand.split("/").map(x => x.trim()); const dv = !m.dev && /\(alle modellen\)/.test(m.name) && m.brand !== "Alle merken" ? `${m.brand} ${m.name.replace(/\s*\(alle modellen\)/, "").toLowerCase()}` : dev; const d = br.length > 1 ? dv.replace(m.brand, br[0]) : dv; const ook = br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""; return `${d} foutcode ${codeShort(f)}${ook}: betekenis en ${f.d === 3 ? "wat je doet" : "zelf oplossen"}`; })(),
     desc: `Foutcode ${f.code} op je ${dev}: ${f.t.toLowerCase()}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
-    extraHead: faqLd(codeFaq(m, f, dev)) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps),
+    extraHead: faqLd(codeFaq(m, f, dev)) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps) + `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "TechArticle", headline: `Foutcode ${codeShort(f)} op ${dev}: ${f.t}`, description: f.cause, dateModified: "__DMOD__", inLanguage: "nl-NL", mainEntityOfPage: `${SITE}/${codeUrl(m, f).replace(/\.html$/, "")}`, about: { "@type": "Thing", name: dev }, author: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, publisher: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, citation: m.src.filter(k => SRC[k]).map(k => ({ "@type": "CreativeWork", name: SRC[k][0], url: SRC[k][1] })) }).replace(/</g, "\\u003c")}</script>`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: `Foutcode ${codeShort(f)}`, file: codeUrl(m, f) }],
     body: `
 <section class="stack">
