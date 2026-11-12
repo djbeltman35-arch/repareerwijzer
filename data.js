@@ -15144,4 +15144,43 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
   m.faults.push(F("13615","Extruder niet gedetecteerd",2,"Het type extruder kan niet worden gecontroleerd.",["Controleer de bedrading en connectoren."]));
   m.faults.push(F("13703","Onbekend bestandssysteem",1,"De USB-stick heeft een bestandssysteem dat de printer niet ondersteunt.",["Gebruik een andere USB-stick of formatteer deze als FAT32."]));
 })();
+(() => {
+  MODELS.push({ id:"prusa-mini", brand:"Prusa", name:"Original Prusa MINI en MINI+: foutcodes 12xxx", dev:"3D-printer", cat:"3d-printers", years:"MINI, MINI+", unit:null,
+  intro:"De Prusa MINI toont een foutcode van vijf cijfers die begint met 12 (het printernummer). Het derde cijfer is de categorie: 1 mechanisch, 2 temperatuur, 3 elektronica, 6 bootloader/firmware-update, 7 waarschuwing.",
+  weak:[], parts:[], tasks:[], src:["prusaErrGh"],
+  faults:[
+    F("12113","Filamentsensor reageert niet",1,"De filamentsensor reageert niet.",["Maak de filamentsensor schoon van vuil.", "Eventueel kun je de sensor uitschakelen."]),
+    F("12115","Filamentsensoren uitgeschakeld",1,"De filamentsensoren zijn uitgeschakeld.",["Schakel ze na het printen handmatig weer in."]),
+    F("12201","Voorverwarmfout printbed",2,"Het printbed warmt niet goed op.",["Controleer de bedrading van het verwarmingselement en de thermistor van het bed op schade."]),
+    F("12202","Voorverwarmfout printkop",2,"De printkop warmt niet goed op.",["Controleer de bedrading van het verwarmingselement en de thermistor van de printkop op schade."]),
+    F("12203","Thermal runaway printbed",2,"De temperatuur van het printbed loopt niet zoals verwacht.",["Controleer de bedrading van de bed-thermistor op schade."]),
+    F("12204","Thermal runaway printkop",2,"De temperatuur van de printkop loopt niet zoals verwacht.",["Controleer de bedrading van de thermistor van de printkop op schade."]),
+    F("12205","MAXTEMP printbed",2,"Het printbed meldt een te hoge temperatuur.",["Controleer de bedrading van de bed-thermistor op schade."]),
+    F("12206","MAXTEMP printkop",2,"De printkop meldt een te hoge temperatuur.",["Controleer de bedrading van de thermistor van de printkop op schade."]),
+    F("12207","MINTEMP printbed",2,"Het printbed meldt een te lage temperatuur.",["Controleer de bedrading van de bed-thermistor op schade."]),
+    F("12208","MINTEMP printkop",2,"De printkop meldt een te lage temperatuur.",["Controleer de bedrading van de thermistor van de printkop op schade."]),
+    F("12209","Temperatuur printbed klopt niet",2,"De gemeten temperatuur komt niet overeen met de verwachte waarde.",["Controleer of de thermistor contact maakt met het printbed.", "Is de thermistor beschadigd: vervang hem."]),
+    F("12210","Temperatuur hotend klopt niet",2,"De gemeten temperatuur komt niet overeen met de verwachte waarde.",["Controleer of de thermistor contact maakt met de hotend.", "Is de thermistor beschadigd: vervang hem."]),
+    F("12211","MINTEMP heatbreak",2,"De heatbreak-thermistor meldt een te lage temperatuur.",["Controleer de bedrading van de heatbreak-thermistor op schade."]),
+    F("12212","MAXTEMP heatbreak",2,"De heatbreak-thermistor meldt een te hoge temperatuur.",["Controleer de bedrading van de heatbreak-thermistor op schade."]),
+    F("12301","Homing-fout Z-as",2,"De SuperPINDA-sensor is waarschijnlijk kapot of losgekoppeld; de Z-as kon niet goed homen.",["Controleer de aansluiting van de SuperPINDA-sensor."]),
+    F("12304","Homing-fout X-as",1,"De extruder kon niet homen op de X-as.",["Zorg dat er niets in de weg zit op de X-as."]),
+    F("12305","Homing-fout Y-as",1,"De Y-as kon niet homen.",["Zorg dat er niets in de weg zit op de Y-as."]),
+    F("12306","Overstroom USB-poort",1,"Er is overstroom gedetecteerd op de USB-poort.",["Koppel het USB-apparaat los."]),
+    F("12307","Overstroom USB-apparaat",1,"Het aangesloten USB-apparaat trekt te veel stroom.",["Koppel het USB-apparaat los."]),
+    F("12308","Overstroom verwarming nozzle",3,"Er is overstroom gedetecteerd op het verwarmingselement van de nozzle.",["Neem contact op met Prusa support."]),
+    F("12601","Onbekende fout",2,"Deze foutcode staat niet in de database van Prusa.",["Neem contact op met Prusa support."]),
+    F("12602","Geen USB-stick aangesloten",1,"Er is geen USB-stick met geldige firmware aangesloten.",["Steek een USB-stick met een geldig firmwarebestand in de printer."]),
+    F("12603","Ongeldige firmwaregrootte op USB-stick",1,"Het firmwarebestand heeft een ongeldige grootte.",["Controleer het bestand op de USB-stick en probeer opnieuw."]),
+    F("12604","Geen firmware op USB-stick",1,"Het firmwarebestand ontbreekt op de USB-stick.",["Zet het juiste firmwarebestand op de USB-stick."]),
+    F("12605","Fout bij wissen flashgeheugen",2,"Het wissen van het flashgeheugen is mislukt.",["Start de printer opnieuw en probeer het nog eens."]),
+    F("12607","Firmwarebestand beschadigd",1,"De hashcontrole van de firmware is mislukt.",["Download de firmware opnieuw en kopieer hem opnieuw naar de USB-stick."]),
+    F("12608","Firmware in intern geheugen beschadigd",2,"De firmware in het interne flashgeheugen is beschadigd.",["Flash de firmware opnieuw."]),
+    F("12609","Firmware past niet bij hardware",1,"De firmware- en hardwareversies komen niet overeen.",["Gebruik het juiste firmwarebestand voor je printer."]),
+    F("12611","Firmware voor ander Buddy-bord",1,"Je probeert firmware te flashen die bedoeld is voor een andere revisie van het Buddy-bord.",["Gebruik het juiste firmwarebestand voor je printer."]),
+    F("12612","Geen firmware gevonden",2,"Er staat geen firmware in het interne flashgeheugen.",["Flash eerst de firmware."]),
+    F("12613","Fout USB-stick",1,"Er is een fout in het bestandssysteem van de USB-stick.",["Probeer een andere USB-stick, of formatteer de stick als FAT32 (alle gegevens gaan verloren)."]),
+    F("12703","Onbekend bestandssysteem",1,"De USB-stick heeft een bestandssysteem dat de printer niet ondersteunt.",["Gebruik een andere USB-stick of formatteer deze als FAT32."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
