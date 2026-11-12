@@ -12878,4 +12878,38 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("CLEAN brandt geel", 1, "Het waterreservoir van de 2-in-1-stofbak is leeg.", ["Vul het reservoir voor je gaat dweilen."])
   ]});
 })();
+(() => {
+  SRC.sunseekerS3S5 = ["Sunseeker Support – What does the error code on display and error message on APP mean? (S3 & S5, Engels)", "https://sunseekerintelligenttechn.freshdesk.com/en/support/solutions/articles/203000065679-what-does-the-error-code-on-display-and-error-message-on-app-mean-"];
+  MODELS.push({ id: "sunseeker-s3-s5", brand: "Sunseeker", name: "Robotmaaier S3 / S5: foutcode E1-E26, BP, LOCK, STOP, EE", dev: "robotmaaier S3 / S5", cat: "tuin", years: "Sunseeker S3 en S5 (draadloze robotmaaiers met RTK en camera)", unit: null, also: "Sunseeker E1, Sunseeker E8 dock, Sunseeker E17, Sunseeker E24 RTK, Sunseeker LOCK, Sunseeker STOP, Sunseeker EE, Sunseeker robotmaaier foutcode", intro: "Een Sunseeker S3 of S5 toont een code op het display en een melding in de app. Veel codes gaan over plaatsbepaling (RTK), het laadstation of een maaier die vastzit; EE-codes wijzen op defecte elektronica.", weak: ["Verplaatst laadstation of RTK-station.", "Vieze laadcontacten.", "Smalle doorgangen en obstakels."], parts: [], tasks: [], src: ["sunseekerS3S5"], faults: [
+    F("E1", "Buiten het werkgebied", 1, "De maaier staat buiten de ingetekende kaart.", ["Zet hem terug binnen de kaart.", "Controleer of laadstation en RTK-station niet verplaatst zijn en goed staan.", "Haal obstakels en signaalblokkades weg."]),
+    F("E2", "Wielmotor", 2, "Een wielmotor zit vast (overstroom) of heeft een onderbreking of kortsluiting.", ["Haal weg wat het wiel blokkeert.", "Zit er niets, dan is de wielmotor defect: laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E3", "Maaimotor", 2, "Het maaimes zit vast of de maaimotor heeft een onderbreking of kortsluiting.", ["Zet de maaier uit en haal weg wat het mes blokkeert.", "Zit er niets, dan is de maaimotor defect: laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E4", "Bumper vast", 1, "De bumper zit niet goed of de botssensor geeft een probleem.", ["Zet de bumper goed terug.", "Blijft het, laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E5", "Maaier opgetild", 1, "De maaier is opgetild, een voorwiel hangt in de lucht of de liftsensor geeft een probleem.", ["Zet de maaier op een vlakke plek waar hij niet vastzit.", "Blijft het, laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E6", "Maaier omgevallen", 1, "De maaier ligt ondersteboven.", ["Zet hem rechtop."]),
+    F("E7", "Maaier staat scheef", 1, "De maaier staat op een te schuine ondergrond.", ["Zet hem op een vlakke plek."]),
+    F("E8", "Docken mislukt", 1, "De maaier kon niet aan het laadstation koppelen.", ["Maak de laadcontacten schoon met alcohol.", "Controleer of het station stroom heeft en waterpas staat, en haal obstakels weg.", "Is het station verplaatst, maak de kaart opnieuw."]),
+    F("E9", "Maaier zit klem", 1, "De maaier zit ingesloten of slipt.", ["Haal obstakels weg en help hem uit de smalle ruimte.", "Teken een veilige zone in als de camera iets verkeerd ziet."]),
+    F("E10", "Firmware-update mislukt", 1, "De update is onderbroken.", ["Zorg voor een beter wifi-signaal en laat de maaier op het laadstation staan tijdens de update."]),
+    F("E12", "Accuspanning", 2, "Fout in de accuspanning of het laden.", ["Laad de maaier helemaal op het station en kijk naar de lampjes van het station.", "Maak geoxideerde contacten schoon.", "Blijft het, laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E13", "Laadprobleem", 2, "Fout in het laadcircuit of de accu.", ["Maak de contacten schoon en controleer of het station stroom heeft en waterpas staat.", "Blijft het, laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E14", "Kaart te groot", 1, "Het ingetekende gebied is groter dan de maaier aankan.", ["Maak een nieuwe kaart binnen het opgegeven bereik."]),
+    F("E15", "Stuurmotor", 2, "De stuurmotor achter zit vast of heeft een onderbreking of kortsluiting.", ["Haal weg wat het achterwiel blokkeert.", "Zit er niets, dan is de stuurmotor defect: laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E17", "Route plannen mislukt of laadstation niet gevonden", 1, "De maaier kan geen route plannen, of vindt het laadstation niet op tijd.", ["Haal obstakels weg en help de maaier uit smalle ruimtes.", "Maak de doorgangen tussen zones en naar het station opnieuw.", "Is het station verplaatst, maak de kaart opnieuw.", "Maak de camera schoon."]),
+    F("E18", "Accu te leeg om te starten", 1, "De accu is te leeg om te beginnen.", ["Laad de maaier helemaal op."]),
+    F("E19", "Netwerk instellen mislukt", 1, "Koppelen of wifi instellen is mislukt.", ["Scan de eerste van de vier QR-codes achterop de maaier.", "Zet Bluetooth aan en blijf binnen 1 meter; de standaard pincode is 0000.", "Gebruik 2,4 GHz-wifi met het juiste wachtwoord."]),
+    F("E21", "RTK start op", 1, "Het RTK-systeem is nog aan het opstarten.", ["Wacht een paar minuten na het herstarten.", "Controleer of het RTK-station goed staat en vrij zicht op de lucht heeft."]),
+    F("E22", "Voorcamera", 2, "Fout in de voorcamera.", ["Kijk of de camera beschadigd is; zo ja, laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    F("E23", "Geen kaart", 1, "Er is nog geen kaart.", ["Maak eerst een kaart in de app."]),
+    F("E24", "Geen signaal RTK-station", 1, "Het RTK-referentiestation communiceert niet.", ["Controleer de voeding van het RTK-station en of er iets het signaal blokkeert.", "Koppel het opnieuw via de app."]),
+    F("E25", "Kaart maken mislukt", 1, "Het intekenen van de kaart is mislukt.", ["Zorg dat de route een gesloten lus is en de maaier online is.", "Controleer het RTK-station en obstakels."]),
+    F("E26", "RTK-kalibratie mislukt", 1, "Het kalibreren van RTK is mislukt.", ["Controleer de plaatsing van het RTK-station en obstakels, haal obstakels rond de maaier weg en start opnieuw."]),
+    F("BP", "Accutemperatuur", 1, "De accu is te warm of te koud.", ["Wacht tot de accu weer op normale temperatuur is."]),
+    F("LOCK", "Pincode fout, maaier vergrendeld", 1, "Er is een verkeerde pincode ingevoerd.", ["Voer de juiste pincode in.", "Vergeten: zet de maaier via de app terug naar fabrieksinstellingen (pincode wordt 0000).", "Geen verbinding met de app, neem contact op met de Sunseeker-service."]),
+    F("STOP", "Noodstop", 1, "De stopknop is ingedrukt of blijft hangen.", ["Druk op START en daarna op OK op het bedieningspaneel.", "Controleer of de rode stopknop niet vastzit."]),
+    F("EE", "Communicatiefout elektronica", 3, "Een onderdeel communiceert niet: displayprint, aandrijfprint, magneetsensor, IMU of RTK-module (moederbord).", ["Laat de maaier nakijken door de dealer of de Sunseeker-service."]),
+    N("Melding 'Front camera obscured' of werkt niet in het donker", 1, "De camera is afgedekt of vuil, of het is te donker.", ["Veeg de camera schoon.", "Zet de nachtmodus aan als hij in het donker moet maaien."]),
+    N("Aftellen op het display", 1, "De regenvertraging loopt nog.", ["Wacht tot het aftellen klaar is, of zet de regenvertraging uit."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
