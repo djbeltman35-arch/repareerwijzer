@@ -14597,4 +14597,18 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Melk schuimt niet goed of wordt niet warm", 1, "Verkeerde melk, verstopt stoompijpje of kan niet op de sensor.", ["Gebruik koude volle of halfvolle melk (4 tot 6 °C), vers geopend.", "Gebruik de meegeleverde kan op de temperatuursensor in de lekbak en houd de sensor droog en schoon.", "Prik de gaatjes van het stoompijpje door en draai Clean Steam Wand."])
   ]});
 })();
+(() => {
+  SRC.sageSES882 = ["Sage – Handleiding the Barista Touch Impress SES882, Problemen oplossen (PDF, meertalig incl. NL)", "https://assets.sageappliances.com/BES882/SES882_EU_UG8_E26_LR.pdf"];
+  MODELS.push({ id: "sage-barista-touch-impress", brand: "Sage", name: "Barista Touch Impress: storingen en oplossingen", dev: "Barista Touch Impress", cat: "koffiemachines", years: "Sage the Barista Touch Impress SES882", unit: null, also: "Sage Barista Touch Impress geen stoom, Barista Touch Impress geen water, SES882 storing, Barista Touch Impress portafilter lekt, Barista Touch Impress werkt niet meer", intro: "Werkt de Sage Barista Touch Impress niet meer terwijl hij aan staat, zet hem dan uit en wacht 60 minuten. Geen stoom komt meestal door een verstopt stoompijpje; lekt de espresso langs de portafilter, dan zit die niet goed vast.", weak: ["Verstopt stoompijpje.", "Koffiedik op de rand van het filterbakje."], parts: [], tasks: [], src: ["sageSES882"], faults: [
+    N("Apparaat staat aan maar werkt niet meer", 2, "De machine hangt.", ["Zet het apparaat uit, wacht 60 minuten en zet het weer aan.", "Blijft het probleem, neem contact op met de Sage-klantenservice."]),
+    N("Geen water uit de zetgroep", 1, "Waterreservoir leeg of niet goed vergrendeld.", ["Vul het reservoir en duw het volledig op zijn plaats tot het vergrendelt."]),
+    N("Geen stoom", 1, "Het stoompijpje is verstopt.", ["Prik het gaatje door met de pin van de reinigingstool.", "Blijft het verstopt, schroef het uiteinde los met de sleutel van de tool, week het in heet water en schroef het terug.", "Zit de portafilter erin, laat de machine dan afkoelen en haal de portafilter eruit voordat je hem weer aanzet."]),
+    N("Geen stoom of heet water en geen foutmelding", 2, "Mogelijk probleem met een ventiel.", ["Laat de machine afkoelen, haal de stekker eruit en verwijder de portafilter.", "Sluit hem weer aan en kijk of er heet water of stoom komt.", "Blijft het probleem, neem contact op met de Sage-klantenservice."]),
+    N("Espresso loopt langs de rand van de portafilter", 1, "Portafilter niet goed in de zetgroep.", ["Draai de portafilter naar rechts tot de hendel voorbij het midden staat en goed vastzit.", "Blijft het probleem, neem contact op met de Sage-klantenservice."]),
+    N("Portafilter schiet los tijdens het zetten", 1, "Koffiedik op de rand van het filterbakje.", ["Veeg na het malen koffiedik van de rand van het filterbakje.", "Draai een reinigingscyclus van de zetgroep; reinig of vervang zo nodig de afdichtring."]),
+    N("Koffie loopt te snel", 1, "Te grof gemalen of te weinig koffie.", ["Zet de maalgraad fijner en controleer de dosering."]),
+    N("Koffie te koud", 1, "Kopjes niet voorverwarmd of melk niet heet genoeg.", ["Verwarm de kopjes voor en controleer de melktemperatuur."]),
+    N("Geen crèmalaag", 1, "Oude koffiebonen.", ["Gebruik versgebrande bonen, 5 tot 20 dagen na de branddatum."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
