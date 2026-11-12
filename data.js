@@ -16211,7 +16211,7 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
 (() => {
   SRC.irobotCharge=["iRobot – Roomba charging errors (Engels)","https://homesupport.irobot.com/articles/en_US/Knowledge/19598"];
   SRC.irobotErr18=["iRobot – Error 18: robot cannot return to its dock (Engels)","https://homesupport.irobot.com/articles/en_US/Knowledge/31099"];
-  MODELS.push({ id:"irobot-roomba-laadfouten", brand:"iRobot", name:"Roomba laadfouten: Charging Error 1 t/m 21 en 101 t/m 121", dev:"Roomba (laden)", cat:"stofzuigers", years:"Roomba 500–900, e, i, j, s, m, Combo en andere series", unit:null,
+  MODELS.push({ id:"irobot-roomba-laadfouten", brand:"iRobot", name:"Roomba laadfouten: Charging Error 1 t/m 21 en 101 t/m 121", dev:"Roomba (laden)", cat:"stofzuigers", years:"Roomba 500–900, e, i, j, s, m, 100/1000, 200/2000, Plus 400, Plus 500, Max 700", unit:null,
   intro:"Roomba meldt laadproblemen als 'Charging Error' met een nummer (1 t/m 21). In de Roomba Home-app verschijnen ze als codes 101 t/m 121.",
   weak:[], parts:[], tasks:[], src:["irobotCharge"],
   faults:[
