@@ -16871,4 +16871,17 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("4.8","Kantelmotor boven stroomlimiet",1,"De kantelmotor trekt te veel stroom; de fout verdwijnt vanzelf.",["Start het opbergen of uitklappen opnieuw."]),
   ]});
 })();
+(() => {
+  SRC.minnkotaUltrex=["Minn Kota Help Center – Ultrex Troubleshooting (2016-present, niet QUEST)","https://minnkota-help.johnsonoutdoors.com/hc/en-us/articles/4415387634455-Ultrex-Troubleshooting-does-not-include-Ultrex-Quest-2016-present"];
+  MODELS.push({ id:"minn-kota-ultrex", brand:"Minn Kota", name:"Ultrex trolling motor (2016 en later): problemen oplossen", dev:"Ultrex trolling motor", cat:"boten", years:"Minn Kota Ultrex 2016 en later (niet de Ultrex QUEST)", unit:null,
+  intro:"De Minn Kota Ultrex (zonder QUEST) heeft geen foutcodes. Hieronder staan de meest voorkomende problemen met de oplossing van Minn Kota, zoals een motor die niet aan of uit gaat of niet stuurt.",
+  weak:[], parts:[], tasks:[], src:["minnkotaUltrex"],
+  faults:[
+    N("Ultrex gaat niet uit (powerlampje blijft branden)",2,"Probleem met de aan/uit-schakelaar.",["Haal de schakelaar voorzichtig uit het voetpedaal en controleer of beide witte draden goed vastzitten.", "Zitten ze vast: maak de witte draden los van de schakelaar en houd ze tegen elkaar. Gaat het lampje uit, dan is de schakelaar defect; vervang hem (onderdeelnummer 2044022).", "Blijft het lampje branden, breng de motor naar een erkende servicedealer."]),
+    N("Ultrex gaat niet aan",1,"Spannings- of aansluitprobleem, zoals corrosie of losse verbindingen.",["Controleer of de spanning klopt.", "Controleer de accuaansluitingen, de stekker van de motor en eventuele kabelverbindingen op corrosie en of ze vastzitten.", "Gaat hij nog niet aan, breng de motor naar een erkende servicedealer."]),
+    N("Ultrex stuurt niet met het voetpedaal",2,"Het pedaal voelt stug, blijft met teen of hiel helemaal omlaag, of de motor stuurt bij het aanzetten helemaal opzij: defecte stuursensorprint in het pedaal, of een probleem met besturingsprint of stuurmodule.",["Weet je zeker dat het aan de stuursensorprint ligt en durf je het zelf, vervang die dan volgens de video van Minn Kota.", "Anders: breng de motor naar een erkende servicedealer."]),
+    N("Schroef gaat niet aan met de Momentary-knop",1,"De reed-sensor staat te laag.",["Haal de Momentary-knop eruit door het lipje aan de onderkant van het pedaal in te drukken.", "Duw de reed-schakelaar voorzichtig omhoog tot de bovenkant 1/32 inch onder de bovenkant van de clip zit.", "Plaats de knop terug tot het lipje vastklikt.", "Blijft het probleem, ga naar een erkende servicedealer."]),
+    N("Schroef gaat niet uit",1,"De reed-sensor staat te hoog.",["Haal de Momentary-knop eruit door het lipje aan de onderkant van het pedaal in te drukken.", "Duw de reed-schakelaar voorzichtig omlaag tot de bovenkant 1/32 inch onder de bovenkant van de clip zit.", "Plaats de knop terug tot het lipje vastklikt.", "Blijft het probleem, ga naar een erkende servicedealer."]),
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
