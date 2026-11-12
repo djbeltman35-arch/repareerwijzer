@@ -13463,4 +13463,21 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Weinig stoom", 1, "Nog niet op temperatuur, leeg reservoir, kalk of een verstopte stoompijp.", ["Wacht tot hij warm is, vul het reservoir, ontkalk of maak de stoompijp schoon."])
   ]});
 })();
+(() => {
+  SRC.sageImpress = ["Sage – Gebruiksaanwijzing the Barista Express Impress SES876, Troubleshooting (PDF, assets.sageappliances.com, Engels)", "https://assets.sageappliances.com/BES876/SES876_EU_UG8_QA_C22_LR.pdf"];
+  MODELS.push({ id: "sage-barista-express-impress", brand: "Sage", name: "the Barista Express Impress: lampjes en storingen", dev: "the Barista Express Impress (SES876)", cat: "koffiemachines", years: "Sage the Barista Express Impress SES876", unit: null, also: "Sage Impress lampje knippert, Barista Express Impress clean knippert, Impress dose knippert, Impress piept drie keer, Impress maalt niet, Impress stopt", intro: "De Sage Barista Express Impress praat met lampjes en piepjes. Een knipperend onderhoudslampje betekent schoonmaken, continu ontkalken; drie piepjes en twee rode lampjes betekenen dat de bonen bijna op zijn.", weak: ["Bonenbak niet vergrendeld.", "Te fijne maalgraad of vuile maalschijven.", "Koffieresten bij het aandrukmechanisme."], parts: [], tasks: [], src: ["sageImpress"], faults: [
+    N("Onderhoudslampje knippert (CLEAN)", 1, "Een reinigingscyclus is nodig.", ["Draai de reinigingscyclus volgens de handleiding."]),
+    N("Onderhoudslampje brandt continu (DESCALE)", 1, "De machine moet ontkalkt worden.", ["Draai de ontkalkingscyclus."]),
+    N("Twee rode lampjes en drie piepjes", 1, "De bonen zijn bijna op.", ["Vul de bonenbak bij."]),
+    N("Dose- of filterlampje knippert heen en weer", 1, "De bonenbak is niet vergrendeld.", ["Controleer en vergrendel de bonenbak."]),
+    N("Drie piepjes en de dosering pauzeert", 1, "De aandrukhendel staat niet in de ruststand.", ["Zet de hendel helemaal omhoog en druk op Dose om verder te gaan."]),
+    N("Tamp-lampje blijft knipperen na aandrukken", 1, "Het aandrukken is niet afgerond.", ["Duw de hendel omlaag tot je een piep hoort."]),
+    N("Machine staat aan maar stopt ermee", 2, "De machine is oververhit.", ["Zet hem uit, wacht 30-60 minuten en start opnieuw.", "Blijft het, neem contact op met de Sage-klantenservice."]),
+    N("Molen maalt niet of stopt", 1, "Geen bonen, bonenbak los, portafilter niet goed geplaatst, hendel te laag of koffiedik in de houder.", ["Vul bonen bij en vergrendel de bak.", "Plaats de portafilter helemaal, zet de hendel omhoog en borstel de houder schoon."]),
+    N("Malen duurt heel lang of time-out", 1, "Te fijn gemalen of het kanaal is verstopt.", ["Maak de molen schoon met het meegeleverde gereedschap en borsteltje."]),
+    N("Hendel heel zwaar bij aandrukken", 1, "Veel te veel koffie of koffieresten in het mechanisme.", ["Strijk af met de Razor, kies de juiste filtermaat en borstel het gebied rond het aandrukdeksel schoon."]),
+    N("Geen water uit de zetgroep", 1, "Nog niet op temperatuur, reservoir leeg of niet goed geplaatst.", ["Wacht tot hij warm is, vul het reservoir, duw het aan en sluit de vergrendeling."]),
+    N("Geen stoom", 1, "Het stoompijpje is verstopt of het reservoir is leeg.", ["Prik het tuitje open met de pin van het schoonmaakgereedschap en vul het reservoir."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
