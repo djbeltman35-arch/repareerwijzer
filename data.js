@@ -13654,4 +13654,22 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     N("Knoplampje uit", 1, "De machine is automatisch uitgeschakeld (na 2 minuten niet gebruiken).", ["Druk op de koffie- of stoomknop.", "Gaat hij niet aan, controleer stopcontact, stekker en zekering."])
   ]});
 })();
+(() => {
+  SRC.einhellFreelexo = ["Einhell – Originele handleiding FREELEXO smart 750, hoofdstuk Weergave en storingen (PDF, assets.einhell.com)", "https://assets.einhell.com/manuals-pdf/900_563388/Manual-3413811-freelexo-smart-750.pdf"];
+  MODELS.push({ id: "einhell-freelexo", brand: "Einhell", name: "FREELEXO robotmaaier: meldingen op het display", dev: "FREELEXO robotmaaier", cat: "tuin", years: "Einhell FREELEXO smart 750 en verwante FREELEXO-robotmaaiers met lcd", unit: null, also: "Einhell Freelexo no signal, Freelexo outside, Freelexo mower blocked, Freelexo accu fout, Freelexo motor fout, Freelexo tipped over, Einhell robotmaaier storing", intro: "De Einhell FREELEXO toont een melding op het display. 'No signal' en 'Outside' gaan over de begrenzingsdraad; de andere meldingen over een maaier die vastzit, gekanteld is of te warm wordt.", weak: ["Kapotte of slecht gelegde begrenzingsdraad.", "Te hoog gras (meer dan 60 mm).", "Maaien in de middaghitte."], parts: [], tasks: [], src: ["einhellFreelexo"], faults: [
+    N("No signal", 1, "De begrenzingsdraad is verkeerd aangesloten, er is geen stroom of de draad is kapot.", ["Kijk of het lampje van het laadstation groen brandt.", "Controleer of de draad goed ligt en midden onder het station loopt."]),
+    N("Outside", 1, "De draad is verkeerd aangesloten of de maaier staat buiten het maaigebied.", ["Controleer de aansluiting van de draad.", "Zet de maaier terug in het maaigebied."]),
+    N("Accufout", 2, "De accu laadt niet of is aan het einde van zijn levensduur.", ["Controleer of de accu goed zit en de hoofdschakelaar op ON staat als hij in het station staat.", "Vervang zo nodig de accu."]),
+    N("Temperatuurfout accu of print", 1, "Accu of besturing is te warm of te koud: boven 65 °C keert hij terug, boven 45 °C of onder 0 °C laadt hij niet.", ["Laat hem vroeg in de ochtend maaien in plaats van tijdens de hitte; hij gaat vanzelf verder als de temperatuur weer goed is."]),
+    N("Maaier opgetild", 1, "De liftsensor is 10 seconden geactiveerd.", ["Druk op STOP, start opnieuw en haal obstakels hoger dan 10 cm weg."]),
+    N("Maaier geblokkeerd", 1, "De obstakelsensor slaat steeds aan.", ["Druk op STOP en start opnieuw.", "Haal het obstakel weg of laat de maaier die plek mijden; maai te hoog gras eerst onder 60 mm."]),
+    N("Te dicht bij het station", 1, "De maaier is te dicht bij het station teruggestuurd.", ["Druk op STOP, start opnieuw en stuur hem terug vanaf minstens 2 meter."]),
+    N("Gekanteld", 1, "De maaier stond 10 seconden scheef.", ["Zet hem op een vlakke plek en start opnieuw; leg de draad anders op steile hellingen."]),
+    N("Wielfout", 1, "De achterwielen hangen in de lucht of slippen op oneffen gras.", ["Zet hem op een vlakke plek en start opnieuw."]),
+    N("STOP-knop fout", 2, "De kap is open maar de STOP-knop is niet geactiveerd.", ["Controleer of de kap vrij opent en sluit en of de STOP-knop werkt."]),
+    N("Regen", 1, "De regensensor is geactiveerd.", ["Wacht tot de maaier droog is."]),
+    N("Sensorfout of bedieningsfout", 2, "Een sensor- of bedieningsfout heeft de maaier gestopt.", ["Zet de hoofdschakelaar op OFF en weer op ON."]),
+    N("Motorfout of overstroom", 2, "Overstroom of een fout in de motor.", ["Zet de hoofdschakelaar uit en aan.", "Controleer de grashoogte (onder 60 mm) en of messen en wielen vrij en schoon zijn.", "Lukt het niet, neem contact op met de Einhell-service."])
+  ]});
+})();
 module.exports = { CATS, MODELS, SRC, COST };
