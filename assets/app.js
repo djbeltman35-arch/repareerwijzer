@@ -264,7 +264,7 @@
 })();
 
 (function () {
-  if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js", { updateViaCache: "none" }).then(function (r) { r.update(); }).catch(function () {}); });
+  if ("serviceWorker" in navigator) window.addEventListener("load", function () { setTimeout(function () { navigator.serviceWorker.register("/sw.js", { updateViaCache: "none" }).catch(function () {}); }, 3000); });
   var box = document.getElementById("installapp"); if (!box) return;
   var btn = document.getElementById("installbtn"), txt = document.getElementById("installtxt"), ev = null;
   var standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
