@@ -498,7 +498,7 @@ const codeFaq = (m, f, dev) => { const k = COST[m.cat], hit = costHit(m, f), c =
     [`Moet er een monteur komen bij foutcode ${c}?`, VERDICT_FAQ[f.d]]];
   if (k) q.push([`Wat kost het om foutcode ${c} te laten repareren?`, `${k.uur ? `Een monteur rekent ${k.uur}. ` : ""}${hit ? `${hit[0]}: gemiddeld ${hit[1]}.` : k.gem ? `Een reparatie kost gemiddeld ${k.gem}.` : ""} Vraag altijd vooraf een prijsopgave.`.replace(/\s+/g, " ").trim()]);
   return q; };
-const kbForCode = f => { const ids = codeKb.get(f); if (!ids) return ""; return `<p class="kblink">📖 Meer uitleg: ${ids.map(id => { const a = KB.find(x => x.id === id); return `<a href="kennisbank-${id}.html">${esc(a.title.split(":")[0])}</a>`; }).join(" · ")}</p>`; };
+const kbForCode = (f, m) => { const ids = codeKb.get(f); if (!ids) { const cat = KB.filter(a => a.cat === m.cat).slice(0, 2); return cat.length ? `<p class="kblink">📖 Meer uitleg: ${cat.map(a => `<a href="kennisbank-${a.id}.html">${esc(a.q)}</a>`).join(" · ")}</p>` : ""; } return `<p class="kblink">📖 Meer uitleg: ${ids.map(id => { const a = KB.find(x => x.id === id); return `<a href="kennisbank-${id}.html">${esc(a.title.split(":")[0])}</a>`; }).join(" · ")}</p>`; };
 
 // ───────── Foutcodepagina's
 for (const { m, f } of allCodes) {
@@ -527,7 +527,7 @@ ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
   <h2>💡 Wat kun je nu zelf doen?</h2>
   <ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
   ${blockLink(m, f)}
-  ${kbForCode(f)}
+  ${kbForCode(f, m)}
   ${feedbackStat(codeUrl(m, f))}${helpedBox(f.steps.length)}
   <p class="meldlink muted"><small>Klopt er iets niet of mis je een code? <a href="foutcode-melden.html" data-meld>Meld het</a>.</small></p>
 </article>
@@ -933,7 +933,7 @@ fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(in
   }
 }
 try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
-fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\n\n# AI-zoekmachines en assistenten zijn welkom\nUser-agent: GPTBot\nUser-agent: OAI-SearchBot\nUser-agent: ChatGPT-User\nUser-agent: Google-Extended\nUser-agent: PerplexityBot\nUser-agent: ClaudeBot\nUser-agent: Claude-SearchBot\nUser-agent: Applebot-Extended\nUser-agent: Bingbot\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, "llms.txt"), `# Foutcodezoeker
 
 > Foutcodezoeker (${SITE}) legt foutcodes, knipperende lampjes en storingen van apparaten uit in gewoon Nederlands, per merk en model. Elke pagina geeft de betekenis, wat je zelf kunt doen, wanneer je een specialist belt en (waar bekend) wat een reparatie gemiddeld kost. Alle informatie komt uit een genoemde bron, zoals de handleiding of supportpagina van de fabrikant; de bron staat onderaan elke pagina.
