@@ -687,13 +687,22 @@ layout({
 { const srcCount = Object.keys(SRC).length;
 layout({
   file: "over-foutcodezoeker.html",
-  title: "Over Foutcodezoeker: waar komt de informatie vandaan? | Foutcodezoeker",
+  title: "Over Foutcodezoeker: wie, waarom en waar de informatie vandaan komt",
   desc: `Foutcodezoeker legt ${nl(allCodes.length)} foutcodes uit in gewoon Nederlands. Elke pagina noemt zijn bron: handleidingen en supportpagina's van fabrikanten en vakwinkels.`,
   crumbs: [{ name: "Over Foutcodezoeker", file: "over-foutcodezoeker.html" }],
   extraHead: `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Foutcodezoeker", url: `${SITE}/`, email: "info@foutcodezoeker.nl", founder: { "@type": "Person", name: "Erik" } })}</script>`,
   body: `
 <section class="stack"><span class="eyebrow">Over ons</span><h1>Over Foutcodezoeker</h1>
 <p class="lead">Foutcodezoeker legt foutcodes en storingen uit in gewoon Nederlands, zodat je zelf kunt beoordelen of je een storing zelf oplost of een monteur nodig hebt. Gratis en zonder account.</p></section>
+<section class="stack story"><h2>Waarom deze site bestaat</h2>
+<p>Het begint vaak met een piepje. De wasmachine stopt halverwege, op het display staat E18 en niemand in huis weet wat dat betekent. Dan lijken er twee wegen te zijn: een monteur bellen of meteen een nieuw apparaat bestellen. Terwijl het vaak gaat om een vol filter, een geknikte slang of een instelling die je met één knop herstelt.</p>
+<p>Foutcodezoeker maakt die derde weg makkelijk: eerst begrijpen wat er aan de hand is, dan zelf beslissen. Kun je het zelf oplossen, dan bespaar je de voorrijkosten van een monteur en het geld voor een nieuw apparaat. Is het wél werk voor een vakman, dan weet je waarom, en kun je de monteur precies vertellen wat er speelt. Dat scheelt tijd, en vaak ook geld.</p>
+<h3>Goed voor je portemonnee, goed voor de wereld</h3>
+<p>Elk apparaat dat langer meegaat, hoeft niet opnieuw gemaakt, vervoerd en weggegooid te worden. Repareren in plaats van vervangen is daarom vaak niet alleen de goedkoopste keuze, maar ook de zuinigste: minder afval, minder grondstoffen en minder uitstoot. Niet voor niets regelt Europa steeds meer rond <a href="recht-op-reparatie.html">het recht op reparatie</a>.</p>
+<h3>Gemaakt door Erik</h3>
+<p>Foutcodezoeker is gemaakt door Erik. Zijn idee is simpel: niemand zou een goed apparaat bij het grofvuil moeten zetten alleen omdat een foutcode onduidelijk was. Daarom is de site gratis, heb je geen account nodig en staat bij elke uitleg de bron, zodat je alles zelf kunt nakijken.</p>
+<p class="sig">— Erik, maker van Foutcodezoeker</p>
+<p>Klopt er iets niet, of mis je een code? Mail naar <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a>. Erik past het zo snel mogelijk aan.</p></section>
 <section class="stack"><h2>Waar komt de informatie vandaan?</h2>
 <p>Elke uitleg is gebaseerd op een bron die onderaan de pagina staat. Dat zijn vooral:</p>
 <ul><li>gebruiks-, installatie- en servicehandleidingen van fabrikanten;</li><li>supportpagina's van fabrikanten, zoals foutcodelijsten en self-service-artikelen;</li><li>uitleg van Nederlandse vakwinkels en reparateurs.</li></ul>
@@ -702,9 +711,6 @@ layout({
 <ol><li><b>Bron eerst.</b> We zoeken eerst de handleiding of supportpagina van de fabrikant. Pas als die er niet is, gebruiken we uitleg van een Nederlandse vakwinkel of reparateur, en dat staat er dan bij.</li><li><b>Betekenis overnemen, uitleg herschrijven.</b> De betekenis van een code nemen we over zoals de bron hem geeft. De stappen herschrijven we in gewone taal, zonder iets toe te voegen wat niet in de bron staat. De teksten worden opgesteld met hulp van AI en daarna tegen de genoemde bron gecontroleerd.</li><li><b>Risico inschatten.</b> Elke storing krijgt een label: zelf op te lossen, voorzichtig zelf proberen of bel een monteur. Bij gas, koudemiddel, hoogspanning en accu's van e-bikes en scooters adviseren we altijd een vakman.</li><li><b>Bron vermelden.</b> Onderaan elke pagina staat de bron met een link, zodat je alles zelf kunt nakijken.</li><li><b>Automatische controle.</b> Bij elke update controleert de site zelf of elke pagina een bron heeft, of er geen dubbele codes zijn en of alle links werken. Faalt een controle, dan gaat de update niet online.</li><li><b>Bijwerken.</b> Er komen regelmatig codes en verbeteringen bij. Onderaan elke pagina staat wanneer die pagina voor het laatst inhoudelijk is gewijzigd.</li><li><b>Fouten herstellen.</b> Meldingen via <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a> en de knop "Heeft dit geholpen?" gebruiken we om pagina's te verbeteren. Meld een fout via het <a href="foutcode-melden.html">meldformulier</a>.</li></ol><p>We doen ons best om alles juist te houden, maar kunnen niet garanderen dat elke uitleg foutloos is of voor elk model geldt. Codes verschillen soms per serie of bouwjaar. Volg bij twijfel de handleiding van je eigen apparaat en schakel bij gas, elektriciteit of koudemiddel altijd een vakman in.</p></section>
 <section class="stack"><h2>Hoe lees je een pagina?</h2>
 <ul><li><b>🟢 Zelf op te lossen:</b> veilige stappen die iedereen kan doen, zoals een filter schoonmaken.</li><li><b>🟡 Voorzichtig zelf proberen:</b> stroom eraf en kraan dicht, en stop als je twijfelt.</li><li><b>🔴 Bel een monteur:</b> werk aan gas, koudemiddel, hoogspanning of elektronica laat je over aan een vakman.</li></ul></section>
-<section class="stack"><h2>Wie maakt Foutcodezoeker?</h2>
-<p>Foutcodezoeker is gemaakt door Erik, die ervan overtuigd is dat veel storingen met een beetje uitleg zelf op te lossen zijn. Dat scheelt geld en voorkomt dat goede apparaten bij het afval belanden. Zie ook <a href="recht-op-reparatie.html">je recht op reparatie</a>.</p>
-<p>Klopt er iets niet, of mis je een code? Mail naar <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a>. We passen het zo snel mogelijk aan.</p></section>
 <section class="stack"><h2>Onafhankelijk en eerlijk over advertenties</h2>
 <p>Foutcodezoeker is niet verbonden aan een fabrikant. Op sommige pagina's staan links naar winkels; die zijn altijd gemarkeerd als <b>Advertentie</b>. Koop je via zo'n link, dan krijgt Foutcodezoeker een kleine vergoeding. Dat heeft geen invloed op de uitleg en jij betaalt niets extra.</p></section>`
 }); }
