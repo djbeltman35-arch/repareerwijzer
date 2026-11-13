@@ -100,6 +100,10 @@ ${file === "index.html" ? '<meta name="e0d5a73bd035a1c" content="277030417ea9ada
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preload" href="/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/overpass-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/overpass-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/source-sans-3-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/source-sans-3-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/jetbrains-mono-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>${INLINE_CSS}</style>
 ${bc}${extraHead}
 <script data-goatcounter="https://foutcode.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
