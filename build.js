@@ -124,7 +124,7 @@ ${body}
 </main>
 <footer><div class="wrap">
   <details class="foot-fold"><summary>Alle categorieën (${CATS.length})</summary><nav class="foot-cats" aria-label="Categorieën">${CATS.map(c => `<a href="${c.id}.html">${c.name}</a>`).join("")}</nav></details>
-  <span>Foutcodezoeker · Gemaakt door Erik · info@foutcodezoeker.nl</span>
+  <span>Foutcodezoeker · Gemaakt door Erik · info@foutcodezoeker.nl · <a href="over-foutcodezoeker.html#andere-sites">Andere sites van Erik</a></span>
   <span>Stroom eraf en kraan dicht voordat je iets losschroeft. Volg bij twijfel de handleiding van de fabrikant. Open nooit zelf een e-bike-accu.</span>
   <span>Algemene informatie, gebruik op eigen risico. Foutcodezoeker is niet aansprakelijk voor schade of letsel. <a href="over-foutcodezoeker.html">Over Foutcodezoeker</a> · <a href="onderhoud-herinnering.html">Onderhoudsherinnering</a> · <a href="disclaimer.html">Disclaimer</a></span>
 </div></footer>
@@ -707,6 +707,9 @@ layout({
 <p>Foutcodezoeker is gemaakt door Erik. Zijn idee is simpel: niemand zou een goed apparaat bij het grofvuil moeten zetten alleen omdat een foutcode onduidelijk was. Daarom is de site gratis, heb je geen account nodig en staat bij elke uitleg de bron, zodat je alles zelf kunt nakijken.</p>
 <p class="sig">— Erik, maker van Foutcodezoeker</p>
 <p>Klopt er iets niet, of mis je een code? Mail naar <a href="mailto:info@foutcodezoeker.nl">info@foutcodezoeker.nl</a>. Erik past het zo snel mogelijk aan.</p></section>
+<section class="stack" id="andere-sites"><h2>Andere sites van Erik</h2>
+<p>Erik maakt meer gratis sites. Ze hebben allemaal hetzelfde doel: mensen helpen geld te besparen in deze dure tijden. Of het nu gaat om boodschappen, tanken, reizen of je vaste lasten: met een beetje vergelijken en uitzoeken houd je elke maand meer over.</p>
+<ul class="other-sites"><li><a href="https://euroroadrules.eu/" rel="noopener">EuroRoadRules</a>: Alles over vignetten, tol en milieuzones in heel Europa, in 28 talen. Met een routeplanner en een kostencalculator voor auto, camper, bus en vrachtwagen.</li><li><a href="https://boodschappenvergelijk.nl/" rel="noopener">Goedkope Boodschappen</a>: Vergelijk boodschappen en aanbiedingen bij 11 supermarkten en zie waar je het voordeligst uit bent.</li><li><a href="https://goedkopertanken.netlify.app/" rel="noopener">Tankwijzer</a>: Live brandstofprijzen in Nederland, België en Duitsland. Handig als je bij de grens woont of op reis gaat.</li><li><a href="https://vluchtwijzer.netlify.app/" rel="noopener">Vluchtwijzer</a>: Vergelijk goedkope vliegtickets vanaf Nederland, België en Duitsland bij de bekende boekingssites.</li><li><a href="https://vakantietoppers.netlify.app/" rel="noopener">Vakantiewijzer</a>: Vergelijk pakketreizen, hotels, vakantieparken en campings bij Nederlandse aanbieders.</li><li><a href="https://allesoporde.netlify.app/" rel="noopener">Op Orde</a>: Gratis app om je deadlines, toeslagen en vaste lasten bij te houden.</li></ul></section>
 <section class="stack"><h2>Waar komt de informatie vandaan?</h2>
 <p>Elke uitleg is gebaseerd op een bron die onderaan de pagina staat. Dat zijn vooral:</p>
 <ul><li>gebruiks-, installatie- en servicehandleidingen van fabrikanten;</li><li>supportpagina's van fabrikanten, zoals foutcodelijsten en self-service-artikelen;</li><li>uitleg van Nederlandse vakwinkels en reparateurs.</li></ul>
