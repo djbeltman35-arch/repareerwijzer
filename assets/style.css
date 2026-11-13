@@ -408,5 +408,5 @@ footer .wrap{padding-bottom:88px}
 .hero2 h1{text-shadow:0 2px 0 rgba(0,0,0,.10),0 6px 18px rgba(0,0,0,.22)}
 .hero2 h1 .h1-sub{text-shadow:none}
 
-@media (max-width:600px){.hero-art{display:none}}
+@media (max-width:600px){.hero-art{width:92px;align-self:start;margin-top:4px}}
 @media (min-width:700px){.cat-grid:not(.open) .cat.more:nth-child(-n+14){display:flex}}
