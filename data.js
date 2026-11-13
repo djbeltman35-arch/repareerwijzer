@@ -31430,4 +31430,44 @@ Object.assign(SRC,{ tohatsuMfs40: ["Tohatsu – owner's manual MFS40A/MFS50A, wa
     F("UF-00","Detectie omgekeerd leidingwerk of slechte communicatiebedrading",2,"Detectie omgekeerd leidingwerk of slechte communicatiebedrading.",["Open het hoofdmenu (linkse draaiknop) en ga naar Storing: je ziet de foutcode met een korte beschrijving; druk nogmaals voor de lange beschrijving.", "Daikin schrijft voor dat het probleem begrepen en verholpen moet zijn voordat de foutcode wordt gereset; dat doet een erkend installateur of de Daikin-dealer."]),
   ]});
 })();
+// ── Pelgrim, Whirlpool (Fx Ex) en Candy vaatwassers: codes uit de handleiding van de fabrikant
+Object.assign(SRC, {
+  pelgrimGvw301: ["Pelgrim – handleiding vaatwasser GVW301L (storingstabel)", "https://files.bemmelenkroon.nl/downloads/product/gvw301l-pelg/2a97c52/handleiding.pdf"],
+  pelgrimGvw201: ["Pelgrim – handleiding vaatwasser GVW201L (storingstabel)", "https://files.bemmelenkroon.nl/downloads/product/gvw201l-pelg/eed8277/handleiding.pdf"],
+  whirlW7: ["Whirlpool – snelle referentiegids vaatwasser W7F HS51 (problemen oplossen)", "https://files.bemmelenkroon.nl/downloads/product/w7fhs51-whiv/c002c32/handleiding.pdf"],
+  candyCdih: ["Candy – handleiding vaatwasser CDIH 2T1047 (foutcodes op het display)", "https://data.vandenborre.be/manual/CANDY/CANDY_M_NL_CDIH%202T1047.pdf"]
+});
+MODELS.push({ id: "pelgrim-vaatwasser", brand: "Pelgrim", name: "Vaatwasser GVW-serie", dev: "Pelgrim vaatwasser", cat: "vaatwassers", years: "Recente GVW-modellen met display, zoals GVW201L en GVW301L", unit: null,
+  intro: "Pelgrim-vaatwassers met display tonen een foutcode als E1 of Ed. De handleiding geeft per code de oorzaak. Loopt het apparaat te vol of lekt het flink, draai dan de kraan dicht en bel de klantenservice.",
+  weak: [], parts: [], tasks: DISH_TASKS, src: ["pelgrimGvw301", "pelgrimGvw201"],
+  faults: [
+    F("E1", "Het duurt te lang om water in te pompen", 1, "De kraan is niet open, de watertoevoer is beperkt of de waterdruk is te laag.", ["Draai de waterkraan helemaal open.", "Controleer of de toevoerslang niet geknikt of afgekneld is.", "Start het programma opnieuw. Blijft E1 terugkomen, bel dan de klantenservice."]),
+    F("E3", "De vereiste temperatuur wordt niet bereikt", 3, "Volgens de handleiding is het verwarmingselement defect.", ["Zet de vaatwasser uit.", "Bel de klantenservice; het verwarmingselement vervangen is werk voor een monteur."]),
+    F("E4", "Overstroming", 3, "Sommige onderdelen van de vaatwasser lekken.", ["Draai de waterkraan dicht.", "Haal de stekker uit het stopcontact.", "Bel de klantenservice."]),
+    F("E8", "Onjuiste oriëntatie van de distributieklep", 3, "Open circuit of defecte distributieklep.", ["Zet de vaatwasser uit en weer aan en start opnieuw.", "Komt E8 terug, bel dan de klantenservice."]),
+    F("Ec", "Systeemstoring wasregeling", 3, "Storing in de printplaat (PCB) of de motor.", ["Zet de vaatwasser uit en weer aan.", "Komt Ec terug, bel dan de klantenservice."]),
+    F("Ed", "Communicatie tussen hoofdprintplaat en display mislukt", 3, "Een open circuit of gebroken communicatiedraad tussen hoofd-PCB en display-PCB.", ["Zet de vaatwasser uit en weer aan.", "Komt Ed terug, bel dan de klantenservice."]),
+    N("Alle lampjes knipperen tegelijk", 3, "Volgens de handleiding een storing waarbij je direct moet stoppen.", ["Schakel de vaatwasser onmiddellijk uit.", "Draai de waterkraan dicht.", "Bel de klantenservice."])
+  ] });
+MODELS.push({ id: "whirlpool-vaatwasser-f-e-codes", brand: "Whirlpool", name: "Vaatwasser met F- en E-codes (zoals W7F HS51)", dev: "Whirlpool vaatwasser", cat: "vaatwassers", years: "Recente modellen met display, zoals de W7F-serie", unit: null,
+  intro: "Nieuwere Whirlpool-vaatwassers tonen een combinatie van een F- en een E-code, zoals F7 E3. Hieronder staan de combinaties die de handleiding noemt, met de oplossing.",
+  weak: [], parts: [], tasks: DISH_TASKS, src: ["whirlW7"],
+  faults: [
+    F("F6 E1", "Bedieningspaneel reageert niet", 1, "De elektronica reageert niet meer.", ["Zet de vaatwasser uit met de AAN-UIT/Reset-toets.", "Zet hem na ongeveer een minuut weer aan en start het programma opnieuw.", "Helpt dat niet, haal dan de stekker 1 minuut uit het stopcontact en steek hem er weer in."]),
+    F("F7 E3", "De vaatwasser pompt niet af", 1, "Het filter is verstopt, de afvoerslang is geknikt of de afvoer van de gootsteen is verstopt.", ["Reinig het filter en ontkalk het apparaat.", "Controleer de afvoerslang op knikken.", "Maak de afvoerpijp van de gootsteen schoon."]),
+    F("F9 E1", "De vaatwasser pompt niet af", 1, "Het filter is verstopt, de afvoerslang is geknikt of de afvoer van de gootsteen is verstopt.", ["Reinig het filter en ontkalk het apparaat.", "Controleer de afvoerslang op knikken.", "Maak de afvoerpijp van de gootsteen schoon."]),
+    F("F8 E3", "Programma stopt voortijdig", 1, "Te veel schuim of lucht in de watertoevoer. Ook een afvoerslang die te laag zit of naar het riool hevelt kan dit geven.", ["Gebruik de juiste hoeveelheid vaatwasmiddel dat geschikt is voor vaatwassers.", "Controleer de watertoevoer op lekken of andere problemen die lucht binnenlaten.", "Controleer of het uiteinde van de afvoerslang op de juiste hoogte zit."]),
+    F("F8 E5", "Klep geblokkeerd of defect", 3, "De klep is geblokkeerd of defect.", ["Draai de waterkraan dicht als dat kan.", "Laat de stroom aan; schakel de voeding niet uit.", "Bel de klantenservice."]),
+    F("H2O", "De vaatwasser vult zich niet met water", 1, "Geen water in de toevoer, kraan dicht, geknikte toevoerslang of verstopte zeef in de toevoerslang.", ["Zorg dat de kraan open staat.", "Controleer de toevoerslang op knikken.", "Reinig de zeef in de toevoerslang.", "Sluit de deur en druk op START/Pauze."]),
+    F("dES", "Ontkalken nodig", 1, "Er zit kalkaanslag op de interne onderdelen. Als je niet ontkalkt, werkt het apparaat volgens de handleiding niet meer.", ["Ontkalk direct met het zelfreinigingsprogramma en een ontkalkingsmiddel uit de winkel.", "Vul het zoutreservoir.", "Controleer de ingestelde waterhardheid."])
+  ] });
+MODELS.push({ id: "candy-vaatwasser", brand: "Candy", name: "Vaatwasser (alarmcodes E10, E20, E30)", dev: "Candy vaatwasser", cat: "vaatwassers", years: "Recente modellen, zoals CDIH 2T1047", unit: null, also: "Modellen zonder display laten alle lampjes knipperen",
+  intro: "Candy-vaatwassers geven een geluidsalarm en tonen een alarmcode. Heeft je model geen display, dan knipperen alle lampjes: één, twee of drie keer per 3 seconden.",
+  weak: [], parts: [], tasks: DISH_TASKS, src: ["candyCdih"],
+  faults: [
+    F("E10", "Het apparaat vult zich niet met water", 1, "Kraan dicht, geknikte inlaatslang, verstopt filter in de inlaatslang, te lage waterdruk of een geactiveerde aqua-stop. Zonder display knipperen alle lampjes om de 3 seconden.", ["Open de waterkraan. Zet het apparaat daarna uit en start het programma opnieuw.", "Controleer de positie van de inlaatslang op knikken of bochten.", "Reinig het filter bij de aansluitingen van de inlaatslang, bij de kraan en aan de achterkant van het apparaat.", "Is de markering van de aqua-stop rood, dan moet de slang worden vervangen."]),
+    F("E20", "Het apparaat laat het water niet weglopen", 1, "De filters of de afvoer zijn verstopt. Zonder display knipperen alle lampjes twee keer per 3 seconden.", ["Schep zoveel mogelijk water uit.", "Reinig de filters.", "Controleer of de afvoeraansluiting en de leidingen goed zitten en niet verstopt zijn.", "Ga verder met het programma met de START/PAUZE-knop."]),
+    F("E30", "Lek: de afvoerpomp werkt permanent", 3, "De anti-overstromingsbeveiliging is actief: water lekt in het apparaat, de inlaatklep staat open en zit vast, of de afvoer is geblokkeerd. Zonder display knipperen alle lampjes drie keer per 3 seconden.", ["Sluit de waterkraan.", "Haal de stekker uit het stopcontact.", "Neem contact op met de klantenservice."])
+  ] });
+
 module.exports = { CATS, MODELS, SRC, COST };
