@@ -341,14 +341,14 @@ function AFF(si, li) { return `https://lt45.net/c/?si=${si}&amp;li=${li}&amp;wi=
 function TI(si, li, shop) { return `https://partners.tradeinn.com/c/?si=${si}&amp;li=${li}&amp;wi=446984&amp;ws=&amp;dl=${shop}%2Fnl`; }
 function BOL(q, name) { return `https://partner.bol.com/click/click?p=1&amp;t=url&amp;s=1558346&amp;url=${encodeURIComponent("https://www.bol.com/nl/nl/s/?searchtext=" + q.replace(/ /g, "+"))}&amp;f=TXL&amp;name=${encodeURIComponent(name)}&amp;subid=`; }
 function BOLCAT_() { return {
-  koffiemachines: ["ontkalker koffiemachine", "🧴 Ontkalker voor je koffiemachine", "Ontkalkers en reinigingstabletten bij bol."],
-  wasmachines: ["wasmachine reiniger", "🧺 Wasmachinereiniger", "Reinigers tegen vuil, kalk en geurtjes bij bol."],
-  vaatwassers: ["vaatwasser reiniger", "🍽️ Vaatwasserreiniger en -zout", "Reinigers, zout en glansspoelmiddel bij bol."],
-  drogers: ["pluizenfilter droger", "🌀 Filters voor je droger", "Pluizen- en sokkelfilters bij bol."],
-  stofzuigers: ["stofzuiger filter", "🧹 Filters en borstels voor je stofzuiger", "Vervangende filters, borstels en zakken bij bol."],
-  ovens: ["ovenreiniger", "🔥 Ovenreiniger", "Reinigers voor oven en bakplaten bij bol."],
-  kookplaten: ["kookplaatreiniger", "🍳 Kookplaatreiniger en schraper", "Reinigers voor inductie- en keramische kookplaten bij bol."],
-  rookmelders: ["rookmelder 10 jaar batterij", "🔔 Nieuwe rookmelder", "Rookmelders met 10-jaarsbatterij bij bol."],
+  koffiemachines: ["ontkalker koffiemachine", "🧴 Ontkalker voor je koffiemachine", "Ontkalkers en reinigingstabletten."],
+  wasmachines: ["wasmachine reiniger", "🧺 Wasmachinereiniger", "Reinigers tegen vuil, kalk en geurtjes."],
+  vaatwassers: ["vaatwasser reiniger", "🍽️ Vaatwasserreiniger en -zout", "Reinigers, zout en glansspoelmiddel."],
+  drogers: ["pluizenfilter droger", "🌀 Filters voor je droger", "Pluizen- en sokkelfilters."],
+  stofzuigers: ["stofzuiger filter", "🧹 Filters en borstels voor je stofzuiger", "Vervangende filters, borstels en zakken."],
+  ovens: ["ovenreiniger", "🔥 Ovenreiniger", "Reinigers voor oven en bakplaten."],
+  kookplaten: ["kookplaatreiniger", "🍳 Kookplaatreiniger en schraper", "Reinigers voor inductie- en keramische kookplaten."],
+  rookmelders: ["rookmelder 10 jaar batterij", "🔔 Nieuwe rookmelder", "Rookmelders met 10-jaarsbatterij."],
   "cv-ketels": ["radiator ontluchtingssleutel", "🔧 Ontluchtingssleutel en vulslang", "Alles om je cv bij te vullen en te ontluchten bij bol."],
   airco: ["airco reiniger", "❄️ Aircoreiniger", "Reinigingssprays voor binnenunits bij bol."],
   printers: ["printer inkt cartridge", "🖨️ Inkt en toner", "Cartridges en toners bij bol."],
@@ -383,23 +383,23 @@ function BOLCAT_() { return {
 }; }
 function ADS() { return {
   laadkabel: [AFF(12933, 1570912), "🔌 Laadkabel voor uw elektrische auto", "Kabel kapot of een extra nodig? Bekijk laadkabels bij onze partner."],
-  acculader: [AFF(12933, 1570313), "🔋 Acculader of starthulp", "Accu leeg of zwak? Bekijk acculaders en jumpstarters bij Acculaders.nl."],
-  autoverkopen: [AFF(10614, 1468698), "🚗 Reparatie te duur? Verkoop je auto", "Vraag gratis een bod aan bij AutoVendi, ook voor auto's met schade of motorproblemen."],
-  ebike: [AFF(12168, 1536530), "🚲 E-bike-onderdelen en accessoires", "Display, accu-lader of banden nodig? Bekijk het aanbod bij Fietsparadijs."],
-  fietstas: [AFF(12934, 1570314), "🎒 Fietstassen", "Nieuwe tas voor je (e-)bike? Bekijk fietstassen bij Fietstas.com."],
-  gereedschap: [AFF(13231, 1580636), "🔧 Gereedschap en accu's", "Nieuw gereedschap of een vervangende accu? Bekijk het aanbod bij Gereedschapspecialist."],
-  bikeinn: [TI(20603, 1873781, "bikeinn"), "🔧 Fietsonderdelen en gereedschap", "Banden, remblokken, kettingen en fietsgereedschap bij BikeInn."],
-  bricoinn: [TI(20604, 1873782, "bricoinn"), "🧰 Klusgereedschap en onderdelen", "Gereedschap en klusspullen bij BricoInn."],
-  motardinn: [TI(20600, 1873778, "motardinn"), "🛵 Onderdelen voor scooter en motor", "Accu's, banden en onderdelen bij MotardInn."],
-  techinn: [TI(20616, 1874238, "techinn"), "🔌 Elektronica en accessoires", "Opladers, kabels en elektronica bij TechInn."],
+  acculader: [AFF(12933, 1570313), "🔋 Acculader of starthulp", "Accu leeg of zwak? Bekijk acculaders en jumpstarters."],
+  autoverkopen: [AFF(10614, 1468698), "🚗 Reparatie te duur? Verkoop je auto", "Vraag gratis een bod aan, ook voor auto's met schade of motorproblemen."],
+  ebike: [AFF(12168, 1536530), "🚲 E-bike-onderdelen en accessoires", "Display, accu-lader of banden nodig? Bekijk het aanbod."],
+  fietstas: [AFF(12934, 1570314), "🎒 Fietstassen", "Nieuwe tas voor je (e-)bike? Bekijk fietstassen."],
+  gereedschap: [AFF(13231, 1580636), "🔧 Gereedschap en accu's", "Nieuw gereedschap of een vervangende accu? Bekijk het aanbod."],
+  bikeinn: [TI(20603, 1873781, "bikeinn"), "🔧 Fietsonderdelen en gereedschap", "Banden, remblokken, kettingen en fietsgereedschap."],
+  bricoinn: [TI(20604, 1873782, "bricoinn"), "🧰 Klusgereedschap en onderdelen", "Gereedschap en klusspullen."],
+  motardinn: [TI(20600, 1873778, "motardinn"), "🛵 Onderdelen voor scooter en motor", "Accu's, banden en onderdelen."],
+  techinn: [TI(20616, 1874238, "techinn"), "🔌 Elektronica en accessoires", "Opladers, kabels en elektronica."],
   camperverkopen: ["https://lt45.net/c/?si=10614&amp;li=1468698&amp;wi=446984&amp;ws=&amp;dl=camper-verkopen%2F", "🚐 Camper verkopen?", "Vraag een bod aan bij onze partner."],
-  refurbnl: ["https://www.awin1.com/cread.php?awinmid=112024&amp;awinaffid=3152283", "♻️ Refurbished.nl: gebruikt en als nieuw", "Reparatie te duur? Bekijk refurbished laptops, telefoons en tablets met garantie."],
-  joybuy: ["https://glp8.net/c/?si=20823&amp;li=1881811&amp;wi=446984&amp;ws=", "🛍️ Joybuy: elektronica en huishoudapparaten", "Toch een nieuw apparaat nodig? Vergelijk het aanbod bij Joybuy."],
-  banden: ["https://glp8.net/c/?si=21242&amp;li=1905280&amp;wi=446984&amp;ws=", "🛞 Nieuwe banden nodig?", "Zomer-, winter- en all-seasonbanden bij Banden.nl, ook met montage."],
-  vevor: ["https://www.awin1.com/cread.php?awinmid=118435&amp;awinaffid=3152283", "🛠️ VEVOR: gereedschap, aggregaten en kachels", "Vervangend apparaat of werkplaatsspullen nodig? Bekijk het aanbod bij VEVOR."],
-  tplink: ["https://www.awin1.com/cread.php?awinmid=120541&amp;awinaffid=3152283", "📶 TP-Link Store: wifi, mesh en slimme apparaten", "Nieuwe router, mesh-systeem, camera of slimme stekker nodig? Bekijk het aanbod in de officiële TP-Link Store."],
-  eufy: ["https://bdt9.net/c/?si=18489&amp;li=1849129&amp;wi=446984&amp;ws=", "🤖 Eufy robotstofzuigers, camera's en deurbellen", "Nieuw apparaat of onderdelen nodig? Bekijk het aanbod bij Eufy."],
-  refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie bij Remarkt."]
+  refurbnl: ["https://www.awin1.com/cread.php?awinmid=112024&amp;awinaffid=3152283", "♻️ Refurbished: gebruikt en als nieuw", "Reparatie te duur? Bekijk refurbished laptops, telefoons en tablets met garantie."],
+  joybuy: ["https://glp8.net/c/?si=20823&amp;li=1881811&amp;wi=446984&amp;ws=", "🛍️ Elektronica en huishoudapparaten", "Toch een nieuw apparaat nodig? Bekijk het aanbod."],
+  banden: ["https://glp8.net/c/?si=21242&amp;li=1905280&amp;wi=446984&amp;ws=", "🛞 Nieuwe banden nodig?", "Zomer-, winter- en all-seasonbanden, ook met montage."],
+  vevor: ["https://www.awin1.com/cread.php?awinmid=118435&amp;awinaffid=3152283", "🛠️ Gereedschap, aggregaten en kachels", "Vervangend apparaat of werkplaatsspullen nodig? Bekijk het aanbod."],
+  tplink: ["https://www.awin1.com/cread.php?awinmid=120541&amp;awinaffid=3152283", "📶 Wifi, mesh en slimme apparaten", "Nieuwe router, mesh-systeem, camera of slimme stekker nodig? Bekijk het aanbod."],
+  eufy: ["https://bdt9.net/c/?si=18489&amp;li=1849129&amp;wi=446984&amp;ws=", "🤖 Robotstofzuigers, camera's en deurbellen", "Nieuw apparaat of onderdelen nodig? Bekijk het aanbod."],
+  refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie."]
 }; }
 function adsFor(m) {
   if (isEvCharge(m)) return ["laadkabel"];
