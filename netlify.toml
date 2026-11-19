@@ -1,5 +1,5 @@
 [build]
-  command = "node fetch-feedback.js; node build.js"
+  command = "node fetch-feedback.js; node build.js && python3 installeerknop.py dist --geen-nav"
   publish = "dist"
 
 [build.environment]
