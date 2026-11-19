@@ -412,3 +412,36 @@ footer .wrap{padding-bottom:88px}
 @media (min-width:700px){.cat-grid:not(.open) .cat.more:nth-child(-n+14){display:flex}}
 
 .story .sig{font-style:italic;font-weight:600;margin-top:-4px}
+
+/* gbstijl:start (zelfde opzet als boodschappenvergelijk.nl) */
+:root{--bg:#f4f7f1;--ink:#1e2a22;--muted:#5d6a61;--line:#e1e7dc;--blue:#0e7c4a;--steel:#0e7c4a;--gbg:linear-gradient(180deg,#17a061 0%,#0e7c4a 55%,#0b6a3f 100%);--gbd:inset 0 1px 0 rgba(255,255,255,.28),0 3px 0 #08502f,0 5px 10px rgba(8,80,47,.28)}
+html body header.top{background:#fff!important;color:#1e2a22!important;border-bottom:1px solid #e1e7dc!important}
+html body header.top .logo{color:#1e2a22!important}
+html body header.top .logo svg rect{fill:#0e7c4a}
+html body header.top .logo svg path{fill:#fff}
+html body header.top details.menu>summary{background:var(--gbg)!important;color:#fff!important;border:0!important;border-radius:999px!important;box-shadow:var(--gbd)!important}
+html body header.top .burger,html body header.top .burger::before,html body header.top .burger::after{background:#fff!important}
+html body .hero{background:transparent!important;color:#1e2a22!important;box-shadow:none!important;clip-path:none!important;margin-top:0!important;padding-block:18px 12px!important;text-align:center}
+html body .hero::after{display:none!important}
+html body .hero .hero-art{display:none!important}
+html body .hero .hero-grid{display:block!important}
+html body .hero h1{color:#1e2a22!important;text-transform:none!important;font-family:inherit!important;font-weight:700!important;font-size:clamp(28px,7vw,44px)!important;line-height:1.12!important;letter-spacing:-.015em!important;max-width:none!important;margin:0 auto 6px!important}
+html body .hero h1 mark.hl{background:none!important;color:inherit!important;box-shadow:none!important;padding:0!important;border:0!important;text-decoration:none!important}
+html body .hero h1 .h1-sub{display:block;font-size:16px;font-weight:400;color:#5d6a61;letter-spacing:0;margin-top:4px}
+html body .hero .lead{color:#5d6a61!important;font-size:15px!important;margin-inline:auto}
+html body .hero>.muted,html body .hero .muted{color:#5d6a61!important}
+html body .hero .search input{border:1px solid #e1e7dc!important;border-radius:4px!important;box-shadow:0 1px 2px rgba(20,40,28,.06),0 6px 16px -8px rgba(20,40,28,.25)!important}
+html body .hero .herostats{border-top:0!important}
+html body .hero .herostats b{color:#0e7c4a!important}
+html body .searchtip{background:#fff!important;color:#1e2a22!important;border-left-color:#f5c400!important}
+html body .maker{font-size:13px;color:#5d6a61;margin:0 0 6px}
+html body .maker a{color:#1e2a22;font-weight:700;text-decoration:underline;text-decoration-color:#e1e7dc;text-underline-offset:3px}
+html body .btn,html body button.btn,html body .chatbtn,html body .ask{border-radius:10px}
+html body .btn:not(.ghost):not(.sec){background:var(--gbg)!important;color:#fff!important;border:0!important;box-shadow:var(--gbd)!important}
+html body header.top .wrap{flex-wrap:nowrap!important;justify-content:space-between}
+html body header.top .logo{font-size:19px!important;font-family:inherit!important;font-weight:700!important;text-transform:none!important;letter-spacing:0!important}
+html body header.top::after,html body header.top::before{display:none!important}
+html body header.top{background-image:none!important;border-image:none!important}
+html body .hero h1,html body .hero h1 *{text-shadow:none!important}
+html body .hero h1 .h1-sub{text-align:center;max-width:none!important;margin-inline:auto}
+/* gbstijl:end */

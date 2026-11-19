@@ -169,7 +169,7 @@ layout({
   desc: `Foutcode opzoeken? ${stats.codes} foutcodes van Bosch, Samsung, Miele, AEG, Intergas, Vaillant en meer uitgelegd: oorzaak, wat je zelf doet en wanneer je een monteur belt. Gratis, met bron.`,
   body: `
 <section class="stack hero hero2">
-  <span class="eyebrow">Gratis · zonder account</span>
+  <p class="maker">Van de maker van <a href="https://boodschappenvergelijk.nl/?bron=foutcodezoeker">Boodschappenvergelijk.nl</a>, bekend van <a href="https://www.hartvannederland.nl/advies-en-tips/kopen-besparen/videos/goedkoop-boodschappen-doen-erik-bouwt-vergelijker" target="_blank" rel="noopener">Hart van Nederland</a> en <a href="https://www.oost.nl/nieuws/3720144/rijssenaar-erik-beltman-rekent-af-met-dure-boodschappen-in-vergelijkingswebsite" target="_blank" rel="noopener">RTV Oost</a></p>
   <div class="hero-grid">
     <h1>Foutcode <mark class="hl">opzoeken?</mark> <span class="h1-sub">Vind direct de betekenis en oplossing.</span></h1>
     <svg class="hero-art" viewBox="0 0 240 220" role="img" aria-label="Wasmachine met foutcode E18 op het display en een vergrootglas">
