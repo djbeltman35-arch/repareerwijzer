@@ -170,6 +170,8 @@ layout({
   body: `
 <section class="stack hero hero2">
   <p class="maker">Van de maker van <a href="https://boodschappenvergelijk.nl/?bron=foutcodezoeker">Boodschappenvergelijk.nl</a>, bekend van <a href="https://www.hartvannederland.nl/advies-en-tips/kopen-besparen/videos/goedkoop-boodschappen-doen-erik-bouwt-vergelijker" target="_blank" rel="noopener">Hart van Nederland</a> en <a href="https://www.oost.nl/nieuws/3720144/rijssenaar-erik-beltman-rekent-af-met-dure-boodschappen-in-vergelijkingswebsite" target="_blank" rel="noopener">RTV Oost</a></p>
+  <nav class="ptiles" aria-label="Handig bij een storing (advertenties)">${[["gereedschap","vevor","🛠️","Gereedschap"],["rookmelder","xsense","🔔","Rookmelders"],["refurbished","refurbnl","♻️","Refurbished"],["banden","banden","🛞","Banden"],["autoverkopen","autoverkopen","🚗","Auto verkopen"],["scooter","motoonderdelen","🛵","Scooteronderdelen"],["laadkabel","laadkabel","🔌","Laadkabel"]].map(([id, k, ic, t]) => `<a href="${ADS()[k][0]}" rel="sponsored noopener" target="_blank" data-tegel="${id}"><span aria-hidden="true">${ic}</span><b>${t}</b></a>`).join("")}</nav>
+  <p class="ptiles-ad">Advertenties · jij betaalt niets extra</p>
   <div class="hero-grid">
     <h1>Foutcode <mark class="hl">opzoeken?</mark> <span class="h1-sub">Vind direct de betekenis en oplossing.</span></h1>
     <svg class="hero-art" viewBox="0 0 240 220" role="img" aria-label="Wasmachine met foutcode E18 op het display en een vergrootglas">
@@ -399,6 +401,8 @@ function ADS() { return {
   vevor: ["https://www.awin1.com/cread.php?awinmid=118435&amp;awinaffid=3152283", "🛠️ Gereedschap, aggregaten en kachels", "Vervangend apparaat of werkplaatsspullen nodig? Bekijk het aanbod."],
   tplink: ["https://www.awin1.com/cread.php?awinmid=120541&amp;awinaffid=3152283", "📶 Wifi, mesh en slimme apparaten", "Nieuwe router, mesh-systeem, camera of slimme stekker nodig? Bekijk het aanbod."],
   eufy: ["https://bdt9.net/c/?si=18489&amp;li=1849129&amp;wi=446984&amp;ws=", "🤖 Robotstofzuigers, camera's en deurbellen", "Nieuw apparaat of onderdelen nodig? Bekijk het aanbod."],
+  xsense: ["https://glp8.net/c/?si=21334&amp;li=1908197&amp;wi=446984&amp;ws=", "🔔 Rook- en CO-melders", "Nieuwe melder nodig? Rook- en koolmonoxidemelders, ook koppelbaar."],
+  motoonderdelen: ["https://www.awin1.com/cread.php?awinmid=25729&amp;awinaffid=3152283&amp;clickref=foutcodezoeker", "🛵 Onderdelen voor scooter en motor", "Accu's, remblokken, banden en olie voor je scooter of motor."],
   refurbished: ["https://ds1.nl/c/?si=9711&amp;li=1434953&amp;wi=446984&amp;ws=", "♻️ Toch vervangen? Kies refurbished", "Gecontroleerde refurbished telefoons, laptops en tablets met garantie."]
 }; }
 function adsFor(m) {
@@ -412,7 +416,8 @@ function adsFor(m) {
     case "e-bikes": return ["ebike", "bikeinn"];
     case "gereedschap": case "tuin": return ["gereedschap", "vevor", "bricoinn"];
     case "kachels": return ["vevor"];
-    case "scooters": return ["motardinn"];
+    case "scooters": return ["motoonderdelen", "motardinn"];
+    case "rookmelders": return ["xsense"];
     case "televisies": case "audio": return ["techinn", "joybuy"];
     case "printers": return ["techinn"];
     case "koffiemachines": case "kleine-apparaten": case "koelkasten": case "airco": return ["joybuy"];
