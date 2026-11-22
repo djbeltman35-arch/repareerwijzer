@@ -1,5 +1,5 @@
 [build]
-  command = "node fetch-feedback.js; node build.js && python3 installeerknop.py dist --geen-nav"
+  command = "node fetch-feedback.js; node build.js && python3 installeerknop.py dist --geen-nav && python3 huisstijl/huisstijl.py dist foutcodezoeker"
   publish = "dist"
 
 [build.environment]
