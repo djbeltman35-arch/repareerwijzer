@@ -34,7 +34,11 @@ const pageHash = html => { const m = html.match(/<main[\s\S]*<\/main>/); return 
 
 const codeUrl = (m, f) => `foutcode-${m.id}-${slug(f.code.split("/")[0])}.html`;
 const lc1 = (t, m) => { const w = t.split(/[ :,]/)[0]; if (!/^[A-Z][a-zà-ÿ]*$/.test(w)) return t; if (m && `${m.brand} ${m.name} ${m.also || ""}`.split(/[^A-Za-zÀ-ÿ]+/).includes(w)) return t; return t[0].toLowerCase() + t.slice(1); };
-const textUrl = (m, f) => `storing-${m.id}-${slug(f.t)}.html`;
+// Modellen met hooguit 3 storingen zonder code: alles staat op de modelpagina, geen losse (dubbele) storingspagina's
+const MERGED = m => m.faults.filter(x => !x.code).length <= 3;
+const oldTextUrl = (m, f) => `storing-${m.id}-${slug(f.t)}.html`;
+const textUrl = (m, f) => MERGED(m) ? `${m.id}.html#${slug(f.t)}` : oldTextUrl(m, f);
+const REDIRECTS = [];
 
 // ───────── Controle: dubbele modellen, codepagina's of ontbrekende bronnen laten de build mislukken
 {
@@ -67,7 +71,21 @@ const fold = (title, inner, open = false, n = 0) => `<section class="stack"><det
 const howtoLd = (name, steps) => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "HowTo", name, step: steps.map((t, i) => ({ "@type": "HowToStep", position: i + 1, text: t })) }).replace(/</g, "\\u003c")}</script>`;
 const faqLd = qs => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }).replace(/</g, "\\u003c")}</script>`;
 const clip = (t, n = 158) => { t = String(t).replace(/\s+/g, " ").trim(); if (t.length <= n) return t; const c = t.slice(0, n); return c.slice(0, c.lastIndexOf(" ")).replace(/[,;:–-]+$/, "") + "…"; };
+// Handmatige titels en beschrijvingen voor pagina's die al hoog staan maar weinig klikken krijgen (Search Console, nov 2026)
+const OVR = {
+  "tado-foutcodes.html": ["tado foutcode E0, E1, E2, E4 of E10? Betekenis en oplossing", "Toont je tado° thermostaat of radiatorknop E0, E1, E2, E4 of E10? Per code wat er mis is en hoe je het in een paar minuten zelf oplost."],
+  "kachels.html": ["Pelletkachel of gashaard storing? Foutcodes per merk uitgelegd", "Pelletkachel of gashaard geeft een foutcode of slaat niet aan? Zoek je merk en lees wat de code betekent en wat je zelf kunt doen."],
+  "stofzuigers.html": ["Stofzuiger of robotstofzuiger storing? 400 foutcodes uitgelegd", "Robotstofzuiger met een foutcode, een steelstofzuiger die pulseert of een vloerreiniger zonder water? Zoek je merk en los het zelf op."],
+  "ovens.html": ["Oven of magnetron storing? Foutcodes per merk uitgelegd", "Oven wordt niet warm, magnetron toont een foutcode of het display knippert? Zoek je merk en lees wat je zelf kunt doen."],
+  "televisies.html": ["Tv-storing: geen beeld, geen geluid of strepen? Zo los je het op", "Geen beeld, geen geluid, strepen in beeld of een afstandsbediening die niet reageert? Per merk wat je zelf kunt doen, ook resetten."],
+  "printers.html": ["Printer reageert niet of print niet? Storingen per merk opgelost", "Printer offline, papierstoring, strepen of een foutcode? Per merk de oplossing, stap voor stap."],
+  "drogers.html": ["Droger droogt niet of geeft een foutcode? Oplossing per merk", "Droger droogt slecht, start niet of toont een foutcode? Meestal is het een filter, de condensor of het reservoir. Per merk uitgelegd."],
+  "camper-caravan.html": ["Camper of caravan storing: Truma, Thetford, kachel en boiler", "Truma-kachel geeft een storing, Thetford-koelkast koelt niet of de boiler doet het niet? Per merk wat je onderweg zelf kunt doen."],
+  "knipperende-lampjes.html": ["Knipperend lampje of piepje? Betekenis per apparaat", "Geen foutcode maar een knipperend lampje, symbool of piepje? Zoek per apparaat wat het betekent en wat je zelf kunt doen."],
+  "index.html": ["Foutcode opzoeken: 21.000 storingen per merk zelf oplossen", null]
+};
 function layout({ file, title, desc, body, crumbs = [], extraHead = "", scripts = "", noindex = false }) {
+  if (OVR[file]) { title = OVR[file][0] || title; desc = OVR[file][1] || desc; }
   if (noindex) { NOINDEX.add(file); extraHead = '<meta name="robots" content="noindex, follow">' + extraHead; }
   if (title.length > 65 && / \| Foutcodezoeker$/.test(title)) title = title.replace(/ \| Foutcodezoeker$/, "");
   const url = file === "index.html" ? `${SITE}/` : `${SITE}/${file.replace(/\.html$/, "")}`;
@@ -301,7 +319,7 @@ for (const m of MODELS) {
   const codes = m.faults.filter(f => f.code), plain = m.faults.filter(f => !f.code);
   layout({
     file: `${m.id}.html`,
-    title: m.brand === "Alle merken" ? fitTitle([`${m.name}: oorzaken en oplossingen | Foutcodezoeker`, `${m.name}: oorzaken en oplossingen`, `${m.name}: oplossingen`, m.name, cutWords(m.name, 66)], 70) : (() => { const nc = m.faults.filter(f => f.code).length, nm = deviceName(m).replace(/ \(alle modellen\)/i, ""); return nc >= 3 ? fitTitle([`${nm}: ${pl(nc, "foutcode", "foutcodes")} en storingen uitgelegd | Foutcodezoeker`, `${nm}: ${pl(nc, "foutcode", "foutcodes")} en storingen uitgelegd`, `${nm}: ${pl(nc, "foutcode", "foutcodes")} uitgelegd`, `${nm}: ${pl(nc, "foutcode", "foutcodes")}`, `${cutWords(nm, 48)}: ${pl(nc, "foutcode", "foutcodes")}`]) : fitTitle([`${nm}: storingen${nc ? ", foutcodes" : ""}${m.tasks.length ? " en onderhoud" : " uitgelegd"} | Foutcodezoeker`, `${nm}: storingen${nc ? ", foutcodes" : ""}${m.tasks.length ? " en onderhoud" : " uitgelegd"}`, `${nm}: storingen${m.tasks.length ? " en onderhoud" : ""}`, `${cutWords(nm, 50)}: storingen`]); })(),
+    title: m.brand === "Alle merken" ? fitTitle([`${m.name}: oorzaken en oplossingen | Foutcodezoeker`, `${m.name}: oorzaken en oplossingen`, `${m.name}: oplossingen`, m.name, cutWords(m.name, 66)], 70) : (() => { const nc = m.faults.filter(f => f.code).length, nm = deviceName(m).replace(/ \(alle modellen\)/i, ""); const ex = [...new Set(m.faults.filter(f => f.code).map(f => f.code.split(" / ")[0].trim()))].filter(c => c.length <= 8).slice(0, 3), exs = ex.join(", "), nmS = nm.replace(/:.*$/, ""); return nc >= 3 ? fitTitle([...(ex.length === 3 ? [`${nmS} foutcode ${exs}: betekenis + oplossing`, `${nmS} foutcode ${exs} uitgelegd`, `${nmS}: foutcode ${exs} en ${nc - 3} meer`] : []), `${nm}: ${pl(nc, "foutcode", "foutcodes")} en storingen uitgelegd | Foutcodezoeker`, `${nm}: ${pl(nc, "foutcode", "foutcodes")} en storingen uitgelegd`, `${nm}: ${pl(nc, "foutcode", "foutcodes")} uitgelegd`, `${nm}: ${pl(nc, "foutcode", "foutcodes")}`, `${cutWords(nm, 48)}: ${pl(nc, "foutcode", "foutcodes")}`]) : fitTitle([`${nm}: storingen${nc ? ", foutcodes" : ""}${m.tasks.length ? " en onderhoud" : " uitgelegd"} | Foutcodezoeker`, `${nm}: storingen${nc ? ", foutcodes" : ""}${m.tasks.length ? " en onderhoud" : " uitgelegd"}`, `${nm}: storingen${m.tasks.length ? " en onderhoud" : ""}`, `${cutWords(nm, 50)}: storingen`]); })(),
     desc: `${m.intro.split(". ")[0]}. ${codes.length ? `${pl(codes.length, "foutcode", "foutcodes")} uitgelegd` : `${m.faults.length} ${m.faults.length === 1 ? "storing" : "storingen"} uitgelegd`}${m.tasks.length ? `, met onderhoudsschema${m.parts.length ? " en onderdelen" : ""}` : m.parts.length ? ", met onderdelen" : ""}.`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }],
     extraHead: `<script id="tasks-data" type="application/json">${tasksJson}</script>`,
@@ -318,7 +336,7 @@ ${printCard(m)}
 ${codes.length ? fold("Foutcodes", `<div class="results">${codes.slice(0, CODE_PER).map(f => `<a href="${codeUrl(m, f)}"><span><span class="code">${esc(f.code)}</span> ${esc(f.t)}</span><span>${D[f.d][0]}</span></a>`).join("")}</div>${codePager(m, 1)}`, true, codes.length) : ""}
 ${plain.length ? `<section class="stack"><h2>${codes.length ? "Andere storingen" : "Storingen"}</h2>
 ${m.cat === "e-bikes" ? warnEbike() : m.cat === "cv-ketels" ? warnGas() : ""}
-${plain.map(f => { const h = costHit(m, f); return `<article class="fault" id="${slug(f.t)}"><div class="fault-head"><h3><a href="${textUrl(m, f)}">${esc(f.t)}</a></h3></div><div class="verdict v${f.d}"><strong>${D[f.d][0]}</strong><span>${VERDICT[f.d]}</span></div><h4>❓ Wat is er aan de hand?</h4><p>${esc(f.cause)}</p><h4>💡 Wat kun je nu zelf doen?</h4><ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>${h ? `<p class="cost-hit">💰 <strong>Lukt het niet?</strong> Mogelijk onderdeel: ${esc(h[0].toLowerCase())}, gemiddeld <strong>${esc(h[1])}</strong>.</p>` : ""}${blockLink(m, f)}</article>`; }).join("")}</section>` : ""}
+${plain.map(f => { const h = costHit(m, f), mg = MERGED(m); return `<article class="fault" id="${slug(f.t)}"><div class="fault-head"><h3>${mg ? esc(f.t) : `<a href="${textUrl(m, f)}">${esc(f.t)}</a>`}</h3></div><div class="verdict v${f.d}"><strong>${D[f.d][0]}</strong><span>${VERDICT[f.d]}</span></div><h4>❓ Wat is er aan de hand?</h4><p>${esc(f.cause)}</p>${mg ? `<h4>💡 Wat kun je nu zelf doen?</h4><ol>${f.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>` : `<p><b>Eerste stap:</b> ${esc(f.steps[0])}</p>${f.steps.length > 1 ? `<p><a href="${textUrl(m, f)}">Alle ${f.steps.length} stappen: ${esc(lc1(f.t, m))} →</a></p>` : ""}`}${h ? `<p class="cost-hit">💰 <strong>Lukt het niet?</strong> Mogelijk onderdeel: ${esc(h[0].toLowerCase())}, gemiddeld <strong>${esc(h[1])}</strong>.</p>` : ""}${blockLink(m, f)}</article>`; }).join("")}</section>` : ""}
 ${COST[m.cat] ? modelCost(m) : ""}
 ${adBlock(m)}
 ${rvCta(m)}
@@ -516,7 +534,7 @@ for (const { m, f } of allCodes) {
   const dev = deviceName(m);
   layout({
     file: codeUrl(m, f), noindex: isThin(f),
-    title: (() => { const br = m.brand.split("/").map(x => x.trim()); const dv = !m.dev && /\(alle modellen\)/.test(m.name) && m.brand !== "Alle merken" ? `${m.brand} ${m.name.replace(/\s*\(alle modellen\)/, "").toLowerCase()}` : dev; const d = br.length > 1 ? dv.replace(m.brand, br[0]) : dv; const ook = br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""; const cs = codeShort(f); return fitTitle([`${d} foutcode ${cs}${ook}: betekenis en ${f.d === 3 ? "wat je doet" : "zelf oplossen"}`, `${d} foutcode ${cs}${ook}: betekenis`, `${d} foutcode ${cs}: betekenis en oplossing`, `${d} foutcode ${cs}: betekenis`, `${d} foutcode ${cs}`, `${cutWords(d, Math.max(20, 58 - cs.length))} foutcode ${cs}`]); })(),
+    title: (() => { const br = m.brand.split("/").map(x => x.trim()); const dv = !m.dev && /\(alle modellen\)/.test(m.name) && m.brand !== "Alle merken" ? `${m.brand} ${m.name.replace(/\s*\(alle modellen\)/, "").toLowerCase()}` : dev; const d = br.length > 1 ? dv.replace(m.brand, br[0]) : dv; const ook = br.length > 1 ? ` (ook ${br.slice(1).join(", ")})` : ""; const cs = codeShort(f), mean = lc1(f.t, m).replace(/\.$/, ""); return fitTitle([...(mean.length <= 38 ? [`${d} foutcode ${cs}${ook}: ${mean}`, `${d} foutcode ${cs}: ${mean}`] : []), `${d} foutcode ${cs}${ook}: betekenis en ${f.d === 3 ? "wat je doet" : "zelf oplossen"}`, `${d} foutcode ${cs}${ook}: betekenis`, `${d} foutcode ${cs}: betekenis en oplossing`, `${d} foutcode ${cs}: betekenis`, `${d} foutcode ${cs}`, `${cutWords(d, Math.max(20, 58 - cs.length))} foutcode ${cs}`]); })(),
     desc: `Foutcode ${f.code} op je ${dev}: ${f.t.toLowerCase()}. ${f.cause} Zo los je het op: ${f.steps[0]}`,
     extraHead: faqLd(codeFaq(m, f, dev)) + howtoLd(`Foutcode ${codeShort(f)} op ${dev} oplossen`, f.steps) + `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "TechArticle", headline: `Foutcode ${codeShort(f)} op ${dev}: ${f.t}`, description: f.cause, dateModified: "__DMOD__", inLanguage: "nl-NL", mainEntityOfPage: `${SITE}/${codeUrl(m, f).replace(/\.html$/, "")}`, about: { "@type": "Thing", name: dev }, author: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, publisher: { "@type": "Organization", name: "Foutcodezoeker", url: SITE + "/" }, citation: m.src.filter(k => SRC[k]).map(k => ({ "@type": "CreativeWork", name: SRC[k][0], url: SRC[k][1] })) }).replace(/</g, "\\u003c")}</script>`,
     crumbs: [{ name: c.name, file: `${c.id}.html` }, { name: fullName(m), file: `${m.id}.html` }, { name: `Foutcode ${codeShort(f)}`, file: codeUrl(m, f) }],
@@ -555,6 +573,7 @@ ${others.length ? fold(`Andere foutcodes van ${esc(dev)}`, `<div class="results"
 }
 
 for (const m of MODELS) for (const f of m.faults.filter(x => !x.code)) {
+  if (MERGED(m)) { const o = oldTextUrl(m, f).replace(/\.html$/, ""); REDIRECTS.push(`/${o} /${m.id} 301`, `/${o}.html /${m.id} 301`); continue; }
   const c = catOf(m.cat);
   const dev = deviceName(m);
   const am = m.brand === "Alle merken";
@@ -620,7 +639,7 @@ const brandNames = Object.keys(BRANDS).sort((a, b) => a.localeCompare(b, "nl"));
 for (const b of brandNames) {
   const ms = BRANDS[b].sort((x, y) => CATS.findIndex(c => c.id === x.cat) - CATS.findIndex(c => c.id === y.cat));
   const codes = ms.flatMap(m => m.faults.filter(f => f.code).map(f => ({ m, f })));
-  const cats = [...new Set(ms.map(m => catOf(m.cat).one))];
+  const cats = [...new Set(ms.map(m => { const one = catOf(m.cat).one; if (one !== "apparaat") return one; const w = (m.name.match(/([a-zà-ÿ]{5,})$/) || [])[1]; return w || null; }).filter(Boolean))]; if (!cats.length) cats.push("apparaten");
   layout({
     file: brandUrl(b),
     title: fitTitle([`${b} storingen en foutcodes: ${cats.slice(0, 3).join(", ")} | Foutcodezoeker`, `${b} storingen en foutcodes: ${cats.slice(0, 3).join(", ")}`, `${b} storingen en foutcodes: ${cats.slice(0, 2).join(", ")}`, `${b} storingen en foutcodes: ${cats[0]}`, `${b} storingen en foutcodes`], 70),
@@ -951,6 +970,7 @@ fs.writeFileSync(path.join(OUT, "search.js"), `window.SEARCH=${JSON.stringify(in
   }
 }
 try { fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(modOf).sort().map(k => [k, modOf[k]])))); } catch (e) {}
+fs.writeFileSync(path.join(OUT, "_redirects"), "# Samengevoegde storingspagina's (inhoud staat op de modelpagina)\n" + REDIRECTS.join("\n") + "\n");
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\n\n# AI-zoekmachines en assistenten zijn welkom\nUser-agent: GPTBot\nUser-agent: OAI-SearchBot\nUser-agent: ChatGPT-User\nUser-agent: Google-Extended\nUser-agent: PerplexityBot\nUser-agent: ClaudeBot\nUser-agent: Claude-SearchBot\nUser-agent: Applebot-Extended\nUser-agent: Bingbot\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, "llms.txt"), `# Foutcodezoeker
 
